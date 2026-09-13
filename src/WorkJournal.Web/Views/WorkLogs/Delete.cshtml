@@ -1,0 +1,9 @@
+﻿@model WorkLog
+@{ ViewData["Title"] = "刪除日誌"; }
+<a class="back-link" asp-action="Details" asp-route-id="@Model.Id">← 返回日誌</a>
+<section class="panel delete-panel">
+    <p class="eyebrow">DELETE ENTRY</p><h1>確定刪除這筆日誌？</h1><p class="subheading">刪除後無法復原，請先確認是否需要保留內容。</p>
+    <div class="delete-preview"><strong>@Model.Title</strong><p>@Model.WorkDate.ToString("yyyy/MM/dd") · @(Model.Project ?? "未分類") · @Model.Hours.ToString("0.##") 小時</p></div>
+    <form asp-action="Delete" asp-route-id="@Model.Id" method="post" class="d-flex gap-3"><a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-light">保留日誌</a><button type="submit" class="btn btn-danger">確認刪除</button></form>
+</section>
+

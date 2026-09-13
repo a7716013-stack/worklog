@@ -1,0 +1,55 @@
+﻿@model WorkLogIndexViewModel
+@{ ViewData["Title"] = "日誌總覽"; }
+<section class="page-heading">
+    <div><p class="eyebrow">YOUR WORK, DAY BY DAY</p><h1>讓每一天的進展，都有跡可循。</h1><p class="subheading">整理工作、追蹤進度，為明天留下一個清楚的起點。</p></div>
+    <a class="btn btn-forest" asp-action="Create">＋ 記錄今天的工作</a>
+</section>
+<div class="stats-grid">
+    <article class="stat"><span>工作紀錄</span><strong>@Model.TotalCount <small>筆</small></strong><p>目前篩選範圍</p></article>
+    <article class="stat"><span>累計投入</span><strong>@Model.TotalHours.ToString("0.##") <small>小時</small></strong><p>把付出記錄下來</p></article>
+    <article class="stat"><span>已完成</span><strong>@Model.CompletedCount <small>項</small></strong><p>每個小進展都值得記錄</p></article>
+    <article class="stat"><span>進行中</span><strong>@Model.ActiveCount <small>項</small></strong><p>保持專注，持續推進</p></article>
+</div>
+<section class="panel">
+    <div class="panel-heading"><h2>工作紀錄</h2><span class="muted">@Model.TotalCount 筆日誌</span></div>
+    <form method="get" asp-action="Index" class="filter-grid">
+        <div><label asp-for="Search">搜尋</label><input asp-for="Search" class="form-control" placeholder="工作項目、專案或內容" maxlength="120" /></div>
+        <div><label asp-for="Status">進度</label><select asp-for="Status" asp-items="Html.GetEnumSelectList<WorkStatus>()" class="form-select"><option value="">全部進度</option></select></div>
+        <div><label asp-for="From">開始日期</label><input asp-for="From" type="date" class="form-control" /></div>
+        <div><label asp-for="To">結束日期</label><input asp-for="To" type="date" class="form-control" /></div>
+        <div class="filter-actions"><button class="btn btn-forest" type="submit">篩選</button><a asp-action="Index" class="btn btn-light">清除</a></div>
+        <div asp-validation-summary="All" class="text-danger filter-errors"></div>
+    </form>
+    @if (Model.Items.Count == 0)
+    {
+        <div class="empty-state"><div class="empty-icon" aria-hidden="true">▤</div><h3>@(Model.Search != null || Model.From != null || Model.To != null || Model.Status != null ? "目前沒有符合條件的日誌" : "從第一筆工作日誌開始")</h3><p>記下今天完成的事、投入的時間，以及下一步。</p><a asp-action="Create" class="btn btn-forest">新增工作日誌</a></div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table journal-table align-middle">
+                <thead><tr><th scope="col">日期</th><th scope="col">工作項目</th><th scope="col">進度</th><th scope="col">工時</th><th scope="col" class="text-end">操作</th></tr></thead>
+                <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td class="date-cell">@item.WorkDate.ToString("MM.dd")<small>@item.WorkDate.Year</small></td>
+                        <td><a class="entry-title" asp-action="Details" asp-route-id="@item.Id">@item.Title</a><div class="entry-project">@(item.Project ?? "未分類")</div></td>
+                        <td><span class="status-badge @item.Status.CssClass()">@item.Status.Label()</span></td>
+                        <td class="hours-cell">@item.Hours.ToString("0.##") <small>小時</small></td>
+                        <td class="text-end text-nowrap"><a class="table-action" asp-action="Edit" asp-route-id="@item.Id">編輯</a><a class="table-action danger-link" asp-action="Delete" asp-route-id="@item.Id">刪除</a></td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+        <nav class="pagination-bar" aria-label="日誌分頁">
+            <span>第 @Model.Page / @Model.TotalPages 頁</span>
+            <div class="d-flex gap-2">
+                @if (Model.Page > 1) { <a class="btn btn-outline-secondary btn-sm" asp-action="Index" asp-route-page="@(Model.Page - 1)" asp-route-search="@Model.Search" asp-route-status="@Model.Status" asp-route-from="@Model.From?.ToString("yyyy-MM-dd")" asp-route-to="@Model.To?.ToString("yyyy-MM-dd")">上一頁</a> }
+                @if (Model.Page < Model.TotalPages) { <a class="btn btn-outline-secondary btn-sm" asp-action="Index" asp-route-page="@(Model.Page + 1)" asp-route-search="@Model.Search" asp-route-status="@Model.Status" asp-route-from="@Model.From?.ToString("yyyy-MM-dd")" asp-route-to="@Model.To?.ToString("yyyy-MM-dd")">下一頁</a> }
+            </div>
+        </nav>
+    }
+</section>
+

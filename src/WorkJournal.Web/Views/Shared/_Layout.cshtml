@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] · 工作日誌</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="topbar">
+        <div class="page-width d-flex align-items-center justify-content-between gap-3">
+            <a class="brand" asp-controller="WorkLogs" asp-action="Index"><span class="brand-icon" aria-hidden="true">▤</span><span>工作日誌<small>WORK JOURNAL</small></span></a>
+            <nav class="d-flex align-items-center gap-3" aria-label="主選單">
+                <a class="nav-journal" asp-controller="WorkLogs" asp-action="Index">日誌總覽</a>
+                <a class="btn btn-forest btn-sm" asp-controller="WorkLogs" asp-action="Create">＋ 新增日誌</a>
+            </nav>
+        </div>
+    </header>
+    <main class="page-width main-content">
+        @if (TempData["Success"] is string message)
+        {
+            <div class="alert alert-success" role="status">@message</div>
+        }
+        @RenderBody()
+    </main>
+    <footer class="page-width footer"><span>WORK JOURNAL</span><span>記錄每天的進展，累積工作的成果。</span></footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
