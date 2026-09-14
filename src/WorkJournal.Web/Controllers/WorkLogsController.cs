@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WorkJournal.Web.Data;
 using WorkJournal.Web.Models;
@@ -28,6 +28,12 @@ public class WorkLogsController(JournalDbContext db) : Controller
         if (filter.From.HasValue) query = query.Where(x => x.WorkDate >= filter.From);
         if (filter.To.HasValue) query = query.Where(x => x.WorkDate <= filter.To);
 
+        var month = filter.CalendarMonth ?? DateOnly.FromDateTime(DateTime.Today);
+        month = new DateOnly(Math.Clamp(month.Year, 2000, 2100), month.Month, 1);
+        filter.CalendarMonth = month;
+        // Calendar follows the filters but is independent of table pagination.
+        filter.CalendarItems = await query.Where(x => x.WorkDate >= month && x.WorkDate < month.AddMonths(1))
+            .OrderBy(x => x.WorkDate).ThenBy(x => x.StartTime).ThenBy(x => x.Id).ToListAsync();
         filter.TotalCount = await query.CountAsync();
         filter.TotalHours = await query.SumAsync(x => (decimal?)x.Hours) ?? 0;
         filter.CompletedCount = await query.CountAsync(x => x.Status == WorkStatus.Completed);
@@ -43,7 +49,7 @@ public class WorkLogsController(JournalDbContext db) : Controller
 
     [HttpPost]
     public async Task<IActionResult> Create(
-        [Bind("WorkDate,Title,Project,Hours,Status,Content,NextSteps")] WorkLog input)
+        [Bind("WorkDate,Title,Project,Hours,Status,Content,NextSteps,StartTime,EndTime,Color")] WorkLog input)
     {
         if (!ModelState.IsValid) return View("Edit", input);
         Normalize(input);
@@ -74,7 +80,8 @@ public class WorkLogsController(JournalDbContext db) : Controller
         var item = await db.WorkLogs.FindAsync(id);
         if (item is null) return NotFound();
         if (!await TryUpdateModelAsync(item, "", x => x.WorkDate, x => x.Title,
-                x => x.Project, x => x.Hours, x => x.Status, x => x.Content, x => x.NextSteps))
+                x => x.Project, x => x.Hours, x => x.Status, x => x.Content, x => x.NextSteps,
+                x => x.StartTime, x => x.EndTime, x => x.Color))
             return View("Edit", item);
         Normalize(item);
         item.UpdatedAt = DateTimeOffset.UtcNow;

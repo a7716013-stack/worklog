@@ -1,8 +1,10 @@
-﻿using WorkJournal.Web.Models;
+using WorkJournal.Web.Models;
 namespace WorkJournal.Web.ViewModels;
 
 public class WorkLogIndexViewModel
 {
+    public DateOnly? CalendarMonth { get; set; }
+    public IReadOnlyList<WorkLog> CalendarItems { get; set; } = [];
     public string? Search { get; set; }
     public WorkStatus? Status { get; set; }
     public DateOnly? From { get; set; }

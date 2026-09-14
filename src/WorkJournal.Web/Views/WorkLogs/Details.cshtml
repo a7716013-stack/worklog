@@ -1,9 +1,10 @@
-﻿@model WorkLog
+@model WorkLog
 @{ ViewData["Title"] = Model.Title; }
 <a class="back-link" asp-action="Index">← 返回日誌總覽</a>
 <div class="page-heading compact"><div><p class="eyebrow">@Model.WorkDate.ToString("yyyy / MM / dd") · 工作紀錄</p><h1>@Model.Title</h1></div><a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-forest">編輯日誌</a></div>
 <article class="panel editor-panel">
     <dl class="detail-meta"><div><dt>專案／客戶</dt><dd>@(Model.Project ?? "未分類")</dd></div><div><dt>投入工時</dt><dd>@Model.Hours.ToString("0.##") 小時</dd></div><div><dt>進度</dt><dd><span class="status-badge @Model.Status.CssClass()">@Model.Status.Label()</span></dd></div></dl>
+    <div class="calendar-event color-@((int)Model.Color) mb-4"><strong>工作時段</strong>：@(Model.StartTime.HasValue ? $"{Model.StartTime:HH:mm} – {Model.EndTime:HH:mm}" : "未設定時間") · @Html.DisplayFor(m => m.Color)</div>
     <section class="detail-section"><h2>工作內容</h2><div class="prose">@Model.Content</div></section>
     <section class="detail-section"><h2>後續待辦</h2><div class="prose">@(Model.NextSteps ?? "尚未填寫後續待辦。")</div></section>
     <div class="detail-footer"><span>最後更新：@Model.UpdatedAt.ToLocalTime().ToString("yyyy/MM/dd HH:mm")</span><a class="danger-link" asp-action="Delete" asp-route-id="@Model.Id">刪除此日誌</a></div>

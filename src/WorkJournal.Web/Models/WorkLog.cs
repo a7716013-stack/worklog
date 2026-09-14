@@ -1,9 +1,26 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 namespace WorkJournal.Web.Models;
 
-public class WorkLog
+public class WorkLog : IValidatableObject
 {
     public int Id { get; set; }
+
+    [Display(Name = "開始時間"), DataType(DataType.Time)]
+    public TimeOnly? StartTime { get; set; }
+
+    [Display(Name = "結束時間"), DataType(DataType.Time)]
+    public TimeOnly? EndTime { get; set; }
+
+    [Display(Name = "日誌顏色"), EnumDataType(typeof(WorkColor), ErrorMessage = "請選擇有效的顏色。")]
+    public WorkColor Color { get; set; } = WorkColor.Green;
+
+    public IEnumerable<ValidationResult> Validate(ValidationContext context)
+    {
+        if (StartTime.HasValue != EndTime.HasValue)
+            yield return new ValidationResult("請同時填寫開始與結束時間，或將兩者留空。", [nameof(StartTime), nameof(EndTime)]);
+        else if (StartTime.HasValue && EndTime <= StartTime)
+            yield return new ValidationResult("結束時間必須晚於開始時間（同一天）。", [nameof(EndTime)]);
+    }
 
     [Display(Name = "日期"), DataType(DataType.Date)]
     [WorkDateRange]

@@ -1,0 +1,44 @@
+@model WorkLogIndexViewModel
+@{
+    var selected = Model.CalendarMonth ?? DateOnly.FromDateTime(DateTime.Today);
+    var month = new DateOnly(Math.Clamp(selected.Year, 2000, 2100), selected.Month, 1);
+    var first = month.AddDays(-(int)month.DayOfWeek);
+    var today = DateOnly.FromDateTime(DateTime.Today);
+    var days = new[] { "日", "一", "二", "三", "四", "五", "六" };
+    var grouped = Model.CalendarItems.ToLookup(x => x.WorkDate);
+}
+<section class="panel work-calendar" id="calendar" aria-labelledby="calendar-heading">
+    <div class="panel-heading calendar-heading">
+        <div><p class="eyebrow">WORK CALENDAR</p><h2 id="calendar-heading">@month.ToString("yyyy 年 M 月")</h2><p class="muted mb-0">依上方篩選條件顯示當月全部日誌，點擊項目查看內容。</p></div>
+        <nav class="d-flex gap-2 flex-wrap" aria-label="月曆月份">
+            @if (month > new DateOnly(2000, 1, 1)) {
+            <a class="btn btn-light" asp-action="Index" asp-route-CalendarMonth="@month.AddMonths(-1).ToString("yyyy-MM-dd")" asp-route-search="@Model.Search" asp-route-status="@Model.Status" asp-route-from="@Model.From?.ToString("yyyy-MM-dd")" asp-route-to="@Model.To?.ToString("yyyy-MM-dd")" asp-fragment="calendar" aria-label="上一個月">← 上月</a>
+            }
+            <a class="btn btn-light" asp-action="Index" asp-route-CalendarMonth="@today.ToString("yyyy-MM-01")" asp-route-search="@Model.Search" asp-route-status="@Model.Status" asp-route-from="@Model.From?.ToString("yyyy-MM-dd")" asp-route-to="@Model.To?.ToString("yyyy-MM-dd")" asp-fragment="calendar">本月</a>
+            @if (month < new DateOnly(2100, 12, 1)) {
+            <a class="btn btn-light" asp-action="Index" asp-route-CalendarMonth="@month.AddMonths(1).ToString("yyyy-MM-dd")" asp-route-search="@Model.Search" asp-route-status="@Model.Status" asp-route-from="@Model.From?.ToString("yyyy-MM-dd")" asp-route-to="@Model.To?.ToString("yyyy-MM-dd")" asp-fragment="calendar" aria-label="下一個月">下月 →</a>
+            }
+        </nav>
+    </div>
+    <div class="calendar-scroll" tabindex="0" role="region" aria-label="月份日曆，小螢幕可左右捲動">
+        <div class="calendar-grid">
+            @foreach (var day in days) { <div class="calendar-weekday">@day</div> }
+            @for (var i = 0; i < 42; i++) {
+                var date = first.AddDays(i);
+                <div class="calendar-day @(date.Month != month.Month ? "outside-month" : "") @(date == today ? "is-today" : "")">
+                    <time datetime="@date.ToString("yyyy-MM-dd")" class="calendar-date">@date.Day @(date == today ? "今天" : "")</time>
+                    @foreach (var entry in grouped[date]) {
+                        <a class="calendar-event color-@((int)entry.Color)" asp-action="Details" asp-route-id="@entry.Id">
+                            <span class="event-time">@(entry.StartTime.HasValue ? $"{entry.StartTime:HH:mm}–{entry.EndTime:HH:mm}" : "未設定時間")</span>
+                            <strong>@entry.Title</strong>
+                        </a>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+    @if (Model.CalendarItems.Count == 0) { <p class="muted mt-3 mb-0">這個月沒有符合篩選條件的工作紀錄。</p> }
+    <div class="calendar-legend" aria-label="日誌顏色">
+        @foreach (var color in Html.GetEnumSelectList<WorkColor>()) { <span class="calendar-event color-@color.Value">@color.Text</span> }
+    </div>
+</section>
