@@ -5,11 +5,10 @@ namespace WorkJournal.Web.ViewModels;
 
 public class StockAnalysisViewModel
 {
-    [Display(Name = "股票代號")]
-    [StringLength(20, ErrorMessage = "股票代號最多 20 字。")]
-    [RegularExpression(@"[A-Za-z0-9][A-Za-z0-9.\-^:]{0,19}", ErrorMessage = "請輸入英文字母、數字或有效的代號符號（. - ^ :）。")]
+    [Display(Name = "台股代號")]
+    [StringLength(6, ErrorMessage = "請輸入 4 至 6 碼台股代號。")]
+    [RegularExpression(@"[0-9]{4}[0-9A-Z]{0,2}", ErrorMessage = "請輸入台股代號，例如 2330、0050、00679B。")]
     public string? Symbol { get; set; }
-
     public StockQuote Quote { get; set; } = new();
-    public string Message { get; set; } = "輸入股票代號，預覽行情欄位與分析區塊。";
+    public string Message { get; set; } = "輸入台股代號，查詢最新可用日行情。";
 }

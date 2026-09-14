@@ -16,6 +16,12 @@ builder.Services.AddControllersWithViews(options =>
 builder.Services.AddDbContext<JournalDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("JournalDatabase"),
         sql => sql.EnableRetryOnFailure()));
+builder.Services.AddMemoryCache();
+builder.Services.AddHttpClient<WorkJournal.Web.Services.FinMindStockService>(client =>
+{
+    client.BaseAddress = new Uri("https://api.finmindtrade.com/api/v4/");
+    client.Timeout = TimeSpan.FromSeconds(20);
+});
 var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {

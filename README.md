@@ -115,3 +115,16 @@ Cloudflare 已部署，詳見下方公開網址。
 https://worklog.ork-ournal.workers.dev
 
 部署及存取設定見 [Cloudflare 說明](deploy/cloudflare/README.md)。
+
+## FinMind 台股行情
+
+股票分析頁輸入台股代號（例如 2330、0050、00679B），透過伺服器端 FinMindStockService 取得 TaiwanStockInfo 與 TaiwanStockPrice。
+價格為最近 90 日內最新可用交易日的日行情，不是盤中即時價格。畫面顯示交易日期，成交量單位為股，價格單位為新台幣元。
+漲跌幅 = spread / (close - spread) × 100；無效或缺少的數值顯示「—」。
+行情快取 5 分鐘、股票基本資料快取 24 小時，失敗結果快取 1 分鐘。財報、估值及技術指標尚未接入。
+
+目前已驗證免 Token 查詢可用。若需使用帳戶額度，可在伺服器環境設定 `FinMind__Token`，應用程式以 Authorization Bearer 標頭送出。不要將 Token 寫入 Git 或前端。
+Azure 部署時可在 App Service 應用程式設定加入同名環境變數。
+
+服務測試：`dotnet run --project tests/FinMindChecks`
+官方文件：https://finmind.github.io/tutor/TaiwanMarket/Technical/

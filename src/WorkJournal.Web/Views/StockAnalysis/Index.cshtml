@@ -1,45 +1,45 @@
 @model StockAnalysisViewModel
 @{ ViewData["Title"] = "股票分析"; }
 <section class="page-heading">
-    <div><p class="eyebrow">STOCK ANALYSIS</p><h1>股票分析</h1><p class="subheading">這裡將作為股票分析功能首頁</p></div>
-    <span class="status-badge planned">功能建置中</span>
+    <div><p class="eyebrow">STOCK ANALYSIS</p><h1>股票分析</h1><p class="subheading">查看台股最新可用日行情與交易資訊</p></div>
+    <span class="status-badge planned">FinMind 日行情</span>
 </section>
 <section class="panel stock-search-panel" aria-labelledby="stock-search-heading">
     <h2 id="stock-search-heading">查詢股票</h2>
     <form method="get" asp-controller="StockAnalysis" asp-action="Index" class="stock-search">
         <div class="stock-search-input">
             <label asp-for="Symbol" class="form-label"></label>
-            <input asp-for="Symbol" class="form-control" placeholder="例如：2330、AAPL" maxlength="20" autocomplete="off" aria-describedby="stock-search-help" />
+            <input asp-for="Symbol" class="form-control" placeholder="例如：2330、0050、00679B" maxlength="6" autocomplete="off" aria-describedby="stock-search-help" />
             <span asp-validation-for="Symbol" class="text-danger"></span>
         </div>
         <button type="submit" class="btn btn-forest">搜尋</button>
         <a asp-action="Index" class="btn btn-light">清除</a>
     </form>
-    <p id="stock-search-help" class="muted mt-3 mb-0">目前尚未串接行情來源；「—」代表沒有資料，不代表數值為零。</p>
+    <p id="stock-search-help" class="muted mt-3 mb-0">資料來源：FinMind。行情為日資料，非盤中即時報價，快取 5 分鐘；「—」代表無資料。</p>
     <p class="stock-message mb-0" role="status">@Model.Message</p>
 </section>
 <section class="panel stock-quote-panel" aria-labelledby="stock-quote-heading">
-    <div class="panel-heading"><h2 id="stock-quote-heading">行情概覽</h2><span class="muted">等待行情資料</span></div>
+    <div class="panel-heading"><h2 id="stock-quote-heading">行情概覽</h2><span class="muted">@(Model.Quote.TradeDate.HasValue ? "交易日期：" + Model.Quote.TradeDate.Value.ToString("yyyy/MM/dd") : "尚無交易資料")</span></div>
     <dl class="stock-quote-grid">
         <div><dt>股票名稱</dt><dd>@(Model.Quote.Name ?? "—")</dd></div>
         <div><dt>股票代號</dt><dd>@(string.IsNullOrEmpty(Model.Quote.Symbol) ? "—" : Model.Quote.Symbol)</dd></div>
-        <div><dt>現價</dt><dd>@(Model.Quote.CurrentPrice?.ToString("N2") ?? "—")</dd></div>
+        <div><dt>最新收盤價（元）</dt><dd>@(Model.Quote.CurrentPrice?.ToString("N2") ?? "—")</dd></div>
         <div><dt>漲跌幅</dt><dd>@(Model.Quote.ChangePercent.HasValue ? Model.Quote.ChangePercent.Value.ToString("0.##") + "%" : "—")</dd></div>
-        <div><dt>開盤價</dt><dd>@(Model.Quote.OpenPrice?.ToString("N2") ?? "—")</dd></div>
-        <div><dt>最高價</dt><dd>@(Model.Quote.HighPrice?.ToString("N2") ?? "—")</dd></div>
-        <div><dt>最低價</dt><dd>@(Model.Quote.LowPrice?.ToString("N2") ?? "—")</dd></div>
-        <div><dt>成交量</dt><dd>@(Model.Quote.Volume?.ToString("N0") ?? "—")</dd></div>
+        <div><dt>開盤價（元）</dt><dd>@(Model.Quote.OpenPrice?.ToString("N2") ?? "—")</dd></div>
+        <div><dt>最高價（元）</dt><dd>@(Model.Quote.HighPrice?.ToString("N2") ?? "—")</dd></div>
+        <div><dt>最低價（元）</dt><dd>@(Model.Quote.LowPrice?.ToString("N2") ?? "—")</dd></div>
+        <div><dt>成交量（股）</dt><dd>@(Model.Quote.Volume?.ToString("N0") ?? "—")</dd></div>
     </dl>
 </section>
 <div class="stock-analysis-grid">
     <section class="panel stock-analysis-panel" aria-labelledby="fundamentals-heading">
         <p class="eyebrow">FUNDAMENTALS</p><h2 id="fundamentals-heading">基本分析</h2>
-        <p class="subheading">預留公司營運、獲利能力與估值資料。</p>
-        <p class="stock-placeholder">尚無基本分析資料</p>
+        <p class="subheading">公司分類資料由 FinMind 提供；財報與估值尚未接入。</p>
+        <p class="stock-placeholder">產業：@(Model.Quote.Industry ?? "—") · 市場：@(Model.Quote.Market == "twse" ? "上市" : Model.Quote.Market == "tpex" ? "上櫃" : Model.Quote.Market ?? "—")</p>
     </section>
     <section class="panel stock-analysis-panel" aria-labelledby="technicals-heading">
         <p class="eyebrow">TECHNICALS</p><h2 id="technicals-heading">技術分析</h2>
-        <p class="subheading">預留價格走勢、均線與成交量指標。</p>
-        <p class="stock-placeholder">尚無技術分析資料</p>
+        <p class="subheading">上方呈現同一交易日的開高低收與成交量。</p>
+        <p class="stock-placeholder">均線與技術指標將於後續加入。</p>
     </section>
 </div>
