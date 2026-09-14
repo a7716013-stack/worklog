@@ -22,3 +22,12 @@
 .calendar-event:hover{filter:brightness(.96)}.calendar-event:focus-visible{outline:3px solid #183e30;outline-offset:2px}
 .calendar-legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.calendar-legend .calendar-event{margin:0}
 @media(max-width:600px){.calendar-heading nav{width:100%}.calendar-day{min-height:110px}}
+
+.brand-switcher{display:flex;align-items:center;gap:18px;min-width:0}.brand-switcher .brand{flex-shrink:0}
+.site-switcher .dropdown-menu{border-color:var(--line);border-radius:10px;padding:6px;box-shadow:0 10px 30px #243a3214}
+.site-switcher .dropdown-item{border-radius:6px;color:var(--ink);padding:9px 16px}.site-switcher .dropdown-item:hover,.site-switcher .dropdown-item:focus{background:#edf3ef;color:var(--forest)}
+.stock-search-panel,.stock-analysis-panel{padding:28px}.stock-search-panel h2,.stock-analysis-panel h2{font-size:18px;font-weight:650}
+.stock-search{display:flex;gap:12px;align-items:flex-end;margin-top:20px;flex-wrap:wrap}.stock-search-input{flex:1;min-width:180px}.stock-message{margin-top:12px;font-size:14px}
+.stock-quote-panel{margin-top:24px}.stock-quote-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;padding:28px;margin:0}.stock-quote-grid dt{font-size:12px;color:var(--muted);font-weight:400}.stock-quote-grid dd{margin:6px 0 0;font-size:24px;font-weight:600;overflow-wrap:anywhere}
+.stock-analysis-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:24px}.stock-placeholder{padding:32px 16px;margin:24px 0 0;text-align:center;border:1px dashed var(--line);border-radius:10px;color:var(--muted);background:var(--paper)}
+@media(max-width:650px){.topbar-content{flex-wrap:wrap}.brand-switcher{width:100%;justify-content:space-between;gap:8px}.topbar-content>nav{margin-left:auto}.site-switcher .dropdown-menu{right:0;left:auto}.stock-search-panel,.stock-analysis-panel{padding:20px}.stock-quote-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;padding:20px}.stock-analysis-grid{grid-template-columns:1fr}.stock-search-input{flex-basis:100%}}

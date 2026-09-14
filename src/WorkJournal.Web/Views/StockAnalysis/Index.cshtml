@@ -1,0 +1,45 @@
+@model StockAnalysisViewModel
+@{ ViewData["Title"] = "股票分析"; }
+<section class="page-heading">
+    <div><p class="eyebrow">STOCK ANALYSIS</p><h1>股票分析</h1><p class="subheading">這裡將作為股票分析功能首頁</p></div>
+    <span class="status-badge planned">功能建置中</span>
+</section>
+<section class="panel stock-search-panel" aria-labelledby="stock-search-heading">
+    <h2 id="stock-search-heading">查詢股票</h2>
+    <form method="get" asp-controller="StockAnalysis" asp-action="Index" class="stock-search">
+        <div class="stock-search-input">
+            <label asp-for="Symbol" class="form-label"></label>
+            <input asp-for="Symbol" class="form-control" placeholder="例如：2330、AAPL" maxlength="20" autocomplete="off" aria-describedby="stock-search-help" />
+            <span asp-validation-for="Symbol" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-forest">搜尋</button>
+        <a asp-action="Index" class="btn btn-light">清除</a>
+    </form>
+    <p id="stock-search-help" class="muted mt-3 mb-0">目前尚未串接行情來源；「—」代表沒有資料，不代表數值為零。</p>
+    <p class="stock-message mb-0" role="status">@Model.Message</p>
+</section>
+<section class="panel stock-quote-panel" aria-labelledby="stock-quote-heading">
+    <div class="panel-heading"><h2 id="stock-quote-heading">行情概覽</h2><span class="muted">等待行情資料</span></div>
+    <dl class="stock-quote-grid">
+        <div><dt>股票名稱</dt><dd>@(Model.Quote.Name ?? "—")</dd></div>
+        <div><dt>股票代號</dt><dd>@(string.IsNullOrEmpty(Model.Quote.Symbol) ? "—" : Model.Quote.Symbol)</dd></div>
+        <div><dt>現價</dt><dd>@(Model.Quote.CurrentPrice?.ToString("N2") ?? "—")</dd></div>
+        <div><dt>漲跌幅</dt><dd>@(Model.Quote.ChangePercent.HasValue ? Model.Quote.ChangePercent.Value.ToString("0.##") + "%" : "—")</dd></div>
+        <div><dt>開盤價</dt><dd>@(Model.Quote.OpenPrice?.ToString("N2") ?? "—")</dd></div>
+        <div><dt>最高價</dt><dd>@(Model.Quote.HighPrice?.ToString("N2") ?? "—")</dd></div>
+        <div><dt>最低價</dt><dd>@(Model.Quote.LowPrice?.ToString("N2") ?? "—")</dd></div>
+        <div><dt>成交量</dt><dd>@(Model.Quote.Volume?.ToString("N0") ?? "—")</dd></div>
+    </dl>
+</section>
+<div class="stock-analysis-grid">
+    <section class="panel stock-analysis-panel" aria-labelledby="fundamentals-heading">
+        <p class="eyebrow">FUNDAMENTALS</p><h2 id="fundamentals-heading">基本分析</h2>
+        <p class="subheading">預留公司營運、獲利能力與估值資料。</p>
+        <p class="stock-placeholder">尚無基本分析資料</p>
+    </section>
+    <section class="panel stock-analysis-panel" aria-labelledby="technicals-heading">
+        <p class="eyebrow">TECHNICALS</p><h2 id="technicals-heading">技術分析</h2>
+        <p class="subheading">預留價格走勢、均線與成交量指標。</p>
+        <p class="stock-placeholder">尚無技術分析資料</p>
+    </section>
+</div>
