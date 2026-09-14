@@ -1,4 +1,4 @@
-﻿**/bin/
+**/bin/
 **/obj/
 .vs/
 *.user
@@ -6,3 +6,9 @@
 artifacts/
 *.log
 
+
+# Cloudflare local state and secrets
+**/.wrangler/
+**/node_modules/
+**/.dev.vars*
+**/.env*

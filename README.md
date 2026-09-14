@@ -90,7 +90,7 @@ python tests/smoke_test.py
 
 目前是單人、本機開發版本，尚未加入登入、使用者資料隔離、角色權限、附件與審核流程。
 若多人同時編輯同一筆日誌，最後儲存的內容會覆蓋先前內容；多人版建議加入 RowVersion 並處理並行衝突。
-已建立 Azure 測試環境，設定與再次發佈方式見 [Azure 部署說明](deploy/README.md)。測試環境以來源 IP 限制存取，尚未加入使用者登入。公開開放前先完成身份驗證與資料權限。
+已建立 Azure 測試環境，設定與再次發佈方式見 [Azure 部署說明](deploy/README.md)。Azure 直接入口保留來源限制；Cloudflare 公開入口已開放外部網路。目前尚未加入登入功能，任何知道公開網址的人都能讀寫日誌。
 
 IIS 發佈的基礎步驟：
 
@@ -103,9 +103,15 @@ dotnet publish src/WorkJournal.Web -c Release -o artifacts/publish
 `AllowedHosts` 現在只允許 localhost 與 127.0.0.1，部署時應設定實際網域，並以環境變數覆寫連線字串。
 `TrustServerCertificate=True` 為本機開發設定；正式環境應使用可信任 SQL Server 憑證。
 HTTPS 模式可在信任開發憑證後使用；Production 會將 HTTP 重新導向 HTTPS。
-Cloudflare 登入、DNS 與 Tunnel 設定屬於後续部署步驟。
+Cloudflare 已部署，詳見下方公開網址。
 
 ## 參考文件
 
 - [ASP.NET Core MVC 與 EF Core](https://learn.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro?view=aspnetcore-10.0)
 - [ASP.NET Core 表單防偽](https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-10.0)
+
+## Cloudflare 公開網址
+
+https://worklog.ork-ournal.workers.dev
+
+部署及存取設定見 [Cloudflare 說明](deploy/cloudflare/README.md)。

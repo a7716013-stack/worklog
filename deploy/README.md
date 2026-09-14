@@ -22,7 +22,7 @@
 ## 存取
 
 目前網站尚未加入使用者登入，因此以 App Service 的 TestNetwork IP 規則限制測試來源。
-SCM 部署端點使用相同限制；其他網路會收到 403，並不代表網站壞掉。
+Cloudflare 公開入口已開放外部網路，詳見 [Cloudflare 說明](cloudflare/README.md)。Azure 另允許帶有專用驗證值的 Cloudflare 來源；SCM 使用獨立的管理者 IP 限制。
 更換網路後，請在 Azure 入口網站的網站「網路 / 存取限制」更新 TestNetwork 規則。
 新增測試者時，新增其明確的來源 IP 規則；不要把目前的單人日誌當成已有帳號隔離的系統。
 

@@ -1,4 +1,4 @@
-﻿import html
+import html
 import http.cookiejar
 import re
 import sys
@@ -9,6 +9,7 @@ import uuid
 
 base = sys.argv[1] if len(sys.argv) > 1 else "http://localhost:5180"
 opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
+opener.addheaders = [("User-Agent", "Mozilla/5.0 (compatible; WorkJournalSmokeTest/1.0)")]
 created = []
 marker = "smoke-" + uuid.uuid4().hex[:10]
 

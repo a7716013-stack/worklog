@@ -1,0 +1,11 @@
+{
+  "name": "worklog",
+  "main": "worker.mjs",
+  "account_id": "f407d9125500c2225be5f3958c4a3843",
+  "compatibility_date": "2026-09-14",
+  "workers_dev": true,
+  "preview_urls": false,
+  "vars": {
+    "ORIGIN": "https://worklog-a7716013-test.azurewebsites.net"
+  }
+}
