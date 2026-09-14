@@ -1,13 +1,14 @@
-﻿from pathlib import Path
+from pathlib import Path
 import re
 import uuid
+import sys
 from playwright.sync_api import sync_playwright
 
 root = Path(__file__).resolve().parents[1]
 artifacts = root / "artifacts"
 artifacts.mkdir(exist_ok=True)
 marker = "browser-" + uuid.uuid4().hex[:10]
-base = "http://localhost:5180"
+base = sys.argv[1].rstrip("/") if len(sys.argv) > 1 else "http://localhost:5180"
 entry_url = None
 with sync_playwright() as playwright:
     browser = playwright.chromium.launch(channel="msedge", headless=True)
@@ -23,6 +24,7 @@ with sync_playwright() as playwright:
         page.locator("#Hours").fill("1.25")
         page.locator("#Content").fill("確認工作日誌的表單、日期驗證與響應式版面。")
         page.locator("#NextSteps").fill("開始記錄每天的工作進展。")
+        page.wait_for_function('typeof jQuery !== "undefined" && typeof jQuery.fn.valid === "function" && jQuery("form").data("validator")')
         assert page.evaluate('jQuery("form").valid()'), "Valid date rejected by client validation"
         page.get_by_role("button", name="建立日誌").click()
         page.wait_for_url(re.compile(r".*/WorkLogs/Details/\d+"))
@@ -50,4 +52,3 @@ with sync_playwright() as playwright:
             page.get_by_role("button", name="確認刪除").click()
             page.wait_for_url(base + "/")
         browser.close()
-

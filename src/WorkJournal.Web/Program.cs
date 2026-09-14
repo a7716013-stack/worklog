@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WorkJournal.Web.Data;
 
@@ -14,7 +14,8 @@ builder.Services.AddControllersWithViews(options =>
     messages.SetValueMustBeANumberAccessor(field => $"{field} 必須為數字。");
 });
 builder.Services.AddDbContext<JournalDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("JournalDatabase")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("JournalDatabase"),
+        sql => sql.EnableRetryOnFailure()));
 var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
@@ -30,5 +31,3 @@ app.MapControllerRoute(
     pattern: "{controller=WorkLogs}/{action=Index}/{id?}")
     .WithStaticAssets();
 app.Run();
-
-

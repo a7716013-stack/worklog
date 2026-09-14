@@ -1,4 +1,4 @@
-﻿# 工作日誌 WorkJournal
+# 工作日誌 WorkJournal
 
 繁體中文個人工作日誌網站，採 ASP.NET Core MVC / .NET 10、EF Core 10、SQL Server Express 和 Bootstrap 5.3.8。
 
@@ -90,7 +90,7 @@ python tests/smoke_test.py
 
 目前是單人、本機開發版本，尚未加入登入、使用者資料隔離、角色權限、附件與審核流程。
 若多人同時編輯同一筆日誌，最後儲存的內容會覆蓋先前內容；多人版建議加入 RowVersion 並處理並行衝突。
-本版未部署至 IIS 或 Cloudflare。公開部署前先完成身份驗證與資料權限。
+已建立 Azure 測試環境，設定與再次發佈方式見 [Azure 部署說明](deploy/README.md)。測試環境以來源 IP 限制存取，尚未加入使用者登入。公開開放前先完成身份驗證與資料權限。
 
 IIS 發佈的基礎步驟：
 
@@ -109,4 +109,3 @@ Cloudflare 登入、DNS 與 Tunnel 設定屬於後续部署步驟。
 
 - [ASP.NET Core MVC 與 EF Core](https://learn.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro?view=aspnetcore-10.0)
 - [ASP.NET Core 表單防偽](https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-10.0)
-
