@@ -9,7 +9,7 @@ namespace WorkJournal.Web.Services;
 public record StockLookup(StockQuote? Quote, string Message);
 
 public partial class FinMindStockService(HttpClient client, IMemoryCache cache, IConfiguration config,
-    ILogger<FinMindStockService> logger)
+    ILogger<FinMindStockService> logger, EtfOfficialService? etfs = null)
 {
     private static readonly SemaphoreSlim Gate = new(1, 1);
 
@@ -38,14 +38,16 @@ public partial class FinMindStockService(HttpClient client, IMemoryCache cache, 
                 else
                 {
                     var rows = await ReadAsync("TaiwanStockPrice", symbol, today.AddDays(-365), today, cancellationToken);
-                    var fundamentals = await GetFundamentalsAsync(symbol, today, cancellationToken);
+                    var isEtf = IsEtfCategory(Text(name, "industry_category"));
+                    var fundamentals = isEtf ? new FundamentalData() : await GetFundamentalsAsync(symbol, today, cancellationToken);
+                    var etf = isEtf ? await GetEtfAsync(symbol, Text(name, "stock_name") ?? "", today, cancellationToken) : new EtfData();
                     var technicals = TechnicalIndicators.Calculate(rows.Where(x => Text(x, "stock_id") == symbol && ParseDate(x) is DateOnly d && d <= today).Select(x => new DailyClose(ParseDate(x)!.Value, Number(x, "close"))));
                     var latest = rows.Where(x => Text(x, "stock_id") == symbol &&
                             DateOnly.TryParseExact(Text(x, "date"), "yyyy-MM-dd", CultureInfo.InvariantCulture,
                                 DateTimeStyles.None, out var date) && date <= today)
                         .OrderByDescending(x => Text(x, "date")).FirstOrDefault();
                     if (latest.ValueKind == JsonValueKind.Undefined)
-                        result = new(new StockQuote { Symbol = symbol, Name = Text(name, "stock_name"), Industry = Text(name, "industry_category"), Market = Text(name, "type"), Fundamentals = fundamentals, Technicals = technicals },
+                        result = new(new StockQuote { Symbol = symbol, Name = Text(name, "stock_name"), Industry = Text(name, "industry_category"), Market = Text(name, "type"), IsEtf = isEtf, Etf = etf, Fundamentals = fundamentals, Technicals = technicals },
                             "近 365 日沒有可用日行情（可能尚未交易或已暫停交易）。");
                     else
                     {
@@ -54,7 +56,7 @@ public partial class FinMindStockService(HttpClient client, IMemoryCache cache, 
                         var previous = close - spread;
                         result = new(new StockQuote
                         {
-                            Fundamentals = fundamentals, Technicals = technicals,
+                            IsEtf = isEtf, Etf = etf, Fundamentals = fundamentals, Technicals = technicals,
                             Symbol = symbol, Name = Text(name, "stock_name"),
                             Industry = Text(name, "industry_category"), Market = Text(name, "type"),
                             TradeDate = DateOnly.ParseExact(Text(latest, "date")!, "yyyy-MM-dd", CultureInfo.InvariantCulture),

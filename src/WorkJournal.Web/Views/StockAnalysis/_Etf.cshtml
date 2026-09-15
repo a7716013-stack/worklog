@@ -1,0 +1,34 @@
+@model StockQuote
+@{ var e = Model.Etf; var latest = e.Distributions.FirstOrDefault(); }
+<section class="panel stock-analysis-panel" aria-labelledby="etf-heading">
+<p class="eyebrow">ETF ANALYSIS</p><h2 id="etf-heading">ETF 專用分析 · @Model.Symbol</h2>
+<p class="subheading">@Model.Name · @Model.Industry</p>
+<p class="muted mt-3">淨值／折溢價日期：@(e.NavDate?.ToString("yyyy/MM/dd") ?? "—")</p>
+<dl class="analysis-values">
+<div><dt>每單位淨值（元）</dt><dd data-metric="nav">@(e.Nav?.ToString("N2") ?? "—")</dd></div>
+<div><dt>折溢價（%）</dt><dd data-metric="premium">@(e.Premium?.ToString("N2") ?? "—")</dd></div>
+<div><dt>基金規模（新台幣億元）</dt><dd data-metric="assets">@(e.Assets.HasValue ? (e.Assets.Value / 100000000m).ToString("N2") : "—")</dd></div>
+<div><dt>最近配息（元／單位）</dt><dd data-metric="cash-dividend">@(latest?.Cash?.ToString("N4") ?? "—")</dd></div>
+<div><dt>同次配股（來源金額）</dt><dd data-metric="stock-dividend">@(latest?.Stock == 0 ? "未列配股（0）" : latest?.Stock?.ToString("N4") ?? "—")</dd></div>
+</dl>
+<p class="muted">折溢價採官方同日數值，正值為溢價、負值為折價。規模日期：@(e.AssetsDate?.ToString("yyyy/MM/dd") ?? "來源未提供日期")。缺少資料顯示 —。</p>
+<p><a href="https://www.twse.com.tw/zh/ETFortune/etfInfo/@Model.Symbol" target="_blank" rel="noopener noreferrer">證交所 ETF 資料來源</a></p>
+<hr /><h3 class="h5">配息／配股紀錄</h3>
+<p class="muted">@e.DistributionMessage <a href="https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockdividend" target="_blank" rel="noopener noreferrer">配息／配股資料來源</a></p>
+@if (e.Distributions.Count > 0)
+{
+<div class="table-responsive"><table class="table text-nowrap"><thead><tr><th>除息／除權日</th><th>配息（元／單位）</th><th>配股金額</th><th>發放日</th></tr></thead><tbody>
+@foreach (var item in e.Distributions) { <tr><td>@item.Date.ToString("yyyy/MM/dd")</td><td>@(item.Cash?.ToString("N4") ?? "—")</td><td>@(item.Stock?.ToString("N4") ?? "—")</td><td>@(string.IsNullOrEmpty(item.PaymentDate) ? "—" : item.PaymentDate)</td></tr> }
+</tbody></table></div>
+}
+<hr /><h3 class="h5">持股明細</h3>
+<p class="muted">資料日期：@(e.HoldingsDate?.ToString("yyyy/MM/dd") ?? "—") · @e.Holdings.Count 檔股票（不含期貨及現金）</p>
+@if (e.Holdings.Count > 0)
+{
+<details open><summary>依權重顯示持股</summary><div class="table-responsive" style="max-height:420px;overflow:auto"><table class="table"><thead><tr><th>代號</th><th>名稱</th><th>權重（%）</th></tr></thead><tbody>
+@foreach (var h in e.Holdings) { <tr><td>@h.Symbol</td><td>@h.Name</td><td>@h.Weight.ToString("N2")</td></tr> }
+</tbody></table></div></details>
+}
+else { <p class="muted">目前未取得可用股票持股明細；債券等非股票 ETF 可能沒有股票持股。目前自動持股來源支援富邦 ETF，其他發行商尚待串接。</p> }
+@if (e.HoldingsUrl != null) { <a href="@e.HoldingsUrl" target="_blank" rel="noopener noreferrer">富邦投信基金資產來源</a> }
+</section>

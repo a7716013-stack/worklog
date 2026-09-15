@@ -22,6 +22,11 @@ builder.Services.AddHttpClient<WorkJournal.Web.Services.FinMindStockService>(cli
     client.BaseAddress = new Uri("https://api.finmindtrade.com/api/v4/");
     client.Timeout = TimeSpan.FromSeconds(20);
 });
+builder.Services.AddHttpClient<WorkJournal.Web.Services.EtfOfficialService>(client =>
+{
+    client.Timeout = TimeSpan.FromSeconds(20);
+    client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 WorkJournal/1.1.4");
+});
 var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {

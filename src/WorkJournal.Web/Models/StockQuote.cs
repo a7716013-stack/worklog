@@ -2,6 +2,8 @@ namespace WorkJournal.Web.Models;
 
 public class StockQuote
 {
+    public bool IsEtf { get; init; }
+    public EtfData Etf { get; init; } = new();
     public FundamentalData Fundamentals { get; init; } = new();
     public TechnicalData Technicals { get; init; } = new();
     public DateOnly? TradeDate { get; init; }
