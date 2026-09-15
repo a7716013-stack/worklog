@@ -52,6 +52,7 @@ Console.WriteLine("PASS: fundamentals, partial failures, MA, Wilder RSI, MACD, w
 Console.WriteLine("PASS: latest-day mapping, percent calculation, nulls, quota, malformed JSON, cache and token header.");
 
 await EtfChecks.Run();
+SwingChecks.Run();
 
 class FakeHandler(string info, string prices, HttpStatusCode priceStatus, bool failFundamentals) : HttpMessageHandler
 {

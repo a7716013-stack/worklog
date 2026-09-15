@@ -5,8 +5,11 @@ using WorkJournal.Web.ViewModels;
 
 namespace WorkJournal.Web.Controllers;
 
-public class StockAnalysisController(FinMindStockService stocks) : Controller
+public partial class StockAnalysisController(FinMindStockService stocks) : Controller
 {
+    [HttpGet]
+    public IActionResult Swing() => View();
+
     [HttpGet]
     public async Task<IActionResult> Index([FromQuery] string? symbol, CancellationToken cancellationToken)
     {

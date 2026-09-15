@@ -33,3 +33,23 @@
 @media(max-width:650px){.topbar-content{flex-wrap:wrap}.brand-switcher{width:100%;justify-content:space-between;gap:8px}.topbar-content>nav{margin-left:auto}.site-switcher .dropdown-menu{right:0;left:auto}.stock-search-panel,.stock-analysis-panel{padding:20px}.stock-quote-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;padding:20px}.stock-analysis-grid{grid-template-columns:1fr}.stock-search-input{flex-basis:100%}}
 
 .analysis-values{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:20px 0}.analysis-values dt{font-size:12px;color:var(--muted);font-weight:400}.analysis-values dd{font-size:22px;font-weight:600;margin:4px 0;overflow-wrap:anywhere}.stock-analysis-panel details summary{cursor:pointer;font-weight:600}.stock-analysis-panel details p{margin-top:12px}
+
+/* Swing radar: search, watchlist and research detail. */
+.swing-heading .status-badge{flex-shrink:0}.swing-search{padding:28px}.swing-search h2,.swing-toolbar h2{font-size:20px;font-weight:700}
+.swing-search-row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:15px 0;border-top:1px solid var(--line)}
+.swing-search-row>div{min-width:0;overflow-wrap:anywhere}.swing-stats{margin-top:24px}
+.swing-toolbar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:16px}.swing-toolbar .eyebrow{margin-bottom:4px}.swing-toolbar .form-select{width:auto}
+.swing-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.swing-card{padding:24px;min-width:0}
+.swing-card-head{display:flex;justify-content:space-between;gap:10px;align-items:center}.swing-card-head h3{font-size:21px;font-weight:700;overflow-wrap:anywhere}.swing-card-head .eyebrow{margin-bottom:5px}
+.swing-score{display:flex;align-items:baseline;gap:3px;color:var(--forest);white-space:nowrap}.swing-score strong{font-size:36px;line-height:1.3}.swing-score small{font-size:11px;color:var(--muted)}
+.swing-state{display:inline-block;border-radius:6px;padding:4px 10px;font-size:12px;margin-top:15px}.swing-state.strong{background:#e4f1e8;color:#256146}.swing-state.risk{background:#fbe9e7;color:#a1443a}.swing-state.observe{background:#fbf1df;color:#86611c}.swing-state.missing{background:#edf0ed;color:#617267}
+.swing-card-metrics{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}.swing-card-metrics dt,.swing-metrics dt{font-size:12px;font-weight:400;color:var(--muted)}.swing-card-metrics dd{font-size:21px;font-weight:600;margin:2px 0}
+.swing-tags{display:flex;flex-wrap:wrap;gap:5px;min-height:32px}.swing-tags span{font-size:11px;background:#f0f4ef;padding:3px 7px;border-radius:5px}.swing-card-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.swing-detail{padding:28px;scroll-margin-top:20px}.swing-detail h2{font-size:22px}.swing-detail h3{font-size:17px;font-weight:650}
+.swing-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:24px}.swing-rule{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px}.swing-rule strong{white-space:nowrap}
+.swing-strategy{border-bottom:1px solid var(--line);padding:10px 0;font-size:13px}.swing-strategy summary{cursor:pointer}.swing-strategy p{margin:10px 0}
+.swing-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;padding:18px;background:var(--paper);border-radius:10px}.swing-metrics dd{font-size:19px;margin:4px 0;overflow-wrap:anywhere}
+.swing-warning{font-size:12px;color:#876327}.swing-negative{color:#a1443a}.swing-backtest{border-top:1px solid var(--line);padding-top:24px}.swing-backtest .table-responsive{max-height:380px}
+#swing-chart{display:block;width:100%;height:520px}#swing-chart-value{min-height:40px}.swing-detail[hidden],#swing-empty[hidden]{display:none}
+@media(max-width:1000px){.swing-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.swing-cards,.swing-detail-grid{grid-template-columns:1fr}.swing-search,.swing-detail,.swing-card{padding:20px}.swing-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.swing-heading .status-badge{margin-top:12px}.swing-toolbar>div:last-child{width:100%}.swing-toolbar .form-select{flex:1;min-width:0}}

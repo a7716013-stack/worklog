@@ -1,0 +1,58 @@
+@{ ViewData["Title"] = "波段分析"; }
+<partial name="_Navigation" />
+<div id="swing-app" data-search-url="@Url.Action("SwingSearch")" data-analysis-url="@Url.Action("SwingData")" data-backtest-url="@Url.Action("SwingBacktest")">
+<section class="page-heading swing-heading">
+    <div><p class="eyebrow">SWING RADAR / 波段雷達</p><h1>找到值得持續研究的股票</h1><p class="subheading">從趨勢、動能、量價與法人籌碼，檢視你的追蹤清單。</p></div>
+    <span class="status-badge planned">v1.1.5 · 日行情</span>
+</section>
+<section class="panel swing-search">
+    <h2>搜尋股票加入追蹤</h2>
+    <form id="swing-search-form" class="stock-search" role="search">
+        <div class="stock-search-input"><label for="swing-query" class="form-label">股票代號或名稱</label><input id="swing-query" class="form-control" maxlength="30" placeholder="例如：2330、台積電、006208" autocomplete="off" /></div>
+        <button class="btn btn-forest" type="submit">搜尋股票</button>
+    </form>
+    <p class="muted mt-3 mb-0">按「加入追蹤」才會列入清單，最多 20 檔。清單儲存在目前瀏覽器；換裝置或清除網站資料後需重新加入。</p>
+    <p id="swing-search-status" role="status" class="muted mt-2"></p>
+    <div id="swing-search-results" class="swing-search-results"></div>
+</section>
+<div class="stats-grid swing-stats" aria-label="追蹤摘要">
+    <div class="stat"><span>我的追蹤</span><strong id="swing-count">0</strong><p>僅顯示已加入的股票</p></div>
+    <div class="stat"><span>優先研究</span><strong id="swing-strong">—</strong><p>評分 ≥ 75 且無風險訊號</p></div>
+    <div class="stat"><span>持續觀察</span><strong id="swing-observe">—</strong><p>50～74 分</p></div>
+    <div class="stat"><span>風險升高</span><strong id="swing-risk">—</strong><p>跌破均線或爆量長黑</p></div>
+</div>
+<section aria-labelledby="watchlist-heading">
+    <div class="swing-toolbar"><div><p class="eyebrow">MY WATCHLIST</p><h2 id="watchlist-heading">我的追蹤清單</h2></div>
+        <div class="d-flex flex-wrap gap-2"><label class="visually-hidden" for="swing-filter">清單篩選</label><select id="swing-filter" class="form-select"><option value="">全部狀態</option><option>優先研究</option><option>持續觀察</option><option>風險升高</option><option>條件未齊</option><option>資料不足</option></select>
+        <button id="swing-refresh" class="btn btn-light" type="button">重新整理資料</button></div>
+    </div>
+    <p class="muted">依評分由高至低排列，為追蹤清單內排名。不同資料日期請分開比較；缺資料不補零、不推算完整分數。</p>
+    <p id="swing-status" class="muted" role="status"></p>
+    <div id="swing-empty" class="panel empty-state"><div class="empty-icon" aria-hidden="true">◎</div><h3>從第一檔追蹤開始</h3><p>在上方搜尋股票，按「加入追蹤」，就能看到波段分析。</p></div>
+    <div id="swing-cards" class="swing-cards"></div>
+</section>
+<section id="swing-detail" class="panel swing-detail mt-4" hidden aria-labelledby="swing-detail-title">
+    <div class="swing-toolbar"><div><p class="eyebrow">DEEP DIVE</p><h2 id="swing-detail-title"></h2></div><button type="button" id="swing-close-detail" class="btn btn-light btn-sm">收合分析</button></div>
+    <p id="swing-detail-note" class="muted"></p>
+    <h3>近 90 個交易日 K 線與均線</h3>
+    <p class="muted">紅漲綠跌 · MA5 橘／MA10 紫／MA20 藍／MA60 灰 · 下方為 RSI14、MACD 與成交量。將游標移至圖表查看數值。</p>
+    <canvas id="swing-chart" role="img" aria-label="追蹤股票的 K 線、均線、RSI、MACD 與成交量圖"></canvas>
+    <p id="swing-chart-value" class="muted" role="status"></p>
+    <div class="swing-detail-grid">
+        <section><h3>評分拆解</h3><div id="swing-score-breakdown"></div><p class="muted">趨勢 35＋動能 20＋突破 15＋成交量 10＋籌碼 20＝100；風險每項扣 15 分，總分限制在 0～100。</p></section>
+        <section><h3>策略條件</h3><div id="swing-strategies"></div></section>
+    </div>
+    <h3 class="mt-4">技術與法人明細</h3><dl id="swing-metrics" class="swing-metrics"></dl>
+    <section class="swing-backtest mt-4">
+        <div class="swing-toolbar"><div><p class="eyebrow">HISTORICAL SIMULATION</p><h3>近 5 年策略回測</h3></div><button id="swing-run-backtest" class="btn btn-forest" type="button">執行回測</button></div>
+        <p class="muted">完整評分 ≥ 75，下一交易日開盤進場；收盤跌破 MA20 或持有滿 20 個交易日，次日開盤出場。一次一筆多單、全額投入，不使用未來資料。</p>
+        <p class="muted">使用未還原日行情，不含配息，分割／減資可能失真；偵測單日跳動超過 25% 時停止回測。模擬假設：雙邊手續費各 0.1425%，賣出稅費個股 0.3%／ETF 0.1%，無滑價、允許零股數量，並非實際成交保證。法人資料以交易日期對齊，未另建歷史公告時間資料庫。</p>
+        <div id="swing-backtest-result" role="status"></div>
+    </section>
+    <p class="muted mt-4">資料來源：<a href="https://finmind.github.io/tutor/TaiwanMarket/Chip/" target="_blank" rel="noopener noreferrer">FinMind</a>。指標與評分用於研究，不代表未來績效；ETF 的法人與股票策略適用性需另外評估。</p>
+</section>
+<noscript><p class="alert alert-warning mt-4">請啟用 JavaScript，才能搜尋股票及管理追蹤清單。</p></noscript>
+</div>
+@section Scripts {
+<script src="~/js/swing.js" asp-append-version="true"></script>
+}
