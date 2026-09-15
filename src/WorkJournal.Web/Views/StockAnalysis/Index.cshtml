@@ -31,15 +31,4 @@
         <div><dt>成交量（股）</dt><dd>@(Model.Quote.Volume?.ToString("N0") ?? "—")</dd></div>
     </dl>
 </section>
-<div class="stock-analysis-grid">
-    <section class="panel stock-analysis-panel" aria-labelledby="fundamentals-heading">
-        <p class="eyebrow">FUNDAMENTALS</p><h2 id="fundamentals-heading">基本分析</h2>
-        <p class="subheading">公司分類資料由 FinMind 提供；財報與估值尚未接入。</p>
-        <p class="stock-placeholder">產業：@(Model.Quote.Industry ?? "—") · 市場：@(Model.Quote.Market == "twse" ? "上市" : Model.Quote.Market == "tpex" ? "上櫃" : Model.Quote.Market ?? "—")</p>
-    </section>
-    <section class="panel stock-analysis-panel" aria-labelledby="technicals-heading">
-        <p class="eyebrow">TECHNICALS</p><h2 id="technicals-heading">技術分析</h2>
-        <p class="subheading">上方呈現同一交易日的開高低收與成交量。</p>
-        <p class="stock-placeholder">均線與技術指標將於後續加入。</p>
-    </section>
-</div>
+<partial name="_Analysis" model="Model.Quote" />

@@ -2,6 +2,8 @@ namespace WorkJournal.Web.Models;
 
 public class StockQuote
 {
+    public FundamentalData Fundamentals { get; init; } = new();
+    public TechnicalData Technicals { get; init; } = new();
     public DateOnly? TradeDate { get; init; }
     public string? Industry { get; init; }
     public string? Market { get; init; }

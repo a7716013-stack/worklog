@@ -1,0 +1,40 @@
+@model StockQuote
+@{ var f = Model.Fundamentals; var t = Model.Technicals; }
+<div class="stock-analysis-grid">
+<section class="panel stock-analysis-panel" aria-labelledby="fundamentals-heading">
+<p class="eyebrow">FUNDAMENTALS</p><h2 id="fundamentals-heading">基本分析 · @Model.Symbol</h2>
+<p class="subheading">@(Model.Name ?? "尚未選擇股票") · @(Model.Industry ?? "—") · @(Model.Market == "twse" ? "上市" : Model.Market == "tpex" ? "上櫃" : Model.Market ?? "—")</p>
+<p class="muted mt-3">估值日期：@(f.ValuationDate?.ToString("yyyy/MM/dd") ?? "—")</p>
+<dl class="analysis-values">
+<div><dt>本益比（倍）</dt><dd data-metric="pe">@(f.PE?.ToString("N2") ?? "—")</dd></div>
+<div><dt>股價淨值比（倍）</dt><dd data-metric="pb">@(f.PB?.ToString("N2") ?? "—")</dd></div>
+<div><dt>殖利率（%）</dt><dd data-metric="yield">@(f.Yield?.ToString("N2") ?? "—")</dd></div>
+</dl>
+<p class="muted">@f.ValuationMessage</p>
+<hr />
+<p class="muted">營收月份：@(f.RevenueMonth?.ToString("yyyy/MM") ?? "—")</p>
+<dl class="analysis-values">
+<div><dt>月營收（億元）</dt><dd data-metric="revenue">@(f.Revenue.HasValue ? (f.Revenue.Value / 100000000m).ToString("N2") : "—")</dd></div>
+<div><dt>營收年增率（%）</dt><dd data-metric="yoy">@(f.RevenueYoY?.ToString("N2") ?? "—")</dd></div>
+<div><dt>營收月增率（%）</dt><dd data-metric="mom">@(f.RevenueMoM?.ToString("N2") ?? "—")</dd></div>
+</dl>
+<p class="muted">@f.RevenueMessage</p>
+</section>
+<section class="panel stock-analysis-panel" aria-labelledby="technicals-heading">
+<p class="eyebrow">TECHNICALS</p><h2 id="technicals-heading">技術分析 · @Model.Symbol</h2>
+<p class="subheading">截至 @(t.Date?.ToString("yyyy/MM/dd") ?? "—") · @t.Samples 筆有效日收盤資料</p>
+<dl class="analysis-values mt-4">
+<div><dt>MA5（元）</dt><dd data-metric="ma5">@(t.MA5?.ToString("N2") ?? "—")</dd></div>
+<div><dt>MA20（元）</dt><dd data-metric="ma20">@(t.MA20?.ToString("N2") ?? "—")</dd></div>
+<div><dt>MA60（元）</dt><dd data-metric="ma60">@(t.MA60?.ToString("N2") ?? "—")</dd></div>
+<div><dt>RSI14</dt><dd data-metric="rsi">@(t.RSI14?.ToString("N2") ?? "—")</dd></div>
+<div><dt>MACD／DIF</dt><dd data-metric="macd">@(t.MACD?.ToString("N2") ?? "—")</dd></div>
+<div><dt>訊號線（9）</dt><dd data-metric="signal">@(t.Signal?.ToString("N2") ?? "—")</dd></div>
+<div><dt>柱狀值（DIF − 訊號線）</dt><dd data-metric="histogram">@(t.Histogram?.ToString("N2") ?? "—")</dd></div>
+</dl>
+<details class="muted mt-3"><summary>計算方式與資料限制</summary>
+<p>使用近 365 日未還原收盤價，以交易筆數計算。MA 為簡單平均；RSI14 使用 Wilder 平滑（完全持平定為 50）；MACD 使用 EMA12 − EMA26，訊號線為 DIF 的 EMA9，EMA 以首段平均初始化。</p>
+<p>RSI 至少需要 15 筆、完整 MACD 至少 34 筆、MA60 至少 60 筆。缺少資料顯示 —；遇到無效收盤值，從其後重新計算。除權息與分割可能影響指標，結果可能與還原股價平台不同。</p>
+</details>
+</section>
+</div>

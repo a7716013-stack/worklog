@@ -119,12 +119,21 @@ https://worklog.ork-ournal.workers.dev
 ## FinMind 台股行情
 
 股票分析頁輸入台股代號（例如 2330、0050、00679B），透過伺服器端 FinMindStockService 取得 TaiwanStockInfo 與 TaiwanStockPrice。
-價格為最近 90 日內最新可用交易日的日行情，不是盤中即時價格。畫面顯示交易日期，成交量單位為股，價格單位為新台幣元。
+價格為最近 365 日內最新可用交易日的日行情，不是盤中即時價格。畫面顯示交易日期，成交量單位為股，價格單位為新台幣元。
 漲跌幅 = spread / (close - spread) × 100；無效或缺少的數值顯示「—」。
-行情快取 5 分鐘、股票基本資料快取 24 小時，失敗結果快取 1 分鐘。財報、估值及技術指標尚未接入。
+行情快取 5 分鐘、股票基本資料快取 24 小時，失敗結果快取 1 分鐘。已接入估值、月營收與技術指標；完整財務報表尚未接入。
 
 目前已驗證免 Token 查詢可用。若需使用帳戶額度，可在伺服器環境設定 `FinMind__Token`，應用程式以 Authorization Bearer 標頭送出。不要將 Token 寫入 Git 或前端。
 Azure 部署時可在 App Service 應用程式設定加入同名環境變數。
 
 服務測試：`dotnet run --project tests/FinMindChecks`
 官方文件：https://finmind.github.io/tutor/TaiwanMarket/Technical/
+
+### 基本面與技術指標
+
+- 基本面使用 TaiwanStockPER（近 90 日最新本益比、淨值比與殖利率）及 TaiwanStockMonthRevenue（近 16 個月）。估值日期與營收歸屬月份分別顯示。
+- 月營收以元讀取，畫面換算為億元；年增／月增分別比較去年同月／上月，缺少比較期或基期為零時顯示 —。
+- 技術指標使用近 365 日未還原日收盤價：MA5/20/60、Wilder RSI14、MACD(12,26,9)。EMA 以首段平均初始化；柱狀值為 DIF 減訊號線，未乘 2。
+- RSI 全持平定為 50；單邊上漲為 100、單邊下跌為 0。不足資料不計算；無效收盤值之後重新累積樣本。除权息與分割會影響未還原價格。
+- 基本面 API 失敗不影響已取得的行情與技術指標，ETF 缺少公司估值或營收時顯示不適用提示。
+- 驗證：`dotnet run --project tests/FinMindChecks`；另已使用台積電、鴻海、ETF 實測搜尋切換及手機版面。

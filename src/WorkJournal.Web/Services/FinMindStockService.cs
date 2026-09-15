@@ -8,7 +8,7 @@ namespace WorkJournal.Web.Services;
 
 public record StockLookup(StockQuote? Quote, string Message);
 
-public class FinMindStockService(HttpClient client, IMemoryCache cache, IConfiguration config,
+public partial class FinMindStockService(HttpClient client, IMemoryCache cache, IConfiguration config,
     ILogger<FinMindStockService> logger)
 {
     private static readonly SemaphoreSlim Gate = new(1, 1);
@@ -37,14 +37,16 @@ public class FinMindStockService(HttpClient client, IMemoryCache cache, IConfigu
                     result = new(null, "查無此台股代號，請確認代號後重試。");
                 else
                 {
-                    var rows = await ReadAsync("TaiwanStockPrice", symbol, today.AddDays(-90), today, cancellationToken);
+                    var rows = await ReadAsync("TaiwanStockPrice", symbol, today.AddDays(-365), today, cancellationToken);
+                    var fundamentals = await GetFundamentalsAsync(symbol, today, cancellationToken);
+                    var technicals = TechnicalIndicators.Calculate(rows.Where(x => Text(x, "stock_id") == symbol && ParseDate(x) is DateOnly d && d <= today).Select(x => new DailyClose(ParseDate(x)!.Value, Number(x, "close"))));
                     var latest = rows.Where(x => Text(x, "stock_id") == symbol &&
                             DateOnly.TryParseExact(Text(x, "date"), "yyyy-MM-dd", CultureInfo.InvariantCulture,
                                 DateTimeStyles.None, out var date) && date <= today)
                         .OrderByDescending(x => Text(x, "date")).FirstOrDefault();
                     if (latest.ValueKind == JsonValueKind.Undefined)
-                        result = new(new StockQuote { Symbol = symbol, Name = Text(name, "stock_name") },
-                            "近 90 日沒有可用日行情（可能尚未交易或已暫停交易）。");
+                        result = new(new StockQuote { Symbol = symbol, Name = Text(name, "stock_name"), Industry = Text(name, "industry_category"), Market = Text(name, "type"), Fundamentals = fundamentals, Technicals = technicals },
+                            "近 365 日沒有可用日行情（可能尚未交易或已暫停交易）。");
                     else
                     {
                         var close = Number(latest, "close");
@@ -52,6 +54,7 @@ public class FinMindStockService(HttpClient client, IMemoryCache cache, IConfigu
                         var previous = close - spread;
                         result = new(new StockQuote
                         {
+                            Fundamentals = fundamentals, Technicals = technicals,
                             Symbol = symbol, Name = Text(name, "stock_name"),
                             Industry = Text(name, "industry_category"), Market = Text(name, "type"),
                             TradeDate = DateOnly.ParseExact(Text(latest, "date")!, "yyyy-MM-dd", CultureInfo.InvariantCulture),
