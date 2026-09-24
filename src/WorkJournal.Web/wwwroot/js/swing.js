@@ -117,6 +117,8 @@ function showDetail(symbol,scroll=true){
  const info=data.get(symbol);if(!info)return;
  if(active!==symbol){run++;$("swing-backtest-result").replaceChildren();$("swing-run-backtest").disabled=false;}
  active=symbol;const s=info.summary;
+ const paperUrl=new URL(app.dataset.paperUrl,location.origin);paperUrl.searchParams.set("symbol",symbol);
+ $("swing-paper-order").href=paperUrl.toString();
  $("swing-detail").hidden=false;
  $("swing-detail-title").textContent=info.stock.symbol+" "+info.stock.name+" · "+s.state;
  $("swing-detail-note").textContent=info.message+" 行情："+(s.date||"—")+"；法人："+(s.flowDate||"—")+"。";

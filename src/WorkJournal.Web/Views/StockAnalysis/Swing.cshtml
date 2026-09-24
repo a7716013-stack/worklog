@@ -1,9 +1,9 @@
 @{ ViewData["Title"] = "波段分析"; }
 <partial name="_Navigation" />
-<div id="swing-app" data-search-url="@Url.Action("SwingSearch")" data-analysis-url="@Url.Action("SwingData")" data-backtest-url="@Url.Action("SwingBacktest")">
+<div id="swing-app" data-search-url="@Url.Action("SwingSearch")" data-analysis-url="@Url.Action("SwingData")" data-paper-url="@Url.Action("PaperTrading")" data-backtest-url="@Url.Action("SwingBacktest")">
 <section class="page-heading swing-heading">
     <div><p class="eyebrow">SWING RADAR / 波段雷達</p><h1>找到值得持續研究的股票</h1><p class="subheading">從趨勢、動能、量價與法人籌碼，檢視你的追蹤清單。</p></div>
-    <span class="status-badge planned">v1.1.5 · 日行情</span>
+    <span class="status-badge planned">v1.1.6 · 日行情</span>
 </section>
 <section class="panel swing-search">
     <h2>搜尋股票加入追蹤</h2>
@@ -32,7 +32,7 @@
     <div id="swing-cards" class="swing-cards"></div>
 </section>
 <section id="swing-detail" class="panel swing-detail mt-4" hidden aria-labelledby="swing-detail-title">
-    <div class="swing-toolbar"><div><p class="eyebrow">DEEP DIVE</p><h2 id="swing-detail-title"></h2></div><button type="button" id="swing-close-detail" class="btn btn-light btn-sm">收合分析</button></div>
+    <div class="swing-toolbar"><div><p class="eyebrow">DEEP DIVE</p><h2 id="swing-detail-title"></h2></div><a id="swing-paper-order" class="btn btn-forest btn-sm" asp-action="PaperTrading">建立虛擬單</a><button type="button" id="swing-close-detail" class="btn btn-light btn-sm">收合分析</button></div>
     <p id="swing-detail-note" class="muted"></p>
     <h3>近 90 個交易日 K 線與均線</h3>
     <p class="muted">紅漲綠跌 · MA5 橘／MA10 紫／MA20 藍／MA60 灰 · 下方為 RSI14、MACD 與成交量。將游標移至圖表查看數值。</p>

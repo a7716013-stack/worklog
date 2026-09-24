@@ -1,5 +1,6 @@
-@{ var isSwing = ViewContext.RouteData.Values["action"]?.ToString() == "Swing"; }
+@{ var action = ViewContext.RouteData.Values["action"]?.ToString(); var isPaper = action is "PaperTrading" or "PlacePaperOrder"; }
 <nav class="d-flex flex-wrap gap-2 mb-4" aria-label="分析介面切換">
-    <a class="btn @(!isSwing ? "btn-forest" : "btn-light")" asp-controller="StockAnalysis" asp-action="Index" aria-current="@(!isSwing ? "page" : null)">個股分析</a>
-    <a class="btn @(isSwing ? "btn-forest" : "btn-light")" asp-controller="StockAnalysis" asp-action="Swing" aria-current="@(isSwing ? "page" : null)">波段分析</a>
+    <a class="btn @(action == "Index" ? "btn-forest" : "btn-light")" asp-controller="StockAnalysis" asp-action="Index" aria-current="@(action == "Index" ? "page" : null)">個股分析</a>
+    <a class="btn @(action == "Swing" ? "btn-forest" : "btn-light")" asp-controller="StockAnalysis" asp-action="Swing" aria-current="@(action == "Swing" ? "page" : null)">波段分析</a>
+    <a class="btn @(isPaper ? "btn-forest" : "btn-light")" asp-controller="StockAnalysis" asp-action="PaperTrading" aria-current="@(isPaper ? "page" : null)">虛擬交易</a>
 </nav>

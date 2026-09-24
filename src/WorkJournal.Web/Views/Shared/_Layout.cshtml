@@ -12,16 +12,16 @@
         <div class="page-width d-flex align-items-center justify-content-between gap-3 topbar-content">
             <div class="brand-switcher">
             <a class="brand" asp-controller="WorkLogs" asp-action="Index"><span class="brand-icon" aria-hidden="true">▤</span><span>工作日誌<small>WORK JOURNAL</small></span></a>
-            <div class="dropdown site-switcher">
-                <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="site-switcher" data-bs-toggle="dropdown" aria-expanded="false">網站切換</button>
-                <ul class="dropdown-menu" aria-labelledby="site-switcher">
-                    <li><a class="dropdown-item" asp-controller="WorkLogs" asp-action="Index">工作日誌</a></li>
-                    <li><a class="dropdown-item" asp-controller="StockAnalysis" asp-action="Index">個股分析</a></li>
-                    <li><a class="dropdown-item" asp-controller="StockAnalysis" asp-action="Swing">波段分析</a></li>
-                </ul>
-            </div>
+            <nav class="site-switcher d-flex gap-2" aria-label="網站切換">
+                <a class="btn btn-sm @(ViewContext.RouteData.Values["controller"]?.ToString() == "WorkLogs" ? "btn-forest" : "btn-light")" asp-controller="WorkLogs" asp-action="Index" aria-current="@(ViewContext.RouteData.Values["controller"]?.ToString() == "WorkLogs" ? "page" : null)">工作日誌</a>
+                <a class="btn btn-sm @(ViewContext.RouteData.Values["controller"]?.ToString() == "StockAnalysis" ? "btn-forest" : "btn-light")" asp-controller="StockAnalysis" asp-action="Index" aria-current="@(ViewContext.RouteData.Values["controller"]?.ToString() == "StockAnalysis" ? "page" : null)">股票分析</a>
+            </nav>
             </div>
             <nav class="d-flex align-items-center gap-3" aria-label="主選單">
+                @if (ViewContext.RouteData.Values["controller"]?.ToString() == "StockAnalysis")
+                {
+                    <a class="btn btn-light btn-sm" asp-controller="StockAnalysis" asp-action="PaperTrading">虛擬交易</a>
+                }
                 <a class="nav-journal" asp-controller="WorkLogs" asp-action="Index">日誌總覽</a>
                 <a class="btn btn-forest btn-sm" asp-controller="WorkLogs" asp-action="Create">＋ 新增日誌</a>
             </nav>

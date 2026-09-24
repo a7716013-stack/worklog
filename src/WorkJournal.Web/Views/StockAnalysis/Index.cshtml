@@ -32,4 +32,8 @@
         <div><dt>成交量（股）</dt><dd>@(Model.Quote.Volume?.ToString("N0") ?? "—")</dd></div>
     </dl>
 </section>
+@if (Model.Quote.TradeDate != null && Model.Quote.CurrentPrice > 0)
+{
+    <a class="btn btn-forest mt-3" asp-controller="StockAnalysis" asp-action="PaperTrading" asp-route-symbol="@Model.Quote.Symbol">虛擬買進</a>
+}
 <partial name="_Analysis" model="Model.Quote" />

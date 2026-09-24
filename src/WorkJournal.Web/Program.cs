@@ -25,8 +25,13 @@ builder.Services.AddHttpClient<WorkJournal.Web.Services.FinMindStockService>(cli
 builder.Services.AddHttpClient<WorkJournal.Web.Services.EtfOfficialService>(client =>
 {
     client.Timeout = TimeSpan.FromSeconds(20);
-    client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 WorkJournal/1.1.5");
+    client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 WorkJournal/1.1.6");
 });
+builder.Services.AddOptions<WorkJournal.Web.Models.PaperTradingOptions>()
+    .Bind(builder.Configuration.GetSection("PaperTrading"))
+    .Validate(x => x.IsValid(), "虛擬交易參數無效。")
+    .ValidateOnStart();
+builder.Services.AddScoped<WorkJournal.Web.Services.IPaperTradingService, WorkJournal.Web.Services.PaperTradingService>();
 var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {

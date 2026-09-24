@@ -163,3 +163,50 @@ Azure 部署時可在 App Service 應用程式設定加入同名環境變數。
 回測讀取近五年外加 150 日暖機資料，只用當日以前的訊號。完整分數 ≥75 後下一交易日開盤買入；收盤跌破 MA20 或持有滿 20 交易日，次日開盤賣出。一次一筆多單、全額投入、允許零股數量；假設雙邊手續費各 0.1425%、賣出稅費個股 0.3%／ETF 0.1%，無滑價。報酬未含股利，不是總報酬回測，未維護法人歷史公告時間。遇無效開收盤或單日價格跳動超過 25% 時不提供績效；此保護不代表已完整處理所有企業行動。期間末部位以收盤估值，勝率與平均報酬僅統計已平倉，最大回撤使用每日資產曲線。
 
 測試：dotnet run --project tests/FinMindChecks；啟動本機網站後，使用安裝 Playwright 的 Python 執行 tests/swing_browser_test.py。瀏覽器測試用獨立情境儲存追蹤資料，不影響使用者的追蹤清單。
+
+
+### 虛擬交易 / Paper Trading（1.1.6）
+
+入口 `/StockAnalysis/PaperTrading`。在個股分析查到股票後按「虛擬買進」，或在波段詳細分析按「建立虛擬單」，會帶入股票代號。股票分析內提供個股、波段、虛擬交易三個頁籤；上方工作日誌／股票分析仍為兩個直接切換按鈕。
+
+這是模擬交易，不會送出真實證券委託。沒有券商交易 API，也沒有登入與多使用者隔離；所有訪客共用一個 SQL Server 帳戶。初始資金由 `PaperTrading:InitialCash` 指定，預設 1,000,000 元，只在第一次建立帳戶時讀取。
+
+- 市價：由伺服器取得 FinMind 最新可用已完成日行情，以 Close 立即模擬成交。台灣時間 14:00 以前排除當日資料，行情日明列於持倉／成交表格，不是盤中即時報價。
+- 限價：建立時記錄 SubmittedTradeDate；EligibleFromTradeDate 為 max(行情日, 台灣建立日) 的下一日。只有後續已完成交易日的 Low ≤ 買進限價、High ≥ 賣出限價才成交，成交價固定使用委託限價。未觸價維持 Pending。
+- 限價需要按「檢查待成交委託」才會評估最新一根可用日 K；不回補離線期间所有日 K，不依賴背景服務。LastEvaluatedTradeDate 防止重複評估同根已完成日 K。這只是 OHLC 模擬，無法知道盤中成交順序。
+- 等待單不保留現金或股票；建立及實際成交前都檢查資金／股數。不足會記錄 Rejected 與原因，不支援放空。數量以整數股計，支援零股；單筆上限 100,000,000 股，限價 0.0001～1,000,000 元。
+- 買進成本包含手續費。新平均成本＝(原剩餘成本＋成交金額＋買進手續費)÷新股數。部分賣出平均成本不變；完全賣出保留零股歷史部位，成本歸零。
+- 已實現損益＝賣出成交金額－賣出手續費－模擬交易稅－賣出股數的原成本。未實現損益＝目前市值－剩餘成本；未扣未來賣出費用。總資產＝現金＋市值，總損益＝總資產－初始資金，報酬率＝損益÷對應成本×100%。
+- `PaperTrading` Options 集中設定 CommissionRate=0.001425、CommissionDiscount=1、MinimumCommission=20、StockSellTaxRate=0.003、EtfSellTaxRate=0.001。手續費＝max(最低費用, 成交金額×費率×折扣)；買賣都收，稅費僅賣出。ETF 延用來源商品分類。這些只是模擬參數，不保證對應最新法規或個別商品實際稅制。
+- 金額採 decimal；成交金額、手續費與稅費各四捨五入至兩位（AwayFromZero）。SQL 金額 precision 為 decimal(28,10)，平均成本保留十位，額外 CostBasis 保留成本總額，最後一筆全賣時沖銷剩餘成本，避免尾差。
+- 行情失敗不影響現金、持股、成本與歷史紀錄。無報價欄位顯示「—」；部分估值缺漏時總資產、總損益及報酬率也顯示「—」並提示不完整，不能將缺價視為零元股價。
+- 在頁面底部展開「重設虛擬帳戶」，勾選確認後再次確認對話框，才以帶防偽 token 的 POST 清除虛擬委託、成交、持倉並恢復原初始資金；不影響 WorkLogs。重設會輪替帳戶 Generation，舊表單不能重送。
+
+資料庫沿用 JournalDbContext / JournalDatabase，新增 PaperTradingAccounts、PaperOrders、PaperTrades、PaperPositions。啟動新版前執行：
+
+```powershell
+dotnet ef database update --project src/WorkJournal.Web
+```
+
+Migration：`20260922212853_AddPaperTrading`。只增加虛擬交易表、FK、索引與檢查條件；不刪除／重建既有 Migration 或 WorkLogs。正式環境套用前依既有流程備份。此次本機開發不會自動部署 Azure 或更新雲端資料庫。
+
+每次成交都以 EF Core transaction 同時更新 Order、Trade、Position、Cash；SQL transaction-owned sp_getapplock 跨程序序列化帳戶修改，搭配 ClientRequestId 唯一索引與成交序號唯一索引。行情呼叫在取得鎖之前完成；資料庫重試前清除追蹤並重新讀取資料。瀏覽器不能指定成交价、狀態、費用或 AccountId。
+
+本版限制：單一共用帳戶、無部分成交、不模擬滑價與漲跌停／成交量、未自動處理股利／分割／減資、無離線逐日回放。模擬結果不代表真實成交或未來績效。
+
+測試：
+
+```powershell
+dotnet run --project tests/PaperTradingChecks -c Release
+dotnet run --project tests/FinMindChecks -c Release
+# 另開終端執行固定行情＋獨立 SQL 的測試網站（localhost:5187）：
+dotnet run --project tests/PaperTradingChecks -c Release -- --serve
+# 已安裝 Playwright 的 Python：
+python tests/paper_trading_browser_test.py http://localhost:5187
+python tests/smoke_test.py http://localhost:5187
+python tests/swing_browser_test.py http://localhost:5187
+```
+
+PaperTradingChecks 建立本次專用 `WorkJournalPaperChecks_<GUID>` 資料庫，正常結束會移除它，不使用本機 WorkJournal 資料；需要本機 SQL Express 與建立測試 DB 權限。使用 Ctrl+C 正常結束測試主機；強制終止可能留下帶 GUID 的測試 DB，勿將其當作正式資料庫刪除。瀏覽器虛擬交易測試要求隔離主機標頭，拒絕在一般網站重設帳戶。
+
+詳見 [1.1.6 實作與驗收紀錄](docs/releases/1.1.6.md)。
