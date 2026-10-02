@@ -15,7 +15,9 @@ public class TrustedOriginMiddleware(RequestDelegate next, IConfiguration config
         {
             var origin = new Uri(GoogleAuthSettings.Origin(configuration));
             context.Request.Scheme = origin.Scheme;
-            context.Request.Host = HostString.FromUriComponent(origin);
+            context.Request.Host = origin.IsDefaultPort
+                ? new HostString(origin.IdnHost)
+                : new HostString(origin.IdnHost, origin.Port);
         }
         context.Request.Headers.Remove("X-WorkJournal-Proxy-Key");
         // OAuth codes must be redeemed using the same registered HTTPS origin that started the flow.

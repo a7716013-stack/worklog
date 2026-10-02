@@ -24,6 +24,21 @@ public static class Checks
         Environment.SetEnvironmentVariable("Authentication__Google__ClientSecret", "fixture-secret");
         Environment.SetEnvironmentVariable("Authentication__Google__PublicOrigin", "https://localhost:7180");
         Environment.SetEnvironmentVariable("Authentication__TrustedProxyKey", "fixture-proxy-key");
+        var productionConfiguration = new ConfigurationBuilder().AddInMemoryCollection(new Dictionary<string, string?>
+        {
+            ["Authentication:Google:PublicOrigin"] = "https://worklog.example.test",
+            ["Authentication:Google:ClientId"] = "fixture-client",
+            ["Authentication:Google:ClientSecret"] = "fixture-secret",
+            ["Authentication:TrustedProxyKey"] = "fixture-proxy-key"
+        }).Build();
+        var productionContext = new Microsoft.AspNetCore.Http.DefaultHttpContext();
+        productionContext.Request.Host = new Microsoft.AspNetCore.Http.HostString("backend.example.test");
+        productionContext.Request.Path = "/signin-google";
+        productionContext.Request.Headers["X-WorkJournal-Proxy-Key"] = "fixture-proxy-key";
+        var productionNextCalled = false;
+        await new TrustedOriginMiddleware(_ => { productionNextCalled = true; return Task.CompletedTask; }, productionConfiguration).InvokeAsync(productionContext);
+        Check(productionContext.Request.Host.Value == "worklog.example.test", "Production proxy omits implicit HTTPS port");
+        Check(productionNextCalled, "Production callback passes canonical origin validation");
         var database = "WorkJournalAuthChecks_" + Guid.NewGuid().ToString("N");
         var connection = $@"Server=.\SQLEXPRESS;Database={database};Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True;";
         var options = new DbContextOptionsBuilder<JournalDbContext>().UseSqlServer(connection).Options;
