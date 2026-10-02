@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WorkJournal.Web.Data;
+using WorkJournal.Web.Security;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews(options =>
@@ -17,6 +18,7 @@ builder.Services.AddDbContext<JournalDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("JournalDatabase"),
         sql => sql.EnableRetryOnFailure()));
 builder.Services.AddMemoryCache();
+builder.Services.AddJournalAuthentication(builder.Configuration);
 builder.Services.AddHttpClient<WorkJournal.Web.Services.FinMindStockService>(client =>
 {
     client.BaseAddress = new Uri("https://api.finmindtrade.com/api/v4/");
@@ -25,7 +27,7 @@ builder.Services.AddHttpClient<WorkJournal.Web.Services.FinMindStockService>(cli
 builder.Services.AddHttpClient<WorkJournal.Web.Services.EtfOfficialService>(client =>
 {
     client.Timeout = TimeSpan.FromSeconds(20);
-    client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 WorkJournal/1.1.6");
+    client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 WorkJournal/1.1.7");
 });
 builder.Services.AddOptions<WorkJournal.Web.Models.PaperTradingOptions>()
     .Bind(builder.Configuration.GetSection("PaperTrading"))
@@ -33,6 +35,7 @@ builder.Services.AddOptions<WorkJournal.Web.Models.PaperTradingOptions>()
     .ValidateOnStart();
 builder.Services.AddScoped<WorkJournal.Web.Services.IPaperTradingService, WorkJournal.Web.Services.PaperTradingService>();
 var app = builder.Build();
+app.UseMiddleware<TrustedOriginMiddleware>();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -40,6 +43,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHttpsRedirection();
 }
 app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapStaticAssets();
 app.MapControllerRoute(
@@ -47,3 +51,5 @@ app.MapControllerRoute(
     pattern: "{controller=WorkLogs}/{action=Index}/{id?}")
     .WithStaticAssets();
 app.Run();
+
+public partial class Program { }

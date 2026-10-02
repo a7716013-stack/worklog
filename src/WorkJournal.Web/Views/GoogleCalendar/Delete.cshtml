@@ -1,0 +1,5 @@
+@model CalendarEventViewModel
+@{ ViewData["Title"] = "刪除 Google 事件"; }
+<section class="panel auth-panel"><h1>刪除 Google 事件</h1><p>確定從 Google 行事曆刪除「@Model.Title」？</p>
+<p>@Model.Start.ToString("yyyy/MM/dd HH:mm") — @Model.End.ToString("yyyy/MM/dd HH:mm")（台北時間）</p>
+<form asp-action="Delete" asp-route-id="@Model.GoogleEventId" method="post"><button class="btn btn-danger">確認刪除</button> <a asp-action="Edit" asp-route-id="@Model.GoogleEventId" class="btn btn-light">取消</a></form></section>

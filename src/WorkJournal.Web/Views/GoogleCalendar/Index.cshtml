@@ -1,0 +1,18 @@
+@model CalendarConnectionViewModel
+@{ ViewData["Title"] = "Google 行事曆"; }
+<section class="panel auth-panel">
+    <h1>Google 行事曆</h1>
+    @if (ViewData["Warning"] is string warning) { <div class="alert alert-warning" role="status">@warning</div> }
+    @if (Model.NeedsReauthorization) { <div class="alert alert-warning" role="status">Google 行事曆授權已失效，請重新連結。</div> }
+    @if (Model.IsConnected) {
+        <p>已連結：<strong>@Model.Email</strong></p><p>Calendar：Primary · 狀態：Connected</p>
+        <p>開啟月曆時讀取當月事件；工作日誌不會自動複製到 Google。</p>
+        <div class="d-flex gap-2 flex-wrap mb-3"><a class="btn btn-forest" asp-controller="WorkLogs" asp-action="Index" asp-fragment="calendar">開啟行事曆</a><a class="btn btn-light" asp-action="Create">新增 Google 事件</a></div>
+    } else { <p>尚未連結 Google 行事曆</p> }
+    @if (Model.IsConfigured) {
+        <form asp-action="Connect" method="post" class="d-inline-block"><button class="btn btn-forest">@(Model.IsConnected || Model.NeedsReauthorization ? "重新授權" : "連結 Google 行事曆")</button></form>
+    } else { <p class="alert alert-info">管理員尚未完成 Google 登入設定。</p> }
+    @if (Model.IsConnected || Model.NeedsReauthorization) {
+        <form asp-action="Disconnect" method="post" class="d-inline-block"><button class="btn btn-outline-danger">中斷連結</button></form>
+    }
+</section>

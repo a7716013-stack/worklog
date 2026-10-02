@@ -20,6 +20,7 @@
             <nav class="d-flex align-items-center gap-3" aria-label="主選單">
                 <a class="nav-journal" asp-controller="WorkLogs" asp-action="Index">日誌總覽</a>
                 <a class="btn btn-forest btn-sm" asp-controller="WorkLogs" asp-action="Create">＋ 新增日誌</a>
+                <partial name="_LoginPartial" />
             </nav>
         </div>
     </header>
@@ -29,8 +30,9 @@
             <div class="alert alert-success" role="status">@message</div>
         }
         @RenderBody()
+        @if (TempData["Warning"] is string warning) { <div class="alert alert-warning" role="status">@warning</div> }
     </main>
-    <footer class="page-width footer"><span>WORK JOURNAL</span><span>記錄每天的進展，累積工作的成果。</span></footer>
+    <footer class="page-width footer"><span>WORK JOURNAL v@(typeof(WorkJournal.Web.Models.ApplicationUser).Assembly.GetName().Version?.ToString(3))</span><span>記錄每天的進展，累積工作的成果。</span></footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)

@@ -1,0 +1,16 @@
+@model CalendarEventInput
+@{ var id = ViewData["EventId"] as string; ViewData["Title"] = id is null ? "新增 Google 事件" : "編輯 Google 事件"; }
+<section class="panel auth-panel">
+    <h1>@ViewData["Title"]</h1>
+    <p>變更會直接儲存到 Google Primary 行事曆。時間以台北時間顯示。</p>
+    <form asp-action="@(id is null ? "Create" : "Edit")" asp-route-id="@id" method="post">
+        <div asp-validation-summary="All" class="text-danger" role="alert"></div>
+        <div class="mb-3"><label asp-for="Title" class="form-label"></label><input asp-for="Title" class="form-control" /></div>
+        <div class="mb-3"><label asp-for="Description" class="form-label"></label><textarea asp-for="Description" class="form-control" rows="4"></textarea></div>
+        <div class="mb-3"><input asp-for="IsAllDay" class="form-check-input" /> <label asp-for="IsAllDay"></label><p class="muted">全天事件：結束日期填不包含的次日。例如 10/1 一整天，結束填 10/2。</p></div>
+        <div class="mb-3"><label asp-for="Start" class="form-label"></label><input asp-for="Start" type="datetime-local" class="form-control" /></div>
+        <div class="mb-3"><label asp-for="End" class="form-label"></label><input asp-for="End" type="datetime-local" class="form-control" /></div>
+        <button class="btn btn-forest">儲存到 Google</button> <a class="btn btn-light" asp-action="Index">取消</a>
+        @if (id is not null) { <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@id">刪除事件</a> }
+    </form>
+</section>

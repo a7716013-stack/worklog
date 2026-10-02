@@ -1,0 +1,12 @@
+@{ ViewData["Title"] = "登入"; }
+<section class="panel auth-panel">
+    <p class="eyebrow">WORK JOURNAL</p><h1>登入工作日誌</h1>
+    <p>登入後查看自己的日誌與行事曆。Google 行事曆權限會在你主動連結時另外詢問。</p>
+    @if (ViewData["Failed"] is true) { <div class="alert alert-warning" role="alert">Google 登入未完成或帳號無法使用，請重新嘗試。</div> }
+    @if (ViewData["Configured"] is true) {
+        <form asp-action="GoogleLogin" method="post"><input type="hidden" name="returnUrl" value="@ViewData["ReturnUrl"]" /><button class="btn btn-forest">使用 Google 登入</button></form>
+    } else {
+        <div class="alert alert-info" role="status">Google 登入尚未開放，請聯絡網站管理員完成設定。</div>
+    }
+    <a class="d-inline-block mt-3" asp-controller="StockAnalysis" asp-action="Index">前往股票分析</a>
+</section>

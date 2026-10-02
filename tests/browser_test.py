@@ -24,8 +24,8 @@ with sync_playwright() as playwright:
         page.locator("#Hours").fill("1.25")
         page.locator("#Content").fill("確認工作日誌的表單、日期驗證與響應式版面。")
         page.locator("#NextSteps").fill("開始記錄每天的工作進展。")
-        page.wait_for_function('typeof jQuery !== "undefined" && typeof jQuery.fn.valid === "function" && jQuery("form").data("validator")')
-        assert page.evaluate('jQuery("form").valid()'), "Valid date rejected by client validation"
+        page.wait_for_function('typeof jQuery !== "undefined" && typeof jQuery.fn.valid === "function" && jQuery("main form").data("validator")')
+        assert page.evaluate('jQuery("main form").valid()'), "Valid date rejected by client validation"
         page.get_by_role("button", name="建立日誌").click()
         page.wait_for_url(re.compile(r".*/WorkLogs/Details/\d+"))
         entry_url = page.url
@@ -43,7 +43,7 @@ with sync_playwright() as playwright:
         page.locator("#WorkDate").fill("1999-12-31")
         page.locator("#Title").fill("Invalid date test")
         page.locator("#Content").fill("Validation test")
-        assert not page.evaluate('jQuery("form").valid()'), "Out-of-range date was accepted"
+        assert not page.evaluate('jQuery("main form").valid()'), "Out-of-range date was accepted"
         assert not errors, errors
         print("PASS: Edge create/edit, client date validation, desktop/mobile layout, no JavaScript errors.")
     finally:

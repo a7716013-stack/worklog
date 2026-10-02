@@ -5,6 +5,9 @@
 *.suo
 artifacts/
 *.log
+client_secret*.json
+*.pfx
+*.p12
 
 
 # Cloudflare local state and secrets

@@ -28,12 +28,12 @@ try:
         page=browser.new_page(viewport={"width":1440,"height":1000})
         page.goto(base + "/?CalendarMonth=2026-09-01&Search=" + marker, wait_until="networkidle")
         assert page.locator("#calendar a.calendar-event").count() == 11, "Calendar must include rows beyond pagination"
-        assert page.locator("#calendar .event-time").first.inner_text() == "09:00–10:30"
+        assert page.locator("#calendar .event-time").first.inner_text() == "日誌 · 09:00–10:30"
         assert page.locator("#calendar a.color-1").count() == 2
         page.locator("#calendar").screenshot(path="artifacts/calendar-desktop.png")
         page.get_by_role("link",name="下一個月",exact=True).click()
         assert page.locator("#calendar a.calendar-event").count() == 1
-        assert page.locator("#calendar a.color-4 .event-time").inner_text() == "13:15–15:45"
+        assert page.locator("#calendar a.color-4 .event-time").inner_text() == "日誌 · 13:15–15:45"
         page.locator("#calendar a.calendar-event").click()
         page.get_by_role("link",name="編輯日誌",exact=True).click()
         assert page.locator("#StartTime").input_value() == "13:15"

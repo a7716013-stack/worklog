@@ -4,6 +4,11 @@ namespace WorkJournal.Web.Models;
 public class WorkLog : IValidatableObject
 {
     public int Id { get; set; }
+    // Nullable only for pre-Identity records, assigned explicitly by an administrator.
+    [Microsoft.AspNetCore.Mvc.ModelBinding.BindNever]
+    public string? ApplicationUserId { get; set; }
+    [Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidateNever]
+    public ApplicationUser? User { get; set; }
 
     [Display(Name = "開始時間"), DataType(DataType.Time)]
     public TimeOnly? StartTime { get; set; }
@@ -50,4 +55,3 @@ public class WorkLog : IValidatableObject
     public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
     public DateTimeOffset UpdatedAt { get; set; } = DateTimeOffset.UtcNow;
 }
-

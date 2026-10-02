@@ -8,9 +8,10 @@ export default {
     target.search = publicUrl.search;
     const headers = new Headers(request.headers);
     for (const key of [...headers.keys()]) {
-      if (key.startsWith("x-forwarded-") || key === "forwarded" || key === "x-azure-fdid" || key === "host") headers.delete(key);
+      if (key.startsWith("x-forwarded-") || key === "forwarded" || key === "x-azure-fdid" || key === "x-workjournal-proxy-key" || key === "host") headers.delete(key);
     }
     headers.set("x-azure-fdid", env.ORIGIN_KEY.trim());
+    headers.set("x-workjournal-proxy-key", env.ORIGIN_KEY.trim());
     const upstream = await fetch(target, {
       method: request.method, headers,
       body: ["GET", "HEAD"].includes(request.method) ? undefined : request.body,

@@ -1,5 +1,14 @@
 # 更新紀錄
 
+## 1.1.7 — 2026-10-02
+
+- 加入 Identity、獨立 Google 登入與 Calendar offline consent、伺服器加密 Token 與自動更新。
+- 日誌依登入者隔離；舊資料保留未指派，新增保留資料的 AddIdentityAndGoogleCalendar Migration。
+- 現有月曆合併本地日誌與 Google Primary 事件，支援事件 CRUD、全天／跨日與非阻斷錯誤處理。
+- 補齊 OAuth、跨帳號存取、Token、安全 Migration 及瀏覽器測試與 Google Cloud 設定文件。
+- 修正 Google v3 userinfo 的 email_verified / sub 欄位對應，避免誤判已驗證帳號。
+- 保留股票／ETF／波段／模擬交易業務邏輯；Google 真實帳號授權仍須由使用者完成。
+
 ## 1.1.6 — 2026-09-23
 
 - 新增 SQL Server 虛擬交易帳戶、委託、成交與持倉；初始資金預設 100 萬元。

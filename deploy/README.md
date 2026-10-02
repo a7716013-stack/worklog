@@ -21,10 +21,10 @@
 
 ## 存取
 
-目前網站尚未加入使用者登入，因此以 App Service 的 TestNetwork IP 規則限制測試來源。
+此版本新增 Google 登入與日誌使用者隔離；部署前必須依 [登入與行事曆設定](../docs/google-auth-calendar-setup.md) 套用 Migration、設定 OAuth 憑證與公開 origin。尚未部署的舊網站仍沒有登入，不能當成已有資料隔離。App Service 保留 TestNetwork IP 規則限制測試來源。
 Cloudflare 公開入口已開放外部網路，詳見 [Cloudflare 說明](cloudflare/README.md)。Azure 另允許帶有專用驗證值的 Cloudflare 來源；SCM 使用獨立的管理者 IP 限制。
 更換網路後，請在 Azure 入口網站的網站「網路 / 存取限制」更新 TestNetwork 規則。
-新增測試者時，新增其明確的來源 IP 規則；不要把目前的單人日誌當成已有帳號隔離的系統。
+新增測試者時，新增其明確的來源 IP 規則，並在 OAuth Testing 狀態加入 Google test users。舊日誌需管理員明確指派擁有者；Paper Trading 仍沿用原本共用帳戶。
 
 SQL 防火牆只保留網站出口 IP；Migration 使用的本機臨時規則會在初始化後移除。
 網站使用 worklogapp 資料庫使用者，只有資料讀寫角色；結構變更需另外使用管理員。
@@ -47,8 +47,8 @@ az login
 ## 檢查
 
 ```powershell
-python tests/smoke_test.py https://worklog-a7716013-test.azurewebsites.net
-python tests/browser_test.py https://worklog-a7716013-test.azurewebsites.net
+dotnet run --project tests/AuthCalendarChecks -c Release
+# 正式網站改用真實 Google 帳號人工驗收；日誌自動化測試使用本機隔離 fixture。
 ```
 
 瀏覽器測試需要 Playwright 與 Edge。測試會新增並清除測試日誌；只對測試環境執行。

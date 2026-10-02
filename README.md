@@ -5,17 +5,19 @@
 ## 開啟與執行
 
 1. 用 Visual Studio 2026 開啟 `WorkJournal.sln`。
-2. 將 `WorkJournal.Web` 設為啟始專案，選擇 `http` 啟動設定，按 Ctrl+F5。
-3. 瀏覽 http://localhost:5180 。
+2. 依 [Google 登入與行事曆設定](docs/google-auth-calendar-setup.md) 設定 User Secrets 並套用 Identity Migration。
+3. 將 `WorkJournal.Web` 設為啟始專案，選擇 `https` 啟動設定，按 Ctrl+F5，瀏覽 https://localhost:7180 。
+
+日誌與行事曆需要登入；股票分析維持公開。Google 登入與 Calendar 授權分開，舊日誌保留為未指派，需管理員確認擁有者後指派。完整設定、安全決策、測試與部署注意事項見上方文件。尚未設定 Google 憑證時，登入頁會顯示尚未開放。
 
 也可在專案根目錄開啟 PowerShell：
 
 ```powershell
 dotnet tool restore
-dotnet run --project src/WorkJournal.Web --launch-profile http
+dotnet run --project src/WorkJournal.Web --launch-profile https
 ```
 
-或執行 `Start-WorkJournal.ps1`。若 5180 連接埠正由已啟動的這個網站使用，直接開啟網址即可；要從 Visual Studio 偵錯前，先停止原先的開發伺服器。
+或執行 `Start-WorkJournal.ps1` 啟動 HTTPS profile。若 7180／5180 連接埠正由已啟動的這個網站使用，直接開啟 HTTPS 網址；要從 Visual Studio 偵錯前，先停止原先的開發伺服器。
 
 ## 已有功能
 
@@ -80,17 +82,19 @@ dotnet ef database update --project src/WorkJournal.Web
 啟動網站後，在根目錄執行：
 
 ```powershell
-python tests/smoke_test.py
+dotnet run --project tests/AuthCalendarChecks -c Release -- --serve
+# 另一個終端機執行：
+python tests/smoke_test.py http://localhost:5188
 ```
 
 測試建立唯一標記的日誌，檢查 CRUD、日期及狀態驗證、CSRF、HTML 轉義、篩選、總工時及分頁，最後刪除測試資料。不要對正式網站執行測試。
-瀏覽器測試需要 Playwright Python 套件及本機 Edge，測試指令為 `python tests/browser_test.py`，截圖輸出到 `artifacts/`。
+瀏覽器測試需要 Playwright Python 套件及本機 Edge，指令為 `python tests/browser_test.py http://localhost:5188`，使用上述已登入獨立 fixture，截圖輸出到 `artifacts/`。
 
 ## 目前範圍與後續擴充
 
-目前是單人、本機開發版本，尚未加入登入、使用者資料隔離、角色權限、附件與審核流程。
+目前已加入 Google 登入與日誌使用者隔離；角色管理、附件與審核流程尚未實作。
 若多人同時編輯同一筆日誌，最後儲存的內容會覆蓋先前內容；多人版建議加入 RowVersion 並處理並行衝突。
-已建立 Azure 測試環境，設定與再次發佈方式見 [Azure 部署說明](deploy/README.md)。Azure 直接入口保留來源限制；Cloudflare 公開入口已開放外部網路。目前尚未加入登入功能，任何知道公開網址的人都能讀寫日誌。
+已建立 Azure 測試環境，設定與再次發佈方式見 [Azure 部署說明](deploy/README.md)。Azure 直接入口保留來源限制；Cloudflare 公開入口已開放外部網路。此次登入功能尚未部署，既有公開站的舊版本仍不具有日誌帳號隔離。
 
 IIS 發佈的基礎步驟：
 
@@ -169,7 +173,7 @@ Azure 部署時可在 App Service 應用程式設定加入同名環境變數。
 
 入口 `/StockAnalysis/PaperTrading`。在個股分析查到股票後按「虛擬買進」，或在波段詳細分析按「建立虛擬單」，會帶入股票代號。股票分析內提供個股、波段、虛擬交易三個頁籤；上方工作日誌／股票分析仍為兩個直接切換按鈕。
 
-這是模擬交易，不會送出真實證券委託。沒有券商交易 API，也沒有登入與多使用者隔離；所有訪客共用一個 SQL Server 帳戶。初始資金由 `PaperTrading:InitialCash` 指定，預設 1,000,000 元，只在第一次建立帳戶時讀取。
+這是模擬交易，不會送出真實證券委託。沒有券商交易 API；本次登入只隔離工作日誌，Paper Trading 仍由所有訪客共用一個模擬帳戶。初始資金由 `PaperTrading:InitialCash` 指定，預設 1,000,000 元，只在第一次建立帳戶時讀取。
 
 - 市價：由伺服器取得 FinMind 最新可用已完成日行情，以 Close 立即模擬成交。台灣時間 14:00 以前排除當日資料，行情日明列於持倉／成交表格，不是盤中即時報價。
 - 限價：建立時記錄 SubmittedTradeDate；EligibleFromTradeDate 為 max(行情日, 台灣建立日) 的下一日。只有後續已完成交易日的 Low ≤ 買進限價、High ≥ 賣出限價才成交，成交價固定使用委託限價。未觸價維持 Pending。
@@ -203,7 +207,8 @@ dotnet run --project tests/FinMindChecks -c Release
 dotnet run --project tests/PaperTradingChecks -c Release -- --serve
 # 已安裝 Playwright 的 Python：
 python tests/paper_trading_browser_test.py http://localhost:5187
-python tests/smoke_test.py http://localhost:5187
+# 日誌測試改用 AuthCalendarChecks --serve 提供的已登入獨立 fixture（5188）。
+python tests/smoke_test.py http://localhost:5188
 python tests/swing_browser_test.py http://localhost:5187
 ```
 
