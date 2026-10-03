@@ -12,7 +12,10 @@ with sync_playwright() as p:
     page.on('pageerror', lambda error: errors.append(str(error)))
     response = page.goto(base + '/GoogleCalendar', wait_until='networkidle')
     assert response.headers.get('x-authcalendar-fixture') == 'isolated-sql', 'Only run against synthetic fixture'
-    page.get_by_role('button',name='登出',exact=True).click()
+    logout = page.get_by_role('button',name='登出',exact=True)
+    if logout.count():
+        logout.click()
+    page.goto(base + '/Account/Login', wait_until='networkidle')
     expect(page.get_by_role('heading',name='登入工作日誌')).to_be_visible()
     page.screenshot(path=str(out/'auth-login-desktop.png'),full_page=True)
     page.get_by_role('button',name='使用 Google 登入',exact=True).click()
@@ -21,6 +24,9 @@ with sync_playwright() as p:
     page.get_by_role('link',name='Google 行事曆',exact=True).click()
     page.get_by_role('button',name='連結 Google 行事曆',exact=True).click()
     expect(page.locator('main')).to_contain_text('Connected')
+    expect(page.get_by_role('button',name='立即雙向同步',exact=True)).to_be_visible()
+    expect(page.locator('#sync-month')).to_be_visible()
+    expect(page.locator('main')).to_contain_text('同步不是背景即時執行')
     page.screenshot(path=str(out/'auth-calendar-connected.png'),full_page=True)
     page.get_by_role('link',name='新增 Google 事件',exact=True).click()
     page.locator('#Title').fill('瀏覽器測試事件')
@@ -42,6 +48,10 @@ with sync_playwright() as p:
     expect(page.locator('.alert-success')).to_be_visible()
     page.goto(base + '/GoogleCalendar')
     assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'), 'Connection page overflows mobile'
+    expect(page.get_by_role('button',name='立即雙向同步',exact=True)).to_be_visible()
+    page.locator('#sync-month').fill('2040-01-01')
+    page.get_by_role('button',name='立即雙向同步',exact=True).click()
+    expect(page.locator('.alert-success')).to_contain_text('同步完成')
     page.get_by_role('button',name='中斷連結',exact=True).click()
     expect(page.locator('main')).to_contain_text('尚未連結')
     page.get_by_role('button',name='登出',exact=True).click()

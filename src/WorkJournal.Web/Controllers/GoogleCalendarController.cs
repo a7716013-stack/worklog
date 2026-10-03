@@ -7,19 +7,31 @@ using WorkJournal.Web.Models;
 using WorkJournal.Web.Security;
 using WorkJournal.Web.Services;
 using WorkJournal.Web.ViewModels;
+using WorkJournal.Web.Data;
+using Microsoft.EntityFrameworkCore;
 namespace WorkJournal.Web.Controllers;
 
 [Authorize]
 [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 public class GoogleCalendarController(IGoogleCalendarService calendar, UserManager<ApplicationUser> users,
-    IConfiguration configuration) : Controller
+    IConfiguration configuration, CalendarSyncService sync, JournalDbContext db) : Controller
 {
     private string UserId => User.FindFirstValue(ClaimTypes.NameIdentifier) ?? throw new InvalidOperationException("Authenticated user required.");
     [HttpGet]
     public async Task<IActionResult> Index(bool authorizationFailed = false)
     {
+        ViewData["SyncLinks"] = await db.CalendarSyncLinks.AsNoTracking().Include(x => x.WorkLog)
+            .Where(x => x.ApplicationUserId == UserId && !x.Retired).OrderByDescending(x => x.SyncedAt).ToListAsync(HttpContext.RequestAborted);
         if (authorizationFailed) ViewData["Warning"] = "Google 行事曆授權未完成。請使用登入網站的同一帳號，勾選事件權限並重新連結。";
         return View(await calendar.GetConnectionAsync(UserId, HttpContext.RequestAborted));
+    }
+    [HttpPost]
+    public async Task<IActionResult> Sync(DateOnly month, int? resolveId = null, string? choice = null)
+    {
+        if (!ModelState.IsValid) { TempData["Warning"] = "請選擇有效月份。"; return RedirectToAction(nameof(Index)); }
+        try { TempData["Success"] = await sync.RunAsync(UserId, month, resolveId, choice, HttpContext.RequestAborted); }
+        catch (CalendarServiceException ex) { TempData["Warning"] = ex.Message; }
+        return RedirectToAction(nameof(Index));
     }
     [HttpPost]
     public async Task<IActionResult> Connect()

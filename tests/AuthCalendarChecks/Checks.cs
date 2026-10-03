@@ -189,6 +189,22 @@ public static class Checks
                 Check(!c.IsConnected && c.EncryptedRefreshToken is null, "Invalid refresh clears credentials");
             }
             google.RefreshFails = false;
+            reconnect = await StartCalendar(alice);
+            await CompleteCalendar(alice, QueryHelpers.ParseQuery(reconnect.Headers.Location!.Query)["state"]!, "calendar-alice");
+            using (var scope = factory.Services.CreateScope())
+            {
+                var gateway = scope.ServiceProvider.GetRequiredService<WorkJournal.Web.Services.ICalendarSyncGateway>();
+                var payload = new CalendarEventInput { Title = "Transport check" }.ToGooglePayload();
+                await gateway.CreateAsync(aliceId, "abc123", payload, default);
+                using var body = JsonDocument.Parse(google.LastPayload!);
+                Check(body.RootElement.GetProperty("id").GetString() == "abc123" && body.RootElement.GetProperty("extendedProperties").GetProperty("private").GetProperty("workjournalSync").GetString() == "abc123", "Sync transport sends stable creation ID and marker");
+                await gateway.WriteAsync(aliceId, "abc123", "\"revision\"", payload, default);
+                Check(google.LastIfMatch == "\"revision\"", "Sync transport sends conditional update ETag");
+                await gateway.RemoveAsync(aliceId, "abc123", "\"revision\"", default);
+                Check(google.LastIfMatch == "\"revision\"", "Sync transport sends conditional delete ETag");
+            }
+            await SyncChecks.Run(factory, aliceId, bobId);
+            Check((await alice.PostAsync("/GoogleCalendar/Sync", new FormUrlEncodedContent([]))).StatusCode == HttpStatusCode.BadRequest, "Sync requires antiforgery");
             var outstanding = await StartCalendar(alice);
             Check((await Post(alice, "/Account/Logout", [], "/GoogleCalendar")).StatusCode == HttpStatusCode.Redirect && (await alice.GetAsync("/WorkLogs")).StatusCode == HttpStatusCode.Redirect, "Logout clears session");
             await CompleteCalendar(alice, QueryHelpers.ParseQuery(outstanding.Headers.Location!.Query)["state"]!, "calendar-alice", true);

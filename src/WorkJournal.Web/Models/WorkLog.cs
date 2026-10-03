@@ -4,6 +4,8 @@ namespace WorkJournal.Web.Models;
 public class WorkLog : IValidatableObject
 {
     public int Id { get; set; }
+    [Timestamp, Microsoft.AspNetCore.Mvc.ModelBinding.BindNever]
+    public byte[] RowVersion { get; set; } = [];
     // Nullable only for pre-Identity records, assigned explicitly by an administrator.
     [Microsoft.AspNetCore.Mvc.ModelBinding.BindNever]
     public string? ApplicationUserId { get; set; }

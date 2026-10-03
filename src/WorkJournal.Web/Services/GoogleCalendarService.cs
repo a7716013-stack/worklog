@@ -12,7 +12,7 @@ using WorkJournal.Web.ViewModels;
 namespace WorkJournal.Web.Services;
 
 public class GoogleCalendarService(JournalDbContext db, IHttpClientFactory clients,
-    IDataProtectionProvider protection, IConfiguration configuration) : IGoogleCalendarService
+    IDataProtectionProvider protection, IConfiguration configuration) : IGoogleCalendarService, ICalendarSyncGateway
 {
     // Bounded locks serialize refresh/reconnect/disconnect within this process; SQL rowversion protects across instances.
     private static readonly SemaphoreSlim[] Gates = Enumerable.Range(0, 64).Select(_ => new SemaphoreSlim(1)).ToArray();
@@ -139,13 +139,14 @@ public class GoogleCalendarService(JournalDbContext db, IHttpClientFactory clien
             _ => CalendarServiceException.Unavailable
         }, (int)response.StatusCode);
     }
-    private async Task<JsonDocument?> Api(string userId, HttpMethod method, string suffix, object? payload, CancellationToken ct)
+    private async Task<JsonDocument?> Api(string userId, HttpMethod method, string suffix, object? payload, CancellationToken ct, string? etag = null)
     {
         for (var attempt = 0; attempt < 2; attempt++)
         {
             var token = await AccessToken(userId, attempt == 1, ct);
             using var request = new HttpRequestMessage(method, "https://www.googleapis.com/calendar/v3/calendars/primary/events" + suffix);
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            if (etag is not null) request.Headers.TryAddWithoutValidation("If-Match", etag);
             if (payload is not null) request.Content = JsonContent.Create(payload);
             using var response = await Send(request, ct);
             if (response.StatusCode == HttpStatusCode.Unauthorized)
@@ -199,6 +200,26 @@ public class GoogleCalendarService(JournalDbContext db, IHttpClientFactory clien
         { throw new CalendarServiceException(CalendarServiceException.Unavailable); }
     }
     private static void Validate(CalendarEventInput input) => System.ComponentModel.DataAnnotations.Validator.ValidateObject(input, new(input), true);
+    public async Task<JsonElement?> ReadAsync(string userId, string eventId, CancellationToken ct)
+    {
+        try { using var json = await Api(userId, HttpMethod.Get, EventPath(eventId), null, ct); return json!.RootElement.Clone(); }
+        catch (CalendarServiceException ex) when (ex.StatusCode is 404 or 410) { return null; }
+    }
+    public async Task<JsonElement> CreateAsync(string userId, string eventId, object payload, CancellationToken ct)
+    {
+        var node = System.Text.Json.Nodes.JsonNode.Parse(JsonSerializer.Serialize(payload))!.AsObject();
+        node["id"] = eventId;
+        node["extendedProperties"] = new System.Text.Json.Nodes.JsonObject { ["private"] = new System.Text.Json.Nodes.JsonObject { ["workjournalSync"] = eventId } };
+        using var json = await Api(userId, HttpMethod.Post, "", node, ct);
+        return json!.RootElement.Clone();
+    }
+    public async Task<JsonElement> WriteAsync(string userId, string eventId, string etag, object payload, CancellationToken ct)
+    {
+        using var json = await Api(userId, HttpMethod.Patch, EventPath(eventId), payload, ct, etag);
+        return json!.RootElement.Clone();
+    }
+    public async Task RemoveAsync(string userId, string eventId, string etag, CancellationToken ct)
+    { using var json = await Api(userId, HttpMethod.Delete, EventPath(eventId), null, ct, etag); }
     public async Task CreateEventAsync(string userId, CalendarEventInput input, CancellationToken ct = default)
     { Validate(input); using var json = await Api(userId, HttpMethod.Post, "", input.ToGooglePayload(), ct); }
     public async Task UpdateEventAsync(string userId, string eventId, CalendarEventInput input, CancellationToken ct = default)

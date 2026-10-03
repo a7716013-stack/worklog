@@ -49,6 +49,8 @@ public static class AuthenticationRegistration
         services.AddHttpClient("GoogleCalendarApi", client => client.Timeout = TimeSpan.FromSeconds(15))
             .RemoveAllLoggers();
         services.AddScoped<IGoogleCalendarService, GoogleCalendarService>();
+        services.AddScoped<ICalendarSyncGateway, GoogleCalendarService>();
+        services.AddScoped<CalendarSyncService>();
         services.AddScoped<CalendarAggregationService>();
         if (GoogleAuthSettings.IsConfigured(config))
         {

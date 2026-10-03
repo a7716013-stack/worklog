@@ -6,7 +6,28 @@
     @if (Model.NeedsReauthorization) { <div class="alert alert-warning" role="status">Google 行事曆授權已失效，請重新連結。</div> }
     @if (Model.IsConnected) {
         <p>已連結：<strong>@Model.Email</strong></p><p>Calendar：Primary · 狀態：Connected</p>
-        <p>開啟月曆時讀取當月事件；工作日誌不會自動複製到 Google。</p>
+        <p>可將選定月份的工作日誌與 Google 主要行事曆雙向同步。修改或刪除後，再按一次同步即可更新另一邊。</p>
+        <form asp-action="Sync" method="post" class="mb-3">
+            <label for="sync-month" class="form-label">同步月份</label>
+            <input id="sync-month" name="month" type="date" value="@DateTime.Today.ToString("yyyy-MM-01")" min="2000-01-01" max="2100-12-31" class="form-control mb-2" required />
+            <p>首次同步會互相新增該月的紀錄；已建立對應的紀錄會持續追蹤，即使改到其他月份。同步標題、內容、日期、時段及刪除；工時、專案、進度與顏色保留在本機。</p>
+            <p class="muted">Google 的跨日、重複、受邀事件，以及超過日誌字數限制的事件仍可顯示於月曆，但不轉成工作日誌。同步不是背景即時執行。</p>
+            <button class="btn btn-forest" type="submit">立即雙向同步</button>
+        </form>
+        @if (ViewData["SyncLinks"] is IEnumerable<CalendarSyncLink> links) {
+            foreach (var link in links.Where(x => x.Problem != null)) {
+                <div class="alert alert-warning">
+                    <strong>@(link.WorkLog?.Title ?? "已刪除的本機日誌")</strong><p>@link.Problem</p>
+                    <p>選擇版本會採用該邊目前的內容或刪除狀態。先查看兩邊內容，再決定要保留哪一邊。</p>
+                    <form asp-action="Sync" method="post">
+                        <input type="hidden" name="month" value="@DateTime.Today.ToString("yyyy-MM-01")" />
+                        <input type="hidden" name="resolveId" value="@link.Id" />
+                        <button class="btn btn-outline-dark" name="choice" value="local">保留本機版本</button>
+                        <button class="btn btn-outline-dark" name="choice" value="google">保留 Google 版本</button>
+                    </form>
+                </div>
+            }
+        }
         <div class="d-flex gap-2 flex-wrap mb-3"><a class="btn btn-forest" asp-controller="WorkLogs" asp-action="Index" asp-fragment="calendar">開啟行事曆</a><a class="btn btn-light" asp-action="Create">新增 Google 事件</a></div>
     } else { <p>尚未連結 Google 行事曆</p> }
     @if (Model.IsConfigured) {

@@ -1,5 +1,14 @@
 # 更新紀錄
 
+## 1.2.1 — 2026-10-04
+
+- 新增按鈕觸發的工作日誌與 Google 主要行事曆雙向同步，包含新增、修改與刪除。
+- 保存事件對應與上次同步內容；以固定事件 ID 防止重試重複新增，ETag 與 rowversion 保護並行更新。
+- 雙邊衝突可選擇保留本機或 Google 版本，工時、專案、進度等欄位留在 Worklog。
+- 新增 AddCalendarBidirectionalSync Migration，保留既有資料；月曆避免重複顯示已配對事件。
+- 跨日、重複及不符合單日日誌格式的 Google 事件保留顯示但略過轉換；同步不在背景即時執行。
+- 102 項模擬 Google／SQL 整合檢查及桌面、手機瀏覽器測試通過；真實帳號同步由使用者驗收。
+
 ## 1.1.7 — 2026-10-02
 
 - 加入 Identity、獨立 Google 登入與 Calendar offline consent、伺服器加密 Token 與自動更新。

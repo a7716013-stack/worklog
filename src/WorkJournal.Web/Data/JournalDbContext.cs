@@ -6,6 +6,7 @@ namespace WorkJournal.Web.Data;
 public class JournalDbContext(DbContextOptions<JournalDbContext> options) : IdentityDbContext<ApplicationUser>(options)
 {
     public DbSet<WorkLog> WorkLogs => Set<WorkLog>();
+    public DbSet<CalendarSyncLink> CalendarSyncLinks => Set<CalendarSyncLink>();
     public DbSet<GoogleCalendarConnection> GoogleCalendarConnections => Set<GoogleCalendarConnection>();
     public DbSet<PaperTradingAccount> PaperTradingAccounts => Set<PaperTradingAccount>();
     public DbSet<PaperOrder> PaperOrders => Set<PaperOrder>();
@@ -14,6 +15,10 @@ public class JournalDbContext(DbContextOptions<JournalDbContext> options) : Iden
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<CalendarSyncLink>().HasIndex(x => new { x.ApplicationUserId, x.GoogleEventId }).IsUnique();
+        modelBuilder.Entity<CalendarSyncLink>().HasIndex(x => x.WorkLogId).IsUnique().HasFilter("[WorkLogId] IS NOT NULL");
+        modelBuilder.Entity<CalendarSyncLink>().HasOne(x => x.WorkLog).WithMany().HasForeignKey(x => x.WorkLogId).OnDelete(DeleteBehavior.SetNull);
+        modelBuilder.Entity<CalendarSyncLink>().HasOne<ApplicationUser>().WithMany().HasForeignKey(x => x.ApplicationUserId).OnDelete(DeleteBehavior.Restrict);
         modelBuilder.Entity<WorkLog>().HasOne(x => x.User).WithMany(x => x.WorkLogs)
             .HasForeignKey(x => x.ApplicationUserId).OnDelete(DeleteBehavior.Restrict);
         modelBuilder.Entity<WorkLog>().HasIndex(x => new { x.ApplicationUserId, x.WorkDate });

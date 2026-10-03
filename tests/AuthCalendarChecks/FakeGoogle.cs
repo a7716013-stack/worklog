@@ -19,6 +19,7 @@ public class FakeGoogle : HttpMessageHandler
     public string? LastPayload { get; set; }
     public string? LastToken { get; set; }
     public string? LastUrl { get; set; }
+    public string? LastIfMatch { get; set; }
     public bool Paged { get; set; }
     public static object Event(string id = "event1", string title = "Google fixture") => new
     {
@@ -54,6 +55,7 @@ public class FakeGoogle : HttpMessageHandler
         if (uri.AbsolutePath.Contains("/calendar/v3/"))
         {
             LastToken = request.Headers.Authorization?.Parameter; LastUrl = uri.AbsoluteUri;
+            LastIfMatch = request.Headers.TryGetValues("If-Match", out var match) ? match.Single() : null;
             if (Timeout) throw new TaskCanceledException("Fixture timeout");
             if (OnceUnauthorized) { OnceUnauthorized = false; return Json(new { error = "invalid_token" }, HttpStatusCode.Unauthorized); }
             if (ApiFailure is { } failure) return Json(new { error = "fixture" }, failure);
