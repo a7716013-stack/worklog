@@ -3,7 +3,6 @@
 @if (User.Identity?.IsAuthenticated == true) {
     @if (User.FindFirstValue("picture") is string picture) { <img class="account-avatar" src="@picture" alt="" referrerpolicy="no-referrer" /> }
     <span class="account-name">@(User.FindFirstValue("display_name") ?? User.Identity.Name)<small>@User.FindFirstValue(ClaimTypes.Email)</small></span>
-    <a class="btn btn-light btn-sm" asp-controller="GoogleCalendar" asp-action="Index">Google 行事曆</a>
     <form asp-controller="Account" asp-action="Logout" method="post"><button class="btn btn-outline-secondary btn-sm">登出</button></form>
 } else {
     <a class="btn btn-light btn-sm" asp-controller="Account" asp-action="Login">使用 Google 登入</a>

@@ -21,7 +21,7 @@ with sync_playwright() as p:
     page.get_by_role('button',name='使用 Google 登入',exact=True).click()
     page.wait_for_url(base + '/WorkLogs')
     expect(page.locator('.account-name')).to_contain_text('alice@example.test')
-    page.get_by_role('link',name='Google 行事曆',exact=True).click()
+    page.get_by_role('link',name='管理 Google 行事曆連結',exact=True).click()
     page.get_by_role('button',name='連結 Google 行事曆',exact=True).click()
     expect(page.locator('main')).to_contain_text('Connected')
     expect(page.get_by_role('button',name='立即雙向同步',exact=True)).to_be_visible()
