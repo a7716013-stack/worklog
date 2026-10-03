@@ -7,6 +7,7 @@ namespace AuthCalendarChecks;
 public class FakeGoogle : HttpMessageHandler
 {
     public HttpStatusCode? ApiFailure { get; set; }
+    public string? ApiFailureReason { get; set; }
     public bool Timeout { get; set; }
     public bool RefreshFails { get; set; }
     public bool MissingRefresh { get; set; }
@@ -58,7 +59,7 @@ public class FakeGoogle : HttpMessageHandler
             LastIfMatch = request.Headers.TryGetValues("If-Match", out var match) ? match.Single() : null;
             if (Timeout) throw new TaskCanceledException("Fixture timeout");
             if (OnceUnauthorized) { OnceUnauthorized = false; return Json(new { error = "invalid_token" }, HttpStatusCode.Unauthorized); }
-            if (ApiFailure is { } failure) return Json(new { error = "fixture" }, failure);
+            if (ApiFailure is { } failure) return ApiFailureReason is null ? Json(new { error = "fixture" }, failure) : Json(new { error = new { errors = new[] { new { reason = ApiFailureReason } }, message = "PRIVATE_PROVIDER_PAYLOAD" } }, failure);
             if (request.Method != HttpMethod.Get)
             {
                 Mutations++; LastPayload = request.Content is null ? null : await request.Content.ReadAsStringAsync(cancellationToken);

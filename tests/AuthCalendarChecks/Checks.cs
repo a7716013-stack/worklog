@@ -203,6 +203,14 @@ public static class Checks
                 await gateway.RemoveAsync(aliceId, "abc123", "\"revision\"", default);
                 Check(google.LastIfMatch == "\"revision\"", "Sync transport sends conditional delete ETag");
             }
+            google.ApiFailure = HttpStatusCode.Forbidden;
+            foreach (var entry in new[] { ("accessNotConfigured", "SERVICE_DISABLED"), ("insufficientPermissions", "insufficientPermissions"), ("userRateLimitExceeded", "quota/rate limit"), ("domainPolicy", "domainPolicy") })
+            {
+                google.ApiFailureReason = entry.Item1;
+                var failureBody = await alice.GetStringAsync("/GoogleCalendar/Events?month=2026-10-01");
+                Check(failureBody.Contains(entry.Item2) && !failureBody.Contains("PRIVATE_PROVIDER_PAYLOAD"), "Safe Google 403 classification: " + entry.Item1);
+            }
+            google.ApiFailure = null; google.ApiFailureReason = null;
             await SyncChecks.Run(factory, aliceId, bobId);
             Check((await alice.PostAsync("/GoogleCalendar/Sync", new FormUrlEncodedContent([]))).StatusCode == HttpStatusCode.BadRequest, "Sync requires antiforgery");
             var outstanding = await StartCalendar(alice);

@@ -102,7 +102,7 @@ public class GoogleCalendarService(JournalDbContext db, IHttpClientFactory clien
                 };
                 using var response = await Send(request, ct);
                 if (response.StatusCode is HttpStatusCode.BadRequest or HttpStatusCode.Unauthorized) await Invalid(connection, ct);
-                CheckStatus(response);
+                await CheckStatus(response, ct);
                 using var json = await ReadJson(response, ct);
                 if (Text(json.RootElement, "scope") is string scopes && !scopes.Split(' ').Contains(GoogleAuthSettings.CalendarScope)) await Invalid(connection, ct);
                 ApplyAccessToken(connection, json.RootElement);
@@ -127,9 +127,38 @@ public class GoogleCalendarService(JournalDbContext db, IHttpClientFactory clien
         try { return JsonDocument.Parse(await response.Content.ReadAsStringAsync(ct)); }
         catch (JsonException) { throw new CalendarServiceException(CalendarServiceException.Unavailable); }
     }
-    private static void CheckStatus(HttpResponseMessage response)
+    private static async Task CheckStatus(HttpResponseMessage response, CancellationToken ct)
     {
         if (response.IsSuccessStatusCode) return;
+        if (response.StatusCode == HttpStatusCode.Forbidden)
+        {
+            var reasons = new HashSet<string>(StringComparer.Ordinal);
+            try
+            {
+                using var json = await ReadJson(response, ct);
+                if (json.RootElement.TryGetProperty("error", out var error) && error.ValueKind == JsonValueKind.Object)
+                {
+                    foreach (var key in new[] { "errors", "details" })
+                        if (error.TryGetProperty(key, out var list) && list.ValueKind == JsonValueKind.Array)
+                            foreach (var item in list.EnumerateArray())
+                                if (item.ValueKind == JsonValueKind.Object && Text(item, "reason") is string reason) reasons.Add(reason);
+                }
+            }
+            catch (CalendarServiceException) { /* Preserve safe fallback for non-JSON provider failures. */ }
+            var message = reasons.Overlaps(["accessNotConfigured", "SERVICE_DISABLED"])
+                ? "Google Calendar API 尚未啟用或設定尚未生效（403 SERVICE_DISABLED）。請在 OAuth 用戶端所屬專案啟用 Calendar API，等待幾分鐘後重試。"
+                : reasons.Overlaps(["insufficientPermissions", "ACCESS_TOKEN_SCOPE_INSUFFICIENT"])
+                ? "Google 行事曆授權不足（403 insufficientPermissions）。請重新授權並勾選行事曆事件權限。"
+                : reasons.Overlaps(["rateLimitExceeded", "userRateLimitExceeded", "quotaExceeded", "dailyLimitExceeded", "RATE_LIMIT_EXCEEDED"])
+                ? "Google 行事曆已達使用額度或頻率限制（403 quota/rate limit）。請稍後重試；持續發生時請檢查專案配額。"
+                : reasons.Contains("forbiddenForNonOrganizer")
+                ? "這個事件只能由主辦人修改（403 forbiddenForNonOrganizer）。請改由事件主辦人操作。"
+                : reasons.Contains("domainPolicy")
+                ? "Google Workspace 管理政策禁止存取行事曆（403 domainPolicy）。請聯絡組織管理員。"
+                : "Google 拒絕存取行事曆（403 forbidden）。請確認該帳號可開啟 Google 主要行事曆，並重新授權；若為公司帳號請確認管理政策。";
+            // Only fixed messages leave the service; never render provider bodies, tokens or account data.
+            throw new CalendarServiceException(message, 403);
+        }
         throw new CalendarServiceException(response.StatusCode switch
         {
             HttpStatusCode.NotFound or HttpStatusCode.Gone => "找不到這個 Google 行事曆事件，可能已被刪除。",
@@ -154,7 +183,7 @@ public class GoogleCalendarService(JournalDbContext db, IHttpClientFactory clien
                 if (attempt == 0) continue;
                 await Invalid(await Connection(userId, ct), ct);
             }
-            CheckStatus(response);
+            await CheckStatus(response, ct);
             return method == HttpMethod.Delete ? null : await ReadJson(response, ct);
         }
         throw new CalendarServiceException(CalendarServiceException.Reconnect);
