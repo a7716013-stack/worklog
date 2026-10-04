@@ -7,7 +7,7 @@ using WorkJournal.Web.ViewModels;
 namespace WorkJournal.Web.Controllers;
 public partial class StockAnalysisController
 {
-    [HttpGet]
+    [Microsoft.AspNetCore.Authorization.Authorize, HttpGet, ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public async Task<IActionResult> PaperTrading([FromServices] IPaperTradingService paper,
         [FromServices] IOptions<PaperTradingOptions> options, string? symbol, PaperOrderSide side, CancellationToken cancellationToken)
     {
@@ -19,7 +19,7 @@ public partial class StockAnalysisController
         });
     }
 
-    [HttpPost]
+    [Microsoft.AspNetCore.Authorization.Authorize, HttpPost, ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public async Task<IActionResult> PlacePaperOrder([FromServices] IPaperTradingService paper,
         [FromServices] IOptions<PaperTradingOptions> options,
         [Bind(Prefix = "Order")] PaperOrderViewModel input, CancellationToken cancellationToken)
@@ -42,7 +42,7 @@ public partial class StockAnalysisController
         return View("PaperTrading", new PaperTradingViewModel { Portfolio = portfolio, Order = input, Costs = options.Value });
     }
 
-    [HttpPost]
+    [Microsoft.AspNetCore.Authorization.Authorize, HttpPost, ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public async Task<IActionResult> CancelPaperOrder([FromServices] IPaperTradingService paper, long id, CancellationToken cancellationToken)
     {
         TempData["Success"] = await paper.CancelOrderAsync(id, cancellationToken)
@@ -50,7 +50,7 @@ public partial class StockAnalysisController
         return RedirectToAction(nameof(PaperTrading));
     }
 
-    [HttpPost]
+    [Microsoft.AspNetCore.Authorization.Authorize, HttpPost, ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public async Task<IActionResult> RefreshPaperOrders([FromServices] IPaperTradingService paper, CancellationToken cancellationToken)
     {
         var count = await paper.ExecutePendingOrdersAsync(cancellationToken);
@@ -58,7 +58,7 @@ public partial class StockAnalysisController
         return RedirectToAction(nameof(PaperTrading));
     }
 
-    [HttpPost]
+    [Microsoft.AspNetCore.Authorization.Authorize, HttpPost, ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public async Task<IActionResult> ResetPaperAccount([FromServices] IPaperTradingService paper,
         Guid generation, bool confirmReset, CancellationToken cancellationToken)
     {

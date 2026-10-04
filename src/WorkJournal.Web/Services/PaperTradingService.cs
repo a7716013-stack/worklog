@@ -4,10 +4,13 @@ using Microsoft.Extensions.Options;
 using WorkJournal.Web.Data;
 using WorkJournal.Web.Models;
 using WorkJournal.Web.ViewModels;
+using WorkJournal.Web.Security;
 namespace WorkJournal.Web.Services;
 
-public class PaperTradingService(JournalDbContext db, FinMindStockService stocks, IOptions<PaperTradingOptions> options) : IPaperTradingService
+public class PaperTradingService(JournalDbContext db, FinMindStockService stocks, IOptions<PaperTradingOptions> options, ICurrentUser currentUser) : IPaperTradingService
 {
+    private string UserId => currentUser.Id;
+    private IQueryable<int> OwnedAccountIds => db.PaperTradingAccounts.Where(x => x.ApplicationUserId == UserId).Select(x => x.Id);
     private readonly PaperTradingOptions costs = options.Value;
     private readonly Dictionary<string, StockLookup> quotes = new(StringComparer.Ordinal);
 
@@ -17,9 +20,10 @@ public class PaperTradingService(JournalDbContext db, FinMindStockService stocks
     {
         db.ChangeTracker.Clear();
         await using var transaction = await db.Database.BeginTransactionAsync(ct);
-        await db.Database.ExecuteSqlRawAsync("""
+        var lockName = "WorkJournal.PaperTrading." + Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(System.Text.Encoding.UTF8.GetBytes(UserId)));
+        await db.Database.ExecuteSqlInterpolatedAsync($"""
             DECLARE @result int;
-            EXEC @result = sys.sp_getapplock @Resource = N'WorkJournal.PaperTrading.Default',
+            EXEC @result = sys.sp_getapplock @Resource = {lockName},
                 @LockMode = 'Exclusive', @LockOwner = 'Transaction', @LockTimeout = 15000;
             IF @result < 0 THROW 51000, 'Paper trading account is busy.', 1;
             """, ct);
@@ -31,9 +35,9 @@ public class PaperTradingService(JournalDbContext db, FinMindStockService stocks
 
     private async Task<PaperTradingAccount> Account(CancellationToken ct)
     {
-        var account = await db.PaperTradingAccounts.SingleOrDefaultAsync(x => x.Id == 1, ct);
+        var account = await db.PaperTradingAccounts.SingleOrDefaultAsync(x => x.ApplicationUserId == UserId, ct);
         if (account != null) return account;
-        account = new() { InitialCash = costs.InitialCash, Cash = costs.InitialCash };
+        account = new() { ApplicationUserId = UserId, InitialCash = costs.InitialCash, Cash = costs.InitialCash };
         db.PaperTradingAccounts.Add(account);
         await db.SaveChangesAsync(ct);
         return account;
@@ -51,7 +55,7 @@ public class PaperTradingService(JournalDbContext db, FinMindStockService stocks
     {
         var snapshot = await Atomic(async () => new {
             Account = await Account(ct),
-            Positions = await db.PaperPositions.AsNoTracking().Where(x => x.AccountId == 1 && x.Quantity > 0).OrderBy(x => x.StockId).ToListAsync(ct),
+            Positions = await db.PaperPositions.AsNoTracking().Where(x => OwnedAccountIds.Contains(x.AccountId) && x.Quantity > 0).OrderBy(x => x.StockId).ToListAsync(ct),
             Orders = await GetOrdersAsync(ct), Trades = await GetTradesAsync(ct)
         }, ct);
         var result = new PaperPortfolioViewModel { Account = snapshot.Account, Orders = snapshot.Orders, Trades = snapshot.Trades };
@@ -62,23 +66,24 @@ public class PaperTradingService(JournalDbContext db, FinMindStockService stocks
     }
 
     public Task<List<PaperOrder>> GetOrdersAsync(CancellationToken ct) => db.PaperOrders.AsNoTracking()
-        .Where(x => x.AccountId == 1).OrderByDescending(x => x.Id).ToListAsync(ct);
+        .Where(x => OwnedAccountIds.Contains(x.AccountId)).OrderByDescending(x => x.Id).ToListAsync(ct);
     public Task<List<PaperTrade>> GetTradesAsync(CancellationToken ct) => db.PaperTrades.AsNoTracking()
-        .Where(x => x.AccountId == 1).OrderByDescending(x => x.Id).ToListAsync(ct);
+        .Where(x => OwnedAccountIds.Contains(x.AccountId)).OrderByDescending(x => x.Id).ToListAsync(ct);
 
     public async Task<PaperOrder> PlaceOrderAsync(PaperOrderViewModel input, CancellationToken ct)
     {
+        _ = UserId;
         Validator.ValidateObject(input, new ValidationContext(input), true);
         var lookup = await Quote(input.StockId, ct);
         return await Atomic(async () =>
         {
             var account = await Account(ct);
             if (account.Generation != input.AccountGeneration) throw new ValidationException("帳戶已重設，請重新整理後再建立委託。");
-            var existing = await db.PaperOrders.SingleOrDefaultAsync(x => x.AccountId == 1 && x.ClientRequestId == input.ClientRequestId, ct);
+            var existing = await db.PaperOrders.SingleOrDefaultAsync(x => OwnedAccountIds.Contains(x.AccountId) && x.ClientRequestId == input.ClientRequestId, ct);
             if (existing != null) return existing; // Form replay and ambiguous commit retries return the same order.
             var quote = lookup.Quote;
             var order = new PaperOrder {
-                AccountId = 1, ClientRequestId = input.ClientRequestId, StockId = input.StockId,
+                AccountId = account.Id, ClientRequestId = input.ClientRequestId, StockId = input.StockId,
                 StockName = quote?.Name ?? input.StockId, IsEtf = quote?.IsEtf ?? false,
                 Side = input.Side, OrderType = input.OrderType, Quantity = input.Quantity,
                 LimitPrice = input.LimitPrice, SubmittedTradeDate = quote?.TradeDate
@@ -91,7 +96,7 @@ public class PaperTradingService(JournalDbContext db, FinMindStockService stocks
                 var today = DateOnly.FromDateTime(order.CreatedAt.ToOffset(TimeSpan.FromHours(8)).DateTime);
                 // Conservatively never use the submission calendar day's OHLC, even before its close.
                 order.EligibleFromTradeDate = (quote.TradeDate > today ? quote.TradeDate.Value : today).AddDays(1);
-                var position = await db.PaperPositions.SingleOrDefaultAsync(x => x.AccountId == 1 && x.StockId == order.StockId, ct);
+                var position = await db.PaperPositions.SingleOrDefaultAsync(x => OwnedAccountIds.Contains(x.AccountId) && x.StockId == order.StockId, ct);
                 var referencePrice = order.OrderType == PaperOrderType.Limit ? order.LimitPrice!.Value : quote.CurrentPrice.Value;
                 var reason = ValidateResources(account, position, order, referencePrice);
                 if (reason != null) Reject(order, reason);
@@ -125,7 +130,7 @@ public class PaperTradingService(JournalDbContext db, FinMindStockService stocks
     {
         var price = PaperTradingCalculator.FillPrice(order, quote);
         if (price is null) return false;
-        var position = await db.PaperPositions.SingleOrDefaultAsync(x => x.AccountId == 1 && x.StockId == order.StockId, ct);
+        var position = await db.PaperPositions.SingleOrDefaultAsync(x => OwnedAccountIds.Contains(x.AccountId) && x.StockId == order.StockId, ct);
         var reason = ValidateResources(account, position, order, price.Value);
         if (reason != null) { Reject(order, reason); return false; }
         var gross = PaperTradingCalculator.Money(price.Value * order.Quantity);
@@ -139,7 +144,7 @@ public class PaperTradingService(JournalDbContext db, FinMindStockService stocks
         {
             if (position == null)
             {
-                position = new() { AccountId = 1, StockId = order.StockId, StockName = order.StockName };
+                position = new() { AccountId = account.Id, StockId = order.StockId, StockName = order.StockName };
                 db.PaperPositions.Add(position);
             }
             position.CostBasis += gross + commission;
@@ -165,7 +170,7 @@ public class PaperTradingService(JournalDbContext db, FinMindStockService stocks
         order.FilledPrice = price;
         order.FilledTradeDate = quote.TradeDate;
         db.PaperTrades.Add(new() {
-            AccountId = 1, OrderId = order.Id, StockId = order.StockId, StockName = order.StockName,
+            AccountId = account.Id, OrderId = order.Id, StockId = order.StockId, StockName = order.StockName,
             Side = order.Side, Quantity = order.Quantity, Price = price.Value, GrossAmount = gross,
             Commission = commission, TransactionTax = tax, NetCashAmount = cashFlow,
             RealizedProfitLoss = realized, QuoteTradeDate = quote.TradeDate!.Value, ExecutedAt = now
@@ -175,7 +180,7 @@ public class PaperTradingService(JournalDbContext db, FinMindStockService stocks
 
     public Task<bool> CancelOrderAsync(long id, CancellationToken ct) => Atomic(async () =>
     {
-        var order = await db.PaperOrders.SingleOrDefaultAsync(x => x.Id == id && x.AccountId == 1, ct);
+        var order = await db.PaperOrders.SingleOrDefaultAsync(x => x.Id == id && OwnedAccountIds.Contains(x.AccountId), ct);
         if (order?.Status != PaperOrderStatus.Pending) return false;
         order.Status = PaperOrderStatus.Cancelled;
         order.CancelledAt = DateTimeOffset.UtcNow;
@@ -184,7 +189,7 @@ public class PaperTradingService(JournalDbContext db, FinMindStockService stocks
 
     public async Task<int> ExecutePendingOrdersAsync(CancellationToken ct)
     {
-        var pending = await db.PaperOrders.AsNoTracking().Where(x => x.AccountId == 1 && x.Status == PaperOrderStatus.Pending)
+        var pending = await db.PaperOrders.AsNoTracking().Where(x => OwnedAccountIds.Contains(x.AccountId) && x.Status == PaperOrderStatus.Pending)
             .OrderBy(x => x.Id).Select(x => new { x.Id, x.StockId }).ToListAsync(ct);
         var count = 0;
         foreach (var item in pending)
@@ -194,7 +199,7 @@ public class PaperTradingService(JournalDbContext db, FinMindStockService stocks
             if (await Atomic(async () =>
             {
                 var account = await Account(ct);
-                var order = await db.PaperOrders.SingleOrDefaultAsync(x => x.AccountId == 1 && x.Id == item.Id, ct);
+                var order = await db.PaperOrders.SingleOrDefaultAsync(x => OwnedAccountIds.Contains(x.AccountId) && x.Id == item.Id, ct);
                 if (order?.Status != PaperOrderStatus.Pending || order.EligibleFromTradeDate == null ||
                     quote.TradeDate < order.EligibleFromTradeDate || quote.TradeDate <= order.LastEvaluatedTradeDate) return false;
                 var filled = await Fill(account, order, quote, ct);
@@ -209,9 +214,9 @@ public class PaperTradingService(JournalDbContext db, FinMindStockService stocks
     {
         var account = await Account(ct);
         if (account.Generation != generation) return false;
-        await db.PaperTrades.Where(x => x.AccountId == 1).ExecuteDeleteAsync(ct);
-        await db.PaperOrders.Where(x => x.AccountId == 1).ExecuteDeleteAsync(ct);
-        await db.PaperPositions.Where(x => x.AccountId == 1).ExecuteDeleteAsync(ct);
+        await db.PaperTrades.Where(x => OwnedAccountIds.Contains(x.AccountId)).ExecuteDeleteAsync(ct);
+        await db.PaperOrders.Where(x => OwnedAccountIds.Contains(x.AccountId)).ExecuteDeleteAsync(ct);
+        await db.PaperPositions.Where(x => OwnedAccountIds.Contains(x.AccountId)).ExecuteDeleteAsync(ct);
         account.Cash = account.InitialCash;
         account.RealizedProfitLoss = 0;
         account.Generation = Guid.NewGuid();

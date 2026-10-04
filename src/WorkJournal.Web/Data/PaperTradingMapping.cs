@@ -6,11 +6,14 @@ public static class PaperTradingMapping
     public static void Configure(ModelBuilder model)
     {
         var account = model.Entity<PaperTradingAccount>();
-        account.Property(x => x.Id).ValueGeneratedNever();
+        model.HasSequence<int>("PaperAccountIds").StartsAt(2);
+        account.Property(x => x.Id).HasDefaultValueSql("NEXT VALUE FOR [PaperAccountIds]");
+        account.Property(x => x.ApplicationUserId).HasMaxLength(450);
+        account.HasOne<ApplicationUser>().WithMany().HasForeignKey(x => x.ApplicationUserId).OnDelete(DeleteBehavior.Restrict);
+        account.HasIndex(x => x.ApplicationUserId).IsUnique().HasFilter("[ApplicationUserId] IS NOT NULL");
         account.Property(x => x.Name).HasMaxLength(80);
         account.ToTable("PaperTradingAccounts", t => {
             t.HasCheckConstraint("CK_PaperAccount_Cash", "[Cash] >= 0 AND [InitialCash] > 0");
-            t.HasCheckConstraint("CK_PaperAccount_Singleton", "[Id] = 1");
         });
         var order = model.Entity<PaperOrder>();
         order.Property(x => x.StockId).HasMaxLength(6);

@@ -7,7 +7,7 @@ namespace WorkJournal.Web.Controllers;
 
 public partial class StockAnalysisController(FinMindStockService stocks) : Controller
 {
-    [HttpGet]
+    [Microsoft.AspNetCore.Authorization.Authorize, HttpGet, ResponseCache(Duration=0, Location=ResponseCacheLocation.None, NoStore=true)]
     public IActionResult Swing() => View();
 
     [HttpGet]

@@ -212,6 +212,36 @@ public static class Checks
             }
             google.ApiFailure = null; google.ApiFailureReason = null;
             await SyncChecks.Run(factory, aliceId, bobId);
+            foreach (var path in new[] { "/StockAnalysis/Swing", "/StockAnalysis/Watchlist", "/StockAnalysis/PaperTrading" })
+                Check((await anonymous.GetAsync(path)).StatusCode is HttpStatusCode.Redirect or HttpStatusCode.Unauthorized, "Personal stock page requires login: " + path);
+            Check((await alice.PostAsync("/StockAnalysis/SaveWatchlist", JsonContent.Create(new { symbols=new[]{"2330"} }))).StatusCode == HttpStatusCode.BadRequest, "Watchlist mutations require antiforgery");
+            var stockToken = await Token(alice,"/StockAnalysis/Swing");
+            using (var save = new HttpRequestMessage(HttpMethod.Post,"/StockAnalysis/SaveWatchlist"))
+            {
+                save.Headers.Add("RequestVerificationToken",stockToken);
+                save.Content=JsonContent.Create(new { symbols=new[]{"2330"}, applicationUserId=bobId });
+                Check((await alice.SendAsync(save)).StatusCode == HttpStatusCode.OK,"Authenticated tracking persists and ignores forged owner");
+            }
+            using (var body = JsonDocument.Parse(await alice.GetStringAsync("/StockAnalysis/Watchlist")))
+                Check(body.RootElement.GetProperty("owner").GetString()==aliceId && body.RootElement.GetProperty("items").GetArrayLength()==1,"Alice reads her database watchlist");
+            using (var body = JsonDocument.Parse(await bob.GetStringAsync("/StockAnalysis/Watchlist")))
+                Check(body.RootElement.GetProperty("items").GetArrayLength()==0,"Bob cannot read Alice watchlist");
+            using (var remove = new HttpRequestMessage(HttpMethod.Post,"/StockAnalysis/SaveWatchlist"))
+            {
+                remove.Headers.Add("RequestVerificationToken",await Token(bob,"/StockAnalysis/Swing"));
+                remove.Content=JsonContent.Create(new { symbols=Array.Empty<string>(),remove="2330",applicationUserId=aliceId });
+                Check((await bob.SendAsync(remove)).StatusCode==HttpStatusCode.OK,"Foreign watchlist removal does not target another owner");
+            }
+            using (var scope=factory.Services.CreateScope())
+                Check(await scope.ServiceProvider.GetRequiredService<JournalDbContext>().StockWatchlistItems.AnyAsync(x=>x.ApplicationUserId==aliceId && x.Symbol=="2330"),"Alice tracking survives Bob removal request");
+            var alicePaper=await alice.GetAsync("/StockAnalysis/PaperTrading");
+            Check(alicePaper.StatusCode==HttpStatusCode.OK && alicePaper.Headers.CacheControl?.NoStore==true,"Private portfolio renders with no-store caching");
+            Check((await bob.GetAsync("/StockAnalysis/PaperTrading")).StatusCode==HttpStatusCode.OK,"Second user gets own portfolio");
+            using (var scope=factory.Services.CreateScope())
+            {
+                var db=scope.ServiceProvider.GetRequiredService<JournalDbContext>();
+                Check(await db.PaperTradingAccounts.CountAsync(x=>x.ApplicationUserId!=null)==2 && await db.PaperTradingAccounts.AnyAsync(x=>x.Id==1 && x.ApplicationUserId==null),"Migration preserves shared account while personal accounts remain distinct");
+            }
             Check((await alice.PostAsync("/GoogleCalendar/Sync", new FormUrlEncodedContent([]))).StatusCode == HttpStatusCode.BadRequest, "Sync requires antiforgery");
             var outstanding = await StartCalendar(alice);
             Check((await Post(alice, "/Account/Logout", [], "/GoogleCalendar")).StatusCode == HttpStatusCode.Redirect && (await alice.GetAsync("/WorkLogs")).StatusCode == HttpStatusCode.Redirect, "Logout clears session");

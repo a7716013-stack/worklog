@@ -1,7 +1,9 @@
 namespace WorkJournal.Web.Models;
 public class PaperTradingAccount
 {
-    public int Id { get; set; } = 1;
+    public int Id { get; set; }
+    // Legacy shared accounts are preserved without being claimed by a user.
+    public string? ApplicationUserId { get; set; }
     public string Name { get; set; } = "我的虛擬帳戶";
     public decimal InitialCash { get; set; }
     public decimal Cash { get; set; }

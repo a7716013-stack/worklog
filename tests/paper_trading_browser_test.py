@@ -13,7 +13,7 @@ with sync_playwright() as p:
     page.on("pageerror", lambda error: errors.append(str(error)))
     response = page.goto(base + "/StockAnalysis/PaperTrading", wait_until="networkidle")
     assert response.headers.get("x-papertrading-fixture") == "isolated-sql", "Refuse destructive checks outside isolated fixture"
-    expect(page.get_by_role("heading", name="虛擬交易", exact=True)).to_be_visible()
+    expect(page.get_by_role("heading", name="我的虛擬交易", exact=True)).to_be_visible()
     expect(page.locator(".subheading")).to_contain_text("模擬交易，不會送出真實證券委託")
     expect(page.locator("#paper-initial")).to_have_text("1,000,000.00")
     nav = page.get_by_role("navigation", name="網站切換", exact=True)

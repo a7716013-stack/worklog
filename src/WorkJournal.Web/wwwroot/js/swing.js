@@ -5,17 +5,31 @@ const $=id=>document.getElementById(id);
 const key="workjournal.swing.watchlist.v1";
 const data=new Map(), failures=new Map(), pending=new Set();
 let tracked=[], searchResults=[], searchAbort, active=null, run=0;
+let saving=false, storageError="", ready=false;
 const number=(v,d=2)=>v==null?"—":Number(v).toLocaleString("zh-TW",{minimumFractionDigits:d,maximumFractionDigits:d});
 const el=(tag,text,cls)=>{const x=document.createElement(tag);if(text!=null)x.textContent=text;if(cls)x.className=cls;return x;};
 function button(text,action,cls="btn btn-light btn-sm"){const b=el("button",text,cls);b.type="button";b.addEventListener("click",action);return b;}
 function valid(s){return s && typeof s.symbol==="string" && /^[0-9]{4}[0-9A-Z]{0,2}$/.test(s.symbol) && typeof s.name==="string";}
-function load(){
+function legacyList(){
  try {const value=JSON.parse(localStorage.getItem(key)||"[]");return Array.isArray(value)?value.filter(valid).filter((v,i,a)=>a.findIndex(x=>x.symbol===v.symbol)===i).slice(0,20):[];}
- catch { $("swing-status").textContent="無法讀取追蹤清單，請確認瀏覽器允許網站儲存資料。";return []; }
+ catch { return []; }
 }
-function save(next){
- try{localStorage.setItem(key,JSON.stringify(next));tracked=next;return true;}
- catch{$("swing-status").textContent="無法儲存追蹤清單，請確認瀏覽器儲存空間與設定。";return false;}
+async function watchRequest(change){
+ const options={cache:"no-store",headers:{Accept:"application/json"}};
+ if(change){options.method="POST";options.headers["Content-Type"]="application/json";options.headers.RequestVerificationToken=app.querySelector('input[name="__RequestVerificationToken"]').value;options.body=JSON.stringify(change);}
+ const response=await fetch(change?app.dataset.saveUrl:app.dataset.watchlistUrl,options);
+ if(response.redirected||response.status===401||response.status===403){tracked=[];data.clear();ready=false;throw new Error("登入狀態已變更，請重新整理並登入後再操作。");}
+ let json;try{json=await response.json();}catch{throw new Error("無法儲存或讀取追蹤清單，請稍後重新整理。");}
+ if(!response.ok)throw new Error(json.message||"追蹤清單操作失敗，請稍後重試。");
+ if(json.owner!==app.dataset.owner){tracked=[];data.clear();ready=false;throw new Error("帳號已變更，請重新整理頁面。");}
+ tracked=json.items;ready=true;return json;
+}
+async function changeList(change){
+ if(saving||!ready)return false;
+ saving=true;storageError="";renderSearch();render();
+ try{await watchRequest(change);return true;}
+ catch(e){storageError=e.message;return false;}
+ finally{saving=false;renderSearch();render();}
 }
 async function request(base,param,signal){
  const url=new URL(base,location.origin);Object.entries(param).forEach(([k,v])=>url.searchParams.set(k,v));
@@ -23,13 +37,13 @@ async function request(base,param,signal){
  let json;try{json=await response.json();}catch{throw new Error("服務未回傳有效資料，請稍後重試。");}
  if(!response.ok)throw new Error(json.message||"資料服務暫時無法使用。");return json;
 }
-function add(stock){
+async function add(stock){
  if(tracked.some(x=>x.symbol===stock.symbol))return;
  if(tracked.length>=20){$("swing-search-status").textContent="最多追蹤 20 檔，請先移除不需追蹤的股票。";return;}
- if(save([...tracked,stock])){renderSearch();render();refresh();}
+ if(await changeList({symbols:[stock.symbol]})){refresh();}
 }
-function remove(symbol){
- if(save(tracked.filter(x=>x.symbol!==symbol))){
+async function remove(symbol){
+ if(await changeList({symbols:[],remove:symbol})){
   data.delete(symbol);failures.delete(symbol);
   if(active===symbol){active=null;$("swing-detail").hidden=true;}
   renderSearch();render();
@@ -41,7 +55,7 @@ function renderSearch(){
   const row=el("div",null,"swing-search-row");
   const label=el("div");label.append(el("strong",stock.symbol+" "+stock.name),el("small",(stock.market==="twse"?"上市":"上櫃")+(stock.isEtf?" · ETF":""),"muted d-block"));
   const has=tracked.some(x=>x.symbol===stock.symbol);
-  const b=button(has?"已追蹤":"加入追蹤",()=>add(stock),has?"btn btn-light btn-sm":"btn btn-forest btn-sm");b.disabled=has;
+  const b=button(has?"已追蹤":"加入追蹤",()=>add(stock),has?"btn btn-light btn-sm":"btn btn-forest btn-sm");b.disabled=has||saving||!ready;
   row.append(label,b);host.append(row);
  }
 }
@@ -88,12 +102,13 @@ function render(){
   }else card.append(el("p",failures.get(stock.symbol)||"正在載入日行情與法人資料…","muted mt-3"));
   const actions=el("div",null,"swing-card-actions");
   const detail=button("詳細分析",()=>showDetail(stock.symbol),"btn btn-forest btn-sm");detail.disabled=!info;
-  actions.append(detail,button("移除追蹤",()=>remove(stock.symbol)));
+  const removeButton=button("移除追蹤",()=>remove(stock.symbol));removeButton.disabled=saving||!ready;
+  actions.append(detail,removeButton);
   if(failures.has(stock.symbol))actions.append(button("重試",()=>{failures.delete(stock.symbol);refresh();}));
   card.append(actions);host.append(card);
  }
  if(tracked.length && !visible)host.append(el("p","目前沒有符合此狀態的追蹤股票。","muted"));
- $("swing-status").textContent=tracked.length?"已載入 "+summaries.length+"/"+tracked.length+" 檔"+(pending.size?" · 更新中…":"")+(failures.size?" · 部分資料載入失敗，可個別重試":""):"";
+ $("swing-status").textContent=storageError||(saving?"正在儲存追蹤清單…":!ready?"正在讀取個人追蹤清單…":tracked.length?"已載入 "+summaries.length+"/"+tracked.length+" 檔"+(pending.size?" · 更新中…":"")+(failures.size?" · 部分資料載入失敗，可個別重試":""):"");
 }
 async function refresh(force=false){
  if(force){for(const s of tracked){data.delete(s.symbol);failures.delete(s.symbol);}}
@@ -111,7 +126,7 @@ async function refresh(force=false){
  if(active&&data.has(active))showDetail(active,false);
 }
 $("swing-filter").addEventListener("change",render);
-$("swing-refresh").addEventListener("click",()=>{if(!pending.size)refresh(true);});
+$("swing-refresh").addEventListener("click",async()=>{if(!pending.size&&!saving){try{await watchRequest();storageError="";renderSearch();render();refresh(true);}catch(e){storageError=e.message;render();}}});
 $("swing-close-detail").addEventListener("click",()=>{$("swing-detail").hidden=true;active=null;run++;});
 function showDetail(symbol,scroll=true){
  const info=data.get(symbol);if(!info)return;
@@ -197,6 +212,13 @@ $("swing-run-backtest").addEventListener("click",async()=>{
  }catch(e){if(sequence===run)host.textContent=e.message;}
  finally{if(sequence===run)b.disabled=false;}
 });
-window.addEventListener("storage",e=>{if(e.key===key){tracked=load();if(active&&!tracked.some(x=>x.symbol===active)){active=null;$("swing-detail").hidden=true;}renderSearch();render();refresh();}});
-tracked=load();render();refresh();
+window.addEventListener("pageshow",e=>{if(e.persisted)location.reload();});
+$("swing-import").hidden=legacyList().length===0;
+$("swing-import").addEventListener("click",async()=>{
+ if(!ready||saving)return;
+ const old=legacyList();if(!old.length)return;
+ if(!confirm("將此瀏覽器舊清單匯入目前登入帳號？請確認這些股票是你的追蹤資料。"))return;
+ if(await changeList({symbols:old.map(x=>x.symbol)})){try{localStorage.removeItem(key);}catch{}$("swing-import").hidden=true;refresh();}
+});
+render();watchRequest().then(()=>{renderSearch();render();refresh();}).catch(e=>{storageError=e.message;render();});
 })();

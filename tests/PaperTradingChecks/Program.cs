@@ -7,6 +7,8 @@ using WorkJournal.Web.Controllers;
 using WorkJournal.Web.Data;
 using WorkJournal.Web.Models;
 using WorkJournal.Web.Services;
+using WorkJournal.Web.Security;
+using System.Security.Claims;
 
 var database = "WorkJournalPaperChecks_" + Guid.NewGuid().ToString("N");
 var connection = $@"Server=.\SQLEXPRESS;Database={database};Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True;";
@@ -16,6 +18,9 @@ await setup.Database.MigrateAsync();
 Console.WriteLine("Isolated SQL database: " + database);
 try
 {
+    setup.Users.AddRange(new ApplicationUser { Id="paper-alice",UserName="paper-alice" },new ApplicationUser { Id="paper-bob",UserName="paper-bob" });
+    setup.PaperTradingAccounts.Add(new PaperTradingAccount { Id=1, Name="Legacy shared",InitialCash=7777777m,Cash=7777777m });
+    await setup.SaveChangesAsync();
     if (args.Contains("--serve"))
     {
         var repo = new DirectoryInfo(AppContext.BaseDirectory);
@@ -41,6 +46,11 @@ try
         builder.Services.AddMemoryCache();
         builder.Services.Configure<PaperTradingOptions>(_ => { });
         builder.Services.AddScoped<IPaperTradingService, PaperTradingService>();
+        builder.Services.AddHttpContextAccessor();
+        builder.Services.AddScoped<ICurrentUser, CurrentUser>();
+        builder.Services.AddScoped<StockWatchlistService>();
+        builder.Services.AddAuthorization();
+        builder.Services.AddAuthentication("Fixture").AddScheme<Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions, FixtureAuthentication>("Fixture", _ => {});
         var market = new FixtureMarket();
         builder.Services.AddScoped(sp => new FinMindStockService(new HttpClient(market, false) { BaseAddress = new Uri("https://fixture.test/") },
             sp.GetRequiredService<IMemoryCache>(), new ConfigurationBuilder().Build(), NullLogger<FinMindStockService>.Instance));
@@ -48,6 +58,8 @@ try
         app.Use(async (context, next) => { context.Response.Headers["X-PaperTrading-Fixture"] = "isolated-sql"; await next(); });
         app.UseStaticFiles();
         app.UseRouting();
+        app.UseAuthentication();
+        app.UseAuthorization();
         app.MapControllerRoute("default", "{controller=WorkLogs}/{action=Index}/{id?}");
         app.MapPost("/__test/stop", async (HttpContext context, Microsoft.AspNetCore.Antiforgery.IAntiforgery antiforgery) => {
             await antiforgery.ValidateRequestAsync(context);
@@ -66,4 +78,10 @@ finally
         throw new InvalidOperationException("Unexpected test database name");
     await setup.Database.EnsureDeletedAsync();
     Console.WriteLine("Isolated test database removed.");
+}
+public class FixtureAuthentication(Microsoft.Extensions.Options.IOptionsMonitor<Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions> options, ILoggerFactory logger, System.Text.Encodings.Web.UrlEncoder encoder)
+    : Microsoft.AspNetCore.Authentication.AuthenticationHandler<Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions>(options,logger,encoder)
+{
+    protected override Task<Microsoft.AspNetCore.Authentication.AuthenticateResult> HandleAuthenticateAsync()
+        => Task.FromResult(Microsoft.AspNetCore.Authentication.AuthenticateResult.Success(new(new ClaimsPrincipal(new ClaimsIdentity(new[] {new Claim(ClaimTypes.NameIdentifier,"paper-alice"),new Claim(ClaimTypes.Name,"Fixture Alice")},Scheme.Name)),Scheme.Name)));
 }

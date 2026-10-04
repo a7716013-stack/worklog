@@ -14,11 +14,11 @@
 }
 <partial name="_Navigation" />
 <section class="page-heading">
-    <div><p class="eyebrow">PAPER TRADING · v1.1.6</p><h1>虛擬交易</h1><p class="subheading">模擬交易，不會送出真實證券委託</p></div>
+    <div><p class="eyebrow">PAPER TRADING · v1.2.2</p><h1>我的虛擬交易</h1><p class="subheading">模擬交易，不會送出真實證券委託</p></div>
     <form asp-action="RefreshPaperOrders" method="post"><button class="btn btn-forest" type="submit">檢查待成交委託</button></form>
 </section>
 <div class="alert alert-info">
-    目前虛擬交易依 FinMind 最新可用日行情模擬，不是券商盤中即時成交。所有人共用一個虛擬帳戶，尚無登入與使用者隔離。
+    虛擬交易依 FinMind 最新可用日行情模擬，不是券商盤中即時成交。資金、委託、成交與持倉儲存在你的登入帳號，換裝置登入同一帳號即可查看。
 </div>
 @if (portfolio.HasIncompleteValuation)
 {

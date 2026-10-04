@@ -8,6 +8,7 @@ using WorkJournal.Web.Data;
 using WorkJournal.Web.Models;
 using WorkJournal.Web.Services;
 using WorkJournal.Web.ViewModels;
+using WorkJournal.Web.Security;
 
 public static class DomainChecks
 {
@@ -16,20 +17,20 @@ public static class DomainChecks
     public static async Task Run(DbContextOptions<JournalDbContext> dbOptions)
     {
         var market = new FixtureMarket();
-        async Task<T> Use<T>(Func<PaperTradingService, JournalDbContext, Task<T>> action, SaveChangesInterceptor? interceptor = null)
+        async Task<T> Use<T>(Func<PaperTradingService, JournalDbContext, Task<T>> action, SaveChangesInterceptor? interceptor = null, string userId = "paper-alice")
         {
             var configured = interceptor == null ? dbOptions : new DbContextOptionsBuilder<JournalDbContext>(dbOptions).AddInterceptors(interceptor).Options;
             await using var db = new JournalDbContext(configured);
             using var memory = new MemoryCache(new MemoryCacheOptions());
             using var http = new HttpClient(market, false) { BaseAddress = new Uri("https://fixture.test/") };
             var quotes = new FinMindStockService(http, memory, new ConfigurationBuilder().Build(), NullLogger<FinMindStockService>.Instance);
-            var service = new PaperTradingService(db, quotes, Options.Create(new PaperTradingOptions()));
+            var service = new PaperTradingService(db, quotes, Options.Create(new PaperTradingOptions()), new FixtureUser(userId));
             return await action(service, db);
         }
         Task<PaperPortfolioViewModel> Portfolio() => Use((s, d) => s.GetPortfolioAsync(default));
         var accounts = await Task.WhenAll(Enumerable.Range(0, 5).Select(_ => Use((s, d) => s.GetAccountAsync(default))));
         var account = accounts[0];
-        Check(accounts.All(x => x.Id == 1 && x.Cash == 1000000m && x.Generation == account.Generation), "concurrent first visit creates exactly one default account");
+        Check(accounts.All(x => x.Id == account.Id && x.Id != 1 && x.ApplicationUserId == "paper-alice" && x.Cash == 1000000m && x.Generation == account.Generation), "concurrent first visit creates exactly one personal account");
         PaperOrderViewModel Input(PaperOrderSide side = PaperOrderSide.Buy, int quantity = 1000, PaperOrderType type = PaperOrderType.Market, decimal? limit = null, string symbol = "2330") =>
             new() { StockId = symbol, Side = side, Quantity = quantity, OrderType = type, LimitPrice = limit, AccountGeneration = account.Generation };
         Task<PaperOrder> Place(PaperOrderViewModel input) => Use((s, d) => s.PlaceOrderAsync(input, default));
@@ -127,7 +128,34 @@ public static class DomainChecks
         var sells=await Task.WhenAll(Place(Input(PaperOrderSide.Sell,1)),Place(Input(PaperOrderSide.Sell,1)));
         Check(sells.Count(x=>x.Status==PaperOrderStatus.Filled)==1 && sells.Count(x=>x.Status==PaperOrderStatus.Rejected)==1, "distinct concurrent sells cannot oversell");
         Check((await Portfolio()).Account.Cash>=0, "account never negative after concurrent operations");
-        Console.WriteLine($"PASS: {checks} SQL-backed paper trading checks.");
+        var aliceBefore = await Portfolio();
+        var bob = await Use((s,d)=>s.GetAccountAsync(default), userId:"paper-bob");
+        Check(bob.Id != account.Id && bob.Id != 1 && bob.Cash == 1000000m, "Each user receives a separate initial balance");
+        Check((await Use((s,d)=>s.GetPortfolioAsync(default),userId:"paper-bob")).Orders.Count == 0, "Bob cannot read Alice orders or legacy orders");
+        var pendingAlice = await Place(Input(quantity:1,type:PaperOrderType.Limit,limit:1));
+        Check(!await Use((s,d)=>s.CancelOrderAsync(pendingAlice.Id,default),userId:"paper-bob"), "Bob cannot cancel Alice pending order by ID");
+        Check(!await Use((s,d)=>s.ResetAccountAsync(account.Generation,default),userId:"paper-bob"), "Bob cannot use Alice account generation to reset");
+        market.Price=100;market.Low=95;market.High=105;
+        var bobInput = new PaperOrderViewModel { StockId="2330", Quantity=1, AccountGeneration=bob.Generation, ClientRequestId=firstInput.ClientRequestId };
+        var bobOrder = await Use((s,d)=>s.PlaceOrderAsync(bobInput,default),userId:"paper-bob");
+        Check(bobOrder.AccountId == bob.Id && bobOrder.Id != first.Id && bobOrder.Status == PaperOrderStatus.Filled, "Request IDs are scoped to each account");
+        Check(!(await Portfolio()).Orders.Any(x=>x.Id==bobOrder.Id) && !(await Portfolio()).Trades.Any(x=>x.OrderId==bobOrder.Id), "Alice cannot see Bob order or trade");
+        Check(await Use((s,d)=>s.ResetAccountAsync(bob.Generation,default),userId:"paper-bob"), "Bob can reset his own account");
+        Check((await Portfolio()).Account.Cash == aliceBefore.Account.Cash && (await Portfolio()).Orders.Any(x=>x.Id==pendingAlice.Id), "Bob reset preserves Alice cash and orders");
+        Check(await Use((s,d)=>d.PaperTradingAccounts.AnyAsync(x=>x.Id==1 && x.ApplicationUserId==null && x.Cash==7777777m)), "Legacy shared account is retained and unclaimed");
+        async Task<List<SwingStock>> Watch(string owner, IReadOnlyList<SwingStock> add, string? remove=null)
+        { await using var db=new JournalDbContext(dbOptions); return await new StockWatchlistService(db,new FixtureUser(owner)).ChangeAsync(add,remove,default); }
+        var stock = new SwingStock("2330","台積電","twse",false);
+        await Task.WhenAll(Enumerable.Range(0,4).Select(_=>Watch("paper-alice",[stock])));
+        Check((await Watch("paper-alice",[])).Count==1 && (await Watch("paper-bob",[])).Count==0, "Watchlist is isolated and duplicate-safe under concurrent adds");
+        await Watch("paper-bob",[],"2330");
+        Check((await Watch("paper-alice",[])).Count==1, "Bob cannot remove Alice tracking entry");
+        await Watch("paper-alice",Enumerable.Range(1000,19).Select(x=>new SwingStock(x.ToString(),"Fixture","twse",false)).ToList());
+        try { await Watch("paper-alice",[new("9998","Overflow","twse",false)]); throw new Exception("Limit not enforced"); }
+        catch(ValidationException){Check((await Watch("paper-alice",[])).Count==20,"Watchlist limit is enforced atomically on server");}
+        await Watch("paper-alice",[],"2330");
+        Check((await Watch("paper-alice",[])).Count==19,"Watchlist removal persists in a new SQL context");
+        Console.WriteLine($"PASS: {checks} SQL-backed paper trading and watchlist checks.");
     }
     sealed class FailTradeSave : SaveChangesInterceptor
     {
@@ -138,3 +166,4 @@ public static class DomainChecks
         }
     }
 }
+public sealed class FixtureUser(string id) : ICurrentUser { public string Id => id; }
