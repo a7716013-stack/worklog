@@ -18,6 +18,14 @@ builder.Services.AddDbContext<JournalDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("JournalDatabase"),
         sql => sql.EnableRetryOnFailure()));
 builder.Services.AddMemoryCache();
+builder.Services.AddHttpClient<WorkJournal.Web.Services.TaiwanMarketRankingProvider>(client =>
+{
+    client.Timeout = TimeSpan.FromSeconds(15);
+    client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 WorkJournal/1.2.3");
+});
+builder.Services.AddScoped<WorkJournal.Web.Services.ITaiwanMarketRankingProvider>(sp => sp.GetRequiredService<WorkJournal.Web.Services.TaiwanMarketRankingProvider>());
+builder.Services.AddScoped<WorkJournal.Web.Services.IMarketRadarHistoryProvider, WorkJournal.Web.Services.FinMindRadarHistoryProvider>();
+builder.Services.AddScoped<WorkJournal.Web.Services.IMarketRadarService, WorkJournal.Web.Services.MarketRadarService>();
 builder.Services.AddJournalAuthentication(builder.Configuration);
 builder.Services.AddHttpClient<WorkJournal.Web.Services.FinMindStockService>(client =>
 {
@@ -27,7 +35,7 @@ builder.Services.AddHttpClient<WorkJournal.Web.Services.FinMindStockService>(cli
 builder.Services.AddHttpClient<WorkJournal.Web.Services.EtfOfficialService>(client =>
 {
     client.Timeout = TimeSpan.FromSeconds(20);
-    client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 WorkJournal/1.2.2");
+    client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 WorkJournal/1.2.3");
 });
 builder.Services.AddOptions<WorkJournal.Web.Models.PaperTradingOptions>()
     .Bind(builder.Configuration.GetSection("PaperTrading"))

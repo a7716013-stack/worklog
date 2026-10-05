@@ -1,0 +1,46 @@
+@using System.Security.Claims
+@{ ViewData["Title"] = "市場熱門排行"; }
+<partial name="_Navigation" />
+<section class="page-heading">
+    <div><p class="eyebrow">MARKET RADAR · v1.2.3</p><h1>市場熱門排行</h1>
+    <p class="subheading">上市、上櫃與 ETF · 從當日排行與量能變化，找到下一個研究標的。</p></div>
+</section>
+<div id="market-radar" data-url="@Url.Action("MarketRadarData")" data-watch-url="@Url.Action("Watchlist")"
+     data-save-url="@Url.Action("SaveWatchlist")" data-owner="@User.FindFirstValue(ClaimTypes.NameIdentifier)"
+     data-analysis-url="@Url.Action("Index")" data-paper-url="@Url.Action("PaperTrading")"
+     data-login-url="@Url.Action("Login","Account",new { returnUrl="/StockAnalysis/MarketRadar" })">
+    @Html.AntiForgeryToken()
+    <div class="panel radar-toolbar">
+        <label>市場範圍<select id="radar-market" class="form-select"><option value="all">全部（上市／上櫃／ETF）</option><option value="twse">上市股票</option><option value="tpex">上櫃股票</option><option value="etf">ETF</option></select></label>
+        <label>交易日期<select id="radar-date" class="form-select"><option value="">最新可用交易日</option></select></label>
+        <button id="radar-refresh" class="btn btn-forest" type="button">重新整理</button>
+        <div><strong id="radar-asof">正在取得市場日期…</strong><small class="d-block muted">非盤中即時行情 · 成交量統一以股計算</small></div>
+    </div>
+    <div id="radar-status" class="my-3" role="status" aria-live="polite"></div>
+    <div id="radar-watch-status" class="my-2" role="status" aria-live="polite"></div>
+    <div id="radar-warnings"></div>
+    <div class="radar-tabs" role="tablist" aria-label="市場排行分類">
+        <button type="button" role="tab" id="tab-recommend" data-tab="recommend" aria-selected="true" aria-controls="radar-results">今日推薦追蹤</button>
+        <button type="button" role="tab" id="tab-gainers" data-tab="gainers" aria-selected="false" aria-controls="radar-results" tabindex="-1">當日最大漲幅</button>
+        <button type="button" role="tab" id="tab-losers" data-tab="losers" aria-selected="false" aria-controls="radar-results" tabindex="-1">當日最大跌幅</button>
+        <button type="button" role="tab" id="tab-volume" data-tab="volume" aria-selected="false" aria-controls="radar-results" tabindex="-1">當日最大交易量</button>
+        <button type="button" role="tab" id="tab-average" data-tab="average" aria-selected="false" aria-controls="radar-results" tabindex="-1">均量計算／異常放量</button>
+        <button type="button" role="tab" id="tab-events" data-tab="events" aria-selected="false" aria-controls="radar-results" tabindex="-1">重大資訊</button>
+    </div>
+    <p id="radar-description" class="muted mt-3"></p>
+    <label id="radar-average-options" class="mb-3" hidden>均量範圍 <select id="radar-average-filter" class="form-select"><option value="all">全部候選均量（20 日量比排序）</option><option value="unusual">僅異常放量（20 日量比 ≥1.5）</option></select></label>
+    <div id="radar-results" role="tabpanel" aria-labelledby="tab-recommend" tabindex="0"></div>
+    <details class="panel mt-4"><summary>計算方式與評分說明</summary>
+        <p class="mt-3">當日榜單各取前 20 名；漲幅只列上漲標的、跌幅只列下跌標的，交易量依實際成交股數排序。</p>
+        <p>5／20 日均量＝當日前 5／20 個有效交易日成交量平均。量比＝當日成交量÷均量；量增＝（量比−1）×100%。均量不包含當日，資料不足或均量為零時顯示「—」。</p>
+        <p>價格動能 20、成交量異常 20、技術面 20、籌碼面 15、基本面 10、重大資訊 15，共 100 分。展開卡片可看各項規則；缺項只列已知得分／可評權重，不重新換算百分制。ETF 尚無基金基本面評分，不套用公司營收。</p>
+        <p>重大資訊分數代表可確認事件的研究關注度，不等於利多；公開資料僅包含來源目前提供的公告，未提供資料不表示無風險。技術指標沿用未還原價格，除權息或分割可能影響訊號。</p>
+        <p>推薦與量比僅針對當日三榜合併的候選池，最多 60 檔，不是全市場量比排行；表格「待分析」代表不在本次候選池。市場快取 5 分鐘、候選歷史快取 15 分鐘，重新整理不會強制繞過快取。</p>
+        <p class="mb-0">市場雷達提供資料整理與研究用途，不構成投資建議。加入自選需要登入；建立虛擬單會先開啟表單，由你確認送出。</p>
+    </details>
+    <p class="muted mt-3">來源：<a href="https://www.twse.com.tw/zh/trading/historical/mi-index.html" target="_blank" rel="noopener noreferrer">證交所</a>、<a href="https://www.tpex.org.tw/en-us/mainboard/trading/info/pricing.html" target="_blank" rel="noopener noreferrer">櫃買中心</a>、<a href="https://finmind.github.io/tutor/TaiwanMarket/Technical/" target="_blank" rel="noopener noreferrer">FinMind</a>。</p>
+</div>
+@section Scripts {
+    <link rel="stylesheet" href="~/css/market-radar.css" asp-append-version="true" />
+    <script src="~/js/market-radar.js" asp-append-version="true"></script>
+}

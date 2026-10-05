@@ -44,6 +44,10 @@ try
             .AddApplicationPart(typeof(StockAnalysisController).Assembly);
         builder.Services.AddDbContext<JournalDbContext>(o => o.UseSqlServer(connection, sql => sql.EnableRetryOnFailure()));
         builder.Services.AddMemoryCache();
+        var radarFixture = new FixtureRadar();
+        builder.Services.AddSingleton<ITaiwanMarketRankingProvider>(radarFixture);
+        builder.Services.AddSingleton<IMarketRadarHistoryProvider>(radarFixture);
+        builder.Services.AddScoped<IMarketRadarService, MarketRadarService>();
         builder.Services.Configure<PaperTradingOptions>(_ => { });
         builder.Services.AddScoped<IPaperTradingService, PaperTradingService>();
         builder.Services.AddHttpContextAccessor();
