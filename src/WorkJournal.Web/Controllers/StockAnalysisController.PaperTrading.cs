@@ -9,10 +9,20 @@ public partial class StockAnalysisController
 {
     [Microsoft.AspNetCore.Authorization.Authorize, HttpGet, ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public async Task<IActionResult> PaperTrading([FromServices] IPaperTradingService paper,
-        [FromServices] IOptions<PaperTradingOptions> options, string? symbol, PaperOrderSide side, CancellationToken cancellationToken)
+        [FromServices] IOptions<PaperTradingOptions> options, string? symbol, PaperOrderSide side, CancellationToken cancellationToken, long? recommendationId = null)
     {
+        MarketRadarRecommendation? recommendation = null;
+        if (recommendationId.HasValue)
+        {
+            var links = HttpContext.RequestServices.GetRequiredService<RadarPaperTradingComparisonService>();
+            var owner = HttpContext.RequestServices.GetRequiredService<WorkJournal.Web.Security.ICurrentUser>().Id;
+            recommendation = await links.AccessibleAsync(recommendationId.Value, owner, cancellationToken);
+            if (recommendation == null) return NotFound();
+            symbol = recommendation.StockId;
+        }
         var portfolio = await paper.GetPortfolioAsync(cancellationToken);
         return View(new PaperTradingViewModel {
+            RecommendationId = recommendationId, Recommendation = recommendation,
             Portfolio = portfolio, Costs = options.Value,
             Order = new() { StockId = ValidSwingSymbol(symbol?.ToUpperInvariant()) ? symbol!.ToUpperInvariant() : "",
                 Side = Enum.IsDefined(side) ? side : PaperOrderSide.Buy, AccountGeneration = portfolio.Account.Generation }
@@ -22,13 +32,31 @@ public partial class StockAnalysisController
     [Microsoft.AspNetCore.Authorization.Authorize, HttpPost, ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public async Task<IActionResult> PlacePaperOrder([FromServices] IPaperTradingService paper,
         [FromServices] IOptions<PaperTradingOptions> options,
-        [Bind(Prefix = "Order")] PaperOrderViewModel input, CancellationToken cancellationToken)
+        [Bind(Prefix = "Order")] PaperOrderViewModel input, CancellationToken cancellationToken, long? recommendationId = null)
     {
         if (ModelState.IsValid)
         {
             try
             {
+                RadarPaperTradingComparisonService? links = null;
+                string? owner = null;
+                if (recommendationId.HasValue)
+                {
+                    links = HttpContext.RequestServices.GetRequiredService<RadarPaperTradingComparisonService>();
+                    owner = HttpContext.RequestServices.GetRequiredService<WorkJournal.Web.Security.ICurrentUser>().Id;
+                    await links.ValidateAsync(recommendationId.Value, input.StockId.Trim().ToUpperInvariant(), owner, cancellationToken);
+                }
                 var order = await paper.PlaceOrderAsync(input, cancellationToken);
+                if (links != null)
+                {
+                    try { await links.LinkAsync(recommendationId!.Value, order.Id, owner!, cancellationToken); }
+                    catch (Exception e) when (e is ValidationException or Microsoft.EntityFrameworkCore.DbUpdateException or Microsoft.Data.SqlClient.SqlException)
+                    {
+                        HttpContext.RequestServices.GetRequiredService<ILogger<StockAnalysisController>>().LogWarning("Radar link failed for order {Id} ({Type})", order.Id, e.GetType().Name);
+                        TempData["Success"] = "虛擬委託已建立，但推薦來源關聯未成功；請至委託紀錄確認，勿重複下單。";
+                        return RedirectToAction(nameof(PaperTrading));
+                    }
+                }
                 TempData["Success"] = order.Status switch {
                     PaperOrderStatus.Filled => "虛擬委託已依最新可用收盤價模擬成交。",
                     PaperOrderStatus.Rejected => "虛擬委託已拒絕：" + order.RejectReason,
@@ -39,7 +67,7 @@ public partial class StockAnalysisController
             catch (ValidationException ex) { ModelState.AddModelError("", ex.Message); }
         }
         var portfolio = await paper.GetPortfolioAsync(cancellationToken);
-        return View("PaperTrading", new PaperTradingViewModel { Portfolio = portfolio, Order = input, Costs = options.Value });
+        return View("PaperTrading", new PaperTradingViewModel { Portfolio = portfolio, Order = input, Costs = options.Value, RecommendationId = recommendationId });
     }
 
     [Microsoft.AspNetCore.Authorization.Authorize, HttpPost, ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

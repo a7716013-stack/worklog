@@ -1,5 +1,13 @@
 # 工作日誌 WorkJournal
 
+## 推薦績效追蹤（1.2.4）
+
+新增 `/StockAnalysis/RadarTracking`、`RadarPerformance`、`RadarSnapshot/{id}` 與 `RadarPaperComparison`，登入後可查看每日推薦、個人追蹤、績效統計／模型驗證及虛擬單來源對照。`RadarModelValidation` 導向同頁模型驗證區。
+
+台灣交易日 13:30 起檢查當日兩市場資料，齊備後保存前 10 名；順序為完整 ≥70 分、評分不完整、低分補充。保存後不重寫。後續 1／3／5／10／20 個有效交易日績效分別採推薦收盤價、發布後次日開盤價及個人加入後次日開盤價。未成熟顯示空值，停止追蹤保留歷史。
+
+本機網站程序必須持續執行，排程才會工作；休市不保存，來源延遲則重試。首次使用需套用 `AddMarketRadarTracking` migration；變更只新增雷達資料表。回復旧版應停用 `RadarTracking:SchedulerEnabled` 並保留新增表，避免刪除已累積的快照。完整公式、來源覆蓋、測試與限制見 [1.2.4 實作與驗證說明](docs/releases/1.2.4.md)。下方 1.2.3 及較早段落保留為版本歷史。
+
 ## 市場熱門排行／市場雷達（1.2.3）
 
 入口 `/StockAnalysis/MarketRadar`。納入上市、上櫃及 ETF，提供當日最大漲幅、最大跌幅、最大交易量各前 20 名；另提供今日推薦追蹤、候選池均量比較及重大資訊。排行顯示真實行情日期，不是盤中報價。

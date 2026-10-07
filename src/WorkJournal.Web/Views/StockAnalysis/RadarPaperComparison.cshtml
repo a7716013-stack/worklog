@@ -1,0 +1,9 @@
+@model List<RadarPaperComparison>
+@{ViewData["Title"]="雷達與虛擬單對照";string P(decimal? n)=>n.HasValue?n.Value.ToString("0.00")+"%":"—";}
+<partial name="_Navigation" />
+<section class="page-heading"><div><p class="eyebrow">PAPER COMPARISON · v1.2.4</p><h1>雷達與我的虛擬單對照</h1></div></section>
+<p class="alert alert-info">僅顯示你從推薦頁建立的委託（最近 500 筆來源關聯）。已實現損益直接取自既有虛擬成交；只有關聯賣出成交才有已實現報酬。推薦 20D 為固定期間、不含費用，虛擬單則依實際模擬持有期間並含成本，差額不能單獨解釋成進出場能力。</p>
+@if(Model.Count==0){<div class="panel">尚無來源關聯。請從推薦追蹤或快照頁按「建立虛擬單」，確認後送出委託。</div>}
+else{<div class="panel table-responsive"><table class="table text-nowrap"><thead><tr><th>推薦</th><th>收盤基準 20D</th><th>次日開盤 20D</th><th>關聯委託／成交／已重設</th><th>關聯賣出已實現損益</th><th>已實現報酬</th><th>與收盤基準差（百分點）</th><th>操作</th></tr></thead><tbody>
+@foreach(var row in Model){<tr><td><a asp-action="RadarSnapshot" asp-route-id="@row.RecommendationId">@row.TradeDate @row.Symbol</a></td><td>@P(row.Radar20)</td><td>@P(row.Open20)</td><td>@row.Orders／@row.Filled／@row.Deleted</td><td>@row.RealizedProfit.ToString("N2")</td><td>@P(row.RealizedReturn)</td><td>@(row.Difference?.ToString("0.00")??"—")</td><td><a asp-action="PaperTrading" asp-route-recommendationId="@row.RecommendationId" asp-route-side="Sell">建立賣出委託</a></td></tr>}
+</tbody></table></div>}

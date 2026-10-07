@@ -1,0 +1,5 @@
+@model List<RadarStatisticsRow>
+@{string P(decimal? n)=>n.HasValue?n.Value.ToString("0.00")+"%":"—";}
+<div class="table-responsive"><table class="table text-nowrap"><thead><tr><th>分組</th><th>總樣本／平均分</th><th>5D／20D 已成熟</th><th>5D 勝率／平均／中位數</th><th>20D 勝率／平均／中位數</th><th>20D 平均 MFE／MAE</th></tr></thead><tbody>
+@foreach(var g in Model){<tr><td>@g.Group</td><td>@g.Count／@(g.AverageScore?.ToString("0.0")??"—")</td><td>@g.Matured5／@g.Matured20 @if(g.Matured5<30||g.Matured20<30){<small class="d-block text-warning">成熟樣本不足 30，僅供觀察</small>}</td><td>@P(g.Win5)／@P(g.Average5)／@P(g.Median5)</td><td>@P(g.Win20)／@P(g.Average20)／@P(g.Median20)</td><td>@P(g.Mfe20)／@P(g.Mae20)</td></tr>}
+</tbody></table></div>

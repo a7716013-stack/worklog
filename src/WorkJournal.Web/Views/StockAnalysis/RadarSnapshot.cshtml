@@ -1,0 +1,24 @@
+@model MarketRadarRecommendation
+@using System.Text.Json
+@{ViewData["Title"]="推薦快照";var snapshot=JsonSerializer.Deserialize<MarketRadarStock>(Model.SnapshotJson);var research=JsonSerializer.Deserialize<RadarResearch>(Model.ResearchJson);}
+<partial name="_Navigation" />
+<section class="page-heading"><div><p class="eyebrow">IMMUTABLE SNAPSHOT · @Model.ScoreVersion</p><h1>@Model.StockId @Model.StockName</h1><p>@Model.TradeDate · @Model.Industry · 收盤 @Model.ClosePrice.ToString("0.00") · 分數 @(Model.Score?.ToString()??$"已知 {Model.EarnedScore}／可評 {Model.AvailableScore}")</p></div></section>
+<p>保存時間：@Model.CreatedAt.ToOffset(TimeSpan.FromHours(8)).ToString("yyyy/MM/dd HH:mm:ss")；來源更新：@Model.SourceUpdatedAt.ToOffset(TimeSpan.FromHours(8)).ToString("yyyy/MM/dd HH:mm:ss")（台灣時間）。此頁保存當時資料，不以最新評分覆寫。</p>
+<div class="d-flex flex-wrap gap-2 mb-4"><form asp-action="FollowRadarRecommendation" method="post"><input type="hidden" name="recommendationId" value="@Model.Id" /><button class="btn btn-forest">加入／恢復追蹤</button></form><a class="btn btn-light" asp-action="Index" asp-route-symbol="@Model.StockId">股票分析</a><a class="btn btn-light" asp-action="Swing" asp-route-symbol="@Model.StockId">波段分析</a><a class="btn btn-light" asp-action="PaperTrading" asp-route-recommendationId="@Model.Id">建立虛擬單</a></div>
+@if(snapshot!=null){
+<section class="panel mb-4"><h2>當時的推薦原因與評分</h2><p>@string.Join("＋",snapshot.Reasons)</p><p>@string.Join("；",snapshot.RiskFlags)</p><ul>@foreach(var part in snapshot.Parts){<li>@part.Name：@(part.Points?.ToString()??"資料不足")／@part.Maximum · @part.Explanation</li>}</ul><p>5 日均量：@(snapshot.AverageVolume5?.ToString("N0")??"—") 股；20 日均量：@(snapshot.AverageVolume20?.ToString("N0")??"—") 股；MACD：@snapshot.MacdState</p></section>
+}
+<section class="panel mb-4"><h2>重大資訊</h2><p>事件僅呈現來源當時提供的內容；影響方向未知時不推測利多或利空。</p>
+@foreach(var warning in research?.Warnings??[]){<p class="alert alert-warning">@warning</p>}
+<p>外資連買 @(Model.ForeignBuyStreak?.ToString()??"—")／連賣 @(Model.ForeignSellStreak?.ToString()??"—") 日；投信連買 @(Model.TrustBuyStreak?.ToString()??"—")／連賣 @(Model.TrustSellStreak?.ToString()??"—") 日；當日投信買賣超 @(research?.TrustNetToday?.ToString("N0")??"—") 股。</p>
+@foreach(var e in research?.Events??[]){<article class="mb-3"><h3 class="h5">@e.Title</h3><p>@e.Category · @e.Source · @e.PublishedAt.ToOffset(TimeSpan.FromHours(8)).ToString("yyyy/MM/dd HH:mm") · @(e.Impact=="Unknown"?"影響待確認":e.Impact)</p><p>@e.Summary</p>@if(Uri.TryCreate(e.SourceUrl,UriKind.Absolute,out var uri)&&uri.Scheme is "http" or "https"){<a href="@uri.AbsoluteUri" target="_blank" rel="noopener noreferrer">查看原始來源</a>}</article>}
+@if(research?.Events.Length is null or 0){<p>當時來源未提供事件。</p>}</section>
+<section class="panel"><h2>後續績效明細</h2>
+@if(Model.Performance is {} performance){
+ var detail=JsonSerializer.Deserialize<Dictionary<string,RadarEvaluation>>(performance.DetailJson);
+ @foreach(var pair in detail??new()){
+ <h3 class="h5">@(pair.Key=="Close"?"推薦日收盤價（理論）":"發布後次日開盤價")</h3><p>起算 @pair.Value.EntryDate · @pair.Value.EntryPrice · @pair.Value.Status</p>
+ <div class="table-responsive"><table class="table"><thead><tr><th>期間</th><th>結束日</th><th>報酬率</th><th>MFE</th><th>MAE</th></tr></thead><tbody>@foreach(var h in pair.Value.Horizons){<tr><td>@(h.Days)D</td><td>@h.Date</td><td>@(h.Return?.ToString("0.00")??"—")%</td><td>@(h.Mfe?.ToString("0.00")??"—")%</td><td>@(h.Mae?.ToString("0.00")??"—")%</td></tr>}</tbody></table></div>
+ }
+}else{<p>等待後續行情，未成熟期間不填入 0。</p>}
+</section>

@@ -2,14 +2,15 @@
 @{ ViewData["Title"] = "市場熱門排行"; }
 <partial name="_Navigation" />
 <section class="page-heading">
-    <div><p class="eyebrow">MARKET RADAR · v1.2.3</p><h1>市場熱門排行</h1>
+    <div><p class="eyebrow">MARKET RADAR · v1.2.4</p><h1>市場熱門排行</h1>
     <p class="subheading">上市、上櫃與 ETF · 從當日排行與量能變化，找到下一個研究標的。</p></div>
 </section>
-<div id="market-radar" data-url="@Url.Action("MarketRadarData")" data-watch-url="@Url.Action("Watchlist")"
-     data-save-url="@Url.Action("SaveWatchlist")" data-owner="@User.FindFirstValue(ClaimTypes.NameIdentifier)"
+<div id="market-radar" data-industry-url="@Url.Action("RadarIndustries")" data-url="@Url.Action("MarketRadarData")" data-watch-url="@Url.Action("Watchlist")"
+     data-follow-url="@Url.Action("FollowRadarRecommendation")" data-save-url="@Url.Action("SaveWatchlist")" data-owner="@User.FindFirstValue(ClaimTypes.NameIdentifier)"
      data-analysis-url="@Url.Action("Index")" data-paper-url="@Url.Action("PaperTrading")"
      data-login-url="@Url.Action("Login","Account",new { returnUrl="/StockAnalysis/MarketRadar" })">
     @Html.AntiForgeryToken()
+    <label class="mb-3">產業篩選<select id="radar-industry" class="form-select"><option value="">所有產業（來源載入中）</option></select></label>
     <div class="panel radar-toolbar">
         <label>市場範圍<select id="radar-market" class="form-select"><option value="all">全部（上市／上櫃／ETF）</option><option value="twse">上市股票</option><option value="tpex">上櫃股票</option><option value="etf">ETF</option></select></label>
         <label>交易日期<select id="radar-date" class="form-select"><option value="">最新可用交易日</option></select></label>

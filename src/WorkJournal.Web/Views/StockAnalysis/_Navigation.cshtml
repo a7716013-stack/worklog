@@ -4,4 +4,7 @@
     <a class="btn @(action == "Index" ? "btn-forest" : "btn-light")" asp-controller="StockAnalysis" asp-action="Index" aria-current="@(action == "Index" ? "page" : null)">個股分析</a>
     <a class="btn @(action == "Swing" ? "btn-forest" : "btn-light")" asp-controller="StockAnalysis" asp-action="Swing" aria-current="@(action == "Swing" ? "page" : null)">波段分析</a>
     <a class="btn @(isPaper ? "btn-forest" : "btn-light")" asp-controller="StockAnalysis" asp-action="PaperTrading" aria-current="@(isPaper ? "page" : null)">虛擬交易</a>
+    <a class="btn @(action is "RadarTracking" or "RadarSnapshot" ? "btn-forest" : "btn-light")" asp-action="RadarTracking">推薦績效追蹤</a>
+    <a class="btn @(action == "RadarPerformance" ? "btn-forest" : "btn-light")" asp-action="RadarPerformance">績效／模型驗證</a>
+    <a class="btn @(action == "RadarPaperComparison" ? "btn-forest" : "btn-light")" asp-action="RadarPaperComparison">虛擬單對照</a>
 </nav>

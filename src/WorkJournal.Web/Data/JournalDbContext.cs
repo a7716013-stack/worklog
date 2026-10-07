@@ -1,10 +1,25 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using WorkJournal.Web.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 namespace WorkJournal.Web.Data;
 
 public class JournalDbContext(DbContextOptions<JournalDbContext> options) : IdentityDbContext<ApplicationUser>(options)
 {
+    private void ProtectRadarSnapshots()
+    {
+        if(ChangeTracker.Entries<MarketRadarRecommendation>().Any(x=>x.State is EntityState.Modified or EntityState.Deleted))
+            throw new InvalidOperationException("已保存的推薦快照不可修改或刪除。");
+    }
+    public override int SaveChanges(bool acceptAllChangesOnSuccess)
+    {ProtectRadarSnapshots();return base.SaveChanges(acceptAllChangesOnSuccess);}
+    public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess,CancellationToken cancellationToken=default)
+    {ProtectRadarSnapshots();return base.SaveChangesAsync(acceptAllChangesOnSuccess,cancellationToken);}
+    public DbSet<MarketRadarRecommendation> MarketRadarRecommendations => Set<MarketRadarRecommendation>();
+    public DbSet<MarketRadarCaptureBatch> MarketRadarCaptureBatches => Set<MarketRadarCaptureBatch>();
+    public DbSet<MarketRadarDailySelection> MarketRadarDailySelections => Set<MarketRadarDailySelection>();
+    public DbSet<MarketRadarPerformance> MarketRadarPerformances => Set<MarketRadarPerformance>();
+    public DbSet<MarketRadarPersonalTracking> MarketRadarPersonalTrackings => Set<MarketRadarPersonalTracking>();
+    public DbSet<MarketRadarPaperTradeLink> MarketRadarPaperTradeLinks => Set<MarketRadarPaperTradeLink>();
     public DbSet<WorkLog> WorkLogs => Set<WorkLog>();
     public DbSet<StockWatchlistItem> StockWatchlistItems => Set<StockWatchlistItem>();
     public DbSet<CalendarSyncLink> CalendarSyncLinks => Set<CalendarSyncLink>();
@@ -29,6 +44,7 @@ public class JournalDbContext(DbContextOptions<JournalDbContext> options) : Iden
             .WithOne(x => x.GoogleCalendarConnection).HasForeignKey<GoogleCalendarConnection>(x => x.ApplicationUserId)
             .OnDelete(DeleteBehavior.Cascade);
         PaperTradingMapping.Configure(modelBuilder);
+        MarketRadarMapping.Configure(modelBuilder);
         modelBuilder.Entity<WorkLog>().Property(x => x.Hours).HasPrecision(5, 2);
         modelBuilder.Entity<WorkLog>().HasIndex(x => x.WorkDate);
         modelBuilder.Entity<WorkLog>().HasIndex(x => x.Status);

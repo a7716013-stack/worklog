@@ -14,7 +14,7 @@
 }
 <partial name="_Navigation" />
 <section class="page-heading">
-    <div><p class="eyebrow">PAPER TRADING · v1.2.3</p><h1>我的虛擬交易</h1><p class="subheading">模擬交易，不會送出真實證券委託</p></div>
+    <div><p class="eyebrow">PAPER TRADING · v1.2.4</p><h1>我的虛擬交易</h1><p class="subheading">模擬交易，不會送出真實證券委託</p></div>
     <form asp-action="RefreshPaperOrders" method="post"><button class="btn btn-forest" type="submit">檢查待成交委託</button></form>
 </section>
 <div class="alert alert-info">
@@ -37,6 +37,10 @@
 <section class="panel paper-section" id="paper-order-section" aria-labelledby="paper-order-title">
     <h2 id="paper-order-title">建立虛擬委託</h2>
     <form asp-action="PlacePaperOrder" method="post" id="paper-order-form">
+        <input asp-for="RecommendationId" type="hidden" />
+        @if (Model.Recommendation is {} recommendation) {
+            <p class="alert alert-info">推薦來源：@recommendation.TradeDate · @recommendation.StockId @recommendation.StockName · 分數 @(recommendation.Score?.ToString() ?? "不完整")。請自行確認委託內容後送出。</p>
+        }
         <div asp-validation-summary="All" class="text-danger" role="alert"></div>
         <input asp-for="Order.ClientRequestId" type="hidden" /><input asp-for="Order.AccountGeneration" type="hidden" />
         <div class="paper-form-grid">

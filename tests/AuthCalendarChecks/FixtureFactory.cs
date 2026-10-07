@@ -12,6 +12,7 @@ public class FixtureFactory(string connection, FakeGoogle google) : WebApplicati
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment("Development");
+        builder.UseSetting("RadarTracking:SchedulerEnabled", "false");
         var repo = new DirectoryInfo(AppContext.BaseDirectory);
         while (repo is not null && !File.Exists(Path.Combine(repo.FullName, "WorkJournal.sln"))) repo = repo.Parent;
         builder.UseContentRoot(Path.Combine(repo?.FullName ?? throw new InvalidOperationException("Repository not found"), "src", "WorkJournal.Web"));

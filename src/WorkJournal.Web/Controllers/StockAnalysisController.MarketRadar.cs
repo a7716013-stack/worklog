@@ -3,6 +3,8 @@ using WorkJournal.Web.Services;
 namespace WorkJournal.Web.Controllers;
 public partial class StockAnalysisController
 {
+    [HttpGet]
+    public async Task<IActionResult> RadarIndustries(CancellationToken ct)=>Json(await stocks.TrackingIndustriesAsync(ct));
     [HttpGet, ResponseCache(Duration=0,Location=ResponseCacheLocation.None,NoStore=true)]
     public IActionResult MarketRadar() => View();
 

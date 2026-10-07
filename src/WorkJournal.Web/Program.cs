@@ -21,7 +21,7 @@ builder.Services.AddMemoryCache();
 builder.Services.AddHttpClient<WorkJournal.Web.Services.TaiwanMarketRankingProvider>(client =>
 {
     client.Timeout = TimeSpan.FromSeconds(15);
-    client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 WorkJournal/1.2.3");
+    client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 WorkJournal/1.2.4");
 });
 builder.Services.AddScoped<WorkJournal.Web.Services.ITaiwanMarketRankingProvider>(sp => sp.GetRequiredService<WorkJournal.Web.Services.TaiwanMarketRankingProvider>());
 builder.Services.AddScoped<WorkJournal.Web.Services.IMarketRadarHistoryProvider, WorkJournal.Web.Services.FinMindRadarHistoryProvider>();
@@ -35,13 +35,14 @@ builder.Services.AddHttpClient<WorkJournal.Web.Services.FinMindStockService>(cli
 builder.Services.AddHttpClient<WorkJournal.Web.Services.EtfOfficialService>(client =>
 {
     client.Timeout = TimeSpan.FromSeconds(20);
-    client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 WorkJournal/1.2.3");
+    client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 WorkJournal/1.2.4");
 });
 builder.Services.AddOptions<WorkJournal.Web.Models.PaperTradingOptions>()
     .Bind(builder.Configuration.GetSection("PaperTrading"))
     .Validate(x => x.IsValid(), "虛擬交易參數無效。")
     .ValidateOnStart();
 builder.Services.AddScoped<WorkJournal.Web.Services.IPaperTradingService, WorkJournal.Web.Services.PaperTradingService>();
+WorkJournal.Web.Services.RadarTrackingRegistration.AddRadarTracking(builder.Services);
 var app = builder.Build();
 app.UseMiddleware<TrustedOriginMiddleware>();
 if (!app.Environment.IsDevelopment())

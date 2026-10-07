@@ -1,0 +1,41 @@
+@model RadarTrackingViewModel
+@using System.Text.Json
+@using Microsoft.AspNetCore.WebUtilities
+@{
+    ViewData["Title"]="推薦績效追蹤";
+    string P(decimal? n)=>n.HasValue?n.Value.ToString("0.00")+"%":"—";
+    string PageUrl(int page) {var query=Context.Request.Query.ToDictionary(x=>x.Key,x=>(string?)x.Value.ToString());query["Page"]=page.ToString();return QueryHelpers.AddQueryString(Url.Action("RadarTracking")!,query);}
+}
+<partial name="_Navigation" />
+<section class="page-heading"><div><p class="eyebrow">RADAR TRACKING · v1.2.4</p><h1>推薦績效追蹤</h1><p class="subheading">保留推薦當下的快照，觀察後續 1／3／5／10／20 個有效交易日。</p></div></section>
+<div class="panel mb-4"><p>台灣交易日 13:30 起檢查當日資料，齊備後保存前 10 名。順序：完整 ≥70 分 → 評分不完整 → 低分補充。當日批次保存後不重寫；來源延遲則稍後重試。行情成熟後才顯示報酬，沒有資料以「—」呈現。</p>
+<div class="d-flex flex-wrap gap-2"><form asp-action="CaptureMarketRadar" method="post"><button class="btn btn-light">檢查今日推薦保存</button></form><form asp-action="UpdateRadarPerformance" method="post"><button class="btn btn-light">更新後續績效</button></form></div></div>
+<partial name="_RadarFilter" model="Model.Filter" />
+<p>共 @Model.TotalCount 筆 · @(Model.Filter.Basis=="open"?"發布後下一有效交易日開盤價基準":"推薦日收盤價理論基準") · 報酬不含成本與配息。</p>
+@if(Model.Items.Count==0){<div class="panel">尚無符合條件的紀錄。可從市場熱門排行加入個人追蹤，或等待當日推薦保存。</div>}
+else {
+<div class="panel table-responsive"><table class="table text-nowrap" id="radar-tracking-table"><thead><tr><th>推薦日／股票</th><th>分類／分數</th><th>產業／法人趨勢</th><th>1D</th><th>3D</th><th>5D</th><th>10D</th><th>20D</th><th>20D MFE／MAE</th><th>我的追蹤／操作</th></tr></thead><tbody>
+@foreach(var item in Model.Items){
+ var r=item.Recommendation;var p=item.Performance;var open=Model.Filter.Basis=="open";
+ decimal?[] returns=open?[p?.OpenReturn1D,p?.OpenReturn3D,p?.OpenReturn5D,p?.OpenReturn10D,p?.OpenReturn20D]:[p?.Return1D,p?.Return3D,p?.Return5D,p?.Return10D,p?.Return20D];
+ <tr><td><a asp-action="RadarSnapshot" asp-route-id="@r.Id">@r.TradeDate<br />@r.StockId @r.StockName</a><small class="d-block">@(r.IsEtf?"ETF":r.Market=="twse"?"上市":"上櫃")</small><small class="d-block">@(p?.Status??"等待後續行情")</small></td>
+ <td>@(r.Category=="Qualified"?"完整 ≥70":r.Category=="Incomplete"?"評分不完整":"低分補充")<br />@(r.Score?.ToString()??$"已知 {r.EarnedScore}／可評 {r.AvailableScore}")</td>
+ <td>@r.Industry<br />外資連買 @(r.ForeignBuyStreak?.ToString()??"—")／連賣 @(r.ForeignSellStreak?.ToString()??"—")<br />投信連買 @(r.TrustBuyStreak?.ToString()??"—")／連賣 @(r.TrustSellStreak?.ToString()??"—")</td>
+ @foreach(var value in returns){<td class="@(value>0?"paper-profit":value<0?"paper-loss":"")">@P(value)</td>}
+ <td>@if(!open){<span>@P(p?.Mfe20D)／@P(p?.Mae20D)</span>}else{<span>見快照頁後續明細</span>}</td>
+ <td>
+ @if(item.Personal is {} personal){
+ <small class="d-block">加入：@personal.JoinedAt.ToOffset(TimeSpan.FromHours(8)).ToString("yyyy/MM/dd HH:mm") · @(personal.StoppedAt==null?"追蹤中":"已停止")</small>
+ var evaluation=JsonSerializer.Deserialize<RadarEvaluation>(personal.PerformanceJson);
+ <details><summary>個人加入後次日開盤績效</summary><p>起算：@(evaluation?.EntryDate?.ToString()??"等待行情") · @(evaluation?.EntryPrice?.ToString("0.00")??"—")</p>
+ @foreach(var h in evaluation?.Horizons??[]){<div>@(h.Days)D：@P(h.Return) · MFE @P(h.Mfe)／MAE @P(h.Mae)</div>}</details>
+ @if(personal.StoppedAt==null){<form asp-action="StopRadarTracking" method="post"><input type="hidden" name="id" value="@personal.Id" /><button class="btn btn-light btn-sm">停止追蹤</button></form>}
+ }
+ @if(item.Personal==null||item.Personal.StoppedAt!=null){<form asp-action="FollowRadarRecommendation" method="post"><input type="hidden" name="recommendationId" value="@r.Id" /><button class="btn btn-forest btn-sm">@(item.Personal==null?"加入追蹤":"恢復追蹤")</button></form>}
+ <a class="btn btn-light btn-sm" asp-action="Index" asp-route-symbol="@r.StockId">股票分析</a>
+ <a class="btn btn-light btn-sm" asp-action="PaperTrading" asp-route-recommendationId="@r.Id">建立虛擬單</a>
+ </td></tr>
+}
+</tbody></table></div>
+<nav class="d-flex gap-3 my-3" aria-label="推薦分頁">@if(Model.Filter.Page>1){<a href="@PageUrl(Model.Filter.Page-1)">上一頁</a>}<span>第 @Model.Filter.Page / @Model.TotalPages 頁</span>@if(Model.Filter.Page<Model.TotalPages){<a href="@PageUrl(Model.Filter.Page+1)">下一頁</a>}</nav>
+}

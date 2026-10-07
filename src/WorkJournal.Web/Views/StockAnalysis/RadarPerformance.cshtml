@@ -1,0 +1,17 @@
+@model RadarPerformanceViewModel
+@{ViewData["Title"]="績效與模型驗證";string P(decimal? n)=>n.HasValue?n.Value.ToString("0.00")+"%":"—";}
+<partial name="_Navigation" />
+<section class="page-heading"><div><p class="eyebrow">PERFORMANCE · v1.2.4</p><h1>績效與模型驗證</h1><p class="subheading">比較既有評分和後續表現，累積可檢查的歷史資料。</p></div></section>
+<partial name="_RadarFilter" model="Model.Filter" />
+<p class="alert alert-info">勝率＝正報酬筆數／該期間已有報酬的筆數；平盤計入分母，未成熟不計入。各期間樣本可能不同。「我的追蹤」篩選我的標的，這裡仍統計所選推薦基準；個人加入後績效請見追蹤頁。完整分數、不完整及低分補充分開觀察。</p>
+@if(Model.Groups.Count==0){<div class="panel">尚無符合條件的推薦；等待資料累積後顯示統計。</div>}
+<section class="panel mb-4"><h2>推薦績效</h2><partial name="_RadarStatistics" model="Model.Groups" /></section>
+<section class="panel mb-4"><h2>產業觀察</h2><partial name="_RadarStatistics" model="Model.Industries" /></section>
+<section class="panel mb-4" id="model-validation"><h2>分數分桶驗證</h2><p>每格依序為勝率／平均報酬。未成熟樣本不參與計算；不會自動修改 V1 評分權重。</p>
+<div class="table-responsive"><table class="table text-nowrap"><thead><tr><th>分數</th><th>總樣本</th>@foreach(var n in new[]{1,3,5,10,20}){<th>@(n)D 勝率／均值</th>}<th>5D／20D 中位數</th><th>20D 平均 MFE／MAE</th></tr></thead><tbody>
+@foreach(var row in Model.Validation){<tr><td>@row.Group</td><td>@row.Count</td>@for(var i=0;i<5;i++){<td>@P(row.Win[i])／@P(row.Average[i])<small class="d-block">成熟 @row.Matured[i] 筆 @(row.Matured[i]<30?"· 樣本不足":"")</small></td>}<td>@P(row.Median5)／@P(row.Median20)</td><td>@P(row.Mfe20)／@P(row.Mae20)</td></tr>}
+</tbody></table></div>
+<p>完整分數與報酬 Pearson 相關係數：5D @(Model.Correlation5?.ToString("0.000")??"—") ／ 20D @(Model.Correlation20?.ToString("0.000")??"—")。相關不等於因果；樣本少或分數沒有變化時不宜推論。</p></section>
+<section class="panel"><h2>六項因子／法人趨勢對照</h2><p>高低分以各項配分的一半區分；缺值不歸入低分。以下依推薦類別分開比較。</p><div class="table-responsive"><table class="table text-nowrap"><thead><tr><th>因子</th><th>分組</th><th>總樣本</th><th>5D 勝率／均值</th><th>20D 勝率／均值</th></tr></thead><tbody>
+@foreach(var row in Model.Components){<tr><td>@row.Name</td><td>@row.Group</td><td>@row.Count</td><td>@P(row.Win5)／@P(row.Average5)<small class="d-block">成熟 @row.Matured5 筆 @(row.Matured5<30?"· 樣本不足":"")</small></td><td>@P(row.Win20)／@P(row.Average20)<small class="d-block">成熟 @row.Matured20 筆 @(row.Matured20<30?"· 樣本不足":"")</small></td></tr>}
+</tbody></table></div></section>

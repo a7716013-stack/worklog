@@ -220,5 +220,8 @@ $("swing-import").addEventListener("click",async()=>{
  if(!confirm("將此瀏覽器舊清單匯入目前登入帳號？請確認這些股票是你的追蹤資料。"))return;
  if(await changeList({symbols:old.map(x=>x.symbol)})){try{localStorage.removeItem(key);}catch{}$("swing-import").hidden=true;refresh();}
 });
-render();watchRequest().then(()=>{renderSearch();render();refresh();}).catch(e=>{storageError=e.message;render();});
+render();watchRequest().then(()=>{renderSearch();render();refresh();
+ const symbol=new URLSearchParams(location.search).get("symbol");
+ if(symbol&&/^[0-9]{4}[0-9A-Z]{0,2}$/.test(symbol)){$("swing-query").value=symbol;$("swing-search-form").requestSubmit();}
+}).catch(e=>{storageError=e.message;render();});
 })();

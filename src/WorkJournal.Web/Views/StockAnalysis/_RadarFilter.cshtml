@@ -1,0 +1,16 @@
+@model RadarTrackingFilter
+<form method="get" class="panel d-flex flex-wrap align-items-end gap-3 mb-4">
+    <label>起日<input asp-for="From" type="date" class="form-control" /></label>
+    <label>迄日<input asp-for="To" type="date" class="form-control" /></label>
+    <label>清單<select asp-for="Mine" class="form-select"><option value="false">每日推薦</option><option value="true">我的追蹤（含已停止）</option></select></label>
+    <label>市場<select asp-for="Market" class="form-select"><option value="all">全部</option><option value="twse">上市股票</option><option value="tpex">上櫃股票</option><option value="etf">ETF</option></select></label>
+    <label>分類<select asp-for="Category" class="form-select"><option value="all">全部</option><option value="Qualified">完整評分 ≥70</option><option value="Incomplete">評分不完整</option><option value="Supplement">低分補充</option></select></label>
+    <label>產業<input asp-for="Industry" class="form-control" maxlength="80" placeholder="精確產業名稱" /></label>
+    <label>代號<input asp-for="Symbol" class="form-control" maxlength="6" /></label>
+    <label>最低分<input asp-for="ScoreMin" type="number" min="0" max="100" class="form-control" /></label>
+    <label>最高分<input asp-for="ScoreMax" type="number" min="0" max="100" class="form-control" /></label>
+    <label>績效基準<select asp-for="Basis" class="form-select"><option value="close">推薦日收盤價（理論）</option><option value="open">發布後次交易日開盤價</option></select></label>
+    <label>20D 結果<select asp-for="Result" class="form-select"><option value="all">全部</option><option value="win">正報酬</option><option value="loss">負報酬</option><option value="pending">未成熟／資料不足</option></select></label>
+    <label>每頁<select asp-for="PageSize" class="form-select"><option>20</option><option>50</option><option>100</option></select></label>
+    <button class="btn btn-forest" type="submit">套用篩選</button>
+</form>
