@@ -1,39 +1,26 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>@ViewData["Title"] · 工作日誌</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>@ViewData["Title"] · WorkJournal</title>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/dashboard.css" asp-append-version="true" />
 </head>
 <body>
-    <header class="topbar">
-        <div class="page-width d-flex align-items-center justify-content-between gap-3 topbar-content">
-            <div class="brand-switcher">
-            <a class="brand" asp-controller="WorkLogs" asp-action="Index"><span class="brand-icon" aria-hidden="true">▤</span><span>工作日誌<small>WORK JOURNAL</small></span></a>
-            <nav class="site-switcher d-flex gap-2" aria-label="網站切換">
-                <a class="btn btn-sm @(ViewContext.RouteData.Values["controller"]?.ToString() == "WorkLogs" ? "btn-forest" : "btn-light")" asp-controller="WorkLogs" asp-action="Index" aria-current="@(ViewContext.RouteData.Values["controller"]?.ToString() == "WorkLogs" ? "page" : null)">工作日誌</a>
-                <a class="btn btn-sm @(ViewContext.RouteData.Values["controller"]?.ToString() == "StockAnalysis" ? "btn-forest" : "btn-light")" asp-controller="StockAnalysis" asp-action="Index" aria-current="@(ViewContext.RouteData.Values["controller"]?.ToString() == "StockAnalysis" ? "page" : null)">股票分析</a>
-            </nav>
-            </div>
-            <nav class="d-flex align-items-center gap-3" aria-label="主選單">
-                <partial name="_LoginPartial" />
-            </nav>
-        </div>
-    </header>
-    <main class="page-width main-content">
-        @if (TempData["Success"] is string message)
-        {
-            <div class="alert alert-success" role="status">@message</div>
-        }
-        @RenderBody()
-        @if (TempData["Warning"] is string warning) { <div class="alert alert-warning" role="status">@warning</div> }
-    </main>
-    <footer class="page-width footer"><span>WORK JOURNAL v@(typeof(WorkJournal.Web.Models.ApplicationUser).Assembly.GetName().Version?.ToString(3))</span><span>記錄每天的進展，累積工作的成果。</span></footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
-</html>
-
+<a class="visually-hidden-focusable skip-link" href="#main-content">跳至主要內容</a>
+<header class="dashboard-header"><nav class="navbar navbar-expand-xl page-width" aria-label="主要導覽">
+<a class="navbar-brand brand" asp-controller="Home" asp-action="Index"><span class="brand-icon" aria-hidden="true">W</span><span>WorkJournal<small>WORK & INVEST</small></span></a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navigation" aria-controls="main-navigation" aria-expanded="false" aria-label="切換導覽選單"><span class="navbar-toggler-icon"></span></button>
+<div class="collapse navbar-collapse" id="main-navigation"><partial name="_DashboardNavigation" /></div>
+</nav></header>
+<main class="page-width main-content" id="main-content">
+@if (TempData["Success"] is string message) { <div class="alert alert-success" role="status">@message</div> }
+@RenderBody()
+@if (TempData["Warning"] is string warning) { <div class="alert alert-warning" role="status">@warning</div> }
+</main>
+<footer class="page-width footer"><span>WORK JOURNAL v@(typeof(WorkJournal.Web.Models.ApplicationUser).Assembly.GetName().Version?.ToString(3))</span><span>記錄每一天的進步，累積更好的決策。</span></footer>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body></html>

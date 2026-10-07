@@ -16,9 +16,12 @@ with sync_playwright() as p:
     expect(page.get_by_role("heading", name="我的虛擬交易", exact=True)).to_be_visible()
     expect(page.locator(".subheading")).to_contain_text("模擬交易，不會送出真實證券委託")
     expect(page.locator("#paper-initial")).to_have_text("1,000,000.00")
-    nav = page.get_by_role("navigation", name="網站切換", exact=True)
-    expect(nav.get_by_role("link")).to_have_count(2)
-    expect(nav.get_by_role("link", name="股票分析")).to_have_attribute("href", "/StockAnalysis")
+    nav = page.get_by_role("navigation", name="主要導覽", exact=True)
+    for label in ["工作管理", "股票研究", "我的投資"]:
+        expect(nav.get_by_role("button", name=label, exact=True)).to_be_visible()
+    nav.get_by_role("button", name="股票研究", exact=True).click()
+    expect(nav.get_by_role("link", name="個股分析", exact=True)).to_have_attribute("href", "/StockAnalysis")
+    page.keyboard.press("Escape")
     tabs = page.get_by_role("navigation", name="分析介面切換")
     expect(tabs.locator('[aria-current="page"]')).to_have_text("虛擬交易")
     def form_data():

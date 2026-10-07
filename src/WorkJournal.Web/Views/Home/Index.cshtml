@@ -1,8 +1,42 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@model HomeDashboardViewModel
+@{ ViewData["Title"] = "首頁"; var inv = Model.InvestmentSummary; }
+<div class="home-dashboard">
+<section class="dashboard-hero"><div><p class="eyebrow">YOUR DAILY OVERVIEW</p><h1>@(Model.IsAuthenticated ? $"歡迎回來，{Model.UserDisplayName}" : "工作有紀錄，投資有方向")</h1><p>從今天的工作開始，掌握值得追蹤的市場動態。</p></div><div class="dashboard-date"><time>@Model.CurrentDate.ToString("yyyy 年 MM 月 dd 日")</time><span>台北時間 · 工作與投資總覽</span></div></section>
+<div class="dashboard-grid">
+<a class="dashboard-card summary-card span-4" asp-controller="WorkLogs" asp-action="Index"><span class="card-kicker">01 / WORK</span><h2>今日工作</h2><strong>@(Model.WorkSummary?.Count.ToString() ?? "—")<small> 項</small></strong><p>@(Model.IsAuthenticated ? Model.WorkSummary is null ? "工作資料暫時無法取得" : $"已完成 {Model.WorkSummary.Completed} 項" : "登入後查看個人摘要") →</p></a>
+<a class="dashboard-card summary-card span-4" asp-controller="WorkLogs" asp-action="Index" asp-fragment="calendar"><span class="card-kicker">02 / SCHEDULE</span><h2>今日行程</h2><strong><span id="today-calendar-count">—</span><small> 項</small></strong><p id="today-calendar-note">@(Model.IsAuthenticated ? "行程摘要載入中" : "登入後查看個人行程")</p></a>
+<a class="dashboard-card summary-card span-4" asp-controller="StockAnalysis" asp-action="RadarTracking" asp-route-Mine="true"><span class="card-kicker">03 / TRACKING</span><h2>投資追蹤</h2><strong>@(inv?.TrackingCount?.ToString() ?? "—")<small> 筆</small></strong><p>@(Model.IsAuthenticated ? "持續追蹤中的雷達推薦" : "登入後管理你的追蹤") →</p></a>
 </div>
+<div class="section-header"><div><p class="eyebrow">MAKE TODAY COUNT</p><h2>我的工作日常</h2></div><a class="btn btn-forest btn-sm" asp-controller="WorkLogs" asp-action="Create">新增日誌</a></div>
+<div class="dashboard-grid">
+<section class="dashboard-card span-6"><div class="section-header"><h3>今日工作</h3><a asp-controller="WorkLogs" asp-action="Index">查看全部 →</a></div>
+@if (!Model.IsAuthenticated) { <p class="empty-state">登入後查看個人工作紀錄。</p> }
+else if (Model.WorkSummary is null) { <p class="empty-state">工作資料暫時無法取得</p> }
+else if (Model.WorkSummary.Count == 0) { <p class="empty-state">今天目前沒有工作項目</p> }
+else { <ul class="dashboard-list">@foreach (var item in Model.WorkSummary.Items) { <li><div><a asp-controller="WorkLogs" asp-action="Details" asp-route-id="@item.Id">@item.Title</a><small>@item.Project</small></div><span class="status-badge @item.Status.CssClass()">@item.Status.Label()</span></li> }</ul> }
+</section>
+<section class="dashboard-card span-6"><div class="section-header"><h3>今日行程</h3><a asp-controller="WorkLogs" asp-action="Index" asp-fragment="calendar">開啟行事曆 →</a></div>
+@if (Model.IsAuthenticated) { <div id="home-calendar" data-widget-url="@Url.Action("CalendarSummary")" data-error="行程資料暫時無法取得" aria-live="polite" aria-busy="true"><p class="loading-skeleton">正在讀取今日行程…</p></div> }
+else { <p class="empty-state">登入後查看個人行程。</p> }
+</section></div>
+<div class="section-header"><div><p class="eyebrow">MARKET AT A GLANCE</p><h2>股票市場</h2></div><a asp-controller="StockAnalysis" asp-action="MarketRadar">查看市場雷達 →</a></div>
+<div class="market-overview">
+<div id="home-market" data-widget-url="@Url.Action("MarketSummary")" data-error="市場資料暫時無法取得" aria-live="polite" aria-busy="true"><div class="dashboard-card loading-skeleton">正在讀取市場摘要與已保存推薦…</div></div>
+<div class="dashboard-grid market-personal">
+<a class="dashboard-card metric-card span-6" asp-controller="StockAnalysis" asp-action="RadarTracking" asp-route-Mine="true"><h3>個人 Radar 追蹤數</h3><strong>@(inv?.TrackingCount?.ToString() ?? "—")</strong><p>@(Model.IsAuthenticated ? "持續追蹤中" : "登入後查看")</p></a>
+<a class="dashboard-card metric-card span-6" asp-controller="StockAnalysis" asp-action="PaperTrading"><h3>虛擬交易摘要</h3><strong>@(inv?.OpenPositionCount?.ToString() ?? "—")<small> 持倉</small></strong><p>@(Model.IsAuthenticated ? $"{inv?.PendingOrderCount?.ToString() ?? "—"} 筆待成交" : "登入後查看")</p></a>
+</div></div>
+<div class="section-header"><div><p class="eyebrow">YOUR INVESTMENT SPACE</p><h2>我的投資中心</h2></div></div>
+@if (!Model.IsAuthenticated) {
+<div class="dashboard-card dashboard-signin"><div><h3>讓每一次觀察，都能持續追蹤</h3><p>登入後集中查看自選股、推薦追蹤與虛擬交易。</p></div><a class="btn btn-forest" asp-controller="Account" asp-action="Login">使用 Google 登入</a></div>
+} else {
+<div class="dashboard-grid">
+<a class="dashboard-card metric-card span-3" asp-controller="StockAnalysis" asp-action="Swing" asp-fragment="watchlist-heading"><h3>自選清單</h3><strong>@(inv?.WatchlistCount?.ToString() ?? "—")</strong><p>@(inv?.WatchlistCount == 0 ? "尚未加入自選股" : "已加入的股票與 ETF")</p></a>
+<a class="dashboard-card metric-card span-3" asp-controller="StockAnalysis" asp-action="RadarTracking" asp-route-Mine="true"><h3>推薦追蹤</h3><strong>@(inv?.TrackingCount?.ToString() ?? "—")</strong><p>持續追蹤中的推薦</p></a>
+<a class="dashboard-card metric-card span-3" asp-controller="StockAnalysis" asp-action="RadarPerformance"><h3>績效分析</h3><strong class="metric-label">1D → 20D</strong><p>檢視推薦後續表現</p></a>
+<a class="dashboard-card metric-card span-3" asp-controller="StockAnalysis" asp-action="PaperTrading"><h3>虛擬交易</h3><strong>@(inv?.OpenPositionCount?.ToString() ?? "—")<small> 持倉</small></strong><p>@(inv?.PendingOrderCount?.ToString() ?? "—") 筆待成交委託</p></a>
+</div><p class="dashboard-note">— 表示資料暫時無法取得。帳戶權益與損益請至虛擬交易查看。</p>
+}
+<noscript><p class="dashboard-card">請啟用 JavaScript 載入市場與行程摘要，或透過上方連結前往完整功能頁。</p></noscript>
+</div>
+@section Scripts { <script src="~/js/home-dashboard.js" asp-append-version="true"></script> }

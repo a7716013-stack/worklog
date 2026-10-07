@@ -1,5 +1,11 @@
 # 工作日誌 WorkJournal
 
+## 個人工作＋投資首頁（1.3.1）
+
+首頁 `/` 整合今日工作、行程、公共雷達推薦快照與個人投資摘要。導覽分為工作管理、股票研究、我的投資，支援手機收合與鍵盤操作。`/WorkLogs` 等既有功能路由保留；首頁不改動評分、成交、同步與 CRUD 核心。
+
+市場與行程分區載入，來源故障不影響其他區塊；所有個人摘要以登入帳號隔離。本版沒有資料庫 migration；發布目標為 GitHub main 與既有 Azure 正式站。完整資料來源、修改清單與測試結果見 [1.3.1 實作與驗證說明](docs/releases/1.3.1.md)。
+
 ## 推薦績效追蹤（1.2.4）
 
 新增 `/StockAnalysis/RadarTracking`、`RadarPerformance`、`RadarSnapshot/{id}` 與 `RadarPaperComparison`，登入後可查看每日推薦、個人追蹤、績效統計／模型驗證及虛擬單來源對照。`RadarModelValidation` 導向同頁模型驗證區。

@@ -16,7 +16,7 @@ with sync_playwright() as playwright:
     errors = []
     page.on("pageerror", lambda error: errors.append(str(error)))
     try:
-        page.goto(base, wait_until="networkidle")
+        page.goto(base + "/WorkLogs", wait_until="networkidle")
         page.get_by_role("link", name="記錄今天的工作").click()
         page.locator("#Title").fill(marker)
         page.locator("#WorkDate").fill("2026-09-13")
@@ -34,7 +34,7 @@ with sync_playwright() as playwright:
         page.get_by_role("button", name="儲存變更").click()
         page.wait_for_url(entry_url)
         assert "2.5 小時" in page.locator(".detail-meta").inner_text()
-        page.goto(base, wait_until="networkidle")
+        page.goto(base + "/WorkLogs", wait_until="networkidle")
         page.screenshot(path=str(artifacts / "desktop.png"), full_page=True)
         page.set_viewport_size({"width": 390, "height": 844})
         assert page.evaluate("document.documentElement.scrollWidth <= window.innerWidth"), "Page overflows mobile viewport"
@@ -50,5 +50,5 @@ with sync_playwright() as playwright:
         if entry_url:
             page.goto(entry_url.replace("/Details/", "/Delete/"))
             page.get_by_role("button", name="確認刪除").click()
-            page.wait_for_url(base + "/")
+            page.wait_for_url(base + "/WorkLogs")
         browser.close()

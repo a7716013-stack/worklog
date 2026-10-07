@@ -1,0 +1,22 @@
+@{
+string? currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+string? currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+string? Current(string controller, string action) => currentController == controller && currentAction == action ? "page" : null;
+var groups = new[] {
+("工作管理", new[] { ("工作日誌", "WorkLogs", "Index", ""), ("行事曆", "WorkLogs", "Index", "calendar"), ("Google 行事曆", "GoogleCalendar", "Index", "") }),
+("股票研究", new[] { ("市場雷達", "StockAnalysis", "MarketRadar", ""), ("個股分析", "StockAnalysis", "Index", ""), ("波段分析", "StockAnalysis", "Swing", "") }),
+("我的投資", new[] { ("自選清單", "StockAnalysis", "Swing", "watchlist-heading"), ("推薦追蹤", "StockAnalysis", "RadarTracking", ""), ("績效分析", "StockAnalysis", "RadarPerformance", ""), ("虛擬交易", "StockAnalysis", "PaperTrading", "") })
+};
+}
+<ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index" aria-current="@Current("Home", "Index")">首頁</a></li>
+@for (var i=0; i<groups.Length; i++) {
+var group = groups[i];
+<li class="nav-item dropdown"><button class="nav-link dropdown-toggle" id="nav-group-@i" type="button" data-bs-toggle="dropdown" aria-expanded="false">@group.Item1</button>
+<ul class="dropdown-menu" aria-labelledby="nav-group-@i">
+@foreach (var link in group.Item2) { <li><a class="dropdown-item" href="@(Url.Action(link.Item3, link.Item2) + (link.Item4 == "" ? "" : "#" + link.Item4))" aria-current="@(link.Item4 == "" ? Current(link.Item2,link.Item3) : null)">@link.Item1</a></li> }
+</ul></li>
+}
+</ul>
+<form class="nav-stock-search" asp-controller="StockAnalysis" asp-action="Index" method="get" role="search"><label class="visually-hidden" for="nav-symbol">搜尋股票代號</label><input id="nav-symbol" name="symbol" class="form-control form-control-sm" maxlength="6" pattern="[0-9A-Za-z]{4,6}" placeholder="股票代號" required /><button class="btn btn-light btn-sm" type="submit">搜尋</button></form>
+<div class="dropdown nav-account"><button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="nav-account">@(User.Identity?.IsAuthenticated == true ? "我的帳戶" : "登入")</button><div class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="nav-account"><partial name="_LoginPartial" /></div></div>

@@ -26,7 +26,7 @@ try:
     with sync_playwright() as p:
         browser=p.chromium.launch(channel="msedge",headless=True)
         page=browser.new_page(viewport={"width":1440,"height":1000})
-        page.goto(base + "/?CalendarMonth=2026-09-01&Search=" + marker, wait_until="networkidle")
+        page.goto(base + "/WorkLogs?CalendarMonth=2026-09-01&Search=" + marker, wait_until="networkidle")
         assert page.locator("#calendar a.calendar-event").count() == 11, "Calendar must include rows beyond pagination"
         assert page.locator("#calendar .event-time").first.inner_text() == "日誌 · 09:00–10:30"
         assert page.locator("#calendar a.color-1").count() == 2
@@ -40,7 +40,7 @@ try:
         assert page.locator("#Color").input_value() == "4"
         page.locator("#EndTime").fill("12:00")
         assert not page.locator("#EndTime").evaluate("(e) => e.checkValidity()")
-        page.goto(base + "/?CalendarMonth=2026-09-01&Search=" + marker, wait_until="networkidle")
+        page.goto(base + "/WorkLogs?CalendarMonth=2026-09-01&Search=" + marker, wait_until="networkidle")
         page.set_viewport_size({"width":390,"height":844})
         assert page.evaluate("document.documentElement.scrollWidth <= innerWidth"), "Mobile page must not overflow"
         page.locator("#calendar").screenshot(path="artifacts/calendar-mobile.png")

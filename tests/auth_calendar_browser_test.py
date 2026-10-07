@@ -14,6 +14,7 @@ with sync_playwright() as p:
     assert response.headers.get('x-authcalendar-fixture') == 'isolated-sql', 'Only run against synthetic fixture'
     logout = page.get_by_role('button',name='登出',exact=True)
     if logout.count():
+        page.locator('#nav-account').click()
         logout.click()
     page.goto(base + '/Account/Login', wait_until='networkidle')
     expect(page.get_by_role('heading',name='登入工作日誌')).to_be_visible()
@@ -54,6 +55,8 @@ with sync_playwright() as p:
     expect(page.locator('.alert-success')).to_contain_text('同步完成')
     page.get_by_role('button',name='中斷連結',exact=True).click()
     expect(page.locator('main')).to_contain_text('尚未連結')
+    page.get_by_role('button',name='切換導覽選單').click()
+    page.locator('#nav-account').click()
     page.get_by_role('button',name='登出',exact=True).click()
     expect(page.get_by_role('heading',name='登入工作日誌')).to_be_visible()
     assert not errors, errors

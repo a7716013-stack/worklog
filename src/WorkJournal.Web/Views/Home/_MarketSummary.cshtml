@@ -1,0 +1,16 @@
+@model HomeDashboardViewModel
+@{ var radar = Model.RadarSummary; var market = Model.MarketSummary; }
+<div class="dashboard-grid public-metrics">
+<div class="dashboard-card metric-card span-6"><h3>市場狀態</h3><strong class="metric-label">@(market?.TradeDate?.ToString("MM/dd") ?? "—")</strong><p>@(market is null || market.Quotes.Length == 0 ? "市場資料暫時無法取得" : $"來源行情日 · {market.Quotes.Length:N0} 檔標的")</p><small>加權／櫃買指數：尚未提供</small></div>
+<div class="dashboard-card metric-card span-6"><h3>Radar 推薦數</h3><strong>@(radar?.Count.ToString() ?? "—")</strong><p>每日推薦 · @(radar?.TradeDate?.ToString("yyyy/MM/dd") ?? "尚無保存日期")</p></div>
+</div>
+<div class="dashboard-grid public-research">
+<section class="dashboard-card span-8"><div class="section-header"><h3>Radar TOP 5</h3><span class="status-badge">已保存快照</span></div><p class="dashboard-note">依既有每日推薦順序，非即時重新評分。</p>
+@if (radar is null) { <p class="empty-state">推薦資料暫時無法取得</p> }
+else if (radar.Top.Count == 0) { <p class="empty-state">目前沒有可用的 Radar 推薦</p> }
+else { <ol class="dashboard-list radar-top">@foreach (var item in radar.Top) { <li><a asp-controller="StockAnalysis" asp-action="Index" asp-route-symbol="@item.Symbol"><small>@item.Symbol</small><strong>@item.Name</strong></a><div><strong class="radar-score">@(item.Score?.ToString() ?? "—")</strong><span class="status-badge">@item.Level</span></div></li> }</ol> }
+<a class="dashboard-more" asp-controller="StockAnalysis" asp-action="MarketRadar">查看市場雷達 →</a></section>
+<section class="dashboard-card span-4"><div class="section-header"><h3>產業熱度</h3></div><p class="dashboard-note">最近每日推薦的已知產業分布，不代表全市場成交熱度；ETF 不列入。</p>
+@if (radar is null || radar.Industries.Count == 0) { <p class="empty-state">尚無足夠的產業資料</p> }
+else { <ul class="dashboard-list">@foreach (var item in radar.Industries) { <li><span>@item.Name</span><span class="status-badge">@item.Count 檔</span></li> }</ul> }
+</section></div>

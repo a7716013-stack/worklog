@@ -1,0 +1,11 @@
+@model HomeDashboardViewModel
+@{ var calendar = Model.CalendarSummary; }
+<div data-calendar-count="@(calendar?.Warning is null ? calendar?.Events.Count.ToString() : null)">
+@if (calendar is null) { <p class="empty-state">行程資料暫時無法取得</p> }
+else {
+@if (calendar.Warning is not null) { <p class="dashboard-note" role="status">Google 行程暫時無法完整取得，以下僅列可用行程。<a asp-controller="GoogleCalendar" asp-action="Index">檢查連結</a></p> }
+@if (calendar.Events.Count == 0 && calendar.Warning is null) { <p class="empty-state">今天目前沒有行程</p> }
+<ul class="dashboard-list">@foreach (var item in calendar.Events.Take(5)) { <li><time>@(item.IsAllDay ? "全天" : item.Start.ToOffset(TimeSpan.FromHours(8)).ToString("HH:mm"))</time><div>@item.Title<small>@(item.Source == "Google" ? "Google 行事曆" : "工作日誌")</small></div></li> }</ul>
+@if (calendar.Events.Count > 5) { <p class="dashboard-note">另有 @(calendar.Events.Count - 5) 項行程，請至行事曆查看。</p> }
+}
+</div>
