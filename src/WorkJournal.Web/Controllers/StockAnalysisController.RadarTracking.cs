@@ -42,6 +42,25 @@ public partial class StockAnalysisController
         return RedirectToAction(nameof(RadarTracking),new{Mine=true});
     }
     [Authorize,HttpPost]
+    public async Task<IActionResult> AddPerformanceValidation(string symbol,string origin,
+        [FromServices] MarketRadarRecommendationService service,[FromServices] IMarketRadarHistoryProvider history,
+        [FromServices] ICurrentUser user,CancellationToken ct)
+    {
+        if(!ModelState.IsValid || origin is not ("paper" or "swing"))return BadRequest("來源或代號格式不正確。");
+        using var timeout=CancellationTokenSource.CreateLinkedTokenSource(ct);
+        timeout.CancelAfter(TimeSpan.FromSeconds(45));
+        try
+        {
+            await service.FollowPortfolioSymbolAsync(user.Id,symbol,origin,history,timeout.Token);
+            TempData["Success"]="已加入個人績效模型驗證，沿用雷達 V1 快照；重複加入保留原始紀錄。未成熟期間顯示待更新。";
+            return Redirect(Url.Action(nameof(RadarPerformance),new{Mine=true,Symbol=symbol,Basis="open"})+"#model-validation");
+        }
+        catch(ValidationException e){TempData["Warning"]=e.Message;}
+        catch(Exception e) when(!ct.IsCancellationRequested && (TaiwanMarketRankingProvider.Failure(e,ct)||e is OperationCanceledException))
+        {TempData["Warning"]="行情來源暫時無法取得，尚未加入績效模型驗證，請稍後重試。";}
+        return RedirectToAction(origin=="paper"?nameof(PaperTrading):nameof(Swing));
+    }
+    [Authorize,HttpPost]
     public async Task<IActionResult> StopRadarTracking(long id,[FromServices] MarketRadarRecommendationService service,[FromServices] ICurrentUser user,CancellationToken ct)
     {if(!await service.StopAsync(user.Id,id,ct))return NotFound();TempData["Success"]="已停止更新個人績效，歷史紀錄保留。";return RedirectToAction(nameof(RadarTracking),new{Mine=true});}
 }

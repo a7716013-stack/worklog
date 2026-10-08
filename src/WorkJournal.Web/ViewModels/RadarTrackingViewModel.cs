@@ -23,5 +23,7 @@ public record RadarStatisticsRow(string Group,int Count,int Matured5,int Matured
 public record RadarValidationRow(string Group,int Count,decimal?[] Win,decimal?[] Average,int[] Matured,decimal? Median5=null,decimal? Median20=null,decimal? Mfe20=null,decimal? Mae20=null);
 public record RadarComponentRow(string Name,string Group,int Count,decimal? Win5,decimal? Win20,decimal? Average5,decimal? Average20,int Matured5,int Matured20);
 public record RadarPerformanceViewModel(RadarTrackingFilter Filter,List<RadarStatisticsRow> Groups,List<RadarStatisticsRow> Industries,
-    List<RadarValidationRow> Validation,List<RadarComponentRow> Components,decimal? Correlation5,decimal? Correlation20);
+    List<RadarValidationRow> Validation,List<RadarComponentRow> Components,decimal? Correlation5,decimal? Correlation20)
+{ public List<RadarSwingTarget> SwingTargets { get; init; } = []; }
+public record RadarSwingTarget(string Symbol, string Name);
 public record RadarPaperComparison(long RecommendationId,string Symbol,DateOnly TradeDate,decimal? Radar20,decimal? Open20,int Orders,int Filled,int Deleted,decimal RealizedProfit,decimal? RealizedReturn,decimal? Difference);

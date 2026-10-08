@@ -73,9 +73,11 @@ public class MarketRadarStatisticsService(JournalDbContext db,TimeProvider clock
             components.Add(new("外資",categoryLabel+" / "+label,rows.Length,Win(rows.Select(x=>x.R5)),Win(rows.Select(x=>x.R20)),Average(rows.Select(x=>x.R5)),Average(rows.Select(x=>x.R20)),rows.Count(x=>x.R5.HasValue),rows.Count(x=>x.R20.HasValue)));
         }
         }
+        var targets = await q.GroupBy(x => x.StockId).OrderBy(g => g.Key)
+            .Select(g => new RadarSwingTarget(g.Key, g.Max(x => x.StockName) ?? g.Key)).ToListAsync(ct);
         return new(f,main,industries,validation,components,
             MarketRadarPerformanceCalculator.Correlation(numbers.Where(x=>x.Score.HasValue&&x.R5.HasValue).Select(x=>((decimal)x.Score!.Value,x.R5!.Value)).ToArray()),
-            MarketRadarPerformanceCalculator.Correlation(numbers.Where(x=>x.Score.HasValue&&x.R20.HasValue).Select(x=>((decimal)x.Score!.Value,x.R20!.Value)).ToArray()));
+            MarketRadarPerformanceCalculator.Correlation(numbers.Where(x=>x.Score.HasValue&&x.R20.HasValue).Select(x=>((decimal)x.Score!.Value,x.R20!.Value)).ToArray())) { SwingTargets = targets };
     }
     public static decimal? Win(IEnumerable<decimal?> values){var a=values.Where(x=>x.HasValue).Select(x=>x!.Value).ToArray();return a.Length==0?null:a.Count(x=>x>0)*100m/a.Length;}
     private static decimal? Average(IEnumerable<decimal?> values)=>values.Average();

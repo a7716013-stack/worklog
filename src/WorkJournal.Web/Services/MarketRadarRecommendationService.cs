@@ -71,8 +71,37 @@ public class MarketRadarRecommendationService(JournalDbContext db,IMarketRadarSe
             var item=data.Analysis.SingleOrDefault(x=>x.Quote.Stock.Symbol==symbol)??throw new ValidationException("此標的不在最新候選池；可從歷史推薦頁追蹤。");
             pending=await SnapshotAsync(item,data.UpdatedAt,ct);
         }
-        return await Atomic("WorkJournal.Radar.Capture",async()=>
+        return await SaveFollowAsync(owner,recommendationId,pending,null,ct);
+    }
+    private Task<bool> OwnsSymbolAsync(string owner,string symbol,string origin,CancellationToken ct)
+    {
+        if(origin=="swing")return db.StockWatchlistItems.AnyAsync(x=>x.ApplicationUserId==owner&&x.Symbol==symbol,ct);
+        var accounts=db.PaperTradingAccounts.Where(x=>x.ApplicationUserId==owner).Select(x=>x.Id);
+        return db.PaperOrders.AnyAsync(x=>accounts.Contains(x.AccountId)&&x.StockId==symbol,ct);
+    }
+    public async Task<long> FollowPortfolioSymbolAsync(string owner,string symbol,string origin,IMarketRadarHistoryProvider history,CancellationToken ct)
+    {
+        if(origin is not ("paper" or "swing") || !System.Text.RegularExpressions.Regex.IsMatch(symbol??"",@"^[0-9]{4}[0-9A-Z]{0,2}$"))
+            throw new ValidationException("來源或股票代號不正確。");
+        if(!await OwnsSymbolAsync(owner,symbol!,origin,ct))throw new ValidationException("此標的不在你的虛擬委託或波段追蹤名單中。");
+        // Full-market quotes include symbols outside the daily candidate pool. Analyze only this symbol.
+        var data=await radar.GetAsync("all",null,false,ct);
+        var quote=data.Quotes.SingleOrDefault(x=>x.Stock.Symbol==symbol);
+        if(quote is null || quote.Close<=0 || quote.Date>TaipeiDate(clock.GetUtcNow()))
+            throw new ValidationException("此標的暫無可用收盤行情，尚未加入，請稍後重試。");
+        var pending=await db.MarketRadarRecommendations.AsNoTracking().SingleOrDefaultAsync(x=>x.StockId==symbol&&x.TradeDate==quote.Date,ct);
+        if(pending==null)
         {
+            var bars=await history.GetAsync(quote,ct);
+            var item=MarketRadarScoreCalculator.Calculate(quote,bars,data.Events);
+            pending=await SnapshotAsync(item,data.UpdatedAt,ct);
+        }
+        return await SaveFollowAsync(owner,null,pending,()=>OwnsSymbolAsync(owner,symbol!,origin,ct),ct);
+    }
+    private Task<long> SaveFollowAsync(string owner,long? recommendationId,MarketRadarRecommendation? pending,Func<Task<bool>>? stillOwned,CancellationToken ct)
+        => Atomic("WorkJournal.Radar.Capture",async()=>
+        {
+            if(stillOwned!=null&&!await stillOwned())throw new ValidationException("來源名單已變更，尚未加入，請重新整理。");
             var rec=recommendationId.HasValue?await db.MarketRadarRecommendations.SingleOrDefaultAsync(x=>x.Id==recommendationId&&(db.MarketRadarDailySelections.Any(d=>d.RecommendationId==x.Id)||db.MarketRadarPersonalTrackings.Any(t=>t.RecommendationId==x.Id&&t.ApplicationUserId==owner)),ct):
                 await db.MarketRadarRecommendations.SingleOrDefaultAsync(x=>x.TradeDate==pending!.TradeDate&&x.StockId==pending.StockId,ct);
             if(rec==null && pending==null)throw new ValidationException("找不到推薦紀錄。");
@@ -83,7 +112,6 @@ public class MarketRadarRecommendationService(JournalDbContext db,IMarketRadarSe
             else follow.StoppedAt=null;
             return rec.Id;
         },ct);
-    }
     public async Task<bool> StopAsync(string owner,long id,CancellationToken ct)
     {
         var row=await db.MarketRadarPersonalTrackings.SingleOrDefaultAsync(x=>x.Id==id&&x.ApplicationUserId==owner,ct);

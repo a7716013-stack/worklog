@@ -1,0 +1,6 @@
+@model string
+<form asp-controller="StockAnalysis" asp-action="AddPerformanceValidation" method="post" class="d-inline-block performance-validation-form">
+    <input type="hidden" name="symbol" value="@Model" />
+    <input type="hidden" name="origin" value="paper" />
+    <button type="submit" class="btn btn-light btn-sm">加入績效模型驗證</button>
+</form>

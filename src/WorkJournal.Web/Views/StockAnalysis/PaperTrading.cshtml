@@ -62,13 +62,14 @@
 </section>
 <section class="panel paper-section mt-4" aria-labelledby="paper-positions-title">
     <h2 id="paper-positions-title">持有部位</h2>
+    <p class="muted">持股與委託標的可加入個人績效模型驗證，使用最新可用行情的雷達 V1 快照；不改動委託，也不回填下單時的評分。</p>
     @if (portfolio.Positions.Count == 0) { <p class="muted" id="paper-empty">尚無持股，建立第一筆虛擬買進委託開始模擬。</p> }
     else {
     <div class="table-responsive"><table class="table text-nowrap" id="paper-positions"><thead><tr><th>股票／名稱</th><th>股數</th><th>平均成本</th><th>最新價格／行情日</th><th>市值</th><th>未實現損益</th><th>報酬率</th><th>操作</th></tr></thead><tbody>
     @foreach (var item in portfolio.Positions) {
         var p = item.Position;
         <tr data-symbol="@p.StockId"><td>@p.StockId @p.StockName</td><td class="paper-quantity">@p.Quantity.ToString("N0")</td><td>@p.AverageCost.ToString("N6")</td><td>@Money(item.CurrentPrice)<small class="d-block muted">@(item.Quote?.TradeDate?.ToString("yyyy/MM/dd") ?? "—")</small></td><td>@Money(item.MarketValue)</td><td class="@Tone(item.UnrealizedProfitLoss)">@Money(item.UnrealizedProfitLoss)</td><td class="@Tone(item.ReturnPercent)">@Money(item.ReturnPercent)%</td>
-        <td><a asp-action="PaperTrading" asp-route-symbol="@p.StockId" asp-route-side="Buy" asp-fragment="paper-order-section" class="btn btn-light btn-sm">買進</a> <a asp-action="PaperTrading" asp-route-symbol="@p.StockId" asp-route-side="Sell" asp-fragment="paper-order-section" class="btn btn-light btn-sm">賣出</a></td></tr>
+        <td><a asp-action="PaperTrading" asp-route-symbol="@p.StockId" asp-route-side="Buy" asp-fragment="paper-order-section" class="btn btn-light btn-sm">買進</a> <a asp-action="PaperTrading" asp-route-symbol="@p.StockId" asp-route-side="Sell" asp-fragment="paper-order-section" class="btn btn-light btn-sm">賣出</a> <partial name="_PerformanceValidationButton" model="p.StockId" /> <partial name="_AddToSwingButton" model="p.StockId" /></td></tr>
     }
     </tbody></table></div>
     }
@@ -81,6 +82,7 @@
     @foreach (var order in portfolio.Orders) {
         <tr data-order-id="@order.Id" data-status="@order.Status"><td>@Time(order.CreatedAt)</td><td>@order.StockId @order.StockName</td><td>@Side(order.Side) / @(order.OrderType == PaperOrderType.Market ? "市價" : "限價")</td><td>@order.Quantity.ToString("N0")</td><td>@Money(order.LimitPrice)</td><td>@Status(order.Status)</td><td>@Money(order.FilledPrice)</td><td>@Time(order.FilledAt)<small class="d-block muted">@(order.FilledTradeDate?.ToString("yyyy/MM/dd") ?? "—")</small></td><td>@(order.OrderType == PaperOrderType.Limit ? order.EligibleFromTradeDate?.ToString("yyyy/MM/dd") ?? "—" : "—")</td><td>@order.RejectReason
         @if (order.Status == PaperOrderStatus.Pending) { <form asp-action="CancelPaperOrder" method="post"><input type="hidden" name="id" value="@order.Id" /><button type="submit" class="btn btn-light btn-sm">取消</button></form> }
+        <partial name="_PerformanceValidationButton" model="order.StockId" /> <partial name="_AddToSwingButton" model="order.StockId" />
         </td></tr>
     }
     </tbody></table></div>

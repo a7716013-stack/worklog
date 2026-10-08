@@ -104,6 +104,13 @@ function render(){
   const detail=button("詳細分析",()=>showDetail(stock.symbol),"btn btn-forest btn-sm");detail.disabled=!info;
   const removeButton=button("移除追蹤",()=>remove(stock.symbol));removeButton.disabled=saving||!ready;
   actions.append(detail,removeButton);
+  if(app.dataset.validationUrl){
+   const form=el("form",null,"performance-validation-form");form.method="post";form.action=app.dataset.validationUrl;
+   const token=app.querySelector('input[name="__RequestVerificationToken"]').cloneNode(true);token.removeAttribute("id");form.append(token);
+   for(const [name,value] of [["symbol",stock.symbol],["origin","swing"]]){const input=el("input");input.type="hidden";input.name=name;input.value=value;form.append(input);}
+   const submit=el("button","加入績效模型驗證","btn btn-light btn-sm");submit.type="submit";submit.disabled=saving||!ready;form.append(submit);
+   form.addEventListener("submit",()=>{submit.disabled=true;submit.textContent="正在加入…";});actions.append(form);
+  }
   if(failures.has(stock.symbol))actions.append(button("重試",()=>{failures.delete(stock.symbol);refresh();}));
   card.append(actions);host.append(card);
  }

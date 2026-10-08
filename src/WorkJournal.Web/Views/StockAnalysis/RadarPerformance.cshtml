@@ -15,3 +15,15 @@
 <section class="panel"><h2>六項因子／法人趨勢對照</h2><p>高低分以各項配分的一半區分；缺值不歸入低分。以下依推薦類別分開比較。</p><div class="table-responsive"><table class="table text-nowrap"><thead><tr><th>因子</th><th>分組</th><th>總樣本</th><th>5D 勝率／均值</th><th>20D 勝率／均值</th></tr></thead><tbody>
 @foreach(var row in Model.Components){<tr><td>@row.Name</td><td>@row.Group</td><td>@row.Count</td><td>@P(row.Win5)／@P(row.Average5)<small class="d-block">成熟 @row.Matured5 筆 @(row.Matured5<30?"· 樣本不足":"")</small></td><td>@P(row.Win20)／@P(row.Average20)<small class="d-block">成熟 @row.Matured20 筆 @(row.Matured20<30?"· 樣本不足":"")</small></td></tr>}
 </tbody></table></div></section>
+
+<section class="panel mt-4" id="performance-swing-targets">
+<h2>績效模型標的</h2><p>依照上方篩選條件列出不重複的標的。加入後儲存至你個人的波段分析清單，最多 20 檔。</p>
+@if (Model.SwingTargets.Count == 0) { <p>目前沒有符合條件的標的。</p> }
+else {
+<div class="table-responsive"><table class="table"><thead><tr><th>代號</th><th>名稱</th><th>操作</th></tr></thead><tbody>
+@foreach (var stock in Model.SwingTargets) {
+<tr><td>@stock.Symbol</td><td>@stock.Name</td><td><partial name="_AddToSwingButton" model="stock.Symbol" /></td></tr>
+}
+</tbody></table></div>
+}
+</section>

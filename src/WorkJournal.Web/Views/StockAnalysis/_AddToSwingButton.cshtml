@@ -1,0 +1,5 @@
+@model string
+<form asp-controller="StockAnalysis" asp-action="AddToSwing" method="post" class="d-inline-block add-to-swing-form">
+    <input type="hidden" name="symbol" value="@Model" />
+    <button type="submit" class="btn btn-light btn-sm">加入波段分析</button>
+</form>

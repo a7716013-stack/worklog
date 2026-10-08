@@ -11,6 +11,29 @@ public partial class StockAnalysisController
     public async Task<IActionResult> Watchlist([FromServices] StockWatchlistService watch, [FromServices] ICurrentUser user, CancellationToken ct)
         => Json(new { owner=user.Id, items=await watch.GetAsync(ct) });
 
+    [Authorize, HttpPost]
+    public async Task<IActionResult> AddToSwing(string symbol, [FromServices] StockWatchlistService watch, CancellationToken ct)
+    {
+        if (!ModelState.IsValid || !ValidSwingSymbol(symbol)) return BadRequest();
+        try
+        {
+            var existing = await watch.GetAsync(ct);
+            if (existing.Any(x => x.Symbol == symbol))
+                TempData["Success"] = $"{symbol} 已在你的波段分析清單中。";
+            else
+            {
+                var stock = (await stocks.SwingCatalogAsync(ct)).SingleOrDefault(x => x.Symbol == symbol);
+                if (stock is null) throw new ValidationException("找不到此股票代號，清單尚未變更。");
+                await watch.ChangeAsync([stock], null, ct);
+                TempData["Success"] = $"{symbol} 已加入你的波段分析清單。";
+            }
+        }
+        catch (ValidationException ex) { TempData["Warning"] = ex.Message; }
+        catch (Exception ex) when (SwingFailure(ex, ct))
+        { TempData["Warning"] = "股票資料暫時無法取得，請稍後重試。"; }
+        return RedirectToAction(nameof(Swing));
+    }
+
     [Authorize, HttpPost, ResponseCache(Duration=0, Location=ResponseCacheLocation.None, NoStore=true)]
     public async Task<IActionResult> SaveWatchlist([FromBody] WatchlistChange input, [FromServices] StockWatchlistService watch,
         [FromServices] ICurrentUser user, CancellationToken ct)

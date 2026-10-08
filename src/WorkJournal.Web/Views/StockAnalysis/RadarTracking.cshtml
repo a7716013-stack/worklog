@@ -32,6 +32,7 @@ else {
  @if(personal.StoppedAt==null){<form asp-action="StopRadarTracking" method="post"><input type="hidden" name="id" value="@personal.Id" /><button class="btn btn-light btn-sm">停止追蹤</button></form>}
  }
  @if(item.Personal==null||item.Personal.StoppedAt!=null){<form asp-action="FollowRadarRecommendation" method="post"><input type="hidden" name="recommendationId" value="@r.Id" /><button class="btn btn-forest btn-sm">@(item.Personal==null?"加入追蹤":"恢復追蹤")</button></form>}
+ <partial name="_AddToSwingButton" model="r.StockId" />
  <a class="btn btn-light btn-sm" asp-action="Index" asp-route-symbol="@r.StockId">股票分析</a>
  <a class="btn btn-light btn-sm" asp-action="PaperTrading" asp-route-recommendationId="@r.Id">建立虛擬單</a>
  </td></tr>
