@@ -5,7 +5,7 @@ string? Current(string controller, string action) => currentController == contro
 var groups = new[] {
 ("工作管理", new[] { ("工作日誌", "WorkLogs", "Index", ""), ("行事曆", "WorkLogs", "Index", "calendar"), ("Google 行事曆", "GoogleCalendar", "Index", "") }),
 ("股票研究", new[] { ("市場雷達", "StockAnalysis", "MarketRadar", ""), ("個股分析", "StockAnalysis", "Index", ""), ("波段分析", "StockAnalysis", "Swing", "") }),
-("我的投資", new[] { ("自選清單", "StockAnalysis", "Favorites", ""), ("推薦追蹤", "StockAnalysis", "RadarTracking", ""), ("績效分析", "StockAnalysis", "RadarPerformance", ""), ("虛擬交易", "StockAnalysis", "PaperTrading", "") })
+("我的投資", new[] { ("自選清單", "StockAnalysis", "Favorites", ""), ("推薦追蹤", "StockAnalysis", "RadarTracking", ""), ("績效分析", "StockAnalysis", "RadarPerformance", ""), ("虛擬投資組合", "StockAnalysis", "PaperTrading", "") })
 };
 }
 <ul class="navbar-nav me-auto">

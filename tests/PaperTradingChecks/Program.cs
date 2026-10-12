@@ -48,7 +48,7 @@ try
         builder.Services.AddSingleton<ITaiwanMarketRankingProvider>(radarFixture);
         builder.Services.AddSingleton<IMarketRadarHistoryProvider>(radarFixture);
         builder.Services.AddScoped<IMarketRadarService, MarketRadarService>();
-        builder.Services.Configure<PaperTradingOptions>(_ => { });
+        builder.Services.Configure<PaperTradingOptions>(o => o.InitialCash = 1000000m);
         builder.Services.AddScoped<IPaperTradingService, PaperTradingService>();
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddScoped<ICurrentUser, CurrentUser>();

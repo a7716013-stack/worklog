@@ -24,7 +24,7 @@ public static class DomainChecks
             using var memory = new MemoryCache(new MemoryCacheOptions());
             using var http = new HttpClient(market, false) { BaseAddress = new Uri("https://fixture.test/") };
             var quotes = new FinMindStockService(http, memory, new ConfigurationBuilder().Build(), NullLogger<FinMindStockService>.Instance);
-            var service = new PaperTradingService(db, quotes, Options.Create(new PaperTradingOptions()), new FixtureUser(userId));
+            var service = new PaperTradingService(db, quotes, Options.Create(new PaperTradingOptions { InitialCash = 1000000m }), new FixtureUser(userId));
             return await action(service, db);
         }
         Task<PaperPortfolioViewModel> Portfolio() => Use((s, d) => s.GetPortfolioAsync(default));

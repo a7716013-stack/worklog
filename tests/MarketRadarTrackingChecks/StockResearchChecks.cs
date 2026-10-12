@@ -44,7 +44,9 @@ public static class StockResearchChecks
         await using var migration=new JournalDbContext(opts);
         try {
             var all=migration.Database.GetMigrations().ToArray();
-            await migration.GetService<IMigrator>().MigrateAsync(all[^2]);
+            var favoriteIndex=Array.FindIndex(all,x=>x.EndsWith("_AddIndependentStockFavorites",StringComparison.Ordinal));
+            if(favoriteIndex<1)throw new Exception("Favorite migration baseline not found");
+            await migration.GetService<IMigrator>().MigrateAsync(all[favoriteIndex-1]);
             migration.Users.Add(new ApplicationUser{Id="existing",UserName="existing"});
             migration.StockWatchlistItems.Add(new(){ApplicationUserId="existing",Symbol="2330",Name="台積電",Market="twse"});await migration.SaveChangesAsync();
             await migration.Database.MigrateAsync();

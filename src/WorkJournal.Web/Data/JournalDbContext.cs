@@ -20,6 +20,8 @@ public class JournalDbContext(DbContextOptions<JournalDbContext> options) : Iden
     public DbSet<MarketRadarPerformance> MarketRadarPerformances => Set<MarketRadarPerformance>();
     public DbSet<MarketRadarPersonalTracking> MarketRadarPersonalTrackings => Set<MarketRadarPersonalTracking>();
     public DbSet<MarketRadarPaperTradeLink> MarketRadarPaperTradeLinks => Set<MarketRadarPaperTradeLink>();
+    public DbSet<MarketPulseDaily> MarketPulseDays => Set<MarketPulseDaily>();
+    public DbSet<PortfolioDailyValue> PortfolioDailyValues => Set<PortfolioDailyValue>();
     public DbSet<WorkLog> WorkLogs => Set<WorkLog>();
     public DbSet<StockFavoriteItem> StockFavoriteItems => Set<StockFavoriteItem>();
     public DbSet<StockWatchlistItem> StockWatchlistItems => Set<StockWatchlistItem>();
@@ -32,6 +34,10 @@ public class JournalDbContext(DbContextOptions<JournalDbContext> options) : Iden
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<MarketPulseDaily>().HasKey(x=>new{x.TradeDate,x.Market});
+        modelBuilder.Entity<PortfolioDailyValue>().HasIndex(x=>new{x.AccountId,x.Generation,x.TradeDate}).IsUnique();
+        modelBuilder.Entity<PortfolioDailyValue>().HasOne<PaperTradingAccount>().WithMany().HasForeignKey(x=>x.AccountId).OnDelete(DeleteBehavior.Cascade);
+        foreach(var name in new[]{"Cash","MarketValue","TotalAssets","InitialCash"})modelBuilder.Entity<PortfolioDailyValue>().Property<decimal>(name).HasPrecision(28,4);
         modelBuilder.Entity<StockFavoriteItem>().HasOne<ApplicationUser>().WithMany().HasForeignKey(x => x.ApplicationUserId).OnDelete(DeleteBehavior.Cascade);
         modelBuilder.Entity<StockFavoriteItem>().HasIndex(x => new { x.ApplicationUserId, x.Symbol }).IsUnique();
         modelBuilder.Entity<StockWatchlistItem>().HasOne<ApplicationUser>().WithMany().HasForeignKey(x => x.ApplicationUserId).OnDelete(DeleteBehavior.Cascade);

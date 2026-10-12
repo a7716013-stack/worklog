@@ -1,8 +1,9 @@
 @model PaperTradingViewModel
 @{
-    ViewData["Title"] = "虛擬交易";
+    ViewData["Title"] = "我的虛擬投資組合";
     var portfolio = Model.Portfolio;
     var account = portfolio.Account;
+    var stats = WorkJournal.Web.Services.PortfolioAnalyticsCalculator.Calculate(portfolio.Trades);
     string Money(decimal? value) => value?.ToString("N2") ?? "—";
     string Tone(decimal? value) => value > 0 ? "paper-profit" : value < 0 ? "paper-loss" : "";
     string Time(DateTimeOffset? value) => value?.ToOffset(TimeSpan.FromHours(8)).ToString("yyyy/MM/dd HH:mm:ss") ?? "—";
@@ -14,7 +15,7 @@
 }
 <partial name="_Navigation" />
 <section class="page-heading">
-    <div><p class="eyebrow">PAPER TRADING · v1.2.4</p><h1>我的虛擬交易</h1><p class="subheading">模擬交易，不會送出真實證券委託</p></div>
+    <div><p class="eyebrow">MY VIRTUAL PORTFOLIO · v1.4.2</p><h1>我的虛擬投資組合</h1><p class="subheading">模擬交易，不會送出真實證券委託</p></div>
     <form asp-action="RefreshPaperOrders" method="post"><button class="btn btn-forest" type="submit">檢查待成交委託</button></form>
 </section>
 <div class="alert alert-info">
@@ -24,7 +25,22 @@
 {
     <div class="alert alert-warning" role="status">部分行情暫時無法取得；部分持股缺少最新行情，總資產估值不完整。</div>
 }
-<div class="stats-grid paper-stats" aria-label="虛擬帳戶摘要">
+<link rel="stylesheet" href="~/css/investment-insights.css" asp-append-version="true" />
+<div id="portfolio-app" data-history-url="@Url.Action("PortfolioHistory")" data-default-tab="@(ViewData.ModelState.IsValid&&string.IsNullOrEmpty(Model.Order.StockId)?"positions":"orders")">
+<section class="panel portfolio-hero"><div class="insight-heading"><div><p class="eyebrow">TOTAL ASSETS · TWD</p><h2>總資產</h2><strong id="portfolio-total">$@Money(portfolio.TotalAssets)</strong><p>累積報酬 <b class="@Tone(portfolio.TotalReturnPercent)">@Money(portfolio.TotalReturnPercent)%</b></p></div><button class="btn btn-forest" type="button" data-portfolio-open="orders">＋建立虛擬單</button></div>
+<div class="portfolio-metrics insight-grid">
+<div><span>最大回撤</span><strong id="portfolio-drawdown">載入中…</strong><small>每日資產觀測期間</small></div>
+<div><span>勝率</span><strong>@Money(stats.WinRate)%</strong><small>@stats.Completed 筆已結束交易</small></div>
+<div><span>Profit Factor</span><strong>@(stats.ProfitFactor.HasValue?Money(stats.ProfitFactor):stats.Wins>0?"無虧損交易":"—")</strong><small>總獲利／總虧損絕對值</small></div>
+<div><span>平均獲利</span><strong>@Money(stats.AverageWin)%</strong></div><div><span>平均虧損</span><strong>@Money(stats.AverageLoss)%</strong></div><div><span>盈虧比</span><strong>@Money(stats.PayoffRatio)</strong></div>
+</div><p>交易統計涵蓋本次帳戶重設後的全部成交，以同一標的建倉至全部出清算一筆；平手計入勝率分母，未出清部位不計入。費用依實際模擬成交紀錄計算。</p>
+</section>
+<section class="panel portfolio-curve"><div class="insight-heading"><div><p class="eyebrow">PORTFOLIO VALUE</p><h2>總資產走勢</h2></div><label>顯示區間 <select id="portfolio-range" class="form-select"><option value="1">1 個月</option><option value="3">3 個月</option><option value="6">6 個月</option><option value="12">1 年</option><option value="all" selected>全部</option></select></label></div>
+<div id="portfolio-chart" role="status">正在讀取資產紀錄…</div><p id="portfolio-point" aria-live="polite"></p><p id="portfolio-period" class="muted"></p><p>每日總資產＝現金＋持倉收盤市值，含未實現損益。13:40 後依當日完整官方行情保存；主機運行時每 15 分鐘更新。缺價或休市不記錄，不回填未觀測日期。幣別 TWD。</p></section>
+<div class="portfolio-tabs" role="tablist" aria-label="投資組合分頁">
+@foreach(var t in new[]{("cash","Cash 資金"),("positions","Position 持倉"),("orders","Order 委託"),("trades","Trade 成交"),("pnl","P/L 損益")}){<button type="button" role="tab" id="portfolio-tab-@t.Item1" aria-controls="portfolio-panel-@t.Item1" data-portfolio-tab="@t.Item1" aria-selected="false">@t.Item2</button>}
+</div>
+<section id="portfolio-panel-cash" role="tabpanel" aria-labelledby="portfolio-tab-cash" class="portfolio-tab-panel"><div class="stats-grid paper-stats" aria-label="虛擬帳戶摘要">
     <div class="stat"><span>初始資金</span><strong id="paper-initial">@Money(account.InitialCash)</strong><p>新台幣元</p></div>
     <div class="stat"><span>可用現金</span><strong id="paper-cash">@Money(account.Cash)</strong><p>限價等待單不預扣資金</p></div>
     <div class="stat"><span>持股市值</span><strong>@Money(portfolio.TotalMarketValue)</strong><p>@(portfolio.HasIncompleteValuation ? "僅包含可估值持股" : "依各股票最新可用日行情")</p></div>
@@ -34,7 +50,23 @@
     <div class="stat"><span>總損益</span><strong class="@Tone(portfolio.TotalProfitLoss)">@Money(portfolio.TotalProfitLoss)</strong><p>總資產－初始資金</p></div>
     <div class="stat"><span>總報酬率</span><strong class="@Tone(portfolio.TotalReturnPercent)">@(portfolio.TotalReturnPercent?.ToString("N2") ?? "—")%</strong><p>相對初始資金</p></div>
 </div>
-<section class="panel paper-section" id="paper-order-section" aria-labelledby="paper-order-title">
+<p>等待委託不預扣現金或保留持股；委託占用資金為 0，可下單現金等於現金餘額。成交仍須通過既有資源驗證。</p></section>
+<section id="portfolio-panel-positions" role="tabpanel" aria-labelledby="portfolio-tab-positions" class="portfolio-tab-panel"><section class="panel paper-section mt-4" aria-labelledby="paper-positions-title">
+    <h2 id="paper-positions-title">持有部位</h2>
+    <p class="muted">持股與委託標的可加入個人績效模型驗證，使用最新可用行情的雷達 V1 快照；不改動委託，也不回填下單時的評分。</p>
+    @if (portfolio.Positions.Count == 0) { <p class="muted" id="paper-empty">尚無持股，建立第一筆虛擬買進委託開始模擬。</p> }
+    else {
+    <div class="table-responsive"><table class="table text-nowrap" id="paper-positions"><thead><tr><th>股票／名稱</th><th>股數</th><th>平均成本</th><th>最新價格／行情日</th><th>市值</th><th>未實現損益</th><th>報酬率</th><th>操作</th></tr></thead><tbody>
+    @foreach (var item in portfolio.Positions) {
+        var p = item.Position;
+        <tr data-symbol="@p.StockId"><td><a asp-action="Index" asp-route-symbol="@p.StockId">@p.StockId @p.StockName</a></td><td class="paper-quantity">@p.Quantity.ToString("N0")</td><td>@p.AverageCost.ToString("N6")</td><td>@Money(item.CurrentPrice)<small class="d-block muted">@(item.Quote?.TradeDate?.ToString("yyyy/MM/dd") ?? "—")</small></td><td>@Money(item.MarketValue)</td><td class="@Tone(item.UnrealizedProfitLoss)">@Money(item.UnrealizedProfitLoss)</td><td class="@Tone(item.ReturnPercent)">@Money(item.ReturnPercent)%</td>
+        <td><a asp-action="PaperTrading" asp-route-symbol="@p.StockId" asp-route-side="Buy" asp-fragment="paper-order-section" class="btn btn-light btn-sm">買進</a> <a asp-action="PaperTrading" asp-route-symbol="@p.StockId" asp-route-side="Sell" asp-fragment="paper-order-section" class="btn btn-light btn-sm">賣出</a> <partial name="_PerformanceValidationButton" model="p.StockId" /> <partial name="_AddToSwingButton" model="p.StockId" /> <partial name="_FavoriteButton" model="p.StockId" /></td></tr>
+    }
+    </tbody></table></div>
+    }
+</section>
+</section>
+<section id="portfolio-panel-orders" role="tabpanel" aria-labelledby="portfolio-tab-orders" class="portfolio-tab-panel"><section class="panel paper-section" id="paper-order-section" aria-labelledby="paper-order-title">
     <h2 id="paper-order-title">建立虛擬委託</h2>
     <form asp-action="PlacePaperOrder" method="post" id="paper-order-form">
         <input asp-for="RecommendationId" type="hidden" />
@@ -60,20 +92,6 @@
         <p class="muted">平均成本包含買進手續費。未處理股利、分割、減資、滑價、成交量與漲跌停限制；歷史或模擬結果不代表未來績效。所有時間顯示為台灣時間。</p>
     </details>
 </section>
-<section class="panel paper-section mt-4" aria-labelledby="paper-positions-title">
-    <h2 id="paper-positions-title">持有部位</h2>
-    <p class="muted">持股與委託標的可加入個人績效模型驗證，使用最新可用行情的雷達 V1 快照；不改動委託，也不回填下單時的評分。</p>
-    @if (portfolio.Positions.Count == 0) { <p class="muted" id="paper-empty">尚無持股，建立第一筆虛擬買進委託開始模擬。</p> }
-    else {
-    <div class="table-responsive"><table class="table text-nowrap" id="paper-positions"><thead><tr><th>股票／名稱</th><th>股數</th><th>平均成本</th><th>最新價格／行情日</th><th>市值</th><th>未實現損益</th><th>報酬率</th><th>操作</th></tr></thead><tbody>
-    @foreach (var item in portfolio.Positions) {
-        var p = item.Position;
-        <tr data-symbol="@p.StockId"><td>@p.StockId @p.StockName</td><td class="paper-quantity">@p.Quantity.ToString("N0")</td><td>@p.AverageCost.ToString("N6")</td><td>@Money(item.CurrentPrice)<small class="d-block muted">@(item.Quote?.TradeDate?.ToString("yyyy/MM/dd") ?? "—")</small></td><td>@Money(item.MarketValue)</td><td class="@Tone(item.UnrealizedProfitLoss)">@Money(item.UnrealizedProfitLoss)</td><td class="@Tone(item.ReturnPercent)">@Money(item.ReturnPercent)%</td>
-        <td><a asp-action="PaperTrading" asp-route-symbol="@p.StockId" asp-route-side="Buy" asp-fragment="paper-order-section" class="btn btn-light btn-sm">買進</a> <a asp-action="PaperTrading" asp-route-symbol="@p.StockId" asp-route-side="Sell" asp-fragment="paper-order-section" class="btn btn-light btn-sm">賣出</a> <partial name="_PerformanceValidationButton" model="p.StockId" /> <partial name="_AddToSwingButton" model="p.StockId" /> <partial name="_FavoriteButton" model="p.StockId" /></td></tr>
-    }
-    </tbody></table></div>
-    }
-</section>
 <section class="panel paper-section mt-4" aria-labelledby="paper-orders-title">
     <h2 id="paper-orders-title">委託紀錄</h2>
     @if (portfolio.Orders.Count == 0) { <p class="muted">尚無虛擬委託。</p> }
@@ -88,7 +106,8 @@
     </tbody></table></div>
     }
 </section>
-<section class="panel paper-section mt-4" aria-labelledby="paper-trades-title">
+</section>
+<section id="portfolio-panel-trades" role="tabpanel" aria-labelledby="portfolio-tab-trades" class="portfolio-tab-panel"><section class="panel paper-section mt-4" aria-labelledby="paper-trades-title">
     <h2 id="paper-trades-title">成交紀錄</h2>
     @if (portfolio.Trades.Count == 0) { <p class="muted">尚無模擬成交。</p> }
     else {
@@ -99,14 +118,20 @@
     </tbody></table></div>
     }
 </section>
+</section>
+<section id="portfolio-panel-pnl" role="tabpanel" aria-labelledby="portfolio-tab-pnl" class="portfolio-tab-panel"><section class="panel paper-section"><h2>損益明細</h2><p>已實現 @Money(account.RealizedProfitLoss) 元 ／ 未實現 @Money(portfolio.UnrealizedProfitLoss) 元 ／ 合計 @Money(portfolio.TotalProfitLoss) 元。</p><p>平均報酬＝完整交易淨現金流／累計買入成本（含手續費）；Profit Factor 使用金額，不以勝率或報酬率比例代替。</p>
+<div class="table-responsive"><table class="table"><thead><tr><th>標的</th><th>建倉</th><th>出清</th><th>投入成本</th><th>淨損益</th><th>報酬</th></tr></thead><tbody>
+@foreach(var item in stats.Investments){<tr><td><a asp-action="Index" asp-route-symbol="@item.Symbol">@item.Symbol</a></td><td>@Time(item.OpenedAt)</td><td>@Time(item.ClosedAt)</td><td>@Money(item.Invested)</td><td class="@Tone(item.Profit)">@Money(item.Profit)</td><td>@Money(item.ReturnPercent)%</td></tr>}
+</tbody></table></div>@if(stats.Completed==0){<p>尚無完整出清的交易，統計等待累積。</p>}</section></section>
+</div>
 <section class="panel paper-section mt-4">
     <details><summary>重設虛擬帳戶</summary>
         <p class="mt-3">清除所有虛擬委託、成交及持倉，現金恢復為初始資金 @Money(account.InitialCash) 元。工作日誌不受影響。</p>
         <form asp-action="ResetPaperAccount" method="post" id="paper-reset-form">
             <input type="hidden" name="generation" value="@account.Generation" />
-            <label class="d-block mb-3"><input type="checkbox" name="confirmReset" value="true" required /> 我確認清除共用虛擬帳戶的所有交易資料</label>
+            <label class="d-block mb-3"><input type="checkbox" name="confirmReset" value="true" required /> 我確認清除我的虛擬帳戶的所有交易資料</label>
             <button class="btn btn-outline-danger" type="submit">確認重設虛擬帳戶</button>
         </form>
     </details>
 </section>
-@section Scripts { <script src="~/js/paper-trading.js" asp-append-version="true"></script> }
+@section Scripts { <script src="~/js/paper-trading.js" asp-append-version="true"></script><script src="~/js/portfolio-insights.js" asp-append-version="true"></script> }

@@ -1,0 +1,9 @@
+<link rel="stylesheet" href="~/css/investment-insights.css" asp-append-version="true" />
+<section class="market-pulse panel" data-url="@Url.Action("MarketPulse","StockAnalysis")" aria-label="今日市場">
+<div class="insight-heading"><div><p class="eyebrow">TODAY'S MARKET</p><h2>今日市場</h2></div><label>市場範圍 <select class="form-select pulse-market"><option value="all">上市＋上櫃</option><option value="twse">上市</option><option value="tpex">上櫃</option></select></label><button class="btn btn-light pulse-retry" type="button">重新整理</button></div>
+<p class="pulse-status" role="status">正在載入官方收盤資料…</p>
+<div class="pulse-indices insight-grid"></div><div class="pulse-breadth insight-grid"></div>
+<div class="insight-grid pulse-bottom"><article><h3>市場熱度</h3><div class="pulse-heat"></div><details><summary>評分依據</summary><div class="pulse-parts"></div><p>Heat V1 衡量市場多頭強弱，與個股 Radar 分開；歷史不足不換算完整分數。跌停包含於下跌，漲停包含於上漲。廣度含平盤；突破與均價需至少 80% 歷史覆蓋。歷史以已保存的交易日觀測計算，主機離線造成的缺日不回填，可能與連續交易日指標不同。</p></details></article><article><h3>產業強弱</h3><p class="muted">有效一般股票漲跌幅等權平均，不含 ETF；點選產業查看成分股。</p><div class="pulse-industries"></div></article></div>
+<p class="muted">非即時盤中行情。成交金額為可分類一般股票成交額合計，不含 ETF；產業及量能統計依有效行情。來源：<a href="https://www.twse.com.tw/zh/trading/historical/mi-index.html" target="_blank" rel="noopener">證交所</a>／<a href="https://www.tpex.org.tw/openapi/" target="_blank" rel="noopener">櫃買中心</a>。不同交易日不合計，缺少資料不補零。</p>
+</section>
+<script src="~/js/market-pulse.js" asp-append-version="true" defer></script>

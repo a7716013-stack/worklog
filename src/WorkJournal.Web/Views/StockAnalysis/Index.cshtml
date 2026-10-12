@@ -2,7 +2,8 @@
 @{ ViewData["Title"]="股票研究"; var q=Model.Quote; string N(decimal? n)=>n?.ToString("N2")??"—"; }
 <link rel="stylesheet" href="~/css/stock-research.css" asp-append-version="true" />
 <partial name="_Navigation" />
-<section class="page-heading"><div><p class="eyebrow">STOCK RESEARCH · 1.4.1</p><h1>搜尋股票，串起每一步研究</h1><p class="subheading">上市、上櫃與 ETF · 行情、趨勢與個人追蹤</p></div><a class="btn btn-light" asp-action="Favorites">☆ 我的自選</a></section>
+<section class="page-heading"><div><p class="eyebrow">STOCK RESEARCH · 1.4.2</p><h1>搜尋股票，串起每一步研究</h1><p class="subheading">上市、上櫃與 ETF · 行情、趨勢與個人追蹤</p></div><a class="btn btn-light" asp-action="Favorites">☆ 我的自選</a></section>
+<partial name="_MarketPulse" />
 <section class="panel stock-search-panel">
 <form asp-action="Index" method="get" class="stock-search"><div class="stock-search-input"><label for="stock-query">股票名稱或代號</label><input id="stock-query" name="symbol" value="@Model.Query" class="form-control" maxlength="30" placeholder="例如：2330、台積電、0050" autocomplete="off" /></div><button class="btn btn-forest" type="submit">搜尋</button><a asp-action="Index" class="btn btn-light">清除</a></form>
 <p class="stock-message mt-3" role="status">@Model.Message</p>

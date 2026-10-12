@@ -13,6 +13,6 @@
     update();
     form.addEventListener("submit", () => { form.querySelector("button[type=submit]").disabled = true; });
     document.getElementById("paper-reset-form").addEventListener("submit", event => {
-        if (!window.confirm("確定清除共用虛擬帳戶的全部交易資料？此操作無法復原。")) event.preventDefault();
+        if (!window.confirm("確定清除我的虛擬帳戶的全部交易資料？此操作無法復原。")) event.preventDefault();
     });
 })();

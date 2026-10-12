@@ -1,7 +1,7 @@
 namespace WorkJournal.Web.Models;
 public class PaperTradingOptions
 {
-    public decimal InitialCash { get; set; } = 1000000m;
+    public decimal InitialCash { get; set; } = 30000000m;
     public decimal CommissionRate { get; set; } = 0.001425m;
     public decimal CommissionDiscount { get; set; } = 1m;
     public decimal MinimumCommission { get; set; } = 20m;

@@ -348,6 +348,27 @@ namespace WorkJournal.Web.Data.Migrations
                     b.ToTable("GoogleCalendarConnections");
                 });
 
+            modelBuilder.Entity("WorkJournal.Web.Models.MarketPulseDaily", b =>
+                {
+                    b.Property<DateOnly>("TradeDate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Market")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<DateTimeOffset>("CapturedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Json")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TradeDate", "Market");
+
+                    b.ToTable("MarketPulseDays");
+                });
+
             modelBuilder.Entity("WorkJournal.Web.Models.MarketRadarCaptureBatch", b =>
                 {
                     b.Property<DateOnly>("TradeDate")
@@ -953,6 +974,50 @@ namespace WorkJournal.Web.Data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("WorkJournal.Web.Models.PortfolioDailyValue", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<int>("AccountId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTimeOffset>("CapturedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<decimal>("Cash")
+                        .HasPrecision(28, 4)
+                        .HasColumnType("decimal(28,4)");
+
+                    b.Property<Guid>("Generation")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("InitialCash")
+                        .HasPrecision(28, 4)
+                        .HasColumnType("decimal(28,4)");
+
+                    b.Property<decimal>("MarketValue")
+                        .HasPrecision(28, 4)
+                        .HasColumnType("decimal(28,4)");
+
+                    b.Property<decimal>("TotalAssets")
+                        .HasPrecision(28, 4)
+                        .HasColumnType("decimal(28,4)");
+
+                    b.Property<DateOnly>("TradeDate")
+                        .HasColumnType("date");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId", "Generation", "TradeDate")
+                        .IsUnique();
+
+                    b.ToTable("PortfolioDailyValues");
+                });
+
             modelBuilder.Entity("WorkJournal.Web.Models.StockFavoriteItem", b =>
                 {
                     b.Property<int>("Id")
@@ -1292,6 +1357,15 @@ namespace WorkJournal.Web.Data.Migrations
                         .WithMany()
                         .HasForeignKey("ApplicationUserId")
                         .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.PortfolioDailyValue", b =>
+                {
+                    b.HasOne("WorkJournal.Web.Models.PaperTradingAccount", null)
+                        .WithMany()
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("WorkJournal.Web.Models.StockFavoriteItem", b =>

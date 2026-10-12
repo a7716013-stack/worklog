@@ -1,5 +1,6 @@
 @model HomeDashboardViewModel
 @{ ViewData["Title"] = "首頁"; var inv = Model.InvestmentSummary; }
+<partial name="_MarketPulse" />
 <div class="home-dashboard">
 <section class="dashboard-hero"><div><p class="eyebrow">YOUR DAILY OVERVIEW</p><h1>@(Model.IsAuthenticated ? $"歡迎回來，{Model.UserDisplayName}" : "工作有紀錄，投資有方向")</h1><p>從今天的工作開始，掌握值得追蹤的市場動態。</p></div><div class="dashboard-date"><time>@Model.CurrentDate.ToString("yyyy 年 MM 月 dd 日")</time><span>台北時間 · 工作與投資總覽</span></div></section>
 <div class="dashboard-grid">
