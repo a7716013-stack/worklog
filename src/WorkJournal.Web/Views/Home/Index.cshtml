@@ -1,5 +1,9 @@
 @model HomeDashboardViewModel
 @{ ViewData["Title"] = "首頁"; var inv = Model.InvestmentSummary; }
+<link rel="stylesheet" href="~/css/international-indices.css" asp-append-version="true" />
+<div class="home-shell">
+<partial name="_InternationalIndices" />
+<div class="home-primary">
 <partial name="_MarketPulse" />
 <div class="home-dashboard">
 <section class="dashboard-hero"><div><p class="eyebrow">YOUR DAILY OVERVIEW</p><h1>@(Model.IsAuthenticated ? $"歡迎回來，{Model.UserDisplayName}" : "工作有紀錄，投資有方向")</h1><p>從今天的工作開始，掌握值得追蹤的市場動態。</p></div><div class="dashboard-date"><time>@Model.CurrentDate.ToString("yyyy 年 MM 月 dd 日")</time><span>台北時間 · 工作與投資總覽</span></div></section>
@@ -40,4 +44,8 @@ else { <p class="empty-state">登入後查看個人行程。</p> }
 }
 <noscript><p class="dashboard-card">請啟用 JavaScript 載入市場與行程摘要，或透過上方連結前往完整功能頁。</p></noscript>
 </div>
-@section Scripts { <script src="~/js/home-dashboard.js" asp-append-version="true"></script> }
+</div></div>
+@section Scripts {
+    <script src="~/js/home-dashboard.js" asp-append-version="true"></script>
+    <script src="~/js/international-indices.js" asp-append-version="true"></script>
+}

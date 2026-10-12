@@ -19,6 +19,11 @@ builder.Services.AddDbContext<JournalDbContext>(options =>
         sql => sql.EnableRetryOnFailure()));
 builder.Services.AddMemoryCache();
 builder.Services.AddScoped<WorkJournal.Web.Services.HomeDashboardService>();
+builder.Services.AddHttpClient<WorkJournal.Web.Services.InternationalIndicesService>(client =>
+{
+    client.Timeout = TimeSpan.FromSeconds(15);
+    client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 WorkJournal/1.4.2");
+});
 builder.Services.AddHttpClient<WorkJournal.Web.Services.TaiwanMarketRankingProvider>(client =>
 {
     client.Timeout = TimeSpan.FromSeconds(15);

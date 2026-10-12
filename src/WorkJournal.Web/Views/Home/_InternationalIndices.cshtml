@@ -1,0 +1,19 @@
+<aside class="international-sidebar" aria-labelledby="international-title" data-url="@Url.Action("InternationalIndices", "Home")">
+    <div class="international-heading"><div><p class="eyebrow">GLOBAL MARKETS</p><h2 id="international-title">國際指數</h2></div><button type="button" class="btn btn-light btn-sm" id="international-refresh" aria-label="重新整理國際指數">更新</button></div>
+    <p id="international-status" class="international-note" role="status">正在讀取最新報價…</p>
+    <div class="international-list" aria-busy="true">
+    @foreach (var item in WorkJournal.Web.Services.InternationalIndicesService.Definitions)
+    {
+        <article class="international-card" data-symbol="@item.Symbol">
+            <a href="@item.SourceUrl" target="_blank" rel="noopener noreferrer" class="international-name">@item.Name<span aria-hidden="true"> ↗</span></a>
+            <p class="international-market">@item.Market</p>
+            <strong class="international-value">—</strong>
+            <p class="international-change">漲跌待更新</p>
+            <p class="international-time">報價時間待更新</p>
+            <p class="international-state"></p>
+        </article>
+    }
+    </div>
+    <p class="international-note international-source">來源：Yahoo Finance · 指數點位<br />報價可能延遲；時間為台北時間。休市顯示最新交易報價，漲跌相對前收盤。每5分鐘更新。</p>
+    <noscript><p class="international-note">啟用 JavaScript 可載入報價，或點選指數名稱查看來源。</p></noscript>
+</aside>

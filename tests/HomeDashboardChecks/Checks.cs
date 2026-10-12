@@ -19,6 +19,7 @@ public static class Checks
  static void Check(bool ok,string name){if(!ok)throw new Exception("FAIL: "+name);count++;Console.WriteLine("PASS: "+name);}
  public static async Task Main(string[] args)
  {
+  await InternationalIndicesChecks.RunAsync();
   var database="WorkJournalHomeChecks_"+Guid.NewGuid().ToString("N");
   var connection=$@"Server=.\SQLEXPRESS;Database={database};Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True;";
   await using var setup=new JournalDbContext(new DbContextOptionsBuilder<JournalDbContext>().UseSqlServer(connection).Options);
@@ -53,6 +54,9 @@ public static class Checks
    using var empty=factory.CreateClient(new(){AllowAutoRedirect=false});empty.DefaultRequestHeaders.Add("X-Test-User","empty");
    async Task<string> Get(HttpClient client,string path){var r=await client.GetAsync(path);Check(r.StatusCode==HttpStatusCode.OK,path+" HTTP 200");Check(r.Headers.CacheControl?.NoStore==true,path+" no-store");return WebUtility.HtmlDecode(await r.Content.ReadAsStringAsync());}
    var anon=await Get(anonymous,"/");
+   Check(anon.Contains("international-sidebar")&&anon.Contains("香港恆生"),"international sidebar rendered without blocking homepage");
+   using(var indices=JsonDocument.Parse(await Get(anonymous,"/Home/InternationalIndices")))
+    Check(indices.RootElement.GetProperty("quotes").GetArrayLength()==7,"public international index API returns seven fixed instruments");
    Check(anon.Contains("工作有紀錄")&&!anon.Contains("BOB_PRIVATE")&&!anon.Contains("我的今日工作"),"anonymous home contains no personal records");
    Check((await anonymous.GetAsync("/Home/CalendarSummary")).StatusCode==HttpStatusCode.Unauthorized,"anonymous calendar protected");
    var home=await Get(alice,"/");
@@ -121,11 +125,12 @@ class Factory(string connection,RadarFixture radar,CalendarFixture calendar):Web
   var root=new DirectoryInfo(AppContext.BaseDirectory);
   while(root!=null&&!File.Exists(Path.Combine(root.FullName,"WorkJournal.sln")))root=root.Parent;
   builder.UseContentRoot(Path.Combine(root!.FullName,"src","WorkJournal.Web"));
-  builder.UseEnvironment("Development");builder.UseSetting("RadarTracking:SchedulerEnabled","false");
+  builder.UseEnvironment("Development");builder.UseSetting("RadarTracking:SchedulerEnabled","false");builder.UseSetting("InvestmentInsights:SchedulerEnabled","false");
   builder.ConfigureServices(services=>{
    services.RemoveAll<DbContextOptions<JournalDbContext>>();services.AddDbContext<JournalDbContext>(o=>o.UseSqlServer(connection));
    services.RemoveAll<IMarketRadarService>();services.AddSingleton<IMarketRadarService>(radar);
    services.RemoveAll<IGoogleCalendarService>();services.AddSingleton<IGoogleCalendarService>(calendar);
+   services.AddSingleton(sp=>new InternationalIndicesService(new HttpClient(new InternationalQuoteHandler()),sp.GetRequiredService<Microsoft.Extensions.Caching.Memory.IMemoryCache>(),TimeProvider.System));
    services.AddAuthentication(o=>{o.DefaultAuthenticateScheme="DashboardFixture";o.DefaultChallengeScheme="DashboardFixture";}).AddScheme<AuthenticationSchemeOptions,FixtureAuth>("DashboardFixture",_=>{});
    services.AddLogging(x=>x.ClearProviders());
   });

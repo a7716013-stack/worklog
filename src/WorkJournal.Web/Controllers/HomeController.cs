@@ -10,6 +10,10 @@ namespace WorkJournal.Web.Controllers;
 
 public class HomeController : Controller
 {
+    [HttpGet, ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+    public async Task<IActionResult> InternationalIndices([FromServices] InternationalIndicesService indices, CancellationToken ct)
+        => Json(await indices.GetAsync(ct));
+
     [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
     public async Task<IActionResult> Index([FromServices] HomeDashboardService dashboard, CancellationToken ct)
     {
