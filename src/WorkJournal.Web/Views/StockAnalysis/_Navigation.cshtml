@@ -7,4 +7,5 @@
     <a class="btn @(action is "RadarTracking" or "RadarSnapshot" ? "btn-forest" : "btn-light")" asp-action="RadarTracking">推薦績效追蹤</a>
     <a class="btn @(action == "RadarPerformance" ? "btn-forest" : "btn-light")" asp-action="RadarPerformance">績效／模型驗證</a>
     <a class="btn @(action == "RadarPaperComparison" ? "btn-forest" : "btn-light")" asp-action="RadarPaperComparison">虛擬單對照</a>
+    <a class="btn btn-light" asp-controller="StockAnalysis" asp-action="Favorites">自選清單</a>
 </nav>

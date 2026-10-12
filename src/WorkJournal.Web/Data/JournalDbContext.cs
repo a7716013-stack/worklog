@@ -21,6 +21,7 @@ public class JournalDbContext(DbContextOptions<JournalDbContext> options) : Iden
     public DbSet<MarketRadarPersonalTracking> MarketRadarPersonalTrackings => Set<MarketRadarPersonalTracking>();
     public DbSet<MarketRadarPaperTradeLink> MarketRadarPaperTradeLinks => Set<MarketRadarPaperTradeLink>();
     public DbSet<WorkLog> WorkLogs => Set<WorkLog>();
+    public DbSet<StockFavoriteItem> StockFavoriteItems => Set<StockFavoriteItem>();
     public DbSet<StockWatchlistItem> StockWatchlistItems => Set<StockWatchlistItem>();
     public DbSet<CalendarSyncLink> CalendarSyncLinks => Set<CalendarSyncLink>();
     public DbSet<GoogleCalendarConnection> GoogleCalendarConnections => Set<GoogleCalendarConnection>();
@@ -31,6 +32,8 @@ public class JournalDbContext(DbContextOptions<JournalDbContext> options) : Iden
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<StockFavoriteItem>().HasOne<ApplicationUser>().WithMany().HasForeignKey(x => x.ApplicationUserId).OnDelete(DeleteBehavior.Cascade);
+        modelBuilder.Entity<StockFavoriteItem>().HasIndex(x => new { x.ApplicationUserId, x.Symbol }).IsUnique();
         modelBuilder.Entity<StockWatchlistItem>().HasOne<ApplicationUser>().WithMany().HasForeignKey(x => x.ApplicationUserId).OnDelete(DeleteBehavior.Cascade);
         modelBuilder.Entity<StockWatchlistItem>().HasIndex(x => new { x.ApplicationUserId, x.Symbol }).IsUnique();
         modelBuilder.Entity<CalendarSyncLink>().HasIndex(x => new { x.ApplicationUserId, x.GoogleEventId }).IsUnique();

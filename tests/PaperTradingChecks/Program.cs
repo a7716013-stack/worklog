@@ -52,7 +52,7 @@ try
         builder.Services.AddScoped<IPaperTradingService, PaperTradingService>();
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddScoped<ICurrentUser, CurrentUser>();
-        builder.Services.AddScoped<StockWatchlistService>();
+        builder.Services.AddScoped<StockWatchlistService>();builder.Services.AddScoped<StockFavoriteService>();
         builder.Services.AddAuthorization();
         builder.Services.AddAuthentication("Fixture").AddScheme<Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions, FixtureAuthentication>("Fixture", _ => {});
         var market = new FixtureMarket();

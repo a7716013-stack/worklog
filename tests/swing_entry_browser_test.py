@@ -14,7 +14,7 @@ with sync_playwright() as p:
  items=c.request.get(base+'/StockAnalysis/Watchlist').json()['items'];assert sum(x['symbol']=='2330' for x in items)==1
  page.goto(base+'/StockAnalysis/RadarPerformance?Symbol=2330',wait_until='networkidle')
  expect(page.locator('#performance-swing-targets .add-to-swing-form')).to_have_count(1)
- page.locator('#performance-swing-targets button').click();page.wait_for_url('**/Swing')
+ page.locator('#performance-swing-targets .add-to-swing-form button').click();page.wait_for_url('**/Swing')
  expect(page.locator('.alert-success')).to_contain_text('已在')
  assert len(c.request.get(base+'/StockAnalysis/Watchlist').json()['items'])==len(items)
  bob=browser.new_context(extra_http_headers={'X-Test-User':'bob'})

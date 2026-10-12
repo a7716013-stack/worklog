@@ -1,0 +1,4 @@
+@model string
+<form asp-controller="StockAnalysis" asp-action="ChangeFavorite" method="post" class="d-inline-block favorite-form">
+<input type="hidden" name="symbol" value="@Model" /><button class="btn btn-light btn-sm" type="submit">☆ 加入自選</button>
+</form>

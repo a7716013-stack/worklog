@@ -1,6 +1,6 @@
 @{ ViewData["Title"] = "波段分析"; }
 <partial name="_Navigation" />
-<div id="swing-app" data-validation-url="@Url.Action("AddPerformanceValidation")" data-search-url="@Url.Action("SwingSearch")" data-analysis-url="@Url.Action("SwingData")" data-paper-url="@Url.Action("PaperTrading")" data-backtest-url="@Url.Action("SwingBacktest")" data-watchlist-url="@Url.Action("Watchlist")" data-save-url="@Url.Action("SaveWatchlist")" data-owner="@User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value">
+<div id="swing-app" data-favorite-url="@Url.Action("ChangeFavorite")" data-validation-url="@Url.Action("AddPerformanceValidation")" data-search-url="@Url.Action("SwingSearch")" data-analysis-url="@Url.Action("SwingData")" data-paper-url="@Url.Action("PaperTrading")" data-backtest-url="@Url.Action("SwingBacktest")" data-watchlist-url="@Url.Action("Watchlist")" data-save-url="@Url.Action("SaveWatchlist")" data-owner="@User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value">
 @Html.AntiForgeryToken()
 <p class="muted">可將清單標的加入個人績效模型驗證，採雷達 V1 評分，與本頁波段分數不同；不回填虛擬單建立時的評分。</p>
 <section class="page-heading swing-heading">

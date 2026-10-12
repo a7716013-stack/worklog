@@ -22,7 +22,7 @@
 else {
 <div class="table-responsive"><table class="table"><thead><tr><th>代號</th><th>名稱</th><th>操作</th></tr></thead><tbody>
 @foreach (var stock in Model.SwingTargets) {
-<tr><td>@stock.Symbol</td><td>@stock.Name</td><td><partial name="_AddToSwingButton" model="stock.Symbol" /></td></tr>
+<tr><td>@stock.Symbol</td><td>@stock.Name</td><td><partial name="_AddToSwingButton" model="stock.Symbol" /> <partial name="_FavoriteButton" model="stock.Symbol" /></td></tr>
 }
 </tbody></table></div>
 }

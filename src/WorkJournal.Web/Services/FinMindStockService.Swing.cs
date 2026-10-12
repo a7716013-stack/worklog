@@ -78,6 +78,9 @@ public partial class FinMindStockService
                 var row=g.LastOrDefault(x=>Text(x,"name")==name);
                 return row.ValueKind==JsonValueKind.Undefined ? null : Number(row,"buy")-Number(row,"sell");
             }
-            return new SwingFlow(g.Key,Net("Foreign_Investor"),Net("Investment_Trust"));
+            var dealer = Net("Dealer");
+            // FinMind may split dealers into self and hedge. Never treat a missing half as zero.
+            dealer ??= Net("Dealer_self") + Net("Dealer_Hedging");
+            return new SwingFlow(g.Key,Net("Foreign_Investor"),Net("Investment_Trust"),dealer);
         }).ToArray();
 }

@@ -5,8 +5,8 @@
     <div><p class="eyebrow">MARKET RADAR · v1.2.4</p><h1>市場熱門排行</h1>
     <p class="subheading">上市、上櫃與 ETF · 從當日排行與量能變化，找到下一個研究標的。</p></div>
 </section>
-<div id="market-radar" data-industry-url="@Url.Action("RadarIndustries")" data-url="@Url.Action("MarketRadarData")" data-watch-url="@Url.Action("Watchlist")"
-     data-follow-url="@Url.Action("FollowRadarRecommendation")" data-save-url="@Url.Action("SaveWatchlist")" data-owner="@User.FindFirstValue(ClaimTypes.NameIdentifier)"
+<div id="market-radar" data-swing-url="@Url.Action("AddToSwing")" data-industry-url="@Url.Action("RadarIndustries")" data-url="@Url.Action("MarketRadarData")" data-watch-url="@Url.Action("FavoriteItems")"
+     data-follow-url="@Url.Action("FollowRadarRecommendation")" data-save-url="@Url.Action("SaveFavorites")" data-owner="@User.FindFirstValue(ClaimTypes.NameIdentifier)"
      data-analysis-url="@Url.Action("Index")" data-paper-url="@Url.Action("PaperTrading")"
      data-login-url="@Url.Action("Login","Account",new { returnUrl="/StockAnalysis/MarketRadar" })">
     @Html.AntiForgeryToken()

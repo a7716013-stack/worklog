@@ -1,7 +1,7 @@
 namespace WorkJournal.Web.Models;
 public record SwingStock(string Symbol, string Name, string Market, bool IsEtf);
 public record SwingBar(DateOnly Date, decimal? Open, decimal? High, decimal? Low, decimal? Close, decimal? Volume);
-public record SwingFlow(DateOnly Date, decimal? Foreign, decimal? Trust);
+public record SwingFlow(DateOnly Date, decimal? Foreign, decimal? Trust, decimal? Dealer = null);
 public record SwingRule(string Group, string Label, int Points, bool? Passed);
 public record SwingStrategy(string Name, string Definition, bool? Passed);
 public record SwingChartPoint(DateOnly Date, decimal? Open, decimal? High, decimal? Low, decimal? Close, decimal? Volume, decimal? MA5, decimal? MA10, decimal? MA20, decimal? MA60, decimal? RSI, decimal? Macd, decimal? Signal, decimal? Histogram);

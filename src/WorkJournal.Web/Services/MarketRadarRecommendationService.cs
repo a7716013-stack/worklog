@@ -84,6 +84,16 @@ public class MarketRadarRecommendationService(JournalDbContext db,IMarketRadarSe
         if(origin is not ("paper" or "swing") || !System.Text.RegularExpressions.Regex.IsMatch(symbol??"",@"^[0-9]{4}[0-9A-Z]{0,2}$"))
             throw new ValidationException("來源或股票代號不正確。");
         if(!await OwnsSymbolAsync(owner,symbol!,origin,ct))throw new ValidationException("此標的不在你的虛擬委託或波段追蹤名單中。");
+        return await FollowStockCoreAsync(owner,symbol!,history,()=>OwnsSymbolAsync(owner,symbol!,origin,ct),ct);
+    }
+    public Task<long> FollowStockAsync(string owner,string symbol,IMarketRadarHistoryProvider history,CancellationToken ct)
+    {
+        if(!System.Text.RegularExpressions.Regex.IsMatch(symbol??"",@"^[0-9]{4}[0-9A-Z]{0,2}$"))
+            throw new ValidationException("股票代號不正確。");
+        return FollowStockCoreAsync(owner,symbol!,history,null,ct);
+    }
+    private async Task<long> FollowStockCoreAsync(string owner,string symbol,IMarketRadarHistoryProvider history,Func<Task<bool>>? stillOwned,CancellationToken ct)
+    {
         // Full-market quotes include symbols outside the daily candidate pool. Analyze only this symbol.
         var data=await radar.GetAsync("all",null,false,ct);
         var quote=data.Quotes.SingleOrDefault(x=>x.Stock.Symbol==symbol);
@@ -96,7 +106,7 @@ public class MarketRadarRecommendationService(JournalDbContext db,IMarketRadarSe
             var item=MarketRadarScoreCalculator.Calculate(quote,bars,data.Events);
             pending=await SnapshotAsync(item,data.UpdatedAt,ct);
         }
-        return await SaveFollowAsync(owner,null,pending,()=>OwnsSymbolAsync(owner,symbol!,origin,ct),ct);
+        return await SaveFollowAsync(owner,null,pending,stillOwned,ct);
     }
     private Task<long> SaveFollowAsync(string owner,long? recommendationId,MarketRadarRecommendation? pending,Func<Task<bool>>? stillOwned,CancellationToken ct)
         => Atomic("WorkJournal.Radar.Capture",async()=>

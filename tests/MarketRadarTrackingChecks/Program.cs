@@ -82,7 +82,7 @@ try {
    await paper.ResetAccountAsync(account.Generation,default);
    Check(await d.MarketRadarRecommendations.CountAsync()==10&&await d.MarketRadarPaperTradeLinks.CountAsync(x=>x.PaperOrderId==null)==1,"paper reset preserves recommendation and historical association");return 0;
  });
- if(!args.Contains("--serve"))await PortfolioEnrollmentChecks.RunAsync(options,clock,source);
+ if(!args.Contains("--serve")){await PortfolioEnrollmentChecks.RunAsync(options,clock,source);await StockResearchChecks.RunAsync(options); }
  Console.WriteLine($"MarketRadarTrackingChecks: {checks} PASS");
  if(args.Contains("--serve")) {
    var root=new DirectoryInfo(AppContext.BaseDirectory);while(root!=null&&!File.Exists(Path.Combine(root.FullName,"WorkJournal.sln")))root=root.Parent;
@@ -92,7 +92,7 @@ try {
    builder.Services.AddControllersWithViews(o=>o.Filters.Add(new AutoValidateAntiforgeryTokenAttribute())).AddApplicationPart(typeof(StockAnalysisController).Assembly);
    builder.Services.AddDbContext<JournalDbContext>(o=>o.UseSqlServer(connection,s=>s.EnableRetryOnFailure()));builder.Services.AddMemoryCache();builder.Services.AddSingleton<TimeProvider>(clock);builder.Services.AddSingleton<IMarketRadarService>(radar);builder.Services.AddSingleton<IRadarTrackingDataProvider>(source);builder.Services.AddRadarTracking();builder.Services.AddScoped(_=>Stocks());
    builder.Services.AddSingleton<IMarketRadarHistoryProvider,EnrollmentHistory>();
-   builder.Services.Configure<PaperTradingOptions>(_=>{});builder.Services.AddScoped<IPaperTradingService,PaperTradingService>();builder.Services.AddHttpContextAccessor();builder.Services.AddScoped<ICurrentUser,CurrentUser>();builder.Services.AddScoped<StockWatchlistService>();
+   builder.Services.Configure<PaperTradingOptions>(_=>{});builder.Services.AddScoped<IPaperTradingService,PaperTradingService>();builder.Services.AddHttpContextAccessor();builder.Services.AddScoped<ICurrentUser,CurrentUser>();builder.Services.AddScoped<StockWatchlistService>();builder.Services.AddScoped<StockFavoriteService>();
    builder.Services.AddAuthorization();builder.Services.AddAuthentication("Fixture").AddScheme<Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions,RadarAuthentication>("Fixture",_=>{});
    var app=builder.Build();app.UseStaticFiles();app.UseRouting();app.UseAuthentication();app.UseAuthorization();app.MapControllerRoute("default","{controller=StockAnalysis}/{action=RadarTracking}/{id?}");
    app.MapPost("/__test/stop",async(HttpContext context,Microsoft.AspNetCore.Antiforgery.IAntiforgery af)=>{await af.ValidateRequestAsync(context);app.Lifetime.StopApplication();return Results.Ok();});

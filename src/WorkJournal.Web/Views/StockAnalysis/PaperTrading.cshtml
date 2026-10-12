@@ -69,7 +69,7 @@
     @foreach (var item in portfolio.Positions) {
         var p = item.Position;
         <tr data-symbol="@p.StockId"><td>@p.StockId @p.StockName</td><td class="paper-quantity">@p.Quantity.ToString("N0")</td><td>@p.AverageCost.ToString("N6")</td><td>@Money(item.CurrentPrice)<small class="d-block muted">@(item.Quote?.TradeDate?.ToString("yyyy/MM/dd") ?? "—")</small></td><td>@Money(item.MarketValue)</td><td class="@Tone(item.UnrealizedProfitLoss)">@Money(item.UnrealizedProfitLoss)</td><td class="@Tone(item.ReturnPercent)">@Money(item.ReturnPercent)%</td>
-        <td><a asp-action="PaperTrading" asp-route-symbol="@p.StockId" asp-route-side="Buy" asp-fragment="paper-order-section" class="btn btn-light btn-sm">買進</a> <a asp-action="PaperTrading" asp-route-symbol="@p.StockId" asp-route-side="Sell" asp-fragment="paper-order-section" class="btn btn-light btn-sm">賣出</a> <partial name="_PerformanceValidationButton" model="p.StockId" /> <partial name="_AddToSwingButton" model="p.StockId" /></td></tr>
+        <td><a asp-action="PaperTrading" asp-route-symbol="@p.StockId" asp-route-side="Buy" asp-fragment="paper-order-section" class="btn btn-light btn-sm">買進</a> <a asp-action="PaperTrading" asp-route-symbol="@p.StockId" asp-route-side="Sell" asp-fragment="paper-order-section" class="btn btn-light btn-sm">賣出</a> <partial name="_PerformanceValidationButton" model="p.StockId" /> <partial name="_AddToSwingButton" model="p.StockId" /> <partial name="_FavoriteButton" model="p.StockId" /></td></tr>
     }
     </tbody></table></div>
     }
@@ -82,7 +82,7 @@
     @foreach (var order in portfolio.Orders) {
         <tr data-order-id="@order.Id" data-status="@order.Status"><td>@Time(order.CreatedAt)</td><td>@order.StockId @order.StockName</td><td>@Side(order.Side) / @(order.OrderType == PaperOrderType.Market ? "市價" : "限價")</td><td>@order.Quantity.ToString("N0")</td><td>@Money(order.LimitPrice)</td><td>@Status(order.Status)</td><td>@Money(order.FilledPrice)</td><td>@Time(order.FilledAt)<small class="d-block muted">@(order.FilledTradeDate?.ToString("yyyy/MM/dd") ?? "—")</small></td><td>@(order.OrderType == PaperOrderType.Limit ? order.EligibleFromTradeDate?.ToString("yyyy/MM/dd") ?? "—" : "—")</td><td>@order.RejectReason
         @if (order.Status == PaperOrderStatus.Pending) { <form asp-action="CancelPaperOrder" method="post"><input type="hidden" name="id" value="@order.Id" /><button type="submit" class="btn btn-light btn-sm">取消</button></form> }
-        <partial name="_PerformanceValidationButton" model="order.StockId" /> <partial name="_AddToSwingButton" model="order.StockId" />
+        <partial name="_PerformanceValidationButton" model="order.StockId" /> <partial name="_AddToSwingButton" model="order.StockId" /> <partial name="_FavoriteButton" model="order.StockId" />
         </td></tr>
     }
     </tbody></table></div>

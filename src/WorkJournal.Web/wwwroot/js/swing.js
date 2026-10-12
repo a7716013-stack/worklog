@@ -104,6 +104,12 @@ function render(){
   const detail=button("詳細分析",()=>showDetail(stock.symbol),"btn btn-forest btn-sm");detail.disabled=!info;
   const removeButton=button("移除追蹤",()=>remove(stock.symbol));removeButton.disabled=saving||!ready;
   actions.append(detail,removeButton);
+  if(app.dataset.favoriteUrl){
+   const f=el("form",null,"favorite-form");f.method="post";f.action=app.dataset.favoriteUrl;
+   const token=app.querySelector('input[name="__RequestVerificationToken"]').cloneNode(true);token.removeAttribute("id");f.append(token);
+   const input=el("input");input.type="hidden";input.name="symbol";input.value=stock.symbol;f.append(input);
+   const button=el("button","☆ 加入自選","btn btn-light btn-sm");button.type="submit";f.append(button);actions.append(f);
+  }
   if(app.dataset.validationUrl){
    const form=el("form",null,"performance-validation-form");form.method="post";form.action=app.dataset.validationUrl;
    const token=app.querySelector('input[name="__RequestVerificationToken"]').cloneNode(true);token.removeAttribute("id");form.append(token);

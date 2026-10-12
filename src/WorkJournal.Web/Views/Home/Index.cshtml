@@ -31,7 +31,7 @@ else { <p class="empty-state">登入後查看個人行程。</p> }
 <div class="dashboard-card dashboard-signin"><div><h3>讓每一次觀察，都能持續追蹤</h3><p>登入後集中查看自選股、推薦追蹤與虛擬交易。</p></div><a class="btn btn-forest" asp-controller="Account" asp-action="Login">使用 Google 登入</a></div>
 } else {
 <div class="dashboard-grid">
-<a class="dashboard-card metric-card span-3" asp-controller="StockAnalysis" asp-action="Swing" asp-fragment="watchlist-heading"><h3>自選清單</h3><strong>@(inv?.WatchlistCount?.ToString() ?? "—")</strong><p>@(inv?.WatchlistCount == 0 ? "尚未加入自選股" : "已加入的股票與 ETF")</p></a>
+<a class="dashboard-card metric-card span-3" asp-controller="StockAnalysis" asp-action="Favorites"><h3>自選清單</h3><strong>@(inv?.WatchlistCount?.ToString() ?? "—")</strong><p>@(inv?.WatchlistCount == 0 ? "尚未加入自選股" : "已加入的股票與 ETF")</p></a>
 <a class="dashboard-card metric-card span-3" asp-controller="StockAnalysis" asp-action="RadarTracking" asp-route-Mine="true"><h3>推薦追蹤</h3><strong>@(inv?.TrackingCount?.ToString() ?? "—")</strong><p>持續追蹤中的推薦</p></a>
 <a class="dashboard-card metric-card span-3" asp-controller="StockAnalysis" asp-action="RadarPerformance"><h3>績效分析</h3><strong class="metric-label">1D → 20D</strong><p>檢視推薦後續表現</p></a>
 <a class="dashboard-card metric-card span-3" asp-controller="StockAnalysis" asp-action="PaperTrading"><h3>虛擬交易</h3><strong>@(inv?.OpenPositionCount?.ToString() ?? "—")<small> 持倉</small></strong><p>@(inv?.PendingOrderCount?.ToString() ?? "—") 筆待成交委託</p></a>

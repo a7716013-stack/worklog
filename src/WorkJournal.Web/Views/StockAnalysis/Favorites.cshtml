@@ -1,0 +1,14 @@
+@model List<SwingStock>
+@{ViewData["Title"]="自選清單";}
+<partial name="_Navigation" />
+<section class="page-heading"><div><p class="eyebrow">MY FAVORITES</p><h1>自選清單</h1><p>獨立收藏，最多 100 檔。移除自選不影響波段分析、績效追蹤或虛擬單。</p></div><a class="btn btn-forest" asp-action="Index">搜尋股票</a></section>
+<section class="panel"><h2>已收藏 @Model.Count 檔</h2>
+@if(Model.Count==0){<p>尚未收藏股票，搜尋名稱或代號開始。</p>}
+<div class="table-responsive"><table class="table"><thead><tr><th>股票</th><th>市場</th><th>操作</th></tr></thead><tbody>
+@foreach(var stock in Model){<tr data-symbol="@stock.Symbol"><td><a asp-action="Index" asp-route-symbol="@stock.Symbol">@stock.Symbol @stock.Name</a></td><td>@(stock.IsEtf?"ETF":stock.Market=="twse"?"上市":"上櫃")</td><td>
+<partial name="_AddToSwingButton" model="stock.Symbol" />
+<form asp-action="TrackStock" method="post" class="d-inline-block"><input type="hidden" name="symbol" value="@stock.Symbol"/><button class="btn btn-light btn-sm">加入績效追蹤</button></form>
+<a class="btn btn-light btn-sm" asp-action="PaperTrading" asp-route-symbol="@stock.Symbol">建立虛擬單</a>
+<form asp-action="ChangeFavorite" method="post" class="d-inline-block"><input type="hidden" name="symbol" value="@stock.Symbol"/><input type="hidden" name="remove" value="true"/><button class="btn btn-light btn-sm">移除自選</button></form>
+</td></tr>}
+</tbody></table></div></section>

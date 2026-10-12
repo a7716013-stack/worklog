@@ -29,7 +29,7 @@ public class HomeDashboardService(JournalDbContext db, ILogger<HomeDashboardServ
     public async Task<DashboardInvestmentSummary> InvestmentAsync(string userId, CancellationToken ct)
     {
         // Sequential DB operations: a scoped EF context must not be used concurrently.
-        var watch = await Read(async token => new CountValue(await db.StockWatchlistItems.CountAsync(x => x.ApplicationUserId == userId, token)), ct);
+        var watch = await Read(async token => new CountValue(await db.StockFavoriteItems.CountAsync(x => x.ApplicationUserId == userId, token)), ct);
         var tracking = await Read(async token => new CountValue(await db.MarketRadarPersonalTrackings.CountAsync(x => x.ApplicationUserId == userId && x.StoppedAt == null, token)), ct);
         var accounts = db.PaperTradingAccounts.Where(x => x.ApplicationUserId == userId).Select(x => x.Id);
         var positions = await Read(async token => new CountValue(await db.PaperPositions.CountAsync(x => accounts.Contains(x.AccountId) && x.Quantity > 0, token)), ct);

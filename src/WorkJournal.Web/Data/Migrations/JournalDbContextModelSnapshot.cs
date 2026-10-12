@@ -953,6 +953,48 @@ namespace WorkJournal.Web.Data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("WorkJournal.Web.Models.StockFavoriteItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<bool>("IsEtf")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Market")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.Property<string>("Symbol")
+                        .IsRequired()
+                        .HasMaxLength(6)
+                        .HasColumnType("nvarchar(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId", "Symbol")
+                        .IsUnique();
+
+                    b.ToTable("StockFavoriteItems");
+                });
+
             modelBuilder.Entity("WorkJournal.Web.Models.StockWatchlistItem", b =>
                 {
                     b.Property<int>("Id")
@@ -1250,6 +1292,15 @@ namespace WorkJournal.Web.Data.Migrations
                         .WithMany()
                         .HasForeignKey("ApplicationUserId")
                         .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.StockFavoriteItem", b =>
+                {
+                    b.HasOne("WorkJournal.Web.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("WorkJournal.Web.Models.StockWatchlistItem", b =>

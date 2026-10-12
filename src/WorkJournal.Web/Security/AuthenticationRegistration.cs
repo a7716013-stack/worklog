@@ -17,6 +17,7 @@ public static class AuthenticationRegistration
         services.AddHttpContextAccessor();
         services.AddScoped<ICurrentUser, CurrentUser>();
         services.AddScoped<StockWatchlistService>();
+        services.AddScoped<StockFavoriteService>();
         services.AddDataProtection().SetApplicationName("WorkJournal");
         // Provider failures can contain raw response bodies. Log only our sanitized failure event.
         services.AddLogging(logging => logging.AddFilter("Microsoft.AspNetCore.Authentication.Google", LogLevel.None));

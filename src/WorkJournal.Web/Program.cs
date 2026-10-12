@@ -22,7 +22,7 @@ builder.Services.AddScoped<WorkJournal.Web.Services.HomeDashboardService>();
 builder.Services.AddHttpClient<WorkJournal.Web.Services.TaiwanMarketRankingProvider>(client =>
 {
     client.Timeout = TimeSpan.FromSeconds(15);
-    client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 WorkJournal/1.3.1");
+    client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 WorkJournal/1.4.1");
 });
 builder.Services.AddScoped<WorkJournal.Web.Services.ITaiwanMarketRankingProvider>(sp => sp.GetRequiredService<WorkJournal.Web.Services.TaiwanMarketRankingProvider>());
 builder.Services.AddScoped<WorkJournal.Web.Services.IMarketRadarHistoryProvider, WorkJournal.Web.Services.FinMindRadarHistoryProvider>();
@@ -36,7 +36,7 @@ builder.Services.AddHttpClient<WorkJournal.Web.Services.FinMindStockService>(cli
 builder.Services.AddHttpClient<WorkJournal.Web.Services.EtfOfficialService>(client =>
 {
     client.Timeout = TimeSpan.FromSeconds(20);
-    client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 WorkJournal/1.3.1");
+    client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 WorkJournal/1.4.1");
 });
 builder.Services.AddOptions<WorkJournal.Web.Models.PaperTradingOptions>()
     .Bind(builder.Configuration.GetSection("PaperTrading"))

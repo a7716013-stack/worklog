@@ -1,39 +1,50 @@
 @model StockAnalysisViewModel
-@{ ViewData["Title"] = "個股分析"; }
+@{ ViewData["Title"]="股票研究"; var q=Model.Quote; string N(decimal? n)=>n?.ToString("N2")??"—"; }
+<link rel="stylesheet" href="~/css/stock-research.css" asp-append-version="true" />
 <partial name="_Navigation" />
-<section class="page-heading">
-    <div><p class="eyebrow">STOCK ANALYSIS</p><h1>個股分析</h1><p class="subheading">查看台股最新可用日行情與交易資訊</p></div>
-    <span class="status-badge planned">FinMind 日行情</span>
+<section class="page-heading"><div><p class="eyebrow">STOCK RESEARCH · 1.4.1</p><h1>搜尋股票，串起每一步研究</h1><p class="subheading">上市、上櫃與 ETF · 行情、趨勢與個人追蹤</p></div><a class="btn btn-light" asp-action="Favorites">☆ 我的自選</a></section>
+<section class="panel stock-search-panel">
+<form asp-action="Index" method="get" class="stock-search"><div class="stock-search-input"><label for="stock-query">股票名稱或代號</label><input id="stock-query" name="symbol" value="@Model.Query" class="form-control" maxlength="30" placeholder="例如：2330、台積電、0050" autocomplete="off" /></div><button class="btn btn-forest" type="submit">搜尋</button><a asp-action="Index" class="btn btn-light">清除</a></form>
+<p class="stock-message mt-3" role="status">@Model.Message</p>
+@if(Model.Matches.Count>0){<ul class="research-search-results">@foreach(var match in Model.Matches){<li><a asp-action="Index" asp-route-symbol="@match.Symbol">@match.Symbol @match.Name · @(match.IsEtf?"ETF":match.Market=="twse"?"上市":"上櫃")</a></li>}</ul>}
 </section>
-<section class="panel stock-search-panel" aria-labelledby="stock-search-heading">
-    <h2 id="stock-search-heading">查詢股票</h2>
-    <form method="get" asp-controller="StockAnalysis" asp-action="Index" class="stock-search">
-        <div class="stock-search-input">
-            <label asp-for="Symbol" class="form-label"></label>
-            <input asp-for="Symbol" class="form-control" placeholder="例如：2330、0050、00679B" maxlength="6" autocomplete="off" aria-describedby="stock-search-help" />
-            <span asp-validation-for="Symbol" class="text-danger"></span>
-        </div>
-        <button type="submit" class="btn btn-forest">搜尋</button>
-        <a asp-action="Index" class="btn btn-light">清除</a>
-    </form>
-    <p id="stock-search-help" class="muted mt-3 mb-0">資料來源：FinMind。行情為日資料，非盤中即時報價，快取 5 分鐘；「—」代表無資料。</p>
-    <p class="stock-message mb-0" role="status">@Model.Message</p>
+@if(!string.IsNullOrEmpty(Model.Symbol)){
+<div id="stock-research" data-symbol="@Model.Symbol" data-history="@Url.Action("ResearchData")" data-radar="@Url.Action("StockRadar")" data-membership="@Url.Action("StockMembership")" data-performance="@Url.Action("StockPerformance")" data-auth="@(User.Identity?.IsAuthenticated==true?"true":"false")">
+<section class="panel research-header mt-3" id="stock-quote-heading"><div><p class="eyebrow">@(q.IsEtf?"ETF":q.Market=="twse"?"上市":q.Market=="tpex"?"上櫃":"股票") · @q.Industry</p><h2>@(q.Name??"股票資料待更新") <span>@Model.Symbol</span></h2></div>
+<dl class="research-metrics"><div><dt>最新收盤（元）</dt><dd>@N(q.CurrentPrice)</dd></div><div><dt>漲跌幅</dt><dd>@N(q.ChangePercent)%</dd></div><div><dt>成交量（股）</dt><dd>@(q.Volume?.ToString("N0")??"—")</dd></div><div><dt>Radar Score</dt><dd id="radar-headline">載入中…</dd></div></dl>
+<p class="muted">行情日期：@(q.TradeDate?.ToString("yyyy/MM/dd")??"—") · FinMind 日行情，非盤中即時報價；快取 5 分鐘。各區塊依所列資料日期判讀。</p>
+<div class="research-actions">
+<form asp-action="ChangeFavorite" method="post"><input type="hidden" name="symbol" value="@Model.Symbol"/><button class="btn btn-light" data-membership-button="favorite">☆ 加入自選</button></form>
+<form asp-action="TrackStock" method="post"><input type="hidden" name="symbol" value="@Model.Symbol"/><button class="btn btn-light" data-membership-button="tracking">◎ 加入績效追蹤</button></form>
+<form asp-action="AddToSwing" method="post"><input type="hidden" name="symbol" value="@Model.Symbol"/><button class="btn btn-light" data-membership-button="swing">↗ 加入波段分析</button></form>
+<a class="btn btn-forest" asp-action="PaperTrading" asp-route-symbol="@Model.Symbol">＄建立虛擬單</a>
+</div><p id="membership-status" class="muted mt-2">@(User.Identity?.IsAuthenticated==true?"正在讀取個人清單…":"登入後可收藏、追蹤及建立虛擬單。")</p>
 </section>
-<section class="panel stock-quote-panel" aria-labelledby="stock-quote-heading">
-    <div class="panel-heading"><h2 id="stock-quote-heading">行情概覽</h2><span class="muted">@(Model.Quote.TradeDate.HasValue ? "交易日期：" + Model.Quote.TradeDate.Value.ToString("yyyy/MM/dd") : "尚無交易資料")</span></div>
-    <dl class="stock-quote-grid">
-        <div><dt>股票名稱</dt><dd>@(Model.Quote.Name ?? "—")</dd></div>
-        <div><dt>股票代號</dt><dd>@(string.IsNullOrEmpty(Model.Quote.Symbol) ? "—" : Model.Quote.Symbol)</dd></div>
-        <div><dt>最新收盤價（元）</dt><dd>@(Model.Quote.CurrentPrice?.ToString("N2") ?? "—")</dd></div>
-        <div><dt>漲跌幅</dt><dd>@(Model.Quote.ChangePercent.HasValue ? Model.Quote.ChangePercent.Value.ToString("0.##") + "%" : "—")</dd></div>
-        <div><dt>開盤價（元）</dt><dd>@(Model.Quote.OpenPrice?.ToString("N2") ?? "—")</dd></div>
-        <div><dt>最高價（元）</dt><dd>@(Model.Quote.HighPrice?.ToString("N2") ?? "—")</dd></div>
-        <div><dt>最低價（元）</dt><dd>@(Model.Quote.LowPrice?.ToString("N2") ?? "—")</dd></div>
-        <div><dt>成交量（股）</dt><dd>@(Model.Quote.Volume?.ToString("N0") ?? "—")</dd></div>
-    </dl>
+<div class="research-tabs" role="tablist" aria-label="個股研究分頁">
+@foreach(var tab in new[]{("overview","總覽"),("candles","K線"),("technical","技術"),("flows","籌碼"),("fundamental","基本面"),("events","事件"),("strategy","策略"),("performance","績效")}){
+<button type="button" role="tab" id="tab-@tab.Item1" aria-controls="panel-@tab.Item1" aria-selected="@(tab.Item1=="overview"?"true":"false")" tabindex="@(tab.Item1=="overview"?"0":"-1")" data-tab="@tab.Item1">@tab.Item2</button>}
+</div>
+<section role="tabpanel" id="panel-overview" aria-labelledby="tab-overview" class="research-panel">
+<div class="research-grid">
+<article class="panel"><p class="eyebrow">01 / PRICE</p><h3>現在多少錢？</h3><strong class="research-number">@N(q.CurrentPrice) 元</strong><p>最新收盤 · @(q.TradeDate?.ToString("yyyy/MM/dd")??"無資料")</p><p>開 @N(q.OpenPrice) ／ 高 @N(q.HighPrice) ／ 低 @N(q.LowPrice)</p><button class="btn btn-light btn-sm" data-open-tab="candles">查看 K 線</button></article>
+<article class="panel"><p class="eyebrow">02 / VOLUME</p><h3>成交量是否異常？</h3><div id="volume-summary" role="status">載入中…</div><p class="muted">量比＝當日量／前 N 個交易日均量，不含當日。≥1.5 倍放量、≤0.7 倍縮量；僅供觀察。</p></article>
+<article class="panel"><p class="eyebrow">03 / INSTITUTIONS</p><h3>法人最近在買還是賣？</h3><div id="flow-summary">載入中…</div><button class="btn btn-light btn-sm" data-open-tab="flows">查看法人明細</button></article>
+<article class="panel"><p class="eyebrow">04 / FUNDAMENTALS</p><h3>基本面最近如何？</h3>
+@if(q.IsEtf){<p>ETF 採淨值、折溢價、配息與費用資訊，不套用公司營收與本益比。</p>}
+else{<p>營收月份：@(q.Fundamentals.RevenueMonth?.ToString("yyyy/MM")??"—")</p><p>營收年增 @N(q.Fundamentals.RevenueYoY)% ／ 月增 @N(q.Fundamentals.RevenueMoM)%</p><p>本益比 @N(q.Fundamentals.PE) 倍 · 估值日期 @(q.Fundamentals.ValuationDate?.ToString("yyyy/MM/dd")??"—")</p>}
+<button class="btn btn-light btn-sm" data-open-tab="fundamental">查看基本面</button></article>
+<article class="panel"><p class="eyebrow">05 / RADAR</p><h3>Radar 怎麼評？</h3><div id="radar-summary">載入中…</div><div id="radar-parts"></div><button type="button" class="btn btn-light btn-sm" id="retry-radar">重新載入 Radar／事件</button></article>
+<article class="panel"><p class="eyebrow">06 / EVENTS</p><h3>最近有沒有重大資訊？</h3><div id="event-summary">載入中…</div><button class="btn btn-light btn-sm" data-open-tab="events">查看事件來源</button></article>
+</div>
+<article class="panel mt-3"><p class="eyebrow">07 / TREND</p><h3>目前趨勢如何？</h3><p id="trend-summary" role="status">載入中…</p><div class="stock-chart" data-chart="line"></div><p class="muted">未還原日行情；除權息與分割可能影響走勢及技術指標。均線為交易日簡單平均。短期依 MA20、中期依 MA60 位置與方向判讀，非買賣指令。</p><button class="btn btn-light btn-sm" data-open-tab="technical">查看技術分析</button><a class="btn btn-light btn-sm" asp-action="Swing" asp-route-symbol="@Model.Symbol">查看波段分析</a><button id="retry-history" class="btn btn-light btn-sm">重新載入走勢</button></article>
 </section>
-@if (Model.Quote.TradeDate != null && Model.Quote.CurrentPrice > 0)
-{
-    <a class="btn btn-forest mt-3" asp-controller="StockAnalysis" asp-action="PaperTrading" asp-route-symbol="@Model.Quote.Symbol">虛擬買進</a>
+<section role="tabpanel" id="panel-candles" aria-labelledby="tab-candles" hidden class="panel research-panel"><h2>K 線與成交量</h2><div class="stock-chart" data-chart="candles"></div><p>紅漲綠跌，十字為開收相同；空缺資料不繪製。點選圖表可查看同日價格與量能。</p></section>
+<section role="tabpanel" id="panel-technical" aria-labelledby="tab-technical" hidden class="research-panel"><partial name="_ResearchTechnicals" model="q" /></section>
+<section role="tabpanel" id="panel-flows" aria-labelledby="tab-flows" hidden class="panel research-panel"><h2>三大法人買賣超</h2><div id="flow-detail">載入中…</div><p>單位：股。按行情交易日對齊，缺少任一日資料不以 0 補值。</p></section>
+<section role="tabpanel" id="panel-fundamental" aria-labelledby="tab-fundamental" hidden class="research-panel"><partial name="_ResearchFundamentals" model="q" />@if(!q.IsEtf){<p class="muted">EPS 尚未接入資料來源，暫不提供數值。</p>}</section>
+<section role="tabpanel" id="panel-events" aria-labelledby="tab-events" hidden class="panel research-panel"><h2>重大資訊與公告</h2><div id="event-detail">載入中…</div><p>未取得公告不代表沒有重大消息；摘要依來源內容呈現。</p></section>
+<section role="tabpanel" id="panel-strategy" aria-labelledby="tab-strategy" hidden class="panel research-panel"><h2>波段策略條件</h2><p>使用既有波段模型，與 Radar 分數分開呈現。</p><div id="strategy-detail">載入中…</div><a class="btn btn-light" asp-action="Swing" asp-route-symbol="@Model.Symbol">開啟波段分析</a></section>
+<section role="tabpanel" id="panel-performance" aria-labelledby="tab-performance" hidden class="panel research-panel"><h2>我的追蹤與虛擬交易</h2><div id="performance-detail">@(User.Identity?.IsAuthenticated==true?"載入中…":"登入後查看你的追蹤與交易紀錄。")</div><div class="research-actions"><a class="btn btn-light" asp-action="RadarPerformance" asp-route-Mine="true" asp-route-Symbol="@Model.Symbol">績效模型</a><a class="btn btn-light" asp-action="RadarTracking" asp-route-Mine="true" asp-route-Symbol="@Model.Symbol">個人追蹤</a><a class="btn btn-light" asp-action="PaperTrading" asp-route-symbol="@Model.Symbol">虛擬交易</a></div></section>
+</div>
 }
-<partial name="_Analysis" model="Model.Quote" />
+@section Scripts {<script src="~/js/stock-research.js" asp-append-version="true"></script>}

@@ -29,8 +29,8 @@ public static class Checks
    var day=HomeDashboardService.Today;
    setup.MarketRadarCaptureBatches.Add(new(){TradeDate=day,Count=7,CreatedAt=DateTimeOffset.UtcNow});
    setup.WorkLogs.AddRange(new WorkLog{ApplicationUserId="alice",Title="<script>alert(1)</script> 我的今日工作",Content="fixture",WorkDate=day},new WorkLog{ApplicationUserId="bob",Title="BOB_PRIVATE_WORK",Content="fixture",WorkDate=day});
-   setup.StockWatchlistItems.Add(new(){ApplicationUserId="alice",Symbol="2330",Name="台積電",Market="twse"});
-   for(int i=0;i<3;i++)setup.StockWatchlistItems.Add(new(){ApplicationUserId="bob",Symbol=(6000+i).ToString(),Name="BOB_PRIVATE_STOCK",Market="twse"});
+   setup.StockFavoriteItems.Add(new(){ApplicationUserId="alice",Symbol="2330",Name="台積電",Market="twse"});
+   for(int i=0;i<3;i++)setup.StockFavoriteItems.Add(new(){ApplicationUserId="bob",Symbol=(6000+i).ToString(),Name="BOB_PRIVATE_STOCK",Market="twse"});
    var account=new PaperTradingAccount{ApplicationUserId="bob",InitialCash=100000,Cash=90000};
    setup.PaperTradingAccounts.Add(account);
    await setup.SaveChangesAsync();
@@ -61,7 +61,7 @@ public static class Checks
    Check(!encoded.Contains("<script>alert(1)</script>"),"Razor encodes work title");
    Check(home.Contains("data-bs-target=\"#main-navigation\"")&&home.Contains("aria-expanded=\"false\""),"mobile Bootstrap navigation markup");
    Check(home.Contains("aria-current=\"page\""),"current page accessible");
-   foreach(var route in new[]{"/WorkLogs","/StockAnalysis/MarketRadar","/StockAnalysis/Swing#watchlist-heading","/StockAnalysis/RadarTracking","/StockAnalysis/RadarPerformance","/StockAnalysis/PaperTrading","/GoogleCalendar"})Check(home.Contains(route),"navigation route "+route);
+   foreach(var route in new[]{"/WorkLogs","/StockAnalysis/MarketRadar","/StockAnalysis/Favorites","/StockAnalysis/RadarTracking","/StockAnalysis/RadarPerformance","/StockAnalysis/PaperTrading","/GoogleCalendar"})Check(home.Contains(route),"navigation route "+route);
    using(var scope=factory.Services.CreateScope()){
     var service=scope.ServiceProvider.GetRequiredService<HomeDashboardService>();
     var a=await service.InvestmentAsync("alice",default);var b=await service.InvestmentAsync("bob",default);
