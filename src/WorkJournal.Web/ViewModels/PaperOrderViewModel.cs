@@ -3,6 +3,7 @@ using WorkJournal.Web.Models;
 namespace WorkJournal.Web.ViewModels;
 public class PaperOrderViewModel : IValidatableObject
 {
+    public long? StrategySignalId { get; set; }
     [Required, StringLength(6), RegularExpression(@"[0-9]{4}[0-9A-Z]{0,2}", ErrorMessage = "請輸入有效的台股代號。"), Display(Name = "股票代號")]
     public string StockId { get; set; } = "";
     [EnumDataType(typeof(PaperOrderSide)), Display(Name = "方向")]

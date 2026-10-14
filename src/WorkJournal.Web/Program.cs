@@ -50,6 +50,7 @@ builder.Services.AddOptions<WorkJournal.Web.Models.PaperTradingOptions>()
 builder.Services.AddScoped<WorkJournal.Web.Services.IPaperTradingService, WorkJournal.Web.Services.PaperTradingService>();
 WorkJournal.Web.Services.RadarTrackingRegistration.AddRadarTracking(builder.Services);
 WorkJournal.Web.Services.InvestmentInsightsRegistration.AddInvestmentInsights(builder.Services);
+WorkJournal.Web.Services.StrategyRegistration.AddStrategyCenter(builder.Services, builder.Configuration);
 var app = builder.Build();
 app.UseMiddleware<TrustedOriginMiddleware>();
 if (!app.Environment.IsDevelopment())

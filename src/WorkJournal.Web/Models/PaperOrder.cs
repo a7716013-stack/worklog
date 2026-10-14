@@ -2,6 +2,7 @@ namespace WorkJournal.Web.Models;
 public class PaperOrder
 {
     public long Id { get; set; }
+    public long? StrategySignalId { get; set; }
     public int AccountId { get; set; }
     public Guid ClientRequestId { get; set; }
     public string StockId { get; set; } = "";

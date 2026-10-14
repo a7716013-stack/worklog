@@ -1,11 +1,7 @@
-@{ var action = ViewContext.RouteData.Values["action"]?.ToString(); var isPaper = action is "PaperTrading" or "PlacePaperOrder"; }
+@{var action=ViewContext.RouteData.Values["action"]?.ToString();}
 <nav class="d-flex flex-wrap gap-2 mb-4" aria-label="分析介面切換">
-    <a class="btn @(action == "MarketRadar" ? "btn-forest" : "btn-light")" asp-controller="StockAnalysis" asp-action="MarketRadar" aria-current="@(action == "MarketRadar" ? "page" : null)">市場熱門排行</a>
-    <a class="btn @(action == "Index" ? "btn-forest" : "btn-light")" asp-controller="StockAnalysis" asp-action="Index" aria-current="@(action == "Index" ? "page" : null)">個股分析</a>
-    <a class="btn @(action == "Swing" ? "btn-forest" : "btn-light")" asp-controller="StockAnalysis" asp-action="Swing" aria-current="@(action == "Swing" ? "page" : null)">波段分析</a>
-    <a class="btn @(isPaper ? "btn-forest" : "btn-light")" asp-controller="StockAnalysis" asp-action="PaperTrading" aria-current="@(isPaper ? "page" : null)">虛擬交易</a>
-    <a class="btn @(action is "RadarTracking" or "RadarSnapshot" ? "btn-forest" : "btn-light")" asp-action="RadarTracking">推薦績效追蹤</a>
-    <a class="btn @(action == "RadarPerformance" ? "btn-forest" : "btn-light")" asp-action="RadarPerformance">績效／模型驗證</a>
-    <a class="btn @(action == "RadarPaperComparison" ? "btn-forest" : "btn-light")" asp-action="RadarPaperComparison">虛擬單對照</a>
-    <a class="btn btn-light" asp-controller="StockAnalysis" asp-action="Favorites">自選清單</a>
+<a class="btn @(action=="MarketRadar"?"btn-forest":"btn-light")" asp-action="MarketRadar">市場分析排行</a>
+<a class="btn @(action is "Strategies" or "StrategySignal"?"btn-forest":"btn-light")" asp-action="Strategies">策略分析</a>
+<a class="btn @(action is "PaperTrading" or "PlacePaperOrder"?"btn-forest":"btn-light")" asp-action="PaperTrading">虛擬投資組合</a>
+<details><summary class="btn btn-light">研究工具</summary><div class="panel d-flex flex-wrap gap-2 mt-2"><a asp-action="Index">搜尋／個股分析</a><a asp-action="Swing">波段分析</a><a asp-action="Favorites">自選清單</a><a asp-action="RadarTracking">推薦績效追蹤</a><a asp-action="RadarPerformance">績效／模型驗證</a><a asp-action="RadarPaperComparison">虛擬單對照</a></div></details>
 </nav>

@@ -81,9 +81,11 @@ public class PaperTradingService(JournalDbContext db, FinMindStockService stocks
             if (account.Generation != input.AccountGeneration) throw new ValidationException("帳戶已重設，請重新整理後再建立委託。");
             var existing = await db.PaperOrders.SingleOrDefaultAsync(x => OwnedAccountIds.Contains(x.AccountId) && x.ClientRequestId == input.ClientRequestId, ct);
             if (existing != null) return existing; // Form replay and ambiguous commit retries return the same order.
+            if (input.StrategySignalId.HasValue && !await db.StrategySignals.AnyAsync(x => x.Id == input.StrategySignalId && x.Symbol == input.StockId, ct))
+                throw new ValidationException("策略訊號不存在或股票代號不符。");
             var quote = lookup.Quote;
             var order = new PaperOrder {
-                AccountId = account.Id, ClientRequestId = input.ClientRequestId, StockId = input.StockId,
+                AccountId = account.Id, ClientRequestId = input.ClientRequestId, StockId = input.StockId, StrategySignalId = input.StrategySignalId,
                 StockName = quote?.Name ?? input.StockId, IsEtf = quote?.IsEtf ?? false,
                 Side = input.Side, OrderType = input.OrderType, Quantity = input.Quantity,
                 LimitPrice = input.LimitPrice, SubmittedTradeDate = quote?.TradeDate

@@ -10,6 +10,7 @@
 @if(Model.Matches.Count>0){<ul class="research-search-results">@foreach(var match in Model.Matches){<li><a asp-action="Index" asp-route-symbol="@match.Symbol">@match.Symbol @match.Name · @(match.IsEtf?"ETF":match.Market=="twse"?"上市":"上櫃")</a></li>}</ul>}
 </section>
 @if(!string.IsNullOrEmpty(Model.Symbol)){
+<p><a class="btn btn-light" asp-action="Strategies" asp-route-symbol="@Model.Symbol" asp-route-tab="signals">查看本股策略訊號與 Episode</a> <a class="btn btn-light" asp-action="Strategies" asp-route-symbol="@Model.Symbol" asp-route-tab="performance">策略歷史績效</a></p>
 <div id="stock-research" data-symbol="@Model.Symbol" data-history="@Url.Action("ResearchData")" data-radar="@Url.Action("StockRadar")" data-membership="@Url.Action("StockMembership")" data-performance="@Url.Action("StockPerformance")" data-auth="@(User.Identity?.IsAuthenticated==true?"true":"false")">
 <section class="panel research-header mt-3" id="stock-quote-heading"><div><p class="eyebrow">@(q.IsEtf?"ETF":q.Market=="twse"?"上市":q.Market=="tpex"?"上櫃":"股票") · @q.Industry</p><h2>@(q.Name??"股票資料待更新") <span>@Model.Symbol</span></h2></div>
 <dl class="research-metrics"><div><dt>最新收盤（元）</dt><dd>@N(q.CurrentPrice)</dd></div><div><dt>漲跌幅</dt><dd>@N(q.ChangePercent)%</dd></div><div><dt>成交量（股）</dt><dd>@(q.Volume?.ToString("N0")??"—")</dd></div><div><dt>Radar Score</dt><dd id="radar-headline">載入中…</dd></div></dl>

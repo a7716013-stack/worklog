@@ -15,7 +15,7 @@
 }
 <partial name="_Navigation" />
 <section class="page-heading">
-    <div><p class="eyebrow">MY VIRTUAL PORTFOLIO · v1.4.2</p><h1>我的虛擬投資組合</h1><p class="subheading">模擬交易，不會送出真實證券委託</p></div>
+    <div><p class="eyebrow">MY VIRTUAL PORTFOLIO · v1.5.1</p><h1>我的虛擬投資組合</h1><p class="subheading">模擬交易，不會送出真實證券委託</p></div>
     <form asp-action="RefreshPaperOrders" method="post"><button class="btn btn-forest" type="submit">檢查待成交委託</button></form>
 </section>
 <div class="alert alert-info">
@@ -26,7 +26,7 @@
     <div class="alert alert-warning" role="status">部分行情暫時無法取得；部分持股缺少最新行情，總資產估值不完整。</div>
 }
 <link rel="stylesheet" href="~/css/investment-insights.css" asp-append-version="true" />
-<div id="portfolio-app" data-history-url="@Url.Action("PortfolioHistory")" data-default-tab="@(ViewData.ModelState.IsValid&&string.IsNullOrEmpty(Model.Order.StockId)?"positions":"orders")">
+<div class="strategy-portfolio-layout"><div><div id="portfolio-app" data-history-url="@Url.Action("PortfolioHistory")" data-default-tab="@(ViewData.ModelState.IsValid&&string.IsNullOrEmpty(Model.Order.StockId)?"positions":"orders")">
 <section class="panel portfolio-hero"><div class="insight-heading"><div><p class="eyebrow">TOTAL ASSETS · TWD</p><h2>總資產</h2><strong id="portfolio-total">$@Money(portfolio.TotalAssets)</strong><p>累積報酬 <b class="@Tone(portfolio.TotalReturnPercent)">@Money(portfolio.TotalReturnPercent)%</b></p></div><button class="btn btn-forest" type="button" data-portfolio-open="orders">＋建立虛擬單</button></div>
 <div class="portfolio-metrics insight-grid">
 <div><span>最大回撤</span><strong id="portfolio-drawdown">載入中…</strong><small>每日資產觀測期間</small></div>
@@ -70,6 +70,8 @@
     <h2 id="paper-order-title">建立虛擬委託</h2>
     <form asp-action="PlacePaperOrder" method="post" id="paper-order-form">
         <input asp-for="RecommendationId" type="hidden" />
+        <input asp-for="Order.StrategySignalId" type="hidden" />
+        @if (Model.Order.StrategySignalId.HasValue) { <p class="alert alert-info">來源：<a asp-action="StrategySignal" asp-route-id="@Model.Order.StrategySignalId">策略訊號 #@Model.Order.StrategySignalId</a>。請確認目前行情與委託內容；快照價格不作為成交價。</p> }
         @if (Model.Recommendation is {} recommendation) {
             <p class="alert alert-info">推薦來源：@recommendation.TradeDate · @recommendation.StockId @recommendation.StockName · 分數 @(recommendation.Score?.ToString() ?? "不完整")。請自行確認委託內容後送出。</p>
         }
@@ -124,6 +126,12 @@
 @foreach(var item in stats.Investments){<tr><td><a asp-action="Index" asp-route-symbol="@item.Symbol">@item.Symbol</a></td><td>@Time(item.OpenedAt)</td><td>@Time(item.ClosedAt)</td><td>@Money(item.Invested)</td><td class="@Tone(item.Profit)">@Money(item.Profit)</td><td>@Money(item.ReturnPercent)%</td></tr>}
 </tbody></table></div>@if(stats.Completed==0){<p>尚無完整出清的交易，統計等待累積。</p>}</section></section>
 </div>
+</div><aside class="panel"><h2>自選清單</h2><div id="strategy-favorites" data-url="@Url.Action("FavoriteItems")">載入中…</div><a asp-action="Favorites">管理自選清單</a></aside></div>
+<section class="panel mt-4"><h2>績效追蹤</h2><p>個人模型驗證與策略 Episode 分開統計。</p><a asp-action="RadarTracking" class="btn btn-light">我的追蹤</a> <a asp-action="Strategies" asp-route-tab="performance" class="btn btn-light">策略績效</a> <a asp-action="RadarPerformance" class="btn btn-light">模型驗證</a></section>
+<section class="panel mt-4"><h2>虛擬單與策略來源對照</h2><p>交易依個人操作與既有費稅計算，模型績效依固定交易日觀察。</p>
+@foreach(var order in portfolio.Orders.Where(x=>x.StrategySignalId.HasValue)){<p><a asp-action="Index" asp-route-symbol="@order.StockId">@order.StockId @order.StockName</a> · @Status(order.Status) · <a asp-action="StrategySignal" asp-route-id="@order.StrategySignalId">策略訊號 #@order.StrategySignalId</a></p>}
+<a asp-action="RadarPaperComparison" class="btn btn-light">既有 Radar 虛擬單對照</a></section>
+<link rel="stylesheet" href="~/css/strategy-center.css" asp-append-version="true" />
 <section class="panel paper-section mt-4">
     <details><summary>重設虛擬帳戶</summary>
         <p class="mt-3">清除所有虛擬委託、成交及持倉，現金恢復為初始資金 @Money(account.InitialCash) 元。工作日誌不受影響。</p>
@@ -134,4 +142,4 @@
         </form>
     </details>
 </section>
-@section Scripts { <script src="~/js/paper-trading.js" asp-append-version="true"></script><script src="~/js/portfolio-insights.js" asp-append-version="true"></script> }
+@section Scripts { <script src="~/js/strategy-center.js" asp-append-version="true"></script> <script src="~/js/paper-trading.js" asp-append-version="true"></script><script src="~/js/portfolio-insights.js" asp-append-version="true"></script> }

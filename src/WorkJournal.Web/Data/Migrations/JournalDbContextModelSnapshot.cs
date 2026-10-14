@@ -776,10 +776,15 @@ namespace WorkJournal.Web.Data.Migrations
                         .HasMaxLength(120)
                         .HasColumnType("nvarchar(120)");
 
+                    b.Property<long?>("StrategySignalId")
+                        .HasColumnType("bigint");
+
                     b.Property<DateOnly?>("SubmittedTradeDate")
                         .HasColumnType("date");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("StrategySignalId");
 
                     b.HasIndex("AccountId", "ClientRequestId")
                         .IsUnique();
@@ -1018,6 +1023,99 @@ namespace WorkJournal.Web.Data.Migrations
                     b.ToTable("PortfolioDailyValues");
                 });
 
+            modelBuilder.Entity("WorkJournal.Web.Models.ScanProfile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BenchmarkMinScore")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("BreakoutVolumeRatio")
+                        .HasPrecision(28, 8)
+                        .HasColumnType("decimal(28,8)");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<int>("ForeignBuyDays")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IncludeTPEx")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IncludeTWSE")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("MinAvgTradingValue20D")
+                        .HasPrecision(28, 8)
+                        .HasColumnType("decimal(28,8)");
+
+                    b.Property<decimal?>("MinAvgVolume20D")
+                        .HasPrecision(28, 8)
+                        .HasColumnType("decimal(28,8)");
+
+                    b.Property<int>("MinHistoryDays")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
+                    b.Property<int>("RadarMinScore")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RecommendationGradeScore")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RecommendationMinScore")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StrongRecommendationMinScore")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TrendVolumeRatio")
+                        .HasPrecision(28, 8)
+                        .HasColumnType("decimal(28,8)");
+
+                    b.Property<int>("TrustBuyDays")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UniverseCode")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("UniverseVersion")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Version")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Code", "Version")
+                        .IsUnique();
+
+                    b.ToTable("ScanProfiles");
+                });
+
             modelBuilder.Entity("WorkJournal.Web.Models.StockFavoriteItem", b =>
                 {
                     b.Property<int>("Id")
@@ -1100,6 +1198,412 @@ namespace WorkJournal.Web.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("StockWatchlistItems");
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.StrategyDailyStock", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Json")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Market")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RadarScore")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StockName")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
+                    b.Property<string>("SwingLevel")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Symbol")
+                        .IsRequired()
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
+
+                    b.Property<DateOnly>("TradeDate")
+                        .HasColumnType("date");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProfileId", "TradeDate", "Symbol")
+                        .IsUnique();
+
+                    b.ToTable("StrategyDailyStocks");
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.StrategyEpisode", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<int>("ConfirmedDays")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EndReason")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<DateOnly?>("EndedTradeDate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("EntrySignalLevel")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<int>("GapDays")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("HasObservationGap")
+                        .HasColumnType("bit");
+
+                    b.Property<DateOnly>("LastMatchedDate")
+                        .HasColumnType("date");
+
+                    b.Property<bool>("PriorStateUnknown")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<DateOnly>("StartedTradeDate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("StrategyCode")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("StrategyVersion")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Symbol")
+                        .IsRequired()
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProfileId", "Symbol", "StrategyCode", "StrategyVersion")
+                        .IsUnique()
+                        .HasFilter("[EndedTradeDate] IS NULL");
+
+                    b.ToTable("StrategyEpisodes");
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.StrategyEvaluation", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("EligibilityStatus")
+                        .IsRequired()
+                        .HasMaxLength(24)
+                        .HasColumnType("nvarchar(24)");
+
+                    b.Property<bool>("IsFinal")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<long>("RunId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(24)
+                        .HasColumnType("nvarchar(24)");
+
+                    b.Property<string>("StrategyCode")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("StrategyVersion")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Symbol")
+                        .IsRequired()
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
+
+                    b.Property<DateOnly>("TradeDate")
+                        .HasColumnType("date");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RunId");
+
+                    b.HasIndex("ProfileId", "TradeDate", "Symbol", "StrategyCode", "StrategyVersion")
+                        .IsUnique();
+
+                    b.ToTable("StrategyEvaluations");
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.StrategyScanRun", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<int>("ApiCalls")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CacheHits")
+                        .HasColumnType("int");
+
+                    b.Property<DateTimeOffset?>("CompletedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<long>("ElapsedMilliseconds")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("HitCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(1500)
+                        .HasColumnType("nvarchar(1500)");
+
+                    b.Property<int>("PendingCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QualifiedCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RecommendationCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SkippedCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTimeOffset>("StartedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(24)
+                        .HasColumnType("nvarchar(24)");
+
+                    b.Property<DateOnly>("TradeDate")
+                        .HasColumnType("date");
+
+                    b.Property<int>("UniverseCount")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProfileId");
+
+                    b.HasIndex("TradeDate", "ProfileId");
+
+                    b.ToTable("StrategyScanRuns");
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.StrategySignal", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<long>("EpisodeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Market")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int?>("Score")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SignalLevel")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("SignalType")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
+
+                    b.Property<string>("StockName")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
+                    b.Property<string>("StrategyCode")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("StrategyVersion")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Symbol")
+                        .IsRequired()
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
+
+                    b.Property<DateOnly>("TradeDate")
+                        .HasColumnType("date");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EpisodeId");
+
+                    b.HasIndex("ProfileId", "TradeDate", "Symbol", "StrategyCode", "StrategyVersion")
+                        .IsUnique();
+
+                    b.ToTable("StrategySignals");
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.StrategySignalPerformance", b =>
+                {
+                    b.Property<long>("StrategySignalId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("Completed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsReferenceOnly")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Json")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("NextOpen")
+                        .HasPrecision(28, 8)
+                        .HasColumnType("decimal(28,8)");
+
+                    b.Property<DateOnly?>("NextOpenDate")
+                        .HasColumnType("date");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("StrategySignalId");
+
+                    b.ToTable("StrategySignalPerformances");
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.StrategySignalSnapshot", b =>
+                {
+                    b.Property<long>("StrategySignalId")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal>("Close")
+                        .HasPrecision(28, 8)
+                        .HasColumnType("decimal(28,8)");
+
+                    b.Property<DateTimeOffset>("DataAvailableAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Industry")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
+                    b.Property<string>("Json")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("MarketHeat")
+                        .HasPrecision(28, 8)
+                        .HasColumnType("decimal(28,8)");
+
+                    b.Property<string>("ScoreVersion")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("StrategySignalId");
+
+                    b.ToTable("StrategySignalSnapshots");
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.StrategySourceCache", b =>
+                {
+                    b.Property<string>("Key")
+                        .HasMaxLength(180)
+                        .HasColumnType("nvarchar(180)");
+
+                    b.Property<DateTimeOffset>("ExpiresAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset>("FetchedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Json")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Key");
+
+                    b.ToTable("StrategySourceCaches");
                 });
 
             modelBuilder.Entity("WorkJournal.Web.Models.WorkLog", b =>
@@ -1325,6 +1829,11 @@ namespace WorkJournal.Web.Data.Migrations
                         .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("WorkJournal.Web.Models.StrategySignal", null)
+                        .WithMany()
+                        .HasForeignKey("StrategySignalId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("WorkJournal.Web.Models.PaperPosition", b =>
@@ -1386,6 +1895,62 @@ namespace WorkJournal.Web.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("WorkJournal.Web.Models.StrategyEpisode", b =>
+                {
+                    b.HasOne("WorkJournal.Web.Models.ScanProfile", null)
+                        .WithMany()
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.StrategyEvaluation", b =>
+                {
+                    b.HasOne("WorkJournal.Web.Models.StrategyScanRun", null)
+                        .WithMany()
+                        .HasForeignKey("RunId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.StrategyScanRun", b =>
+                {
+                    b.HasOne("WorkJournal.Web.Models.ScanProfile", null)
+                        .WithMany()
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.StrategySignal", b =>
+                {
+                    b.HasOne("WorkJournal.Web.Models.StrategyEpisode", "Episode")
+                        .WithMany()
+                        .HasForeignKey("EpisodeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Episode");
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.StrategySignalPerformance", b =>
+                {
+                    b.HasOne("WorkJournal.Web.Models.StrategySignal", null)
+                        .WithOne("Performance")
+                        .HasForeignKey("WorkJournal.Web.Models.StrategySignalPerformance", "StrategySignalId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.StrategySignalSnapshot", b =>
+                {
+                    b.HasOne("WorkJournal.Web.Models.StrategySignal", null)
+                        .WithOne("Snapshot")
+                        .HasForeignKey("WorkJournal.Web.Models.StrategySignalSnapshot", "StrategySignalId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("WorkJournal.Web.Models.WorkLog", b =>
                 {
                     b.HasOne("WorkJournal.Web.Models.ApplicationUser", "User")
@@ -1406,6 +1971,14 @@ namespace WorkJournal.Web.Data.Migrations
             modelBuilder.Entity("WorkJournal.Web.Models.MarketRadarRecommendation", b =>
                 {
                     b.Navigation("Performance");
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.StrategySignal", b =>
+                {
+                    b.Navigation("Performance");
+
+                    b.Navigation("Snapshot")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

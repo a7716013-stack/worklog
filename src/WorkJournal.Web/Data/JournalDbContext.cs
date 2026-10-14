@@ -7,6 +7,7 @@ public class JournalDbContext(DbContextOptions<JournalDbContext> options) : Iden
 {
     private void ProtectRadarSnapshots()
     {
+        StrategyMapping.Protect(this);
         if(ChangeTracker.Entries<MarketRadarRecommendation>().Any(x=>x.State is EntityState.Modified or EntityState.Deleted))
             throw new InvalidOperationException("已保存的推薦快照不可修改或刪除。");
     }
@@ -15,6 +16,15 @@ public class JournalDbContext(DbContextOptions<JournalDbContext> options) : Iden
     public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess,CancellationToken cancellationToken=default)
     {ProtectRadarSnapshots();return base.SaveChangesAsync(acceptAllChangesOnSuccess,cancellationToken);}
     public DbSet<MarketRadarRecommendation> MarketRadarRecommendations => Set<MarketRadarRecommendation>();
+    public DbSet<ScanProfile> ScanProfiles => Set<ScanProfile>();
+    public DbSet<StrategyDailyStock> StrategyDailyStocks => Set<StrategyDailyStock>();
+    public DbSet<StrategyScanRun> StrategyScanRuns => Set<StrategyScanRun>();
+    public DbSet<StrategySourceCache> StrategySourceCaches => Set<StrategySourceCache>();
+    public DbSet<StrategyEpisode> StrategyEpisodes => Set<StrategyEpisode>();
+    public DbSet<StrategyEvaluation> StrategyEvaluations => Set<StrategyEvaluation>();
+    public DbSet<StrategySignal> StrategySignals => Set<StrategySignal>();
+    public DbSet<StrategySignalSnapshot> StrategySignalSnapshots => Set<StrategySignalSnapshot>();
+    public DbSet<StrategySignalPerformance> StrategySignalPerformances => Set<StrategySignalPerformance>();
     public DbSet<MarketRadarCaptureBatch> MarketRadarCaptureBatches => Set<MarketRadarCaptureBatch>();
     public DbSet<MarketRadarDailySelection> MarketRadarDailySelections => Set<MarketRadarDailySelection>();
     public DbSet<MarketRadarPerformance> MarketRadarPerformances => Set<MarketRadarPerformance>();
@@ -54,6 +64,7 @@ public class JournalDbContext(DbContextOptions<JournalDbContext> options) : Iden
             .OnDelete(DeleteBehavior.Cascade);
         PaperTradingMapping.Configure(modelBuilder);
         MarketRadarMapping.Configure(modelBuilder);
+        StrategyMapping.Configure(modelBuilder);
         modelBuilder.Entity<WorkLog>().Property(x => x.Hours).HasPrecision(5, 2);
         modelBuilder.Entity<WorkLog>().HasIndex(x => x.WorkDate);
         modelBuilder.Entity<WorkLog>().HasIndex(x => x.Status);

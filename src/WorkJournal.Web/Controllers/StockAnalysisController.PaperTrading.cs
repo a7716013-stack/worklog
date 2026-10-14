@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using WorkJournal.Web.Models;
@@ -9,9 +10,16 @@ public partial class StockAnalysisController
 {
     [Microsoft.AspNetCore.Authorization.Authorize, HttpGet, ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public async Task<IActionResult> PaperTrading([FromServices] IPaperTradingService paper,
-        [FromServices] IOptions<PaperTradingOptions> options, string? symbol, PaperOrderSide side, CancellationToken cancellationToken, long? recommendationId = null)
+        [FromServices] IOptions<PaperTradingOptions> options, string? symbol, PaperOrderSide side, CancellationToken cancellationToken, long? recommendationId = null, long? strategySignalId = null)
     {
         MarketRadarRecommendation? recommendation = null;
+        if (strategySignalId.HasValue)
+        {
+            if (recommendationId.HasValue) return BadRequest("請選擇單一主要來源。");
+            var signal = await HttpContext.RequestServices.GetRequiredService<WorkJournal.Web.Data.JournalDbContext>().StrategySignals.AsNoTracking().SingleOrDefaultAsync(x => x.Id == strategySignalId, cancellationToken);
+            if (signal == null) return NotFound();
+            symbol = signal.Symbol;
+        }
         if (recommendationId.HasValue)
         {
             var links = HttpContext.RequestServices.GetRequiredService<RadarPaperTradingComparisonService>();
@@ -24,7 +32,7 @@ public partial class StockAnalysisController
         return View(new PaperTradingViewModel {
             RecommendationId = recommendationId, Recommendation = recommendation,
             Portfolio = portfolio, Costs = options.Value,
-            Order = new() { StockId = ValidSwingSymbol(symbol?.ToUpperInvariant()) ? symbol!.ToUpperInvariant() : "",
+            Order = new() { StrategySignalId = strategySignalId, StockId = ValidSwingSymbol(symbol?.ToUpperInvariant()) ? symbol!.ToUpperInvariant() : "",
                 Side = Enum.IsDefined(side) ? side : PaperOrderSide.Buy, AccountGeneration = portfolio.Account.Generation }
         });
     }

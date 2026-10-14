@@ -1,0 +1,22 @@
+@model WorkJournal.Web.Models.StrategySignal
+@using System.Text.Json
+@using WorkJournal.Web.Services
+@{
+    ViewData["Title"]="策略訊號快照";
+    var f=JsonSerializer.Deserialize<WorkJournal.Web.Models.StrategyFacts>(Model.Snapshot.Json)!;
+    var perf=Model.Performance==null?Array.Empty<WorkJournal.Web.Models.StrategyHorizon>():JsonSerializer.Deserialize<WorkJournal.Web.Models.StrategyHorizon[]>(Model.Performance.Json)!;
+    var profile=(WorkJournal.Web.Models.ScanProfile)ViewBag.Profile;
+    string N(decimal? v)=>v?.ToString("N2")??"—";
+}
+<partial name="_Navigation" />
+<section class="page-heading"><div><p class="eyebrow">IMMUTABLE SIGNAL SNAPSHOT</p><h1>@Model.Symbol @Model.StockName</h1><p>@StrategyEngine.Name(Model.StrategyCode) V@Model.StrategyVersion · @Model.TradeDate · @Model.SignalType · @StrategyEngine.Level(Model.SignalLevel)</p></div><a asp-action="Strategies" asp-route-date="@Model.TradeDate.ToString("yyyy-MM-dd")" class="btn btn-light">返回訊號清單</a></section>
+<section class="panel"><h2>訊號依據</h2><p>@Model.Reason</p><p>Profile @profile.Code / @profile.Version · @profile.UniverseCode / @profile.UniverseVersion · @Model.Snapshot.ScoreVersion</p><p>建立時間 @Model.CreatedAt.ToOffset(TimeSpan.FromHours(8)).ToString("yyyy/MM/dd HH:mm")；原始快照保留當時資料。</p>
+<div class="d-flex flex-wrap gap-2"><a class="btn btn-forest" asp-action="PaperTrading" asp-route-strategySignalId="@Model.Id">建立虛擬單</a><a class="btn btn-light" asp-action="Index" asp-route-symbol="@Model.Symbol">個股分析</a><a class="btn btn-light" asp-action="Swing" asp-route-symbol="@Model.Symbol">波段分析</a><partial name="_FavoriteButton" model="Model.Symbol" /><partial name="_AddToSwingButton" model="Model.Symbol" /></div>
+<p class="mt-3">Episode #@Model.EpisodeId · 起始 @Model.Episode.StartedTradeDate · 已確認 @Model.Episode.ConfirmedDays 日 · 缺口 @(Model.Episode.HasObservationGap?"有":"無") · @(Model.Episode.EndedTradeDate.HasValue?"已結束":"追蹤中")</p></section>
+<section class="panel mt-3"><h2>當時行情與指標</h2><div class="table-responsive"><table class="table"><thead><tr><th>收盤</th><th>MA5</th><th>MA20</th><th>MA60</th><th>前20日高</th><th>量比</th><th>RSI</th><th>MACD</th><th>Radar</th></tr></thead><tbody><tr><td>@N(Model.Snapshot.Close)</td><td>@N(f.MA5)</td><td>@N(f.MA20)</td><td>@N(f.MA60)</td><td>@N(f.Previous20DHigh)</td><td>@N(f.VolumeRatio20)</td><td>@N(f.Technical.RSI14)</td><td>@N(f.Technical.MACD)</td><td>@(Model.Score?.ToString()??"不完整")</td></tr></tbody></table></div><p>產業 @Model.Snapshot.Industry · Heat @N(Model.Snapshot.MarketHeat)（僅供分群，不作法人策略門檻）</p>
+<details><summary>法人資料與比例</summary><p>股數；比例為淨買超／同期成交量，自營商不影響 V1 訊號。</p><dl>@foreach(var x in f.Institutional){<dt>@x.Key</dt><dd>@(x.Key.Contains("Ratio")?N(x.Value*100)+"%":N(x.Value))</dd>}</dl></details></section>
+<section class="panel mt-3"><h2>Episode 起始訊號績效</h2>
+@if(Model.SignalType!="NEW"){<p>這是持續訊號，不增加主要績效樣本。請查看 @Model.Episode.StartedTradeDate 的起始訊號。</p>}
+else if(perf.Length==0){<p>等待後續交易日；尚未成熟的報酬為空值。</p>}
+else{<p>次日開盤 @N(Model.Performance?.NextOpen) · @(Model.Performance?.IsReferenceOnly==true?"訊號建立晚於開盤，僅作參考":"日線研究基準，不保證可成交")。價格報酬未扣費用。</p><div class="table-responsive"><table class="table"><thead><tr><th>期間／終點</th><th>收盤基準%</th><th>次日開盤%</th><th>收盤 MFE/MAE%</th><th>開盤 MFE/MAE%</th><th>狀態</th></tr></thead><tbody>@foreach(var h in perf){<tr><td>@h.Days D / @h.Date</td><td>@N(h.CloseReturn)</td><td>@N(h.OpenReturn)</td><td>@N(h.CloseMfe) / @N(h.CloseMae)</td><td>@N(h.OpenMfe) / @N(h.OpenMae)</td><td>@h.CloseStatus / @h.OpenStatus</td></tr>}</tbody></table></div>}
+</section>

@@ -1,0 +1,64 @@
+@model StrategyCenterViewModel
+@using WorkJournal.Web.Services
+@{
+    ViewData["Title"] = "策略研究中心";
+    string P(decimal? x) => x.HasValue ? x.Value.ToString("0.00") + "%" : "—";
+    var latest = Model.Runs.FirstOrDefault();
+}
+<partial name="_Navigation" />
+<link rel="stylesheet" href="~/css/strategy-center.css" asp-append-version="true" />
+<section class="page-heading"><div><p class="eyebrow">STRATEGY CENTER · 1.5.1</p><h1>策略研究中心</h1><p class="subheading">從當日訊號到後續驗證，保留每一次判斷的依據。</p></div><a class="btn btn-light" asp-action="Index">搜尋股票</a></section>
+<details class="panel mb-3"><summary>今日市場環境與產業強弱</summary><partial name="_MarketPulse" /></details>
+<form method="get" class="panel strategy-filter">
+<input type="hidden" name="tab" value="@Model.Tab" />
+<label>觀察日期<input type="date" name="date" value="@Model.Date?.ToString("yyyy-MM-dd")" class="form-control" /></label>
+@if (Model.Tab == "performance") { <label>訊號起日<input type="date" name="from" value="@Model.From?.ToString("yyyy-MM-dd")" class="form-control" /></label> }
+<label>市場<select name="market" class="form-select">@foreach(var m in new[]{("all","上市＋上櫃"),("twse","上市"),("tpex","上櫃")}){<option value="@m.Item1" selected="@(Model.Market==m.Item1)">@m.Item2</option>}</select></label>
+<label>策略<select name="strategy" class="form-select"><option value="">全部策略</option>@foreach(var code in StrategyEngine.Codes){<option value="@code" selected="@(Model.Strategy==code)">@StrategyEngine.Name(code)</option>}</select></label>
+<label>研究設定<select name="profileId" class="form-select"><option value="">各版本分開比較</option>@foreach(var p in Model.Profiles){<option value="@p.Id" selected="@(Model.ProfileId==p.Id)">@p.Name @p.Code / @p.Version</option>}</select></label>
+<label>股票代號<input name="symbol" value="@Model.Symbol" maxlength="12" class="form-control" placeholder="例如 2330" /></label>
+@if(Model.Tab=="performance"){
+<label>績效基準<select name="basis" class="form-select"><option value="open" selected="@(Model.Basis=="open")">次交易日開盤</option><option value="close" selected="@(Model.Basis=="close")">訊號日收盤</option></select></label>
+<label>觀察期間<select name="horizon" class="form-select">@foreach(var n in new[]{1,3,5,10,20}){<option value="@n" selected="@(Model.Horizon==n)">@n 交易日</option>}</select></label>
+<label>驗證分群<select name="group" class="form-select">@foreach(var g in new[]{("strategy","策略"),("level","法人分級"),("heat","市場熱度"),("industry","產業")}){<option value="@g.Item1" selected="@(Model.Group==g.Item1)">@g.Item2</option>}</select></label>
+}
+<button class="btn btn-forest" type="submit">套用</button>
+</form>
+<nav class="strategy-tabs" aria-label="策略研究分頁">
+@foreach(var t in new[]{("overview","總覽"),("signals","訊號清單"),("performance","績效與驗證")}){
+<a class="btn @(Model.Tab==t.Item1?"btn-forest":"btn-light")" asp-action="Strategies" asp-route-tab="@t.Item1" asp-route-date="@Model.Date?.ToString("yyyy-MM-dd")" asp-route-market="@Model.Market" asp-route-strategy="@Model.Strategy" asp-route-profileId="@Model.ProfileId" asp-route-symbol="@Model.Symbol" aria-current="@(Model.Tab==t.Item1?"page":null)">@t.Item2</a>}
+</nav>
+@if(latest==null){<div class="alert alert-info">尚未開始研究掃描。背景工作會準備股票池與歷史行情；資料完成前不產生假訊號。</div>}
+else{<div class="alert @(latest.Status=="Failed"?"alert-warning":"alert-info")" role="status">最新掃描 @latest.TradeDate · @latest.Status · 合格 @latest.QualifiedCount／待處理 @latest.PendingCount。@latest.Message <small class="d-block">更新 @latest.CompletedAt?.ToOffset(TimeSpan.FromHours(8)).ToString("yyyy/MM/dd HH:mm")；下方結果日期 @Model.Date。未完成不代表沒有符合股票。</small></div>}
+@if(Model.Tab=="performance"){
+<section class="panel"><h2>策略績效比較 · @Model.Horizon 交易日</h2><p>以 Episode 首次訊號為樣本；平手計入勝率分母，未成熟與缺資料不計入。價格報酬未扣交易費用。不同策略樣本可能重疊。</p>
+@if(Model.Statistics.Count==0){<p class="strategy-empty">尚無可比較的 Episode，等待正式訊號與後續交易日累積。</p>}
+else{
+<div class="strategy-bars" aria-label="各組平均報酬圖">@foreach(var s in Model.Statistics){<div><span>@s.Label</span><meter min="-30" max="30" value="@(s.Mean??0)" aria-label="@s.Label 平均報酬"></meter><b>@P(s.Mean)</b></div>}</div>
+<div class="table-responsive"><table class="table"><thead><tr><th>策略／版本／分群</th><th>Episode</th><th>有效樣本</th><th>勝率</th><th>平均</th><th>中位</th><th>MFE</th><th>MAE</th></tr></thead><tbody>
+@foreach(var s in Model.Statistics){<tr><td>@s.Label</td><td>@s.Episodes</td><td>@s.Valid @(s.Valid<30?"（樣本不足）":"")</td><td>@P(s.WinRate)</td><td>@P(s.Mean)</td><td>@P(s.Median)</td><td>@P(s.Mfe)</td><td>@P(s.Mae)</td></tr>}
+</tbody></table></div>}
+<p>次日開盤為日線參考基準；若訊號晚於該開盤時間產生，不能視為當時可執行。缺少預定日期行情不延後終點。</p>
+<a asp-action="RadarPerformance" class="btn btn-light">既有 Radar V1／個人模型驗證</a></section>
+}else{
+<section class="panel"><h2>@(Model.Tab=="signals"?"訊號清單":"今日研究訊號")</h2><p>NEW 為新 Episode；CONTINUE 保留每日快照，不增加主要績效樣本。共 @Model.TotalSignals 筆策略訊號。</p>
+@if(Model.Signals.Count==0){<p class="strategy-empty">此日期與篩選尚無正式訊號。請查看下方資料狀態，確認掃描是否完成。</p>}
+@foreach(var g in Model.Signals.GroupBy(x=>x.Symbol)){
+var first=g.First();
+<article class="strategy-stock"><div><h3><a asp-action="Index" asp-route-symbol="@first.Symbol">@first.Symbol @first.StockName</a></h3>
+@foreach(var s in g){<a class="badge text-bg-light" asp-action="StrategySignal" asp-route-id="@s.Id">@StrategyEngine.Name(s.StrategyCode) · @s.SignalType @StrategyEngine.Level(s.SignalLevel)</a>}
+</div><div class="strategy-actions"><a class="btn btn-light btn-sm" asp-action="Index" asp-route-symbol="@first.Symbol">個股分析</a><a class="btn btn-light btn-sm" asp-action="Swing" asp-route-symbol="@first.Symbol">波段分析</a><partial name="_FavoriteButton" model="first.Symbol" /><partial name="_AddToSwingButton" model="first.Symbol" /></div>
+<details><summary>查看原因與選擇虛擬單來源</summary>@foreach(var s in g){<p><a asp-action="StrategySignal" asp-route-id="@s.Id">@StrategyEngine.Name(s.StrategyCode)</a>：@s.Reason <a class="btn btn-light btn-sm" asp-action="PaperTrading" asp-route-strategySignalId="@s.Id">建立虛擬單</a></p>}</details></article>}
+<div class="d-flex gap-2">@if(Model.Page>1){<a asp-action="Strategies" asp-route-tab="@Model.Tab" asp-route-date="@Model.Date?.ToString("yyyy-MM-dd")" asp-route-market="@Model.Market" asp-route-strategy="@Model.Strategy" asp-route-profileId="@Model.ProfileId" asp-route-page="@(Model.Page-1)">上一頁</a>}
+@if(Model.Signals.Select(x=>x.Symbol).Distinct().Count()==30){<a asp-action="Strategies" asp-route-tab="@Model.Tab" asp-route-date="@Model.Date?.ToString("yyyy-MM-dd")" asp-route-market="@Model.Market" asp-route-strategy="@Model.Strategy" asp-route-profileId="@Model.ProfileId" asp-route-page="@(Model.Page+1)">下一頁</a>}</div>
+</section>
+@if(Model.Tab=="overview"){
+<section class="panel mt-3"><h2>Radar 研究掃描與波段候選</h2><p>共用合格普通股股票池；分數為模型評分，不是勝率。舊 Radar V1 歷史維持原口徑。</p>
+@if(Model.Radar.Count==0){<p>尚無完整評分達顯示門檻的股票。資料不完整不補零或換算假分數。</p>}
+<div class="table-responsive"><table class="table"><thead><tr><th>股票</th><th>Radar</th><th>波段分級</th><th>研究</th></tr></thead><tbody>@foreach(var r in Model.Radar){<tr><td><a asp-action="Index" asp-route-symbol="@r.Symbol">@r.Symbol @r.StockName</a></td><td>@r.RadarScore</td><td>@(r.SwingLevel.Length>0?r.SwingLevel:"—")</td><td><a asp-action="Strategies" asp-route-symbol="@r.Symbol" asp-route-date="@r.TradeDate.ToString("yyyy-MM-dd")" asp-route-tab="signals">查看訊號</a></td></tr>}</tbody></table></div></section>}
+}
+<details class="panel mt-3"><summary>資料狀態與掃描紀錄</summary><p>歷史資料分批準備，達 API 預算後下次續跑；不縮小股票池。正式快照不回填或覆寫。</p>
+<div class="table-responsive"><table class="table"><thead><tr><th>日期／狀態</th><th>全部</th><th>合格</th><th>跳過</th><th>待處理</th><th>命中</th><th>API／快取</th><th>秒</th></tr></thead><tbody>@foreach(var r in Model.Runs){<tr><td>@r.TradeDate @r.Status</td><td>@r.UniverseCount</td><td>@r.QualifiedCount</td><td>@r.SkippedCount</td><td>@r.PendingCount</td><td>@r.HitCount</td><td>@r.ApiCalls / @r.CacheHits</td><td>@(r.ElapsedMilliseconds/1000m)</td></tr>}</tbody></table></div>
+@foreach(var s in Model.Skips){<p>@s.Reason · @s.Count 筆策略觀測</p>}
+@foreach(var p in Model.Profiles){<p>@p.Code / @p.Version · @p.UniverseCode / @p.UniverseVersion · 歷史至少 @p.MinHistoryDays 日，前 20 日均成交金額 @p.MinAvgTradingValue20D.ToString("N0") 元。</p>}
+</details>
