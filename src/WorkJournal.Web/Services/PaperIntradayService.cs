@@ -42,7 +42,7 @@ public class PaperIntradayService(HttpClient client, IMemoryCache cache, TimePro
         }
         return result.ToArray();
     }
-    public async Task ApplyAsync(PaperPortfolioViewModel portfolio, CancellationToken ct)
+    public async Task ApplyAsync(PaperPortfolioViewModel portfolio, CancellationToken ct, bool refresh = false)
     {
         var now = clock.GetUtcNow();
         if (!InSession(now)) return;
@@ -55,7 +55,8 @@ public class PaperIntradayService(HttpClient client, IMemoryCache cache, TimePro
             await Gate.WaitAsync(ct);
             try
             {
-                if (!cache.TryGetValue<PaperTick[]>(key, out var cached))
+                PaperTick[]? cached;
+                if (refresh || !cache.TryGetValue<PaperTick[]>(key, out cached))
                 {
                     try
                     {

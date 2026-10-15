@@ -67,7 +67,7 @@ public class PaperTradingService(JournalDbContext db, FinMindStockService stocks
             quotes[position.StockId] = latest;
             result.Positions.Add(new(position, latest.Quote));
         }
-        if (intraday != null) await intraday.ApplyAsync(result, ct);
+        if (intraday != null) await intraday.ApplyAsync(result, ct, refresh: refreshDaily);
         return result;
     }
 

@@ -23,6 +23,7 @@ public static class IntradayChecks
         var p=Portfolio(); await service.ApplyAsync(p,default);
         Check(p.TotalAssets==5880 && p.UnrealizedProfitLoss==880 && p.Account.Cash==1000 && p.Trades.Count==0,"intraday valuation changes assets only and preserves ledger");
         await service.ApplyAsync(Portfolio(),default); Check(handler.Requests==1,"15-second batch cache prevents duplicate source requests");
+        await service.ApplyAsync(Portfolio(),default,refresh:true); Check(handler.Requests==2,"manual refresh bypasses warm intraday cache");
         memory.Compact(1); handler.Fail=true; p=Portfolio(); await service.ApplyAsync(p,default);
         Check(p.Positions[0].CurrentPrice==2400 && p.Positions[0].QuoteTime==null && p.Positions[0].QuoteStatus.Contains("日行情參考"),"outage visibly falls back to daily reference without fake live timestamp");
     }
