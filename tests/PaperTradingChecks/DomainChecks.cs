@@ -16,6 +16,7 @@ public static class DomainChecks
     static void Check(bool ok, string name) { if (!ok) throw new Exception("FAIL: " + name); checks++; Console.WriteLine("PASS: " + name); }
     public static async Task Run(DbContextOptions<JournalDbContext> dbOptions)
     {
+        await IntradayChecks.Run();
         var market = new FixtureMarket();
         async Task<T> Use<T>(Func<PaperTradingService, JournalDbContext, Task<T>> action, SaveChangesInterceptor? interceptor = null, string userId = "paper-alice")
         {

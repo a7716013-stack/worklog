@@ -18,6 +18,11 @@ builder.Services.AddDbContext<JournalDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("JournalDatabase"),
         sql => sql.EnableRetryOnFailure()));
 builder.Services.AddMemoryCache();
+builder.Services.AddSingleton(TimeProvider.System);
+builder.Services.AddHttpClient<WorkJournal.Web.Services.PaperIntradayService>(client => {
+    client.Timeout = TimeSpan.FromSeconds(8);
+    client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 WorkJournal/1.5.1");
+});
 builder.Services.AddScoped<WorkJournal.Web.Services.HomeDashboardService>();
 builder.Services.AddHttpClient<WorkJournal.Web.Services.InternationalIndicesService>(client =>
 {

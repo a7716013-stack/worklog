@@ -7,7 +7,7 @@ using WorkJournal.Web.ViewModels;
 using WorkJournal.Web.Security;
 namespace WorkJournal.Web.Services;
 
-public class PaperTradingService(JournalDbContext db, FinMindStockService stocks, IOptions<PaperTradingOptions> options, ICurrentUser currentUser) : IPaperTradingService
+public class PaperTradingService(JournalDbContext db, FinMindStockService stocks, IOptions<PaperTradingOptions> options, ICurrentUser currentUser, PaperIntradayService? intraday = null) : IPaperTradingService
 {
     private string UserId => currentUser.Id;
     private IQueryable<int> OwnedAccountIds => db.PaperTradingAccounts.Where(x => x.ApplicationUserId == UserId).Select(x => x.Id);
@@ -51,7 +51,7 @@ public class PaperTradingService(JournalDbContext db, FinMindStockService stocks
         return value;
     }
 
-    public async Task<PaperPortfolioViewModel> GetPortfolioAsync(CancellationToken ct)
+    public async Task<PaperPortfolioViewModel> GetPortfolioAsync(CancellationToken ct, bool refreshDaily = true)
     {
         var snapshot = await Atomic(async () => new {
             Account = await Account(ct),
@@ -63,10 +63,11 @@ public class PaperTradingService(JournalDbContext db, FinMindStockService stocks
         // This only values positions; pending orders remain explicitly executed by the user.
         foreach (var position in snapshot.Positions)
         {
-            var latest = await stocks.GetPaperQuoteAsync(position.StockId, ct, refresh: true);
+            var latest = await stocks.GetPaperQuoteAsync(position.StockId, ct, refresh: refreshDaily);
             quotes[position.StockId] = latest;
             result.Positions.Add(new(position, latest.Quote));
         }
+        if (intraday != null) await intraday.ApplyAsync(result, ct);
         return result;
     }
 

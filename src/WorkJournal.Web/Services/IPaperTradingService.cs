@@ -4,7 +4,7 @@ namespace WorkJournal.Web.Services;
 public interface IPaperTradingService
 {
     Task<PaperTradingAccount> GetAccountAsync(CancellationToken ct);
-    Task<PaperPortfolioViewModel> GetPortfolioAsync(CancellationToken ct);
+    Task<PaperPortfolioViewModel> GetPortfolioAsync(CancellationToken ct, bool refreshDaily = true);
     Task<PaperOrder> PlaceOrderAsync(PaperOrderViewModel input, CancellationToken ct);
     Task<bool> CancelOrderAsync(long id, CancellationToken ct);
     Task<int> ExecutePendingOrdersAsync(CancellationToken ct);

@@ -2,6 +2,8 @@ using WorkJournal.Web.Models;
 namespace WorkJournal.Web.ViewModels;
 public record PaperPositionValuation(PaperPosition Position, StockQuote? Quote)
 {
+    public string QuoteStatus { get; init; } = "最新已完成日行情";
+    public DateTimeOffset? QuoteTime { get; init; }
     public decimal? CurrentPrice => Quote?.CurrentPrice > 0 && Quote.TradeDate != null ? Quote.CurrentPrice : null;
     public decimal? MarketValue => CurrentPrice * Position.Quantity;
     public decimal? UnrealizedProfitLoss => MarketValue - Position.CostBasis;
