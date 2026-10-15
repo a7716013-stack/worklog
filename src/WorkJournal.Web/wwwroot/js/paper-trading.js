@@ -1,5 +1,7 @@
 (() => {
     "use strict";
+    // Browser back/forward cache otherwise restores old server-rendered valuations.
+    window.addEventListener("pageshow", event => { if (event.persisted) window.location.reload(); });
     const form = document.getElementById("paper-order-form");
     const type = document.getElementById("Order_OrderType");
     const limit = document.getElementById("Order_LimitPrice");

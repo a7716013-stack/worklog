@@ -39,6 +39,22 @@ public static class DomainChecks
         var portfolio = await Portfolio();
         Check(first.Status == PaperOrderStatus.Filled && portfolio.Account.Cash == 899857.50m, "1000 shares at 100 subtract gross plus 142.50 commission");
         Check(portfolio.Positions.Single().Position.AverageCost == 100.1425m, "buy commission is included in average cost");
+        await Use(async (s, d) => {
+            var before = await s.GetPortfolioAsync(default);
+            var requests = market.Requests;
+            market.Price = 103;
+            var refreshed = await s.GetPortfolioAsync(default);
+            Check(refreshed.Positions.Single().CurrentPrice == 103 && market.Requests == requests + 1,
+                "page valuation bypasses warm quote cache while reusing stock metadata");
+            Check(refreshed.TotalAssets == before.TotalAssets + 3000 && refreshed.Account.Cash == before.Account.Cash && refreshed.Trades.Count == before.Trades.Count,
+                "refresh updates assets without executing orders or changing cash");
+            market.Failure = true;
+            var unavailable = await s.GetPortfolioAsync(default);
+            Check(unavailable.HasIncompleteValuation && unavailable.TotalAssets == null && unavailable.Positions.Count == before.Positions.Count,
+                "refresh failure preserves holdings and does not present cached price as fresh");
+            market.Failure = false; market.Price = 100;
+            return true;
+        });
         var replay = await Task.WhenAll(Enumerable.Range(0, 4).Select(_ => Place(firstInput)));
         Check(replay.All(x => x.Id == first.Id) && (await Portfolio()).Trades.Count == 1, "concurrent replay of the same form cannot fill twice");
         market.Price = 110; market.High = 115; market.Low = 105;

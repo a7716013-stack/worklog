@@ -59,9 +59,14 @@ public class PaperTradingService(JournalDbContext db, FinMindStockService stocks
             Orders = await GetOrdersAsync(ct), Trades = await GetTradesAsync(ct)
         }, ct);
         var result = new PaperPortfolioViewModel { Account = snapshot.Account, Orders = snapshot.Orders, Trades = snapshot.Trades };
-        // Sequential bounded requests and request-scoped de-duplication, on top of shared FinMind cache.
+        // Opening the portfolio revalidates prices instead of reusing the five-minute trading cache.
+        // This only values positions; pending orders remain explicitly executed by the user.
         foreach (var position in snapshot.Positions)
-            result.Positions.Add(new(position, (await Quote(position.StockId, ct)).Quote));
+        {
+            var latest = await stocks.GetPaperQuoteAsync(position.StockId, ct, refresh: true);
+            quotes[position.StockId] = latest;
+            result.Positions.Add(new(position, latest.Quote));
+        }
         return result;
     }
 

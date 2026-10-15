@@ -5,17 +5,18 @@ namespace WorkJournal.Web.Services;
 public partial class FinMindStockService
 {
     // Same client, Bearer header, parser, cache and gate; no fundamentals calls for valuation.
-    public async Task<StockLookup> GetPaperQuoteAsync(string symbol, CancellationToken ct)
+    public async Task<StockLookup> GetPaperQuoteAsync(string symbol, CancellationToken ct, bool refresh = false)
     {
         var now = DateTimeOffset.UtcNow.ToOffset(TimeSpan.FromHours(8));
         var today = DateOnly.FromDateTime(now.DateTime);
         var completedThrough = now.Hour >= 14 ? today : today.AddDays(-1);
         var key = $"finmind:paper:{symbol}:{completedThrough}";
-        if (cache.TryGetValue<StockLookup>(key, out var hit)) return hit!;
+        StockLookup? hit;
+        if (!refresh && cache.TryGetValue<StockLookup>(key, out hit)) return hit!;
         await Gate.WaitAsync(ct);
         try
         {
-            if (cache.TryGetValue<StockLookup>(key, out hit)) return hit!;
+            if (!refresh && cache.TryGetValue<StockLookup>(key, out hit)) return hit!;
             StockLookup result;
             try
             {
