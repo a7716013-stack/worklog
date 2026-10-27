@@ -1,6 +1,6 @@
 # 工作日誌 WorkJournal
 
-目前版本 **1.5.3**：整合 TWSE、TPEx 與 FinMind 備援，加入共用持久快取、並行請求合併、背景預算保留與超限冷卻。保留既有策略研究、盤中估值、日誌與行事曆功能。詳見 [1.5.3 說明](docs/releases/1.5.3.md)。
+開發版本 **2.0.1**：先建立 Legacy Golden Master，保留 Radar／Swing 原計分及既有多來源資料功能。FullEvidence100 尚未啟用，V2 門檻保持 UNRESOLVED；此版號不代表已部署。詳見 [2.0.1 說明](docs/releases/2.0.1.md)。
 
 首頁右側另提供七項國際指數，詳見 [國際指數說明](docs/international-indices.md)。
 

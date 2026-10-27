@@ -1,5 +1,13 @@
 # 更新紀錄
 
+## 2.0.1 — 開發中
+
+- Phase 1：增加 LegacyRadar100 精確分項／94 分樣本與 LegacySwing100 精確分項／60 分樣本。
+- 使用真正的 SwingBacktester 與獨立計分替身驗證 LegacySwing75 的 74／75 邊界，不修改 production calculator。
+- SQL executable checks 支援 WORKJOURNAL_TEST_SQL 連線設定，仍強制每次 GUID 資料庫；清除前核對名稱與實際連線目標。
+- 新增 build、legacy-fast、legacy-sql 與同 SHA 的 legacy-golden-master CI 關卡；瀏覽器測試與外部 probe 不納入關卡。
+- 不切換 FullEvidence100，不指定 V2 門檻；沒有資料庫結構變更或部署。
+
 ## 1.5.3 — 2026-10-24
 
 - 新增獨立 MarketData 資料層，整合 TWSE、TPEx 官方行情及法人資料，以 FinMind 為備援與完整歷史來源。
