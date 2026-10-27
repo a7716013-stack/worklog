@@ -10,6 +10,12 @@ static class SwingChecks
         var bars=Enumerable.Range(0,100).Select(i=>new SwingBar(start.AddDays(i),100+i,101+i,99+i,100.5m+i,1000)).ToArray();
         var flows=bars.Select(x=>new SwingFlow(x.Date,100,-50)).ToArray();
         var s=SwingCalculator.Calculate(bars,flows);
+        Check(s.Rules.Select(x=>x.Points).SequenceEqual(new[]{10,15,10,10,10,15,10,10,10,-15,-15}),"LegacySwing100 exact rule weights and risk penalties");
+        // Linear +1 closes with SMA-seeded EMA produce DIF=7 and signal=7:
+        // no strict MACD crossover points; RSI=100 also earns no RSI points.
+        Check(s.Macd==7m && s.Signal==7m && s.RSI==100m,"LegacySwing100 linear fixture indicator truth");
+        Check(s.Rules.Select(x=>x.Passed==true?x.Points:0).SequenceEqual(new[]{10,15,10,0,0,15,0,10,0,0,0}),"LegacySwing100 exact earned component points");
+        Check(s.Score==60 && s.Earned==60 && s.Available==100,"LegacySwing100 exact total 60 with complete evidence");
         Check(s.MA10==195m && s.MA20==190m && s.MA60==170m,"Swing averages");
         Check(s.Rules.Where(x=>x.Points>0).Sum(x=>x.Points)==100,"Score positive weights must total 100");
         Check(s.Foreign5==500 && s.Trust20==-1000 && s.ForeignStreak==20 && s.TrustStreak==0,"Trading-session flow windows and streaks");

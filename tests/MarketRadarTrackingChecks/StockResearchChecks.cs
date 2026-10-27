@@ -40,7 +40,7 @@ public static class StockResearchChecks
         }
         // Verify the real upgrade from the previous schema, not only a new empty database.
         var name="WorkJournalFavoritesMigration_"+Guid.NewGuid().ToString("N");
-        var opts=new DbContextOptionsBuilder<JournalDbContext>().UseSqlServer($@"Server=.\SQLEXPRESS;Database={name};Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True;").Options;
+        var opts=new DbContextOptionsBuilder<JournalDbContext>().UseSqlServer(TestDatabase.Connection("WorkJournalFavoritesMigration_",name)).Options;
         await using var migration=new JournalDbContext(opts);
         try {
             var all=migration.Database.GetMigrations().ToArray();
@@ -52,7 +52,7 @@ public static class StockResearchChecks
             await migration.Database.MigrateAsync();
             Check(await migration.StockFavoriteItems.CountAsync()==1&&await migration.StockWatchlistItems.CountAsync()==1,"upgrade copies existing swing without deleting it");
             await migration.Database.MigrateAsync();Check(await migration.StockFavoriteItems.CountAsync()==1,"repeated migration does not duplicate favorites");
-        } finally {await migration.Database.EnsureDeletedAsync();}
+        } finally {await TestDatabase.DeleteOwnedAsync(migration,"WorkJournalFavoritesMigration_",name);}
         Console.WriteLine($"StockResearchChecks: {count} PASS");
     }
 }

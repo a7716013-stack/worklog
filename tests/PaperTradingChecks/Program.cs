@@ -10,14 +10,16 @@ using WorkJournal.Web.Services;
 using WorkJournal.Web.Security;
 using System.Security.Claims;
 
+TestDatabase.CheckSafety();
 var database = "WorkJournalPaperChecks_" + Guid.NewGuid().ToString("N");
-var connection = $@"Server=.\SQLEXPRESS;Database={database};Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True;";
+var connection = TestDatabase.Connection("WorkJournalPaperChecks_", database);
 var dbOptions = new DbContextOptionsBuilder<JournalDbContext>().UseSqlServer(connection, sql => sql.EnableRetryOnFailure()).Options;
 await using var setup = new JournalDbContext(dbOptions);
-await setup.Database.MigrateAsync();
 Console.WriteLine("Isolated SQL database: " + database);
 try
 {
+    await setup.Database.MigrateAsync();
+    await TestDatabase.PrintVersionAsync(setup);
     setup.Users.AddRange(new ApplicationUser { Id="paper-alice",UserName="paper-alice" },new ApplicationUser { Id="paper-bob",UserName="paper-bob" });
     setup.PaperTradingAccounts.Add(new PaperTradingAccount { Id=1, Name="Legacy shared",InitialCash=7777777m,Cash=7777777m });
     await setup.SaveChangesAsync();
@@ -78,9 +80,7 @@ try
 finally
 {
     // Only the GUID-named database created by THIS run may be removed.
-    if (!database.StartsWith("WorkJournalPaperChecks_") || database.Length != "WorkJournalPaperChecks_".Length + 32)
-        throw new InvalidOperationException("Unexpected test database name");
-    await setup.Database.EnsureDeletedAsync();
+    await TestDatabase.DeleteOwnedAsync(setup, "WorkJournalPaperChecks_", database);
     Console.WriteLine("Isolated test database removed.");
 }
 public class FixtureAuthentication(Microsoft.Extensions.Options.IOptionsMonitor<Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions> options, ILoggerFactory logger, System.Text.Encodings.Web.UrlEncoder encoder)

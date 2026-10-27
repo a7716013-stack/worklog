@@ -13,7 +13,7 @@ using WorkJournal.Web.Security;
 using WorkJournal.Web.ViewModels;
 
 var database="WorkJournalRadarChecks_"+Guid.NewGuid().ToString("N");
-var connection=$@"Server=.\SQLEXPRESS;Database={database};Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True;";
+var connection=TestDatabase.Connection("WorkJournalRadarChecks_",database);
 var options=new DbContextOptionsBuilder<JournalDbContext>().UseSqlServer(connection,s=>s.EnableRetryOnFailure()).Options;
 await using var setup=new JournalDbContext(options);
 var checks=0;void Check(bool ok,string label){if(!ok)throw new Exception("FAIL: "+label);checks++;Console.WriteLine("PASS: "+label);}
@@ -99,7 +99,7 @@ try {
    Console.WriteLine("Radar fixture http://localhost:5189");await app.RunAsync();
  }
 }
-finally{if(database.StartsWith("WorkJournalRadarChecks_")&&database.Length=="WorkJournalRadarChecks_".Length+32)await setup.Database.EnsureDeletedAsync();Console.WriteLine("Isolated radar database removed.");}
+finally{await TestDatabase.DeleteOwnedAsync(setup,"WorkJournalRadarChecks_",database);Console.WriteLine("Isolated radar database removed.");}
 
 public class TestUser(string id):ICurrentUser{public string Id=>id;}
 public class RadarClock:TimeProvider{public DateTimeOffset Now=new(2026,10,5,18,0,0,TimeSpan.FromHours(8));public override DateTimeOffset GetUtcNow()=>Now.ToUniversalTime();}

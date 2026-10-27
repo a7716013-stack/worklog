@@ -62,7 +62,7 @@ var negativeMfe = StrategyPerformanceCalculator.Calculate(day, 120, sessions, af
 Check(negativeMfe[0].CloseMfe < 0, "raw MFE not clamped");
 
 var dbName = "WorkJournalStrategyChecks_" + Guid.NewGuid().ToString("N");
-var connection = $@"Server=.\SQLEXPRESS;Database={dbName};Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True";
+var connection = TestDatabase.Connection("WorkJournalStrategyChecks_", dbName);
 var dbOptions = new DbContextOptionsBuilder<JournalDbContext>().UseSqlServer(connection, x => x.EnableRetryOnFailure()).Options;
 await using var db = new JournalDbContext(dbOptions);
 try
@@ -128,5 +128,5 @@ try
     }
     Console.WriteLine($"StrategyCenter checks PASS: {count}");
 }
-finally { await db.Database.EnsureDeletedAsync(); }
+finally { await TestDatabase.DeleteOwnedAsync(db, "WorkJournalStrategyChecks_", dbName); }
 class FailingSnapshot : IStrategySignalSnapshotService { public StrategySignalSnapshot Create(StrategyFacts f) => throw new InvalidDataException("fixture rollback"); }

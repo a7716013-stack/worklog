@@ -10,6 +10,9 @@ var a=MarketRadarScoreCalculator.Calculate(q,h,snapshot.Events);
 Check(a.AverageVolume5==1000 && a.AverageVolume20==1000 && a.VolumeRatio20==3 && a.VolumeGrowth20==200,"Exclude today and calculate 5/20 means, ratios and growth");
 Check(a.Parts.Select(x=>x.Maximum).SequenceEqual(new[]{20,20,20,15,10,15}),"Six exact user weights");
 Check(a.Available==100 && a.Score is >=0 and <=100,"Complete score only when every component available");
+// Literal expectations derived from the frozen LegacyRadar100 complete fixture.
+Check(a.Parts.Select(x=>x.Points).SequenceEqual(new int?[]{20,17,17,15,10,15}),"LegacyRadar100 exact component points: 20/17/17/15/10/15");
+Check(a.Score==94 && a.Earned==94 && a.Available==100,"LegacyRadar100 exact total 94 with complete evidence");
 Check(JsonSerializer.Serialize(a)==JsonSerializer.Serialize(MarketRadarScoreCalculator.Calculate(q,h,snapshot.Events)),"Deterministic score and reasons");
 for(var i=-90;i<=100;i++){
  var result=MarketRadarScoreCalculator.Calculate(q with{Change=i},h,snapshot.Events);
