@@ -1,0 +1,19 @@
+{
+  "commitSHA": "0dc518c0b74b41ecb92493b23efea3f8bb16893c",
+  "workflowRunId": "40593571820",
+  "runner": "Linux",
+  "timestamp": "2026-10-27T22:18:13.431408+00:00",
+  "jobs": {
+    "BUILD_RESULT": "success",
+    "FAST_RESULT": "success",
+    "SQL_RESULT": "success"
+  },
+  "shas": {
+    "build": "0dc518c0b74b41ecb92493b23efea3f8bb16893c",
+    "legacy-fast": "0dc518c0b74b41ecb92493b23efea3f8bb16893c",
+    "legacy-sql": "0dc518c0b74b41ecb92493b23efea3f8bb16893c"
+  },
+  "browserTests": "NOT_PART_OF_GATE",
+  "externalProbe": "NOT_PART_OF_GATE",
+  "status": "PASS"
+}
