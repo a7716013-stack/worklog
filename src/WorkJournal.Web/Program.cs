@@ -43,6 +43,20 @@ builder.Services.AddHttpClient<WorkJournal.Web.Services.FinMindStockService>(cli
     client.BaseAddress = new Uri("https://api.finmindtrade.com/api/v4/");
     client.Timeout = TimeSpan.FromSeconds(20);
 });
+// Opt in locally. The independently built market-data library has no dependency on MVC or EF.
+if (builder.Configuration.GetValue<bool>("MarketData:Enabled"))
+{
+    var dataOptions = new WorkJournal.MarketData.MarketDataOptions();
+    builder.Configuration.GetSection("MarketData").Bind(dataOptions);
+    dataOptions.CacheDirectory = Path.GetFullPath(dataOptions.CacheDirectory,builder.Environment.ContentRootPath);
+    builder.Services.AddSingleton(dataOptions);
+    builder.Services.AddSingleton<WorkJournal.MarketData.SourceCache>();
+    builder.Services.AddSingleton<WorkJournal.MarketData.RequestBudget>();
+    builder.Services.AddHttpClient("MarketDataOfficial",client => { client.Timeout = TimeSpan.FromSeconds(20); client.DefaultRequestHeaders.UserAgent.ParseAdd("WorkJournal-Local/1.0"); });
+    builder.Services.AddSingleton(sp => new WorkJournal.MarketData.MarketDataGateway(
+        sp.GetRequiredService<IHttpClientFactory>().CreateClient("MarketDataOfficial"),sp.GetRequiredService<WorkJournal.MarketData.SourceCache>(),
+        sp.GetRequiredService<WorkJournal.MarketData.RequestBudget>(),sp.GetRequiredService<TimeProvider>()));
+}
 builder.Services.AddHttpClient<WorkJournal.Web.Services.EtfOfficialService>(client =>
 {
     client.Timeout = TimeSpan.FromSeconds(20);

@@ -15,6 +15,7 @@ public class InvestmentInsightsScheduler(IServiceScopeFactory scopes,TimeProvide
   if(!config.GetValue("InvestmentInsights:SchedulerEnabled",true))return;
   await Task.Delay(TimeSpan.FromSeconds(40),ct);
   while(!ct.IsCancellationRequested){try{var now=clock.GetUtcNow().ToOffset(TimeSpan.FromHours(8));if(now.TimeOfDay>=new TimeSpan(13,40,0)&&now.DayOfWeek is not (DayOfWeek.Saturday or DayOfWeek.Sunday)){
+   using var dataBudget=WorkJournal.MarketData.MarketDataWork.BackgroundScope();
    using var scope=scopes.CreateScope();await scope.ServiceProvider.GetRequiredService<MarketPulseService>().CaptureAsync(ct);
    var db=scope.ServiceProvider.GetRequiredService<JournalDbContext>();var accounts=await db.PaperTradingAccounts.AsNoTracking().Where(x=>x.ApplicationUserId!=null).Select(x=>x.Id).ToListAsync(ct);
    foreach(var id in accounts)try{await scope.ServiceProvider.GetRequiredService<PortfolioAnalyticsService>().CaptureAsync(id,ct);}catch(Exception e) when(e is not OperationCanceledException){log.LogWarning("Portfolio capture deferred ({Type})",e.GetType().Name);}

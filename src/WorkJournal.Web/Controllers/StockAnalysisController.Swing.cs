@@ -33,8 +33,10 @@ public partial class StockAnalysisController
             var history=await stocks.SwingHistoryAsync(symbol!,false,cancellationToken);
             return Json(new SwingAnalysis(history.Stock,SwingCalculator.Calculate(history.Bars,history.Flows),SwingCalculator.Chart(history.Bars),history.Message));
         }
+        catch(WorkJournal.MarketData.MarketDataException ex)
+        { return StatusCode(503,new { message=ex.Message }); }
         catch(Exception ex) when(SwingFailure(ex,cancellationToken))
-        { return StatusCode(503,new { message="波段資料暫時無法取得，可能查無代號或已達查詢額度。請稍後重試。" }); }
+        { return StatusCode(503,new { message=ex is OperationCanceledException ? "行情來源回應逾時，請稍後重試。" : "波段來源連線或資料異常，暫時無法取得；未確認為額度超限。" }); }
     }
     [HttpGet]
     public async Task<IActionResult> SwingBacktest(string? symbol, CancellationToken cancellationToken)
@@ -45,6 +47,8 @@ public partial class StockAnalysisController
         {
             return Json(await stocks.SwingBacktestAsync(symbol!,cancellationToken));
         }
+        catch(WorkJournal.MarketData.MarketDataException ex)
+        { return StatusCode(503,new { message=ex.Message }); }
         catch(Exception ex) when(SwingFailure(ex,cancellationToken))
         { return StatusCode(503,new { message="回測資料暫時無法取得，請稍後重試。" }); }
     }

@@ -11,6 +11,7 @@ public class MarketRadarScheduler(IServiceScopeFactory scopes,TimeProvider clock
         {
             try
             {
+                using var dataBudget = WorkJournal.MarketData.MarketDataWork.BackgroundScope();
                 var now=clock.GetUtcNow().ToOffset(TimeSpan.FromHours(8));
                 if(now.TimeOfDay>=new TimeSpan(13,30,0)&&now.TimeOfDay<=new TimeSpan(22,0,0))
                 {

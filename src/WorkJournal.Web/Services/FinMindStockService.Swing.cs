@@ -18,6 +18,9 @@ public partial class FinMindStockService
             if(cache.TryGetValue<SwingBacktest>(key,out hit)) return hit!;
             ct.ThrowIfCancellationRequested();
             var today=DateOnly.FromDateTime(DateTimeOffset.UtcNow.ToOffset(TimeSpan.FromHours(8)).DateTime);
+            if (marketData != null && (history.Bars.Any(x => x.Volume == null) ||
+                history.Bars.Where(x => x.Date >= today.AddYears(-5)).Any(x => !history.Flows.Any(f => f.Date == x.Date && f.Foreign != null && f.Trust != null))))
+                return new SwingBacktest { Message = "歷史成交量或法人資料尚未完整，暫不計算回測績效。日常波段分析仍可使用官方資料；請待歷史來源恢復後補齊。" };
             var result=SwingBacktester.Run(history,today.AddYears(-5),sellTax:history.Stock.IsEtf?0.001m:0.003m);
             cache.Set(key,result,TimeSpan.FromMinutes(30));
             return result;
@@ -51,6 +54,13 @@ public partial class FinMindStockService
             await Task.WhenAll(priceTask,flowTask);
             var rows=await priceTask;
             var (flows,message)=await flowTask;
+            if (marketData != null)
+            {
+                var sources = rows.Select(x => Text(x,"_source")).Where(x => !string.IsNullOrWhiteSpace(x)).Distinct();
+                message = "行情來源：" + string.Join("、",sources) + "；非即時行情，已啟用本機共用持久快取。" + message;
+                if (rows.Any(x => Text(x,"_source") == "TPEx.Monthly.PriceOnly"))
+                    message += " 上櫃備援較舊月份僅提供價格，成交量缺值保留，不可用於完整量價回測。";
+            }
             var bars=rows.Where(x=>Text(x,"stock_id")==symbol && ParseDate(x) is DateOnly d && d<=today && d>=from)
                 .Select(x=>new SwingBar(ParseDate(x)!.Value,Number(x,"open"),Number(x,"max"),Number(x,"min"),Number(x,"close"),Number(x,"Trading_Volume")));
             var result=new SwingHistory(stock,SwingCalculator.Normalize(bars),flows,message);
@@ -60,8 +70,9 @@ public partial class FinMindStockService
             {
                 try
                 {
-                    var rows=await ReadAsync("TaiwanStockInstitutionalInvestorsBuySell",symbol,from,today,ct);
-                    return (ParseSwingFlows(rows,symbol),"FinMind 日行情／法人資料；非盤中即時報價，快取 5 分鐘。");
+                    var rows=await ReadAsync("TaiwanStockInstitutionalInvestorsBuySell",symbol,marketData != null && !backtest ? today.AddDays(-45) : from,today,ct);
+                    var sources = rows.Select(x => Text(x,"_source")).Where(x => !string.IsNullOrWhiteSpace(x)).Distinct();
+                    return (ParseSwingFlows(rows,symbol),marketData == null ? "FinMind 日行情／法人資料；非盤中即時報價，快取 5 分鐘。" : " 法人來源：" + string.Join("、",sources) + "。");
                 }
                 catch(Exception ex) when(OptionalFailure(ex,ct))
                 { return ([], "法人資料暫時無法取得；保留技術分析，完整評分暫不提供。"); }

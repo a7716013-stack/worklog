@@ -26,6 +26,7 @@ public class StrategyScheduler(IServiceScopeFactory scopes, Microsoft.Extensions
         {
             try
             {
+                using var dataBudget = WorkJournal.MarketData.MarketDataWork.BackgroundScope();
                 using var scope = scopes.CreateScope();
                 await scope.ServiceProvider.GetRequiredService<IStrategyDataProvider>().CaptureEventsAsync(ct);
                 await scope.ServiceProvider.GetRequiredService<StrategyScanService>().RunAsync(ct);

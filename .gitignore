@@ -4,6 +4,7 @@
 *.user
 *.suo
 artifacts/
+**/App_Data/market-data/
 *.log
 client_secret*.json
 *.pfx

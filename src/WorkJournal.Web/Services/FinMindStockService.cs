@@ -9,7 +9,7 @@ namespace WorkJournal.Web.Services;
 public record StockLookup(StockQuote? Quote, string Message);
 
 public partial class FinMindStockService(HttpClient client, IMemoryCache cache, IConfiguration config,
-    ILogger<FinMindStockService> logger, EtfOfficialService? etfs = null)
+    ILogger<FinMindStockService> logger, EtfOfficialService? etfs = null, WorkJournal.MarketData.MarketDataGateway? marketData = null)
 {
     private static readonly SemaphoreSlim Gate = new(1, 1);
 
@@ -64,7 +64,8 @@ public partial class FinMindStockService(HttpClient client, IMemoryCache cache, 
                             HighPrice = Number(latest, "max"), LowPrice = Number(latest, "min"),
                             ChangePercent = previous > 0 ? spread / previous * 100m : null,
                             Volume = latest.TryGetProperty("Trading_Volume", out var volume) && volume.TryGetInt64(out var count) ? count : null
-                        }, "已載入 FinMind 最新可用日行情。");
+                        }, marketData == null ? "已載入 FinMind 最新可用日行情。" :
+                            "已載入最新可用日行情；來源：" + string.Join("、",rows.Select(x => Text(x,"_source")).Where(x => !string.IsNullOrWhiteSpace(x)).Distinct()) + "。非即時行情，缺漏欄位保留空值。");
                     }
                 }
             }
@@ -75,7 +76,7 @@ public partial class FinMindStockService(HttpClient client, IMemoryCache cache, 
             catch (Exception ex) when (ex is HttpRequestException or JsonException or InvalidDataException)
             {
                 logger.LogWarning("FinMind lookup failed ({ErrorType}).", ex.GetType().Name);
-                result = new(null, "行情服務暫時無法使用，可能已達查詢額度或授權失效，請稍後重試。");
+                result = new(null, ex is WorkJournal.MarketData.MarketDataException ? ex.Message : "行情來源連線、授權或資料異常，請稍後重試。");
             }
             cache.Set(key, result, result.Quote?.TradeDate != null ? TimeSpan.FromMinutes(5) : TimeSpan.FromMinutes(1));
             return result;
@@ -84,6 +85,17 @@ public partial class FinMindStockService(HttpClient client, IMemoryCache cache, 
     }
 
     private async Task<JsonElement[]> ReadAsync(string dataset, string symbol, DateOnly? from, DateOnly? to,
+        CancellationToken cancellationToken)
+    {
+        if (marketData == null) return await ReadFinMindAsync(dataset,symbol,from,to,cancellationToken);
+        try { return await marketData.ReadAsync(dataset,symbol,from,to,() => ReadFinMindAsync(dataset,symbol,from,to,cancellationToken),cancellationToken); }
+        catch (Exception ex) when (ex is HttpRequestException or InvalidDataException or JsonException)
+        {
+            logger.LogWarning("Market data failed: dataset={Dataset}, symbol={Symbol}, error={ErrorType}, status={Status}",dataset,symbol,ex.GetType().Name,(ex as HttpRequestException)?.StatusCode);
+            throw;
+        }
+    }
+    private async Task<JsonElement[]> ReadFinMindAsync(string dataset, string symbol, DateOnly? from, DateOnly? to,
         CancellationToken cancellationToken)
     {
         var url = $"data?dataset={dataset}&data_id={Uri.EscapeDataString(symbol)}";
@@ -96,6 +108,8 @@ public partial class FinMindStockService(HttpClient client, IMemoryCache cache, 
         response.EnsureSuccessStatusCode();
         using var json = JsonDocument.Parse(await response.Content.ReadAsStringAsync(cancellationToken));
         var root = json.RootElement;
+        if (root.TryGetProperty("status",out var providerStatus) && providerStatus.TryGetInt32(out var providerCode) && providerCode is 402 or 429)
+            throw new HttpRequestException("FinMind quota exceeded.",null,(System.Net.HttpStatusCode)providerCode);
         if (!root.TryGetProperty("status", out var status) || !status.TryGetInt32(out var code) || code != 200 ||
             !root.TryGetProperty("data", out var data) || data.ValueKind != JsonValueKind.Array)
             throw new InvalidDataException("Invalid provider response.");
