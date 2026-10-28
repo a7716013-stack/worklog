@@ -44,6 +44,7 @@ public class JournalDbContext(DbContextOptions<JournalDbContext> options) : Iden
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        V2Mapping.ConfigureIdentity(modelBuilder);
         modelBuilder.Entity<MarketPulseDaily>().HasKey(x=>new{x.TradeDate,x.Market});
         modelBuilder.Entity<PortfolioDailyValue>().HasIndex(x=>new{x.AccountId,x.Generation,x.TradeDate}).IsUnique();
         modelBuilder.Entity<PortfolioDailyValue>().HasOne<PaperTradingAccount>().WithMany().HasForeignKey(x=>x.AccountId).OnDelete(DeleteBehavior.Cascade);

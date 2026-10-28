@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WorkJournal.Web.Data;
 
@@ -13,6 +14,7 @@ namespace WorkJournal.Web.Data.Migrations
     [DbContext(typeof(JournalDbContext))]
     partial class JournalDbContextModelSnapshot : ModelSnapshot
     {
+        /// <inheritdoc />
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
@@ -1606,6 +1608,164 @@ namespace WorkJournal.Web.Data.Migrations
                     b.ToTable("StrategySourceCaches");
                 });
 
+            modelBuilder.Entity("WorkJournal.Web.Models.V2.CorporateAction", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset?>("AvailableAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset>("EffectiveAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<Guid>("InstrumentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Kind")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SourceReference")
+                        .IsRequired()
+                        .HasMaxLength(400)
+                        .HasColumnType("nvarchar(400)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InstrumentId", "EffectiveAt");
+
+                    b.ToTable("V2CorporateActions", (string)null);
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.V2.Instrument", b =>
+                {
+                    b.Property<Guid>("InstrumentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
+
+                    b.Property<string>("InstrumentType")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("PermanentKey")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTimeOffset>("ValidFrom")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset?>("ValidTo")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("InstrumentId");
+
+                    b.HasIndex("PermanentKey")
+                        .IsUnique();
+
+                    b.ToTable("V2Instruments", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_V2Instrument_Period", "[ValidTo] IS NULL OR [ValidTo] > [ValidFrom]");
+                        });
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.V2.InstrumentSymbolHistory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("InstrumentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Market")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("Symbol")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
+                    b.Property<DateTimeOffset>("ValidFrom")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset?>("ValidTo")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InstrumentId", "ValidFrom")
+                        .IsUnique();
+
+                    b.HasIndex("Market", "Symbol", "ValidFrom")
+                        .IsUnique();
+
+                    b.ToTable("V2InstrumentSymbols", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_V2Symbol_Period", "[ValidTo] IS NULL OR [ValidTo] > [ValidFrom]");
+                        });
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.V2.LegacyInstrumentMapping", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("InstrumentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Market")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("Source")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
+                    b.Property<string>("StockId")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
+                    b.Property<DateTimeOffset>("ValidFrom")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset?>("ValidTo")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InstrumentId");
+
+                    b.HasIndex("Source", "Market", "StockId", "ValidFrom")
+                        .IsUnique();
+
+                    b.ToTable("V2LegacyInstrumentMappings", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_V2Legacy_Period", "[ValidTo] IS NULL OR [ValidTo] > [ValidFrom]");
+                        });
+                });
+
             modelBuilder.Entity("WorkJournal.Web.Models.WorkLog", b =>
                 {
                     b.Property<int>("Id")
@@ -1947,6 +2107,33 @@ namespace WorkJournal.Web.Data.Migrations
                     b.HasOne("WorkJournal.Web.Models.StrategySignal", null)
                         .WithOne("Snapshot")
                         .HasForeignKey("WorkJournal.Web.Models.StrategySignalSnapshot", "StrategySignalId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.V2.CorporateAction", b =>
+                {
+                    b.HasOne("WorkJournal.Web.Models.V2.Instrument", null)
+                        .WithMany()
+                        .HasForeignKey("InstrumentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.V2.InstrumentSymbolHistory", b =>
+                {
+                    b.HasOne("WorkJournal.Web.Models.V2.Instrument", null)
+                        .WithMany()
+                        .HasForeignKey("InstrumentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.V2.LegacyInstrumentMapping", b =>
+                {
+                    b.HasOne("WorkJournal.Web.Models.V2.Instrument", null)
+                        .WithMany()
+                        .HasForeignKey("InstrumentId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
