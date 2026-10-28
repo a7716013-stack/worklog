@@ -1,5 +1,12 @@
 # 更新紀錄
 
+## 2.0.2 - 2026-10-28
+
+- Add V2 identity, immutable snapshots, provenance, historical universe/benchmark, versioned parameters and decision traces.
+- Enforce explicit PIT cutoff and preserve all Legacy Golden behavior.
+- Add 45 foundation checks, additive migrations and same-SHA CI coverage.
+- See [implementation report](docs/implementation-2.0.2.md).
+
 ## 2.0.1 — 2026-10-28
 
 - Phase 1：增加 LegacyRadar100 精確分項／94 分樣本與 LegacySwing100 精確分項／60 分樣本。

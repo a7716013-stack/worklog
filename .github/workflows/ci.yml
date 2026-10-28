@@ -103,9 +103,56 @@ jobs:
         with:
           name: legacy-sql
           path: evidence/
+  v2-foundation:
+    runs-on: ubuntu-latest
+    services:
+      sqlserver:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        env:
+          ACCEPT_EULA: Y
+          MSSQL_PID: Developer
+          MSSQL_SA_PASSWORD: EphemeralOnly!Legacy201
+        ports:
+          - 1433:1433
+    env:
+      WORKJOURNAL_TEST_SQL: 'Server=localhost,1433;User ID=sa;Password=EphemeralOnly!Legacy201;Encrypt=True;TrustServerCertificate=True;'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.EXPECTED_SHA }}
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+      - name: Wait for disposable SQL Server
+        shell: bash
+        env:
+          SQL_CONTAINER: ${{ job.services.sqlserver.id }}
+        run: |
+          set -euo pipefail
+          for attempt in {1..60}; do
+            if docker exec "$SQL_CONTAINER" /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P 'EphemeralOnly!Legacy201' -C -Q 'SELECT 1' > /dev/null 2>&1; then exit 0; fi
+            sleep 2
+          done
+          docker logs "$SQL_CONTAINER"
+          exit 1
+      - name: V2 foundation checks with GUID database
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p evidence
+          git rev-parse HEAD > evidence/v2-foundation.sha
+          dotnet --info > evidence/sql-dotnet-info.txt
+          for project in V2FoundationChecks; do
+            dotnet run --project "tests/$project" -c Release 2>&1 | tee "evidence/$project.log"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: legacy-v2-foundation
+          path: evidence/
   legacy-golden-master:
     if: always()
-    needs: [build, legacy-fast, legacy-sql]
+    needs: [build, legacy-fast, legacy-sql, v2-foundation]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4
@@ -119,12 +166,13 @@ jobs:
           BUILD_RESULT: ${{ needs.build.result }}
           FAST_RESULT: ${{ needs.legacy-fast.result }}
           SQL_RESULT: ${{ needs.legacy-sql.result }}
+          V2_RESULT: ${{ needs.v2-foundation.result }}
         run: |
           set -euo pipefail
           python3 - <<'PY'
           import json, os, pathlib, datetime
-          jobs = {k: os.environ[k] for k in ('BUILD_RESULT', 'FAST_RESULT', 'SQL_RESULT')}
-          shas = {k: pathlib.Path('evidence', k+'.sha').read_text().strip() for k in ('build', 'legacy-fast', 'legacy-sql')}
+          jobs = {k: os.environ[k] for k in ('BUILD_RESULT', 'FAST_RESULT', 'SQL_RESULT', 'V2_RESULT')}
+          shas = {k: pathlib.Path('evidence', k+'.sha').read_text().strip() for k in ('build', 'legacy-fast', 'legacy-sql', 'v2-foundation')}
           passed = all(v == 'success' for v in jobs.values()) and all(v == os.environ['EXPECTED_SHA'] for v in shas.values())
           report = dict(commitSHA=os.environ['EXPECTED_SHA'], workflowRunId=os.environ['GITHUB_RUN_ID'], runner=os.environ['RUNNER_OS'], timestamp=datetime.datetime.now(datetime.timezone.utc).isoformat(), jobs=jobs, shas=shas, browserTests='NOT_PART_OF_GATE', externalProbe='NOT_PART_OF_GATE', status='PASS' if passed else 'FAIL')
           pathlib.Path('evidence/golden-master.json').write_text(json.dumps(report, indent=2))

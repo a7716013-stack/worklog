@@ -1,6 +1,6 @@
 # 工作日誌 WorkJournal
 
-版本 **2.0.1**：完成 Phase 1 Legacy Golden Master，保留 Radar／Swing 原計分及既有多來源資料功能。FullEvidence100 尚未啟用，V2 門檻保持 UNRESOLVED。詳見 [版本說明](docs/releases/2.0.1.md)、[實作報告](docs/implementation-2.0.1.md)及 [CI 證據](docs/legacy-golden-master-2.0.1.json)。
+版本 **2.0.2**：新增 V2 Foundations，包含永久身分、不可變快照、歷史時間查詢、版本化參數及決策追蹤。既有評分維持凍結；詳見 [版本說明](docs/releases/2.0.2.md)及 [實作報告](docs/implementation-2.0.2.md)。
 
 首頁右側另提供七項國際指數，詳見 [國際指數說明](docs/international-indices.md)。
 
