@@ -21,6 +21,8 @@ builder.Services.AddDbContext<JournalDbContext>(options =>
 builder.Services.AddMemoryCache();
 builder.Services.AddSingleton(TimeProvider.System);
 builder.Services.AddV2Foundations();
+builder.Services.AddSingleton<WorkJournal.Web.Services.Evidence.IFullEvidenceScoreCalculator, WorkJournal.Web.Services.Evidence.FullEvidenceScoreCalculator>();
+builder.Services.AddScoped<WorkJournal.Web.Services.Evidence.IFullEvidencePreparationService, WorkJournal.Web.Services.Evidence.FullEvidencePreparationService>();
 builder.Services.AddHttpClient<WorkJournal.Web.Services.PaperIntradayService>(client => {
     client.Timeout = TimeSpan.FromSeconds(8);
     client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 WorkJournal/1.5.1");

@@ -1,5 +1,12 @@
 # 更新紀錄
 
+## 3.0.3 — 2026-10-29（Phase 3 部分實作）
+
+- 新增 FullEvidence100 固定加總、結果契約、缺值處理及唯讀 PIT 準備服務。
+- 六項正規化保持 UNRESOLVED；Phase 3 為部分實作，沒有正式 score persistence。
+- 64 項新測試通過；既有評分與 Golden 值不變。
+- 詳見 [實作報告](docs/implementation-3.0.3.md)。
+
 ## 2.0.2 - 2026-10-28
 
 - Add V2 identity, immutable snapshots, provenance, historical universe/benchmark, versioned parameters and decision traces.

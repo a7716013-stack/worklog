@@ -1,6 +1,6 @@
 # 工作日誌 WorkJournal
 
-版本 **2.0.2**：新增 V2 Foundations，包含永久身分、不可變快照、歷史時間查詢、版本化參數及決策追蹤。既有評分維持凍結；詳見 [版本說明](docs/releases/2.0.2.md)及 [實作報告](docs/implementation-2.0.2.md)。
+版本 **3.0.3**：Phase 3 固定加總器、Evidence 契約與 PIT 缺口檢查。六項正規化仍未定義，Phase 3 尚未完成；既有評分保持不變。詳見 [版本說明](docs/releases/3.0.3.md)及 [實作報告](docs/implementation-3.0.3.md)。
 
 首頁右側另提供七項國際指數，詳見 [國際指數說明](docs/international-indices.md)。
 
