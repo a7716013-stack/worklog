@@ -1,3 +1,4 @@
+using WorkJournal.Web.Services.V2;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WorkJournal.Web.Data;
@@ -19,6 +20,7 @@ builder.Services.AddDbContext<JournalDbContext>(options =>
         sql => sql.EnableRetryOnFailure()));
 builder.Services.AddMemoryCache();
 builder.Services.AddSingleton(TimeProvider.System);
+builder.Services.AddV2Foundations();
 builder.Services.AddHttpClient<WorkJournal.Web.Services.PaperIntradayService>(client => {
     client.Timeout = TimeSpan.FromSeconds(8);
     client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 WorkJournal/1.5.1");

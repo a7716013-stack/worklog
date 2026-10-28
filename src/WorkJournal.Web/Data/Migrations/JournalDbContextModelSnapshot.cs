@@ -3,7 +3,6 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WorkJournal.Web.Data;
 
@@ -14,7 +13,6 @@ namespace WorkJournal.Web.Data.Migrations
     [DbContext(typeof(JournalDbContext))]
     partial class JournalDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
@@ -1608,6 +1606,96 @@ namespace WorkJournal.Web.Data.Migrations
                     b.ToTable("StrategySourceCaches");
                 });
 
+            modelBuilder.Entity("WorkJournal.Web.Models.V2.BenchmarkDefinition", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Code")
+                        .IsUnique();
+
+                    b.ToTable("V2BenchmarkDefinitions", (string)null);
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.V2.BenchmarkMapping", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BenchmarkVersionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("InstrumentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset>("ValidFrom")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset?>("ValidTo")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BenchmarkVersionId");
+
+                    b.HasIndex("InstrumentId", "ValidFrom")
+                        .IsUnique();
+
+                    b.ToTable("V2BenchmarkMappings", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_V2BenchmarkMapping_Period", "[ValidTo] IS NULL OR [ValidTo] > [ValidFrom]");
+                        });
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.V2.BenchmarkVersion", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BenchmarkDefinitionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DefinitionJson")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("ValidFrom")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset?>("ValidTo")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Version")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BenchmarkDefinitionId", "Version")
+                        .IsUnique();
+
+                    b.ToTable("V2BenchmarkVersions", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_V2Benchmark_Period", "[ValidTo] IS NULL OR [ValidTo] > [ValidFrom]");
+                        });
+                });
+
             modelBuilder.Entity("WorkJournal.Web.Models.V2.CorporateAction", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1636,6 +1724,201 @@ namespace WorkJournal.Web.Data.Migrations
                     b.HasIndex("InstrumentId", "EffectiveAt");
 
                     b.ToTable("V2CorporateActions", (string)null);
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.V2.DataProvenance", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset?>("AvailableAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Checksum")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nchar(64)")
+                        .IsFixedLength();
+
+                    b.Property<string>("Dataset")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.Property<Guid>("DatasetSnapshotId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset>("EffectiveAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<Guid>("InstrumentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset>("ObservedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("PayloadJson")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Provider")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.Property<int>("QualityStatus")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RawReference")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<DateTimeOffset>("RetrievedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("SourceKey")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InstrumentId");
+
+                    b.HasIndex("DatasetSnapshotId", "InstrumentId", "AvailableAt");
+
+                    b.ToTable("V2DataProvenance", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_V2Provenance_Quality", "[QualityStatus] BETWEEN 0 AND 4");
+                        });
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.V2.DatasetSnapshot", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateOnly>("AsOfDate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Checksum")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nchar(64)")
+                        .IsFixedLength();
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset>("DataCutoff")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("DatasetVersion")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.Property<string>("SourceSummary")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("Status")
+                        .IsConcurrencyToken()
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Checksum")
+                        .IsUnique();
+
+                    b.ToTable("V2DatasetSnapshots", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_V2DatasetSnapshots_Status", "[Status] IN (0,1,2)");
+                        });
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.V2.DecisionTrace", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Checksum")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nchar(64)")
+                        .IsFixedLength();
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset>("DataCutoff")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<Guid>("DatasetSnapshotId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DecisionStatus")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.Property<DateTimeOffset>("DecisionTime")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<int>("DecisionType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DetailsJson")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("InstrumentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ParameterSetId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ReasonCode")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("Status")
+                        .IsConcurrencyToken()
+                        .HasColumnType("int");
+
+                    b.Property<DateOnly>("TradeDate")
+                        .HasColumnType("date");
+
+                    b.Property<Guid>("UniverseSnapshotId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("VersionSetId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Checksum")
+                        .IsUnique();
+
+                    b.HasIndex("DatasetSnapshotId");
+
+                    b.HasIndex("ParameterSetId");
+
+                    b.HasIndex("UniverseSnapshotId");
+
+                    b.HasIndex("VersionSetId");
+
+                    b.HasIndex("InstrumentId", "TradeDate", "DecisionType");
+
+                    b.ToTable("V2DecisionTraces", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_V2DecisionTraces_Status", "[Status] IN (0,1,2)");
+                        });
                 });
 
             modelBuilder.Entity("WorkJournal.Web.Models.V2.Instrument", b =>
@@ -1763,6 +2046,182 @@ namespace WorkJournal.Web.Data.Migrations
                     b.ToTable("V2LegacyInstrumentMappings", null, t =>
                         {
                             t.HasCheckConstraint("CK_V2Legacy_Period", "[ValidTo] IS NULL OR [ValidTo] > [ValidFrom]");
+                        });
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.V2.ParameterSet", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Checksum")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nchar(64)")
+                        .IsFixedLength();
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("ParametersJson")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .IsConcurrencyToken()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Version")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Checksum");
+
+                    b.HasIndex("Code", "Version")
+                        .IsUnique();
+
+                    b.ToTable("V2ParameterSets", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_V2ParameterSets_Status", "[Status] IN (0,1,2)");
+                        });
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.V2.UniverseSnapshot", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Checksum")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nchar(64)")
+                        .IsFixedLength();
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset>("DataCutoff")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<int>("Status")
+                        .IsConcurrencyToken()
+                        .HasColumnType("int");
+
+                    b.Property<DateOnly>("TradeDate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("UniverseVersion")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Checksum")
+                        .IsUnique();
+
+                    b.ToTable("V2UniverseSnapshots", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_V2UniverseSnapshots_Status", "[Status] IN (0,1,2)");
+                        });
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.V2.UniverseSnapshotMember", b =>
+                {
+                    b.Property<Guid>("UniverseSnapshotId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("InstrumentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("EligibilityStatus")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ReasonCode")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("UniverseSnapshotId", "InstrumentId");
+
+                    b.HasIndex("InstrumentId");
+
+                    b.ToTable("V2UniverseMembers", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_V2Universe_Eligibility", "[EligibilityStatus] BETWEEN 0 AND 2");
+                        });
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.V2.VersionSet", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BenchmarkVersionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Checksum")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nchar(64)")
+                        .IsFixedLength();
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("DataVersion")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.Property<string>("ExtensionsJson")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FeatureVersion")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.Property<string>("ModelVersion")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.Property<int>("Status")
+                        .IsConcurrencyToken()
+                        .HasColumnType("int");
+
+                    b.Property<string>("StrategyVersion")
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.Property<string>("UniverseVersion")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BenchmarkVersionId");
+
+                    b.HasIndex("Checksum")
+                        .IsUnique();
+
+                    b.ToTable("V2VersionSets", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_V2VersionSets_Status", "[Status] IN (0,1,2)");
                         });
                 });
 
@@ -2111,11 +2570,83 @@ namespace WorkJournal.Web.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("WorkJournal.Web.Models.V2.BenchmarkMapping", b =>
+                {
+                    b.HasOne("WorkJournal.Web.Models.V2.BenchmarkVersion", null)
+                        .WithMany()
+                        .HasForeignKey("BenchmarkVersionId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("WorkJournal.Web.Models.V2.Instrument", null)
+                        .WithMany()
+                        .HasForeignKey("InstrumentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.V2.BenchmarkVersion", b =>
+                {
+                    b.HasOne("WorkJournal.Web.Models.V2.BenchmarkDefinition", null)
+                        .WithMany()
+                        .HasForeignKey("BenchmarkDefinitionId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("WorkJournal.Web.Models.V2.CorporateAction", b =>
                 {
                     b.HasOne("WorkJournal.Web.Models.V2.Instrument", null)
                         .WithMany()
                         .HasForeignKey("InstrumentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.V2.DataProvenance", b =>
+                {
+                    b.HasOne("WorkJournal.Web.Models.V2.DatasetSnapshot", null)
+                        .WithMany("Records")
+                        .HasForeignKey("DatasetSnapshotId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("WorkJournal.Web.Models.V2.Instrument", null)
+                        .WithMany()
+                        .HasForeignKey("InstrumentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.V2.DecisionTrace", b =>
+                {
+                    b.HasOne("WorkJournal.Web.Models.V2.DatasetSnapshot", null)
+                        .WithMany()
+                        .HasForeignKey("DatasetSnapshotId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("WorkJournal.Web.Models.V2.Instrument", null)
+                        .WithMany()
+                        .HasForeignKey("InstrumentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("WorkJournal.Web.Models.V2.ParameterSet", null)
+                        .WithMany()
+                        .HasForeignKey("ParameterSetId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("WorkJournal.Web.Models.V2.UniverseSnapshot", null)
+                        .WithMany()
+                        .HasForeignKey("UniverseSnapshotId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("WorkJournal.Web.Models.V2.VersionSet", null)
+                        .WithMany()
+                        .HasForeignKey("VersionSetId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
@@ -2134,6 +2665,30 @@ namespace WorkJournal.Web.Data.Migrations
                     b.HasOne("WorkJournal.Web.Models.V2.Instrument", null)
                         .WithMany()
                         .HasForeignKey("InstrumentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.V2.UniverseSnapshotMember", b =>
+                {
+                    b.HasOne("WorkJournal.Web.Models.V2.Instrument", null)
+                        .WithMany()
+                        .HasForeignKey("InstrumentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("WorkJournal.Web.Models.V2.UniverseSnapshot", null)
+                        .WithMany("Members")
+                        .HasForeignKey("UniverseSnapshotId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.V2.VersionSet", b =>
+                {
+                    b.HasOne("WorkJournal.Web.Models.V2.BenchmarkVersion", null)
+                        .WithMany()
+                        .HasForeignKey("BenchmarkVersionId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
@@ -2166,6 +2721,16 @@ namespace WorkJournal.Web.Data.Migrations
 
                     b.Navigation("Snapshot")
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.V2.DatasetSnapshot", b =>
+                {
+                    b.Navigation("Records");
+                });
+
+            modelBuilder.Entity("WorkJournal.Web.Models.V2.UniverseSnapshot", b =>
+                {
+                    b.Navigation("Members");
                 });
 #pragma warning restore 612, 618
         }

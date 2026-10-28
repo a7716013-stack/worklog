@@ -8,6 +8,7 @@ public class JournalDbContext(DbContextOptions<JournalDbContext> options) : Iden
     private void ProtectRadarSnapshots()
     {
         StrategyMapping.Protect(this);
+        V2Mapping.Protect(this);
         if(ChangeTracker.Entries<MarketRadarRecommendation>().Any(x=>x.State is EntityState.Modified or EntityState.Deleted))
             throw new InvalidOperationException("已保存的推薦快照不可修改或刪除。");
     }
@@ -45,6 +46,7 @@ public class JournalDbContext(DbContextOptions<JournalDbContext> options) : Iden
     {
         base.OnModelCreating(modelBuilder);
         V2Mapping.ConfigureIdentity(modelBuilder);
+        V2Mapping.ConfigureFoundations(modelBuilder);
         modelBuilder.Entity<MarketPulseDaily>().HasKey(x=>new{x.TradeDate,x.Market});
         modelBuilder.Entity<PortfolioDailyValue>().HasIndex(x=>new{x.AccountId,x.Generation,x.TradeDate}).IsUnique();
         modelBuilder.Entity<PortfolioDailyValue>().HasOne<PaperTradingAccount>().WithMany().HasForeignKey(x=>x.AccountId).OnDelete(DeleteBehavior.Cascade);
