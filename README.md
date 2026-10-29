@@ -1,6 +1,6 @@
 # 工作日誌 WorkJournal
 
-版本 **3.0.4**：新增六項 Evidence Candidate v1、版本化參數、歷史資料檢查及離線研究工具。尚未完成 Research／OOS 驗證，不取代既有評分。詳見 [版本說明](docs/releases/3.0.4.md)及 [實作報告](docs/implementation-3.0.4.md)。
+版本 **3.0.5**：新增 Phase 4 PIT 研究框架、IC／RankIC、時間切分與 OOS 鎖定、研究保存及重播。真實歷史研究仍有資料缺口，Candidate 不取代既有評分。詳見 [版本說明](docs/releases/3.0.5.md)及 [實作報告](docs/implementation-3.0.5.md)。
 
 首頁右側另提供七項國際指數，詳見 [國際指數說明](docs/international-indices.md)。
 

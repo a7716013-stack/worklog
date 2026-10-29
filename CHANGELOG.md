@@ -1,5 +1,12 @@
 # 更新紀錄
 
+## 3.0.5 — 2026-10-30（Phase 4 研究基礎設施）
+
+- 新增 ResearchRun、獨立 future outcomes、每日 IC／RankIC、分位數、分布、相關性與消融研究。
+- 新增 chronological／walk-forward protocol、purge／embargo、OOS 選擇鎖定、JSON 持久化與完整重播。
+- 保留既有 Candidate／Legacy；新增 v3-research CI，不自動 promotion 或進入交易。
+- 真實 PIT 歷史資料與研究仍不足，詳見 [實作報告](docs/implementation-3.0.5.md)及 [缺口報告](docs/phase4-gap-3.0.5.json)。
+
 ## 3.0.4 — 2026-10-29（Candidate 實作）
 
 - 依 Evidence Model Definition v1 新增六項候選計算器、共用正規化、參數契約與特徵定義。

@@ -1,0 +1,29 @@
+{
+  "version": "3.0.5",
+  "startSHA": "367434df2194b80a33d58a73875f869372d31bc9",
+  "candidateVersion": "V3EvidenceCandidate-v1",
+  "modelStatus": "RESEARCH_CANDIDATE_NOT_PRODUCTION_VERIFIED",
+  "promotionStatus": "BLOCKED_BY_DATA",
+  "historicalResearch": "NOT_COMPLETED",
+  "realOosValidation": "NOT_COMPLETED",
+  "localDataAudit": "No V2 snapshot/provenance tables in local WorkJournal database; cloud dataset contents not audited by this check.",
+  "componentStatuses": {
+    "Trend": "NOT_ENOUGH_EVIDENCE",
+    "Momentum": "NOT_ENOUGH_EVIDENCE",
+    "VolumePrice": "NOT_ENOUGH_EVIDENCE",
+    "Institutional": "BLOCKED_BY_DATA",
+    "RelativeStrength": "NOT_ENOUGH_EVIDENCE",
+    "RiskQuality": "NOT_ENOUGH_EVIDENCE"
+  },
+  "gaps": [
+    "Verified historical publication/availability policy",
+    "Certified PIT historical universe, benchmark mappings and revision snapshots",
+    "Approved research protocol, parameter candidates and calibrated bounds",
+    "Actual train/validation/OOS research and component/parameter stability evidence",
+    "Versioned historical sector, regime, liquidity and market-cap group evidence",
+    "Independent promotion review and explicit approval"
+  ],
+  "v3Threshold": "UNRESOLVED",
+  "automaticPromotion": false,
+  "strategyRankingAllocationTrading": false
+}
