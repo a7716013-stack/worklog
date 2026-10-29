@@ -197,9 +197,31 @@ jobs:
         with:
           name: legacy-v2-evidence
           path: evidence/
+  v3-model:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.EXPECTED_SHA }}
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+      - name: Candidate mathematics, PIT isolation and deterministic replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p evidence
+          git rev-parse HEAD > evidence/v3-model.sha
+          dotnet run --project tests/V3ModelChecks -c Release 2>&1 | tee evidence/v3-model.log
+          dotnet build src/WorkJournal.Evidence.Cli -c Release 2>&1 | tee evidence/v3-cli.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: legacy-v3-model
+          path: evidence/
   legacy-golden-master:
     if: always()
-    needs: [build, legacy-fast, legacy-sql, v2-foundation, v2-evidence]
+    needs: [build, legacy-fast, legacy-sql, v2-foundation, v2-evidence, v3-model]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4
@@ -215,12 +237,13 @@ jobs:
           SQL_RESULT: ${{ needs.legacy-sql.result }}
           V2_RESULT: ${{ needs.v2-foundation.result }}
           EVIDENCE_RESULT: ${{ needs.v2-evidence.result }}
+          MODEL_RESULT: ${{ needs.v3-model.result }}
         run: |
           set -euo pipefail
           python3 - <<'PY'
           import json, os, pathlib, datetime
-          jobs = {k: os.environ[k] for k in ('BUILD_RESULT', 'FAST_RESULT', 'SQL_RESULT', 'V2_RESULT', 'EVIDENCE_RESULT')}
-          shas = {k: pathlib.Path('evidence', k+'.sha').read_text().strip() for k in ('build', 'legacy-fast', 'legacy-sql', 'v2-foundation', 'v2-evidence')}
+          jobs = {k: os.environ[k] for k in ('BUILD_RESULT', 'FAST_RESULT', 'SQL_RESULT', 'V2_RESULT', 'EVIDENCE_RESULT', 'MODEL_RESULT')}
+          shas = {k: pathlib.Path('evidence', k+'.sha').read_text().strip() for k in ('build', 'legacy-fast', 'legacy-sql', 'v2-foundation', 'v2-evidence', 'v3-model')}
           passed = all(v == 'success' for v in jobs.values()) and all(v == os.environ['EXPECTED_SHA'] for v in shas.values())
           report = dict(commitSHA=os.environ['EXPECTED_SHA'], workflowRunId=os.environ['GITHUB_RUN_ID'], runner=os.environ['RUNNER_OS'], timestamp=datetime.datetime.now(datetime.timezone.utc).isoformat(), jobs=jobs, shas=shas, browserTests='NOT_PART_OF_GATE', externalProbe='NOT_PART_OF_GATE', status='PASS' if passed else 'FAIL')
           pathlib.Path('evidence/golden-master.json').write_text(json.dumps(report, indent=2))

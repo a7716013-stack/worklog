@@ -1,6 +1,6 @@
 # 工作日誌 WorkJournal
 
-版本 **3.0.3**：Phase 3 固定加總器、Evidence 契約與 PIT 缺口檢查。六項正規化仍未定義，Phase 3 尚未完成；既有評分保持不變。詳見 [版本說明](docs/releases/3.0.3.md)及 [實作報告](docs/implementation-3.0.3.md)。
+版本 **3.0.4**：新增六項 Evidence Candidate v1、版本化參數、歷史資料檢查及離線研究工具。尚未完成 Research／OOS 驗證，不取代既有評分。詳見 [版本說明](docs/releases/3.0.4.md)及 [實作報告](docs/implementation-3.0.4.md)。
 
 首頁右側另提供七項國際指數，詳見 [國際指數說明](docs/international-indices.md)。
 

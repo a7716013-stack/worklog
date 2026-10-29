@@ -1,5 +1,12 @@
 # 更新紀錄
 
+## 3.0.4 — 2026-10-29（Candidate 實作）
+
+- 依 Evidence Model Definition v1 新增六項候選計算器、共用正規化、參數契約與特徵定義。
+- 加入歷史股票池／基準／發布時間檢查、確定性重播、研究追蹤與離線 CLI。
+- 未指定的參數維持缺口；候選模型尚未通過 Research／OOS，不取代既有評分。
+- 依使用者後續上版指示進行 GitHub CI 與部署；Candidate 狀態及研究缺口保留。詳見 [實作報告](docs/implementation-3.0.4.md)。
+
 ## 3.0.3 — 2026-10-29（Phase 3 部分實作）
 
 - 新增 FullEvidence100 固定加總、結果契約、缺值處理及唯讀 PIT 準備服務。
