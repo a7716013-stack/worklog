@@ -1,0 +1,49 @@
+{
+  "reportDigest": "D772036D326D738C69355878EAAF38935DE544B2756130E3EF1336AA6C75FAA9",
+  "version": "3.0.7",
+  "prior306Replay": "PASS",
+  "authorityStatus": "BLOCKED_BY_AUTHORITY_OR_DATA",
+  "dataGaps": [
+    {
+      "Code": "AVAILABILITY_GAP",
+      "Detail": "AVAILABILITY_GAP:UNKNOWN: 21 fact/date decisions."
+    },
+    {
+      "Code": "BENCHMARK_GAP",
+      "Detail": "No historical benchmark mapping supplied."
+    },
+    {
+      "Code": "CORPORATE_ACTION_GAP",
+      "Detail": "No frozen reviewed price policy."
+    },
+    {
+      "Code": "COVERAGE_GAP",
+      "Detail": "See per-domain denominators; missing institutional data is not zero and never renormalizes scores."
+    },
+    {
+      "Code": "UNIVERSE_GAP",
+      "Detail": "No verified historical membership for 2026-09-30; current membership forbidden."
+    }
+  ],
+  "gaps": [
+    {
+      "Code": "AUTHORITY_GAP",
+      "Detail": "No reviewed historical authority supplied."
+    },
+    {
+      "Code": "DATASET_NOT_READY",
+      "Detail": "Complete historical coverage and PIT snapshots required for this initial approval scope."
+    },
+    {
+      "Code": "DATASET_APPROVAL_REQUIRED",
+      "Detail": "Explicit reviewer approval must bind this exact submission digest; no provider-based auto approval."
+    }
+  ],
+  "realBaseline": "NOT_RUN",
+  "realOos": "NOT_RUN",
+  "modelPromotion": "BLOCKED",
+  "replay": "PASS",
+  "submissionDigest": "D169E10F7773295BE950A051F3CA7AA854D72CDA90598676E683A9DB173F74A3",
+  "approvedRealSnapshots": 0,
+  "realSourceRecords": 21
+}

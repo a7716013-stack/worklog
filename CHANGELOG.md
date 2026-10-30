@@ -1,5 +1,12 @@
 # 更新紀錄
 
+## 3.0.7 — 2026-10-30（Phase 4D 歷史資料授權）
+
+- 新增六狀態資料授權、五類可得時間證據、逐筆來源／政策綁定及明確資料集 review。
+- 新增不可覆寫審核歷史與證據封存，阻擋未核准／已取代來源進入新真實研究，保留舊封存重播。
+- 新增 58 項授權檢查與 v3-authority CI；既有計算器及數學公式保留。
+- 真實 21 筆樣本仍為 BLOCKED_BY_AUTHORITY_OR_DATA；未執行真實 baseline／IC／OOS，未自動 promotion。詳見 [實作報告](docs/implementation-3.0.7.md)。
+
 ## 3.0.6 — 2026-10-30（Phase 4B 歷史資料與驗證邊界）
 
 - 新增官方歷史來源封存、凍結 availability policy、歷史身分／股票池／基準／修訂 PIT 篩選。
