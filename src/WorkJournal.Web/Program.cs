@@ -24,6 +24,7 @@ builder.Services.AddV2Foundations();
 builder.Services.AddSingleton<WorkJournal.Web.Services.Evidence.IFullEvidenceScoreCalculator, WorkJournal.Web.Services.Evidence.FullEvidenceScoreCalculator>();
 builder.Services.AddSingleton<WorkJournal.Web.Services.Evidence.V3CandidateCalculator>();
 builder.Services.AddSingleton<WorkJournal.Web.Services.Research.ResearchEngine>();
+builder.Services.AddSingleton<WorkJournal.Web.Services.HistoricalResearch.IHistoricalResearchDatasetBuilder, WorkJournal.Web.Services.HistoricalResearch.HistoricalDatasetBuilder>();
 builder.Services.AddScoped<WorkJournal.Web.Services.Evidence.IFullEvidencePreparationService, WorkJournal.Web.Services.Evidence.FullEvidencePreparationService>();
 builder.Services.AddHttpClient<WorkJournal.Web.Services.PaperIntradayService>(client => {
     client.Timeout = TimeSpan.FromSeconds(8);

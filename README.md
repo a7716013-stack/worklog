@@ -1,6 +1,6 @@
 # 工作日誌 WorkJournal
 
-版本 **3.0.5**：新增 Phase 4 PIT 研究框架、IC／RankIC、時間切分與 OOS 鎖定、研究保存及重播。真實歷史研究仍有資料缺口，Candidate 不取代既有評分。詳見 [版本說明](docs/releases/3.0.5.md)及 [實作報告](docs/implementation-3.0.5.md)。
+版本 **3.0.6**：新增 Phase 4B 歷史來源封存、PIT 資料集建構／重播、候選登錄與證據驗證報告。真實樣本已取得，但歷史可得時間與來源政策尚有缺口，完整真實研究維持阻擋。詳見 [版本說明](docs/releases/3.0.6.md)及 [實作報告](docs/implementation-3.0.6.md)。
 
 首頁右側另提供七項國際指數，詳見 [國際指數說明](docs/international-indices.md)。
 

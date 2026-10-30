@@ -4,6 +4,8 @@ using WorkJournal.Web.Services.Evidence;
 using WorkJournal.Web.Models.Research;
 using WorkJournal.Web.Services.Research;
 
+if(args.Length>0&&args[0].StartsWith("--pit-",StringComparison.Ordinal))return await PitCommands.Run(args);
+
 if (args.Length>0 && args[0].StartsWith("--research",StringComparison.Ordinal))
 {
     try

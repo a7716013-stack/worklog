@@ -1,0 +1,39 @@
+{
+  "version": "3.0.6",
+  "status": "BLOCKED_BY_DATA",
+  "realDatasetSnapshotId": "f59cdabbc2198a6410105de0a5b358d9",
+  "realDatasetChecksum": "BBDA9CF519C2648A10105DE0A5B358D988C00B19BE7C166190A5CE99417958B3",
+  "realSourceRecords": 21,
+  "eligibleRealResearchSnapshots": 0,
+  "replay": "PASS",
+  "gaps": [
+    {
+      "Code": "AVAILABILITY_GAP",
+      "Detail": "AVAILABILITY_GAP:UNKNOWN: 21 fact/date decisions."
+    },
+    {
+      "Code": "BENCHMARK_GAP",
+      "Detail": "No historical benchmark mapping supplied."
+    },
+    {
+      "Code": "CORPORATE_ACTION_GAP",
+      "Detail": "No frozen reviewed price policy."
+    },
+    {
+      "Code": "COVERAGE_GAP",
+      "Detail": "See per-domain denominators; missing institutional data is not zero and never renormalizes scores."
+    },
+    {
+      "Code": "UNIVERSE_GAP",
+      "Detail": "No verified historical membership for 2026-09-30; current membership forbidden."
+    }
+  ],
+  "requiredFurtherEvidence": [
+    "DATA_GAP: original revision and exchange calendar",
+    "CLASSIFICATION_GAP: historical sector/size/liquidity/regime",
+    "FORMULA_GAP: approved frozen real research parameter set",
+    "NORMALIZATION_GAP: real direction/distribution evidence"
+  ],
+  "promotion": "BLOCKED_BY_DATA",
+  "V3Threshold": "UNRESOLVED"
+}

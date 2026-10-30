@@ -1,5 +1,12 @@
 # 更新紀錄
 
+## 3.0.6 — 2026-10-30（Phase 4B 歷史資料與驗證邊界）
+
+- 新增官方歷史來源封存、凍結 availability policy、歷史身分／股票池／基準／修訂 PIT 篩選。
+- 新增不可覆寫資料集、重播、研究轉接、候選登錄及完整證據狀態／統計報告。
+- 新增 45 項資料集檢查及相同 SHA 的 v3-pit-dataset CI；既有 Candidate、Research 數學及 Legacy 公式保留。
+- 官方真實樣本已擷取；歷史公布時間／修訂、股票池及基準證明仍缺，真實 baseline／OOS／promotion 阻擋。詳見 [實作報告](docs/implementation-3.0.6.md)。
+
 ## 3.0.5 — 2026-10-30（Phase 4 研究基礎設施）
 
 - 新增 ResearchRun、獨立 future outcomes、每日 IC／RankIC、分位數、分布、相關性與消融研究。
