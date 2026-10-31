@@ -1,6 +1,6 @@
 # 工作日誌 WorkJournal
 
-版本 **3.0.7**：新增 Phase 4D 歷史資料授權、證據審核、政策摘要與資料集核准門檻。新真實研究必須經核准入口；目前真實樣本仍缺審核證據，baseline／OOS 尚未執行。詳見 [版本說明](docs/releases/3.0.7.md)及 [實作報告](docs/implementation-3.0.7.md)。
+版本 **3.0.8**：新增 Phase 4E 官方證據擷取、不可覆寫封存、審核回條、分項資料集核准與基準研究工具。六份官方頁面已實際封存並審查，但不足以核准歷史資料，真實 baseline 仍未執行，Phase 4E 的研究退出條件尚未達成。詳見 [版本說明](docs/releases/3.0.8.md)及 [實作報告](docs/implementation-3.0.8.md)。
 
 首頁右側另提供七項國際指數，詳見 [國際指數說明](docs/international-indices.md)。
 

@@ -1,0 +1,60 @@
+{
+  "version": "3.0.8",
+  "startSHA": "6c908d1d8b089c3ed15c9d6e8a69e5a3653874ae",
+  "localRegression": "PASS",
+  "finalContractChecks": 41,
+  "coreUnchanged": [
+    {
+      "path": "src/WorkJournal.Web/Services/Evidence/CandidateFeatureCatalog.cs",
+      "sha256": "cd71757788caa6f9194d497ae9943966a091fd7152ff1f23a156f2e4463ceb02"
+    },
+    {
+      "path": "src/WorkJournal.Web/Services/Evidence/CandidateMath.cs",
+      "sha256": "ebcd8c89cc804780f969a0da8341378bbc42a80aac29c49cfe7ed7e0580fa06c"
+    },
+    {
+      "path": "src/WorkJournal.Web/Services/Evidence/FullEvidencePreparationService.cs",
+      "sha256": "35c85251f5e626f8a386c9f6fd82e4eaa3764db3231efc48216733f1e94241a4"
+    },
+    {
+      "path": "src/WorkJournal.Web/Services/Evidence/FullEvidenceScoreCalculator.cs",
+      "sha256": "d8aa56ee59a80e5f1e624d0be25bfff8107211b32dc0dcc27e2bec686a90f3d5"
+    },
+    {
+      "path": "src/WorkJournal.Web/Services/Evidence/V3CandidateCalculator.cs",
+      "sha256": "68df05117f33c91eebd7557248b16e07802b22c2f13c4cad60cb7c3cd76b9273"
+    },
+    {
+      "path": "src/WorkJournal.Web/Services/Research/ResearchEngine.cs",
+      "sha256": "fc1cb2d5ec325d892263503fba255cd243ff48bb63e9e9032e2440566d64fd0e"
+    },
+    {
+      "path": "src/WorkJournal.Web/Services/Research/ResearchMath.cs",
+      "sha256": "976e93461eb3624c2fe94c74deba66657f24a871a04c6e34c33c96d9dafce860"
+    },
+    {
+      "path": "src/WorkJournal.Web/Services/Research/ResearchMetrics.cs",
+      "sha256": "0d0121ddc6bef932302f30cc3fca4ba3630083f8b06c1e50967c9796ebd2b0b9"
+    },
+    {
+      "path": "src/WorkJournal.Web/Services/Research/ResearchOutcomeCalculator.cs",
+      "sha256": "e2aba82cfb7623c0d5b0314874b9a76e2906787f0172872c3d186b017fc09324"
+    },
+    {
+      "path": "src/WorkJournal.Web/Services/Research/ResearchProtocolRules.cs",
+      "sha256": "398d85fb93bc4fc4e7bc7fa0f02ae8e603d8dc5248d7c0448a55620515e22b7d"
+    },
+    {
+      "path": "src/WorkJournal.Web/Services/Research/ResearchStore.cs",
+      "sha256": "af7e3ee04cd394d73c1877544418ccca94669590a95022e478ac5ceeaffe765b"
+    }
+  ],
+  "realCaptures": 6,
+  "realDatasetStatus": "BLOCKED_BY_AUTHORITY_OR_DATA",
+  "realApprovalDigest": "3DE9CF41A3F8E4B9B5E01BB209546D3C3339EE3C9A039ACB1F435F198CFB56B2",
+  "acquisitionReplay": "PASS",
+  "realBaseline": "NOT_RUN",
+  "promotion": "NOT_PROMOTED",
+  "threshold": "UNRESOLVED",
+  "phase5": "LOCKED"
+}

@@ -1,0 +1,258 @@
+{
+  "Status": "BLOCKED_BY_AUTHORITY_OR_DATA",
+  "DatasetApprovalId": null,
+  "CoverageStart": "2026-09-30",
+  "CoverageEnd": "2026-09-30",
+  "TradingDates": 0,
+  "InstrumentCount": 0,
+  "ObservationCount": 0,
+  "Domains": [
+    {
+      "Domain": 0,
+      "EvidenceStatus": "UNPROVEN",
+      "AuthorityStatus": "BLOCKED",
+      "CoverageStatus": "UNKNOWN",
+      "KnownGaps": [
+        "Availability_EVIDENCE_OR_SCOPE_GAP"
+      ]
+    },
+    {
+      "Domain": 1,
+      "EvidenceStatus": "UNPROVEN",
+      "AuthorityStatus": "BLOCKED",
+      "CoverageStatus": "UNKNOWN",
+      "KnownGaps": [
+        "Universe_EVIDENCE_OR_SCOPE_GAP"
+      ]
+    },
+    {
+      "Domain": 2,
+      "EvidenceStatus": "UNPROVEN",
+      "AuthorityStatus": "BLOCKED",
+      "CoverageStatus": "UNKNOWN",
+      "KnownGaps": [
+        "Benchmark_EVIDENCE_OR_SCOPE_GAP"
+      ]
+    },
+    {
+      "Domain": 3,
+      "EvidenceStatus": "UNPROVEN",
+      "AuthorityStatus": "BLOCKED",
+      "CoverageStatus": "UNKNOWN",
+      "KnownGaps": [
+        "CorporateAction_EVIDENCE_OR_SCOPE_GAP"
+      ]
+    },
+    {
+      "Domain": 4,
+      "EvidenceStatus": "UNPROVEN",
+      "AuthorityStatus": "BLOCKED",
+      "CoverageStatus": "UNKNOWN",
+      "KnownGaps": [
+        "Calendar_EVIDENCE_OR_SCOPE_GAP"
+      ]
+    }
+  ],
+  "EvidenceCoverage": [
+    {
+      "Evidence": 0,
+      "FormulaStatus": "LOCKED_CANDIDATE_V1",
+      "RequiredAuthorities": [
+        "Availability",
+        "Universe",
+        "CorporateAction",
+        "Calendar",
+        "Price"
+      ],
+      "ApprovedAuthorities": [],
+      "MissingAuthorities": [
+        "Availability",
+        "Universe",
+        "CorporateAction",
+        "Calendar"
+      ],
+      "DataCoverage": null,
+      "ResearchReady": false,
+      "ReasonCodes": [
+        "Availability_AUTHORITY_GAP",
+        "Universe_AUTHORITY_GAP",
+        "CorporateAction_AUTHORITY_GAP",
+        "Calendar_AUTHORITY_GAP",
+        "REQUIRED_FACTS_MISSING",
+        "SNAPSHOT_COVERAGE_GAP",
+        "TEMPORAL_COVERAGE_GAP",
+        "DATASET_REVIEW_REQUIRED"
+      ]
+    },
+    {
+      "Evidence": 1,
+      "FormulaStatus": "LOCKED_CANDIDATE_V1",
+      "RequiredAuthorities": [
+        "Availability",
+        "Universe",
+        "CorporateAction",
+        "Calendar",
+        "Price"
+      ],
+      "ApprovedAuthorities": [],
+      "MissingAuthorities": [
+        "Availability",
+        "Universe",
+        "CorporateAction",
+        "Calendar"
+      ],
+      "DataCoverage": null,
+      "ResearchReady": false,
+      "ReasonCodes": [
+        "Availability_AUTHORITY_GAP",
+        "Universe_AUTHORITY_GAP",
+        "CorporateAction_AUTHORITY_GAP",
+        "Calendar_AUTHORITY_GAP",
+        "REQUIRED_FACTS_MISSING",
+        "SNAPSHOT_COVERAGE_GAP",
+        "TEMPORAL_COVERAGE_GAP",
+        "DATASET_REVIEW_REQUIRED"
+      ]
+    },
+    {
+      "Evidence": 2,
+      "FormulaStatus": "LOCKED_CANDIDATE_V1",
+      "RequiredAuthorities": [
+        "Availability",
+        "Universe",
+        "CorporateAction",
+        "Calendar",
+        "Price"
+      ],
+      "ApprovedAuthorities": [],
+      "MissingAuthorities": [
+        "Availability",
+        "Universe",
+        "CorporateAction",
+        "Calendar"
+      ],
+      "DataCoverage": null,
+      "ResearchReady": false,
+      "ReasonCodes": [
+        "Availability_AUTHORITY_GAP",
+        "Universe_AUTHORITY_GAP",
+        "CorporateAction_AUTHORITY_GAP",
+        "Calendar_AUTHORITY_GAP",
+        "REQUIRED_FACTS_MISSING",
+        "SNAPSHOT_COVERAGE_GAP",
+        "TEMPORAL_COVERAGE_GAP",
+        "DATASET_REVIEW_REQUIRED"
+      ]
+    },
+    {
+      "Evidence": 3,
+      "FormulaStatus": "LOCKED_CANDIDATE_V1",
+      "RequiredAuthorities": [
+        "Availability",
+        "Universe",
+        "CorporateAction",
+        "Calendar",
+        "Price",
+        "Institutional"
+      ],
+      "ApprovedAuthorities": [],
+      "MissingAuthorities": [
+        "Availability",
+        "Universe",
+        "CorporateAction",
+        "Calendar"
+      ],
+      "DataCoverage": null,
+      "ResearchReady": false,
+      "ReasonCodes": [
+        "Availability_AUTHORITY_GAP",
+        "Universe_AUTHORITY_GAP",
+        "CorporateAction_AUTHORITY_GAP",
+        "Calendar_AUTHORITY_GAP",
+        "REQUIRED_FACTS_MISSING",
+        "SNAPSHOT_COVERAGE_GAP",
+        "TEMPORAL_COVERAGE_GAP",
+        "DATASET_REVIEW_REQUIRED"
+      ]
+    },
+    {
+      "Evidence": 4,
+      "FormulaStatus": "LOCKED_CANDIDATE_V1",
+      "RequiredAuthorities": [
+        "Availability",
+        "Universe",
+        "Benchmark",
+        "CorporateAction",
+        "Calendar",
+        "Price",
+        "Benchmark"
+      ],
+      "ApprovedAuthorities": [],
+      "MissingAuthorities": [
+        "Availability",
+        "Universe",
+        "Benchmark",
+        "CorporateAction",
+        "Calendar"
+      ],
+      "DataCoverage": null,
+      "ResearchReady": false,
+      "ReasonCodes": [
+        "Availability_AUTHORITY_GAP",
+        "Universe_AUTHORITY_GAP",
+        "Benchmark_AUTHORITY_GAP",
+        "CorporateAction_AUTHORITY_GAP",
+        "Calendar_AUTHORITY_GAP",
+        "REQUIRED_FACTS_MISSING",
+        "SNAPSHOT_COVERAGE_GAP",
+        "TEMPORAL_COVERAGE_GAP",
+        "DATASET_REVIEW_REQUIRED"
+      ]
+    },
+    {
+      "Evidence": 5,
+      "FormulaStatus": "LOCKED_CANDIDATE_V1",
+      "RequiredAuthorities": [
+        "Availability",
+        "Universe",
+        "CorporateAction",
+        "Calendar",
+        "Price"
+      ],
+      "ApprovedAuthorities": [],
+      "MissingAuthorities": [
+        "Availability",
+        "Universe",
+        "CorporateAction",
+        "Calendar"
+      ],
+      "DataCoverage": null,
+      "ResearchReady": false,
+      "ReasonCodes": [
+        "Availability_AUTHORITY_GAP",
+        "Universe_AUTHORITY_GAP",
+        "CorporateAction_AUTHORITY_GAP",
+        "Calendar_AUTHORITY_GAP",
+        "REQUIRED_FACTS_MISSING",
+        "SNAPSHOT_COVERAGE_GAP",
+        "TEMPORAL_COVERAGE_GAP",
+        "DATASET_REVIEW_REQUIRED"
+      ]
+    }
+  ],
+  "ComponentApprovals": [],
+  "FullApproval": null,
+  "KnownGaps": [
+    "Availability_AUTHORITY_GAP",
+    "Universe_AUTHORITY_GAP",
+    "CorporateAction_AUTHORITY_GAP",
+    "Calendar_AUTHORITY_GAP",
+    "REQUIRED_FACTS_MISSING",
+    "SNAPSHOT_COVERAGE_GAP",
+    "TEMPORAL_COVERAGE_GAP",
+    "DATASET_REVIEW_REQUIRED",
+    "Benchmark_AUTHORITY_GAP"
+  ],
+  "InputDigest": "E0FC6EE676BACEEFBCFA72252F77969002FF29AD99D99BEE9CF9A7B8C969A550",
+  "ApprovalDigest": "3DE9CF41A3F8E4B9B5E01BB209546D3C3339EE3C9A039ACB1F435F198CFB56B2"
+}

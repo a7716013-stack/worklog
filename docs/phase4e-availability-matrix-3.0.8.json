@@ -1,0 +1,104 @@
+[
+  {
+    "Provider": "TWSE",
+    "DatasetType": "PriceAvailability",
+    "Period": [
+      "2026-09-01",
+      "2026-09-30"
+    ],
+    "Authority": [],
+    "Evidence": [
+      "67338c9a-2125-4ff8-ab3a-1994f79d4f28"
+    ],
+    "ReviewDigest": "116EC24F4EB2C99501EED6C39C9384B88ADB4D4C1829CADC3C43DED8844C10E9",
+    "AvailabilityRule": "Unknown",
+    "Coverage": null,
+    "ExpectedCount": null,
+    "Status": "BLOCKED_BY_AUTHORITY_OR_DATA"
+  },
+  {
+    "Provider": "TWSE",
+    "DatasetType": "InstitutionalAvailability",
+    "Period": [
+      "2026-09-01",
+      "2026-09-30"
+    ],
+    "Authority": [],
+    "Evidence": [
+      "2cf5722c-bd1f-442f-a002-71193cb2f27f"
+    ],
+    "ReviewDigest": "8F5EBD10E345A453442A278A7F6CD2A8FCA00785AF3393986320F7C19B5E465A",
+    "AvailabilityRule": "Unknown",
+    "Coverage": null,
+    "ExpectedCount": null,
+    "Status": "BLOCKED_BY_AUTHORITY_OR_DATA"
+  },
+  {
+    "Provider": "TWSE",
+    "DatasetType": "HistoricalUniverse",
+    "Period": [
+      "2026-09-01",
+      "2026-09-30"
+    ],
+    "Authority": [],
+    "Evidence": [
+      "812f4eb0-bf7f-444b-9117-5ad3914cf686"
+    ],
+    "ReviewDigest": "1530C9DC5A0718F9CD9A08936864C7EFAB15F0B8636DBF5EEF70042274869048",
+    "AvailabilityRule": "Unknown",
+    "Coverage": null,
+    "ExpectedCount": null,
+    "Status": "BLOCKED_BY_AUTHORITY_OR_DATA"
+  },
+  {
+    "Provider": "TWSE",
+    "DatasetType": "CorporateActions",
+    "Period": [
+      "2026-09-01",
+      "2026-09-30"
+    ],
+    "Authority": [],
+    "Evidence": [
+      "c2be2a01-409d-43f9-84db-cf2e38797e61"
+    ],
+    "ReviewDigest": "04B8559564259D362F6953174FA17348F92E03CB76BF8939D4397505FEF35FA1",
+    "AvailabilityRule": "Unknown",
+    "Coverage": null,
+    "ExpectedCount": null,
+    "Status": "BLOCKED_BY_AUTHORITY_OR_DATA"
+  },
+  {
+    "Provider": "TWSE",
+    "DatasetType": "TradingCalendar",
+    "Period": [
+      "2026-09-01",
+      "2026-09-30"
+    ],
+    "Authority": [],
+    "Evidence": [
+      "5faffb27-aa6f-4e70-a147-be53ffd4667f"
+    ],
+    "ReviewDigest": "9BB037F905DB38CF156E1D130450028982EC29516F393336EB2008BA35CB12DC",
+    "AvailabilityRule": "Unknown",
+    "Coverage": null,
+    "ExpectedCount": null,
+    "Status": "BLOCKED_BY_AUTHORITY_OR_DATA"
+  },
+  {
+    "Provider": "TWSE",
+    "DatasetType": "HistoricalBenchmark",
+    "Period": [
+      "2026-09-01",
+      "2026-09-30"
+    ],
+    "Authority": [],
+    "Evidence": [
+      "d76993df-f44e-4c25-84a1-1575bff10ead"
+    ],
+    "ReviewDigest": "C9B20D695884D88EC290E13FFB5165EA076D5E52A851DFEAEA5F15DB6B9A36E5",
+    "AvailabilityRule": "Unknown",
+    "Coverage": null,
+    "ExpectedCount": null,
+    "Status": "BLOCKED_BY_AUTHORITY_OR_DATA"
+  }
+]
