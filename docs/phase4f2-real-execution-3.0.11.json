@@ -1,0 +1,1860 @@
+{
+  "Version": "3.0.11",
+  "StartSHA": "adb9f11da92816ecc539704ec8da4ba6681e875c",
+  "Execution": "REAL_AUTHORITY_RESOLUTION_EXECUTED",
+  "Component": "Trend",
+  "RequiredClaims": 20,
+  "SupportedClaims": 0,
+  "PartiallySupportedClaims": 4,
+  "UnknownClaims": 16,
+  "ConflictingClaims": 0,
+  "RawRealRows": 20,
+  "EligibleRealObservations": 0,
+  "ApprovedAuthorityDomains": 0,
+  "ApprovedComponentDatasetCount": 0,
+  "DatasetApprovalAttempt": "EXECUTED",
+  "DatasetApprovalResult": "BLOCKED_BY_AUTHORITY_OR_DATA",
+  "ApprovalId": null,
+  "FIRST_APPROVED_REAL_COMPONENT_DATASET": "NO",
+  "FIRST_REAL_COMPONENT_BASELINE": "NO",
+  "RealIC": "NOT RUN",
+  "RealRankIC": "NOT RUN",
+  "RealQuantile": "NOT RUN",
+  "RealAblation": "NOT RUN",
+  "V3Threshold": "UNRESOLVED",
+  "OOS": "LOCKED",
+  "V3Promotion": "LOCKED",
+  "Phase5": "LOCKED",
+  "Attempts": [
+    {
+      "AttemptId": "25cbfa00-656b-4442-a977-88548469d2bd",
+      "ResolutionTaskId": "0639f786-e240-45cd-cd60-871d698ab9bc",
+      "SourceReference": "https://www.twse.com.tw/zh/trading/historical/stock-day.html",
+      "Provider": "TWSE",
+      "RequestedAt": "2026-11-01T16:50:33.4516758+00:00",
+      "ReceivedAt": "2026-11-01T16:50:33.6772869+00:00",
+      "AcquisitionStatus": "HTTP_SUCCESS",
+      "ContentType": "text/html",
+      "RawDigest": "F2ABB6E49794EBD6D4E596F0C6436F193431786A5B96171A6E87638C729129B7",
+      "ArchiveLocation": "artifacts/phase311-evidence/evidence/authority/6e6a7e66d5554e0196bbb1fb2b06908b/raw.bin",
+      "ResultStatus": 3,
+      "FailureReason": null,
+      "Operator": "Codex evidence acquisition; no authority approval",
+      "EvidenceId": "6e6a7e66-d555-4e01-96bb-b1fb2b06908b",
+      "Digest": "7841FFE4DA34912D4DCF34962E7BA2A8DA1FA229AA34E573F8A7AA99C381DBD6"
+    },
+    {
+      "AttemptId": "26a3fc19-b32b-4664-a6e7-86b044055f75",
+      "ResolutionTaskId": "473e0fe4-f020-03bb-53ff-a830898ad73f",
+      "SourceReference": "https://www.twse.com.tw/zh/products/information/history.html",
+      "Provider": "TWSE",
+      "RequestedAt": "2026-11-01T16:50:33.8799139+00:00",
+      "ReceivedAt": "2026-11-01T16:50:34.1338402+00:00",
+      "AcquisitionStatus": "HTTP_SUCCESS",
+      "ContentType": "text/html",
+      "RawDigest": "07B0CE735349DB2D2A30F03B9A8225BD03E63CEC61C6D50C02C6EF3345E73A13",
+      "ArchiveLocation": "artifacts/phase311-evidence/evidence/authority/9904abbda55a4e33b2ff7bcb74ab700a/raw.bin",
+      "ResultStatus": 3,
+      "FailureReason": null,
+      "Operator": "Codex evidence acquisition; no authority approval",
+      "EvidenceId": "9904abbd-a55a-4e33-b2ff-7bcb74ab700a",
+      "Digest": "3125045F24742CED06069F2377E72E9E04E7B7CB72F5BAE8F3F5D78F420BCCBB"
+    }
+  ],
+  "Reviews": [
+    {
+      "ReviewId": "3b7672fe-092c-4616-b697-7b0c2da22ba0",
+      "EvidenceId": "6e6a7e66-d555-4e01-96bb-b1fb2b06908b",
+      "Reviewer": "Codex inspected archived official document; operator attestation",
+      "ReviewedAt": "2026-11-01T16:51:00.078133+00:00",
+      "Claim": "Does this source establish STOCK_DAY historical original publication or revision reconstruction?",
+      "Supported": [
+        "QueryServiceAvailability"
+      ],
+      "Unsupported": [],
+      "Ambiguous": [
+        "HistoricalPublication",
+        "RevisionBehavior"
+      ],
+      "EffectiveFrom": "2026-09-30",
+      "EffectiveTo": "2026-09-30",
+      "Timezone": "Asia/Taipei",
+      "Notes": "The query page describes historical date selection and service coverage since 2010-01-04, not historical observation publication instants.",
+      "EvidenceDigest": "F2ABB6E49794EBD6D4E596F0C6436F193431786A5B96171A6E87638C729129B7",
+      "ReviewDigest": "F7FB40235655E8CE3A8E6D072C1CA4362DAF405021FF270A28BC6DFDE9C5FFF3"
+    },
+    {
+      "ReviewId": "979cf061-792f-4d04-923d-a450f2236e70",
+      "EvidenceId": "9904abbd-a55a-4e33-b2ff-7bcb74ab700a",
+      "Reviewer": "Codex inspected archived official document; operator attestation",
+      "ReviewedAt": "2026-11-01T16:51:01.996030+00:00",
+      "Claim": "Does this source establish STOCK_DAY historical original publication or revision reconstruction?",
+      "Supported": [
+        "HistoricalDataServiceChannel"
+      ],
+      "Unsupported": [],
+      "Ambiguous": [
+        "HistoricalPublication",
+        "RevisionBehavior"
+      ],
+      "EffectiveFrom": "2026-09-30",
+      "EffectiveTo": "2026-09-30",
+      "Timezone": "Asia/Taipei",
+      "Notes": "The service page points to the information store; it does not identify retained historical STOCK_DAY versions or correction publication timestamps.",
+      "EvidenceDigest": "07B0CE735349DB2D2A30F03B9A8225BD03E63CEC61C6D50C02C6EF3345E73A13",
+      "ReviewDigest": "85F2361558A401334D7C221BADE6FC83392A81560F596E53CD89CB79A4B6421E"
+    }
+  ],
+  "Report": {
+    "RequestId": "152b50d7-361d-aa0f-ba47-5b78700d71b0",
+    "Status": "BLOCKED_BY_AUTHORITY_OR_DATA",
+    "Claims": [
+      {
+        "Domain": 0,
+        "RequiredClaim": "HistoricalSessions",
+        "CurrentStatus": "UNKNOWN",
+        "CurrentEvidence": [
+          "d18902ab-75f0-40c0-976d-8540d21946e1"
+        ],
+        "MissingEvidence": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "HistoricalSessions"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "ConflictStatus": "NONE_RECORDED",
+        "NextResolutionAction": "Acquire historical evidence for HistoricalSessions; review and bind to this exact subject and period"
+      },
+      {
+        "Domain": 0,
+        "RequiredClaim": "ScheduledHolidays",
+        "CurrentStatus": "PARTIALLY_SUPPORTED",
+        "CurrentEvidence": [
+          "d18902ab-75f0-40c0-976d-8540d21946e1"
+        ],
+        "MissingEvidence": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "ScheduledHolidays"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "ConflictStatus": "NONE_RECORDED",
+        "NextResolutionAction": "Acquire historical evidence for ScheduledHolidays; review and bind to this exact subject and period"
+      },
+      {
+        "Domain": 0,
+        "RequiredClaim": "EmergencyClosures",
+        "CurrentStatus": "UNKNOWN",
+        "CurrentEvidence": [
+          "d18902ab-75f0-40c0-976d-8540d21946e1"
+        ],
+        "MissingEvidence": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "EmergencyClosures"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "ConflictStatus": "NONE_RECORDED",
+        "NextResolutionAction": "Acquire historical evidence for EmergencyClosures; review and bind to this exact subject and period"
+      },
+      {
+        "Domain": 0,
+        "RequiredClaim": "Horizon:TradingSessions",
+        "CurrentStatus": "UNKNOWN",
+        "CurrentEvidence": [
+          "d18902ab-75f0-40c0-976d-8540d21946e1"
+        ],
+        "MissingEvidence": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "Horizon:TradingSessions"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "ConflictStatus": "NONE_RECORDED",
+        "NextResolutionAction": "Acquire historical evidence for Horizon:TradingSessions; review and bind to this exact subject and period"
+      },
+      {
+        "Domain": 1,
+        "RequiredClaim": "HistoricalInstrumentIdentity",
+        "CurrentStatus": "UNKNOWN",
+        "CurrentEvidence": [
+          "16e9385a-6c6a-4881-bde3-2f6db02f15e7"
+        ],
+        "MissingEvidence": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "HistoricalInstrumentIdentity"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "ConflictStatus": "NONE_RECORDED",
+        "NextResolutionAction": "Acquire historical evidence for HistoricalInstrumentIdentity; review and bind to this exact subject and period"
+      },
+      {
+        "Domain": 1,
+        "RequiredClaim": "SymbolHistory",
+        "CurrentStatus": "UNKNOWN",
+        "CurrentEvidence": [
+          "16e9385a-6c6a-4881-bde3-2f6db02f15e7"
+        ],
+        "MissingEvidence": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "SymbolHistory"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "ConflictStatus": "NONE_RECORDED",
+        "NextResolutionAction": "Acquire historical evidence for SymbolHistory; review and bind to this exact subject and period"
+      },
+      {
+        "Domain": 1,
+        "RequiredClaim": "MarketTransfer",
+        "CurrentStatus": "UNKNOWN",
+        "CurrentEvidence": [
+          "16e9385a-6c6a-4881-bde3-2f6db02f15e7"
+        ],
+        "MissingEvidence": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "MarketTransfer"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "ConflictStatus": "NONE_RECORDED",
+        "NextResolutionAction": "Acquire historical evidence for MarketTransfer; review and bind to this exact subject and period"
+      },
+      {
+        "Domain": 2,
+        "RequiredClaim": "HistoricalMembership",
+        "CurrentStatus": "UNKNOWN",
+        "CurrentEvidence": [
+          "25bc00ef-0f8c-444e-a368-6a029221eda1"
+        ],
+        "MissingEvidence": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "HistoricalMembership"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "ConflictStatus": "NONE_RECORDED",
+        "NextResolutionAction": "Acquire historical evidence for HistoricalMembership; review and bind to this exact subject and period"
+      },
+      {
+        "Domain": 2,
+        "RequiredClaim": "Listing",
+        "CurrentStatus": "UNKNOWN",
+        "CurrentEvidence": [
+          "25bc00ef-0f8c-444e-a368-6a029221eda1"
+        ],
+        "MissingEvidence": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "Listing"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "ConflictStatus": "NONE_RECORDED",
+        "NextResolutionAction": "Acquire historical evidence for Listing; review and bind to this exact subject and period"
+      },
+      {
+        "Domain": 2,
+        "RequiredClaim": "Delisting",
+        "CurrentStatus": "UNKNOWN",
+        "CurrentEvidence": [
+          "25bc00ef-0f8c-444e-a368-6a029221eda1"
+        ],
+        "MissingEvidence": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "Delisting"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "ConflictStatus": "NONE_RECORDED",
+        "NextResolutionAction": "Acquire historical evidence for Delisting; review and bind to this exact subject and period"
+      },
+      {
+        "Domain": 2,
+        "RequiredClaim": "Suspension",
+        "CurrentStatus": "UNKNOWN",
+        "CurrentEvidence": [
+          "25bc00ef-0f8c-444e-a368-6a029221eda1"
+        ],
+        "MissingEvidence": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "Suspension"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "ConflictStatus": "NONE_RECORDED",
+        "NextResolutionAction": "Acquire historical evidence for Suspension; review and bind to this exact subject and period"
+      },
+      {
+        "Domain": 2,
+        "RequiredClaim": "Denominator",
+        "CurrentStatus": "UNKNOWN",
+        "CurrentEvidence": [
+          "25bc00ef-0f8c-444e-a368-6a029221eda1"
+        ],
+        "MissingEvidence": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "Denominator"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "ConflictStatus": "NONE_RECORDED",
+        "NextResolutionAction": "Acquire historical evidence for Denominator; review and bind to this exact subject and period"
+      },
+      {
+        "Domain": 3,
+        "RequiredClaim": "HistoricalPrices",
+        "CurrentStatus": "UNKNOWN",
+        "CurrentEvidence": [
+          "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d"
+        ],
+        "MissingEvidence": [
+          "SCOPED_CURRENT_CLOSURE_REQUIRED",
+          "HistoricalPrices"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "ConflictStatus": "NONE_RECORDED",
+        "NextResolutionAction": "Acquire historical evidence for HistoricalPrices; review and bind to this exact subject and period"
+      },
+      {
+        "Domain": 3,
+        "RequiredClaim": "Units",
+        "CurrentStatus": "PARTIALLY_SUPPORTED",
+        "CurrentEvidence": [
+          "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d"
+        ],
+        "MissingEvidence": [
+          "SCOPED_CURRENT_CLOSURE_REQUIRED",
+          "Units"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "ConflictStatus": "NONE_RECORDED",
+        "NextResolutionAction": "Acquire historical evidence for Units; review and bind to this exact subject and period"
+      },
+      {
+        "Domain": 3,
+        "RequiredClaim": "SourceIdentity",
+        "CurrentStatus": "PARTIALLY_SUPPORTED",
+        "CurrentEvidence": [
+          "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d"
+        ],
+        "MissingEvidence": [
+          "SCOPED_CURRENT_CLOSURE_REQUIRED",
+          "SourceIdentity"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "ConflictStatus": "NONE_RECORDED",
+        "NextResolutionAction": "Acquire historical evidence for SourceIdentity; review and bind to this exact subject and period"
+      },
+      {
+        "Domain": 4,
+        "RequiredClaim": "HistoricalPublication",
+        "CurrentStatus": "UNKNOWN",
+        "CurrentEvidence": [
+          "d1434433-7b43-4e7d-8868-8954f2c1fb8f"
+        ],
+        "MissingEvidence": [
+          "SCOPED_CURRENT_CLOSURE_REQUIRED",
+          "HistoricalPublication"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "ConflictStatus": "NONE_RECORDED",
+        "NextResolutionAction": "Acquire historical evidence for HistoricalPublication; review and bind to this exact subject and period"
+      },
+      {
+        "Domain": 4,
+        "RequiredClaim": "RevisionBehavior",
+        "CurrentStatus": "UNKNOWN",
+        "CurrentEvidence": [
+          "d1434433-7b43-4e7d-8868-8954f2c1fb8f"
+        ],
+        "MissingEvidence": [
+          "SCOPED_CURRENT_CLOSURE_REQUIRED",
+          "RevisionBehavior"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "ConflictStatus": "NONE_RECORDED",
+        "NextResolutionAction": "Acquire historical evidence for RevisionBehavior; review and bind to this exact subject and period"
+      },
+      {
+        "Domain": 4,
+        "RequiredClaim": "SourceIdentity",
+        "CurrentStatus": "PARTIALLY_SUPPORTED",
+        "CurrentEvidence": [
+          "d1434433-7b43-4e7d-8868-8954f2c1fb8f"
+        ],
+        "MissingEvidence": [
+          "SCOPED_CURRENT_CLOSURE_REQUIRED",
+          "SourceIdentity"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "ConflictStatus": "NONE_RECORDED",
+        "NextResolutionAction": "Acquire historical evidence for SourceIdentity; review and bind to this exact subject and period"
+      },
+      {
+        "Domain": 5,
+        "RequiredClaim": "PriceBasis",
+        "CurrentStatus": "UNKNOWN",
+        "CurrentEvidence": [
+          "41aaa86d-5a89-40b9-b3b5-8ffebbefc92b"
+        ],
+        "MissingEvidence": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "PriceBasis"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "ConflictStatus": "NONE_RECORDED",
+        "NextResolutionAction": "Acquire historical evidence for PriceBasis; review and bind to this exact subject and period"
+      },
+      {
+        "Domain": 5,
+        "RequiredClaim": "CorporateActionHandling",
+        "CurrentStatus": "UNKNOWN",
+        "CurrentEvidence": [
+          "41aaa86d-5a89-40b9-b3b5-8ffebbefc92b"
+        ],
+        "MissingEvidence": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "CorporateActionHandling"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "ConflictStatus": "NONE_RECORDED",
+        "NextResolutionAction": "Acquire historical evidence for CorporateActionHandling; review and bind to this exact subject and period"
+      }
+    ],
+    "Queue": [
+      {
+        "ResolutionTaskId": "0639f786-e240-45cd-cd60-871d698ab9bc",
+        "Component": 0,
+        "AuthorityDomain": 4,
+        "RequiredClaimId": "HistoricalPublication",
+        "TargetProvider": "TWSE",
+        "TargetDatasetType": "Availability",
+        "TargetStart": "2026-09-30",
+        "TargetEnd": "2026-09-30",
+        "CurrentEvidenceIds": [
+          "d1434433-7b43-4e7d-8868-8954f2c1fb8f"
+        ],
+        "MissingEvidenceDescription": "SCOPED_CURRENT_CLOSURE_REQUIRED;HistoricalPublication",
+        "AcquisitionStatus": 3,
+        "ReviewStatus": 0,
+        "BlockingReason": "SCOPED_CURRENT_CLOSURE_REQUIRED;HistoricalPublication",
+        "AttemptCount": 0,
+        "LastAttemptAt": null,
+        "ResolvedByEvidenceId": null,
+        "ResolvedByReviewId": null,
+        "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+        "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+      },
+      {
+        "ResolutionTaskId": "473e0fe4-f020-03bb-53ff-a830898ad73f",
+        "Component": 0,
+        "AuthorityDomain": 4,
+        "RequiredClaimId": "RevisionBehavior",
+        "TargetProvider": "TWSE",
+        "TargetDatasetType": "Availability",
+        "TargetStart": "2026-09-30",
+        "TargetEnd": "2026-09-30",
+        "CurrentEvidenceIds": [
+          "d1434433-7b43-4e7d-8868-8954f2c1fb8f"
+        ],
+        "MissingEvidenceDescription": "SCOPED_CURRENT_CLOSURE_REQUIRED;RevisionBehavior",
+        "AcquisitionStatus": 3,
+        "ReviewStatus": 0,
+        "BlockingReason": "SCOPED_CURRENT_CLOSURE_REQUIRED;RevisionBehavior",
+        "AttemptCount": 0,
+        "LastAttemptAt": null,
+        "ResolvedByEvidenceId": null,
+        "ResolvedByReviewId": null,
+        "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+        "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+      },
+      {
+        "ResolutionTaskId": "dce06bf9-dae6-2227-bfba-c9be590b237a",
+        "Component": 0,
+        "AuthorityDomain": 0,
+        "RequiredClaimId": "HistoricalSessions",
+        "TargetProvider": "TWSE",
+        "TargetDatasetType": "TradingCalendar",
+        "TargetStart": "2026-09-30",
+        "TargetEnd": "2026-09-30",
+        "CurrentEvidenceIds": [
+          "d18902ab-75f0-40c0-976d-8540d21946e1"
+        ],
+        "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;HistoricalSessions",
+        "AcquisitionStatus": 3,
+        "ReviewStatus": 0,
+        "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;HistoricalSessions",
+        "AttemptCount": 0,
+        "LastAttemptAt": null,
+        "ResolvedByEvidenceId": null,
+        "ResolvedByReviewId": null,
+        "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+        "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+      },
+      {
+        "ResolutionTaskId": "3f1a2b65-c497-d800-206a-b1f54df03a76",
+        "Component": 0,
+        "AuthorityDomain": 0,
+        "RequiredClaimId": "ScheduledHolidays",
+        "TargetProvider": "TWSE",
+        "TargetDatasetType": "TradingCalendar",
+        "TargetStart": "2026-09-30",
+        "TargetEnd": "2026-09-30",
+        "CurrentEvidenceIds": [
+          "d18902ab-75f0-40c0-976d-8540d21946e1"
+        ],
+        "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;ScheduledHolidays",
+        "AcquisitionStatus": 3,
+        "ReviewStatus": 7,
+        "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;ScheduledHolidays",
+        "AttemptCount": 0,
+        "LastAttemptAt": null,
+        "ResolvedByEvidenceId": null,
+        "ResolvedByReviewId": null,
+        "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+        "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+      },
+      {
+        "ResolutionTaskId": "1c988a56-03f7-883d-be1e-bcdd055d59cf",
+        "Component": 0,
+        "AuthorityDomain": 0,
+        "RequiredClaimId": "EmergencyClosures",
+        "TargetProvider": "TWSE",
+        "TargetDatasetType": "TradingCalendar",
+        "TargetStart": "2026-09-30",
+        "TargetEnd": "2026-09-30",
+        "CurrentEvidenceIds": [
+          "d18902ab-75f0-40c0-976d-8540d21946e1"
+        ],
+        "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;EmergencyClosures",
+        "AcquisitionStatus": 3,
+        "ReviewStatus": 0,
+        "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;EmergencyClosures",
+        "AttemptCount": 0,
+        "LastAttemptAt": null,
+        "ResolvedByEvidenceId": null,
+        "ResolvedByReviewId": null,
+        "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+        "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+      },
+      {
+        "ResolutionTaskId": "62e5ef23-1285-6d32-6179-0e593114980a",
+        "Component": 0,
+        "AuthorityDomain": 0,
+        "RequiredClaimId": "Horizon:TradingSessions",
+        "TargetProvider": "TWSE",
+        "TargetDatasetType": "TradingCalendar",
+        "TargetStart": "2026-09-30",
+        "TargetEnd": "2026-09-30",
+        "CurrentEvidenceIds": [
+          "d18902ab-75f0-40c0-976d-8540d21946e1"
+        ],
+        "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;Horizon:TradingSessions",
+        "AcquisitionStatus": 3,
+        "ReviewStatus": 0,
+        "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;Horizon:TradingSessions",
+        "AttemptCount": 0,
+        "LastAttemptAt": null,
+        "ResolvedByEvidenceId": null,
+        "ResolvedByReviewId": null,
+        "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+        "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+      },
+      {
+        "ResolutionTaskId": "1434c741-bac2-6675-c966-fdfe151381cb",
+        "Component": 0,
+        "AuthorityDomain": 1,
+        "RequiredClaimId": "HistoricalInstrumentIdentity",
+        "TargetProvider": "TWSE",
+        "TargetDatasetType": "HistoricalInstrumentIdentity",
+        "TargetStart": "2026-09-30",
+        "TargetEnd": "2026-09-30",
+        "CurrentEvidenceIds": [
+          "16e9385a-6c6a-4881-bde3-2f6db02f15e7"
+        ],
+        "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;HistoricalInstrumentIdentity",
+        "AcquisitionStatus": 3,
+        "ReviewStatus": 0,
+        "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;HistoricalInstrumentIdentity",
+        "AttemptCount": 0,
+        "LastAttemptAt": null,
+        "ResolvedByEvidenceId": null,
+        "ResolvedByReviewId": null,
+        "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+        "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+      },
+      {
+        "ResolutionTaskId": "c1d03fa4-dadb-8ff4-5df9-eba498d73fb1",
+        "Component": 0,
+        "AuthorityDomain": 1,
+        "RequiredClaimId": "SymbolHistory",
+        "TargetProvider": "TWSE",
+        "TargetDatasetType": "HistoricalInstrumentIdentity",
+        "TargetStart": "2026-09-30",
+        "TargetEnd": "2026-09-30",
+        "CurrentEvidenceIds": [
+          "16e9385a-6c6a-4881-bde3-2f6db02f15e7"
+        ],
+        "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;SymbolHistory",
+        "AcquisitionStatus": 3,
+        "ReviewStatus": 0,
+        "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;SymbolHistory",
+        "AttemptCount": 0,
+        "LastAttemptAt": null,
+        "ResolvedByEvidenceId": null,
+        "ResolvedByReviewId": null,
+        "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+        "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+      },
+      {
+        "ResolutionTaskId": "75589f66-50f7-8a63-d59d-6ce24cdf4c03",
+        "Component": 0,
+        "AuthorityDomain": 1,
+        "RequiredClaimId": "MarketTransfer",
+        "TargetProvider": "TWSE",
+        "TargetDatasetType": "HistoricalInstrumentIdentity",
+        "TargetStart": "2026-09-30",
+        "TargetEnd": "2026-09-30",
+        "CurrentEvidenceIds": [
+          "16e9385a-6c6a-4881-bde3-2f6db02f15e7"
+        ],
+        "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;MarketTransfer",
+        "AcquisitionStatus": 3,
+        "ReviewStatus": 0,
+        "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;MarketTransfer",
+        "AttemptCount": 0,
+        "LastAttemptAt": null,
+        "ResolvedByEvidenceId": null,
+        "ResolvedByReviewId": null,
+        "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+        "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+      },
+      {
+        "ResolutionTaskId": "21b74ea7-24b1-fbfe-2a9a-8b0b3cfdf5ee",
+        "Component": 0,
+        "AuthorityDomain": 2,
+        "RequiredClaimId": "HistoricalMembership",
+        "TargetProvider": "TWSE",
+        "TargetDatasetType": "HistoricalUniverse",
+        "TargetStart": "2026-09-30",
+        "TargetEnd": "2026-09-30",
+        "CurrentEvidenceIds": [
+          "25bc00ef-0f8c-444e-a368-6a029221eda1"
+        ],
+        "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;HistoricalMembership",
+        "AcquisitionStatus": 3,
+        "ReviewStatus": 0,
+        "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;HistoricalMembership",
+        "AttemptCount": 0,
+        "LastAttemptAt": null,
+        "ResolvedByEvidenceId": null,
+        "ResolvedByReviewId": null,
+        "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+        "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+      },
+      {
+        "ResolutionTaskId": "f782eb23-99dc-4fa8-f8e4-707b7472842f",
+        "Component": 0,
+        "AuthorityDomain": 2,
+        "RequiredClaimId": "Listing",
+        "TargetProvider": "TWSE",
+        "TargetDatasetType": "HistoricalUniverse",
+        "TargetStart": "2026-09-30",
+        "TargetEnd": "2026-09-30",
+        "CurrentEvidenceIds": [
+          "25bc00ef-0f8c-444e-a368-6a029221eda1"
+        ],
+        "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;Listing",
+        "AcquisitionStatus": 3,
+        "ReviewStatus": 0,
+        "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;Listing",
+        "AttemptCount": 0,
+        "LastAttemptAt": null,
+        "ResolvedByEvidenceId": null,
+        "ResolvedByReviewId": null,
+        "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+        "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+      },
+      {
+        "ResolutionTaskId": "ff5b7320-c3aa-d34b-d127-9a1864005dd4",
+        "Component": 0,
+        "AuthorityDomain": 2,
+        "RequiredClaimId": "Delisting",
+        "TargetProvider": "TWSE",
+        "TargetDatasetType": "HistoricalUniverse",
+        "TargetStart": "2026-09-30",
+        "TargetEnd": "2026-09-30",
+        "CurrentEvidenceIds": [
+          "25bc00ef-0f8c-444e-a368-6a029221eda1"
+        ],
+        "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;Delisting",
+        "AcquisitionStatus": 3,
+        "ReviewStatus": 0,
+        "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;Delisting",
+        "AttemptCount": 0,
+        "LastAttemptAt": null,
+        "ResolvedByEvidenceId": null,
+        "ResolvedByReviewId": null,
+        "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+        "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+      },
+      {
+        "ResolutionTaskId": "3b9b33e3-3447-d292-e1d3-46eb1928c8e9",
+        "Component": 0,
+        "AuthorityDomain": 2,
+        "RequiredClaimId": "Suspension",
+        "TargetProvider": "TWSE",
+        "TargetDatasetType": "HistoricalUniverse",
+        "TargetStart": "2026-09-30",
+        "TargetEnd": "2026-09-30",
+        "CurrentEvidenceIds": [
+          "25bc00ef-0f8c-444e-a368-6a029221eda1"
+        ],
+        "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;Suspension",
+        "AcquisitionStatus": 3,
+        "ReviewStatus": 0,
+        "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;Suspension",
+        "AttemptCount": 0,
+        "LastAttemptAt": null,
+        "ResolvedByEvidenceId": null,
+        "ResolvedByReviewId": null,
+        "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+        "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+      },
+      {
+        "ResolutionTaskId": "bbfb42b4-153f-d20e-ed7f-1acc68c30229",
+        "Component": 0,
+        "AuthorityDomain": 2,
+        "RequiredClaimId": "Denominator",
+        "TargetProvider": "TWSE",
+        "TargetDatasetType": "HistoricalUniverse",
+        "TargetStart": "2026-09-30",
+        "TargetEnd": "2026-09-30",
+        "CurrentEvidenceIds": [
+          "25bc00ef-0f8c-444e-a368-6a029221eda1"
+        ],
+        "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;Denominator",
+        "AcquisitionStatus": 3,
+        "ReviewStatus": 0,
+        "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;Denominator",
+        "AttemptCount": 0,
+        "LastAttemptAt": null,
+        "ResolvedByEvidenceId": null,
+        "ResolvedByReviewId": null,
+        "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+        "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+      },
+      {
+        "ResolutionTaskId": "bf7cbadb-a16f-347c-f677-a6b4f0bc6d90",
+        "Component": 0,
+        "AuthorityDomain": 3,
+        "RequiredClaimId": "HistoricalPrices",
+        "TargetProvider": "TWSE",
+        "TargetDatasetType": "HistoricalPriceVolume",
+        "TargetStart": "2026-09-30",
+        "TargetEnd": "2026-09-30",
+        "CurrentEvidenceIds": [
+          "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d"
+        ],
+        "MissingEvidenceDescription": "SCOPED_CURRENT_CLOSURE_REQUIRED;HistoricalPrices",
+        "AcquisitionStatus": 3,
+        "ReviewStatus": 0,
+        "BlockingReason": "SCOPED_CURRENT_CLOSURE_REQUIRED;HistoricalPrices",
+        "AttemptCount": 0,
+        "LastAttemptAt": null,
+        "ResolvedByEvidenceId": null,
+        "ResolvedByReviewId": null,
+        "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+        "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+      },
+      {
+        "ResolutionTaskId": "b88d68b2-cd58-674e-b71d-f38c3127a59e",
+        "Component": 0,
+        "AuthorityDomain": 3,
+        "RequiredClaimId": "Units",
+        "TargetProvider": "TWSE",
+        "TargetDatasetType": "HistoricalPriceVolume",
+        "TargetStart": "2026-09-30",
+        "TargetEnd": "2026-09-30",
+        "CurrentEvidenceIds": [
+          "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d"
+        ],
+        "MissingEvidenceDescription": "SCOPED_CURRENT_CLOSURE_REQUIRED;Units",
+        "AcquisitionStatus": 3,
+        "ReviewStatus": 7,
+        "BlockingReason": "SCOPED_CURRENT_CLOSURE_REQUIRED;Units",
+        "AttemptCount": 0,
+        "LastAttemptAt": null,
+        "ResolvedByEvidenceId": null,
+        "ResolvedByReviewId": null,
+        "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+        "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+      },
+      {
+        "ResolutionTaskId": "deb2990f-5303-34ae-a717-22cea6f12276",
+        "Component": 0,
+        "AuthorityDomain": 3,
+        "RequiredClaimId": "SourceIdentity",
+        "TargetProvider": "TWSE",
+        "TargetDatasetType": "HistoricalPriceVolume",
+        "TargetStart": "2026-09-30",
+        "TargetEnd": "2026-09-30",
+        "CurrentEvidenceIds": [
+          "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d"
+        ],
+        "MissingEvidenceDescription": "SCOPED_CURRENT_CLOSURE_REQUIRED;SourceIdentity",
+        "AcquisitionStatus": 3,
+        "ReviewStatus": 7,
+        "BlockingReason": "SCOPED_CURRENT_CLOSURE_REQUIRED;SourceIdentity",
+        "AttemptCount": 0,
+        "LastAttemptAt": null,
+        "ResolvedByEvidenceId": null,
+        "ResolvedByReviewId": null,
+        "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+        "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+      },
+      {
+        "ResolutionTaskId": "db2cbfcd-b07c-9df3-51a7-a4e781511b20",
+        "Component": 0,
+        "AuthorityDomain": 4,
+        "RequiredClaimId": "SourceIdentity",
+        "TargetProvider": "TWSE",
+        "TargetDatasetType": "Availability",
+        "TargetStart": "2026-09-30",
+        "TargetEnd": "2026-09-30",
+        "CurrentEvidenceIds": [
+          "d1434433-7b43-4e7d-8868-8954f2c1fb8f"
+        ],
+        "MissingEvidenceDescription": "SCOPED_CURRENT_CLOSURE_REQUIRED;SourceIdentity",
+        "AcquisitionStatus": 3,
+        "ReviewStatus": 7,
+        "BlockingReason": "SCOPED_CURRENT_CLOSURE_REQUIRED;SourceIdentity",
+        "AttemptCount": 0,
+        "LastAttemptAt": null,
+        "ResolvedByEvidenceId": null,
+        "ResolvedByReviewId": null,
+        "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+        "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+      },
+      {
+        "ResolutionTaskId": "e238d932-4e19-fd39-6d82-1209715cf23b",
+        "Component": 0,
+        "AuthorityDomain": 5,
+        "RequiredClaimId": "PriceBasis",
+        "TargetProvider": "TWSE",
+        "TargetDatasetType": "CorporateActionPriceBasis",
+        "TargetStart": "2026-09-30",
+        "TargetEnd": "2026-09-30",
+        "CurrentEvidenceIds": [
+          "41aaa86d-5a89-40b9-b3b5-8ffebbefc92b"
+        ],
+        "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;PriceBasis",
+        "AcquisitionStatus": 3,
+        "ReviewStatus": 0,
+        "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;PriceBasis",
+        "AttemptCount": 0,
+        "LastAttemptAt": null,
+        "ResolvedByEvidenceId": null,
+        "ResolvedByReviewId": null,
+        "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+        "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+      },
+      {
+        "ResolutionTaskId": "65111390-f88a-dd4d-3fd3-58c0eaa03574",
+        "Component": 0,
+        "AuthorityDomain": 5,
+        "RequiredClaimId": "CorporateActionHandling",
+        "TargetProvider": "TWSE",
+        "TargetDatasetType": "CorporateActionPriceBasis",
+        "TargetStart": "2026-09-30",
+        "TargetEnd": "2026-09-30",
+        "CurrentEvidenceIds": [
+          "41aaa86d-5a89-40b9-b3b5-8ffebbefc92b"
+        ],
+        "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;CorporateActionHandling",
+        "AcquisitionStatus": 3,
+        "ReviewStatus": 0,
+        "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;CorporateActionHandling",
+        "AttemptCount": 0,
+        "LastAttemptAt": null,
+        "ResolvedByEvidenceId": null,
+        "ResolvedByReviewId": null,
+        "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+        "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+      }
+    ],
+    "AvailabilityCoverageMatrix": [
+      {
+        "Provider": "TWSE",
+        "DatasetType": 0,
+        "TradeDate": "2026-09-01",
+        "AvailabilityRule": "UNKNOWN",
+        "Precision": 5,
+        "Confidence": "UNKNOWN",
+        "EvidenceIds": [],
+        "PolicyVersion": "UNKNOWN",
+        "CoverageStatus": "UNKNOWN"
+      },
+      {
+        "Provider": "TWSE",
+        "DatasetType": 0,
+        "TradeDate": "2026-09-02",
+        "AvailabilityRule": "UNKNOWN",
+        "Precision": 5,
+        "Confidence": "UNKNOWN",
+        "EvidenceIds": [],
+        "PolicyVersion": "UNKNOWN",
+        "CoverageStatus": "UNKNOWN"
+      },
+      {
+        "Provider": "TWSE",
+        "DatasetType": 0,
+        "TradeDate": "2026-09-03",
+        "AvailabilityRule": "UNKNOWN",
+        "Precision": 5,
+        "Confidence": "UNKNOWN",
+        "EvidenceIds": [],
+        "PolicyVersion": "UNKNOWN",
+        "CoverageStatus": "UNKNOWN"
+      },
+      {
+        "Provider": "TWSE",
+        "DatasetType": 0,
+        "TradeDate": "2026-09-04",
+        "AvailabilityRule": "UNKNOWN",
+        "Precision": 5,
+        "Confidence": "UNKNOWN",
+        "EvidenceIds": [],
+        "PolicyVersion": "UNKNOWN",
+        "CoverageStatus": "UNKNOWN"
+      },
+      {
+        "Provider": "TWSE",
+        "DatasetType": 0,
+        "TradeDate": "2026-09-07",
+        "AvailabilityRule": "UNKNOWN",
+        "Precision": 5,
+        "Confidence": "UNKNOWN",
+        "EvidenceIds": [],
+        "PolicyVersion": "UNKNOWN",
+        "CoverageStatus": "UNKNOWN"
+      },
+      {
+        "Provider": "TWSE",
+        "DatasetType": 0,
+        "TradeDate": "2026-09-08",
+        "AvailabilityRule": "UNKNOWN",
+        "Precision": 5,
+        "Confidence": "UNKNOWN",
+        "EvidenceIds": [],
+        "PolicyVersion": "UNKNOWN",
+        "CoverageStatus": "UNKNOWN"
+      },
+      {
+        "Provider": "TWSE",
+        "DatasetType": 0,
+        "TradeDate": "2026-09-09",
+        "AvailabilityRule": "UNKNOWN",
+        "Precision": 5,
+        "Confidence": "UNKNOWN",
+        "EvidenceIds": [],
+        "PolicyVersion": "UNKNOWN",
+        "CoverageStatus": "UNKNOWN"
+      },
+      {
+        "Provider": "TWSE",
+        "DatasetType": 0,
+        "TradeDate": "2026-09-10",
+        "AvailabilityRule": "UNKNOWN",
+        "Precision": 5,
+        "Confidence": "UNKNOWN",
+        "EvidenceIds": [],
+        "PolicyVersion": "UNKNOWN",
+        "CoverageStatus": "UNKNOWN"
+      },
+      {
+        "Provider": "TWSE",
+        "DatasetType": 0,
+        "TradeDate": "2026-09-11",
+        "AvailabilityRule": "UNKNOWN",
+        "Precision": 5,
+        "Confidence": "UNKNOWN",
+        "EvidenceIds": [],
+        "PolicyVersion": "UNKNOWN",
+        "CoverageStatus": "UNKNOWN"
+      },
+      {
+        "Provider": "TWSE",
+        "DatasetType": 0,
+        "TradeDate": "2026-09-14",
+        "AvailabilityRule": "UNKNOWN",
+        "Precision": 5,
+        "Confidence": "UNKNOWN",
+        "EvidenceIds": [],
+        "PolicyVersion": "UNKNOWN",
+        "CoverageStatus": "UNKNOWN"
+      },
+      {
+        "Provider": "TWSE",
+        "DatasetType": 0,
+        "TradeDate": "2026-09-15",
+        "AvailabilityRule": "UNKNOWN",
+        "Precision": 5,
+        "Confidence": "UNKNOWN",
+        "EvidenceIds": [],
+        "PolicyVersion": "UNKNOWN",
+        "CoverageStatus": "UNKNOWN"
+      },
+      {
+        "Provider": "TWSE",
+        "DatasetType": 0,
+        "TradeDate": "2026-09-16",
+        "AvailabilityRule": "UNKNOWN",
+        "Precision": 5,
+        "Confidence": "UNKNOWN",
+        "EvidenceIds": [],
+        "PolicyVersion": "UNKNOWN",
+        "CoverageStatus": "UNKNOWN"
+      },
+      {
+        "Provider": "TWSE",
+        "DatasetType": 0,
+        "TradeDate": "2026-09-17",
+        "AvailabilityRule": "UNKNOWN",
+        "Precision": 5,
+        "Confidence": "UNKNOWN",
+        "EvidenceIds": [],
+        "PolicyVersion": "UNKNOWN",
+        "CoverageStatus": "UNKNOWN"
+      },
+      {
+        "Provider": "TWSE",
+        "DatasetType": 0,
+        "TradeDate": "2026-09-18",
+        "AvailabilityRule": "UNKNOWN",
+        "Precision": 5,
+        "Confidence": "UNKNOWN",
+        "EvidenceIds": [],
+        "PolicyVersion": "UNKNOWN",
+        "CoverageStatus": "UNKNOWN"
+      },
+      {
+        "Provider": "TWSE",
+        "DatasetType": 0,
+        "TradeDate": "2026-09-21",
+        "AvailabilityRule": "UNKNOWN",
+        "Precision": 5,
+        "Confidence": "UNKNOWN",
+        "EvidenceIds": [],
+        "PolicyVersion": "UNKNOWN",
+        "CoverageStatus": "UNKNOWN"
+      },
+      {
+        "Provider": "TWSE",
+        "DatasetType": 0,
+        "TradeDate": "2026-09-22",
+        "AvailabilityRule": "UNKNOWN",
+        "Precision": 5,
+        "Confidence": "UNKNOWN",
+        "EvidenceIds": [],
+        "PolicyVersion": "UNKNOWN",
+        "CoverageStatus": "UNKNOWN"
+      },
+      {
+        "Provider": "TWSE",
+        "DatasetType": 0,
+        "TradeDate": "2026-09-23",
+        "AvailabilityRule": "UNKNOWN",
+        "Precision": 5,
+        "Confidence": "UNKNOWN",
+        "EvidenceIds": [],
+        "PolicyVersion": "UNKNOWN",
+        "CoverageStatus": "UNKNOWN"
+      },
+      {
+        "Provider": "TWSE",
+        "DatasetType": 0,
+        "TradeDate": "2026-09-24",
+        "AvailabilityRule": "UNKNOWN",
+        "Precision": 5,
+        "Confidence": "UNKNOWN",
+        "EvidenceIds": [],
+        "PolicyVersion": "UNKNOWN",
+        "CoverageStatus": "UNKNOWN"
+      },
+      {
+        "Provider": "TWSE",
+        "DatasetType": 0,
+        "TradeDate": "2026-09-29",
+        "AvailabilityRule": "UNKNOWN",
+        "Precision": 5,
+        "Confidence": "UNKNOWN",
+        "EvidenceIds": [],
+        "PolicyVersion": "UNKNOWN",
+        "CoverageStatus": "UNKNOWN"
+      },
+      {
+        "Provider": "TWSE",
+        "DatasetType": 0,
+        "TradeDate": "2026-09-30",
+        "AvailabilityRule": "UNKNOWN",
+        "Precision": 5,
+        "Confidence": "UNKNOWN",
+        "EvidenceIds": [],
+        "PolicyVersion": "UNKNOWN",
+        "CoverageStatus": "UNKNOWN"
+      }
+    ],
+    "Coverage": {
+      "ExpectedObservations": null,
+      "EligibleObservations": 0,
+      "BlockedObservations": 1,
+      "Coverage": null,
+      "Observations": [
+        {
+          "InstrumentId": "00000000-0000-0000-0000-000000000000",
+          "TradeDate": "2026-09-30",
+          "SourceInstrumentKey": "2330",
+          "IdentityStatus": "UNKNOWN",
+          "CalendarStatus": "UNKNOWN",
+          "UniverseStatus": "UNKNOWN",
+          "PriceStatus": "AVAILABLE",
+          "AvailabilityStatus": "UNKNOWN",
+          "RevisionStatus": "UNKNOWN",
+          "PriceBasisStatus": "UNKNOWN",
+          "FinalStatus": 4,
+          "BlockingReasons": [
+            "UNRESOLVED_IDENTITY",
+            "UNRESOLVED_CALENDAR",
+            "UNRESOLVED_UNIVERSE",
+            "UNVERIFIABLE_AVAILABILITY",
+            "UNVERIFIABLE_REVISION",
+            "PRICE_BASIS_CONFLICT",
+            "CORPORATE_ACTION_UNRESOLVED",
+            "PRICE_AUTHORITY_UNPROVEN"
+          ],
+          "InputDigest": "496D6F15942C24F77AF436E6F45EA971A4C03E8974239E9EAE5792D2D2D365A3"
+        }
+      ],
+      "Digest": "09CB91EBF71F4CD47EA46E28A99EC282264C2CEE10DB4132F458E41319AE0FB4"
+    },
+    "ComponentEvaluation": {
+      "Status": "BLOCKED_BY_AUTHORITY_OR_DATA",
+      "DataMode": 1,
+      "Dependency": {
+        "Component": 0,
+        "ModelVersion": "V3EvidenceCandidate-v1",
+        "ParameterSetId": "dd4ad24e-3b21-48d0-92ee-98eba5d5dd6f",
+        "RequiredAuthorityDomains": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "RequiredDatasets": [
+          "HistoricalPrice"
+        ],
+        "RequiredPolicies": [
+          "Calendar",
+          "Availability",
+          "Revision",
+          "UniverseEligibility",
+          "CorporateActionPriceBasis"
+        ],
+        "RequiredIdentities": [
+          "InstrumentId",
+          "HistoricalUniverseSnapshot",
+          "BenchmarkVersionIdentity"
+        ],
+        "OptionalAuthorityDomains": [],
+        "ExcludedDependencies": [
+          "Institutional",
+          "BenchmarkReturns",
+          "FullEvidence100"
+        ],
+        "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+        "ManifestVersion": "component-dependencies-v1",
+        "Digest": "CAC010CFCEA18E19D7ACA2F5B52131F8FD1737F26AFAED40282024B925F2A4D1"
+      },
+      "Coverage": {
+        "ExpectedTradingDates": null,
+        "VerifiedTradingDates": 0,
+        "UnknownTradingDates": 1,
+        "ExpectedUniverseMembers": null,
+        "VerifiedUniverseMembers": 0,
+        "UnknownUniverseMembers": null,
+        "ExpectedObservations": null,
+        "VerifiedObservations": 0,
+        "FutureKnownExcluded": 0,
+        "UnknownAvailabilityExcluded": 20,
+        "RevisionUnknownExcluded": 20,
+        "SurvivorshipRisk": true,
+        "PriceBasisConsistency": false,
+        "Digest": "3CB0F62BA9960A81555834C07762ED924399962CF54210BDE2A94CC9EB71F94C"
+      },
+      "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069",
+      "DatasetDigest": "34A96EC1206EEA7737AC07294A2B40690D2296126B768C594CD2A3F9C94DF409",
+      "KnownGaps": [
+        "BLOCKED_BY_AUTHORITY",
+        "CALENDAR_COVERAGE_UNKNOWN",
+        "PHASE4DE_APPROVAL_REQUIRED",
+        "PRICE_BASIS_INCONSISTENT",
+        "PRICE_FACTS_MISSING",
+        "REVISION_UNKNOWN",
+        "SURVIVORSHIP_BIAS_RISK",
+        "UNKNOWN_AVAILABILITY"
+      ],
+      "InputDigest": "938D1A61E023B425B3AC9A5740CAE50D6ED7F1E9CBE5F73462D629516FD8407B",
+      "Digest": "2357BD4016688EEEA7154959333E18F809C9B314AFA60BDD90B7218C64F25D21"
+    },
+    "BlockingReasons": [
+      "Availability:HistoricalPublication",
+      "Availability:RevisionBehavior",
+      "Availability:SourceIdentity",
+      "BLOCKED_BY_AUTHORITY",
+      "CALENDAR_COVERAGE_UNKNOWN",
+      "CORPORATE_ACTION_UNRESOLVED",
+      "CorporateActionPriceBasis:CorporateActionHandling",
+      "CorporateActionPriceBasis:PriceBasis",
+      "HistoricalInstrumentIdentity:HistoricalInstrumentIdentity",
+      "HistoricalInstrumentIdentity:MarketTransfer",
+      "HistoricalInstrumentIdentity:SymbolHistory",
+      "HistoricalPriceVolume:HistoricalPrices",
+      "HistoricalPriceVolume:SourceIdentity",
+      "HistoricalPriceVolume:Units",
+      "HistoricalUniverse:Delisting",
+      "HistoricalUniverse:Denominator",
+      "HistoricalUniverse:HistoricalMembership",
+      "HistoricalUniverse:Listing",
+      "HistoricalUniverse:Suspension",
+      "PHASE4DE_APPROVAL_REQUIRED",
+      "PRICE_AUTHORITY_UNPROVEN",
+      "PRICE_BASIS_CONFLICT",
+      "PRICE_BASIS_INCONSISTENT",
+      "PRICE_FACTS_MISSING",
+      "REQUESTED_OBSERVATIONS_NOT_FULLY_ELIGIBLE",
+      "REVISION_UNKNOWN",
+      "SURVIVORSHIP_BIAS_RISK",
+      "TradingCalendar:EmergencyClosures",
+      "TradingCalendar:HistoricalSessions",
+      "TradingCalendar:Horizon:TradingSessions",
+      "TradingCalendar:ScheduledHolidays",
+      "UNKNOWN_AVAILABILITY",
+      "UNRESOLVED_CALENDAR",
+      "UNRESOLVED_IDENTITY",
+      "UNRESOLVED_UNIVERSE",
+      "UNVERIFIABLE_AVAILABILITY",
+      "UNVERIFIABLE_REVISION"
+    ],
+    "AuthorityResolutionProgress": 0,
+    "InputDigest": "8B01127DB855C26BDE5F4AA4736DAE8C7E2CCB749AB7B2C9E725B0831B8BECD3",
+    "Digest": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD"
+  },
+  "Failures": [
+    {
+      "RequestId": "152b50d7-361d-aa0f-ba47-5b78700d71b0",
+      "Component": 0,
+      "FailedGates": [
+        "Availability:HistoricalPublication",
+        "Availability:RevisionBehavior",
+        "Availability:SourceIdentity",
+        "BLOCKED_BY_AUTHORITY",
+        "CALENDAR_COVERAGE_UNKNOWN",
+        "CORPORATE_ACTION_UNRESOLVED",
+        "CorporateActionPriceBasis:CorporateActionHandling",
+        "CorporateActionPriceBasis:PriceBasis",
+        "HistoricalInstrumentIdentity:HistoricalInstrumentIdentity",
+        "HistoricalInstrumentIdentity:MarketTransfer",
+        "HistoricalInstrumentIdentity:SymbolHistory",
+        "HistoricalPriceVolume:HistoricalPrices",
+        "HistoricalPriceVolume:SourceIdentity",
+        "HistoricalPriceVolume:Units",
+        "HistoricalUniverse:Delisting",
+        "HistoricalUniverse:Denominator",
+        "HistoricalUniverse:HistoricalMembership",
+        "HistoricalUniverse:Listing",
+        "HistoricalUniverse:Suspension",
+        "PHASE4DE_APPROVAL_REQUIRED",
+        "PRICE_AUTHORITY_UNPROVEN",
+        "PRICE_BASIS_CONFLICT",
+        "PRICE_BASIS_INCONSISTENT",
+        "PRICE_FACTS_MISSING",
+        "REQUESTED_OBSERVATIONS_NOT_FULLY_ELIGIBLE",
+        "REVISION_UNKNOWN",
+        "SURVIVORSHIP_BIAS_RISK",
+        "TradingCalendar:EmergencyClosures",
+        "TradingCalendar:HistoricalSessions",
+        "TradingCalendar:Horizon:TradingSessions",
+        "TradingCalendar:ScheduledHolidays",
+        "UNKNOWN_AVAILABILITY",
+        "UNRESOLVED_CALENDAR",
+        "UNRESOLVED_IDENTITY",
+        "UNRESOLVED_UNIVERSE",
+        "UNVERIFIABLE_AVAILABILITY",
+        "UNVERIFIABLE_REVISION"
+      ],
+      "BlockingClaims": [
+        "TradingCalendar:HistoricalSessions",
+        "TradingCalendar:ScheduledHolidays",
+        "TradingCalendar:EmergencyClosures",
+        "TradingCalendar:Horizon:TradingSessions",
+        "HistoricalInstrumentIdentity:HistoricalInstrumentIdentity",
+        "HistoricalInstrumentIdentity:SymbolHistory",
+        "HistoricalInstrumentIdentity:MarketTransfer",
+        "HistoricalUniverse:HistoricalMembership",
+        "HistoricalUniverse:Listing",
+        "HistoricalUniverse:Delisting",
+        "HistoricalUniverse:Suspension",
+        "HistoricalUniverse:Denominator",
+        "HistoricalPriceVolume:HistoricalPrices",
+        "HistoricalPriceVolume:Units",
+        "HistoricalPriceVolume:SourceIdentity",
+        "Availability:HistoricalPublication",
+        "Availability:RevisionBehavior",
+        "Availability:SourceIdentity",
+        "CorporateActionPriceBasis:PriceBasis",
+        "CorporateActionPriceBasis:CorporateActionHandling"
+      ],
+      "BlockingEvidenceGaps": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "HistoricalSessions",
+        "ScheduledHolidays",
+        "EmergencyClosures",
+        "Horizon:TradingSessions",
+        "HistoricalInstrumentIdentity",
+        "SymbolHistory",
+        "MarketTransfer",
+        "HistoricalMembership",
+        "Listing",
+        "Delisting",
+        "Suspension",
+        "Denominator",
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "HistoricalPrices",
+        "Units",
+        "SourceIdentity",
+        "HistoricalPublication",
+        "RevisionBehavior",
+        "PriceBasis",
+        "CorporateActionHandling"
+      ],
+      "CoverageSummary": {
+        "ExpectedObservations": null,
+        "EligibleObservations": 0,
+        "BlockedObservations": 1,
+        "Coverage": null,
+        "Observations": [
+          {
+            "InstrumentId": "00000000-0000-0000-0000-000000000000",
+            "TradeDate": "2026-09-30",
+            "SourceInstrumentKey": "2330",
+            "IdentityStatus": "UNKNOWN",
+            "CalendarStatus": "UNKNOWN",
+            "UniverseStatus": "UNKNOWN",
+            "PriceStatus": "AVAILABLE",
+            "AvailabilityStatus": "UNKNOWN",
+            "RevisionStatus": "UNKNOWN",
+            "PriceBasisStatus": "UNKNOWN",
+            "FinalStatus": 4,
+            "BlockingReasons": [
+              "UNRESOLVED_IDENTITY",
+              "UNRESOLVED_CALENDAR",
+              "UNRESOLVED_UNIVERSE",
+              "UNVERIFIABLE_AVAILABILITY",
+              "UNVERIFIABLE_REVISION",
+              "PRICE_BASIS_CONFLICT",
+              "CORPORATE_ACTION_UNRESOLVED",
+              "PRICE_AUTHORITY_UNPROVEN"
+            ],
+            "InputDigest": "496D6F15942C24F77AF436E6F45EA971A4C03E8974239E9EAE5792D2D2D365A3"
+          }
+        ],
+        "Digest": "09CB91EBF71F4CD47EA46E28A99EC282264C2CEE10DB4132F458E41319AE0FB4"
+      },
+      "EvaluatedAt": "2026-11-01T16:51:03.6552931+00:00",
+      "CodeSHA": "UNSTAMPED_LOCAL_PRECOMMIT",
+      "InputDigest": "8B01127DB855C26BDE5F4AA4736DAE8C7E2CCB749AB7B2C9E725B0831B8BECD3"
+    }
+  ],
+  "NextActions": [
+    "Obtain scoped official original-publication rule/archive for STOCK_DAY",
+    "Establish historical correction and revision reconstruction semantics",
+    "Resolve historical instrument, universe, actual sessions and corporate-action basis for an independently defined bounded scope"
+  ],
+  "StopRule": "State A: authority insufficient; no synthetic fallback or baseline",
+  "OperationalQueue": [
+    {
+      "ResolutionTaskId": "0639f786-e240-45cd-cd60-871d698ab9bc",
+      "Component": 0,
+      "AuthorityDomain": 4,
+      "RequiredClaimId": "HistoricalPublication",
+      "TargetProvider": "TWSE",
+      "TargetDatasetType": "Availability",
+      "TargetStart": "2026-09-30",
+      "TargetEnd": "2026-09-30",
+      "CurrentEvidenceIds": [
+        "d1434433-7b43-4e7d-8868-8954f2c1fb8f",
+        "6e6a7e66-d555-4e01-96bb-b1fb2b06908b"
+      ],
+      "MissingEvidenceDescription": "SCOPED_CURRENT_CLOSURE_REQUIRED;HistoricalPublication",
+      "AcquisitionStatus": 3,
+      "ReviewStatus": 10,
+      "BlockingReason": "The query page describes historical date selection and service coverage since 2010-01-04, not historical observation publication instants.",
+      "AttemptCount": 1,
+      "LastAttemptAt": "2026-11-01T16:50:33.4516758+00:00",
+      "ResolvedByEvidenceId": null,
+      "ResolvedByReviewId": null,
+      "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+      "UpdatedAt": "2026-11-01T16:51:01.864866+00:00"
+    },
+    {
+      "ResolutionTaskId": "473e0fe4-f020-03bb-53ff-a830898ad73f",
+      "Component": 0,
+      "AuthorityDomain": 4,
+      "RequiredClaimId": "RevisionBehavior",
+      "TargetProvider": "TWSE",
+      "TargetDatasetType": "Availability",
+      "TargetStart": "2026-09-30",
+      "TargetEnd": "2026-09-30",
+      "CurrentEvidenceIds": [
+        "d1434433-7b43-4e7d-8868-8954f2c1fb8f",
+        "9904abbd-a55a-4e33-b2ff-7bcb74ab700a"
+      ],
+      "MissingEvidenceDescription": "SCOPED_CURRENT_CLOSURE_REQUIRED;RevisionBehavior",
+      "AcquisitionStatus": 3,
+      "ReviewStatus": 10,
+      "BlockingReason": "The service page points to the information store; it does not identify retained historical STOCK_DAY versions or correction publication timestamps.",
+      "AttemptCount": 1,
+      "LastAttemptAt": "2026-11-01T16:50:33.8799139+00:00",
+      "ResolvedByEvidenceId": null,
+      "ResolvedByReviewId": null,
+      "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+      "UpdatedAt": "2026-11-01T16:51:02.165414+00:00"
+    },
+    {
+      "ResolutionTaskId": "dce06bf9-dae6-2227-bfba-c9be590b237a",
+      "Component": 0,
+      "AuthorityDomain": 0,
+      "RequiredClaimId": "HistoricalSessions",
+      "TargetProvider": "TWSE",
+      "TargetDatasetType": "TradingCalendar",
+      "TargetStart": "2026-09-30",
+      "TargetEnd": "2026-09-30",
+      "CurrentEvidenceIds": [
+        "d18902ab-75f0-40c0-976d-8540d21946e1"
+      ],
+      "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;HistoricalSessions",
+      "AcquisitionStatus": 3,
+      "ReviewStatus": 0,
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;HistoricalSessions",
+      "AttemptCount": 0,
+      "LastAttemptAt": null,
+      "ResolvedByEvidenceId": null,
+      "ResolvedByReviewId": null,
+      "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+      "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+    },
+    {
+      "ResolutionTaskId": "3f1a2b65-c497-d800-206a-b1f54df03a76",
+      "Component": 0,
+      "AuthorityDomain": 0,
+      "RequiredClaimId": "ScheduledHolidays",
+      "TargetProvider": "TWSE",
+      "TargetDatasetType": "TradingCalendar",
+      "TargetStart": "2026-09-30",
+      "TargetEnd": "2026-09-30",
+      "CurrentEvidenceIds": [
+        "d18902ab-75f0-40c0-976d-8540d21946e1"
+      ],
+      "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;ScheduledHolidays",
+      "AcquisitionStatus": 3,
+      "ReviewStatus": 7,
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;ScheduledHolidays",
+      "AttemptCount": 0,
+      "LastAttemptAt": null,
+      "ResolvedByEvidenceId": null,
+      "ResolvedByReviewId": null,
+      "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+      "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+    },
+    {
+      "ResolutionTaskId": "1c988a56-03f7-883d-be1e-bcdd055d59cf",
+      "Component": 0,
+      "AuthorityDomain": 0,
+      "RequiredClaimId": "EmergencyClosures",
+      "TargetProvider": "TWSE",
+      "TargetDatasetType": "TradingCalendar",
+      "TargetStart": "2026-09-30",
+      "TargetEnd": "2026-09-30",
+      "CurrentEvidenceIds": [
+        "d18902ab-75f0-40c0-976d-8540d21946e1"
+      ],
+      "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;EmergencyClosures",
+      "AcquisitionStatus": 3,
+      "ReviewStatus": 0,
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;EmergencyClosures",
+      "AttemptCount": 0,
+      "LastAttemptAt": null,
+      "ResolvedByEvidenceId": null,
+      "ResolvedByReviewId": null,
+      "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+      "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+    },
+    {
+      "ResolutionTaskId": "62e5ef23-1285-6d32-6179-0e593114980a",
+      "Component": 0,
+      "AuthorityDomain": 0,
+      "RequiredClaimId": "Horizon:TradingSessions",
+      "TargetProvider": "TWSE",
+      "TargetDatasetType": "TradingCalendar",
+      "TargetStart": "2026-09-30",
+      "TargetEnd": "2026-09-30",
+      "CurrentEvidenceIds": [
+        "d18902ab-75f0-40c0-976d-8540d21946e1"
+      ],
+      "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;Horizon:TradingSessions",
+      "AcquisitionStatus": 3,
+      "ReviewStatus": 0,
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;Horizon:TradingSessions",
+      "AttemptCount": 0,
+      "LastAttemptAt": null,
+      "ResolvedByEvidenceId": null,
+      "ResolvedByReviewId": null,
+      "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+      "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+    },
+    {
+      "ResolutionTaskId": "1434c741-bac2-6675-c966-fdfe151381cb",
+      "Component": 0,
+      "AuthorityDomain": 1,
+      "RequiredClaimId": "HistoricalInstrumentIdentity",
+      "TargetProvider": "TWSE",
+      "TargetDatasetType": "HistoricalInstrumentIdentity",
+      "TargetStart": "2026-09-30",
+      "TargetEnd": "2026-09-30",
+      "CurrentEvidenceIds": [
+        "16e9385a-6c6a-4881-bde3-2f6db02f15e7"
+      ],
+      "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;HistoricalInstrumentIdentity",
+      "AcquisitionStatus": 3,
+      "ReviewStatus": 0,
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;HistoricalInstrumentIdentity",
+      "AttemptCount": 0,
+      "LastAttemptAt": null,
+      "ResolvedByEvidenceId": null,
+      "ResolvedByReviewId": null,
+      "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+      "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+    },
+    {
+      "ResolutionTaskId": "c1d03fa4-dadb-8ff4-5df9-eba498d73fb1",
+      "Component": 0,
+      "AuthorityDomain": 1,
+      "RequiredClaimId": "SymbolHistory",
+      "TargetProvider": "TWSE",
+      "TargetDatasetType": "HistoricalInstrumentIdentity",
+      "TargetStart": "2026-09-30",
+      "TargetEnd": "2026-09-30",
+      "CurrentEvidenceIds": [
+        "16e9385a-6c6a-4881-bde3-2f6db02f15e7"
+      ],
+      "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;SymbolHistory",
+      "AcquisitionStatus": 3,
+      "ReviewStatus": 0,
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;SymbolHistory",
+      "AttemptCount": 0,
+      "LastAttemptAt": null,
+      "ResolvedByEvidenceId": null,
+      "ResolvedByReviewId": null,
+      "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+      "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+    },
+    {
+      "ResolutionTaskId": "75589f66-50f7-8a63-d59d-6ce24cdf4c03",
+      "Component": 0,
+      "AuthorityDomain": 1,
+      "RequiredClaimId": "MarketTransfer",
+      "TargetProvider": "TWSE",
+      "TargetDatasetType": "HistoricalInstrumentIdentity",
+      "TargetStart": "2026-09-30",
+      "TargetEnd": "2026-09-30",
+      "CurrentEvidenceIds": [
+        "16e9385a-6c6a-4881-bde3-2f6db02f15e7"
+      ],
+      "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;MarketTransfer",
+      "AcquisitionStatus": 3,
+      "ReviewStatus": 0,
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;MarketTransfer",
+      "AttemptCount": 0,
+      "LastAttemptAt": null,
+      "ResolvedByEvidenceId": null,
+      "ResolvedByReviewId": null,
+      "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+      "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+    },
+    {
+      "ResolutionTaskId": "21b74ea7-24b1-fbfe-2a9a-8b0b3cfdf5ee",
+      "Component": 0,
+      "AuthorityDomain": 2,
+      "RequiredClaimId": "HistoricalMembership",
+      "TargetProvider": "TWSE",
+      "TargetDatasetType": "HistoricalUniverse",
+      "TargetStart": "2026-09-30",
+      "TargetEnd": "2026-09-30",
+      "CurrentEvidenceIds": [
+        "25bc00ef-0f8c-444e-a368-6a029221eda1"
+      ],
+      "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;HistoricalMembership",
+      "AcquisitionStatus": 3,
+      "ReviewStatus": 0,
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;HistoricalMembership",
+      "AttemptCount": 0,
+      "LastAttemptAt": null,
+      "ResolvedByEvidenceId": null,
+      "ResolvedByReviewId": null,
+      "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+      "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+    },
+    {
+      "ResolutionTaskId": "f782eb23-99dc-4fa8-f8e4-707b7472842f",
+      "Component": 0,
+      "AuthorityDomain": 2,
+      "RequiredClaimId": "Listing",
+      "TargetProvider": "TWSE",
+      "TargetDatasetType": "HistoricalUniverse",
+      "TargetStart": "2026-09-30",
+      "TargetEnd": "2026-09-30",
+      "CurrentEvidenceIds": [
+        "25bc00ef-0f8c-444e-a368-6a029221eda1"
+      ],
+      "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;Listing",
+      "AcquisitionStatus": 3,
+      "ReviewStatus": 0,
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;Listing",
+      "AttemptCount": 0,
+      "LastAttemptAt": null,
+      "ResolvedByEvidenceId": null,
+      "ResolvedByReviewId": null,
+      "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+      "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+    },
+    {
+      "ResolutionTaskId": "ff5b7320-c3aa-d34b-d127-9a1864005dd4",
+      "Component": 0,
+      "AuthorityDomain": 2,
+      "RequiredClaimId": "Delisting",
+      "TargetProvider": "TWSE",
+      "TargetDatasetType": "HistoricalUniverse",
+      "TargetStart": "2026-09-30",
+      "TargetEnd": "2026-09-30",
+      "CurrentEvidenceIds": [
+        "25bc00ef-0f8c-444e-a368-6a029221eda1"
+      ],
+      "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;Delisting",
+      "AcquisitionStatus": 3,
+      "ReviewStatus": 0,
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;Delisting",
+      "AttemptCount": 0,
+      "LastAttemptAt": null,
+      "ResolvedByEvidenceId": null,
+      "ResolvedByReviewId": null,
+      "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+      "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+    },
+    {
+      "ResolutionTaskId": "3b9b33e3-3447-d292-e1d3-46eb1928c8e9",
+      "Component": 0,
+      "AuthorityDomain": 2,
+      "RequiredClaimId": "Suspension",
+      "TargetProvider": "TWSE",
+      "TargetDatasetType": "HistoricalUniverse",
+      "TargetStart": "2026-09-30",
+      "TargetEnd": "2026-09-30",
+      "CurrentEvidenceIds": [
+        "25bc00ef-0f8c-444e-a368-6a029221eda1"
+      ],
+      "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;Suspension",
+      "AcquisitionStatus": 3,
+      "ReviewStatus": 0,
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;Suspension",
+      "AttemptCount": 0,
+      "LastAttemptAt": null,
+      "ResolvedByEvidenceId": null,
+      "ResolvedByReviewId": null,
+      "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+      "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+    },
+    {
+      "ResolutionTaskId": "bbfb42b4-153f-d20e-ed7f-1acc68c30229",
+      "Component": 0,
+      "AuthorityDomain": 2,
+      "RequiredClaimId": "Denominator",
+      "TargetProvider": "TWSE",
+      "TargetDatasetType": "HistoricalUniverse",
+      "TargetStart": "2026-09-30",
+      "TargetEnd": "2026-09-30",
+      "CurrentEvidenceIds": [
+        "25bc00ef-0f8c-444e-a368-6a029221eda1"
+      ],
+      "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;Denominator",
+      "AcquisitionStatus": 3,
+      "ReviewStatus": 0,
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;Denominator",
+      "AttemptCount": 0,
+      "LastAttemptAt": null,
+      "ResolvedByEvidenceId": null,
+      "ResolvedByReviewId": null,
+      "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+      "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+    },
+    {
+      "ResolutionTaskId": "bf7cbadb-a16f-347c-f677-a6b4f0bc6d90",
+      "Component": 0,
+      "AuthorityDomain": 3,
+      "RequiredClaimId": "HistoricalPrices",
+      "TargetProvider": "TWSE",
+      "TargetDatasetType": "HistoricalPriceVolume",
+      "TargetStart": "2026-09-30",
+      "TargetEnd": "2026-09-30",
+      "CurrentEvidenceIds": [
+        "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d"
+      ],
+      "MissingEvidenceDescription": "SCOPED_CURRENT_CLOSURE_REQUIRED;HistoricalPrices",
+      "AcquisitionStatus": 3,
+      "ReviewStatus": 0,
+      "BlockingReason": "SCOPED_CURRENT_CLOSURE_REQUIRED;HistoricalPrices",
+      "AttemptCount": 0,
+      "LastAttemptAt": null,
+      "ResolvedByEvidenceId": null,
+      "ResolvedByReviewId": null,
+      "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+      "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+    },
+    {
+      "ResolutionTaskId": "b88d68b2-cd58-674e-b71d-f38c3127a59e",
+      "Component": 0,
+      "AuthorityDomain": 3,
+      "RequiredClaimId": "Units",
+      "TargetProvider": "TWSE",
+      "TargetDatasetType": "HistoricalPriceVolume",
+      "TargetStart": "2026-09-30",
+      "TargetEnd": "2026-09-30",
+      "CurrentEvidenceIds": [
+        "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d"
+      ],
+      "MissingEvidenceDescription": "SCOPED_CURRENT_CLOSURE_REQUIRED;Units",
+      "AcquisitionStatus": 3,
+      "ReviewStatus": 7,
+      "BlockingReason": "SCOPED_CURRENT_CLOSURE_REQUIRED;Units",
+      "AttemptCount": 0,
+      "LastAttemptAt": null,
+      "ResolvedByEvidenceId": null,
+      "ResolvedByReviewId": null,
+      "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+      "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+    },
+    {
+      "ResolutionTaskId": "deb2990f-5303-34ae-a717-22cea6f12276",
+      "Component": 0,
+      "AuthorityDomain": 3,
+      "RequiredClaimId": "SourceIdentity",
+      "TargetProvider": "TWSE",
+      "TargetDatasetType": "HistoricalPriceVolume",
+      "TargetStart": "2026-09-30",
+      "TargetEnd": "2026-09-30",
+      "CurrentEvidenceIds": [
+        "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d"
+      ],
+      "MissingEvidenceDescription": "SCOPED_CURRENT_CLOSURE_REQUIRED;SourceIdentity",
+      "AcquisitionStatus": 3,
+      "ReviewStatus": 7,
+      "BlockingReason": "SCOPED_CURRENT_CLOSURE_REQUIRED;SourceIdentity",
+      "AttemptCount": 0,
+      "LastAttemptAt": null,
+      "ResolvedByEvidenceId": null,
+      "ResolvedByReviewId": null,
+      "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+      "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+    },
+    {
+      "ResolutionTaskId": "db2cbfcd-b07c-9df3-51a7-a4e781511b20",
+      "Component": 0,
+      "AuthorityDomain": 4,
+      "RequiredClaimId": "SourceIdentity",
+      "TargetProvider": "TWSE",
+      "TargetDatasetType": "Availability",
+      "TargetStart": "2026-09-30",
+      "TargetEnd": "2026-09-30",
+      "CurrentEvidenceIds": [
+        "d1434433-7b43-4e7d-8868-8954f2c1fb8f"
+      ],
+      "MissingEvidenceDescription": "SCOPED_CURRENT_CLOSURE_REQUIRED;SourceIdentity",
+      "AcquisitionStatus": 3,
+      "ReviewStatus": 7,
+      "BlockingReason": "SCOPED_CURRENT_CLOSURE_REQUIRED;SourceIdentity",
+      "AttemptCount": 0,
+      "LastAttemptAt": null,
+      "ResolvedByEvidenceId": null,
+      "ResolvedByReviewId": null,
+      "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+      "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+    },
+    {
+      "ResolutionTaskId": "e238d932-4e19-fd39-6d82-1209715cf23b",
+      "Component": 0,
+      "AuthorityDomain": 5,
+      "RequiredClaimId": "PriceBasis",
+      "TargetProvider": "TWSE",
+      "TargetDatasetType": "CorporateActionPriceBasis",
+      "TargetStart": "2026-09-30",
+      "TargetEnd": "2026-09-30",
+      "CurrentEvidenceIds": [
+        "41aaa86d-5a89-40b9-b3b5-8ffebbefc92b"
+      ],
+      "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;PriceBasis",
+      "AcquisitionStatus": 3,
+      "ReviewStatus": 0,
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;PriceBasis",
+      "AttemptCount": 0,
+      "LastAttemptAt": null,
+      "ResolvedByEvidenceId": null,
+      "ResolvedByReviewId": null,
+      "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+      "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+    },
+    {
+      "ResolutionTaskId": "65111390-f88a-dd4d-3fd3-58c0eaa03574",
+      "Component": 0,
+      "AuthorityDomain": 5,
+      "RequiredClaimId": "CorporateActionHandling",
+      "TargetProvider": "TWSE",
+      "TargetDatasetType": "CorporateActionPriceBasis",
+      "TargetStart": "2026-09-30",
+      "TargetEnd": "2026-09-30",
+      "CurrentEvidenceIds": [
+        "41aaa86d-5a89-40b9-b3b5-8ffebbefc92b"
+      ],
+      "MissingEvidenceDescription": "REQUIRED_CLAIM_NOT_APPROVED;CorporateActionHandling",
+      "AcquisitionStatus": 3,
+      "ReviewStatus": 0,
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED;CorporateActionHandling",
+      "AttemptCount": 0,
+      "LastAttemptAt": null,
+      "ResolvedByEvidenceId": null,
+      "ResolvedByReviewId": null,
+      "CreatedAt": "2026-11-01T10:54:56.5621849+00:00",
+      "UpdatedAt": "2026-11-01T10:54:56.5621849+00:00"
+    }
+  ]
+}

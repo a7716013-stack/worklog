@@ -1,0 +1,108 @@
+using System.Net;
+using System.Text;
+using WorkJournal.Web.Models.Evidence;
+using WorkJournal.Web.Models.HistoricalResearch;
+using WorkJournal.Web.Models.HistoricalResearch.Components;
+using WorkJournal.Web.Models.HistoricalResearch.Resolution;
+using WorkJournal.Web.Services.HistoricalResearch;
+using WorkJournal.Web.Services.Research;
+int checks=0;
+void Check(bool value,string name){if(!value)throw new Exception(name);checks++;Console.WriteLine("PASS: "+name);}
+void Reject(Action action,string name){try{action();}catch(Exception e) when(e is IOException or InvalidDataException or ArgumentException or InvalidOperationException){Check(true,name);return;}throw new Exception("Expected rejection: "+name);}
+var fixture=Fixture.Create();var d=fixture.Submission.Dataset;var f=d.Facts.First(f=>f.DatasetType==HistoricalDatasetType.Price);var at=f.AvailableAt!.Value;var eid=Guid.NewGuid();
+EvidenceReviewReceipt Sign(EvidenceReviewReceipt r)=>r with{ReviewDigest=ResearchMath.Digest(r with{ReviewDigest=""})};
+var review=Sign(new(Guid.NewGuid(),eid,"SIMULATED REVIEWER",d.CreatedAt,"simulated publication claim",["OriginalPublicationTime","DatasetPublicationRule","Availability:test:ExactTimestamp","Availability:test:TimeWindow","Availability:test:EndOfSession","RevisionBehavior","Revision:IMMUTABLE_SOURCE","Revision:VERSIONED_SOURCE","Revision:CORRECTABLE_WITH_TIMESTAMP"],[],[],f.TradeDate,f.TradeDate.AddYears(1),"UTC","SIMULATED; not real authority",new string('A',64),""));
+var rule=new VerifiedAvailabilityRule("test",AvailabilityPrecision.ExactTimestamp,at,at,"ConservativeUpperBound-v1",review.ReviewDigest,f.TradeDate,f.TradeDate);
+var a=new ResolutionAvailability(f.FactChecksum,PublicationClaimType.OriginalPublicationTime,rule,eid,f.Provider,f.DatasetType,"test");
+Check(AuthorityResolution.Availability(f,a,review,at).Reason=="ELIGIBLE","exact timestamp boundary");
+var window=a with{Rule=rule with{Precision=AvailabilityPrecision.TimeWindow,LowerBound=at.AddHours(-1)}};
+Check(AuthorityResolution.Availability(f,window,review,at.AddMinutes(-1)).Reason=="FUTURE_KNOWN","window uses maximum not minimum");
+Check(AuthorityResolution.Availability(f,window,review,at).AvailableAt==at,"window conservative boundary");
+Check(AuthorityResolution.Availability(f,a with{ClaimType=PublicationClaimType.DatasetPublicationRule},review,at).AvailableAt==at,"verified derived rule");
+Check(AuthorityResolution.Availability(f,a with{Rule=rule with{Precision=AvailabilityPrecision.Unknown}},review,at).AvailableAt is null,"unknown rule blocked");
+Check(AuthorityResolution.Availability(f,a with{Rule=rule with{LowerBound=at.AddSeconds(1)}},review,at).AvailableAt is null,"conflicting bounds blocked");
+Check(AuthorityResolution.Availability(f,a with{ClaimType=PublicationClaimType.QueryServiceAvailability},review,at).AvailableAt is null,"current query not historical publication");
+Check(AuthorityResolution.Availability(f,a with{Rule=rule with{LowerBound=null,UpperBound=null}},review,at).AvailableAt is null,"RetrievedAt and TradeDate cannot fill publication");
+Check(AuthorityResolution.Availability(f,a with{Rule=rule with{EffectiveFrom=f.TradeDate.AddDays(1)}},review,at).AvailableAt is null,"temporal policy mismatch");
+Check(AuthorityResolution.Availability(f,a with{Provider="other"},review,at).AvailableAt is null,"provider binding required");
+Check(AuthorityResolution.Availability(f,a with{Rule=rule with{Precision=AvailabilityPrecision.EndOfSession,UpperBound=null}},review,at).AvailableAt is null,"after-close cannot invent precision");
+var conflicting=Sign(review with{Ambiguous=["OriginalPublicationTime"]});
+Check(AuthorityResolution.Availability(f,a with{Rule=rule with{ReviewDigest=conflicting.ReviewDigest}},conflicting,at).AvailableAt is null,"conflicting review blocked");
+var revision=new ResolutionRevision(f.FactChecksum,RevisionSemantics.IMMUTABLE_SOURCE,f.Provider,f.DatasetType,"rev-v1",f.TradeDate,f.TradeDate,f.RevisionId,at,true,eid,review.ReviewDigest);
+foreach(var semantics in Enum.GetValues<RevisionSemantics>())Check(AuthorityResolution.Revision(f,revision with{Semantics=semantics},review,at)==(semantics is RevisionSemantics.IMMUTABLE_SOURCE or RevisionSemantics.VERSIONED_SOURCE or RevisionSemantics.CORRECTABLE_WITH_TIMESTAMP?ObservationStatus.ELIGIBLE:ObservationStatus.UNVERIFIABLE_REVISION),"revision classification "+semantics);
+Check(AuthorityResolution.Revision(f,revision,review,at.AddSeconds(-1))==ObservationStatus.FUTURE_KNOWN,"correction after cutoff");
+Check(AuthorityResolution.Revision(f,revision,review,at.AddSeconds(1))==ObservationStatus.ELIGIBLE,"revision before cutoff");
+Check(AuthorityResolution.Revision(f,revision with{SelectedRevisionId=f.SourceChecksum},review,at)==ObservationStatus.UNVERIFIABLE_REVISION,"checksum not revision proof");
+Check(AuthorityResolution.Revision(f,revision with{Semantics=RevisionSemantics.VERSIONED_SOURCE,HistoricalVersionRetained=false},review,at)==ObservationStatus.UNVERIFIABLE_REVISION,"unretained version blocked");
+Check(AuthorityResolution.Revision(f,revision with{EffectiveFrom=f.TradeDate.AddDays(1)},review,at)==ObservationStatus.UNVERIFIABLE_REVISION,"revision policy temporal mismatch");
+foreach(var status in Enum.GetValues<ObservationStatus>())Check(AuthorityResolution.FinalStatus(status==ObservationStatus.ELIGIBLE?[]:[status.ToString()])==status,"observation state "+status);
+Check(AuthorityResolution.FinalStatus(["UNVERIFIABLE_AVAILABILITY","UNRESOLVED_UNIVERSE"])==ObservationStatus.UNVERIFIABLE_AVAILABILITY,"deterministic primary reason");
+var req=new ComponentDatasetApprovalRequest(EvidenceCode.Trend,"V3EvidenceCandidate-v1",d.ParameterSetId,d.Dates.Min(x=>x.TradeDate),d.Dates.Max(x=>x.TradeDate),"fixture-universe-v1",d.PricePolicy.PriceBasisVersion,[],d.Policies.Where(p=>p.DatasetType==HistoricalDatasetType.Price).Select(p=>p.PolicyId).ToArray(),"fixture",d.CreatedAt,"");
+req=req with{RequestDigest=ResearchMath.Digest(req)};
+var input=new ComponentDatasetInput(ComponentDataMode.Synthetic,req,new(new(fixture.Submission,[],[EvidenceCode.Trend],null),[]),[],[],[],[],[],[],[],[]);
+var request=AuthorityResolution.Create(input);var root=Path.Combine(Path.GetTempPath(),"resolution-checks-"+Guid.NewGuid().ToString("N"));
+var store=new AuthorityResolutionStore(root,root,root,root);var evaluation=store.Execute(request);
+Check(evaluation.Status=="BLOCKED_BY_AUTHORITY_OR_DATA","broad synthetic request blocked");
+Check(evaluation.Coverage.ExpectedObservations is null&&evaluation.Coverage.Coverage is null,"unknown denominator null");
+Check(evaluation.Coverage.EligibleObservations==0&&evaluation.Coverage.Observations.Length>0,"derived observation eligibility");
+Check(evaluation.Queue[0].RequiredClaimId=="HistoricalPublication"&&evaluation.Queue[1].RequiredClaimId=="RevisionBehavior","availability then revision priorities");
+Check(evaluation.Digest==store.Evaluate(request).Digest,"deterministic resolution replay");
+Reject(()=>store.Approve(request,new string('a',40)),"synthetic cannot create real approval");
+Check(!Directory.Exists(Path.Combine(root,"milestones")),"synthetic cannot set milestone");
+Check(Directory.GetFiles(Path.Combine(root,"failures")).Length==1,"durable approval failure");
+Reject(()=>store.Baseline(Guid.NewGuid(),null!,new string('a',40)),"no milestone no baseline");
+Reject(()=>AuthorityResolution.Validate(request with{RequestDigest=new string('B',64)}),"request mutation blocked");
+var narrowReq=req with{CoverageStart=req.CoverageStart.AddDays(1),RequestDigest=""};narrowReq=narrowReq with{RequestDigest=ResearchMath.Digest(narrowReq)};
+var narrow=request with{RequestId=Guid.NewGuid(),Input=input with{Request=narrowReq},RequestDigest=""};narrow=narrow with{RequestDigest=ResearchMath.Digest(narrow)};
+var originalDigest=ResearchMath.Digest(request);var decision=store.Reduce(request,narrow,"AUTHORITY_UNAVAILABLE",["HistoricalPublication"],"fixture reviewer",d.CreatedAt);
+Check(ResearchMath.Digest(request)==originalDigest&&decision.OriginalRequestId==request.RequestId,"original request preserved");
+Check(store.ReplayScope(narrow.RequestId).Digest==decision.Digest,"immutable scope replay");
+Reject(()=>store.Reduce(request,narrow,"AUTHORITY_UNAVAILABLE",["HistoricalPublication"],"fixture reviewer",d.CreatedAt),"cannot overwrite scope archive");
+Reject(()=>AuthorityResolution.Reduce(request,narrow,"IC_WAS_BAD",["returns"],"fixture",d.CreatedAt),"outcome-based reduction rejected");
+Reject(()=>AuthorityResolution.Reduce(request,request,"AUTHORITY_UNAVAILABLE",["gap"],"fixture",d.CreatedAt),"same request cannot reduce scope");
+Reject(()=>AuthorityResolutionStore.CheckCode("not-a-sha"),"code identity ambiguity blocked");
+var ledger=new AuthorityResolutionLedger(Path.Combine(root,"ledger"),Path.Combine(root,"evidence"));var task=evaluation.Queue[0];
+using var client=new HttpClient(new Transport());
+var attempt=await ledger.Acquire(task,"https://www.twse.com.tw/fixture-resolution","SIMULATED",client,TimeProvider.System);
+Check(attempt.ResultStatus==ResolutionStatus.CAPTURED&&attempt.RawDigest?.Length==64,"ledger binds archived bytes");
+Check(ledger.State(task.ResolutionTaskId).AttemptCount==1&&ledger.State(task.ResolutionTaskId).ReviewStatus!=ResolutionStatus.SUPPORTED,"capture is not approval");
+var failed=await ledger.Acquire(task,"https://example.invalid/forbidden","SIMULATED",client,TimeProvider.System);
+Check(failed.ResultStatus==ResolutionStatus.BLOCKED_EXTERNAL&&ledger.Attempts(task.ResolutionTaskId).Length==2,"failed acquisition retained");
+ledger.NotFound(new(task.ResolutionTaskId,["https://www.twse.com.tw/fixture-resolution"],"historical timestamp",DateTimeOffset.UtcNow,"No historical timestamp in simulated page"));
+Reject(()=>ledger.NotFound(new(task.ResolutionTaskId,["source"],"scope",DateTimeOffset.UtcNow,"none","false")),"not found cannot mean false");
+var positive=await ApprovedFixture.Create(Path.Combine(root,"positive"));
+var positiveStore=new AuthorityResolutionStore(Path.Combine(root,"positive-store"),positive.Evidence,positive.Authority,positive.Closure);
+var ready=positiveStore.Evaluate(positive.Request);
+Check(ready.Status=="READY_FOR_EXPLICIT_APPROVAL","fully supported bounded fixture eligible: "+string.Join(';',ready.BlockingReasons));
+Check(ready.Coverage.EligibleObservations==3&&ready.Coverage.Coverage==1,"independent one-member universe yields complete eligible scope");
+TrendResolutionRequest Resign(TrendResolutionRequest x)=>x with{RequestDigest=ResearchMath.Digest(x with{RequestDigest=""})};
+Check(positiveStore.Evaluate(Resign(positive.Request with{Input=positive.Request.Input with{DataMode=ComponentDataMode.Synthetic}})).Status!="READY_FOR_EXPLICIT_APPROVAL","even complete synthetic input cannot become real approval");
+foreach(var domain in Enum.GetValues<ClosureDomain>())
+{
+    var changed=Resign(positive.Request with{Input=positive.Request.Input with{Closure=positive.Request.Input.Closure with{Closures=positive.Request.Input.Closure.Closures.Where(c=>c.Domain!=domain).ToArray()}}});
+    Check(positiveStore.Evaluate(changed).Status!="READY_FOR_EXPLICIT_APPROVAL","missing closure prevents receipt "+domain);
+}
+Check(positiveStore.Evaluate(Resign(positive.Request with{Revisions=[]})).Status!="READY_FOR_EXPLICIT_APPROVAL","revision gap blocks otherwise valid fixture");
+Check(positiveStore.Evaluate(Resign(positive.Request with{Availability=[]})).Status!="READY_FOR_EXPLICIT_APPROVAL","availability gap blocks otherwise valid fixture");
+Check(positiveStore.Evaluate(Resign(positive.Request with{ReplaySemantics=ReplaySemantics.SystemKnownReplay})).Status!="READY_FOR_EXPLICIT_APPROVAL","market publication cannot imply system-known replay");
+Check(positiveStore.Evaluate(Resign(positive.Request with{Input=positive.Request.Input with{Lineage=[]}})).Coverage.EligibleObservations==0,"lineage gap excludes observations, not only overall approval");
+var code=AuthorityResolutionStore.CodeSHA;
+if(Environment.GetEnvironmentVariable("CI")=="true")Check(code.Length==40,"CI must stamp source SHA");
+if(code.Length==40&&code.All(Uri.IsHexDigit))
+{
+    var receipt=positiveStore.Approve(positive.Request,code);
+    Check(positiveStore.Replay(receipt.ApprovalId).Receipt.ApprovalDigest==receipt.ApprovalDigest,"complete isolated simulated approval replay");
+    var milestone=positiveStore.ReadMilestone();
+    Reject(()=>positiveStore.Approve(positive.Request,code),"same approval cannot overwrite milestone");
+    Check(positiveStore.ReadMilestone().Digest==milestone.Digest,"milestone set exactly once with receipt lineage");
+    positiveStore.Baseline(receipt.ApprovalId,positive.Template,code);
+    var replayDigest=ResearchMath.Digest(positiveStore.BaselineReplay(positive.Template.ResearchRunId));
+    Check(replayDigest.Length==64,"valid isolated receipt allows frozen baseline and replay");
+    positiveStore.Revoke(receipt.ApprovalId,"REVOKED_FOR_FUTURE_USE","SIMULATED revocation",positive.Template.CreatedAt.AddSeconds(1));
+    Reject(()=>positiveStore.Baseline(receipt.ApprovalId,positive.Template with{ResearchRunId=Guid.NewGuid()},code),"revoked receipt blocks new baseline");
+    Check(ResearchMath.Digest(positiveStore.BaselineReplay(positive.Template.ResearchRunId))==replayDigest,"archived baseline replay survives revocation");
+}
+else Console.WriteLine("SHA-bound approval/baseline lifecycle deferred to mandatory same-SHA CI.");
+Console.WriteLine($"V3 authority resolution checks passed: {checks}; simulated fixtures, no real milestones.");
+sealed class Transport:HttpMessageHandler
+{protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,CancellationToken token)=>Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK){RequestMessage=request,Content=new StringContent("SIMULATED DOCUMENT; no historical claims",Encoding.UTF8,"text/plain")});}

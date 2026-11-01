@@ -4,6 +4,7 @@ using WorkJournal.Web.Services.Evidence;
 using WorkJournal.Web.Models.Research;
 using WorkJournal.Web.Services.Research;
 
+if(args.Length>0&&args[0].StartsWith("--resolution-",StringComparison.Ordinal))return await ResolutionCommands.Run(args);
 if(args.Length>0&&(args[0].StartsWith("--component-",StringComparison.Ordinal)||args[0] is "--authority-coverage" or "--authority-claims" or "--authority-conflicts"))return ComponentCommands.Run(args);
 if(args.Length>0&&args[0].StartsWith("--closure-",StringComparison.Ordinal))return ClosureCommands.Run(args);
 if(args.Length>0&&args[0].StartsWith("--evidence-",StringComparison.Ordinal))return await AcquisitionCommands.Run(args);

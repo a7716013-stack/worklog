@@ -1,6 +1,6 @@
 # 工作日誌 WorkJournal
 
-版本 **3.0.10**：新增 Phase 4F-1 分項資料集核准關卡、逐筆原始來源追溯與不可覆寫核准／重播流程。20 筆真實價量完成 lineage；歷史 authority、availability 與 revision 證據仍不足，真實資料集與 baseline 尚未核准。詳見 [版本說明](docs/releases/3.0.10.md) 與 [實作報告](docs/implementation-3.0.10.md)。
+版本 **3.0.11**：新增 Phase 4F-2 證據處理紀錄、歷史時間／修訂判定、逐筆資格與不可覆寫核准流程。已執行真實核准嘗試，證據不足仍阻擋；真實資料集與 baseline 里程碑尚未達成。詳見 [版本說明](docs/releases/3.0.11.md) 與 [實作報告](docs/implementation-3.0.11.md)。
 
 首頁右側另提供七項國際指數，詳見 [國際指數說明](docs/international-indices.md)。
 

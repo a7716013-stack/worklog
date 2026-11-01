@@ -1,0 +1,1 @@
+<Project Sdk="Microsoft.NET.Sdk"><PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net10.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable></PropertyGroup><ItemGroup><ProjectReference Include="../../src/WorkJournal.Web/WorkJournal.Web.csproj" /><Compile Include="../V3RealDataChecks/Fixture.cs" Link="Fixture.cs" /></ItemGroup></Project>

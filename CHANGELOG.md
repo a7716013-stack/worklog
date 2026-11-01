@@ -1,5 +1,14 @@
 # 更新紀錄
 
+## 3.0.11 — 2026-11-02（Phase 4F-2 證據處理與 Trend 核准）
+
+- 新增證據取得 ledger、未找到證據紀錄、時間／修訂解析、逐筆觀測資格與覆蓋報告。
+- 凍結 Trend 依賴、縮減範圍決策、核准憑證與首次里程碑；保留撤銷與歷史重播。
+- 新增同 SHA authority-resolution CI，驗證隔離模擬核准及 baseline 成功／拒絕路徑；既有公式不變。
+- 真實流程已執行：20 筆 raw、0 筆合格觀測、0 個核准資料集；依 State A 停止，真實研究未執行。
+- 本版未建立獨立 HTTP API。詳見 [實作報告](docs/implementation-3.0.11.md)。
+
+
 ## 3.0.10 — 2026-11-01（Phase 4F-1 分項資料集關卡）
 
 - 新增依賴清單、交易日曆／歷史識別、逐筆價量 lineage、availability／revision／price-basis 核准與不可覆寫重播。
