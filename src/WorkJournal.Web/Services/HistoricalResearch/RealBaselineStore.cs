@@ -28,16 +28,26 @@ public sealed record BaselineArchive(RealDatasetSubmission Submission,FirstAppro
 
 public sealed class RealBaselineStore(string root)
 {
-    public string Execute(RealDatasetSubmission submission,ResearchRequest template,string evidenceRoot,string authorityRoot,TimeProvider clock)
+    public string Execute(RealDatasetSubmission submission,ResearchRequest template,string evidenceRoot,string authorityRoot,TimeProvider clock,ComponentClosureReport? closure=null,string? closureRoot=null)
     {
+        if(closure is not null)
+        {
+            if(string.IsNullOrWhiteSpace(closureRoot))throw new InvalidOperationException("Live closure store required for new Phase 4F baseline.");
+            var current=new AuthorityClosureStore(closureRoot,evidenceRoot).Evaluate(new(submission,
+                closure.Cases.Select(c=>new ComponentClosureBinding(c.Case.Domain,c.Case.CaseId,c.Digest)).ToArray()));
+            if(current.ReportDigest!=closure.ReportDigest)throw new InvalidOperationException("Closure receipt is stale or does not match archived evidence.");
+            ValidateClosure(closure,RealDataApproval.InputDigest(submission),submission.RequestedComponents);
+        }
         var approval=new RealDataApproval(evidenceRoot,authorityRoot).Evaluate(submission);
         if(approval.ComponentApprovals.Length==0)throw new InvalidOperationException("BLOCKED_BY_DATA: reviewed component dataset required.");
         if(template.Snapshots.Length!=0||template.EvaluateOos)throw new ArgumentException("Empty snapshot template and development-only protocol required.");
         var dataset=new HistoricalDatasetBuilder().Build(submission.Source.Dataset);
         var request=template with{Snapshots=dataset.Snapshots};ValidateLabels(submission,request);
+        if(closure is not null)ValidateClosure(closure,RealDataApproval.InputDigest(submission),submission.RequestedComponents);
         var dir=Path.Combine(root,request.ResearchRunId.ToString("N"));Directory.CreateDirectory(dir);
         // Reserve the run and freeze approved features before outcome calculation.
         HistoricalDatasetStore.WriteNew(Path.Combine(dir,"request.json"),request);
+        if(closure is not null)HistoricalDatasetStore.WriteNew(Path.Combine(dir,"phase4f-closure.json"),closure);
         var rows=Freeze(request,approval);
         HistoricalDatasetStore.WriteNew(Path.Combine(dir,"frozen-evidence.json"),rows);
         var completed=clock.GetUtcNow();
@@ -46,7 +56,7 @@ public sealed class RealBaselineStore(string root)
         var report=Calculate(archive,rows);
         HistoricalDatasetStore.WriteNew(Path.Combine(dir,"archive.json"),archive);
         HistoricalDatasetStore.WriteNew(Path.Combine(dir,"baseline-report.json"),report);
-        var files=new[]{"request.json","frozen-evidence.json","archive.json","baseline-report.json"};
+        var files=new[]{"request.json","frozen-evidence.json","archive.json","baseline-report.json"}.Concat(closure is null?[]:new[]{"phase4f-closure.json"}).ToArray();
         HistoricalDatasetStore.WriteNew(Path.Combine(dir,"manifest.json"),files.ToDictionary(f=>f,f=>ResearchMath.Digest(File.ReadAllText(Path.Combine(dir,f)))));
         return dir;
     }
@@ -54,8 +64,10 @@ public sealed class RealBaselineStore(string root)
     {
         var dir=Path.Combine(root,id.ToString("N"));var files=new[]{"request.json","frozen-evidence.json","archive.json","baseline-report.json"};
         var manifest=HistoricalDatasetStore.Read<Dictionary<string,string>>(Path.Combine(dir,"manifest.json"));
+        if(manifest.ContainsKey("phase4f-closure.json"))files=files.Append("phase4f-closure.json").ToArray();
         if(manifest.Count!=files.Length||files.Any(f=>!manifest.TryGetValue(f,out var hash)||hash!=ResearchMath.Digest(File.ReadAllText(Path.Combine(dir,f)))))throw new InvalidDataException("Baseline archive changed.");
         var a=HistoricalDatasetStore.Read<BaselineArchive>(Path.Combine(dir,"archive.json"));
+        if(manifest.ContainsKey("phase4f-closure.json"))ValidateClosure(HistoricalDatasetStore.Read<ComponentClosureReport>(Path.Combine(dir,"phase4f-closure.json")),RealDataApproval.InputDigest(a.Submission),a.Submission.RequestedComponents);
         if(a.Request.ResearchRunId!=id||a.Approval.InputDigest!=RealDataApproval.InputDigest(a.Submission)||
             a.Approval.ApprovalDigest!=ResearchMath.Digest(a.Approval with{ApprovalDigest=""})||a.Approval.ComponentApprovals.Length==0)
             throw new InvalidDataException("Baseline approval scope mismatch.");
@@ -65,6 +77,15 @@ public sealed class RealBaselineStore(string root)
         var report=Calculate(a,frozen);
         if(ResearchMath.Digest(report)!=ResearchMath.Digest(HistoricalDatasetStore.Read<BaselineResearchReport>(Path.Combine(dir,"baseline-report.json"))))throw new InvalidDataException("Baseline replay mismatch.");
         return report;
+    }
+    private static void ValidateClosure(ComponentClosureReport closure,string input,EvidenceCode[] components)
+    {
+        if(closure.Status!="CLOSURE_READY_REQUIRES_DATASET_APPROVAL"||closure.ReportDigest!=ResearchMath.Digest(closure with{ReportDigest=""})||
+            closure.DatasetInputDigest!=input||!closure.Components.Order().SequenceEqual(components.Order())||closure.BlockingReasons.Length>0||
+            closure.Cases.Length!=Enum.GetValues<ClosureDomain>().Length||closure.Cases.Select(c=>c.Case.Domain).Distinct().Count()!=closure.Cases.Length||
+            closure.Cases.Any(c=>c.Case.CurrentStatus!=ClosureStatus.APPROVED||c.Digest!=ResearchMath.Digest(c with{Digest=""})||
+                c.Case.ClosureDigest!=ResearchMath.Digest(c.Case with{ClosureDigest=""})))
+            throw new InvalidOperationException("Closure receipt does not bind the approved component input.");
     }
     private static void ValidateLabels(RealDatasetSubmission s,ResearchRequest r)
     {

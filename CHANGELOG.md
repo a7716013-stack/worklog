@@ -1,5 +1,14 @@
 # 更新紀錄
 
+## 3.0.9 — 2026-11-01（Phase 4F 逐項證據結案）
+
+- 新增六類 AuthorityClosureCase、逐項主張支持程度、不可覆寫修訂與分項研究入口。
+- baseline 執行前重新驗證結案版本；無關 Institutional authority supersede 不再阻擋 Trend。
+- 新增 118 項 closure 檢查及同 SHA CI；既有真實資料契約 42 項通過。
+- 六份官方回應完成審查，案件均部分支持；真實資料集與 baseline 里程碑仍未達成。
+- 原始 Phase 4F 文件第 8 節中斷，未提供要求不宣稱完成。詳見 [實作報告](docs/implementation-3.0.9.md)。
+
+
 ## 3.0.8 — 2026-10-31（Phase 4E 證據擷取與分項核准工具）
 
 - 新增受控官方證據擷取、原始位元組封存、不可覆寫 manifest、摘要重播與具明確範圍的審核回條。

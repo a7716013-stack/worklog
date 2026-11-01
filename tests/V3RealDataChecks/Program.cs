@@ -116,6 +116,10 @@ baseline.Execute(partial,componentTemplate,evidenceRoot,authorityRoot,new FixedC
 var componentReport=baseline.Replay(componentTemplate.ResearchRunId);
 Check(componentReport.Evidence.All(x=>x.FullEvidence100 is null)&&componentReport.Metrics.All(m=>m.Variable!="FullEvidence100"&&!m.Variable.StartsWith("Ablation.")),"component research never emits fake full score or ablation");
 var current=authorities.Read(domainBindings[0].AuthorityId);
+var institutionalAuthority=authorities.Read(source.Authorities.Single(a=>a.DatasetType==HistoricalDatasetType.Institutional).AuthorityId);
+authorities.Review(institutionalAuthority.Authority.AuthorityId,institutionalAuthority.Digest,AuthorityStatus.Superseded,at.AddSeconds(1),"fixture reviewer","institutional replaced");
+var unaffected=evaluator.Evaluate(submission);
+Check(unaffected.ComponentApprovals.Any(c=>c.EvidenceCode==EvidenceCode.Trend)&&!unaffected.ComponentApprovals.Any(c=>c.EvidenceCode==EvidenceCode.Institutional),"unrelated institutional supersession cannot block Trend; institutional still blocked");
 authorities.Review(current.Authority.AuthorityId,current.Digest,AuthorityStatus.Superseded,at.AddSeconds(2),"fixture reviewer","superseded");
 Check(evaluator.Evaluate(submission).FullApproval is null,"superseded domain authority blocks new approval");
 Check(baseline.Replay(template.ResearchRunId).Run.OutputDigest==report.Run.OutputDigest,"historical baseline replay survives later authority supersession");

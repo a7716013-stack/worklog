@@ -71,14 +71,22 @@ public sealed class RealDataApproval(string evidenceRoot,string authorityRoot)
             return new EvidenceDomainStatus(domain,valid?"VERIFIED":"UNPROVEN",valid?"APPROVED":"BLOCKED",
                 valid?"REVIEWED_REQUESTED_PERIOD":"UNKNOWN",valid?[]:[domain+"_EVIDENCE_OR_SCOPE_GAP"]);
         }).ToArray();
-        var sourceCurrent=true;
-        try
+        bool RegistryCurrent(IEnumerable<Guid> requiredIds)
         {
-            var registry=new AuthorityStore(authorityRoot);
-            foreach(var a in s.Source.Authorities)if(ResearchMath.Digest(registry.Read(a.AuthorityId).Authority)!=ResearchMath.Digest(a))sourceCurrent=false;
-            foreach(var e in s.Source.Evidence)if(ResearchMath.Digest(registry.ReadEvidence(e.EvidenceId))!=ResearchMath.Digest(e))sourceCurrent=false;
+            try
+            {
+                var registry=new AuthorityStore(authorityRoot);
+                foreach(var id in requiredIds.Distinct())
+                {
+                    var a=s.Source.Authorities.Single(x=>x.AuthorityId==id);
+                    if(ResearchMath.Digest(registry.Read(id).Authority)!=ResearchMath.Digest(a))return false;
+                    foreach(var reference in a.EvidenceReferences)
+                        if(ResearchMath.Digest(registry.ReadEvidence(reference))!=ResearchMath.Digest(s.Source.Evidence.Single(e=>e.EvidenceId==reference)))return false;
+                }
+                return true;
+            }
+            catch(Exception ex) when(ex is IOException or InvalidDataException or InvalidOperationException){return false;}
         }
-        catch(Exception ex) when(ex is IOException or InvalidDataException or InvalidOperationException){sourceCurrent=false;}
         var review=s.Review;
         var reviewed=review is not null&&review.Status==AuthorityStatus.Approved&&review.SubmissionDigest==digest&&
             review.ReviewedAt>=d.CreatedAt&&review.ReviewedAt<=s.Source.EvaluatedAt&&
@@ -91,7 +99,10 @@ public sealed class RealDataApproval(string evidenceRoot,string authorityRoot)
             var required=d.Facts.Where(f=>facts.Contains(f.DatasetType.ToString())&&data.Decisions.Any(x=>x.FactChecksum==f.FactChecksum&&x.Eligible)).ToArray();
             if(required.Length==0||facts.Any(kind=>!required.Any(f=>f.DatasetType.ToString()==kind)))reasons.Add("REQUIRED_FACTS_MISSING");
             if(required.Any(f=>!HistoricalAuthority.Authorize(s.Source,f).Authorized))reasons.Add("FACT_AUTHORITY_GAP");
-            if(!sourceCurrent)reasons.Add("REGISTRY_CHANGED_OR_MISSING");
+            var requiredChecksums=required.Select(f=>f.FactChecksum).ToHashSet();
+            var requiredAuthorityIds=s.Source.Bindings.Where(b=>requiredChecksums.Contains(b.FactChecksum)).Select(b=>b.AuthorityId)
+                .Concat(validBindings.Where(b=>dependencies.Contains(b.Domain)).Select(b=>b.AuthorityId)).Distinct().ToArray();
+            if(!RegistryCurrent(requiredAuthorityIds))reasons.Add("REGISTRY_CHANGED_OR_MISSING");
             if(data.Snapshots.Length!=d.Dates.Length||data.Snapshots.Length==0)reasons.Add("SNAPSHOT_COVERAGE_GAP");
             if(d.Archives.Length==0||d.Archives.Any(a=>a.Synthetic))reasons.Add("REAL_SOURCE_REQUIRED");
             if(d.Universes.Any(u=>!u.IncludesDelistedHistory))reasons.Add("SURVIVORSHIP_BIAS_RISK");
@@ -100,7 +111,7 @@ public sealed class RealDataApproval(string evidenceRoot,string authorityRoot)
             if(!reviewed)reasons.Add("DATASET_REVIEW_REQUIRED");
             var missing=dependencies.Where(domain=>domains.Single(x=>x.Domain==domain).AuthorityStatus!="APPROVED").Select(x=>x.ToString()).ToArray();
             return new EvidenceReadinessReport(code,"LOCKED_CANDIDATE_V1",dependencies.Select(x=>x.ToString()).Concat(facts).ToArray(),
-                validBindings.Where(b=>dependencies.Contains(b.Domain)).Select(b=>b.AuthorityId).Distinct().Order().ToArray(),
+                requiredAuthorityIds.Order().ToArray(),
                 missing,coverage.Length==0?null:coverage.Min(c=>c.Coverage),reasons.Count==0,reasons.Distinct().ToArray());
         }).ToArray();
         var receipts=ready.Where(r=>r.ResearchReady&&s.RequestedComponents.Contains(r.Evidence)).Select(r=>
