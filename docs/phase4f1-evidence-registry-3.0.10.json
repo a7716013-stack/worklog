@@ -1,0 +1,173 @@
+{
+  "Note": "AuthorityLevel=OfficialDocumentation permits review only, not approval. Coverage is requested scope, not certified coverage.",
+  "Entries": [
+    {
+      "EvidenceId": "16e9385a-6c6a-4881-bde3-2f6db02f15e7",
+      "Provider": "TWSE",
+      "DatasetType": "HistoricalInstrumentIdentity",
+      "SourceUrl": "https://www.twse.com.tw/rwd/zh/company/suspendListing?date=20260101&response=json",
+      "RetrievedAt": "2026-10-31T16:28:43.7804128+00:00",
+      "RawDigest": "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2",
+      "ContentType": "application/json; charset=UTF-8",
+      "CoverageStart": "2026-09-01",
+      "CoverageEnd": "2026-09-30",
+      "ClaimTypes": [
+        "HistoricalInstrumentIdentity",
+        "MarketTransfer",
+        "PublishedDelistingRows",
+        "SymbolHistory"
+      ],
+      "AuthorityLevel": 3,
+      "ArchiveLocation": "evidence/authority/16e9385a6c6a4881bde32f6db02f15e7/raw.bin",
+      "ParserVersion": "RawBytes-v1",
+      "RegistryVersion": "evidence-registry-v1"
+    },
+    {
+      "EvidenceId": "25bc00ef-0f8c-444e-a368-6a029221eda1",
+      "Provider": "TWSE",
+      "DatasetType": "HistoricalUniverse",
+      "SourceUrl": "https://www.twse.com.tw/rwd/zh/company/suspendListing?date=20260101&response=json",
+      "RetrievedAt": "2026-10-31T16:28:43.792527+00:00",
+      "RawDigest": "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2",
+      "ContentType": "application/json; charset=UTF-8",
+      "CoverageStart": "2026-09-01",
+      "CoverageEnd": "2026-09-30",
+      "ClaimTypes": [
+        "Delisting",
+        "Denominator",
+        "HistoricalMembership",
+        "Listing",
+        "PublishedDelistingRows",
+        "Suspension"
+      ],
+      "AuthorityLevel": 3,
+      "ArchiveLocation": "evidence/authority/25bc00ef0f8c444ea3686a029221eda1/raw.bin",
+      "ParserVersion": "RawBytes-v1",
+      "RegistryVersion": "evidence-registry-v1"
+    },
+    {
+      "EvidenceId": "41aaa86d-5a89-40b9-b3b5-8ffebbefc92b",
+      "Provider": "TWSE",
+      "DatasetType": "CorporateActionPriceBasis",
+      "SourceUrl": "https://www.twse.com.tw/rwd/zh/exRight/TWT49U?startDate=20260901&endDate=20260930&response=json",
+      "RetrievedAt": "2026-10-31T16:28:44.3813205+00:00",
+      "RawDigest": "DFBBEE5EB202CB9E349D7A8A162A82D657CD6F12C105A4AADA5D3BBD94F45426",
+      "ContentType": "application/json; charset=UTF-8",
+      "CoverageStart": "2026-09-01",
+      "CoverageEnd": "2026-09-30",
+      "ClaimTypes": [
+        "CorporateActionHandling",
+        "PriceBasis",
+        "PublishedReferencePriceRows"
+      ],
+      "AuthorityLevel": 3,
+      "ArchiveLocation": "evidence/authority/41aaa86d5a8940b9b3b58ffebbefc92b/raw.bin",
+      "ParserVersion": "RawBytes-v1",
+      "RegistryVersion": "evidence-registry-v1"
+    },
+    {
+      "EvidenceId": "44f0c011-1a33-4070-a05b-0b8683a38244",
+      "Provider": "TWSE",
+      "DatasetType": "Availability",
+      "SourceUrl": "https://www.twse.com.tw/zh/products/information/information.html",
+      "RetrievedAt": "2026-11-01T10:51:23.3160386+00:00",
+      "RawDigest": "BD029F134D7A2614E8EAF38EB316137D539DA2B39C84E842DD39AFF5C22E923A",
+      "ContentType": "text/html",
+      "CoverageStart": "2026-09-01",
+      "CoverageEnd": "2026-09-30",
+      "ClaimTypes": [
+        "HistoricalPublication",
+        "InformationServiceCategories",
+        "RevisionBehavior"
+      ],
+      "AuthorityLevel": 3,
+      "ArchiveLocation": "evidence/authority/44f0c0111a334070a05b0b8683a38244/raw.bin",
+      "ParserVersion": "RawBytes-v1",
+      "RegistryVersion": "evidence-registry-v1"
+    },
+    {
+      "EvidenceId": "7278c7ec-da2b-4d01-9789-76353b26a6cf",
+      "Provider": "TWSE",
+      "DatasetType": "TradingCalendar",
+      "SourceUrl": "https://www.twse.com.tw/zh/clearing/suspended.html",
+      "RetrievedAt": "2026-11-01T10:51:23.2267717+00:00",
+      "RawDigest": "88428BDAD28CE939EA4435254B022DCAD33F6CB66F346209D77C24EA74839619",
+      "ContentType": "text/html",
+      "CoverageStart": "2026-09-01",
+      "CoverageEnd": "2026-09-30",
+      "ClaimTypes": [
+        "EmergencyClosures",
+        "GeneralEmergencyClosureRule",
+        "HistoricalSessions",
+        "Horizon:TradingSessions"
+      ],
+      "AuthorityLevel": 3,
+      "ArchiveLocation": "evidence/authority/7278c7ecda2b4d01978976353b26a6cf/raw.bin",
+      "ParserVersion": "RawBytes-v1",
+      "RegistryVersion": "evidence-registry-v1"
+    },
+    {
+      "EvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+      "Provider": "TWSE",
+      "DatasetType": "HistoricalPriceVolume",
+      "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=2330&response=json",
+      "RetrievedAt": "2026-10-31T16:28:43.8042876+00:00",
+      "RawDigest": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+      "ContentType": "application/json; charset=UTF-8",
+      "CoverageStart": "2026-09-01",
+      "CoverageEnd": "2026-09-30",
+      "ClaimTypes": [
+        "HistoricalPrices",
+        "HistoricalVolumes",
+        "OriginalRevisionIdentity",
+        "SourceIdentity",
+        "Units"
+      ],
+      "AuthorityLevel": 3,
+      "ArchiveLocation": "evidence/authority/bc79c41ab3cd4c2c987ce4ebcb704f3d/raw.bin",
+      "ParserVersion": "RawBytes-v1",
+      "RegistryVersion": "evidence-registry-v1"
+    },
+    {
+      "EvidenceId": "d1434433-7b43-4e7d-8868-8954f2c1fb8f",
+      "Provider": "TWSE",
+      "DatasetType": "Availability",
+      "SourceUrl": "https://www.twse.com.tw/zh/trading/historical/stock-day.html",
+      "RetrievedAt": "2026-10-31T16:28:43.8218886+00:00",
+      "RawDigest": "F2ABB6E49794EBD6D4E596F0C6436F193431786A5B96171A6E87638C729129B7",
+      "ContentType": "text/html",
+      "CoverageStart": "2026-09-01",
+      "CoverageEnd": "2026-09-30",
+      "ClaimTypes": [
+        "HistoricalPublication",
+        "RevisionBehavior",
+        "SourceIdentity"
+      ],
+      "AuthorityLevel": 3,
+      "ArchiveLocation": "evidence/authority/d14344337b434e7d88688954f2c1fb8f/raw.bin",
+      "ParserVersion": "RawBytes-v1",
+      "RegistryVersion": "evidence-registry-v1"
+    },
+    {
+      "EvidenceId": "d18902ab-75f0-40c0-976d-8540d21946e1",
+      "Provider": "TWSE",
+      "DatasetType": "TradingCalendar",
+      "SourceUrl": "https://www.twse.com.tw/rwd/zh/holidaySchedule/holidaySchedule?date=20260101&response=json",
+      "RetrievedAt": "2026-10-31T16:28:43.6977049+00:00",
+      "RawDigest": "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390",
+      "ContentType": "application/json; charset=UTF-8",
+      "CoverageStart": "2026-09-01",
+      "CoverageEnd": "2026-09-30",
+      "ClaimTypes": [
+        "EmergencyClosures",
+        "HistoricalSessions",
+        "Horizon:TradingSessions",
+        "ScheduledHolidays"
+      ],
+      "AuthorityLevel": 3,
+      "ArchiveLocation": "evidence/authority/d18902ab75f040c0976d8540d21946e1/raw.bin",
+      "ParserVersion": "RawBytes-v1",
+      "RegistryVersion": "evidence-registry-v1"
+    }
+  ]
+}

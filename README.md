@@ -1,6 +1,6 @@
 # 工作日誌 WorkJournal
 
-版本 **3.0.9**：新增 Phase 4F 逐項證據結案、Trend／Momentum／VolumePrice 分項入口及不可覆寫審查歷程。六份真實證據目前僅部分支持，尚無核准的真實分項資料集，尚未執行真實 baseline。詳見 [版本說明](docs/releases/3.0.9.md) 與 [實作報告](docs/implementation-3.0.9.md)。
+版本 **3.0.10**：新增 Phase 4F-1 分項資料集核准關卡、逐筆原始來源追溯與不可覆寫核准／重播流程。20 筆真實價量完成 lineage；歷史 authority、availability 與 revision 證據仍不足，真實資料集與 baseline 尚未核准。詳見 [版本說明](docs/releases/3.0.10.md) 與 [實作報告](docs/implementation-3.0.10.md)。
 
 首頁右側另提供七項國際指數，詳見 [國際指數說明](docs/international-indices.md)。
 

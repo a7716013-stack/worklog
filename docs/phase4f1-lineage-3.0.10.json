@@ -1,0 +1,391 @@
+{
+  "ParserVersion": "TWSE-STOCK_DAY-row-v1",
+  "SourceEvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+  "RawRowsLinked": 20,
+  "Lineage": [
+    {
+      "FactId": "76EFBFBCDD94B2EBFE2A286CC0A178749971B40E11816313722ADA80E41F3E90",
+      "InstrumentId": "00000000-0000-0000-0000-000000000000",
+      "TradeDate": "2026-09-01",
+      "DatasetType": 0,
+      "RawEvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+      "RawRecordLocator": {
+        "EvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+        "ResponseDigest": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "RecordIndex": 0,
+        "TradeDate": "2026-09-01",
+        "Symbol": "2330"
+      },
+      "ParserVersion": "TWSE-STOCK_DAY-row-v1",
+      "ParsedValueDigest": "BD6C26EADEE4782F0C0FE7FDFFAA2954F8B9E4D42119CF70F7AFC39DEEEF9F90",
+      "RevisionIdentity": null,
+      "AvailableAtPolicyId": null,
+      "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069"
+    },
+    {
+      "FactId": "D6B180D8039C988F9B9543A08F5804541FAB34BF0512BF14745D96AB72B5F266",
+      "InstrumentId": "00000000-0000-0000-0000-000000000000",
+      "TradeDate": "2026-09-02",
+      "DatasetType": 0,
+      "RawEvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+      "RawRecordLocator": {
+        "EvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+        "ResponseDigest": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "RecordIndex": 1,
+        "TradeDate": "2026-09-02",
+        "Symbol": "2330"
+      },
+      "ParserVersion": "TWSE-STOCK_DAY-row-v1",
+      "ParsedValueDigest": "10B2CB4B0BD0DE9EE9D1EA8299CA8D16840F3A5FB5C7FD3E09BB838C351F7A23",
+      "RevisionIdentity": null,
+      "AvailableAtPolicyId": null,
+      "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069"
+    },
+    {
+      "FactId": "2541FB096D7B6BF0CAB5B46F72A3F55CC122FD34B1D8F925118861728E7ADCA7",
+      "InstrumentId": "00000000-0000-0000-0000-000000000000",
+      "TradeDate": "2026-09-03",
+      "DatasetType": 0,
+      "RawEvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+      "RawRecordLocator": {
+        "EvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+        "ResponseDigest": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "RecordIndex": 2,
+        "TradeDate": "2026-09-03",
+        "Symbol": "2330"
+      },
+      "ParserVersion": "TWSE-STOCK_DAY-row-v1",
+      "ParsedValueDigest": "D404F14EB43DE2AE6D66B9C17F5B358E320F63EF182B473905D220B4B8B75AB1",
+      "RevisionIdentity": null,
+      "AvailableAtPolicyId": null,
+      "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069"
+    },
+    {
+      "FactId": "FE0D97B46E34B7F71E875475F45FE5452C93CBEB36B2132F867005652D127650",
+      "InstrumentId": "00000000-0000-0000-0000-000000000000",
+      "TradeDate": "2026-09-04",
+      "DatasetType": 0,
+      "RawEvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+      "RawRecordLocator": {
+        "EvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+        "ResponseDigest": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "RecordIndex": 3,
+        "TradeDate": "2026-09-04",
+        "Symbol": "2330"
+      },
+      "ParserVersion": "TWSE-STOCK_DAY-row-v1",
+      "ParsedValueDigest": "DF43D51760FA44D09AA61E48EEF0BF5EFCA3BA447B2418EFDFAC243146BF3D2C",
+      "RevisionIdentity": null,
+      "AvailableAtPolicyId": null,
+      "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069"
+    },
+    {
+      "FactId": "ACF5AC04AD407C99B2169FE66BB897A6AD40C2B926DE26579118DDB800BA2F96",
+      "InstrumentId": "00000000-0000-0000-0000-000000000000",
+      "TradeDate": "2026-09-07",
+      "DatasetType": 0,
+      "RawEvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+      "RawRecordLocator": {
+        "EvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+        "ResponseDigest": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "RecordIndex": 4,
+        "TradeDate": "2026-09-07",
+        "Symbol": "2330"
+      },
+      "ParserVersion": "TWSE-STOCK_DAY-row-v1",
+      "ParsedValueDigest": "444DD3F3B11B0F31B2C76D8507C1F12D07C9687EDE8E4CCFD520B53795A69615",
+      "RevisionIdentity": null,
+      "AvailableAtPolicyId": null,
+      "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069"
+    },
+    {
+      "FactId": "59088168693B8A365150F9CA5C91F0AEE017BF99D424347061FA8C343FD10CDA",
+      "InstrumentId": "00000000-0000-0000-0000-000000000000",
+      "TradeDate": "2026-09-08",
+      "DatasetType": 0,
+      "RawEvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+      "RawRecordLocator": {
+        "EvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+        "ResponseDigest": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "RecordIndex": 5,
+        "TradeDate": "2026-09-08",
+        "Symbol": "2330"
+      },
+      "ParserVersion": "TWSE-STOCK_DAY-row-v1",
+      "ParsedValueDigest": "9CF2E284654095CBB0FFDDB5236A725F077D20C4AEB6196B6439C07D75331029",
+      "RevisionIdentity": null,
+      "AvailableAtPolicyId": null,
+      "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069"
+    },
+    {
+      "FactId": "4BCA9F74A65D49AD7D3AA040724FFD0B1F496607323137C69BDC0C7314BE78F3",
+      "InstrumentId": "00000000-0000-0000-0000-000000000000",
+      "TradeDate": "2026-09-09",
+      "DatasetType": 0,
+      "RawEvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+      "RawRecordLocator": {
+        "EvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+        "ResponseDigest": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "RecordIndex": 6,
+        "TradeDate": "2026-09-09",
+        "Symbol": "2330"
+      },
+      "ParserVersion": "TWSE-STOCK_DAY-row-v1",
+      "ParsedValueDigest": "AF7F6FC2E655B11FA6ADE2A28B8596E084D59FAFA909A71C38A6F22F5350386A",
+      "RevisionIdentity": null,
+      "AvailableAtPolicyId": null,
+      "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069"
+    },
+    {
+      "FactId": "E48757C5D09745B35135A3C17C24D4117C2BB8DAE797E5FDB094476FB6E33FC0",
+      "InstrumentId": "00000000-0000-0000-0000-000000000000",
+      "TradeDate": "2026-09-10",
+      "DatasetType": 0,
+      "RawEvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+      "RawRecordLocator": {
+        "EvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+        "ResponseDigest": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "RecordIndex": 7,
+        "TradeDate": "2026-09-10",
+        "Symbol": "2330"
+      },
+      "ParserVersion": "TWSE-STOCK_DAY-row-v1",
+      "ParsedValueDigest": "CC1A623F25BA0FDE6C2815285A9BDC7D5042029CD6208E08FD6FF3C78B7FD4C0",
+      "RevisionIdentity": null,
+      "AvailableAtPolicyId": null,
+      "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069"
+    },
+    {
+      "FactId": "4746E75A29D3BB4555385D5502203FBDE32D49F295EFAF1A006B6671F19ABB2F",
+      "InstrumentId": "00000000-0000-0000-0000-000000000000",
+      "TradeDate": "2026-09-11",
+      "DatasetType": 0,
+      "RawEvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+      "RawRecordLocator": {
+        "EvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+        "ResponseDigest": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "RecordIndex": 8,
+        "TradeDate": "2026-09-11",
+        "Symbol": "2330"
+      },
+      "ParserVersion": "TWSE-STOCK_DAY-row-v1",
+      "ParsedValueDigest": "EE6405137C1516425B132D074FC3742990E89171EEC3BD6864B6045A35D05024",
+      "RevisionIdentity": null,
+      "AvailableAtPolicyId": null,
+      "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069"
+    },
+    {
+      "FactId": "F27AD5C0A42493BD194E7F7B8BAD055738ECFF32064D5E119E811F46C01C8836",
+      "InstrumentId": "00000000-0000-0000-0000-000000000000",
+      "TradeDate": "2026-09-14",
+      "DatasetType": 0,
+      "RawEvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+      "RawRecordLocator": {
+        "EvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+        "ResponseDigest": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "RecordIndex": 9,
+        "TradeDate": "2026-09-14",
+        "Symbol": "2330"
+      },
+      "ParserVersion": "TWSE-STOCK_DAY-row-v1",
+      "ParsedValueDigest": "79703724F4CBA6D6A770F9D04A7CE5CCA1C3F9244ED6D5358D3C8D5FDDB5B5EE",
+      "RevisionIdentity": null,
+      "AvailableAtPolicyId": null,
+      "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069"
+    },
+    {
+      "FactId": "B994D15CF3DFEA22F15A51FEACDA140EAAAA8B154B3C8EB4955EDB6C98E285DE",
+      "InstrumentId": "00000000-0000-0000-0000-000000000000",
+      "TradeDate": "2026-09-15",
+      "DatasetType": 0,
+      "RawEvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+      "RawRecordLocator": {
+        "EvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+        "ResponseDigest": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "RecordIndex": 10,
+        "TradeDate": "2026-09-15",
+        "Symbol": "2330"
+      },
+      "ParserVersion": "TWSE-STOCK_DAY-row-v1",
+      "ParsedValueDigest": "DE07B5102520FA4E5C6FE7999A8483DEB79D015AD4882854057EE88EBF18F2BF",
+      "RevisionIdentity": null,
+      "AvailableAtPolicyId": null,
+      "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069"
+    },
+    {
+      "FactId": "6A1D8E9DCF2F20DC7BA6051B27935FFF3F5ED2CA9290FBCD589986ED4951867B",
+      "InstrumentId": "00000000-0000-0000-0000-000000000000",
+      "TradeDate": "2026-09-16",
+      "DatasetType": 0,
+      "RawEvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+      "RawRecordLocator": {
+        "EvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+        "ResponseDigest": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "RecordIndex": 11,
+        "TradeDate": "2026-09-16",
+        "Symbol": "2330"
+      },
+      "ParserVersion": "TWSE-STOCK_DAY-row-v1",
+      "ParsedValueDigest": "0BD984B91C50C83AC6E0D3F0E4FCF8F1962505A78379E21C0764E7FC85B0F82D",
+      "RevisionIdentity": null,
+      "AvailableAtPolicyId": null,
+      "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069"
+    },
+    {
+      "FactId": "EE83AE6F0F56E506ED559CF98E5016EA30C01EC71E8FEB8132D3EDA87C66351D",
+      "InstrumentId": "00000000-0000-0000-0000-000000000000",
+      "TradeDate": "2026-09-17",
+      "DatasetType": 0,
+      "RawEvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+      "RawRecordLocator": {
+        "EvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+        "ResponseDigest": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "RecordIndex": 12,
+        "TradeDate": "2026-09-17",
+        "Symbol": "2330"
+      },
+      "ParserVersion": "TWSE-STOCK_DAY-row-v1",
+      "ParsedValueDigest": "43EA3C3FC0AD3FE2E5C4EC8C934E379CB6136C9156F6897DC5F43309EE4EE7D8",
+      "RevisionIdentity": null,
+      "AvailableAtPolicyId": null,
+      "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069"
+    },
+    {
+      "FactId": "8494A31795DB9F8D14507927613A2C6E9081C803DA3499CB666BD697C9AFB99B",
+      "InstrumentId": "00000000-0000-0000-0000-000000000000",
+      "TradeDate": "2026-09-18",
+      "DatasetType": 0,
+      "RawEvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+      "RawRecordLocator": {
+        "EvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+        "ResponseDigest": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "RecordIndex": 13,
+        "TradeDate": "2026-09-18",
+        "Symbol": "2330"
+      },
+      "ParserVersion": "TWSE-STOCK_DAY-row-v1",
+      "ParsedValueDigest": "E353C09EBD67D5ED3DEB7200160CEE94D3A7ACE75A7D0EC187FEE99E4885B1A2",
+      "RevisionIdentity": null,
+      "AvailableAtPolicyId": null,
+      "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069"
+    },
+    {
+      "FactId": "E00438E78D70A4710762E2B46C2CCA1218AD2F4B86EA55651C687F58EA8BBA01",
+      "InstrumentId": "00000000-0000-0000-0000-000000000000",
+      "TradeDate": "2026-09-21",
+      "DatasetType": 0,
+      "RawEvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+      "RawRecordLocator": {
+        "EvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+        "ResponseDigest": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "RecordIndex": 14,
+        "TradeDate": "2026-09-21",
+        "Symbol": "2330"
+      },
+      "ParserVersion": "TWSE-STOCK_DAY-row-v1",
+      "ParsedValueDigest": "1884C600CAD50F0C32791A0A6046987C270E8103085D1032516DABF12576C34A",
+      "RevisionIdentity": null,
+      "AvailableAtPolicyId": null,
+      "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069"
+    },
+    {
+      "FactId": "D1B66FEA668471F21512101F965BD44A2B32A702093CAF7E895AF30BC6847F14",
+      "InstrumentId": "00000000-0000-0000-0000-000000000000",
+      "TradeDate": "2026-09-22",
+      "DatasetType": 0,
+      "RawEvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+      "RawRecordLocator": {
+        "EvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+        "ResponseDigest": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "RecordIndex": 15,
+        "TradeDate": "2026-09-22",
+        "Symbol": "2330"
+      },
+      "ParserVersion": "TWSE-STOCK_DAY-row-v1",
+      "ParsedValueDigest": "3302126F8604BA180308E80970314F1653B7AEDF131A7954307CA90E7B44A13A",
+      "RevisionIdentity": null,
+      "AvailableAtPolicyId": null,
+      "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069"
+    },
+    {
+      "FactId": "42C1128C1AA9AFA54D0F3375E127CC56D901EAD2133AF7DD9A4368AA40A4E328",
+      "InstrumentId": "00000000-0000-0000-0000-000000000000",
+      "TradeDate": "2026-09-23",
+      "DatasetType": 0,
+      "RawEvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+      "RawRecordLocator": {
+        "EvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+        "ResponseDigest": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "RecordIndex": 16,
+        "TradeDate": "2026-09-23",
+        "Symbol": "2330"
+      },
+      "ParserVersion": "TWSE-STOCK_DAY-row-v1",
+      "ParsedValueDigest": "C131EE905A8F073030C3D9A1AF0FE0A34A8DCF463B1EC01BDBAC2B9B5D6DF5F1",
+      "RevisionIdentity": null,
+      "AvailableAtPolicyId": null,
+      "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069"
+    },
+    {
+      "FactId": "BED2402B99610D26F144EBDBEE6003A31A6A99BA5B8D5095153E97EC117CB366",
+      "InstrumentId": "00000000-0000-0000-0000-000000000000",
+      "TradeDate": "2026-09-24",
+      "DatasetType": 0,
+      "RawEvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+      "RawRecordLocator": {
+        "EvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+        "ResponseDigest": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "RecordIndex": 17,
+        "TradeDate": "2026-09-24",
+        "Symbol": "2330"
+      },
+      "ParserVersion": "TWSE-STOCK_DAY-row-v1",
+      "ParsedValueDigest": "F1182789101A759472E2C6260C0DF55F454753648521A61AE2C2ADC44634D7BE",
+      "RevisionIdentity": null,
+      "AvailableAtPolicyId": null,
+      "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069"
+    },
+    {
+      "FactId": "5D4C6EDCF495353FB523BF3C2B008F10E52F51D0C4AC6933BE283B12F4CA5F8B",
+      "InstrumentId": "00000000-0000-0000-0000-000000000000",
+      "TradeDate": "2026-09-29",
+      "DatasetType": 0,
+      "RawEvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+      "RawRecordLocator": {
+        "EvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+        "ResponseDigest": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "RecordIndex": 18,
+        "TradeDate": "2026-09-29",
+        "Symbol": "2330"
+      },
+      "ParserVersion": "TWSE-STOCK_DAY-row-v1",
+      "ParsedValueDigest": "70358920EAE748CF52B66FDCB6446935E0CBFD5282F166B207FF0B27E8535719",
+      "RevisionIdentity": null,
+      "AvailableAtPolicyId": null,
+      "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069"
+    },
+    {
+      "FactId": "1E06F75401CAA24AA45CAF14F467CB0F173B2DED61093564E958F508A553C158",
+      "InstrumentId": "00000000-0000-0000-0000-000000000000",
+      "TradeDate": "2026-09-30",
+      "DatasetType": 0,
+      "RawEvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+      "RawRecordLocator": {
+        "EvidenceId": "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d",
+        "ResponseDigest": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "RecordIndex": 19,
+        "TradeDate": "2026-09-30",
+        "Symbol": "2330"
+      },
+      "ParserVersion": "TWSE-STOCK_DAY-row-v1",
+      "ParsedValueDigest": "67965AA55745A5E1B9A0F2C4D4B36D2136C27B70BAE262BC6F1EF214D600AB08",
+      "RevisionIdentity": null,
+      "AvailableAtPolicyId": null,
+      "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069"
+    }
+  ],
+  "InstrumentIdentity": "UNKNOWN; empty GUID is an unresolved identity marker, never an approved instrument",
+  "RevisionIdentity": "UNKNOWN; raw checksum is not original revision proof",
+  "PITAvailableAt": "UNKNOWN",
+  "DatasetStatus": "UNAPPROVED_PREPARATION"
+}

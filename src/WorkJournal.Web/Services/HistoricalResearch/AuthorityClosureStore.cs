@@ -81,7 +81,31 @@ public sealed class AuthorityClosureStore(string root,string evidenceRoot)
         }
         return prior??throw new InvalidDataException("Empty closure history.");
     }
-    public ClosureRevision Review(ClosureReviewRequest request)=>Append(Next(Read(request.CaseId),request));
+    public ClosureRevision[] History(Guid id)
+    {
+        Read(id);
+        return Directory.GetFiles(DirectoryFor(id),"*.json").Order(StringComparer.Ordinal).Select(HistoricalDatasetStore.Read<ClosureRevision>).ToArray();
+    }
+    internal EvidenceReviewReceipt[] Reviews(ClosureRevision revision)=>revision.ReviewDigests.Select(new EvidenceAcquisitionStore(evidenceRoot).ReadReview).ToArray();
+    public ClosureRevision Supersede(Guid id,Guid replacementId,DateTimeOffset at,string reviewer,string reason)
+    {
+        var old=Read(id);var replacement=Read(replacementId);
+        return Review(new(id,old.Digest,ClosureStatus.SUPERSEDED,[],[],at,reviewer,$"REPLACED_BY:{replacementId:N}:{replacement.Digest}:{reason}"));
+    }
+    public ClosureRevision Review(ClosureReviewRequest request)
+    {
+        var old=Read(request.CaseId);
+        if(request.NextStatus==ClosureStatus.SUPERSEDED)
+        {
+            var parts=request.Reason.Split(':',4);
+            if(parts.Length!=4||parts[0]!="REPLACED_BY"||!Guid.TryParseExact(parts[1],"N",out var id)||id==request.CaseId)throw new InvalidOperationException("Approved replacement closure required.");
+            var replacement=Read(id);
+            if(replacement.Case.CurrentStatus!=ClosureStatus.APPROVED||replacement.Digest!=parts[2]||replacement.Case.Domain!=old.Case.Domain||
+                replacement.Case.Provider!=old.Case.Provider||replacement.Case.DatasetType!=old.Case.DatasetType||replacement.Case.TargetStart>old.Case.TargetStart||
+                replacement.Case.TargetEnd<old.Case.TargetEnd||replacement.At>request.At||string.IsNullOrWhiteSpace(parts[3]))throw new InvalidOperationException("Replacement must be current, approved and cover old scope.");
+        }
+        return Append(Next(old,request));
+    }
     private ClosureRevision Next(ClosureRevision old,ClosureReviewRequest request)
     {
         if(old.Digest!=request.ExpectedRevisionDigest||old.Case.CaseId!=request.CaseId||!Allowed(old.Case.CurrentStatus,request.NextStatus)||

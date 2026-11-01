@@ -1,0 +1,858 @@
+{
+  "Version": "3.0.10",
+  "Domains": [
+    {
+      "Domain": "TradingCalendar",
+      "RequiredClaims": [
+        "EmergencyClosures",
+        "HistoricalSessions",
+        "Horizon:TradingSessions",
+        "ScheduledHolidays"
+      ],
+      "SupportedClaims": [
+        "ScheduledHolidays"
+      ],
+      "PartialClaims": [],
+      "UnknownClaims": [],
+      "Conflicts": [],
+      "Coverage": null,
+      "ClosureStatus": "PARTIALLY_SUPPORTED",
+      "BlockingReason": [
+        "EmergencyClosures:UNSUPPORTED_OR_AMBIGUOUS",
+        "HistoricalSessions:UNSUPPORTED_OR_AMBIGUOUS",
+        "Horizon:TradingSessions:UNSUPPORTED_OR_AMBIGUOUS"
+      ],
+      "SubjectBinding": "Original 3.0.9 scope; refreshed source requires new scoped closure before approval",
+      "Claims": [
+        {
+          "ClaimId": "05b22e0f-e89b-4222-87e3-0230726a7d29:EmergencyClosures",
+          "Domain": 0,
+          "ClaimType": "EmergencyClosures",
+          "Subject": "DF80B963E4DB5DEA8EF5A784C0AEAA242330C07232CE6A439793C0301E2F7BDB",
+          "CoverageStart": "2026-09-01",
+          "CoverageEnd": "2026-09-30",
+          "EvidenceIds": [
+            "d18902ab-75f0-40c0-976d-8540d21946e1"
+          ],
+          "EvidenceDigest": "202FA9F6F1E7254A0FFEECD68C1654BD610E7A220E6292D739BB8220B7F0CFD2",
+          "SupportStatus": 2,
+          "CoverageStatus": "UNPROVEN",
+          "ConflictStatus": "NO_RECORDED_CONFLICT",
+          "Reviewer": "Codex source inspection",
+          "ReviewedAt": "2026-11-01T05:42:37.819149+00:00",
+          "Reason": "2026 schedule contains September 25 and 28 holidays. It does not establish all emergency closures, the complete historical session set or publication/revision timing.",
+          "KnownGaps": [
+            "REVIEW_CONFLICT_OR_UNSUPPORTED"
+          ],
+          "Revision": 3,
+          "PreviousRevisionDigest": "BCD9C8820FEDAF940CF66DB98D6D5C365A4E24F1CA5528906CAF345C1CFB62F8",
+          "RevisionDigest": "1251EB1A4BEE330D4B24317666EB88E2B89CE28028DD2F1A2C69E0003B768FAC"
+        },
+        {
+          "ClaimId": "05b22e0f-e89b-4222-87e3-0230726a7d29:HistoricalSessions",
+          "Domain": 0,
+          "ClaimType": "HistoricalSessions",
+          "Subject": "DF80B963E4DB5DEA8EF5A784C0AEAA242330C07232CE6A439793C0301E2F7BDB",
+          "CoverageStart": "2026-09-01",
+          "CoverageEnd": "2026-09-30",
+          "EvidenceIds": [
+            "d18902ab-75f0-40c0-976d-8540d21946e1"
+          ],
+          "EvidenceDigest": "202FA9F6F1E7254A0FFEECD68C1654BD610E7A220E6292D739BB8220B7F0CFD2",
+          "SupportStatus": 2,
+          "CoverageStatus": "UNPROVEN",
+          "ConflictStatus": "NO_RECORDED_CONFLICT",
+          "Reviewer": "Codex source inspection",
+          "ReviewedAt": "2026-11-01T05:42:37.819149+00:00",
+          "Reason": "2026 schedule contains September 25 and 28 holidays. It does not establish all emergency closures, the complete historical session set or publication/revision timing.",
+          "KnownGaps": [
+            "REVIEW_CONFLICT_OR_UNSUPPORTED"
+          ],
+          "Revision": 3,
+          "PreviousRevisionDigest": "DCBAA1B2277A37BED24EDEB59BC27E94D8FFA6B442E352726E1BE099EE2CE9A0",
+          "RevisionDigest": "1A4AEA3BA2620FF94E535ECB40AF28D22486DEA138E705C6BBD2D2CDEF65D157"
+        },
+        {
+          "ClaimId": "05b22e0f-e89b-4222-87e3-0230726a7d29:Horizon:TradingSessions",
+          "Domain": 0,
+          "ClaimType": "Horizon:TradingSessions",
+          "Subject": "DF80B963E4DB5DEA8EF5A784C0AEAA242330C07232CE6A439793C0301E2F7BDB",
+          "CoverageStart": "2026-09-01",
+          "CoverageEnd": "2026-09-30",
+          "EvidenceIds": [
+            "d18902ab-75f0-40c0-976d-8540d21946e1"
+          ],
+          "EvidenceDigest": "202FA9F6F1E7254A0FFEECD68C1654BD610E7A220E6292D739BB8220B7F0CFD2",
+          "SupportStatus": 2,
+          "CoverageStatus": "UNPROVEN",
+          "ConflictStatus": "NO_RECORDED_CONFLICT",
+          "Reviewer": "Codex source inspection",
+          "ReviewedAt": "2026-11-01T05:42:37.819149+00:00",
+          "Reason": "2026 schedule contains September 25 and 28 holidays. It does not establish all emergency closures, the complete historical session set or publication/revision timing.",
+          "KnownGaps": [
+            "REVIEW_CONFLICT_OR_UNSUPPORTED"
+          ],
+          "Revision": 3,
+          "PreviousRevisionDigest": "B1D44EE04CB8E51E56666FC5A6E7236EE707893CF3F576F6F29D48C2117454BE",
+          "RevisionDigest": "FD5E68A5796E911B66EE1C4D4D57F7BF3B68CEEBD06F74B5808C6328DED879A2"
+        },
+        {
+          "ClaimId": "05b22e0f-e89b-4222-87e3-0230726a7d29:ScheduledHolidays",
+          "Domain": 0,
+          "ClaimType": "ScheduledHolidays",
+          "Subject": "DF80B963E4DB5DEA8EF5A784C0AEAA242330C07232CE6A439793C0301E2F7BDB",
+          "CoverageStart": "2026-09-01",
+          "CoverageEnd": "2026-09-30",
+          "EvidenceIds": [
+            "d18902ab-75f0-40c0-976d-8540d21946e1"
+          ],
+          "EvidenceDigest": "202FA9F6F1E7254A0FFEECD68C1654BD610E7A220E6292D739BB8220B7F0CFD2",
+          "SupportStatus": 0,
+          "CoverageStatus": "REVIEWED_SCOPE",
+          "ConflictStatus": "NO_RECORDED_CONFLICT",
+          "Reviewer": "Codex source inspection",
+          "ReviewedAt": "2026-11-01T05:42:37.819149+00:00",
+          "Reason": "2026 schedule contains September 25 and 28 holidays. It does not establish all emergency closures, the complete historical session set or publication/revision timing.",
+          "KnownGaps": [],
+          "Revision": 3,
+          "PreviousRevisionDigest": "381FFB4FF4B989932EE1345836E3100536D7B2DD65380A651F803378AC3F27B7",
+          "RevisionDigest": "AE7A15D3E7710CD7BB9969D863D4DD463C9206A027614325F772DADDA21248F8"
+        }
+      ],
+      "UnsupportedClaims": [
+        "EmergencyClosures",
+        "HistoricalSessions",
+        "Horizon:TradingSessions"
+      ]
+    },
+    {
+      "Domain": "HistoricalInstrumentIdentity",
+      "RequiredClaims": [
+        "HistoricalInstrumentIdentity",
+        "MarketTransfer",
+        "PublishedDelistingRows",
+        "SymbolHistory"
+      ],
+      "SupportedClaims": [
+        "PublishedDelistingRows"
+      ],
+      "PartialClaims": [],
+      "UnknownClaims": [],
+      "Conflicts": [],
+      "Coverage": null,
+      "ClosureStatus": "PARTIALLY_SUPPORTED",
+      "BlockingReason": [
+        "HistoricalInstrumentIdentity:UNSUPPORTED_OR_AMBIGUOUS",
+        "MarketTransfer:UNSUPPORTED_OR_AMBIGUOUS",
+        "SymbolHistory:UNSUPPORTED_OR_AMBIGUOUS"
+      ],
+      "SubjectBinding": "Original 3.0.9 scope; refreshed source requires new scoped closure before approval",
+      "Claims": [
+        {
+          "ClaimId": "57d5fac6-6850-449a-9c91-ab5ad5b1b3a2:HistoricalInstrumentIdentity",
+          "Domain": 1,
+          "ClaimType": "HistoricalInstrumentIdentity",
+          "Subject": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+          "CoverageStart": "2026-09-01",
+          "CoverageEnd": "2026-09-30",
+          "EvidenceIds": [
+            "16e9385a-6c6a-4881-bde3-2f6db02f15e7"
+          ],
+          "EvidenceDigest": "F304B0262973939593479263270EF1446803A91AB1ED82086783D71480EE49D6",
+          "SupportStatus": 2,
+          "CoverageStatus": "UNPROVEN",
+          "ConflictStatus": "NO_RECORDED_CONFLICT",
+          "Reviewer": "Codex source inspection",
+          "ReviewedAt": "2026-11-01T05:42:39.435336+00:00",
+          "Reason": "Four 2026 termination rows include 2867 on September 1. These rows do not establish complete historical instrument identity, symbol history or market transfers.",
+          "KnownGaps": [
+            "REVIEW_CONFLICT_OR_UNSUPPORTED"
+          ],
+          "Revision": 3,
+          "PreviousRevisionDigest": "D6D0EF957A7A8F1315302D7FB815A1F55581E81AF481DC9C58DC2CB14111287E",
+          "RevisionDigest": "CB03C7C0592513A39C10FA1627151441377F117A0289FCFB5D1FE13452A79EA3"
+        },
+        {
+          "ClaimId": "57d5fac6-6850-449a-9c91-ab5ad5b1b3a2:MarketTransfer",
+          "Domain": 1,
+          "ClaimType": "MarketTransfer",
+          "Subject": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+          "CoverageStart": "2026-09-01",
+          "CoverageEnd": "2026-09-30",
+          "EvidenceIds": [
+            "16e9385a-6c6a-4881-bde3-2f6db02f15e7"
+          ],
+          "EvidenceDigest": "F304B0262973939593479263270EF1446803A91AB1ED82086783D71480EE49D6",
+          "SupportStatus": 2,
+          "CoverageStatus": "UNPROVEN",
+          "ConflictStatus": "NO_RECORDED_CONFLICT",
+          "Reviewer": "Codex source inspection",
+          "ReviewedAt": "2026-11-01T05:42:39.435336+00:00",
+          "Reason": "Four 2026 termination rows include 2867 on September 1. These rows do not establish complete historical instrument identity, symbol history or market transfers.",
+          "KnownGaps": [
+            "REVIEW_CONFLICT_OR_UNSUPPORTED"
+          ],
+          "Revision": 3,
+          "PreviousRevisionDigest": "78EACB821C67691BD20CB276C8BDCA60AF1594DDB7507033E6B883DF33D9D9BE",
+          "RevisionDigest": "1E838EFFC8B4A05CA25AB2A33E8EDCBA9C735E6ABD81B0CF79DDB7A52E0BF40B"
+        },
+        {
+          "ClaimId": "57d5fac6-6850-449a-9c91-ab5ad5b1b3a2:PublishedDelistingRows",
+          "Domain": 1,
+          "ClaimType": "PublishedDelistingRows",
+          "Subject": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+          "CoverageStart": "2026-09-01",
+          "CoverageEnd": "2026-09-30",
+          "EvidenceIds": [
+            "16e9385a-6c6a-4881-bde3-2f6db02f15e7"
+          ],
+          "EvidenceDigest": "F304B0262973939593479263270EF1446803A91AB1ED82086783D71480EE49D6",
+          "SupportStatus": 0,
+          "CoverageStatus": "REVIEWED_SCOPE",
+          "ConflictStatus": "NO_RECORDED_CONFLICT",
+          "Reviewer": "Codex source inspection",
+          "ReviewedAt": "2026-11-01T05:42:39.435336+00:00",
+          "Reason": "Four 2026 termination rows include 2867 on September 1. These rows do not establish complete historical instrument identity, symbol history or market transfers.",
+          "KnownGaps": [],
+          "Revision": 3,
+          "PreviousRevisionDigest": "A40258BC56D8752F65C77321FDCA21561F917429C45D58E7509992B282A86C54",
+          "RevisionDigest": "1088E88867A0B997FC38270F312E194EECBB68B3AE0294DE6219E7FAB90F4DBC"
+        },
+        {
+          "ClaimId": "57d5fac6-6850-449a-9c91-ab5ad5b1b3a2:SymbolHistory",
+          "Domain": 1,
+          "ClaimType": "SymbolHistory",
+          "Subject": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+          "CoverageStart": "2026-09-01",
+          "CoverageEnd": "2026-09-30",
+          "EvidenceIds": [
+            "16e9385a-6c6a-4881-bde3-2f6db02f15e7"
+          ],
+          "EvidenceDigest": "F304B0262973939593479263270EF1446803A91AB1ED82086783D71480EE49D6",
+          "SupportStatus": 2,
+          "CoverageStatus": "UNPROVEN",
+          "ConflictStatus": "NO_RECORDED_CONFLICT",
+          "Reviewer": "Codex source inspection",
+          "ReviewedAt": "2026-11-01T05:42:39.435336+00:00",
+          "Reason": "Four 2026 termination rows include 2867 on September 1. These rows do not establish complete historical instrument identity, symbol history or market transfers.",
+          "KnownGaps": [
+            "REVIEW_CONFLICT_OR_UNSUPPORTED"
+          ],
+          "Revision": 3,
+          "PreviousRevisionDigest": "3E7D6B5E23D64503637E25C7003F38471B70CC9BBB6FBC20AC8A16645423DFBB",
+          "RevisionDigest": "2F8546FFEE5AF446BBAD05F254AECE44D310182C3D78F9025FF82B5D9F073506"
+        }
+      ],
+      "UnsupportedClaims": [
+        "HistoricalInstrumentIdentity",
+        "MarketTransfer",
+        "SymbolHistory"
+      ]
+    },
+    {
+      "Domain": "HistoricalUniverse",
+      "RequiredClaims": [
+        "Delisting",
+        "Denominator",
+        "HistoricalMembership",
+        "Listing",
+        "PublishedDelistingRows",
+        "Suspension"
+      ],
+      "SupportedClaims": [
+        "PublishedDelistingRows"
+      ],
+      "PartialClaims": [],
+      "UnknownClaims": [],
+      "Conflicts": [],
+      "Coverage": null,
+      "ClosureStatus": "PARTIALLY_SUPPORTED",
+      "BlockingReason": [
+        "Delisting:UNSUPPORTED_OR_AMBIGUOUS",
+        "Denominator:UNSUPPORTED_OR_AMBIGUOUS",
+        "HistoricalMembership:UNSUPPORTED_OR_AMBIGUOUS",
+        "Listing:UNSUPPORTED_OR_AMBIGUOUS",
+        "Suspension:UNSUPPORTED_OR_AMBIGUOUS"
+      ],
+      "SubjectBinding": "Original 3.0.9 scope; refreshed source requires new scoped closure before approval",
+      "Claims": [
+        {
+          "ClaimId": "b358ec48-7d18-4e81-af37-23fa9886c71a:Delisting",
+          "Domain": 2,
+          "ClaimType": "Delisting",
+          "Subject": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+          "CoverageStart": "2026-09-01",
+          "CoverageEnd": "2026-09-30",
+          "EvidenceIds": [
+            "25bc00ef-0f8c-444e-a368-6a029221eda1"
+          ],
+          "EvidenceDigest": "726FD37F80DAF57DA00FB56539083341295326B03A61696BFDA25C129EE15850",
+          "SupportStatus": 2,
+          "CoverageStatus": "UNPROVEN",
+          "ConflictStatus": "NO_RECORDED_CONFLICT",
+          "Reviewer": "Codex source inspection",
+          "ReviewedAt": "2026-11-01T05:42:41.034553+00:00",
+          "Reason": "Specific delisting rows are visible; complete historical membership, listing/suspension coverage and the historical universe denominator remain unproven.",
+          "KnownGaps": [
+            "REVIEW_CONFLICT_OR_UNSUPPORTED"
+          ],
+          "Revision": 3,
+          "PreviousRevisionDigest": "215DE29085F5655665F29588EB49E72707A01E81145523C8CB0059A40038530A",
+          "RevisionDigest": "305A9F6474099BB3E12190A34A69A252048633717CF0BA48CD817D76786D4A62"
+        },
+        {
+          "ClaimId": "b358ec48-7d18-4e81-af37-23fa9886c71a:Denominator",
+          "Domain": 2,
+          "ClaimType": "Denominator",
+          "Subject": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+          "CoverageStart": "2026-09-01",
+          "CoverageEnd": "2026-09-30",
+          "EvidenceIds": [
+            "25bc00ef-0f8c-444e-a368-6a029221eda1"
+          ],
+          "EvidenceDigest": "726FD37F80DAF57DA00FB56539083341295326B03A61696BFDA25C129EE15850",
+          "SupportStatus": 2,
+          "CoverageStatus": "UNPROVEN",
+          "ConflictStatus": "NO_RECORDED_CONFLICT",
+          "Reviewer": "Codex source inspection",
+          "ReviewedAt": "2026-11-01T05:42:41.034553+00:00",
+          "Reason": "Specific delisting rows are visible; complete historical membership, listing/suspension coverage and the historical universe denominator remain unproven.",
+          "KnownGaps": [
+            "REVIEW_CONFLICT_OR_UNSUPPORTED"
+          ],
+          "Revision": 3,
+          "PreviousRevisionDigest": "59C17C3B3A6BC429872D8BDF9AD195606F74ABF22D32F8C21C766B468193D44B",
+          "RevisionDigest": "65E508F7A029E4C43D8D5AB0E9D578C7CC0D0CD5B246B05FC117CA1FA068A39B"
+        },
+        {
+          "ClaimId": "b358ec48-7d18-4e81-af37-23fa9886c71a:HistoricalMembership",
+          "Domain": 2,
+          "ClaimType": "HistoricalMembership",
+          "Subject": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+          "CoverageStart": "2026-09-01",
+          "CoverageEnd": "2026-09-30",
+          "EvidenceIds": [
+            "25bc00ef-0f8c-444e-a368-6a029221eda1"
+          ],
+          "EvidenceDigest": "726FD37F80DAF57DA00FB56539083341295326B03A61696BFDA25C129EE15850",
+          "SupportStatus": 2,
+          "CoverageStatus": "UNPROVEN",
+          "ConflictStatus": "NO_RECORDED_CONFLICT",
+          "Reviewer": "Codex source inspection",
+          "ReviewedAt": "2026-11-01T05:42:41.034553+00:00",
+          "Reason": "Specific delisting rows are visible; complete historical membership, listing/suspension coverage and the historical universe denominator remain unproven.",
+          "KnownGaps": [
+            "REVIEW_CONFLICT_OR_UNSUPPORTED"
+          ],
+          "Revision": 3,
+          "PreviousRevisionDigest": "6351FF5D466B1CCDDDF7EE2E34C9B0C284DE810C709D57F850B62E6D193B6118",
+          "RevisionDigest": "EF1EA2480FA51D3FA86344EED70893EA6D5F735A2F91BF76B4FA09272816921E"
+        },
+        {
+          "ClaimId": "b358ec48-7d18-4e81-af37-23fa9886c71a:Listing",
+          "Domain": 2,
+          "ClaimType": "Listing",
+          "Subject": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+          "CoverageStart": "2026-09-01",
+          "CoverageEnd": "2026-09-30",
+          "EvidenceIds": [
+            "25bc00ef-0f8c-444e-a368-6a029221eda1"
+          ],
+          "EvidenceDigest": "726FD37F80DAF57DA00FB56539083341295326B03A61696BFDA25C129EE15850",
+          "SupportStatus": 2,
+          "CoverageStatus": "UNPROVEN",
+          "ConflictStatus": "NO_RECORDED_CONFLICT",
+          "Reviewer": "Codex source inspection",
+          "ReviewedAt": "2026-11-01T05:42:41.034553+00:00",
+          "Reason": "Specific delisting rows are visible; complete historical membership, listing/suspension coverage and the historical universe denominator remain unproven.",
+          "KnownGaps": [
+            "REVIEW_CONFLICT_OR_UNSUPPORTED"
+          ],
+          "Revision": 3,
+          "PreviousRevisionDigest": "35D3CCB804C9F076C57C423220DD775ACBFEEE745ED6983023BE53EE1981B34A",
+          "RevisionDigest": "9BE32FE70057A44F6E47CD6E51546895A08AA7CF4C349F4D9E945176E4C9939A"
+        },
+        {
+          "ClaimId": "b358ec48-7d18-4e81-af37-23fa9886c71a:PublishedDelistingRows",
+          "Domain": 2,
+          "ClaimType": "PublishedDelistingRows",
+          "Subject": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+          "CoverageStart": "2026-09-01",
+          "CoverageEnd": "2026-09-30",
+          "EvidenceIds": [
+            "25bc00ef-0f8c-444e-a368-6a029221eda1"
+          ],
+          "EvidenceDigest": "726FD37F80DAF57DA00FB56539083341295326B03A61696BFDA25C129EE15850",
+          "SupportStatus": 0,
+          "CoverageStatus": "REVIEWED_SCOPE",
+          "ConflictStatus": "NO_RECORDED_CONFLICT",
+          "Reviewer": "Codex source inspection",
+          "ReviewedAt": "2026-11-01T05:42:41.034553+00:00",
+          "Reason": "Specific delisting rows are visible; complete historical membership, listing/suspension coverage and the historical universe denominator remain unproven.",
+          "KnownGaps": [],
+          "Revision": 3,
+          "PreviousRevisionDigest": "0D3433F68664E8D212A73329A3565C1ECF60D4838A4F5C079360AEA385FA8E0A",
+          "RevisionDigest": "A4C1F19244ED14F904516B9437EDA6CD44DDC0015A56F4F7652FDE22C2C2C91B"
+        },
+        {
+          "ClaimId": "b358ec48-7d18-4e81-af37-23fa9886c71a:Suspension",
+          "Domain": 2,
+          "ClaimType": "Suspension",
+          "Subject": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+          "CoverageStart": "2026-09-01",
+          "CoverageEnd": "2026-09-30",
+          "EvidenceIds": [
+            "25bc00ef-0f8c-444e-a368-6a029221eda1"
+          ],
+          "EvidenceDigest": "726FD37F80DAF57DA00FB56539083341295326B03A61696BFDA25C129EE15850",
+          "SupportStatus": 2,
+          "CoverageStatus": "UNPROVEN",
+          "ConflictStatus": "NO_RECORDED_CONFLICT",
+          "Reviewer": "Codex source inspection",
+          "ReviewedAt": "2026-11-01T05:42:41.034553+00:00",
+          "Reason": "Specific delisting rows are visible; complete historical membership, listing/suspension coverage and the historical universe denominator remain unproven.",
+          "KnownGaps": [
+            "REVIEW_CONFLICT_OR_UNSUPPORTED"
+          ],
+          "Revision": 3,
+          "PreviousRevisionDigest": "2A05BA001226CB7591E777EF5990435C670285053ADDF46353511227ADB50144",
+          "RevisionDigest": "B2D8D28B4925A6516F36DF0E0E8B854D44BA331DAA59FBD175EE33975EDD5FB1"
+        }
+      ],
+      "UnsupportedClaims": [
+        "Delisting",
+        "Denominator",
+        "HistoricalMembership",
+        "Listing",
+        "Suspension"
+      ]
+    },
+    {
+      "Domain": "HistoricalPriceVolume",
+      "RequiredClaims": [
+        "HistoricalPrices",
+        "HistoricalVolumes",
+        "OriginalRevisionIdentity",
+        "SourceIdentity",
+        "Units"
+      ],
+      "SupportedClaims": [
+        "SourceIdentity",
+        "Units"
+      ],
+      "PartialClaims": [],
+      "UnknownClaims": [],
+      "Conflicts": [],
+      "Coverage": null,
+      "ClosureStatus": "PARTIALLY_SUPPORTED",
+      "BlockingReason": [
+        "HistoricalPrices:UNSUPPORTED_OR_AMBIGUOUS",
+        "HistoricalVolumes:UNSUPPORTED_OR_AMBIGUOUS",
+        "OriginalRevisionIdentity:UNSUPPORTED_OR_AMBIGUOUS"
+      ],
+      "SubjectBinding": "Original 3.0.9 scope; refreshed source requires new scoped closure before approval",
+      "Claims": [
+        {
+          "ClaimId": "2fb9b2f3-5925-4e06-8c29-008fe2d6ab32:HistoricalPrices",
+          "Domain": 3,
+          "ClaimType": "HistoricalPrices",
+          "Subject": "9976D8681A82AB29D3620E2CA4579009F0C962AA6DCD5454F0CAADBAE4C9283A",
+          "CoverageStart": "2026-09-01",
+          "CoverageEnd": "2026-09-30",
+          "EvidenceIds": [
+            "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d"
+          ],
+          "EvidenceDigest": "089BAB08F7429FB5FB2FA583416116E62ACFCF88C1BDD96DC5A234229997E786",
+          "SupportStatus": 2,
+          "CoverageStatus": "UNPROVEN",
+          "ConflictStatus": "NO_RECORDED_CONFLICT",
+          "Reviewer": "Codex source inspection",
+          "ReviewedAt": "2026-11-01T05:42:42.691971+00:00",
+          "Reason": "2330 September response contains 20 daily OHLC and volume rows with named units. This capture has not been reconciled to the older submission fact/archive digests; HistoricalPrices and HistoricalVolumes for that exact subject remain unproven. Original revisions and publication timestamps are not established.",
+          "KnownGaps": [
+            "REVIEW_CONFLICT_OR_UNSUPPORTED"
+          ],
+          "Revision": 3,
+          "PreviousRevisionDigest": "F1D0E557C96546F3203E1AF342857159B6DE26E91E989A2040EC7DDB46A84068",
+          "RevisionDigest": "E52DE385FB237F2451D24DF8C31C39690A3C599EF4733676C8190C4B9840B838"
+        },
+        {
+          "ClaimId": "2fb9b2f3-5925-4e06-8c29-008fe2d6ab32:HistoricalVolumes",
+          "Domain": 3,
+          "ClaimType": "HistoricalVolumes",
+          "Subject": "9976D8681A82AB29D3620E2CA4579009F0C962AA6DCD5454F0CAADBAE4C9283A",
+          "CoverageStart": "2026-09-01",
+          "CoverageEnd": "2026-09-30",
+          "EvidenceIds": [
+            "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d"
+          ],
+          "EvidenceDigest": "089BAB08F7429FB5FB2FA583416116E62ACFCF88C1BDD96DC5A234229997E786",
+          "SupportStatus": 2,
+          "CoverageStatus": "UNPROVEN",
+          "ConflictStatus": "NO_RECORDED_CONFLICT",
+          "Reviewer": "Codex source inspection",
+          "ReviewedAt": "2026-11-01T05:42:42.691971+00:00",
+          "Reason": "2330 September response contains 20 daily OHLC and volume rows with named units. This capture has not been reconciled to the older submission fact/archive digests; HistoricalPrices and HistoricalVolumes for that exact subject remain unproven. Original revisions and publication timestamps are not established.",
+          "KnownGaps": [
+            "REVIEW_CONFLICT_OR_UNSUPPORTED"
+          ],
+          "Revision": 3,
+          "PreviousRevisionDigest": "2BE0058E1E7CF3E7032B1DD82511A9494534C0F86D97D4E797B0CAB5A907FDEE",
+          "RevisionDigest": "913CF1FB7E01141E66841FEF72F04180953F163F06BB4D3E85CBA88F3E14AC81"
+        },
+        {
+          "ClaimId": "2fb9b2f3-5925-4e06-8c29-008fe2d6ab32:OriginalRevisionIdentity",
+          "Domain": 3,
+          "ClaimType": "OriginalRevisionIdentity",
+          "Subject": "9976D8681A82AB29D3620E2CA4579009F0C962AA6DCD5454F0CAADBAE4C9283A",
+          "CoverageStart": "2026-09-01",
+          "CoverageEnd": "2026-09-30",
+          "EvidenceIds": [
+            "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d"
+          ],
+          "EvidenceDigest": "089BAB08F7429FB5FB2FA583416116E62ACFCF88C1BDD96DC5A234229997E786",
+          "SupportStatus": 2,
+          "CoverageStatus": "UNPROVEN",
+          "ConflictStatus": "NO_RECORDED_CONFLICT",
+          "Reviewer": "Codex source inspection",
+          "ReviewedAt": "2026-11-01T05:42:42.691971+00:00",
+          "Reason": "2330 September response contains 20 daily OHLC and volume rows with named units. This capture has not been reconciled to the older submission fact/archive digests; HistoricalPrices and HistoricalVolumes for that exact subject remain unproven. Original revisions and publication timestamps are not established.",
+          "KnownGaps": [
+            "REVIEW_CONFLICT_OR_UNSUPPORTED"
+          ],
+          "Revision": 3,
+          "PreviousRevisionDigest": "5EF6E43AD1C55A047DBB43A9B81D764353ADD496A2CD51DE9B05C8C9DB0C9351",
+          "RevisionDigest": "EDFEA88A607B2AE31B458CB5881389DB1EF0E0485FC581E51EEA56312895E2B6"
+        },
+        {
+          "ClaimId": "2fb9b2f3-5925-4e06-8c29-008fe2d6ab32:SourceIdentity",
+          "Domain": 3,
+          "ClaimType": "SourceIdentity",
+          "Subject": "9976D8681A82AB29D3620E2CA4579009F0C962AA6DCD5454F0CAADBAE4C9283A",
+          "CoverageStart": "2026-09-01",
+          "CoverageEnd": "2026-09-30",
+          "EvidenceIds": [
+            "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d"
+          ],
+          "EvidenceDigest": "089BAB08F7429FB5FB2FA583416116E62ACFCF88C1BDD96DC5A234229997E786",
+          "SupportStatus": 0,
+          "CoverageStatus": "REVIEWED_SCOPE",
+          "ConflictStatus": "NO_RECORDED_CONFLICT",
+          "Reviewer": "Codex source inspection",
+          "ReviewedAt": "2026-11-01T05:42:42.691971+00:00",
+          "Reason": "2330 September response contains 20 daily OHLC and volume rows with named units. This capture has not been reconciled to the older submission fact/archive digests; HistoricalPrices and HistoricalVolumes for that exact subject remain unproven. Original revisions and publication timestamps are not established.",
+          "KnownGaps": [],
+          "Revision": 3,
+          "PreviousRevisionDigest": "9996EF9672BD446BBA603A546DBEFDCAF6E63BC5DF801E14C5811F307C806D2C",
+          "RevisionDigest": "EC58003DB03F27322685B941425866DB6E815A420C93C65A30BA0C46C547A75B"
+        },
+        {
+          "ClaimId": "2fb9b2f3-5925-4e06-8c29-008fe2d6ab32:Units",
+          "Domain": 3,
+          "ClaimType": "Units",
+          "Subject": "9976D8681A82AB29D3620E2CA4579009F0C962AA6DCD5454F0CAADBAE4C9283A",
+          "CoverageStart": "2026-09-01",
+          "CoverageEnd": "2026-09-30",
+          "EvidenceIds": [
+            "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d"
+          ],
+          "EvidenceDigest": "089BAB08F7429FB5FB2FA583416116E62ACFCF88C1BDD96DC5A234229997E786",
+          "SupportStatus": 0,
+          "CoverageStatus": "REVIEWED_SCOPE",
+          "ConflictStatus": "NO_RECORDED_CONFLICT",
+          "Reviewer": "Codex source inspection",
+          "ReviewedAt": "2026-11-01T05:42:42.691971+00:00",
+          "Reason": "2330 September response contains 20 daily OHLC and volume rows with named units. This capture has not been reconciled to the older submission fact/archive digests; HistoricalPrices and HistoricalVolumes for that exact subject remain unproven. Original revisions and publication timestamps are not established.",
+          "KnownGaps": [],
+          "Revision": 3,
+          "PreviousRevisionDigest": "A960245D31435EC9C4711E62BE8DF0FEA32F8D42DFFE534B9C24788E195106B0",
+          "RevisionDigest": "ED92F9367D8CF5A57E9BCD926EEE6DF8C21484746A9AC323232A3FD85E427F35"
+        }
+      ],
+      "UnsupportedClaims": [
+        "HistoricalPrices",
+        "HistoricalVolumes",
+        "OriginalRevisionIdentity"
+      ]
+    },
+    {
+      "Domain": "Availability",
+      "RequiredClaims": [
+        "HistoricalPublication",
+        "RevisionBehavior",
+        "SourceIdentity"
+      ],
+      "SupportedClaims": [
+        "SourceIdentity"
+      ],
+      "PartialClaims": [],
+      "UnknownClaims": [],
+      "Conflicts": [],
+      "Coverage": null,
+      "ClosureStatus": "PARTIALLY_SUPPORTED",
+      "BlockingReason": [
+        "HistoricalPublication:UNSUPPORTED_OR_AMBIGUOUS",
+        "RevisionBehavior:UNSUPPORTED_OR_AMBIGUOUS"
+      ],
+      "SubjectBinding": "Original 3.0.9 scope; refreshed source requires new scoped closure before approval",
+      "Claims": [
+        {
+          "ClaimId": "75230f9c-bd50-480e-b4b8-6430483674ae:HistoricalPublication",
+          "Domain": 4,
+          "ClaimType": "HistoricalPublication",
+          "Subject": "A7A7437957EA2FB42BEE2A25CD9529923635C1FBC866A6028B8E59156C5C1508",
+          "CoverageStart": "2026-09-01",
+          "CoverageEnd": "2026-09-30",
+          "EvidenceIds": [
+            "d1434433-7b43-4e7d-8868-8954f2c1fb8f"
+          ],
+          "EvidenceDigest": "03411B95B46FB052D67802B92B7237EC34DDC3E35EF47003A4BE5C3A5BC9D339",
+          "SupportStatus": 2,
+          "CoverageStatus": "UNPROVEN",
+          "ConflictStatus": "NO_RECORDED_CONFLICT",
+          "Reviewer": "Codex source inspection",
+          "ReviewedAt": "2026-11-01T05:42:44.278484+00:00",
+          "Reason": "Official historical query page identifies the source. No observation-level historical publication time or revision behavior was established; capture time is not AvailableAt.",
+          "KnownGaps": [
+            "REVIEW_CONFLICT_OR_UNSUPPORTED"
+          ],
+          "Revision": 3,
+          "PreviousRevisionDigest": "02E299A50AD782CAF6CB514569BACF127B157CF54A7B771A13AC0C91743F65FB",
+          "RevisionDigest": "3A96B2D7FCC6F9E3A79C58F0E40716187180BFE4DDEA277AAA0AE67DA467B0F7"
+        },
+        {
+          "ClaimId": "75230f9c-bd50-480e-b4b8-6430483674ae:RevisionBehavior",
+          "Domain": 4,
+          "ClaimType": "RevisionBehavior",
+          "Subject": "A7A7437957EA2FB42BEE2A25CD9529923635C1FBC866A6028B8E59156C5C1508",
+          "CoverageStart": "2026-09-01",
+          "CoverageEnd": "2026-09-30",
+          "EvidenceIds": [
+            "d1434433-7b43-4e7d-8868-8954f2c1fb8f"
+          ],
+          "EvidenceDigest": "03411B95B46FB052D67802B92B7237EC34DDC3E35EF47003A4BE5C3A5BC9D339",
+          "SupportStatus": 2,
+          "CoverageStatus": "UNPROVEN",
+          "ConflictStatus": "NO_RECORDED_CONFLICT",
+          "Reviewer": "Codex source inspection",
+          "ReviewedAt": "2026-11-01T05:42:44.278484+00:00",
+          "Reason": "Official historical query page identifies the source. No observation-level historical publication time or revision behavior was established; capture time is not AvailableAt.",
+          "KnownGaps": [
+            "REVIEW_CONFLICT_OR_UNSUPPORTED"
+          ],
+          "Revision": 3,
+          "PreviousRevisionDigest": "DC2DD57277D334B57BF8D3D90B1069257868AB4F64435BECFF12996B27CE8941",
+          "RevisionDigest": "0984143EA7284A0F8C60556A526E1D364C4CEEAE161B663ADCDCA2D0E4577A0E"
+        },
+        {
+          "ClaimId": "75230f9c-bd50-480e-b4b8-6430483674ae:SourceIdentity",
+          "Domain": 4,
+          "ClaimType": "SourceIdentity",
+          "Subject": "A7A7437957EA2FB42BEE2A25CD9529923635C1FBC866A6028B8E59156C5C1508",
+          "CoverageStart": "2026-09-01",
+          "CoverageEnd": "2026-09-30",
+          "EvidenceIds": [
+            "d1434433-7b43-4e7d-8868-8954f2c1fb8f"
+          ],
+          "EvidenceDigest": "03411B95B46FB052D67802B92B7237EC34DDC3E35EF47003A4BE5C3A5BC9D339",
+          "SupportStatus": 0,
+          "CoverageStatus": "REVIEWED_SCOPE",
+          "ConflictStatus": "NO_RECORDED_CONFLICT",
+          "Reviewer": "Codex source inspection",
+          "ReviewedAt": "2026-11-01T05:42:44.278484+00:00",
+          "Reason": "Official historical query page identifies the source. No observation-level historical publication time or revision behavior was established; capture time is not AvailableAt.",
+          "KnownGaps": [],
+          "Revision": 3,
+          "PreviousRevisionDigest": "A0F9301E3D6F62D9A3DD3C31FA0703619B786B2E7A49778F77AD08C233D9F911",
+          "RevisionDigest": "6C50E053E6A16E9C035F890C467A90BC58076AB02217CE3A2F3DB051C5ACAD4E"
+        }
+      ],
+      "UnsupportedClaims": [
+        "HistoricalPublication",
+        "RevisionBehavior"
+      ]
+    },
+    {
+      "Domain": "CorporateActionPriceBasis",
+      "RequiredClaims": [
+        "CorporateActionHandling",
+        "PriceBasis",
+        "PublishedReferencePriceRows"
+      ],
+      "SupportedClaims": [
+        "PublishedReferencePriceRows"
+      ],
+      "PartialClaims": [],
+      "UnknownClaims": [],
+      "Conflicts": [],
+      "Coverage": null,
+      "ClosureStatus": "PARTIALLY_SUPPORTED",
+      "BlockingReason": [
+        "CorporateActionHandling:UNSUPPORTED_OR_AMBIGUOUS",
+        "PriceBasis:UNSUPPORTED_OR_AMBIGUOUS"
+      ],
+      "SubjectBinding": "Original 3.0.9 scope; refreshed source requires new scoped closure before approval",
+      "Claims": [
+        {
+          "ClaimId": "94d3ee7b-b2fd-466f-b4e2-28e8881c7e17:CorporateActionHandling",
+          "Domain": 5,
+          "ClaimType": "CorporateActionHandling",
+          "Subject": "CF4B9412108C7D26A7994F8DAFCE5349FAF8DB914D28F811451DEAD859D47A56",
+          "CoverageStart": "2026-09-01",
+          "CoverageEnd": "2026-09-30",
+          "EvidenceIds": [
+            "41aaa86d-5a89-40b9-b3b5-8ffebbefc92b"
+          ],
+          "EvidenceDigest": "F8DCA53E8B52F1ADA4A62DD829C443CD41751CE5510550F1BF0F3C398C862A49",
+          "SupportStatus": 2,
+          "CoverageStatus": "UNPROVEN",
+          "ConflictStatus": "NO_RECORDED_CONFLICT",
+          "Reviewer": "Codex source inspection",
+          "ReviewedAt": "2026-11-01T05:42:45.86597+00:00",
+          "Reason": "September ex-right/dividend reference-price rows are present. Some most-recent filing fields are dated 115/10/30, after the queried period. Complete actions, announcement timing and a compatible Raw/Adjusted/TotalReturn policy are not established.",
+          "KnownGaps": [
+            "REVIEW_CONFLICT_OR_UNSUPPORTED"
+          ],
+          "Revision": 3,
+          "PreviousRevisionDigest": "0858FB7914BE4364A74E037177912CA0507DF23D6F348AB58DE383EABB0DE49F",
+          "RevisionDigest": "12CEF2958B0894E95D9E098E0E700501227740EBF61819F2D7BF97CA57E90837"
+        },
+        {
+          "ClaimId": "94d3ee7b-b2fd-466f-b4e2-28e8881c7e17:PriceBasis",
+          "Domain": 5,
+          "ClaimType": "PriceBasis",
+          "Subject": "CF4B9412108C7D26A7994F8DAFCE5349FAF8DB914D28F811451DEAD859D47A56",
+          "CoverageStart": "2026-09-01",
+          "CoverageEnd": "2026-09-30",
+          "EvidenceIds": [
+            "41aaa86d-5a89-40b9-b3b5-8ffebbefc92b"
+          ],
+          "EvidenceDigest": "F8DCA53E8B52F1ADA4A62DD829C443CD41751CE5510550F1BF0F3C398C862A49",
+          "SupportStatus": 2,
+          "CoverageStatus": "UNPROVEN",
+          "ConflictStatus": "NO_RECORDED_CONFLICT",
+          "Reviewer": "Codex source inspection",
+          "ReviewedAt": "2026-11-01T05:42:45.86597+00:00",
+          "Reason": "September ex-right/dividend reference-price rows are present. Some most-recent filing fields are dated 115/10/30, after the queried period. Complete actions, announcement timing and a compatible Raw/Adjusted/TotalReturn policy are not established.",
+          "KnownGaps": [
+            "REVIEW_CONFLICT_OR_UNSUPPORTED"
+          ],
+          "Revision": 3,
+          "PreviousRevisionDigest": "FA1712EB64B2ACFE98736C070EA7A62F9BD1D420464F2A112E203CA4CB82E2E2",
+          "RevisionDigest": "C923C85E965D9101F381258936B30E2AD3B9F218DCE0869DE205E2073F691C97"
+        },
+        {
+          "ClaimId": "94d3ee7b-b2fd-466f-b4e2-28e8881c7e17:PublishedReferencePriceRows",
+          "Domain": 5,
+          "ClaimType": "PublishedReferencePriceRows",
+          "Subject": "CF4B9412108C7D26A7994F8DAFCE5349FAF8DB914D28F811451DEAD859D47A56",
+          "CoverageStart": "2026-09-01",
+          "CoverageEnd": "2026-09-30",
+          "EvidenceIds": [
+            "41aaa86d-5a89-40b9-b3b5-8ffebbefc92b"
+          ],
+          "EvidenceDigest": "F8DCA53E8B52F1ADA4A62DD829C443CD41751CE5510550F1BF0F3C398C862A49",
+          "SupportStatus": 0,
+          "CoverageStatus": "REVIEWED_SCOPE",
+          "ConflictStatus": "NO_RECORDED_CONFLICT",
+          "Reviewer": "Codex source inspection",
+          "ReviewedAt": "2026-11-01T05:42:45.86597+00:00",
+          "Reason": "September ex-right/dividend reference-price rows are present. Some most-recent filing fields are dated 115/10/30, after the queried period. Complete actions, announcement timing and a compatible Raw/Adjusted/TotalReturn policy are not established.",
+          "KnownGaps": [],
+          "Revision": 3,
+          "PreviousRevisionDigest": "B71B8C981DB1CED80465B3A2667D4F0DD6B6300DDB5F201349836B74284A0AA7",
+          "RevisionDigest": "A7370464264FBA74F100C5BC0995548F7B07D0FBD47C42C21BE4C2CCC794A0F1"
+        }
+      ],
+      "UnsupportedClaims": [
+        "CorporateActionHandling",
+        "PriceBasis"
+      ]
+    }
+  ],
+  "SupplementalEvidence": [
+    {
+      "artifact": {
+        "EvidenceId": "7278c7ec-da2b-4d01-9789-76353b26a6cf",
+        "TaskId": "c6cc3b1d-ff41-4e88-9c22-38877c589d1d",
+        "Provider": "TWSE",
+        "DatasetType": "TradingCalendar",
+        "Domain": 4,
+        "SourceReference": "https://www.twse.com.tw/zh/clearing/suspended.html",
+        "CapturedAt": "2026-11-01T10:51:23.2267717+00:00",
+        "ContentType": "text/html",
+        "ByteLength": 12299,
+        "SHA256": "88428BDAD28CE939EA4435254B022DCAD33F6CB66F346209D77C24EA74839619",
+        "ParserVersion": "RawBytes-v1",
+        "TargetStart": "2026-09-01",
+        "TargetEnd": "2026-09-30",
+        "MetadataDigest": "F53B5A55B7D7976507FA3002269285A68E1FEF11B2860BD1064027AA203A8702"
+      },
+      "review": {
+        "ReviewId": "e9847cc8-a988-4a66-8d5b-0468180c0dc4",
+        "EvidenceId": "7278c7ec-da2b-4d01-9789-76353b26a6cf",
+        "Reviewer": "Codex source inspection; operator attestation, not independent certification",
+        "ReviewedAt": "2026-11-01T10:54:55.287285+00:00",
+        "Claim": "Does this general public document close the September 2026 historical authority gaps?",
+        "Supported": [
+          "GeneralEmergencyClosureRule"
+        ],
+        "Unsupported": [
+          "HistoricalSessions",
+          "EmergencyClosures",
+          "Horizon:TradingSessions"
+        ],
+        "Ambiguous": [],
+        "EffectiveFrom": "2026-09-01",
+        "EffectiveTo": "2026-09-30",
+        "Timezone": "Asia/Taipei",
+        "Notes": "General emergency handling rules do not enumerate historical September sessions or announcement timestamps.",
+        "EvidenceDigest": "88428BDAD28CE939EA4435254B022DCAD33F6CB66F346209D77C24EA74839619",
+        "ReviewDigest": "F80E92D40379408ADEFFEB125F95BC2E0ED55CB5EC5AA3791D5A1D0C4FB11DC5"
+      }
+    },
+    {
+      "artifact": {
+        "EvidenceId": "44f0c011-1a33-4070-a05b-0b8683a38244",
+        "TaskId": "1692339c-1f62-438c-8a68-cc6274082123",
+        "Provider": "TWSE",
+        "DatasetType": "Availability",
+        "Domain": 0,
+        "SourceReference": "https://www.twse.com.tw/zh/products/information/information.html",
+        "CapturedAt": "2026-11-01T10:51:23.3160386+00:00",
+        "ContentType": "text/html",
+        "ByteLength": 12080,
+        "SHA256": "BD029F134D7A2614E8EAF38EB316137D539DA2B39C84E842DD39AFF5C22E923A",
+        "ParserVersion": "RawBytes-v1",
+        "TargetStart": "2026-09-01",
+        "TargetEnd": "2026-09-30",
+        "MetadataDigest": "1DF817BDBB97091BB13C20E7A9654D6F7C7ED8F30034ACB28BC353D1199330D7"
+      },
+      "review": {
+        "ReviewId": "b74ec46e-2ff7-43cb-b2e6-6f09b52cde20",
+        "EvidenceId": "44f0c011-1a33-4070-a05b-0b8683a38244",
+        "Reviewer": "Codex source inspection; operator attestation, not independent certification",
+        "ReviewedAt": "2026-11-01T10:54:55.468188+00:00",
+        "Claim": "Does this general public document close the September 2026 historical authority gaps?",
+        "Supported": [
+          "InformationServiceCategories"
+        ],
+        "Unsupported": [
+          "HistoricalPublication",
+          "RevisionBehavior"
+        ],
+        "Ambiguous": [],
+        "EffectiveFrom": "2026-09-01",
+        "EffectiveTo": "2026-09-30",
+        "Timezone": "Asia/Taipei",
+        "Notes": "Service categories distinguish after-market and historical information; no observation-level original/revision publication rule for this STOCK_DAY response was established.",
+        "EvidenceDigest": "BD029F134D7A2614E8EAF38EB316137D539DA2B39C84E842DD39AFF5C22E923A",
+        "ReviewDigest": "A7A50B20EF00DFC9DC15B4B0EEF71A4086B3F8B6A00925604E523B74CAE782D9"
+      }
+    }
+  ],
+  "ApprovedDomains": 0,
+  "PartiallySupportedDomains": 6,
+  "AcquisitionReplay": "PASS",
+  "MilestoneA": "NO"
+}

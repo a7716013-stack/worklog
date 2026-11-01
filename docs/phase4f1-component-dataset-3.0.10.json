@@ -1,0 +1,89 @@
+{
+  "Version": "3.0.10",
+  "Component": "Trend",
+  "DataMode": "RealApproved_REQUEST_ONLY",
+  "ApprovalStatus": "BLOCKED_BY_AUTHORITY_OR_DATA",
+  "DatasetApprovalId": null,
+  "Coverage": {
+    "ExpectedTradingDates": null,
+    "VerifiedTradingDates": 0,
+    "UnknownTradingDates": 1,
+    "ExpectedUniverseMembers": null,
+    "VerifiedUniverseMembers": 0,
+    "UnknownUniverseMembers": null,
+    "ExpectedObservations": null,
+    "VerifiedObservations": 0,
+    "FutureKnownExcluded": 0,
+    "UnknownAvailabilityExcluded": 20,
+    "RevisionUnknownExcluded": 20,
+    "SurvivorshipRisk": true,
+    "PriceBasisConsistency": false,
+    "Digest": "3CB0F62BA9960A81555834C07762ED924399962CF54210BDE2A94CC9EB71F94C"
+  },
+  "InstrumentCount": 0,
+  "ObservationCount": 0,
+  "RawRowsLinked": 20,
+  "AuthorityClosures": [
+    {
+      "Domain": 0,
+      "CaseId": "05b22e0f-e89b-4222-87e3-0230726a7d29",
+      "RevisionDigest": "24F0DF611524D7D56014EC689A32F9CA2C6231471E784FA8DAF03BC33AEC23F7"
+    },
+    {
+      "Domain": 1,
+      "CaseId": "57d5fac6-6850-449a-9c91-ab5ad5b1b3a2",
+      "RevisionDigest": "36D9B3D79E1F3D492334BF7F67CE12F81472CD8A49D29D88A8E36C7BB7A681DA"
+    },
+    {
+      "Domain": 2,
+      "CaseId": "b358ec48-7d18-4e81-af37-23fa9886c71a",
+      "RevisionDigest": "BF2B4B795C9304992C928C6018D50FF93CD76CB2B2BE041DF82648999D6D5C34"
+    },
+    {
+      "Domain": 3,
+      "CaseId": "2fb9b2f3-5925-4e06-8c29-008fe2d6ab32",
+      "RevisionDigest": "D72B75232382D228B71537DCE1679998B9886A94D78E04D2255C87940445B3B9"
+    },
+    {
+      "Domain": 4,
+      "CaseId": "75230f9c-bd50-480e-b4b8-6430483674ae",
+      "RevisionDigest": "7D372479C578FAD279085873BA2983A1BC7CBB96F11ED2A4207014B6F5DBCDCA"
+    },
+    {
+      "Domain": 5,
+      "CaseId": "94d3ee7b-b2fd-466f-b4e2-28e8881c7e17",
+      "RevisionDigest": "1A3A09193392FEE2B9DC2C917C3E35087F624B61BAD8ECFB5EE6F053262DF48B"
+    }
+  ],
+  "Policies": [],
+  "Digests": {
+    "Input": "938D1A61E023B425B3AC9A5740CAE50D6ED7F1E9CBE5F73462D629516FD8407B",
+    "Dataset": "34A96EC1206EEA7737AC07294A2B40690D2296126B768C594CD2A3F9C94DF409",
+    "Evaluation": "2357BD4016688EEEA7154959333E18F809C9B314AFA60BDD90B7218C64F25D21"
+  },
+  "KnownGaps": [
+    "BLOCKED_BY_AUTHORITY",
+    "CALENDAR_COVERAGE_UNKNOWN",
+    "PHASE4DE_APPROVAL_REQUIRED",
+    "PRICE_BASIS_INCONSISTENT",
+    "PRICE_FACTS_MISSING",
+    "REVISION_UNKNOWN",
+    "SURVIVORSHIP_BIAS_RISK",
+    "UNKNOWN_AVAILABILITY"
+  ],
+  "FIRST_APPROVED_REAL_COMPONENT_DATASET": "NO",
+  "FIRST_REAL_COMPONENT_BASELINE": "NO",
+  "RealIC": "NOT_RUN",
+  "RealRankIC": "NOT_RUN",
+  "RealQuantile": "NOT_RUN",
+  "RealOOS": "NOT_RUN",
+  "V3Promotion": "NOT_PROMOTED",
+  "V3Threshold": "UNRESOLVED",
+  "Phase5": "LOCKED",
+  "CoverageStart": "2026-09-30",
+  "CoverageEnd": "2026-09-30",
+  "RawSourcePeriod": [
+    "2026-09-01",
+    "2026-09-30"
+  ]
+}

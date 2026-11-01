@@ -1,5 +1,14 @@
 # 更新紀錄
 
+## 3.0.10 — 2026-11-01（Phase 4F-1 分項資料集關卡）
+
+- 新增依賴清單、交易日曆／歷史識別、逐筆價量 lineage、availability／revision／price-basis 核准與不可覆寫重播。
+- 新增明確 component CLI、失敗封存、Code SHA baseline identity；supersede 必須有已核准替代案件。
+- 53 項 component、120 項 closure 檢查通過，新增同 SHA CI。Legacy／Candidate 公式不變。
+- 20 筆真實資料完成來源追溯，但缺少歷史權威證據，核准命令拒絕；尚無真實 approved dataset 或 baseline。
+- 詳見 [實作報告](docs/implementation-3.0.10.md)。
+
+
 ## 3.0.9 — 2026-11-01（Phase 4F 逐項證據結案）
 
 - 新增六類 AuthorityClosureCase、逐項主張支持程度、不可覆寫修訂與分項研究入口。

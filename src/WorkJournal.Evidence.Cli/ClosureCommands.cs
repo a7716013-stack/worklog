@@ -10,6 +10,11 @@ internal static class ClosureCommands
     {
         try
         {
+            if(args.Length==9&&args[0]=="--closure-supersede")
+            {
+                var r=new AuthorityClosureStore(args[3],args[4]).Supersede(Guid.Parse(args[1]),Guid.Parse(args[2]),DateTimeOffset.Parse(args[5]),args[6],args[7]);
+                HistoricalDatasetStore.WriteNew(args[8],r);return 0;
+            }
             if(args.Length==3&&args[0]=="--closure-subject")
             {
                 var request=HistoricalDatasetStore.Read<RealDatasetSubmission>(args[1]);

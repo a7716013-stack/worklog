@@ -66,7 +66,14 @@ Reject(()=>closures.Review(new(calendar.CaseId,r2.Digest,ClosureStatus.BLOCKED,[
 r2=closures.Review(new(calendar.CaseId,r2.Digest,ClosureStatus.REJECTED,[],[negative.ReviewDigest],now,"reviewer","reject"));
 Check(r2.Case.ClosedAt==now,"rejected case closes explicitly");
 Reject(()=>closures.Review(new(calendar.CaseId,r2.Digest,ClosureStatus.APPROVED,[],[positive.ReviewDigest],now,"reviewer","reopen")),"rejected case requires new identity");
-var prior=closures.Read(links[0].CaseId);var superseded=closures.Review(new(prior.Case.CaseId,prior.Digest,ClosureStatus.SUPERSEDED,[],[],now,"reviewer","replacement"));
+var prior=closures.Read(links[0].CaseId);
+Reject(()=>closures.Review(new(prior.Case.CaseId,prior.Digest,ClosureStatus.SUPERSEDED,[],[],now,"reviewer","unapproved replacement")),"supersession requires approved replacement");
+var replacementCase=opened[0] with{CaseId=Guid.NewGuid()};var replacement=closures.Open(replacementCase);
+replacement=closures.Review(new(replacementCase.CaseId,replacement.Digest,ClosureStatus.EVIDENCE_CAPTURED,[artifact.EvidenceId],[],now,"reviewer","capture"));
+replacement=closures.Review(new(replacementCase.CaseId,replacement.Digest,ClosureStatus.UNDER_REVIEW,[],[],now,"reviewer","review"));
+Reject(()=>closures.Supersede(prior.Case.CaseId,replacementCase.CaseId,now,"reviewer","not yet approved"),"partial replacement cannot supersede approved closure");
+replacement=closures.Review(new(replacementCase.CaseId,replacement.Digest,ClosureStatus.APPROVED,[],[positive.ReviewDigest],now,"reviewer","approved replacement"));
+var superseded=closures.Supersede(prior.Case.CaseId,replacementCase.CaseId,now,"reviewer","replacement");
 Check(superseded.Case.CurrentStatus==ClosureStatus.SUPERSEDED&&closures.Evaluate(request).Status=="BLOCKED_BY_AUTHORITY_OR_DATA","superseded closure blocks new research");
 Reject(()=>baseline.Execute(dataset,null!,evidenceRoot,"unused",TimeProvider.System,ready,closureRoot),"baseline rechecks live closure revisions before calculating outcomes");
 var file=Path.Combine(closureRoot,"cases",links[1].CaseId.ToString("N"),"00000000.json");File.AppendAllText(file,"x");
