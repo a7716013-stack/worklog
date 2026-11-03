@@ -75,6 +75,13 @@ var positiveStore=new AuthorityResolutionStore(Path.Combine(root,"positive-store
 var ready=positiveStore.Evaluate(positive.Request);
 Check(ready.Status=="READY_FOR_EXPLICIT_APPROVAL","fully supported bounded fixture eligible: "+string.Join(';',ready.BlockingReasons));
 Check(ready.Coverage.EligibleObservations==3&&ready.Coverage.Coverage==1,"independent one-member universe yields complete eligible scope");
+positiveStore.Execute(positive.Request);
+var eligiblePath=Path.Combine(root,"positive-store","milestones","FIRST_REAL_PIT_ELIGIBLE_OBSERVATION.json");
+Check(File.Exists(eligiblePath),"isolated simulated eligible observation receipt precedes dataset approval");
+var eligibleBytes=File.ReadAllBytes(eligiblePath);
+positiveStore.Execute(positive.Request);
+Check(eligibleBytes.SequenceEqual(File.ReadAllBytes(eligiblePath)),"first eligible observation receipt immutable");
+Check(!Directory.Exists(Path.Combine(root,"positive-store","approvals")),"eligible observation is not dataset approval");
 TrendResolutionRequest Resign(TrendResolutionRequest x)=>x with{RequestDigest=ResearchMath.Digest(x with{RequestDigest=""})};
 Check(positiveStore.Evaluate(Resign(positive.Request with{Input=positive.Request.Input with{DataMode=ComponentDataMode.Synthetic}})).Status!="READY_FOR_EXPLICIT_APPROVAL","even complete synthetic input cannot become real approval");
 foreach(var domain in Enum.GetValues<ClosureDomain>())

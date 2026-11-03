@@ -1,3 +1,9 @@
+## 3.1.0 — Formal REST API
+
+正式 `/api/v1` 唯讀 API、OpenAPI 與 same-SHA CI；本機啟動 `Start-WorkJournal3100.ps1`（5202）。
+實作：[docs/implementation-3.1.0.md](docs/implementation-3.1.0.md)，契約：[docs/api-v1.md](docs/api-v1.md)。
+研究仍 20 raw / 0 eligible，V3Threshold UNRESOLVED、Phase5 LOCKED。
+
 # 工作日誌 WorkJournal
 
 版本 **3.0.11**：新增 Phase 4F-2 證據處理紀錄、歷史時間／修訂判定、逐筆資格與不可覆寫核准流程。已執行真實核准嘗試，證據不足仍阻擋；真實資料集與 baseline 里程碑尚未達成。詳見 [版本說明](docs/releases/3.0.11.md) 與 [實作報告](docs/implementation-3.0.11.md)。

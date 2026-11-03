@@ -1,3 +1,9 @@
+## 3.1.0
+
+正式 `/api/v1` 唯讀 API、OpenAPI 與 same-SHA CI；本機啟動 `Start-WorkJournal3100.ps1`（5202）。
+實作：[docs/implementation-3.1.0.md](docs/implementation-3.1.0.md)，契約：[docs/api-v1.md](docs/api-v1.md)。
+研究仍 20 raw / 0 eligible，V3Threshold UNRESOLVED、Phase5 LOCKED。
+
 # 更新紀錄
 
 ## 3.0.11 — 2026-11-02（Phase 4F-2 證據處理與 Trend 核准）

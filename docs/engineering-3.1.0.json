@@ -1,0 +1,110 @@
+{
+  "version": "3.1.0",
+  "apiContractChecks": 130,
+  "localRegression": [
+    {
+      "project": "build",
+      "exitCode": 0
+    },
+    {
+      "project": "V3AuthorityResolutionChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ComponentDatasetChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ClosureChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3RealDataChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3AuthorityChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3PitDatasetChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ResearchChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ModelChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "MarketRadarChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "FinMindChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "FinMindChecks/LegacySwing75Checks",
+      "exitCode": 0
+    },
+    {
+      "project": "PaperTradingChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "StrategyCenterChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "MarketRadarTrackingChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V2FoundationChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V2EvidenceChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-build",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-research",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-replay",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-scorecard",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-selection",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-oos",
+      "exitCode": 0
+    }
+  ],
+  "localHttp": {
+    "login": 200,
+    "css": 200,
+    "javascript": 200,
+    "health": 200,
+    "readiness": 200
+  },
+  "sameShaCi": "REQUIRED_BEFORE_MAIN",
+  "deployment": "VERIFY_AFTER_SAME_SHA_CI",
+  "paperWrite": "DEFERRED_NOT_EXPOSED",
+  "research": "BLOCKED_BY_AUTHORITY_OR_DATA",
+  "phase5": "LOCKED"
+}

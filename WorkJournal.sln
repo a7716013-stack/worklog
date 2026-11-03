@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkJournal.Web", "src\Work
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkJournal.MarketData", "src\WorkJournal.MarketData\WorkJournal.MarketData.csproj", "{631BA6F3-6AD2-443C-A608-1BBBEA43B020}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkJournal.Api", "src\WorkJournal.Api\WorkJournal.Api.csproj", "{6B25A69C-62A3-4D25-92B2-EC053A8F9C90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,18 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+        {6B25A69C-62A3-4D25-92B2-EC053A8F9C90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+        {6B25A69C-62A3-4D25-92B2-EC053A8F9C90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+        {6B25A69C-62A3-4D25-92B2-EC053A8F9C90}.Debug|x64.ActiveCfg = Debug|Any CPU
+        {6B25A69C-62A3-4D25-92B2-EC053A8F9C90}.Debug|x64.Build.0 = Debug|Any CPU
+        {6B25A69C-62A3-4D25-92B2-EC053A8F9C90}.Debug|x86.ActiveCfg = Debug|Any CPU
+        {6B25A69C-62A3-4D25-92B2-EC053A8F9C90}.Debug|x86.Build.0 = Debug|Any CPU
+        {6B25A69C-62A3-4D25-92B2-EC053A8F9C90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+        {6B25A69C-62A3-4D25-92B2-EC053A8F9C90}.Release|Any CPU.Build.0 = Release|Any CPU
+        {6B25A69C-62A3-4D25-92B2-EC053A8F9C90}.Release|x64.ActiveCfg = Release|Any CPU
+        {6B25A69C-62A3-4D25-92B2-EC053A8F9C90}.Release|x64.Build.0 = Release|Any CPU
+        {6B25A69C-62A3-4D25-92B2-EC053A8F9C90}.Release|x86.ActiveCfg = Release|Any CPU
+        {6B25A69C-62A3-4D25-92B2-EC053A8F9C90}.Release|x86.Build.0 = Release|Any CPU
         {631BA6F3-6AD2-443C-A608-1BBBEA43B020}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
         {631BA6F3-6AD2-443C-A608-1BBBEA43B020}.Debug|Any CPU.Build.0 = Debug|Any CPU
         {631BA6F3-6AD2-443C-A608-1BBBEA43B020}.Release|Any CPU.ActiveCfg = Release|Any CPU

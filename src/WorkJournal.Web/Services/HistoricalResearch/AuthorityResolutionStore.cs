@@ -28,7 +28,22 @@ public sealed class AuthorityResolutionStore(string root, string evidenceRoot, s
         var ledger = new AuthorityResolutionLedger(root, evidenceRoot);
         foreach (var task in report.Queue) ledger.Register(task);
         Write(Path.Combine(dir, "operational-queue.json"), report.Queue.Select(t => ledger.State(t.ResolutionTaskId)).ToArray());
+        RecordFirstEligible(r,report);
         return report;
+    }
+    private void RecordFirstEligible(TrendResolutionRequest request, AuthorityResolutionReport report)
+    {
+        // Eligibility is independently derived above from archived raw lineage and all PIT gates.
+        // This intermediate receipt is NOT a dataset approval and cannot authorize a baseline.
+        if(request.Input.DataMode != ComponentDataMode.RealApproved || report.Coverage.EligibleObservations == 0) return;
+        var observation=report.Coverage.Observations.First(x=>x.FinalStatus==ObservationStatus.ELIGIBLE);
+        var receipt=new { MilestoneId="FIRST_REAL_PIT_ELIGIBLE_OBSERVATION",request.RequestId,request.RequestDigest,
+            Observation=observation,EligibilityDigest=report.Coverage.Digest,ReportDigest=report.Digest,
+            CodeSHA,AchievedAt=DateTimeOffset.UtcNow,IsDatasetApproval=false };
+        var path=Path.Combine(root,"milestones","FIRST_REAL_PIT_ELIGIBLE_OBSERVATION.json");
+        if(File.Exists(path))return;
+        try {Write(path,new { Receipt=receipt,Digest=ResearchMath.Digest(receipt) });}
+        catch(IOException) when(File.Exists(path)) { /* Another evaluation recorded the immutable first receipt. */ }
     }
     private static ComponentAuthorityDependencyManifest Dependency(TrendResolutionRequest r)
     {
