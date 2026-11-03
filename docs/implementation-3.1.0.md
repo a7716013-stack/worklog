@@ -28,6 +28,8 @@ ProductionRateLimit=UNRESOLVED；配置存在才啟用，未任意發明線上�
 依賴還原仍回報既有 transitive `System.Security.Cryptography.Pkcs 9.0.11` NU1902/NU1903 警告；未在本次 API 改造中擴大升級依賴。
 未變更線上 DB migration、Azure SQL 計費選項或 Google OAuth 設定。
 
+部署驗證發現線上 SQL readiness 超過 45 秒無回應，補上 5 秒 dependency deadline，並以卡住的資料庫替身驗證 503 not_ready 與獨立 liveness。此修正仍屬 3.1.0；最終部署使用後續修正 commit，原 v3.1.0 tag 保留不覆寫，部署修訂紀錄另行標記。
+
 ## C. Authority Evidence
 
 `TrendClaimClosurePlan-3.1.0.json` 包含每一 claim 的 required/existing evidence、候選官方來源、時序/修訂覆蓋、阻擋原因與下一步；優先 availability、revision、identity、universe、calendar、price basis。

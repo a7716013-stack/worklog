@@ -1,6 +1,6 @@
 {
   "version": "3.1.0",
-  "apiContractChecks": 130,
+  "apiContractChecks": 134,
   "localRegression": [
     {
       "project": "build",

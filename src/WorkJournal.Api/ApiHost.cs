@@ -22,6 +22,7 @@ public static class ApiHost
         builder.Services.AddControllersWithViews().AddApplicationPart(typeof(JournalHosting).Assembly)
             .AddApplicationPart(typeof(ApiHost).Assembly);
         builder.Services.AddScoped<IApiReadiness, ApiReadiness>();
+        builder.Services.AddScoped<IDatabaseReadiness, DatabaseReadiness>();
         builder.Services.AddScoped<IMarketIndustries, MarketIndustries>();
         builder.Services.AddSingleton<ResearchReadService>();
         builder.Services.AddAuthorization(options => {

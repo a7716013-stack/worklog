@@ -8,12 +8,21 @@ using WorkJournal.Web.Services.Evidence;
 using WorkJournal.Web.Models;
 namespace WorkJournal.Api.Services;
 public interface IApiReadiness { Task<ReadinessDto> Check(CancellationToken ct); }
-public sealed class ApiReadiness(JournalDbContext db,IConfiguration configuration,IHostApplicationLifetime lifetime) : IApiReadiness
+public interface IDatabaseReadiness { Task<bool> CanConnect(CancellationToken ct); }
+public sealed class DatabaseReadiness(JournalDbContext db) : IDatabaseReadiness
+{ public Task<bool> CanConnect(CancellationToken ct)=>db.Database.CanConnectAsync(ct); }
+public sealed class ApiReadiness(IDatabaseReadiness database,IConfiguration configuration,IHostApplicationLifetime lifetime) : IApiReadiness
 {
     public async Task<ReadinessDto> Check(CancellationToken ct) {
         var configured=!string.IsNullOrWhiteSpace(configuration.GetConnectionString("JournalDatabase"));
         var reachable=false;
-        if(configured) {try {reachable=await db.Database.CanConnectAsync(ct);}catch(OperationCanceledException) when(ct.IsCancellationRequested){throw;}catch {}}
+        if(configured) {
+            using var deadline=CancellationTokenSource.CreateLinkedTokenSource(ct);
+            deadline.CancelAfter(TimeSpan.FromSeconds(5));
+            try {reachable=await database.CanConnect(deadline.Token).WaitAsync(deadline.Token);}
+            catch(OperationCanceledException) when(ct.IsCancellationRequested){throw;}
+            catch { /* A bounded dependency failure is an honest not-ready response, not liveness failure. */ }
+        }
         var started=lifetime.ApplicationStarted.IsCancellationRequested;
         return new(started&&configured&&reachable?"ready":"not_ready",started,configured,reachable);
     }

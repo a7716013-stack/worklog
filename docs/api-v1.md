@@ -60,6 +60,7 @@ null 表示缺值或未執行，不能解讀為 0。
 400 VALIDATION_ERROR、401 AUTHENTICATION_REQUIRED、403 FORBIDDEN、404 RESOURCE_NOT_FOUND、429 RATE_LIMITED、503 UPSTREAM_UNAVAILABLE/DATA_NOT_READY、500 INTERNAL_ERROR。
 保留 409 CONFLICT/IDEMPOTENCY_CONFLICT/BLOCKED_BY_AUTHORITY、412 STALE_VERSION、422 BLOCKED_BY_DATA。
 readiness 未就緒為 503 的明確 ReadinessDto，不是 provider 錯誤。
+資料庫檢查最多等待 5 秒；逾時回 not_ready/databaseReachable=false，不讓 SQL retry 長時間拖住 health probe。liveness 不依賴 SQL。
 
 ## Model 與研究語意
 

@@ -1,4 +1,6 @@
 using System.Net;
+using System.Diagnostics;
+using System.Text.Json.Nodes;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,5 +35,16 @@ public static class SecurityChecks
         var cross=new HttpRequestMessage(HttpMethod.Options,"/api/v1/paper/orders");cross.Headers.Add("Origin","https://untrusted.example");cross.Headers.Add("Access-Control-Request-Method","POST");
         var cors=await http.SendAsync(cross);check(!cors.Headers.Contains("Access-Control-Allow-Origin"),"same-origin CORS boundary");
         await app.StopAsync();
+        await using var stalled=ApiHost.Build(["--environment","Development","--ConnectionStrings:JournalDatabase","configured-test-only","--StrategyCenter:Enabled","false","--RadarTracking:SchedulerEnabled","false","--InvestmentInsights:SchedulerEnabled","false"],b=>{
+            b.WebHost.UseTestServer();b.Logging.ClearProviders();b.Services.AddScoped<IDatabaseReadiness,StalledDatabase>();
+        });
+        await stalled.StartAsync();using var probe=stalled.GetTestClient();var elapsed=Stopwatch.StartNew();
+        var notReady=await probe.GetAsync("/api/v1/system/readiness");var state=JsonNode.Parse(await notReady.Content.ReadAsStringAsync())!;
+        check(notReady.StatusCode==HttpStatusCode.ServiceUnavailable&&!state["databaseReachable"]!.GetValue<bool>(),"stalled SQL gives explicit not-ready");
+        check(elapsed.Elapsed<TimeSpan.FromSeconds(12),"readiness dependency wait bounded");
+        check((await probe.GetAsync("/api/v1/system/health")).IsSuccessStatusCode,"SQL unavailability does not fail liveness");
+        await stalled.StopAsync();
     }
 }
+public sealed class StalledDatabase : IDatabaseReadiness
+{ public async Task<bool> CanConnect(CancellationToken ct) {await Task.Delay(Timeout.InfiniteTimeSpan,ct);return false;} }
