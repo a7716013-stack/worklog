@@ -48,7 +48,7 @@ jobs:
           mkdir -p evidence
           git rev-parse HEAD > evidence/legacy-fast.sha
           dotnet --info > evidence/fast-dotnet-info.txt
-          for project in MarketRadarChecks FinMindChecks FinMindChecks/LegacySwing75Checks; do
+          for project in MarketDataChecks MarketRadarChecks FinMindChecks FinMindChecks/LegacySwing75Checks; do
             dotnet run --project "tests/$project" -c Release 2>&1 | tee "evidence/${project##*/}.log"
           done
       - uses: actions/upload-artifact@v4

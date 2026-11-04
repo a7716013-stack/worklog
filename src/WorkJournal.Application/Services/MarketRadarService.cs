@@ -1,12 +1,10 @@
+using Microsoft.Extensions.Logging;
+using System.Text.Json;
 using Microsoft.Extensions.Caching.Memory;
 using WorkJournal.Web.Models;
 namespace WorkJournal.Web.Services;
 
 public interface IMarketRadarHistoryProvider { Task<RadarHistory> GetAsync(MarketQuote quote,CancellationToken ct); }
-public class FinMindRadarHistoryProvider(FinMindStockService stocks) : IMarketRadarHistoryProvider
-{
-    public Task<RadarHistory> GetAsync(MarketQuote quote,CancellationToken ct) => stocks.RadarHistoryAsync(quote.Stock.Symbol,quote.Date,quote.Stock.IsEtf,ct);
-}
 public interface IMarketRadarService
 {
     Task<MarketRadarResult> GetAsync(string market,DateOnly? date,bool analyze,CancellationToken ct);
@@ -16,7 +14,23 @@ public class MarketRadarService(ITaiwanMarketRankingProvider provider, IMarketRa
 {
     // Across all requests, at most four stocks may load histories concurrently.
     private static readonly SemaphoreSlim HistoryGate=new(4,4);
-    private static readonly SemaphoreSlim AnalysisGate=new(1,1);
+    public async Task<MarketRadarStock> AnalyzeAsync(MarketQuote quote,MarketEvent[] events,CancellationToken ct)
+    {
+        var key=$"radar:FinMind:history:{quote.Date:yyyyMMdd}:{quote.Stock.Symbol}";
+        await HistoryGate.WaitAsync(ct);
+        try
+        {
+            if(!cache.TryGetValue<RadarHistory>(key,out var data))
+            {
+                try {data=await history.GetAsync(quote,ct);cache.Set(key,data,TimeSpan.FromMinutes(data.Bars.Length==0||data.Flows.Length==0?1:15));}
+                catch(Exception e) when(MarketProviderFailure.IsExpected(e,ct))
+                {logger.LogWarning("Radar history {Symbol} {Type}",quote.Stock.Symbol,e.GetType().Name);data=new([],[],null,null);cache.Set(key,data,TimeSpan.FromMinutes(1));}
+            }
+            return MarketRadarScoreCalculator.Calculate(quote,data!,events);
+        }
+        finally {HistoryGate.Release();}
+    }
+
     public static MarketQuote[] Candidates(IEnumerable<MarketQuote> rows)
     {
         var all=rows.ToArray();
@@ -41,29 +55,9 @@ public class MarketRadarService(ITaiwanMarketRankingProvider provider, IMarketRa
         if(events.Length==0) warnings.Add("重大資訊來源目前未提供所選範圍資料；不代表沒有重大消息。");
         if(!analyze || rows.Length==0) return new(selected,dates,market,rows,[],events,warnings.ToArray(),snapshot.UpdatedAt);
         var candidates=Candidates(rows);
-        MarketRadarStock[] analysis;
-        // Prevent concurrent page loads from repeating the same expensive candidate batch.
-        await AnalysisGate.WaitAsync(ct);
-        try
-        {
-            analysis=await Task.WhenAll(candidates.Select(async quote=>
-            {
-                var key=$"radar:FinMind:history:{quote.Date:yyyyMMdd}:{quote.Stock.Symbol}";
-                await HistoryGate.WaitAsync(ct);
-                try
-                {
-                    if(!cache.TryGetValue<RadarHistory>(key,out var data))
-                    {
-                        try { data=await history.GetAsync(quote,ct); cache.Set(key,data,TimeSpan.FromMinutes(data.Bars.Length==0 || data.Flows.Length==0 ? 1 : 15)); }
-                        catch(Exception e) when(TaiwanMarketRankingProvider.Failure(e,ct))
-                        { logger.LogWarning("Radar history failed for {Symbol} ({Type})",quote.Stock.Symbol,e.GetType().Name); data=new([],[],null,null); cache.Set(key,data,TimeSpan.FromMinutes(1)); }
-                    }
-                    return MarketRadarScoreCalculator.Calculate(quote,data!,events);
-                }
-                finally { HistoryGate.Release(); }
-            }));
-        }
-        finally { AnalysisGate.Release(); }
+        using var deadline=CancellationTokenSource.CreateLinkedTokenSource(ct);
+        deadline.CancelAfter(TimeSpan.FromSeconds(45));
+        var analysis=await Task.WhenAll(candidates.Select(q=>AnalyzeAsync(q,events,deadline.Token))).WaitAsync(deadline.Token);
         if(analysis.Any(x=>x.Score is null)) warnings.Add("部分候選資料不足；顯示已知得分與可評權重，不換算或冒充完整 100 分。");
         return new(selected,dates,market,rows,analysis,events,warnings.Distinct().ToArray(),snapshot.UpdatedAt);
     }

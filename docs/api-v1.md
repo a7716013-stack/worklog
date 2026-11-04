@@ -1,8 +1,30 @@
-# WorkJournal REST API v1 — 3.1.0
+# WorkJournal REST API v1 — 3.1.1
 
 `WorkJournal.Api` 是獨立 ASP.NET Core executable，引用現有 Web service assembly。
-API controller 只做 HTTP 驗證與 DTO mapping；模型、研究 gate、交易經濟規則沿用原有服務。
-本版不做 Application/Domain 大規模搬移。
+API controller 只做 HTTP 驗證與 DTO mapping；Candidate-v1、研究計算、排行評分已抽離至 Domain，排行協調與背景工作位於 Application。既有 hosting、EF 及 authority archive 仍有 Web 相依。
+
+## 3.1.1 新增契約
+
+| 路由 | 用途 |
+|---|---|
+| GET `/api/v1/market/radar/snapshot` | 有界每日完整行情，供網站跨市場／產業篩選；25 秒取得上限。 |
+| POST `/api/v1/market/radar/jobs?market=all&date=YYYY-MM-DD` | CSRF 保護，202 + Location + Retry-After: 2；共用公開行情分析，無個人資料。 |
+| GET `/api/v1/market/radar/jobs/{id}` | QUEUED/RUNNING/COMPLETED/TIMED_OUT/FAILED/INTERRUPTED、completed/total、部分結果、版本與錯誤碼。未知／重啟後 id 為 404。 |
+| GET `/api/v1/research/features[/{featureId}]` | 19 項特徵定義與版本，列表分頁。 |
+| GET `/api/v1/research/features/{featureId}/validation` | Feature 驗證資源；未執行為 NOT_RUN/value=null。 |
+| GET `/api/v1/research/evidence/{evidenceId}/validation` | 六大 Evidence 驗證資源。 |
+| GET `/api/v1/research/candidates[/{candidateId}]` | Candidate-v1 身分與分層狀態；無虛構 v2。 |
+| GET `/api/v1/research/candidate-comparisons/{comparisonId}` | 受控、版本化 comparison release snapshot；不存在為 404。 |
+| GET `/api/v1/research/hypotheses[/{id}]`、`calibrations[/{id}]` | 受控治理紀錄，無 public mutation。 |
+| GET `/api/v1/research/runs/{id}/ablations`、`correlations`、`stability?period=year|quarter` | 分頁資源契約；無真實結果時 value=null，非零值。 |
+| GET `/api/v1/models/{id}/definition`、`parameters`、`validation` | 版本身分、含明確未解參數的 Candidate-v1 與 full validation。 |
+| GET `/api/v1/models/{id}/promotion-status`、`promotion-review`、`freeze-receipt`、`research-package` | 分層狀態或 summary + references，不自動核准／升級。 |
+| POST `/api/v1/models/{id}/compute` | 登入 + CSRF，最多 4 MB；顯式 CandidateDataset/InstrumentId/Parameters，回 FormulaDigest、CalculationIdentity、raw/normalized trace。僅公式計算，ProductionEligible=false。 |
+| POST `/api/v1/models/{id}/aggregate` | 登入 + CSRF，最多 16 KB；六個顯式 normalized Evidence 的低階聚合。FORMULA_ONLY_NOT_REAL_VALIDATION，不代表合法真實資料 baseline。 |
+
+模型 id 為 `V3EvidenceCandidate-v1`。Feature id 如 `Trend.Alignment`，Evidence id 如 `Trend`。POST 的 token header 是 `RequestVerificationToken`，配合網站同來源 antiforgery cookie。未存在的資源回 404，錯誤沿用 ProblemDetails/code/traceId；queue 滿載回 429。Job 的 ANALYSIS_TIMEOUT、UPSTREAM_UNAVAILABLE、WORKER_STOPPED 是工作內錯誤碼，不偽裝 HTTP 成功研究。
+
+資料及治理查詢沿用 `ApiResearchRead`；排行可匿名，但建立 job 仍須 CSRF。沒有新增公開 authority/calibration/promotion 寫入。既有同步 market/radar 契約保持，analyze 增加 45 秒總期限。新網站採 snapshot/jobs，避免將慢分析放在一個 HTTP 長請求。
 
 ## Hosting 與登入
 

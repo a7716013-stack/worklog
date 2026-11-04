@@ -6,11 +6,6 @@ using WorkJournal.Web.Models;
 
 namespace WorkJournal.Web.Services;
 
-public interface ITaiwanMarketRankingProvider
-{
-    Task<MarketSnapshot> GetAsync(CancellationToken ct);
-}
-
 public class TaiwanMarketRankingProvider(HttpClient client, FinMindStockService stocks, IMemoryCache cache,
     ILogger<TaiwanMarketRankingProvider> logger) : ITaiwanMarketRankingProvider
 {

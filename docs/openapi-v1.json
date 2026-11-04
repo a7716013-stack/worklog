@@ -3,9 +3,2869 @@
   "info": {
     "title": "WorkJournal REST API",
     "version": "v1",
-    "description": "ExistingUserSession; read-only. FullEvidence100 is evidence strength, not probability, expected return, position size, allocation, or trade instruction. Research snapshot is an audited release snapshot, not a live approval store."
+    "description": "ExistingUserSession; read APIs and CSRF-protected bounded formula/job operations. FullEvidence100 is evidence strength, not probability, expected return, position size, allocation, or trade instruction. Research snapshot is an audited release snapshot, not a live approval store."
   },
   "paths": {
+    "/api/v1/research/features": {
+      "get": {
+        "operationId": "FormulaResearchController_Features",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1,
+              "minimum": 1,
+              "maximum": 1000000
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 50,
+              "minimum": 1,
+              "maximum": 200
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageOfFeatureDefinition"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/research/features/{featureId}": {
+      "get": {
+        "operationId": "FormulaResearchController_Feature",
+        "parameters": [
+          {
+            "name": "featureId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeatureDefinition"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/research/features/{featureId}/validation": {
+      "get": {
+        "operationId": "FormulaResearchController_FeatureValidation",
+        "parameters": [
+          {
+            "name": "featureId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResearchResourceDtoOfFeatureValidationResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/research/evidence/{evidenceId}/validation": {
+      "get": {
+        "operationId": "FormulaResearchController_EvidenceValidation",
+        "parameters": [
+          {
+            "name": "evidenceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResearchResourceDtoOfEvidenceValidationResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/research/candidates": {
+      "get": {
+        "operationId": "FormulaResearchController_Candidates",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1,
+              "minimum": 1,
+              "maximum": 1000000
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 50,
+              "minimum": 1,
+              "maximum": 200
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageOfCandidateDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/research/candidates/{candidateId}": {
+      "get": {
+        "operationId": "FormulaResearchController_Candidate",
+        "parameters": [
+          {
+            "name": "candidateId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CandidateDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/research/candidate-comparisons/{comparisonId}": {
+      "get": {
+        "operationId": "FormulaResearchController_Comparison",
+        "parameters": [
+          {
+            "name": "comparisonId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CandidateComparison"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/research/hypotheses": {
+      "get": {
+        "operationId": "FormulaResearchController_Hypotheses",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1,
+              "minimum": 1,
+              "maximum": 1000000
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 50,
+              "minimum": 1,
+              "maximum": 200
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageOfCandidateHypothesis"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/research/hypotheses/{id}": {
+      "get": {
+        "operationId": "FormulaResearchController_Hypothesis",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CandidateHypothesis"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/research/calibrations": {
+      "get": {
+        "operationId": "FormulaResearchController_Calibrations",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1,
+              "minimum": 1,
+              "maximum": 1000000
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 50,
+              "minimum": 1,
+              "maximum": 200
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageOfCalibrationReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/research/calibrations/{id}": {
+      "get": {
+        "operationId": "FormulaResearchController_Calibration",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CalibrationReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/research/runs/{id}/ablations": {
+      "get": {
+        "operationId": "FormulaResearchController_Ablations",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1,
+              "minimum": 1,
+              "maximum": 1000000
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 50,
+              "minimum": 1,
+              "maximum": 200
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResearchResourceDtoOfPageDtoOfAblationDiagnostic"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/research/runs/{id}/correlations": {
+      "get": {
+        "operationId": "FormulaResearchController_Correlations",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1,
+              "minimum": 1,
+              "maximum": 1000000
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 50,
+              "minimum": 1,
+              "maximum": 200
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResearchResourceDtoOfPageDtoOfCorrelationDiagnostic"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/research/runs/{id}/stability": {
+      "get": {
+        "operationId": "FormulaResearchController_Stability",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1,
+              "minimum": 1,
+              "maximum": 1000000
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 50,
+              "minimum": 1,
+              "maximum": 200
+            }
+          },
+          {
+            "name": "period",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResearchResourceDtoOfPageDtoOfStabilityDiagnostic"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/models/{id}/definition": {
+      "get": {
+        "operationId": "FormulaModelController_Definition",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CandidateDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/models/{id}/parameters": {
+      "get": {
+        "operationId": "FormulaModelController_Parameters",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V3EvidenceCandidateV1ParameterSet"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/models/{id}/validation": {
+      "get": {
+        "operationId": "FormulaModelController_Validation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResearchResourceDtoOfFullEvidenceValidationResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/models/{id}/promotion-status": {
+      "get": {
+        "operationId": "FormulaModelController_Promotion",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ResearchStatusDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/models/{id}/promotion-review": {
+      "get": {
+        "operationId": "FormulaModelController_Review",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResearchResourceDtoOfString"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/models/{id}/freeze-receipt": {
+      "get": {
+        "operationId": "FormulaModelController_Freeze",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResearchResourceDtoOfCandidateFreezeReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/models/{id}/research-package": {
+      "get": {
+        "operationId": "FormulaModelController_Package",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResearchPackageSummary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/models/{id}/compute": {
+      "post": {
+        "operationId": "FormulaModelController_Compute",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "RequestVerificationToken",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CanonicalComputeResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CanonicalComputeRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/models/{id}/aggregate": {
+      "post": {
+        "operationId": "FormulaModelController_Aggregate",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "RequestVerificationToken",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AggregationResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AggregationRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/market/radar/snapshot": {
+      "get": {
+        "operationId": "RadarJobsController_Snapshot",
+        "parameters": [
+          {
+            "name": "market",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "all",
+                "twse",
+                "tpex",
+                "etf"
+              ]
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MarketRadarResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/market/radar/jobs": {
+      "post": {
+        "operationId": "RadarJobsController_Start",
+        "parameters": [
+          {
+            "name": "market",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "all",
+                "twse",
+                "tpex",
+                "etf"
+              ]
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "nullable": true
+            }
+          },
+          {
+            "name": "RequestVerificationToken",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RadarJobView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/market/radar/jobs/{id}": {
+      "get": {
+        "operationId": "RadarJobsController_Status",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RadarJobView"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/system/health": {
       "get": {
         "operationId": "SystemApiController_Health",
@@ -2176,6 +5036,2652 @@
   },
   "components": {
     "schemas": {
+      "PageOfFeatureDefinition": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FeatureDefinition"
+            }
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "items",
+          "page",
+          "pageSize",
+          "totalCount"
+        ]
+      },
+      "FeatureDefinition": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "domain": {
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "inputDefinition": {
+            "type": "string"
+          },
+          "lookbackDefinition": {
+            "type": "string"
+          },
+          "normalization": {
+            "$ref": "#/components/schemas/NormalizationDefinition",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "version",
+          "domain",
+          "inputDefinition",
+          "lookbackDefinition",
+          "normalization",
+          "status"
+        ]
+      },
+      "NormalizationDefinition": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "method": {
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          },
+          "parameterSetId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "version",
+          "method",
+          "parameterSetId",
+          "status"
+        ]
+      },
+      "ResearchResourceDtoOfFeatureValidationResult": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/FeatureValidationResult",
+            "nullable": true
+          },
+          "blockingReasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "status",
+          "value",
+          "blockingReasons"
+        ]
+      },
+      "FeatureValidationResult": {
+        "type": "object",
+        "properties": {
+          "featureName": {
+            "type": "string"
+          },
+          "raw": {
+            "$ref": "#/components/schemas/ValidationDiagnostic"
+          },
+          "normalized": {
+            "$ref": "#/components/schemas/ValidationDiagnostic"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "featureName",
+          "raw",
+          "normalized",
+          "warnings"
+        ]
+      },
+      "ValidationDiagnostic": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "definitionVersion": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "observationCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "validObservationCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "missingCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "distribution": {
+            "$ref": "#/components/schemas/ResearchDistribution"
+          },
+          "ic": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "rankIc": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "quantileReturns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuantileResult"
+            }
+          },
+          "yearlyIc": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StabilityDiagnostic"
+            }
+          },
+          "quarterlyIc": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StabilityDiagnostic"
+            }
+          },
+          "saturationLow": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "saturationHigh": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "directionConsistency": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "monotonicity": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "coverageStart": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "coverageEnd": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "dailyIc": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DailyIc"
+            }
+          },
+          "crossSectionalDistribution": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CrossSectionalDiagnostic"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "definitionVersion",
+          "status",
+          "observationCount",
+          "validObservationCount",
+          "missingCount",
+          "distribution",
+          "ic",
+          "rankIc",
+          "quantileReturns",
+          "yearlyIc",
+          "quarterlyIc",
+          "saturationLow",
+          "saturationHigh",
+          "directionConsistency",
+          "monotonicity",
+          "coverageStart",
+          "coverageEnd",
+          "dailyIc",
+          "crossSectionalDistribution"
+        ]
+      },
+      "ResearchDistribution": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "min": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "p01": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "p05": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "p10": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "p25": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "p50": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "p75": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "p90": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "p95": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "p99": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "max": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "mean": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "stdDev": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "missingRate": {
+            "type": "number",
+            "format": "decimal"
+          }
+        },
+        "required": [
+          "count",
+          "min",
+          "p01",
+          "p05",
+          "p10",
+          "p25",
+          "p50",
+          "p75",
+          "p90",
+          "p95",
+          "p99",
+          "max",
+          "mean",
+          "stdDev",
+          "missingRate"
+        ]
+      },
+      "QuantileResult": {
+        "type": "object",
+        "properties": {
+          "quantile": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "meanReturn": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "medianReturn": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "positiveRate": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          }
+        },
+        "required": [
+          "quantile",
+          "count",
+          "meanReturn",
+          "medianReturn",
+          "positiveRate"
+        ]
+      },
+      "StabilityDiagnostic": {
+        "type": "object",
+        "properties": {
+          "period": {
+            "type": "string"
+          },
+          "observations": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ic": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "rankIc": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          }
+        },
+        "required": [
+          "period",
+          "observations",
+          "ic",
+          "rankIc"
+        ]
+      },
+      "DailyIc": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pearsonIc": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "rankIc": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          }
+        },
+        "required": [
+          "date",
+          "count",
+          "pearsonIc",
+          "rankIc"
+        ]
+      },
+      "CrossSectionalDiagnostic": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "distribution": {
+            "$ref": "#/components/schemas/ResearchDistribution"
+          }
+        },
+        "required": [
+          "date",
+          "distribution"
+        ]
+      },
+      "ResearchResourceDtoOfEvidenceValidationResult": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/EvidenceValidationResult",
+            "nullable": true
+          },
+          "blockingReasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "status",
+          "value",
+          "blockingReasons"
+        ]
+      },
+      "EvidenceValidationResult": {
+        "type": "object",
+        "properties": {
+          "evidence": {
+            "type": "string"
+          },
+          "interpretation": {
+            "type": "string"
+          },
+          "validation": {
+            "$ref": "#/components/schemas/ValidationDiagnostic"
+          }
+        },
+        "required": [
+          "evidence",
+          "interpretation",
+          "validation"
+        ]
+      },
+      "PageOfCandidateDto": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CandidateDto"
+            }
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "items",
+          "page",
+          "pageSize",
+          "totalCount"
+        ]
+      },
+      "CandidateDto": {
+        "type": "object",
+        "properties": {
+          "candidateId": {
+            "type": "string"
+          },
+          "identity": {
+            "$ref": "#/components/schemas/FormulaIdentity"
+          },
+          "status": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResearchStatusDto"
+            }
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "v3Threshold": {
+            "type": "string"
+          },
+          "phase5": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "candidateId",
+          "identity",
+          "status",
+          "features",
+          "v3Threshold",
+          "phase5"
+        ]
+      },
+      "FormulaIdentity": {
+        "type": "object",
+        "properties": {
+          "modelVersion": {
+            "type": "string"
+          },
+          "formulaDigest": {
+            "type": "string"
+          },
+          "featureDefinitionVersion": {
+            "type": "string"
+          },
+          "evidenceDefinitionVersion": {
+            "type": "string"
+          },
+          "outerWeightStatus": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "modelVersion",
+          "formulaDigest",
+          "featureDefinitionVersion",
+          "evidenceDefinitionVersion",
+          "outerWeightStatus"
+        ]
+      },
+      "ResearchStatusDto": {
+        "type": "object",
+        "properties": {
+          "evidence": {
+            "type": "string"
+          },
+          "formulaStatus": {
+            "type": "string"
+          },
+          "datasetStatus": {
+            "type": "string"
+          },
+          "baselineStatus": {
+            "type": "string"
+          },
+          "researchStatus": {
+            "type": "string"
+          },
+          "promotionStatus": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "evidence",
+          "formulaStatus",
+          "datasetStatus",
+          "baselineStatus",
+          "researchStatus",
+          "promotionStatus"
+        ]
+      },
+      "CandidateComparison": {
+        "type": "object",
+        "properties": {
+          "comparisonId": {
+            "type": "string"
+          },
+          "hypothesisId": {
+            "type": "string"
+          },
+          "baseline": {
+            "type": "string"
+          },
+          "candidate": {
+            "type": "string"
+          },
+          "identity": {
+            "$ref": "#/components/schemas/ResearchIdentity"
+          },
+          "baselineEvidence": {
+            "$ref": "#/components/schemas/ComparisonEvidence"
+          },
+          "candidateEvidence": {
+            "$ref": "#/components/schemas/ComparisonEvidence"
+          },
+          "developmentScope": {
+            "type": "string"
+          },
+          "evaluatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "decision": {
+            "type": "string"
+          },
+          "reviewRationale": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "comparisonId",
+          "hypothesisId",
+          "baseline",
+          "candidate",
+          "identity",
+          "baselineEvidence",
+          "candidateEvidence",
+          "developmentScope",
+          "evaluatedAt",
+          "decision",
+          "reviewRationale"
+        ]
+      },
+      "ResearchIdentity": {
+        "type": "object",
+        "properties": {
+          "modelVersion": {
+            "type": "string"
+          },
+          "formulaDigest": {
+            "type": "string"
+          },
+          "parameterSetId": {
+            "type": "string"
+          },
+          "parameterChecksum": {
+            "type": "string"
+          },
+          "datasetApprovalId": {
+            "type": "string"
+          },
+          "datasetSnapshotId": {
+            "type": "string"
+          },
+          "universeSnapshotId": {
+            "type": "string"
+          },
+          "benchmarkVersion": {
+            "type": "string"
+          },
+          "calendarVersion": {
+            "type": "string"
+          },
+          "availabilityPolicyVersion": {
+            "type": "string"
+          },
+          "protocolVersion": {
+            "type": "string"
+          },
+          "codeCommitSha": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "modelVersion",
+          "formulaDigest",
+          "parameterSetId",
+          "parameterChecksum",
+          "datasetApprovalId",
+          "datasetSnapshotId",
+          "universeSnapshotId",
+          "benchmarkVersion",
+          "calendarVersion",
+          "availabilityPolicyVersion",
+          "protocolVersion",
+          "codeCommitSha"
+        ]
+      },
+      "ComparisonEvidence": {
+        "type": "object",
+        "properties": {
+          "coverage": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "ic": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "rankIc": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "quantileMonotonicity": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "stability": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "saturation": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "correlation": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "complexity": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "coverage",
+          "ic",
+          "rankIc",
+          "quantileMonotonicity",
+          "stability",
+          "saturation",
+          "correlation",
+          "complexity"
+        ]
+      },
+      "PageOfCandidateHypothesis": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CandidateHypothesis"
+            }
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "items",
+          "page",
+          "pageSize",
+          "totalCount"
+        ]
+      },
+      "CandidateHypothesis": {
+        "type": "object",
+        "properties": {
+          "candidateHypothesisId": {
+            "type": "string"
+          },
+          "component": {
+            "type": "string"
+          },
+          "observedProblem": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "proposedChange": {
+            "type": "string"
+          },
+          "expectedEffect": {
+            "type": "string"
+          },
+          "risk": {
+            "type": "string"
+          },
+          "developmentScope": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBeforeEvaluation": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "candidateHypothesisId",
+          "component",
+          "observedProblem",
+          "evidence",
+          "proposedChange",
+          "expectedEffect",
+          "risk",
+          "developmentScope",
+          "createdAt",
+          "createdBeforeEvaluation"
+        ]
+      },
+      "PageOfCalibrationReceipt": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CalibrationReceipt"
+            }
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "items",
+          "page",
+          "pageSize",
+          "totalCount"
+        ]
+      },
+      "CalibrationReceipt": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "parameterSet": {
+            "type": "string"
+          },
+          "parameterChecksum": {
+            "type": "string"
+          },
+          "trainingWindow": {
+            "$ref": "#/components/schemas/ResearchPeriod"
+          },
+          "asOf": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "method": {
+            "type": "string"
+          },
+          "universeSnapshotId": {
+            "type": "string"
+          },
+          "digest": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "parameterSet",
+          "parameterChecksum",
+          "trainingWindow",
+          "asOf",
+          "method",
+          "universeSnapshotId",
+          "digest"
+        ]
+      },
+      "ResearchPeriod": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "string",
+            "format": "date"
+          },
+          "end": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "required": [
+          "start",
+          "end"
+        ]
+      },
+      "ResearchResourceDtoOfPageDtoOfAblationDiagnostic": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/PageOfAblationDiagnostic",
+            "nullable": true
+          },
+          "blockingReasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "status",
+          "value",
+          "blockingReasons"
+        ]
+      },
+      "PageOfAblationDiagnostic": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AblationDiagnostic"
+            }
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "items",
+          "page",
+          "pageSize",
+          "totalCount"
+        ]
+      },
+      "AblationDiagnostic": {
+        "type": "object",
+        "properties": {
+          "removedEvidence": {
+            "type": "string",
+            "nullable": true
+          },
+          "availableWeight": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "metrics": {
+            "$ref": "#/components/schemas/ValidationDiagnostic"
+          }
+        },
+        "required": [
+          "removedEvidence",
+          "availableWeight",
+          "metrics"
+        ]
+      },
+      "ResearchResourceDtoOfPageDtoOfCorrelationDiagnostic": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/PageOfCorrelationDiagnostic",
+            "nullable": true
+          },
+          "blockingReasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "status",
+          "value",
+          "blockingReasons"
+        ]
+      },
+      "PageOfCorrelationDiagnostic": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CorrelationDiagnostic"
+            }
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "items",
+          "page",
+          "pageSize",
+          "totalCount"
+        ]
+      },
+      "CorrelationDiagnostic": {
+        "type": "object",
+        "properties": {
+          "left": {
+            "type": "string"
+          },
+          "right": {
+            "type": "string"
+          },
+          "daily": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DailyIc"
+            }
+          },
+          "pearson": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "spearman": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          }
+        },
+        "required": [
+          "left",
+          "right",
+          "daily",
+          "pearson",
+          "spearman"
+        ]
+      },
+      "ResearchResourceDtoOfPageDtoOfStabilityDiagnostic": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/PageOfStabilityDiagnostic",
+            "nullable": true
+          },
+          "blockingReasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "status",
+          "value",
+          "blockingReasons"
+        ]
+      },
+      "PageOfStabilityDiagnostic": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StabilityDiagnostic"
+            }
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "items",
+          "page",
+          "pageSize",
+          "totalCount"
+        ]
+      },
+      "V3EvidenceCandidateV1ParameterSet": {
+        "type": "object",
+        "properties": {
+          "candidateVersion": {
+            "type": "string"
+          },
+          "maShort": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maMedium": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maLong": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "slopeHorizon": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "structureHorizon": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "alignmentBounds": {
+            "$ref": "#/components/schemas/LinearBounds",
+            "nullable": true
+          },
+          "positionBounds": {
+            "$ref": "#/components/schemas/LinearBounds",
+            "nullable": true
+          },
+          "slopeBounds": {
+            "$ref": "#/components/schemas/LinearBounds",
+            "nullable": true
+          },
+          "trendWeights": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "decimal"
+            }
+          },
+          "distanceWeights": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "decimal"
+            }
+          },
+          "momentumWeights": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "decimal"
+            }
+          },
+          "rsiAnchors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Anchor"
+            }
+          },
+          "macdBounds": {
+            "$ref": "#/components/schemas/LinearBounds",
+            "nullable": true
+          },
+          "rocHorizon": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "rocBounds": {
+            "$ref": "#/components/schemas/LinearBounds",
+            "nullable": true
+          },
+          "volumePriceWeights": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "decimal"
+            }
+          },
+          "volumeHorizon": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "returnHorizon": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "breakoutHorizon": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "rvolLogBounds": {
+            "$ref": "#/components/schemas/LinearBounds",
+            "nullable": true
+          },
+          "pvcBounds": {
+            "$ref": "#/components/schemas/LinearBounds",
+            "nullable": true
+          },
+          "breakoutBounds": {
+            "$ref": "#/components/schemas/LinearBounds",
+            "nullable": true
+          },
+          "institutionalHorizons": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "institutionalHorizonWeights": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "decimal"
+            }
+          },
+          "institutionalWeights": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "decimal"
+            }
+          },
+          "flowDenominator": {
+            "type": "string"
+          },
+          "persistenceHorizon": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "persistence": {
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "nullable": true
+          },
+          "relativeStrengthHorizons": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "relativeStrengthWeights": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "decimal"
+            }
+          },
+          "percentileMethod": {
+            "type": "string"
+          },
+          "volatilityHorizon": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "variance": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ],
+            "nullable": true
+          },
+          "drawdownHorizon": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "atrPeriod": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "atr": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ],
+            "nullable": true
+          },
+          "liquidityHorizon": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "liquidityPrice": {
+            "type": "string",
+            "nullable": true
+          },
+          "riskWeights": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "decimal"
+            }
+          }
+        },
+        "required": [
+          "candidateVersion",
+          "maShort",
+          "maMedium",
+          "maLong",
+          "slopeHorizon",
+          "structureHorizon",
+          "alignmentBounds",
+          "positionBounds",
+          "slopeBounds",
+          "trendWeights",
+          "distanceWeights",
+          "momentumWeights",
+          "rsiAnchors",
+          "macdBounds",
+          "rocHorizon",
+          "rocBounds",
+          "volumePriceWeights",
+          "volumeHorizon",
+          "returnHorizon",
+          "breakoutHorizon",
+          "rvolLogBounds",
+          "pvcBounds",
+          "breakoutBounds",
+          "institutionalHorizons",
+          "institutionalHorizonWeights",
+          "institutionalWeights",
+          "flowDenominator",
+          "persistenceHorizon",
+          "persistence",
+          "relativeStrengthHorizons",
+          "relativeStrengthWeights",
+          "percentileMethod",
+          "volatilityHorizon",
+          "variance",
+          "drawdownHorizon",
+          "atrPeriod",
+          "atr",
+          "liquidityHorizon",
+          "liquidityPrice",
+          "riskWeights"
+        ]
+      },
+      "LinearBounds": {
+        "type": "object",
+        "properties": {
+          "lower": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "upper": {
+            "type": "number",
+            "format": "decimal"
+          }
+        },
+        "required": [
+          "lower",
+          "upper"
+        ]
+      },
+      "Anchor": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "y": {
+            "type": "number",
+            "format": "decimal"
+          }
+        },
+        "required": [
+          "x",
+          "y"
+        ]
+      },
+      "ResearchResourceDtoOfFullEvidenceValidationResult": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/FullEvidenceValidationResult",
+            "nullable": true
+          },
+          "blockingReasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "status",
+          "value",
+          "blockingReasons"
+        ]
+      },
+      "FullEvidenceValidationResult": {
+        "type": "object",
+        "properties": {
+          "modelVersion": {
+            "type": "string"
+          },
+          "validation": {
+            "$ref": "#/components/schemas/ValidationDiagnostic"
+          }
+        },
+        "required": [
+          "modelVersion",
+          "validation"
+        ]
+      },
+      "ResearchResourceDtoOfString": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          },
+          "blockingReasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "status",
+          "value",
+          "blockingReasons"
+        ]
+      },
+      "ResearchResourceDtoOfCandidateFreezeReceipt": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/CandidateFreezeReceipt",
+            "nullable": true
+          },
+          "blockingReasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "status",
+          "value",
+          "blockingReasons"
+        ]
+      },
+      "CandidateFreezeReceipt": {
+        "type": "object",
+        "properties": {
+          "candidateVersion": {
+            "type": "string"
+          },
+          "parameterSet": {
+            "type": "string"
+          },
+          "parameterChecksum": {
+            "type": "string"
+          },
+          "formulaDigest": {
+            "type": "string"
+          },
+          "codeCommitSha": {
+            "type": "string"
+          },
+          "datasetDevelopmentScope": {
+            "type": "string"
+          },
+          "protocolVersion": {
+            "type": "string"
+          },
+          "freezeTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "comparisonId": {
+            "type": "string"
+          },
+          "receiptDigest": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "candidateVersion",
+          "parameterSet",
+          "parameterChecksum",
+          "formulaDigest",
+          "codeCommitSha",
+          "datasetDevelopmentScope",
+          "protocolVersion",
+          "freezeTimestamp",
+          "comparisonId",
+          "receiptDigest"
+        ]
+      },
+      "ResearchPackageSummary": {
+        "type": "object",
+        "properties": {
+          "identity": {
+            "$ref": "#/components/schemas/FormulaIdentity"
+          },
+          "status": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResearchStatusDto"
+            }
+          },
+          "resourceReferences": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "identity",
+          "status",
+          "resourceReferences"
+        ]
+      },
+      "CanonicalComputeResult": {
+        "type": "object",
+        "properties": {
+          "calculationIdentity": {
+            "$ref": "#/components/schemas/CalculationIdentity"
+          },
+          "trace": {
+            "$ref": "#/components/schemas/CandidateTrace"
+          },
+          "researchStatus": {
+            "type": "string"
+          },
+          "productionEligible": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "calculationIdentity",
+          "trace",
+          "researchStatus",
+          "productionEligible"
+        ]
+      },
+      "CalculationIdentity": {
+        "type": "object",
+        "properties": {
+          "calculationId": {
+            "type": "string"
+          },
+          "modelVersion": {
+            "type": "string"
+          },
+          "formulaDigest": {
+            "type": "string"
+          },
+          "parameterSetId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "parameterChecksum": {
+            "type": "string"
+          },
+          "datasetSnapshotId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "universeSnapshotId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "benchmarkVersionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "inputDigest": {
+            "type": "string"
+          },
+          "codeCommitSha": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "calculationId",
+          "modelVersion",
+          "formulaDigest",
+          "parameterSetId",
+          "parameterChecksum",
+          "datasetSnapshotId",
+          "universeSnapshotId",
+          "benchmarkVersionId",
+          "inputDigest",
+          "codeCommitSha"
+        ]
+      },
+      "CandidateTrace": {
+        "type": "object",
+        "properties": {
+          "identity": {
+            "$ref": "#/components/schemas/CandidateIdentity"
+          },
+          "instrumentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "candidateVersion": {
+            "type": "string"
+          },
+          "calculationId": {
+            "type": "string"
+          },
+          "inputDigest": {
+            "type": "string"
+          },
+          "score": {
+            "$ref": "#/components/schemas/EvidenceScore"
+          },
+          "components": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CandidateComponent"
+            }
+          },
+          "validationStatus": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "identity",
+          "instrumentId",
+          "candidateVersion",
+          "calculationId",
+          "inputDigest",
+          "score",
+          "components",
+          "validationStatus"
+        ]
+      },
+      "CandidateIdentity": {
+        "type": "object",
+        "properties": {
+          "datasetSnapshotId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "universeSnapshotId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "benchmarkVersionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "versionSetId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "parameterSetId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "parameterChecksum": {
+            "type": "string"
+          },
+          "datasetChecksum": {
+            "type": "string"
+          },
+          "universeChecksum": {
+            "type": "string"
+          },
+          "benchmarkChecksum": {
+            "type": "string"
+          },
+          "priceBasisVersion": {
+            "type": "string"
+          },
+          "tradeDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "dataCutoff": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "datasetSnapshotId",
+          "universeSnapshotId",
+          "benchmarkVersionId",
+          "versionSetId",
+          "parameterSetId",
+          "parameterChecksum",
+          "datasetChecksum",
+          "universeChecksum",
+          "benchmarkChecksum",
+          "priceBasisVersion",
+          "tradeDate",
+          "dataCutoff"
+        ]
+      },
+      "EvidenceScore": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ]
+          },
+          "totalScore": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "availableWeight": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "aggregationVersion": {
+            "type": "string"
+          },
+          "components": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EvidenceContribution"
+            }
+          }
+        },
+        "required": [
+          "status",
+          "totalScore",
+          "availableWeight",
+          "aggregationVersion",
+          "components"
+        ]
+      },
+      "EvidenceContribution": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "normalizedValue": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "weight": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "weightedPoints": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          "reasonCode": {
+            "type": "string"
+          },
+          "featureVersion": {
+            "type": "string"
+          },
+          "normalizationVersion": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "normalizedValue",
+          "weight",
+          "weightedPoints",
+          "status",
+          "reasonCode",
+          "featureVersion",
+          "normalizationVersion"
+        ]
+      },
+      "CandidateComponent": {
+        "type": "object",
+        "properties": {
+          "evidence": {
+            "$ref": "#/components/schemas/NormalizedEvidence"
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CandidateFeature"
+            }
+          }
+        },
+        "required": [
+          "evidence",
+          "features"
+        ]
+      },
+      "NormalizedEvidence": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "value": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          "reasonCode": {
+            "type": "string"
+          },
+          "featureVersion": {
+            "type": "string"
+          },
+          "normalizationVersion": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "value",
+          "status",
+          "reasonCode",
+          "featureVersion",
+          "normalizationVersion"
+        ]
+      },
+      "CandidateFeature": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "rawValue": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "normalizedValue": {
+            "type": "number",
+            "format": "decimal"
+          }
+        },
+        "required": [
+          "code",
+          "rawValue",
+          "normalizedValue"
+        ]
+      },
+      "CanonicalComputeRequest": {
+        "type": "object",
+        "properties": {
+          "dataset": {
+            "$ref": "#/components/schemas/CandidateDataset"
+          },
+          "instrumentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "parameters": {
+            "$ref": "#/components/schemas/V3EvidenceCandidateV1ParameterSet"
+          }
+        },
+        "required": [
+          "dataset",
+          "instrumentId",
+          "parameters"
+        ]
+      },
+      "CandidateDataset": {
+        "type": "object",
+        "properties": {
+          "identity": {
+            "$ref": "#/components/schemas/CandidateIdentity"
+          },
+          "status": {
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2
+            ]
+          },
+          "universeAvailableAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "benchmarkMappingAvailableAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sessions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          "universeMembers": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "series": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CandidateSeries"
+            }
+          },
+          "benchmark": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CandidateBar"
+            }
+          }
+        },
+        "required": [
+          "identity",
+          "status",
+          "universeAvailableAt",
+          "benchmarkMappingAvailableAt",
+          "sessions",
+          "universeMembers",
+          "series",
+          "benchmark"
+        ]
+      },
+      "CandidateSeries": {
+        "type": "object",
+        "properties": {
+          "instrumentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "bars": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CandidateBar"
+            }
+          },
+          "flows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CandidateFlow"
+            }
+          }
+        },
+        "required": [
+          "instrumentId",
+          "bars",
+          "flows"
+        ]
+      },
+      "CandidateBar": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "close": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "high": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "low": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "volume": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "availableAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        },
+        "required": [
+          "date",
+          "close",
+          "high",
+          "low",
+          "volume",
+          "availableAt",
+          "status"
+        ]
+      },
+      "CandidateFlow": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "foreign": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "trust": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "dealer": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "availableAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        },
+        "required": [
+          "date",
+          "foreign",
+          "trust",
+          "dealer",
+          "availableAt",
+          "status"
+        ]
+      },
+      "AggregationResult": {
+        "type": "object",
+        "properties": {
+          "formulaIdentity": {
+            "$ref": "#/components/schemas/FormulaIdentity"
+          },
+          "score": {
+            "$ref": "#/components/schemas/EvidenceScore"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "formulaIdentity",
+          "score",
+          "status"
+        ]
+      },
+      "AggregationRequest": {
+        "type": "object",
+        "properties": {
+          "evidence": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NormalizedEvidence"
+            }
+          }
+        },
+        "required": [
+          "evidence"
+        ]
+      },
+      "MarketRadarResult": {
+        "type": "object",
+        "properties": {
+          "tradeDate": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "dates": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          "market": {
+            "type": "string"
+          },
+          "quotes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MarketQuote"
+            }
+          },
+          "analysis": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MarketRadarStock"
+            }
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MarketEvent"
+            }
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "tradeDate",
+          "dates",
+          "market",
+          "quotes",
+          "analysis",
+          "events",
+          "warnings",
+          "updatedAt"
+        ]
+      },
+      "MarketQuote": {
+        "type": "object",
+        "properties": {
+          "stock": {
+            "$ref": "#/components/schemas/SwingStock"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "close": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "change": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "volume": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "changePercent": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          }
+        },
+        "required": [
+          "stock",
+          "date",
+          "close",
+          "change",
+          "volume",
+          "changePercent"
+        ]
+      },
+      "SwingStock": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "market": {
+            "type": "string"
+          },
+          "isEtf": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "symbol",
+          "name",
+          "market",
+          "isEtf"
+        ]
+      },
+      "MarketRadarStock": {
+        "type": "object",
+        "properties": {
+          "quote": {
+            "$ref": "#/components/schemas/MarketQuote"
+          },
+          "averageVolume5": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "averageVolume20": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "volumeRatio5": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "volumeRatio20": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "volumeGrowth20": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "technical": {
+            "$ref": "#/components/schemas/TechnicalData"
+          },
+          "foreignNet": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "macdState": {
+            "type": "string"
+          },
+          "parts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RadarScorePart"
+            }
+          },
+          "earned": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "available": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "score": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "level": {
+            "type": "string"
+          },
+          "reasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "riskFlags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MarketEvent"
+            }
+          }
+        },
+        "required": [
+          "quote",
+          "averageVolume5",
+          "averageVolume20",
+          "volumeRatio5",
+          "volumeRatio20",
+          "volumeGrowth20",
+          "technical",
+          "foreignNet",
+          "macdState",
+          "parts",
+          "earned",
+          "available",
+          "score",
+          "level",
+          "reasons",
+          "riskFlags",
+          "events"
+        ]
+      },
+      "TechnicalData": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "samples": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "mA5": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "mA20": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "mA60": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "rsI14": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "macd": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "signal": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "histogram": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          }
+        },
+        "required": [
+          "date",
+          "samples",
+          "mA5",
+          "mA20",
+          "mA60",
+          "rsI14",
+          "macd",
+          "signal",
+          "histogram"
+        ]
+      },
+      "RadarScorePart": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "maximum": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "points": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "explanation": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "maximum",
+          "points",
+          "explanation"
+        ]
+      },
+      "MarketEvent": {
+        "type": "object",
+        "properties": {
+          "stockId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "publishedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "source": {
+            "type": "string"
+          },
+          "sourceUrl": {
+            "type": "string"
+          },
+          "impact": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "stockId",
+          "title",
+          "category",
+          "publishedAt",
+          "source",
+          "sourceUrl",
+          "impact",
+          "summary"
+        ]
+      },
+      "RadarJobView": {
+        "type": "object",
+        "properties": {
+          "jobId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "completed": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modelVersion": {
+            "type": "string"
+          },
+          "dataVersion": {
+            "type": "string",
+            "nullable": true
+          },
+          "result": {
+            "$ref": "#/components/schemas/MarketRadarResult",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "jobId",
+          "status",
+          "completed",
+          "total",
+          "createdAt",
+          "expiresAt",
+          "modelVersion",
+          "dataVersion",
+          "result",
+          "errorCode"
+        ]
+      },
       "HealthDto": {
         "type": "object",
         "properties": {

@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><TargetFramework>net10.0</TargetFramework><Version>3.1.1</Version><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable></PropertyGroup>
+  <ItemGroup><EmbeddedResource Include="Services/Evidence/*.cs" /><EmbeddedResource Include="Services/TechnicalIndicators.cs" /></ItemGroup>
+</Project>

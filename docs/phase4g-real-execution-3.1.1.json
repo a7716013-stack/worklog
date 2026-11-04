@@ -1,0 +1,413 @@
+{
+  "version": "3.1.1",
+  "executedAt": "2026-11-04T23:20:44.530021+00:00",
+  "sourceRequestId": "152b50d7-361d-aa0f-ba47-5b78700d71b0",
+  "reportDigest": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD",
+  "claims": [
+    {
+      "Domain": 0,
+      "RequiredClaim": "HistoricalSessions",
+      "CurrentStatus": "UNKNOWN",
+      "CurrentEvidence": [
+        "d18902ab-75f0-40c0-976d-8540d21946e1"
+      ],
+      "MissingEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "HistoricalSessions"
+      ],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "ConflictStatus": "NONE_RECORDED",
+      "NextResolutionAction": "Acquire historical evidence for HistoricalSessions; review and bind to this exact subject and period"
+    },
+    {
+      "Domain": 0,
+      "RequiredClaim": "ScheduledHolidays",
+      "CurrentStatus": "PARTIALLY_SUPPORTED",
+      "CurrentEvidence": [
+        "d18902ab-75f0-40c0-976d-8540d21946e1"
+      ],
+      "MissingEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "ScheduledHolidays"
+      ],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "ConflictStatus": "NONE_RECORDED",
+      "NextResolutionAction": "Acquire historical evidence for ScheduledHolidays; review and bind to this exact subject and period"
+    },
+    {
+      "Domain": 0,
+      "RequiredClaim": "EmergencyClosures",
+      "CurrentStatus": "UNKNOWN",
+      "CurrentEvidence": [
+        "d18902ab-75f0-40c0-976d-8540d21946e1"
+      ],
+      "MissingEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "EmergencyClosures"
+      ],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "ConflictStatus": "NONE_RECORDED",
+      "NextResolutionAction": "Acquire historical evidence for EmergencyClosures; review and bind to this exact subject and period"
+    },
+    {
+      "Domain": 0,
+      "RequiredClaim": "Horizon:TradingSessions",
+      "CurrentStatus": "UNKNOWN",
+      "CurrentEvidence": [
+        "d18902ab-75f0-40c0-976d-8540d21946e1"
+      ],
+      "MissingEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "Horizon:TradingSessions"
+      ],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "ConflictStatus": "NONE_RECORDED",
+      "NextResolutionAction": "Acquire historical evidence for Horizon:TradingSessions; review and bind to this exact subject and period"
+    },
+    {
+      "Domain": 1,
+      "RequiredClaim": "HistoricalInstrumentIdentity",
+      "CurrentStatus": "UNKNOWN",
+      "CurrentEvidence": [
+        "16e9385a-6c6a-4881-bde3-2f6db02f15e7"
+      ],
+      "MissingEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "HistoricalInstrumentIdentity"
+      ],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "ConflictStatus": "NONE_RECORDED",
+      "NextResolutionAction": "Acquire historical evidence for HistoricalInstrumentIdentity; review and bind to this exact subject and period"
+    },
+    {
+      "Domain": 1,
+      "RequiredClaim": "SymbolHistory",
+      "CurrentStatus": "UNKNOWN",
+      "CurrentEvidence": [
+        "16e9385a-6c6a-4881-bde3-2f6db02f15e7"
+      ],
+      "MissingEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "SymbolHistory"
+      ],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "ConflictStatus": "NONE_RECORDED",
+      "NextResolutionAction": "Acquire historical evidence for SymbolHistory; review and bind to this exact subject and period"
+    },
+    {
+      "Domain": 1,
+      "RequiredClaim": "MarketTransfer",
+      "CurrentStatus": "UNKNOWN",
+      "CurrentEvidence": [
+        "16e9385a-6c6a-4881-bde3-2f6db02f15e7"
+      ],
+      "MissingEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "MarketTransfer"
+      ],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "ConflictStatus": "NONE_RECORDED",
+      "NextResolutionAction": "Acquire historical evidence for MarketTransfer; review and bind to this exact subject and period"
+    },
+    {
+      "Domain": 2,
+      "RequiredClaim": "HistoricalMembership",
+      "CurrentStatus": "UNKNOWN",
+      "CurrentEvidence": [
+        "25bc00ef-0f8c-444e-a368-6a029221eda1"
+      ],
+      "MissingEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "HistoricalMembership"
+      ],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "ConflictStatus": "NONE_RECORDED",
+      "NextResolutionAction": "Acquire historical evidence for HistoricalMembership; review and bind to this exact subject and period"
+    },
+    {
+      "Domain": 2,
+      "RequiredClaim": "Listing",
+      "CurrentStatus": "UNKNOWN",
+      "CurrentEvidence": [
+        "25bc00ef-0f8c-444e-a368-6a029221eda1"
+      ],
+      "MissingEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "Listing"
+      ],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "ConflictStatus": "NONE_RECORDED",
+      "NextResolutionAction": "Acquire historical evidence for Listing; review and bind to this exact subject and period"
+    },
+    {
+      "Domain": 2,
+      "RequiredClaim": "Delisting",
+      "CurrentStatus": "UNKNOWN",
+      "CurrentEvidence": [
+        "25bc00ef-0f8c-444e-a368-6a029221eda1"
+      ],
+      "MissingEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "Delisting"
+      ],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "ConflictStatus": "NONE_RECORDED",
+      "NextResolutionAction": "Acquire historical evidence for Delisting; review and bind to this exact subject and period"
+    },
+    {
+      "Domain": 2,
+      "RequiredClaim": "Suspension",
+      "CurrentStatus": "UNKNOWN",
+      "CurrentEvidence": [
+        "25bc00ef-0f8c-444e-a368-6a029221eda1"
+      ],
+      "MissingEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "Suspension"
+      ],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "ConflictStatus": "NONE_RECORDED",
+      "NextResolutionAction": "Acquire historical evidence for Suspension; review and bind to this exact subject and period"
+    },
+    {
+      "Domain": 2,
+      "RequiredClaim": "Denominator",
+      "CurrentStatus": "UNKNOWN",
+      "CurrentEvidence": [
+        "25bc00ef-0f8c-444e-a368-6a029221eda1"
+      ],
+      "MissingEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "Denominator"
+      ],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "ConflictStatus": "NONE_RECORDED",
+      "NextResolutionAction": "Acquire historical evidence for Denominator; review and bind to this exact subject and period"
+    },
+    {
+      "Domain": 3,
+      "RequiredClaim": "HistoricalPrices",
+      "CurrentStatus": "UNKNOWN",
+      "CurrentEvidence": [
+        "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d"
+      ],
+      "MissingEvidence": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "HistoricalPrices"
+      ],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "ConflictStatus": "NONE_RECORDED",
+      "NextResolutionAction": "Acquire historical evidence for HistoricalPrices; review and bind to this exact subject and period"
+    },
+    {
+      "Domain": 3,
+      "RequiredClaim": "Units",
+      "CurrentStatus": "PARTIALLY_SUPPORTED",
+      "CurrentEvidence": [
+        "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d"
+      ],
+      "MissingEvidence": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "Units"
+      ],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "ConflictStatus": "NONE_RECORDED",
+      "NextResolutionAction": "Acquire historical evidence for Units; review and bind to this exact subject and period"
+    },
+    {
+      "Domain": 3,
+      "RequiredClaim": "SourceIdentity",
+      "CurrentStatus": "PARTIALLY_SUPPORTED",
+      "CurrentEvidence": [
+        "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d"
+      ],
+      "MissingEvidence": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "SourceIdentity"
+      ],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "ConflictStatus": "NONE_RECORDED",
+      "NextResolutionAction": "Acquire historical evidence for SourceIdentity; review and bind to this exact subject and period"
+    },
+    {
+      "Domain": 4,
+      "RequiredClaim": "HistoricalPublication",
+      "CurrentStatus": "UNKNOWN",
+      "CurrentEvidence": [
+        "d1434433-7b43-4e7d-8868-8954f2c1fb8f"
+      ],
+      "MissingEvidence": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "HistoricalPublication"
+      ],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "ConflictStatus": "NONE_RECORDED",
+      "NextResolutionAction": "Acquire historical evidence for HistoricalPublication; review and bind to this exact subject and period"
+    },
+    {
+      "Domain": 4,
+      "RequiredClaim": "RevisionBehavior",
+      "CurrentStatus": "UNKNOWN",
+      "CurrentEvidence": [
+        "d1434433-7b43-4e7d-8868-8954f2c1fb8f"
+      ],
+      "MissingEvidence": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "RevisionBehavior"
+      ],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "ConflictStatus": "NONE_RECORDED",
+      "NextResolutionAction": "Acquire historical evidence for RevisionBehavior; review and bind to this exact subject and period"
+    },
+    {
+      "Domain": 4,
+      "RequiredClaim": "SourceIdentity",
+      "CurrentStatus": "PARTIALLY_SUPPORTED",
+      "CurrentEvidence": [
+        "d1434433-7b43-4e7d-8868-8954f2c1fb8f"
+      ],
+      "MissingEvidence": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "SourceIdentity"
+      ],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "ConflictStatus": "NONE_RECORDED",
+      "NextResolutionAction": "Acquire historical evidence for SourceIdentity; review and bind to this exact subject and period"
+    },
+    {
+      "Domain": 5,
+      "RequiredClaim": "PriceBasis",
+      "CurrentStatus": "UNKNOWN",
+      "CurrentEvidence": [
+        "41aaa86d-5a89-40b9-b3b5-8ffebbefc92b"
+      ],
+      "MissingEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "PriceBasis"
+      ],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "ConflictStatus": "NONE_RECORDED",
+      "NextResolutionAction": "Acquire historical evidence for PriceBasis; review and bind to this exact subject and period"
+    },
+    {
+      "Domain": 5,
+      "RequiredClaim": "CorporateActionHandling",
+      "CurrentStatus": "UNKNOWN",
+      "CurrentEvidence": [
+        "41aaa86d-5a89-40b9-b3b5-8ffebbefc92b"
+      ],
+      "MissingEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "CorporateActionHandling"
+      ],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "ConflictStatus": "NONE_RECORDED",
+      "NextResolutionAction": "Acquire historical evidence for CorporateActionHandling; review and bind to this exact subject and period"
+    }
+  ],
+  "rawRealRows": 20,
+  "eligibleObservations": 0,
+  "approvedAuthorityDomains": 0,
+  "approvedDatasets": 0,
+  "firstRealPitEligibleObservation": "NO",
+  "firstApprovedRealComponentDataset": "NO",
+  "firstRealComponentBaseline": "NO",
+  "realIc": "NOT_RUN",
+  "v3Threshold": "UNRESOLVED",
+  "phase5": "LOCKED",
+  "attempts": [
+    {
+      "AttemptId": "0ed5b8ae-bd70-4855-b9c1-b9380cdf67b5",
+      "ResolutionTaskId": "0639f786-e240-45cd-cd60-871d698ab9bc",
+      "SourceReference": "https://www.twse.com.tw/zh/trading/historical/stock-day.html",
+      "Provider": "TWSE",
+      "RequestedAt": "2026-11-04T23:18:44.5189848+00:00",
+      "ReceivedAt": "2026-11-04T23:18:44.8776602+00:00",
+      "AcquisitionStatus": "HTTP_SUCCESS",
+      "ContentType": "text/html",
+      "RawDigest": "F2ABB6E49794EBD6D4E596F0C6436F193431786A5B96171A6E87638C729129B7",
+      "ArchiveLocation": "INTERNAL_ARCHIVE_NOT_PUBLISHED",
+      "ResultStatus": 3,
+      "FailureReason": null,
+      "Operator": "3.1.1 official source reinspection; no approval",
+      "EvidenceId": "12d71e41-05f3-4ec3-ac46-b10994ad9792",
+      "Digest": "0D69122DCC803E600DE66F22BE6243A8193930A98501E1A1400444BE135E91DA"
+    },
+    {
+      "AttemptId": "bc9ec84f-fe7a-413d-99d9-d1dd8a6d5875",
+      "ResolutionTaskId": "473e0fe4-f020-03bb-53ff-a830898ad73f",
+      "SourceReference": "https://www.twse.com.tw/zh/products/information/history.html",
+      "Provider": "TWSE",
+      "RequestedAt": "2026-11-04T23:18:45.183697+00:00",
+      "ReceivedAt": "2026-11-04T23:18:45.4583508+00:00",
+      "AcquisitionStatus": "HTTP_SUCCESS",
+      "ContentType": "text/html",
+      "RawDigest": "07B0CE735349DB2D2A30F03B9A8225BD03E63CEC61C6D50C02C6EF3345E73A13",
+      "ArchiveLocation": "INTERNAL_ARCHIVE_NOT_PUBLISHED",
+      "ResultStatus": 3,
+      "FailureReason": null,
+      "Operator": "3.1.1 official source reinspection; no approval",
+      "EvidenceId": "889e2fbd-27dc-4fe8-afe4-6538b9d2e242",
+      "Digest": "A5D309593E0FC7A632BDA241F31EEC1A59F0F5AB45290427C6574FC387B4823E"
+    }
+  ],
+  "blockingReasons": [
+    "Availability:HistoricalPublication",
+    "Availability:RevisionBehavior",
+    "Availability:SourceIdentity",
+    "BLOCKED_BY_AUTHORITY",
+    "CALENDAR_COVERAGE_UNKNOWN",
+    "CORPORATE_ACTION_UNRESOLVED",
+    "CorporateActionPriceBasis:CorporateActionHandling",
+    "CorporateActionPriceBasis:PriceBasis",
+    "HistoricalInstrumentIdentity:HistoricalInstrumentIdentity",
+    "HistoricalInstrumentIdentity:MarketTransfer",
+    "HistoricalInstrumentIdentity:SymbolHistory",
+    "HistoricalPriceVolume:HistoricalPrices",
+    "HistoricalPriceVolume:SourceIdentity",
+    "HistoricalPriceVolume:Units",
+    "HistoricalUniverse:Delisting",
+    "HistoricalUniverse:Denominator",
+    "HistoricalUniverse:HistoricalMembership",
+    "HistoricalUniverse:Listing",
+    "HistoricalUniverse:Suspension",
+    "PHASE4DE_APPROVAL_REQUIRED",
+    "PRICE_AUTHORITY_UNPROVEN",
+    "PRICE_BASIS_CONFLICT",
+    "PRICE_BASIS_INCONSISTENT",
+    "PRICE_FACTS_MISSING",
+    "REQUESTED_OBSERVATIONS_NOT_FULLY_ELIGIBLE",
+    "REVISION_UNKNOWN",
+    "SURVIVORSHIP_BIAS_RISK",
+    "TradingCalendar:EmergencyClosures",
+    "TradingCalendar:HistoricalSessions",
+    "TradingCalendar:Horizon:TradingSessions",
+    "TradingCalendar:ScheduledHolidays",
+    "UNKNOWN_AVAILABILITY",
+    "UNRESOLVED_CALENDAR",
+    "UNRESOLVED_IDENTITY",
+    "UNRESOLVED_UNIVERSE",
+    "UNVERIFIABLE_AVAILABILITY",
+    "UNVERIFIABLE_REVISION"
+  ]
+}

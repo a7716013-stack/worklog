@@ -1,0 +1,125 @@
+{
+  "version": "3.1.1",
+  "verifiedAt": "2026-11-04T23:32:40.351904+00:00",
+  "localRegression": [
+    {
+      "project": "build",
+      "exitCode": 0
+    },
+    {
+      "project": "MarketDataChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "ApiContractChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3AuthorityResolutionChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ComponentDatasetChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ClosureChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3RealDataChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3AuthorityChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3PitDatasetChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ResearchChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ModelChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "MarketRadarChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "FinMindChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "FinMindChecks/LegacySwing75Checks",
+      "exitCode": 0
+    },
+    {
+      "project": "PaperTradingChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "StrategyCenterChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "MarketRadarTrackingChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V2FoundationChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V2EvidenceChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-build",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-research",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-replay",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-scorecard",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-selection",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-oos",
+      "exitCode": 0
+    }
+  ],
+  "apiChecks": 174,
+  "apiOperations": 46,
+  "browser": "PASS: progress, partial, complete/missing, timeout, CSRF, mobile; no JS errors",
+  "formulaDiagnostics": "PASS_SYNTHETIC_ONLY",
+  "formulaDigest": "81C788B359568B2B058EC92EDFE2F30A3593D7C2A23B3BE8C126BA026D06CBFB",
+  "candidateFormula": "UNCHANGED",
+  "realBaseline": "NOT_RUN",
+  "approvedDatasets": 0,
+  "v3Threshold": "UNRESOLVED",
+  "phase5": "LOCKED",
+  "releaseGate": "Same-SHA remote CI and post-deployment health/readiness required; final deployment evidence retained locally",
+  "remainingDependencies": [
+    "Api -> Web hosting/EF/authority storage",
+    "Real PIT authority and approved datasets",
+    "PIT regime and future risk sidecars"
+  ],
+  "buildWarnings": [
+    "Existing transitive System.Security.Cryptography.Pkcs 9.0.11 advisories"
+  ]
+}

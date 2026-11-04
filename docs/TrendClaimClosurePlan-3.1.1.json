@@ -1,0 +1,470 @@
+{
+  "version": "3.1.1",
+  "sourceReportDigest": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD",
+  "scopeDecision": "UNCHANGED_NO_OUTCOMES_INSPECTED",
+  "claims": [
+    {
+      "ClaimId": "HistoricalPublication",
+      "Domain": "Availability",
+      "Priority": 0,
+      "CurrentStatus": "UNKNOWN",
+      "RequiredEvidence": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "HistoricalPublication"
+      ],
+      "ExistingEvidence": [
+        "d1434433-7b43-4e7d-8868-8954f2c1fb8f"
+      ],
+      "CandidateOfficialSources": [
+        "https://www.twse.com.tw/zh/products/information/history.html",
+        "https://www.twse.com.tw/zh/trading/historical/stock-day.html"
+      ],
+      "TemporalCoverageNeeded": [
+        "2026-09-30",
+        "2026-09-30"
+      ],
+      "RevisionCoverageNeeded": "Original historical version plus correction publication time; checksum alone is insufficient.",
+      "BlockingReason": "SCOPED_CURRENT_CLOSURE_REQUIRED; HistoricalPublication",
+      "NextAction": "Acquire historical evidence for HistoricalPublication; review and bind to this exact subject and period"
+    },
+    {
+      "ClaimId": "SourceIdentity",
+      "Domain": "Availability",
+      "Priority": 0,
+      "CurrentStatus": "PARTIALLY_SUPPORTED",
+      "RequiredEvidence": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "SourceIdentity"
+      ],
+      "ExistingEvidence": [
+        "d1434433-7b43-4e7d-8868-8954f2c1fb8f"
+      ],
+      "CandidateOfficialSources": [
+        "https://www.twse.com.tw/zh/products/information/history.html",
+        "https://www.twse.com.tw/zh/trading/historical/stock-day.html"
+      ],
+      "TemporalCoverageNeeded": [
+        "2026-09-30",
+        "2026-09-30"
+      ],
+      "RevisionCoverageNeeded": "Original historical version plus correction publication time; checksum alone is insufficient.",
+      "BlockingReason": "SCOPED_CURRENT_CLOSURE_REQUIRED; SourceIdentity",
+      "NextAction": "Acquire historical evidence for SourceIdentity; review and bind to this exact subject and period"
+    },
+    {
+      "ClaimId": "RevisionBehavior",
+      "Domain": "Availability",
+      "Priority": 1,
+      "CurrentStatus": "UNKNOWN",
+      "RequiredEvidence": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "RevisionBehavior"
+      ],
+      "ExistingEvidence": [
+        "d1434433-7b43-4e7d-8868-8954f2c1fb8f"
+      ],
+      "CandidateOfficialSources": [
+        "https://www.twse.com.tw/zh/products/information/history.html",
+        "https://www.twse.com.tw/zh/trading/historical/stock-day.html"
+      ],
+      "TemporalCoverageNeeded": [
+        "2026-09-30",
+        "2026-09-30"
+      ],
+      "RevisionCoverageNeeded": "Original historical version plus correction publication time; checksum alone is insufficient.",
+      "BlockingReason": "SCOPED_CURRENT_CLOSURE_REQUIRED; RevisionBehavior",
+      "NextAction": "Acquire historical evidence for RevisionBehavior; review and bind to this exact subject and period"
+    },
+    {
+      "ClaimId": "HistoricalInstrumentIdentity",
+      "Domain": "HistoricalInstrumentIdentity",
+      "Priority": 2,
+      "CurrentStatus": "UNKNOWN",
+      "RequiredEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "HistoricalInstrumentIdentity"
+      ],
+      "ExistingEvidence": [
+        "16e9385a-6c6a-4881-bde3-2f6db02f15e7"
+      ],
+      "CandidateOfficialSources": [
+        "https://www.twse.com.tw/zh/listed/profile/company.html"
+      ],
+      "TemporalCoverageNeeded": [
+        "2026-09-30",
+        "2026-09-30"
+      ],
+      "RevisionCoverageNeeded": "Original historical version plus correction publication time; checksum alone is insufficient.",
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED; HistoricalInstrumentIdentity",
+      "NextAction": "Acquire historical evidence for HistoricalInstrumentIdentity; review and bind to this exact subject and period"
+    },
+    {
+      "ClaimId": "SymbolHistory",
+      "Domain": "HistoricalInstrumentIdentity",
+      "Priority": 2,
+      "CurrentStatus": "UNKNOWN",
+      "RequiredEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "SymbolHistory"
+      ],
+      "ExistingEvidence": [
+        "16e9385a-6c6a-4881-bde3-2f6db02f15e7"
+      ],
+      "CandidateOfficialSources": [
+        "https://www.twse.com.tw/zh/listed/profile/company.html"
+      ],
+      "TemporalCoverageNeeded": [
+        "2026-09-30",
+        "2026-09-30"
+      ],
+      "RevisionCoverageNeeded": "Original historical version plus correction publication time; checksum alone is insufficient.",
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED; SymbolHistory",
+      "NextAction": "Acquire historical evidence for SymbolHistory; review and bind to this exact subject and period"
+    },
+    {
+      "ClaimId": "MarketTransfer",
+      "Domain": "HistoricalInstrumentIdentity",
+      "Priority": 2,
+      "CurrentStatus": "UNKNOWN",
+      "RequiredEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "MarketTransfer"
+      ],
+      "ExistingEvidence": [
+        "16e9385a-6c6a-4881-bde3-2f6db02f15e7"
+      ],
+      "CandidateOfficialSources": [
+        "https://www.twse.com.tw/zh/listed/profile/company.html"
+      ],
+      "TemporalCoverageNeeded": [
+        "2026-09-30",
+        "2026-09-30"
+      ],
+      "RevisionCoverageNeeded": "Original historical version plus correction publication time; checksum alone is insufficient.",
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED; MarketTransfer",
+      "NextAction": "Acquire historical evidence for MarketTransfer; review and bind to this exact subject and period"
+    },
+    {
+      "ClaimId": "HistoricalMembership",
+      "Domain": "HistoricalUniverse",
+      "Priority": 3,
+      "CurrentStatus": "UNKNOWN",
+      "RequiredEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "HistoricalMembership"
+      ],
+      "ExistingEvidence": [
+        "25bc00ef-0f8c-444e-a368-6a029221eda1"
+      ],
+      "CandidateOfficialSources": [
+        "https://www.twse.com.tw/zh/listed/listing.html"
+      ],
+      "TemporalCoverageNeeded": [
+        "2026-09-30",
+        "2026-09-30"
+      ],
+      "RevisionCoverageNeeded": "Original historical version plus correction publication time; checksum alone is insufficient.",
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED; HistoricalMembership",
+      "NextAction": "Acquire historical evidence for HistoricalMembership; review and bind to this exact subject and period"
+    },
+    {
+      "ClaimId": "Listing",
+      "Domain": "HistoricalUniverse",
+      "Priority": 3,
+      "CurrentStatus": "UNKNOWN",
+      "RequiredEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "Listing"
+      ],
+      "ExistingEvidence": [
+        "25bc00ef-0f8c-444e-a368-6a029221eda1"
+      ],
+      "CandidateOfficialSources": [
+        "https://www.twse.com.tw/zh/listed/listing.html"
+      ],
+      "TemporalCoverageNeeded": [
+        "2026-09-30",
+        "2026-09-30"
+      ],
+      "RevisionCoverageNeeded": "Original historical version plus correction publication time; checksum alone is insufficient.",
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED; Listing",
+      "NextAction": "Acquire historical evidence for Listing; review and bind to this exact subject and period"
+    },
+    {
+      "ClaimId": "Delisting",
+      "Domain": "HistoricalUniverse",
+      "Priority": 3,
+      "CurrentStatus": "UNKNOWN",
+      "RequiredEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "Delisting"
+      ],
+      "ExistingEvidence": [
+        "25bc00ef-0f8c-444e-a368-6a029221eda1"
+      ],
+      "CandidateOfficialSources": [
+        "https://www.twse.com.tw/zh/listed/listing.html"
+      ],
+      "TemporalCoverageNeeded": [
+        "2026-09-30",
+        "2026-09-30"
+      ],
+      "RevisionCoverageNeeded": "Original historical version plus correction publication time; checksum alone is insufficient.",
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED; Delisting",
+      "NextAction": "Acquire historical evidence for Delisting; review and bind to this exact subject and period"
+    },
+    {
+      "ClaimId": "Suspension",
+      "Domain": "HistoricalUniverse",
+      "Priority": 3,
+      "CurrentStatus": "UNKNOWN",
+      "RequiredEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "Suspension"
+      ],
+      "ExistingEvidence": [
+        "25bc00ef-0f8c-444e-a368-6a029221eda1"
+      ],
+      "CandidateOfficialSources": [
+        "https://www.twse.com.tw/zh/listed/listing.html"
+      ],
+      "TemporalCoverageNeeded": [
+        "2026-09-30",
+        "2026-09-30"
+      ],
+      "RevisionCoverageNeeded": "Original historical version plus correction publication time; checksum alone is insufficient.",
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED; Suspension",
+      "NextAction": "Acquire historical evidence for Suspension; review and bind to this exact subject and period"
+    },
+    {
+      "ClaimId": "Denominator",
+      "Domain": "HistoricalUniverse",
+      "Priority": 3,
+      "CurrentStatus": "UNKNOWN",
+      "RequiredEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "Denominator"
+      ],
+      "ExistingEvidence": [
+        "25bc00ef-0f8c-444e-a368-6a029221eda1"
+      ],
+      "CandidateOfficialSources": [
+        "https://www.twse.com.tw/zh/listed/listing.html"
+      ],
+      "TemporalCoverageNeeded": [
+        "2026-09-30",
+        "2026-09-30"
+      ],
+      "RevisionCoverageNeeded": "Original historical version plus correction publication time; checksum alone is insufficient.",
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED; Denominator",
+      "NextAction": "Acquire historical evidence for Denominator; review and bind to this exact subject and period"
+    },
+    {
+      "ClaimId": "HistoricalSessions",
+      "Domain": "TradingCalendar",
+      "Priority": 4,
+      "CurrentStatus": "UNKNOWN",
+      "RequiredEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "HistoricalSessions"
+      ],
+      "ExistingEvidence": [
+        "d18902ab-75f0-40c0-976d-8540d21946e1"
+      ],
+      "CandidateOfficialSources": [
+        "https://www.twse.com.tw/holidaySchedule/holidaySchedule"
+      ],
+      "TemporalCoverageNeeded": [
+        "2026-09-30",
+        "2026-09-30"
+      ],
+      "RevisionCoverageNeeded": "Original historical version plus correction publication time; checksum alone is insufficient.",
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED; HistoricalSessions",
+      "NextAction": "Acquire historical evidence for HistoricalSessions; review and bind to this exact subject and period"
+    },
+    {
+      "ClaimId": "ScheduledHolidays",
+      "Domain": "TradingCalendar",
+      "Priority": 4,
+      "CurrentStatus": "PARTIALLY_SUPPORTED",
+      "RequiredEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "ScheduledHolidays"
+      ],
+      "ExistingEvidence": [
+        "d18902ab-75f0-40c0-976d-8540d21946e1"
+      ],
+      "CandidateOfficialSources": [
+        "https://www.twse.com.tw/holidaySchedule/holidaySchedule"
+      ],
+      "TemporalCoverageNeeded": [
+        "2026-09-30",
+        "2026-09-30"
+      ],
+      "RevisionCoverageNeeded": "Original historical version plus correction publication time; checksum alone is insufficient.",
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED; ScheduledHolidays",
+      "NextAction": "Acquire historical evidence for ScheduledHolidays; review and bind to this exact subject and period"
+    },
+    {
+      "ClaimId": "EmergencyClosures",
+      "Domain": "TradingCalendar",
+      "Priority": 4,
+      "CurrentStatus": "UNKNOWN",
+      "RequiredEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "EmergencyClosures"
+      ],
+      "ExistingEvidence": [
+        "d18902ab-75f0-40c0-976d-8540d21946e1"
+      ],
+      "CandidateOfficialSources": [
+        "https://www.twse.com.tw/holidaySchedule/holidaySchedule"
+      ],
+      "TemporalCoverageNeeded": [
+        "2026-09-30",
+        "2026-09-30"
+      ],
+      "RevisionCoverageNeeded": "Original historical version plus correction publication time; checksum alone is insufficient.",
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED; EmergencyClosures",
+      "NextAction": "Acquire historical evidence for EmergencyClosures; review and bind to this exact subject and period"
+    },
+    {
+      "ClaimId": "Horizon:TradingSessions",
+      "Domain": "TradingCalendar",
+      "Priority": 4,
+      "CurrentStatus": "UNKNOWN",
+      "RequiredEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "Horizon:TradingSessions"
+      ],
+      "ExistingEvidence": [
+        "d18902ab-75f0-40c0-976d-8540d21946e1"
+      ],
+      "CandidateOfficialSources": [
+        "https://www.twse.com.tw/holidaySchedule/holidaySchedule"
+      ],
+      "TemporalCoverageNeeded": [
+        "2026-09-30",
+        "2026-09-30"
+      ],
+      "RevisionCoverageNeeded": "Original historical version plus correction publication time; checksum alone is insufficient.",
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED; Horizon:TradingSessions",
+      "NextAction": "Acquire historical evidence for Horizon:TradingSessions; review and bind to this exact subject and period"
+    },
+    {
+      "ClaimId": "HistoricalPrices",
+      "Domain": "HistoricalPriceVolume",
+      "Priority": 5,
+      "CurrentStatus": "UNKNOWN",
+      "RequiredEvidence": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "HistoricalPrices"
+      ],
+      "ExistingEvidence": [
+        "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d"
+      ],
+      "CandidateOfficialSources": [
+        "https://www.twse.com.tw/zh/trading/historical/stock-day.html"
+      ],
+      "TemporalCoverageNeeded": [
+        "2026-09-30",
+        "2026-09-30"
+      ],
+      "RevisionCoverageNeeded": "Original historical version plus correction publication time; checksum alone is insufficient.",
+      "BlockingReason": "SCOPED_CURRENT_CLOSURE_REQUIRED; HistoricalPrices",
+      "NextAction": "Acquire historical evidence for HistoricalPrices; review and bind to this exact subject and period"
+    },
+    {
+      "ClaimId": "Units",
+      "Domain": "HistoricalPriceVolume",
+      "Priority": 5,
+      "CurrentStatus": "PARTIALLY_SUPPORTED",
+      "RequiredEvidence": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "Units"
+      ],
+      "ExistingEvidence": [
+        "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d"
+      ],
+      "CandidateOfficialSources": [
+        "https://www.twse.com.tw/zh/trading/historical/stock-day.html"
+      ],
+      "TemporalCoverageNeeded": [
+        "2026-09-30",
+        "2026-09-30"
+      ],
+      "RevisionCoverageNeeded": "Original historical version plus correction publication time; checksum alone is insufficient.",
+      "BlockingReason": "SCOPED_CURRENT_CLOSURE_REQUIRED; Units",
+      "NextAction": "Acquire historical evidence for Units; review and bind to this exact subject and period"
+    },
+    {
+      "ClaimId": "SourceIdentity",
+      "Domain": "HistoricalPriceVolume",
+      "Priority": 5,
+      "CurrentStatus": "PARTIALLY_SUPPORTED",
+      "RequiredEvidence": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "SourceIdentity"
+      ],
+      "ExistingEvidence": [
+        "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d"
+      ],
+      "CandidateOfficialSources": [
+        "https://www.twse.com.tw/zh/trading/historical/stock-day.html"
+      ],
+      "TemporalCoverageNeeded": [
+        "2026-09-30",
+        "2026-09-30"
+      ],
+      "RevisionCoverageNeeded": "Original historical version plus correction publication time; checksum alone is insufficient.",
+      "BlockingReason": "SCOPED_CURRENT_CLOSURE_REQUIRED; SourceIdentity",
+      "NextAction": "Acquire historical evidence for SourceIdentity; review and bind to this exact subject and period"
+    },
+    {
+      "ClaimId": "PriceBasis",
+      "Domain": "CorporateActionPriceBasis",
+      "Priority": 5,
+      "CurrentStatus": "UNKNOWN",
+      "RequiredEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "PriceBasis"
+      ],
+      "ExistingEvidence": [
+        "41aaa86d-5a89-40b9-b3b5-8ffebbefc92b"
+      ],
+      "CandidateOfficialSources": [
+        "https://www.twse.com.tw/zh/trading/exchange/TWT48U.html"
+      ],
+      "TemporalCoverageNeeded": [
+        "2026-09-30",
+        "2026-09-30"
+      ],
+      "RevisionCoverageNeeded": "Original historical version plus correction publication time; checksum alone is insufficient.",
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED; PriceBasis",
+      "NextAction": "Acquire historical evidence for PriceBasis; review and bind to this exact subject and period"
+    },
+    {
+      "ClaimId": "CorporateActionHandling",
+      "Domain": "CorporateActionPriceBasis",
+      "Priority": 5,
+      "CurrentStatus": "UNKNOWN",
+      "RequiredEvidence": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "CorporateActionHandling"
+      ],
+      "ExistingEvidence": [
+        "41aaa86d-5a89-40b9-b3b5-8ffebbefc92b"
+      ],
+      "CandidateOfficialSources": [
+        "https://www.twse.com.tw/zh/trading/exchange/TWT48U.html"
+      ],
+      "TemporalCoverageNeeded": [
+        "2026-09-30",
+        "2026-09-30"
+      ],
+      "RevisionCoverageNeeded": "Original historical version plus correction publication time; checksum alone is insufficient.",
+      "BlockingReason": "REQUIRED_CLAIM_NOT_APPROVED; CorporateActionHandling",
+      "NextAction": "Acquire historical evidence for CorporateActionHandling; review and bind to this exact subject and period"
+    }
+  ]
+}

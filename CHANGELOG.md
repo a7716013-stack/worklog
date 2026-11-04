@@ -1,3 +1,11 @@
+## 3.1.1 — 2026-11-05
+
+- API 規劃與建置優先；Candidate-v1、研究計算與排行評分抽離至共用模組。
+- Phase 4G 公式摘要／計算身分、Feature/Evidence/Full 診斷、治理契約與受控 CLI、正式研究 API。
+- 市場分析採背景工作、重複請求合併、部分結果、進度與逾時處理；資料快取改為每鍵鎖。
+- 保留模型與舊評分公式；真實歷史 authority 仍阻擋，baseline NOT_RUN、Phase5 LOCKED。
+- 詳見 [3.1.1 實作報告](docs/implementation-3.1.1.md)。
+
 ## 3.1.0
 
 正式 `/api/v1` 唯讀 API、OpenAPI 與 same-SHA CI；本機啟動 `Start-WorkJournal3100.ps1`（5202）。

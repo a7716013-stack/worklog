@@ -18,6 +18,7 @@ public static class ApiHost
     public static WebApplication Build(string[] args, Action<WebApplicationBuilder>? customize = null)
     {
         var builder = WebApplication.CreateBuilder(new WebApplicationOptions { Args=args,ApplicationName=typeof(ApiHost).Assembly.GetName().Name });
+        builder.Configuration["Api:Enabled"]="true";
         JournalHosting.AddServices(builder);
         builder.Services.AddControllersWithViews().AddApplicationPart(typeof(JournalHosting).Assembly)
             .AddApplicationPart(typeof(ApiHost).Assembly);
@@ -25,6 +26,7 @@ public static class ApiHost
         builder.Services.AddScoped<IDatabaseReadiness, DatabaseReadiness>();
         builder.Services.AddScoped<IMarketIndustries, MarketIndustries>();
         builder.Services.AddSingleton<ResearchReadService>();
+        builder.Services.AddSingleton<FormulaResearchService>();
         builder.Services.AddAuthorization(options => {
             foreach (var policy in new[] { "ApiAuthenticatedUser", "ApiResearchRead", "ApiPaperTrade", "ApiAuthorityRead" })
                 options.AddPolicy(policy, p => p.RequireAuthenticatedUser().RequireClaim(ClaimTypes.NameIdentifier));

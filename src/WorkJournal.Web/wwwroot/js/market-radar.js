@@ -11,7 +11,7 @@ const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.te
 const tone=v=>v>0?"radar-up":v<0?"radar-down":"";
 function url(base,symbol){const u=new URL(base,location.origin);u.searchParams.set("symbol",symbol);return u.pathname+u.search;}
 function score(a){return !a?"待分析":a.score!=null?`${a.score} / 100`:`已知 ${a.earned} 分 · 可評 ${a.available}/100`;}
-async function fetchJson(url,options={}){const r=await fetch(url,{credentials:"same-origin",...options});if(r.redirected||r.status===401||r.status===403)throw new Error("登入狀態已變更，請重新整理並登入。");let j;try{j=await r.json();}catch{throw new Error("服務暫時無法回應，請稍後重試。");}if(!r.ok)throw new Error(j.message||"資料取得失敗，請稍後重試。");return j;}
+async function fetchJson(url,options={}){const requestSignal=options.signal?AbortSignal.any([options.signal,AbortSignal.timeout(30000)]):AbortSignal.timeout(30000);const r=await fetch(url,{credentials:"same-origin",...options,signal:requestSignal});if(r.redirected||r.status===401||r.status===403)throw new Error("登入狀態已變更，請重新整理並登入。");let j;try{j=await r.json();}catch{throw new Error("服務暫時無法回應，請稍後重試。");}if(!r.ok)throw new Error(j.message||"資料取得失敗，請稍後重試。");return j;}
 async function loadWatch(){if(!owner)return;try{const j=await fetchJson(app.dataset.watchUrl);if(j.owner!==owner)throw new Error("登入帳號已變更，請重新整理。");watch=new Set(j.items.map(x=>x.symbol));watchReady=true;render();}catch(e){watchReady=false;$("radar-watch-status").textContent="自選清單未載入："+e.message;render();}}
 function actions(q){const host=el("div",null,"radar-actions");const link=el("a","股票分析","btn btn-light btn-sm");link.href=url(app.dataset.analysisUrl,q.stock.symbol);host.append(link);
 if(owner){const b=el("button",watch.has(q.stock.symbol)?"已加入自選":"加入自選","btn btn-forest btn-sm");b.type="button";b.dataset.follow=q.stock.symbol;b.disabled=!watchReady||saving||watch.has(q.stock.symbol);b.addEventListener("click",async()=>{
@@ -42,6 +42,7 @@ const selectedIndustry=$("radar-industry").value;
 const matches=q=>!selectedIndustry||(q.stock.isEtf?"ETF":industries[q.stock.symbol]||"未知")===selectedIndustry;
 const view={...state,quotes:state.quotes.filter(matches),analysis:state.analysis.filter(a=>matches(a.quote)),events:state.events.filter(e=>!selectedIndustry||(industries[e.stockId]||"未知")===selectedIndustry)};
 let rows=[];const desc=$("radar-description");
+if(tab==="recommend"&&state.partial){host.append(el("p","分析尚未完成；以下為已取得的候選資料，依股票代碼列示，並非最終推薦排行。","alert alert-info"));host.append(table(state.analysis.map(a=>a.quote).filter(matches).sort((a,b)=>a.stock.symbol.localeCompare(b.stock.symbol)),true));return;}
 if(tab==="recommend"){desc.textContent="當日三榜合併候選池中，依已知得分排序前 20 名；缺項不換算百分制，分數不代表上漲機率。";const cards=el("div",null,"radar-cards");view.analysis.slice().sort((a,b)=>b.earned-a.earned||b.available-a.available||a.quote.stock.symbol.localeCompare(b.quote.stock.symbol)).slice(0,20).forEach(a=>cards.append(card(a)));host.append(cards);if(!view.analysis.length)host.append(el("p",analyzing?"正在計算候選股票，當日排行榜可先查看…":"尚無可用推薦資料，請重新整理重試。","panel radar-empty"));return;}
 if(tab==="events"){desc.textContent="依來源提供的公告時間排序；消息存在不代表利多，請閱讀原始公告。";for(const event of view.events){const n=el("article",null,"panel radar-event");n.append(el("p",event.stockId+" · "+event.category+" · "+new Date(event.publishedAt).toLocaleString("zh-TW")+" · "+event.source,"eyebrow"),el("h2",event.title),el("p",event.summary));try{const u=new URL(event.sourceUrl);if(["https:","http:"].includes(u.protocol)){const a=el("a","查看官方來源");a.href=u.href;a.target="_blank";a.rel="noopener noreferrer";n.append(a);}}catch{}host.append(n);}if(!view.events.length)host.append(el("p","重大資訊來源目前未提供資料；不代表今日無重大消息。","panel radar-empty"));return;}
 if(tab==="gainers"){rows=view.quotes.filter(q=>q.changePercent>0).sort((a,b)=>b.changePercent-a.changePercent);desc.textContent="當日漲幅由高到低，僅列上漲標的，最多 20 名。";}
@@ -51,10 +52,24 @@ if(tab==="average"){rows=view.analysis.filter(a=>$("radar-average-filter").value
 host.append(table(rows.slice(0,20),tab==="average"));if(!rows.length)host.append(el("p",analyzing&&tab==="average"?"均量正在計算中…":"目前沒有符合條件的資料。","panel radar-empty"));}
 function warnings(){const n=$("radar-warnings");n.replaceChildren();for(const w of state.warnings)n.append(el("p",w,"alert alert-warning"));}
 async function load(){const run=++sequence;abort?.abort();abort=new AbortController();const signal=abort.signal;analyzing=true;state=null;render();$("radar-status").textContent="正在載入當日市場排行…";const u=new URL(app.dataset.url,location.origin);u.searchParams.set("market",$("radar-market").value);if($("radar-date").value)u.searchParams.set("date",$("radar-date").value);
-try{let data=await fetchJson(u,{signal});if(run!==sequence)return;state=data;const dateSelect=$("radar-date");dateSelect.replaceChildren();for(const date of data.dates){const option=el("option",date);option.value=date;dateSelect.append(option);}if(data.tradeDate)dateSelect.value=data.tradeDate;
+try{let data=await fetchJson(u,{signal});if(run!==sequence)return;state={...data,partial:true};const dateSelect=$("radar-date");dateSelect.replaceChildren();for(const date of data.dates){const option=el("option",date);option.value=date;dateSelect.append(option);}if(data.tradeDate)dateSelect.value=data.tradeDate;
 $("radar-asof").textContent=`市場資料：${data.tradeDate||"暫無資料"} · ${data.quotes.length} 檔`;warnings();render();$("radar-status").textContent="當日排行已載入；正在計算候選均量、技術指標與追蹤分數…";
 if(!data.quotes.length){analyzing=false;$("radar-status").textContent="目前無可分析行情，請切換範圍或稍後重試。";return;}
-u.searchParams.set("date",data.tradeDate);u.searchParams.set("analyze","true");data=await fetchJson(u,{signal});if(run!==sequence)return;state=data;analyzing=false;warnings();render();$("radar-status").textContent=`已完成 ${data.analysis.length} 檔候選分析 · 來源更新 ${new Date(data.updatedAt).toLocaleString("zh-TW")}。`;
+if(!app.dataset.jobsUrl){u.searchParams.set("date",data.tradeDate);u.searchParams.set("analyze","true");state=await fetchJson(u,{signal});analyzing=false;warnings();render();$("radar-status").textContent=`已完成 ${state.analysis.length} 檔分析。`;return;}
+const jobUrl=new URL(app.dataset.jobsUrl,location.origin);jobUrl.searchParams.set("market",data.market);jobUrl.searchParams.set("date",data.tradeDate);
+let job=await fetchJson(jobUrl,{method:"POST",headers:{"RequestVerificationToken":app.querySelector('input[name="__RequestVerificationToken"]').value},signal});
+const stopAt=Date.now()+200000;
+while(true){
+ if(run!==sequence)return;
+ if(job.result){state={...job.result,partial:job.status!=="COMPLETED"};warnings();render();}
+ $("radar-status").textContent=`${job.status==="QUEUED"?"等待分析":"分析進度"}：${job.completed} / ${job.total} 檔；已取得資料可先查看。`;
+ if(!["QUEUED","RUNNING"].includes(job.status))break;
+ if(Date.now()>stopAt)throw new Error("分析等待已達上限，已保留取得的資料；請稍後重新整理。");
+ await new Promise((resolve,reject)=>{const cancel=()=>{clearTimeout(timer);reject(new DOMException("Aborted","AbortError"));};const timer=setTimeout(()=>{signal.removeEventListener("abort",cancel);resolve();},2000);signal.addEventListener("abort",cancel,{once:true});if(signal.aborted)cancel();});
+ job=await fetchJson("/api/v1/market/radar/jobs/"+job.jobId,{signal});
+}
+analyzing=false;render();$("radar-status").textContent=job.status==="COMPLETED"?`已完成 ${job.completed} 檔候選分析；缺項依資料可用性標示。`:`分析${job.status==="TIMED_OUT"?"逾時":"未完成"}，已保留 ${job.completed} 檔結果；請稍後重試。`;
+
 }catch(e){if(run!==sequence||e.name==="AbortError")return;analyzing=false;$("radar-status").textContent=e.message;render();}}
 const tabs=[...document.querySelectorAll("[data-tab]")];function select(button){tab=button.dataset.tab;for(const b of tabs){b.setAttribute("aria-selected",String(b===button));b.tabIndex=b===button?0:-1;}render();}
 for(const b of tabs){b.addEventListener("click",()=>select(b));b.addEventListener("keydown",e=>{let index=tabs.indexOf(b);if(e.key==="ArrowRight")index=(index+1)%tabs.length;else if(e.key==="ArrowLeft")index=(index+tabs.length-1)%tabs.length;else if(e.key==="Home")index=0;else if(e.key==="End")index=tabs.length-1;else return;e.preventDefault();select(tabs[index]);tabs[index].focus();});}

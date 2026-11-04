@@ -18,16 +18,16 @@ public sealed class MarketDataOptions
 // Singleton within one local application. Atomic files survive restarts; no tokens are stored.
 public sealed class SourceCache(MarketDataOptions options, TimeProvider clock)
 {
-    private readonly SemaphoreSlim gate = new(1, 1);
-    public long Hits { get; private set; }
-    public long Fetches { get; private set; }
+    private long hits, fetches;
+    public long Hits => Interlocked.Read(ref hits);
+    public long Fetches => Interlocked.Read(ref fetches);
     private sealed record Entry(DateTimeOffset ExpiresAt, JsonElement[] Rows);
     public async Task<JsonElement[]> GetAsync(string key, TimeSpan lifetime, Func<Task<JsonElement[]>> fetch, CancellationToken ct)
     {
-        await gate.WaitAsync(ct);
-        try
+        var digest = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(key)));
+        // Single flight per source key across processes; provider throttling stays in RequestBudget.
+        using var fileLock = await SharedFileLock.AcquireAsync(options.CacheDirectory,"cache-"+digest+".lock",ct);
         {
-            using var fileLock = await SharedFileLock.AcquireAsync(options.CacheDirectory,"cache.lock",ct);
             Directory.CreateDirectory(options.CacheDirectory);
             var path = Path.Combine(options.CacheDirectory, Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(key))) + ".json");
             if (File.Exists(path))
@@ -35,11 +35,11 @@ public sealed class SourceCache(MarketDataOptions options, TimeProvider clock)
                 try
                 {
                     var saved = JsonSerializer.Deserialize<Entry>(await File.ReadAllTextAsync(path, ct));
-                    if (saved != null && saved.ExpiresAt > clock.GetUtcNow()) { Hits++; return saved.Rows; }
+                    if (saved != null && saved.ExpiresAt > clock.GetUtcNow()) { Interlocked.Increment(ref hits); return saved.Rows; }
                 }
                 catch (JsonException) { }
             }
-            var rows = await fetch(); Fetches++;
+            var rows = await fetch(); Interlocked.Increment(ref fetches);
             var temp = path + "." + Guid.NewGuid().ToString("N") + ".tmp";
             try
             {
@@ -49,7 +49,6 @@ public sealed class SourceCache(MarketDataOptions options, TimeProvider clock)
             finally { if (File.Exists(temp)) File.Delete(temp); }
             return rows;
         }
-        finally { gate.Release(); }
     }
 }
 

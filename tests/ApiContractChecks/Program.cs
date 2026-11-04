@@ -28,12 +28,14 @@ var root=Directory.GetCurrentDirectory();
 var app=ApiHost.Build(["--environment","Development","--StrategyCenter:Enabled","false","--RadarTracking:SchedulerEnabled","false","--InvestmentInsights:SchedulerEnabled","false"],b=> {
     b.WebHost.UseTestServer(); b.Logging.ClearProviders();
     b.Services.AddSingleton<StubRadar>();b.Services.AddScoped<IMarketRadarService>(sp=>sp.GetRequiredService<StubRadar>());
+    b.Services.AddScoped<IMarketRadarHistoryProvider,StubHistory>();
     b.Services.AddScoped<IMarketIndustries,StubIndustries>();b.Services.AddScoped<IApiReadiness,StubReadiness>();
     b.Services.AddAuthentication(o=> {o.DefaultAuthenticateScheme="contract";o.DefaultChallengeScheme="contract";o.DefaultForbidScheme="contract";}).AddScheme<AuthenticationSchemeOptions,TestAuth>("contract",_=>{});
 });
 app.MapGet("/api/v1/test/forbidden",()=>"no").RequireAuthorization("ApiAuthorityAdmin");
 app.MapGet("/api/v1/test/exception",(Func<string>)(()=>throw new Exception("SECRET_STACK_SENTINEL")));
-await app.StartAsync();var http=app.GetTestClient();
+Phase4GChecks.MapToken(app);
+await app.StartAsync();var http=app.GetTestClient();http.BaseAddress=new Uri("https://localhost");
 async Task<JsonNode> Get(string path,int status=200) {
     var response=await http.GetAsync(path);Check((int)response.StatusCode==status,path+" status "+status);
     Check(response.Headers.Contains("X-Trace-Id"),path+" trace header");
@@ -41,7 +43,7 @@ async Task<JsonNode> Get(string path,int status=200) {
     if(status>=400){Check(response.Content.Headers.ContentType?.MediaType=="application/problem+json","problem media type");Check(node["traceId"] is not null,"problem trace");Check(node["code"] is not null,"stable problem code");}
     return node;
 }
-Check((await Get("/api/v1/system/health"))["version"]!.GetValue<string>()=="3.1.0","release version");
+Check((await Get("/api/v1/system/health"))["version"]!.GetValue<string>()=="3.1.1","release version");
 Check((await Get("/api/v1/system/readiness"))["databaseReachable"]!.GetValue<bool>(),"readiness service");
 await Get("/api/v1/not-found",404);
 Check((await Get("/api/v1/paper/orders",401))["code"]!.GetValue<string>()=="AUTHENTICATION_REQUIRED","API no login redirect");
@@ -75,6 +77,7 @@ Check((await Get("/api/v1/research/runs/REAL_BASELINE_V1/metrics"))["ic"] is nul
 Check((await Get("/api/v1/research/dataset-approvals"))["totalCount"]!.GetValue<int>()==0,"no fabricated approvals");
 await Get("/api/v1/evidence/"+Guid.NewGuid(),503);
 var write=await http.PostAsync("/api/v1/paper/orders",new StringContent("{}"));Check(write.StatusCode==HttpStatusCode.MethodNotAllowed,"economic writes not exposed");
+await Phase4GChecks.Run(http,Check);
 var spec=ApiDocument.Create();var served=JsonNode.Parse(await http.GetStringAsync("/openapi/v1.json"));Check(JsonNode.DeepEquals(spec,served),"served OpenAPI equals generated contract");
 Directory.CreateDirectory("artifacts/api3100");File.WriteAllText("artifacts/api3100/openapi-v1.json",spec.ToJsonString(new JsonSerializerOptions {WriteIndented=true}));
 var baseline=Path.Combine(root,"docs","openapi-v1.json");
@@ -97,6 +100,7 @@ public sealed class TestAuth(IOptionsMonitor<AuthenticationSchemeOptions> o,ILog
     protected override Task<AuthenticateResult> HandleAuthenticateAsync()=>Task.FromResult(Request.Headers.TryGetValue("X-Test-User",out var user)?AuthenticateResult.Success(new AuthenticationTicket(new ClaimsPrincipal(new ClaimsIdentity([new Claim(ClaimTypes.NameIdentifier,user.ToString())],Scheme.Name)),Scheme.Name)):AuthenticateResult.NoResult());
 }
 public sealed class StubReadiness : IApiReadiness {public Task<ReadinessDto> Check(CancellationToken ct)=>Task.FromResult(new ReadinessDto("ready",true,true,true));}
+public sealed class StubHistory : IMarketRadarHistoryProvider {public Task<RadarHistory> GetAsync(MarketQuote q,CancellationToken ct)=>Task.FromResult(new RadarHistory([],[],null,null));}
 public sealed class StubIndustries : IMarketIndustries {public Task<IndustryDto[]> Get(CancellationToken ct)=>Task.FromResult<IndustryDto[]>([new("2330","Semiconductor")]);}
 public sealed class StubRadar : IMarketRadarService
 {

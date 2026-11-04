@@ -1,4 +1,14 @@
-## 3.1.0 — Formal REST API
+## 3.1.1 — Phase 4G、API 優先與市場分析效能
+
+新增公式身分、研究診斷與治理 API；既有運算抽離至 Domain/Application，市場排行改為背景分析、進度及部分結果顯示。本機入口：`Start-WorkJournal3110.ps1`（5203）。
+
+實作報告：[docs/implementation-3.1.1.md](docs/implementation-3.1.1.md)。真實研究資料未核准，baseline 維持 NOT_RUN，Phase5 LOCKED。
+
+### 前版 3.1.0 — Formal REST API
+
+本版承接範圍：[Phase 4G、API 搬移與市場分析效能優化](docs/next-implementation.md)。
+
+專案持續規則見 [AGENTS.md](AGENTS.md)：所有設計變更必須包含 API 設計，既有運算逐步移出 Web，透過 API 背後的共用服務提供能力。
 
 正式 `/api/v1` 唯讀 API、OpenAPI 與 same-SHA CI；本機啟動 `Start-WorkJournal3100.ps1`（5202）。
 實作：[docs/implementation-3.1.0.md](docs/implementation-3.1.0.md)，契約：[docs/api-v1.md](docs/api-v1.md)。

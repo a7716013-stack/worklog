@@ -48,6 +48,10 @@ builder.Services.AddHttpClient<WorkJournal.Web.Services.TaiwanMarketRankingProvi
 builder.Services.AddScoped<WorkJournal.Web.Services.ITaiwanMarketRankingProvider>(sp => sp.GetRequiredService<WorkJournal.Web.Services.TaiwanMarketRankingProvider>());
 builder.Services.AddScoped<WorkJournal.Web.Services.IMarketRadarHistoryProvider, WorkJournal.Web.Services.FinMindRadarHistoryProvider>();
 builder.Services.AddScoped<WorkJournal.Web.Services.IMarketRadarService, WorkJournal.Web.Services.MarketRadarService>();
+builder.Services.AddScoped<WorkJournal.Web.Services.MarketRadarService>();
+builder.Services.AddSingleton<WorkJournal.Web.Services.RadarJobs>();
+builder.Services.AddSingleton(new WorkJournal.Web.Services.RadarJobOptions());
+builder.Services.AddHostedService(sp => sp.GetRequiredService<WorkJournal.Web.Services.RadarJobs>());
 builder.Services.AddJournalAuthentication(builder.Configuration);
 builder.Services.AddHttpClient<WorkJournal.Web.Services.FinMindStockService>(client =>
 {
