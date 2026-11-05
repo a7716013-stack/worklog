@@ -10,7 +10,7 @@
 
 流程：scoped claims → 原有七道 PIT gates → 獨立 Trend 核准 → baseline eligibility → 既有 baseline/replay → 特徵診斷及假說收據。`--validation-export` 輸出可重播的 readiness/report；`--validation-diagnose` 必須提供目前有效且綁定同一 request、report、parameter checksum 的核准；`--validation-baseline` 沿用 development/OOS、outcome lineage 與 purge 邊界；`--validation-hypothesis` 必須綁定可重播真實 baseline 的 output digest 並提供明確假說。輸出僅 HYPOTHESIS_ONLY，不產生 candidate-v2 或自動 promotion。
 
-Trend 的 feature-only diagnostics 共 4 項，沿用 FormulaDiagnostics 分布、缺值及分位數；未提供 future outcomes 時 IC 等維持 null。沒有另造離群值門檻。Quality、Valuation、Flow、Risk、Catalyst 仍須各自 authority、PIT 及核准，Trend 核准不能代替其他組件；Full Evidence 仍被六組件 gate 阻擋。
+Trend 的 feature-only diagnostics 共 4 項，沿用 FormulaDiagnostics 分布、缺值及分位數；未提供 future outcomes 時 IC 等維持 null。沒有另造離群值門檻。Momentum、VolumePrice、Institutional、RelativeStrength、RiskQuality 仍須各自 authority、PIT 及核准，Trend 核准不能代替其他組件；Full Evidence 仍被六組件 gate 阻擋。
 
 新增四個正式唯讀 API、OpenAPI、契約測試與 `/ResearchValidation` 頁；頁面只取得 API 結果、呈現狀態，不在 JavaScript 重算分數。API 契約詳見 [APIContractChange-3.1.2.md](APIContractChange-3.1.2.md)。
 
