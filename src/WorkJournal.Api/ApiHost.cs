@@ -26,6 +26,8 @@ public static class ApiHost
         builder.Services.AddScoped<IDatabaseReadiness, DatabaseReadiness>();
         builder.Services.AddScoped<IMarketIndustries, MarketIndustries>();
         builder.Services.AddSingleton<ResearchReadService>();
+        builder.Services.AddSingleton(new WorkJournal.Application.Research.EvidenceValidationReadService(Path.Combine(AppContext.BaseDirectory,"Research","validation-state.json")));
+        builder.Services.AddSingleton<ValidationReadAdapter>();
         builder.Services.AddSingleton<FormulaResearchService>();
         builder.Services.AddAuthorization(options => {
             foreach (var policy in new[] { "ApiAuthenticatedUser", "ApiResearchRead", "ApiPaperTrade", "ApiAuthorityRead" })

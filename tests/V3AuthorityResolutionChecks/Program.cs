@@ -42,6 +42,16 @@ req=req with{RequestDigest=ResearchMath.Digest(req)};
 var input=new ComponentDatasetInput(ComponentDataMode.Synthetic,req,new(new(fixture.Submission,[],[EvidenceCode.Trend],null),[]),[],[],[],[],[],[],[],[]);
 var request=AuthorityResolution.Create(input);var root=Path.Combine(Path.GetTempPath(),"resolution-checks-"+Guid.NewGuid().ToString("N"));
 var store=new AuthorityResolutionStore(root,root,root,root);var evaluation=store.Execute(request);
+var workflow=new WorkJournal.Application.Research.EvidenceValidationWorkflow(root,root,root,root);
+var validation=workflow.Evaluate(request,new string('a',40),d.CreatedAt);
+WorkJournal.Application.Research.EvidenceValidationWorkflow.Validate(validation);
+Check(validation.Dataset.RawRealRows==0&&validation.Dataset.EligibleObservations==0,"workflow synthetic is never real eligible");
+Check(validation.Components.All(c=>c.Eligibility==WorkJournal.Application.Research.ResearchEligibilityStatus.BLOCKED),"independent component gates all fail closed");
+Check(validation.Claims.Length==20&&validation.Claims[0].Priority==0,"all 20 scoped claims in priority order");
+Check(validation.Observations.All(o=>o.Gates.Length==7&&o.AvailableAt is null),"seven PIT gates with unproven availableAt null");
+Reject(()=>WorkJournal.Application.Research.EvidenceValidationWorkflow.Validate(validation with{Phase5="OPEN"}),"release report tampering rejected");
+Reject(()=>workflow.RunBaseline(request,Guid.NewGuid(),null!,new string('a',40),d.CreatedAt),"workflow cannot bypass missing approval");
+Reject(()=>workflow.Propose(Guid.NewGuid(),null!),"hypothesis requires replayable real baseline archive");
 Check(evaluation.Status=="BLOCKED_BY_AUTHORITY_OR_DATA","broad synthetic request blocked");
 Check(evaluation.Coverage.ExpectedObservations is null&&evaluation.Coverage.Coverage is null,"unknown denominator null");
 Check(evaluation.Coverage.EligibleObservations==0&&evaluation.Coverage.Observations.Length>0,"derived observation eligibility");
@@ -98,14 +108,21 @@ if(Environment.GetEnvironmentVariable("CI")=="true")Check(code.Length==40,"CI mu
 if(code.Length==40&&code.All(Uri.IsHexDigit))
 {
     var receipt=positiveStore.Approve(positive.Request,code);
+    var approvedWorkflow=new WorkJournal.Application.Research.EvidenceValidationWorkflow(Path.Combine(root,"positive-store"),positive.Evidence,positive.Authority,positive.Closure);
+    var approvedReport=approvedWorkflow.Diagnose(positive.Request,receipt.ApprovalId,positive.Template.Parameters,code,positive.Template.CreatedAt);
+    WorkJournal.Application.Research.EvidenceValidationWorkflow.Validate(approvedReport);
+    Check(approvedReport.Diagnostics.Single().Features.Length==4,"approved Trend diagnostics reuse four original features");
+    Check(approvedReport.Diagnostics[0].Features.All(f=>f.Normalized.Ic is null)&&approvedReport.Provenance.ResearchStatus=="NOT_RUN","feature diagnostics cannot claim future-return validation");
+    Check(approvedReport.Components.Count(c=>c.Eligibility==WorkJournal.Application.Research.ResearchEligibilityStatus.READY_FOR_CONTROLLED_BASELINE)==1,"Trend approval does not approve five other components");
     Check(positiveStore.Replay(receipt.ApprovalId).Receipt.ApprovalDigest==receipt.ApprovalDigest,"complete isolated simulated approval replay");
     var milestone=positiveStore.ReadMilestone();
     Reject(()=>positiveStore.Approve(positive.Request,code),"same approval cannot overwrite milestone");
     Check(positiveStore.ReadMilestone().Digest==milestone.Digest,"milestone set exactly once with receipt lineage");
-    positiveStore.Baseline(receipt.ApprovalId,positive.Template,code);
+    approvedWorkflow.RunBaseline(positive.Request,receipt.ApprovalId,positive.Template,code,positive.Template.CreatedAt);
     var replayDigest=ResearchMath.Digest(positiveStore.BaselineReplay(positive.Template.ResearchRunId));
     Check(replayDigest.Length==64,"valid isolated receipt allows frozen baseline and replay");
     positiveStore.Revoke(receipt.ApprovalId,"REVOKED_FOR_FUTURE_USE","SIMULATED revocation",positive.Template.CreatedAt.AddSeconds(1));
+    Reject(()=>approvedWorkflow.Diagnose(positive.Request,receipt.ApprovalId,positive.Template.Parameters,code,positive.Template.CreatedAt),"revoked approval blocks new diagnostics");
     Reject(()=>positiveStore.Baseline(receipt.ApprovalId,positive.Template with{ResearchRunId=Guid.NewGuid()},code),"revoked receipt blocks new baseline");
     Check(ResearchMath.Digest(positiveStore.BaselineReplay(positive.Template.ResearchRunId))==replayDigest,"archived baseline replay survives revocation");
 }

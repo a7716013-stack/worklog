@@ -14,10 +14,10 @@ public sealed class FormulaResearchController(FormulaResearchService research) :
     [HttpGet("features")] public ActionResult<PageDto<FeatureDefinition>> Features([FromQuery(Name="")] PageQuery page)=>PageDto<FeatureDefinition>.From(CandidateFeatureCatalog.Create(Guid.Empty),page);
     [HttpGet("features/{featureId}")] public ActionResult<FeatureDefinition> Feature(string featureId)=>CandidateFeatureCatalog.Create(Guid.Empty).FirstOrDefault(x=>x.Code==featureId) is {} value?value:NotFound();
     [HttpGet("features/{featureId}/validation")] public ActionResult<ResearchResourceDto<FeatureValidationResult>> FeatureValidation(string featureId) {
-        if(!research.Candidate().Features.Contains(featureId))return NotFound();return research.NotRun<FeatureValidationResult>();
+        if(!research.Candidate().Features.Contains(featureId))return NotFound();return research.Feature(featureId);
     }
     [HttpGet("evidence/{evidenceId}/validation")] public ActionResult<ResearchResourceDto<EvidenceValidationResult>> EvidenceValidation(string evidenceId) {
-        if(!FullEvidenceModel.Weights.Keys.Any(x=>x.ToString()==evidenceId))return NotFound();return research.NotRun<EvidenceValidationResult>();
+        if(!FullEvidenceModel.Weights.Keys.Any(x=>x.ToString()==evidenceId))return NotFound();return research.Evidence(evidenceId);
     }
     [HttpGet("candidates")] public ActionResult<PageDto<CandidateDto>> Candidates([FromQuery(Name="")] PageQuery page)=>PageDto<CandidateDto>.From([research.Candidate()],page);
     [HttpGet("candidates/{candidateId}")] public ActionResult<CandidateDto> Candidate(string candidateId)=>research.Known(candidateId)?research.Candidate():NotFound();

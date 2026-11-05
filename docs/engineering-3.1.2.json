@@ -1,0 +1,306 @@
+{
+  "version": "3.1.2",
+  "baselineSha": "efde456dbb8b25c1596a61d869ed5ad78d387226",
+  "changedFiles": [
+    "CHANGELOG.md",
+    "README.md",
+    "Start-WorkJournal3120.ps1",
+    "docs/APIContractChange-3.1.2.md",
+    "docs/AuthorityClosureReport-3.1.2.json",
+    "docs/DatasetReadiness-3.1.2.json",
+    "docs/ModelValidationStatus-3.1.2.json",
+    "docs/PITEligibilityReport-3.1.2.json",
+    "docs/api-v1.md",
+    "docs/audit-3.1.2.md",
+    "docs/authority-state-3.1.2.json",
+    "docs/engineering-3.1.2.json",
+    "docs/implementation-3.1.2.md",
+    "docs/next-implementation.md",
+    "docs/openapi-v1.json",
+    "docs/releases/3.1.2.md",
+    "docs/validation-state-3.1.2.json",
+    "src/WorkJournal.Api/ApiHost.cs",
+    "src/WorkJournal.Api/Controllers/FormulaResearchController.cs",
+    "src/WorkJournal.Api/Controllers/ValidationReadController.cs",
+    "src/WorkJournal.Api/Services/FormulaResearchService.cs",
+    "src/WorkJournal.Api/Services/ValidationReadAdapter.cs",
+    "src/WorkJournal.Api/WorkJournal.Api.csproj",
+    "src/WorkJournal.Application/Research/EvidenceValidationWorkflow.cs",
+    "src/WorkJournal.Application/Services/HistoricalResearch/AuthorityClosureStore.cs",
+    "src/WorkJournal.Application/Services/HistoricalResearch/AuthorityResolution.cs",
+    "src/WorkJournal.Application/Services/HistoricalResearch/AuthorityResolutionLedger.cs",
+    "src/WorkJournal.Application/Services/HistoricalResearch/AuthorityResolutionStore.cs",
+    "src/WorkJournal.Application/Services/HistoricalResearch/AuthorityStore.cs",
+    "src/WorkJournal.Application/Services/HistoricalResearch/ComponentDatasetGate.cs",
+    "src/WorkJournal.Application/Services/HistoricalResearch/ComponentDatasetStore.cs",
+    "src/WorkJournal.Application/Services/HistoricalResearch/ComponentEvidence.cs",
+    "src/WorkJournal.Application/Services/HistoricalResearch/EvidenceAcquisitionStore.cs",
+    "src/WorkJournal.Application/Services/HistoricalResearch/EvidenceValidationReport.cs",
+    "src/WorkJournal.Application/Services/HistoricalResearch/HistoricalAuthority.cs",
+    "src/WorkJournal.Application/Services/HistoricalResearch/HistoricalAvailability.cs",
+    "src/WorkJournal.Application/Services/HistoricalResearch/HistoricalDatasetBuilder.cs",
+    "src/WorkJournal.Application/Services/HistoricalResearch/HistoricalDatasetStore.cs",
+    "src/WorkJournal.Application/Services/HistoricalResearch/OfficialHistoricalSource.cs",
+    "src/WorkJournal.Application/Services/HistoricalResearch/RealBaselineStore.cs",
+    "src/WorkJournal.Application/Services/HistoricalResearch/RealDataApproval.cs",
+    "src/WorkJournal.Application/Services/Research/ResearchStore.cs",
+    "src/WorkJournal.Application/WorkJournal.Application.csproj",
+    "src/WorkJournal.Domain/Models/HistoricalResearch/AcquisitionContracts.cs",
+    "src/WorkJournal.Domain/Models/HistoricalResearch/AuthorityContracts.cs",
+    "src/WorkJournal.Domain/Models/HistoricalResearch/ClosureContracts.cs",
+    "src/WorkJournal.Domain/Models/HistoricalResearch/ComponentContracts.cs",
+    "src/WorkJournal.Domain/Models/HistoricalResearch/HistoricalContracts.cs",
+    "src/WorkJournal.Domain/Models/HistoricalResearch/ResolutionContracts.cs",
+    "src/WorkJournal.Domain/WorkJournal.Domain.csproj",
+    "src/WorkJournal.Evidence.Cli/Program.cs",
+    "src/WorkJournal.Evidence.Cli/ValidationCommands.cs",
+    "src/WorkJournal.Evidence.Cli/WorkJournal.Evidence.Cli.csproj",
+    "src/WorkJournal.Web/Controllers/ResearchValidationController.cs",
+    "src/WorkJournal.Web/Models/HistoricalResearch/AcquisitionContracts.cs",
+    "src/WorkJournal.Web/Models/HistoricalResearch/AuthorityContracts.cs",
+    "src/WorkJournal.Web/Models/HistoricalResearch/ClosureContracts.cs",
+    "src/WorkJournal.Web/Models/HistoricalResearch/ComponentContracts.cs",
+    "src/WorkJournal.Web/Models/HistoricalResearch/HistoricalContracts.cs",
+    "src/WorkJournal.Web/Models/HistoricalResearch/ResolutionContracts.cs",
+    "src/WorkJournal.Web/Services/HistoricalResearch/AuthorityClosureStore.cs",
+    "src/WorkJournal.Web/Services/HistoricalResearch/AuthorityResolution.cs",
+    "src/WorkJournal.Web/Services/HistoricalResearch/AuthorityResolutionLedger.cs",
+    "src/WorkJournal.Web/Services/HistoricalResearch/AuthorityResolutionStore.cs",
+    "src/WorkJournal.Web/Services/HistoricalResearch/AuthorityStore.cs",
+    "src/WorkJournal.Web/Services/HistoricalResearch/ComponentDatasetGate.cs",
+    "src/WorkJournal.Web/Services/HistoricalResearch/ComponentDatasetStore.cs",
+    "src/WorkJournal.Web/Services/HistoricalResearch/ComponentEvidence.cs",
+    "src/WorkJournal.Web/Services/HistoricalResearch/EvidenceAcquisitionStore.cs",
+    "src/WorkJournal.Web/Services/HistoricalResearch/EvidenceValidationReport.cs",
+    "src/WorkJournal.Web/Services/HistoricalResearch/HistoricalAuthority.cs",
+    "src/WorkJournal.Web/Services/HistoricalResearch/HistoricalAvailability.cs",
+    "src/WorkJournal.Web/Services/HistoricalResearch/HistoricalDatasetBuilder.cs",
+    "src/WorkJournal.Web/Services/HistoricalResearch/HistoricalDatasetStore.cs",
+    "src/WorkJournal.Web/Services/HistoricalResearch/OfficialHistoricalSource.cs",
+    "src/WorkJournal.Web/Services/HistoricalResearch/RealBaselineStore.cs",
+    "src/WorkJournal.Web/Services/HistoricalResearch/RealDataApproval.cs",
+    "src/WorkJournal.Web/Services/Research/ResearchStore.cs",
+    "src/WorkJournal.Web/Views/StockAnalysis/Validation.cshtml",
+    "src/WorkJournal.Web/Views/StockAnalysis/_Navigation.cshtml",
+    "src/WorkJournal.Web/WorkJournal.Web.csproj",
+    "src/WorkJournal.Web/wwwroot/js/research-validation.js",
+    "tests/ApiContractChecks/Program.cs",
+    "tests/ApiContractChecks/ValidationChecks.cs",
+    "tests/V3AuthorityResolutionChecks/Program.cs"
+  ],
+  "moves": [
+    {
+      "source": "src/WorkJournal.Web/Models/HistoricalResearch/AcquisitionContracts.cs",
+      "target": "src/WorkJournal.Domain/Models/HistoricalResearch/AcquisitionContracts.cs"
+    },
+    {
+      "source": "src/WorkJournal.Web/Models/HistoricalResearch/AuthorityContracts.cs",
+      "target": "src/WorkJournal.Domain/Models/HistoricalResearch/AuthorityContracts.cs"
+    },
+    {
+      "source": "src/WorkJournal.Web/Models/HistoricalResearch/ClosureContracts.cs",
+      "target": "src/WorkJournal.Domain/Models/HistoricalResearch/ClosureContracts.cs"
+    },
+    {
+      "source": "src/WorkJournal.Web/Models/HistoricalResearch/ComponentContracts.cs",
+      "target": "src/WorkJournal.Domain/Models/HistoricalResearch/ComponentContracts.cs"
+    },
+    {
+      "source": "src/WorkJournal.Web/Models/HistoricalResearch/HistoricalContracts.cs",
+      "target": "src/WorkJournal.Domain/Models/HistoricalResearch/HistoricalContracts.cs"
+    },
+    {
+      "source": "src/WorkJournal.Web/Models/HistoricalResearch/ResolutionContracts.cs",
+      "target": "src/WorkJournal.Domain/Models/HistoricalResearch/ResolutionContracts.cs"
+    },
+    {
+      "source": "src/WorkJournal.Web/Services/HistoricalResearch/AuthorityClosureStore.cs",
+      "target": "src/WorkJournal.Application/Services/HistoricalResearch/AuthorityClosureStore.cs"
+    },
+    {
+      "source": "src/WorkJournal.Web/Services/HistoricalResearch/AuthorityResolution.cs",
+      "target": "src/WorkJournal.Application/Services/HistoricalResearch/AuthorityResolution.cs"
+    },
+    {
+      "source": "src/WorkJournal.Web/Services/HistoricalResearch/AuthorityResolutionLedger.cs",
+      "target": "src/WorkJournal.Application/Services/HistoricalResearch/AuthorityResolutionLedger.cs"
+    },
+    {
+      "source": "src/WorkJournal.Web/Services/HistoricalResearch/AuthorityResolutionStore.cs",
+      "target": "src/WorkJournal.Application/Services/HistoricalResearch/AuthorityResolutionStore.cs"
+    },
+    {
+      "source": "src/WorkJournal.Web/Services/HistoricalResearch/AuthorityStore.cs",
+      "target": "src/WorkJournal.Application/Services/HistoricalResearch/AuthorityStore.cs"
+    },
+    {
+      "source": "src/WorkJournal.Web/Services/HistoricalResearch/ComponentDatasetGate.cs",
+      "target": "src/WorkJournal.Application/Services/HistoricalResearch/ComponentDatasetGate.cs"
+    },
+    {
+      "source": "src/WorkJournal.Web/Services/HistoricalResearch/ComponentDatasetStore.cs",
+      "target": "src/WorkJournal.Application/Services/HistoricalResearch/ComponentDatasetStore.cs"
+    },
+    {
+      "source": "src/WorkJournal.Web/Services/HistoricalResearch/ComponentEvidence.cs",
+      "target": "src/WorkJournal.Application/Services/HistoricalResearch/ComponentEvidence.cs"
+    },
+    {
+      "source": "src/WorkJournal.Web/Services/HistoricalResearch/EvidenceAcquisitionStore.cs",
+      "target": "src/WorkJournal.Application/Services/HistoricalResearch/EvidenceAcquisitionStore.cs"
+    },
+    {
+      "source": "src/WorkJournal.Web/Services/HistoricalResearch/EvidenceValidationReport.cs",
+      "target": "src/WorkJournal.Application/Services/HistoricalResearch/EvidenceValidationReport.cs"
+    },
+    {
+      "source": "src/WorkJournal.Web/Services/HistoricalResearch/HistoricalAuthority.cs",
+      "target": "src/WorkJournal.Application/Services/HistoricalResearch/HistoricalAuthority.cs"
+    },
+    {
+      "source": "src/WorkJournal.Web/Services/HistoricalResearch/HistoricalAvailability.cs",
+      "target": "src/WorkJournal.Application/Services/HistoricalResearch/HistoricalAvailability.cs"
+    },
+    {
+      "source": "src/WorkJournal.Web/Services/HistoricalResearch/HistoricalDatasetBuilder.cs",
+      "target": "src/WorkJournal.Application/Services/HistoricalResearch/HistoricalDatasetBuilder.cs"
+    },
+    {
+      "source": "src/WorkJournal.Web/Services/HistoricalResearch/HistoricalDatasetStore.cs",
+      "target": "src/WorkJournal.Application/Services/HistoricalResearch/HistoricalDatasetStore.cs"
+    },
+    {
+      "source": "src/WorkJournal.Web/Services/HistoricalResearch/OfficialHistoricalSource.cs",
+      "target": "src/WorkJournal.Application/Services/HistoricalResearch/OfficialHistoricalSource.cs"
+    },
+    {
+      "source": "src/WorkJournal.Web/Services/HistoricalResearch/RealBaselineStore.cs",
+      "target": "src/WorkJournal.Application/Services/HistoricalResearch/RealBaselineStore.cs"
+    },
+    {
+      "source": "src/WorkJournal.Web/Services/HistoricalResearch/RealDataApproval.cs",
+      "target": "src/WorkJournal.Application/Services/HistoricalResearch/RealDataApproval.cs"
+    },
+    {
+      "source": "src/WorkJournal.Web/Services/Research/ResearchStore.cs",
+      "target": "src/WorkJournal.Application/Services/Research/ResearchStore.cs"
+    }
+  ],
+  "localChecks": [
+    {
+      "project": "build",
+      "exitCode": 0
+    },
+    {
+      "project": "MarketDataChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "ApiContractChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3AuthorityResolutionChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ComponentDatasetChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ClosureChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3RealDataChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3AuthorityChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3PitDatasetChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ResearchChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ModelChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "MarketRadarChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "FinMindChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "FinMindChecks/LegacySwing75Checks",
+      "exitCode": 0
+    },
+    {
+      "project": "PaperTradingChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "StrategyCenterChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "MarketRadarTrackingChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V2FoundationChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V2EvidenceChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-build",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-research",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-replay",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-scorecard",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-selection",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-oos",
+      "exitCode": 0
+    }
+  ],
+  "finalFocusedChecks": {
+    "ApiContractChecks": 210,
+    "V3AuthorityResolutionChecks": 88
+  },
+  "sameShaCi": "Required on final release commit; GitHub Actions is authoritative",
+  "realResearch": {
+    "raw": 20,
+    "eligible": 0,
+    "approved": 0,
+    "baseline": "NOT_RUN",
+    "phase5": "LOCKED"
+  },
+  "warnings": [
+    "Existing NU1902/NU1903 Pkcs 9.0.11 warnings"
+  ]
+}

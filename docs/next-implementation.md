@@ -1,3 +1,9 @@
+# 下一階段
+
+3.1.2 Evidence-Driven 已實作，詳見 [報告](implementation-3.1.2.md)。優先補齊真實 historical publication/revision 證據，通過 PIT 與受控核准後才執行真實 baseline；六組件獨立核准及 API 優先規則持續適用。
+
+以下保留歷史規劃。
+
 # 下一次實作規劃
 
 更新：2026-11-05。已由使用者授權納入 3.1.1 本機實作、Git 與線上發布；實作及驗證紀錄見 [implementation-3.1.1.md](implementation-3.1.1.md)。下列保留原始規劃與驗收範圍。

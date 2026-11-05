@@ -11,12 +11,22 @@ public sealed record CanonicalComputeResult(CalculationIdentity CalculationIdent
 public sealed record AggregationRequest(NormalizedEvidence[] Evidence);
 public sealed record AggregationResult(FormulaIdentity FormulaIdentity,EvidenceScore Score,string Status);
 
-public sealed class FormulaResearchService(ResearchReadService state)
+public sealed class FormulaResearchService(ResearchReadService state,ValidationReadAdapter validation)
 {
     private static readonly Lazy<FormulaResearchPackage> empty=new(()=>FormulaDiagnostics.Build([],1,5,"NOT_RUN_NO_APPROVED_DATASET"));
     public FormulaResearchPackage Empty => empty.Value;
     public bool Known(string id)=>id==V3CandidateCalculator.Version;
-    public ResearchStatusDto[] Status() {RequireUnapprovedSnapshot();return FullEvidenceModel.Weights.Keys.Select(c=>new ResearchStatusDto(c.ToString(),"FROZEN_CANDIDATE","BLOCKED","NOT_RUN","NOT_RUN","NOT_ELIGIBLE")).ToArray();}
+    public ResearchStatusDto[] Status() => validation.Read().Components.Select(c=>new ResearchStatusDto(c.Evidence,"FROZEN_CANDIDATE",c.DatasetStatus,c.BaselineStatus,"NOT_RUN","NOT_ELIGIBLE")).ToArray();
+    public ResearchResourceDto<FeatureValidationResult> Feature(string id)
+    {
+        var r=validation.Read();var value=r.Diagnostics.SelectMany(d=>d.Features).SingleOrDefault(f=>f.FeatureName==id);
+        return value is null?new("NOT_RUN",null,["APPROVED_REAL_DATASET_REQUIRED"]):new("FEATURE_DIAGNOSTICS_ONLY",value,["FUTURE_OUTCOME_VALIDATION_NOT_RUN"]);
+    }
+    public ResearchResourceDto<EvidenceValidationResult> Evidence(string id)
+    {
+        var value=validation.Read().Diagnostics.SingleOrDefault(d=>d.Evidence==id)?.Validation;
+        return value is null?new("NOT_RUN",null,["APPROVED_REAL_DATASET_REQUIRED"]):new("FEATURE_DIAGNOSTICS_ONLY",value,["FUTURE_OUTCOME_VALIDATION_NOT_RUN"]);
+    }
     public CandidateDto Candidate()=>new(V3CandidateCalculator.Version,FormulaCatalog.Identity,Status(),CandidateFeatureCatalog.Create(Guid.Empty).Select(x=>x.Code).ToArray(),"UNRESOLVED","LOCKED");
     public void RequireUnapprovedSnapshot()
     {

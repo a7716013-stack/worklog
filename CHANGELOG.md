@@ -1,3 +1,12 @@
+## 3.1.2 — 2026-11-06
+
+- 20 項 scoped claims 重新取得官方來源並記錄 review；27 次取得嘗試、20 次成功，歷史發布／修訂證明仍不足。
+- 共用 EvidenceValidationWorkflow 串接既有 authority、七道 PIT gates、組件核准、baseline、特徵診斷及假說收據。
+- 新增 eligibility summary、run provenance、逐筆 PIT 與 dataset coverage 四個唯讀 API，以及研究驗證頁。
+- 24 個歷史研究檔案移至 Domain/Application，保留 Candidate-v1、19 特徵、權重及 digest。
+- 未以現在抓取時間代替 AvailableAt；無真實核准時維持 NOT_RUN／UNRESOLVED／NOT_PROMOTED／LOCKED。
+- 詳見 [3.1.2 實作報告](docs/implementation-3.1.2.md)。
+
 ## 3.1.1 — 2026-11-05
 
 - API 規劃與建置優先；Candidate-v1、研究計算與排行評分抽離至共用模組。

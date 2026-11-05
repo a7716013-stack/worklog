@@ -1,0 +1,6 @@
+@{ViewData["Title"]="100 分模型研究資格";}
+<section class="page-heading"><div><p class="eyebrow">MODEL VALIDATION</p><h1>100 分模型研究資格</h1><p class="subheading">查看歷史證據、資料資格與尚待補齊的項目。</p></div><a class="btn btn-light" href="/StockAnalysis/MarketRadar">返回市場分析</a></section>
+<section class="panel" id="validation-status" aria-live="polite"><p>正在讀取研究資格…</p></section>
+<section class="panel mt-3"><h2>各構面資料狀態</h2><div class="table-responsive"><table class="table"><thead><tr><th>構面</th><th>權重</th><th>資料資格</th><th>研究</th></tr></thead><tbody id="validation-components"></tbody></table></div><p>分數代表證據強度，不代表勝率或交易指令。只有六構面各自通過資料核准，才能進行完整 100 分模型研究。</p></section>
+<section class="panel mt-3"><h2>待補證據</h2><ul id="validation-gaps"></ul><details><summary>資料來源與稽核身分</summary><pre id="validation-provenance" style="white-space:pre-wrap;overflow-wrap:anywhere"></pre></details></section>
+@section Scripts {<script src="~/js/research-validation.js" asp-append-version="true"></script>}

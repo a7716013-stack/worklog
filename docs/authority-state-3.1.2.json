@@ -1,0 +1,331 @@
+{
+  "claims": [
+    {
+      "claimId": "HistoricalSessions",
+      "domain": "TradingCalendar",
+      "status": "UNKNOWN",
+      "coverageStart": "2026-09-30",
+      "coverageEnd": "2026-09-30",
+      "evidenceIds": [
+        "d18902ab-75f0-40c0-976d-8540d21946e1"
+      ],
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "HistoricalSessions"
+      ],
+      "revision": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD"
+    },
+    {
+      "claimId": "ScheduledHolidays",
+      "domain": "TradingCalendar",
+      "status": "PARTIALLY_SUPPORTED",
+      "coverageStart": "2026-09-30",
+      "coverageEnd": "2026-09-30",
+      "evidenceIds": [
+        "d18902ab-75f0-40c0-976d-8540d21946e1"
+      ],
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "ScheduledHolidays"
+      ],
+      "revision": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD"
+    },
+    {
+      "claimId": "EmergencyClosures",
+      "domain": "TradingCalendar",
+      "status": "UNKNOWN",
+      "coverageStart": "2026-09-30",
+      "coverageEnd": "2026-09-30",
+      "evidenceIds": [
+        "d18902ab-75f0-40c0-976d-8540d21946e1"
+      ],
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "EmergencyClosures"
+      ],
+      "revision": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD"
+    },
+    {
+      "claimId": "Horizon:TradingSessions",
+      "domain": "TradingCalendar",
+      "status": "UNKNOWN",
+      "coverageStart": "2026-09-30",
+      "coverageEnd": "2026-09-30",
+      "evidenceIds": [
+        "d18902ab-75f0-40c0-976d-8540d21946e1"
+      ],
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "Horizon:TradingSessions"
+      ],
+      "revision": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD"
+    },
+    {
+      "claimId": "HistoricalInstrumentIdentity",
+      "domain": "HistoricalInstrumentIdentity",
+      "status": "UNKNOWN",
+      "coverageStart": "2026-09-30",
+      "coverageEnd": "2026-09-30",
+      "evidenceIds": [
+        "16e9385a-6c6a-4881-bde3-2f6db02f15e7"
+      ],
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "HistoricalInstrumentIdentity"
+      ],
+      "revision": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD"
+    },
+    {
+      "claimId": "SymbolHistory",
+      "domain": "HistoricalInstrumentIdentity",
+      "status": "UNKNOWN",
+      "coverageStart": "2026-09-30",
+      "coverageEnd": "2026-09-30",
+      "evidenceIds": [
+        "16e9385a-6c6a-4881-bde3-2f6db02f15e7"
+      ],
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "SymbolHistory"
+      ],
+      "revision": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD"
+    },
+    {
+      "claimId": "MarketTransfer",
+      "domain": "HistoricalInstrumentIdentity",
+      "status": "UNKNOWN",
+      "coverageStart": "2026-09-30",
+      "coverageEnd": "2026-09-30",
+      "evidenceIds": [
+        "16e9385a-6c6a-4881-bde3-2f6db02f15e7"
+      ],
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "MarketTransfer"
+      ],
+      "revision": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD"
+    },
+    {
+      "claimId": "HistoricalMembership",
+      "domain": "HistoricalUniverse",
+      "status": "UNKNOWN",
+      "coverageStart": "2026-09-30",
+      "coverageEnd": "2026-09-30",
+      "evidenceIds": [
+        "25bc00ef-0f8c-444e-a368-6a029221eda1"
+      ],
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "HistoricalMembership"
+      ],
+      "revision": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD"
+    },
+    {
+      "claimId": "Listing",
+      "domain": "HistoricalUniverse",
+      "status": "UNKNOWN",
+      "coverageStart": "2026-09-30",
+      "coverageEnd": "2026-09-30",
+      "evidenceIds": [
+        "25bc00ef-0f8c-444e-a368-6a029221eda1"
+      ],
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "Listing"
+      ],
+      "revision": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD"
+    },
+    {
+      "claimId": "Delisting",
+      "domain": "HistoricalUniverse",
+      "status": "UNKNOWN",
+      "coverageStart": "2026-09-30",
+      "coverageEnd": "2026-09-30",
+      "evidenceIds": [
+        "25bc00ef-0f8c-444e-a368-6a029221eda1"
+      ],
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "Delisting"
+      ],
+      "revision": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD"
+    },
+    {
+      "claimId": "Suspension",
+      "domain": "HistoricalUniverse",
+      "status": "UNKNOWN",
+      "coverageStart": "2026-09-30",
+      "coverageEnd": "2026-09-30",
+      "evidenceIds": [
+        "25bc00ef-0f8c-444e-a368-6a029221eda1"
+      ],
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "Suspension"
+      ],
+      "revision": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD"
+    },
+    {
+      "claimId": "Denominator",
+      "domain": "HistoricalUniverse",
+      "status": "UNKNOWN",
+      "coverageStart": "2026-09-30",
+      "coverageEnd": "2026-09-30",
+      "evidenceIds": [
+        "25bc00ef-0f8c-444e-a368-6a029221eda1"
+      ],
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "Denominator"
+      ],
+      "revision": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD"
+    },
+    {
+      "claimId": "HistoricalPrices",
+      "domain": "HistoricalPriceVolume",
+      "status": "UNKNOWN",
+      "coverageStart": "2026-09-30",
+      "coverageEnd": "2026-09-30",
+      "evidenceIds": [
+        "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d"
+      ],
+      "blockingReasons": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "HistoricalPrices"
+      ],
+      "revision": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD"
+    },
+    {
+      "claimId": "Units",
+      "domain": "HistoricalPriceVolume",
+      "status": "PARTIALLY_SUPPORTED",
+      "coverageStart": "2026-09-30",
+      "coverageEnd": "2026-09-30",
+      "evidenceIds": [
+        "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d"
+      ],
+      "blockingReasons": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "Units"
+      ],
+      "revision": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD"
+    },
+    {
+      "claimId": "SourceIdentity",
+      "domain": "HistoricalPriceVolume",
+      "status": "PARTIALLY_SUPPORTED",
+      "coverageStart": "2026-09-30",
+      "coverageEnd": "2026-09-30",
+      "evidenceIds": [
+        "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d"
+      ],
+      "blockingReasons": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "SourceIdentity"
+      ],
+      "revision": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD"
+    },
+    {
+      "claimId": "HistoricalPublication",
+      "domain": "Availability",
+      "status": "UNKNOWN",
+      "coverageStart": "2026-09-30",
+      "coverageEnd": "2026-09-30",
+      "evidenceIds": [
+        "d1434433-7b43-4e7d-8868-8954f2c1fb8f"
+      ],
+      "blockingReasons": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "HistoricalPublication"
+      ],
+      "revision": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD"
+    },
+    {
+      "claimId": "RevisionBehavior",
+      "domain": "Availability",
+      "status": "UNKNOWN",
+      "coverageStart": "2026-09-30",
+      "coverageEnd": "2026-09-30",
+      "evidenceIds": [
+        "d1434433-7b43-4e7d-8868-8954f2c1fb8f"
+      ],
+      "blockingReasons": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "RevisionBehavior"
+      ],
+      "revision": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD"
+    },
+    {
+      "claimId": "SourceIdentity",
+      "domain": "Availability",
+      "status": "PARTIALLY_SUPPORTED",
+      "coverageStart": "2026-09-30",
+      "coverageEnd": "2026-09-30",
+      "evidenceIds": [
+        "d1434433-7b43-4e7d-8868-8954f2c1fb8f"
+      ],
+      "blockingReasons": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "SourceIdentity"
+      ],
+      "revision": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD"
+    },
+    {
+      "claimId": "PriceBasis",
+      "domain": "CorporateActionPriceBasis",
+      "status": "UNKNOWN",
+      "coverageStart": "2026-09-30",
+      "coverageEnd": "2026-09-30",
+      "evidenceIds": [
+        "41aaa86d-5a89-40b9-b3b5-8ffebbefc92b"
+      ],
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "PriceBasis"
+      ],
+      "revision": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD"
+    },
+    {
+      "claimId": "CorporateActionHandling",
+      "domain": "CorporateActionPriceBasis",
+      "status": "UNKNOWN",
+      "coverageStart": "2026-09-30",
+      "coverageEnd": "2026-09-30",
+      "evidenceIds": [
+        "41aaa86d-5a89-40b9-b3b5-8ffebbefc92b"
+      ],
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "CorporateActionHandling"
+      ],
+      "revision": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD"
+    }
+  ],
+  "coverage": {
+    "status": "AUDITED_RELEASE_SNAPSHOT",
+    "realRawRows": 21,
+    "eligibleObservations": 0,
+    "approvedAuthorityDomains": 0,
+    "approvedDatasets": 0,
+    "firstRealPitEligibleObservation": "NO",
+    "firstApprovedRealComponentDataset": "NO",
+    "firstRealComponentBaseline": "NO",
+    "revision": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD"
+  },
+  "runs": [
+    {
+      "runId": "REAL_BASELINE_V1",
+      "status": "NOT_RUN",
+      "dataMode": "RealUnapproved",
+      "modelVersion": "V3EvidenceCandidate-v1",
+      "parameterSetId": "dd4ad24e-3b21-48d0-92ee-98eba5d5dd6f",
+      "datasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069",
+      "datasetApprovalId": null,
+      "codeCommitSha": "efde456dbb8b25c1596a61d869ed5ad78d387226",
+      "createdAt": "2026-11-01T10:54:56.5621849+00:00",
+      "metricRefs": []
+    }
+  ],
+  "approvals": [],
+  "capturedAt": "2026-11-05T20:33:25.6722753+00:00"
+}

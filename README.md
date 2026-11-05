@@ -1,3 +1,9 @@
+## 3.1.2 — Evidence-Driven
+
+證據關閉查核、逐筆 PIT 資格、獨立組件驗證流程與來源追溯 API；歷史研究運算移至 Domain/Application。啟動 `Start-WorkJournal3120.ps1`（http://localhost:5204），登入後開啟 `/ResearchValidation`。
+
+實作報告：[docs/implementation-3.1.2.md](docs/implementation-3.1.2.md)。20 筆真實原始資料、0 筆 eligible、0 個核准資料集；baseline NOT_RUN、Phase5 LOCKED。
+
 ## 3.1.1 — Phase 4G、API 優先與市場分析效能
 
 新增公式身分、研究診斷與治理 API；既有運算抽離至 Domain/Application，市場排行改為背景分析、進度及部分結果顯示。本機入口：`Start-WorkJournal3110.ps1`（5203）。
