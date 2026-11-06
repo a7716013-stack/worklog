@@ -28,6 +28,18 @@ public sealed record BaselineArchive(RealDatasetSubmission Submission,FirstAppro
 
 public sealed class RealBaselineStore(string root)
 {
+    public BaselineResearchReport Preview(RealDatasetSubmission submission,ResearchRequest template,string evidenceRoot,string authorityRoot,DateTimeOffset at,ComponentClosureReport closure,string closureRoot)
+    {
+        var current=new AuthorityClosureStore(closureRoot,evidenceRoot).Evaluate(new(submission,closure.Cases.Select(c=>new ComponentClosureBinding(c.Case.Domain,c.Case.CaseId,c.Digest)).ToArray()));
+        if(current.ReportDigest!=closure.ReportDigest)throw new InvalidOperationException("Stale closure");
+        ValidateClosure(current,RealDataApproval.InputDigest(submission),submission.RequestedComponents);
+        var approval=new RealDataApproval(evidenceRoot,authorityRoot).Evaluate(submission);
+        if(approval.ComponentApprovals.Length==0||template.Snapshots.Length!=0||template.EvaluateOos)throw new InvalidOperationException("Approved development-only template required");
+        var request=template with{Snapshots=new HistoricalDatasetBuilder().Build(submission.Source.Dataset).Snapshots};
+        ValidateLabels(submission,request);
+        if(at<request.CreatedAt)throw new InvalidOperationException("Preview cannot precede request");
+        return Calculate(new(submission,approval,request,at),Freeze(request,approval));
+    }
     public string Execute(RealDatasetSubmission submission,ResearchRequest template,string evidenceRoot,string authorityRoot,TimeProvider clock,ComponentClosureReport? closure=null,string? closureRoot=null)
     {
         if(closure is not null)

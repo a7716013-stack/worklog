@@ -150,7 +150,7 @@ public sealed class EvidenceValidationWorkflow(string root,string evidenceRoot,s
             r.Provenance.ResearchStatus!="NOT_RUN"||r.Provenance.ResearchOutputDigest is not null||r.Promotion!="NOT_PROMOTED"||r.Phase5!="LOCKED")
             throw new InvalidDataException("Unsupported release state; controlled research export required");
     }
-    public static int Priority(ClosureDomain domain,string claim)=>claim=="HistoricalPublication"||domain==ClosureDomain.Availability&&claim=="SourceIdentity"?0:
+    public static int Priority(ClosureDomain domain,string claim)=>claim is "HistoricalPublication" or "SourceIdentity"?0:
         claim=="RevisionBehavior"?1:domain switch {ClosureDomain.HistoricalInstrumentIdentity=>2,ClosureDomain.HistoricalUniverse=>3,ClosureDomain.TradingCalendar=>4,_=>5};
 }
 public sealed class EvidenceValidationReadService(string path)

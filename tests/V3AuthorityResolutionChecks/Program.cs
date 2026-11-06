@@ -118,11 +118,18 @@ if(code.Length==40&&code.All(Uri.IsHexDigit))
     var milestone=positiveStore.ReadMilestone();
     Reject(()=>positiveStore.Approve(positive.Request,code),"same approval cannot overwrite milestone");
     Check(positiveStore.ReadMilestone().Digest==milestone.Digest,"milestone set exactly once with receipt lineage");
+    var phase4i=new WorkJournal.Application.Research.Phase4IWorkflow(Path.Combine(root,"positive-store"),positive.Evidence,positive.Authority,positive.Closure);
+    var insufficient=phase4i.Run(positive.Request,receipt.ApprovalId,positive.Template,code,positive.Template.CreatedAt);
+    WorkJournal.Application.Research.Phase4IProjection.Validate(insufficient);
+    Check(insufficient.Trend.Status=="INSUFFICIENT_SAMPLE"&&insufficient.Trend.Metrics is null,"approved but undersized sample returns explicit null performance");
+    Check(!Directory.Exists(Path.Combine(root,"positive-store","components","baselines",positive.Template.ResearchRunId.ToString("N"))),"insufficient sample does not create baseline milestone/archive");
     approvedWorkflow.RunBaseline(positive.Request,receipt.ApprovalId,positive.Template,code,positive.Template.CreatedAt);
     var replayDigest=ResearchMath.Digest(positiveStore.BaselineReplay(positive.Template.ResearchRunId));
+    Phase4ISampleChecks.Run(new RealBaselineStore(Path.Combine(root,"positive-store","components","baselines")).Replay(positive.Template.ResearchRunId),positive.Template.Protocol,Check);
     Check(replayDigest.Length==64,"valid isolated receipt allows frozen baseline and replay");
     positiveStore.Revoke(receipt.ApprovalId,"REVOKED_FOR_FUTURE_USE","SIMULATED revocation",positive.Template.CreatedAt.AddSeconds(1));
     Reject(()=>approvedWorkflow.Diagnose(positive.Request,receipt.ApprovalId,positive.Template.Parameters,code,positive.Template.CreatedAt),"revoked approval blocks new diagnostics");
+    Reject(()=>phase4i.Run(positive.Request,receipt.ApprovalId,positive.Template,code,positive.Template.CreatedAt),"revoked approval blocks Phase4I sample assessment");
     Reject(()=>positiveStore.Baseline(receipt.ApprovalId,positive.Template with{ResearchRunId=Guid.NewGuid()},code),"revoked receipt blocks new baseline");
     Check(ResearchMath.Digest(positiveStore.BaselineReplay(positive.Template.ResearchRunId))==replayDigest,"archived baseline replay survives revocation");
 }

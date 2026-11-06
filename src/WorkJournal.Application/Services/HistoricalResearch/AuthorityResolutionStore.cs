@@ -180,6 +180,14 @@ public sealed class AuthorityResolutionStore(string root, string evidenceRoot, s
         Write(Path.Combine(root, "trend-baselines", template.ResearchRunId.ToString("N") + ".digest.json"), ResearchMath.Digest(output));
         return dir;
     }
+    public BaselineResearchReport PreviewBaseline(Guid id,ResearchRequest template,string sha,DateTimeOffset at)
+    {
+        ReadMilestone();var a=Replay(id);CheckCode(sha);var component=Components.Current(id);
+        if(Evaluate(a.Request).Digest!=a.Report.Digest||template.CandidateVersion!=component.Receipt.CandidateVersion||template.CreatedAt<component.Receipt.ApprovedAt)
+            throw new InvalidOperationException("STALE_APPROVAL_OR_TEMPLATE");
+        var closure=new AuthorityClosureStore(closureRoot,evidenceRoot).Evaluate(a.Request.Input.Closure);
+        return new RealBaselineStore(Path.Combine(root,"components","baselines")).Preview(a.Request.Input.Closure.Dataset,template,evidenceRoot,authorityRoot,at,closure,closureRoot);
+    }
     public object BaselineReplay(Guid runId)
     {
         var saved = HistoricalDatasetStore.Read<System.Text.Json.JsonElement>(Path.Combine(root, "trend-baselines", runId.ToString("N") + ".json"));
