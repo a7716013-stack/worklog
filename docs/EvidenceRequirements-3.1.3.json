@@ -1,0 +1,325 @@
+{
+  "reportDigest": "0E41FA9EBDE9F7602E52CE8D129D1AF90639EF1FCB42B251AB91F2A38ED0B18D",
+  "claims": [
+    {
+      "id": "Availability:HistoricalPublication",
+      "subject": "4FBCE6C6AAF32B6A7EEE1F1300B399C574778974DAD9F9D89EB713D3B349EC2A",
+      "priority": 0,
+      "instruments": [
+        "2330"
+      ],
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "historicalAvailableAtProof": "UNPROVEN",
+      "revisionEvidence": "UNPROVEN",
+      "blockingReasons": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "HistoricalPublication"
+      ]
+    },
+    {
+      "id": "Availability:SourceIdentity",
+      "subject": "4FBCE6C6AAF32B6A7EEE1F1300B399C574778974DAD9F9D89EB713D3B349EC2A",
+      "priority": 0,
+      "instruments": [
+        "2330"
+      ],
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "historicalAvailableAtProof": "UNPROVEN",
+      "revisionEvidence": "UNPROVEN",
+      "blockingReasons": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "SourceIdentity"
+      ]
+    },
+    {
+      "id": "HistoricalPriceVolume:SourceIdentity",
+      "subject": "6E5056220DDA890F1EC46C7201131CEFB729813C99A352B8F3E5194273735311",
+      "priority": 0,
+      "instruments": [
+        "2330"
+      ],
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "historicalAvailableAtProof": "UNPROVEN",
+      "revisionEvidence": "UNPROVEN",
+      "blockingReasons": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "SourceIdentity"
+      ]
+    },
+    {
+      "id": "Availability:RevisionBehavior",
+      "subject": "4FBCE6C6AAF32B6A7EEE1F1300B399C574778974DAD9F9D89EB713D3B349EC2A",
+      "priority": 1,
+      "instruments": [
+        "2330"
+      ],
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "historicalAvailableAtProof": "UNPROVEN",
+      "revisionEvidence": "UNPROVEN",
+      "blockingReasons": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "RevisionBehavior"
+      ]
+    },
+    {
+      "id": "HistoricalInstrumentIdentity:HistoricalInstrumentIdentity",
+      "subject": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+      "priority": 2,
+      "instruments": [
+        "2330"
+      ],
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "historicalAvailableAtProof": "UNPROVEN",
+      "revisionEvidence": "UNPROVEN",
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "HistoricalInstrumentIdentity"
+      ]
+    },
+    {
+      "id": "HistoricalInstrumentIdentity:MarketTransfer",
+      "subject": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+      "priority": 2,
+      "instruments": [
+        "2330"
+      ],
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "historicalAvailableAtProof": "UNPROVEN",
+      "revisionEvidence": "UNPROVEN",
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "MarketTransfer"
+      ]
+    },
+    {
+      "id": "HistoricalInstrumentIdentity:SymbolHistory",
+      "subject": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+      "priority": 2,
+      "instruments": [
+        "2330"
+      ],
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "historicalAvailableAtProof": "UNPROVEN",
+      "revisionEvidence": "UNPROVEN",
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "SymbolHistory"
+      ]
+    },
+    {
+      "id": "HistoricalUniverse:Delisting",
+      "subject": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+      "priority": 3,
+      "instruments": [
+        "2330"
+      ],
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "historicalAvailableAtProof": "UNPROVEN",
+      "revisionEvidence": "UNPROVEN",
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "Delisting"
+      ]
+    },
+    {
+      "id": "HistoricalUniverse:Denominator",
+      "subject": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+      "priority": 3,
+      "instruments": [
+        "2330"
+      ],
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "historicalAvailableAtProof": "UNPROVEN",
+      "revisionEvidence": "UNPROVEN",
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "Denominator"
+      ]
+    },
+    {
+      "id": "HistoricalUniverse:HistoricalMembership",
+      "subject": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+      "priority": 3,
+      "instruments": [
+        "2330"
+      ],
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "historicalAvailableAtProof": "UNPROVEN",
+      "revisionEvidence": "UNPROVEN",
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "HistoricalMembership"
+      ]
+    },
+    {
+      "id": "HistoricalUniverse:Listing",
+      "subject": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+      "priority": 3,
+      "instruments": [
+        "2330"
+      ],
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "historicalAvailableAtProof": "UNPROVEN",
+      "revisionEvidence": "UNPROVEN",
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "Listing"
+      ]
+    },
+    {
+      "id": "HistoricalUniverse:Suspension",
+      "subject": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+      "priority": 3,
+      "instruments": [
+        "2330"
+      ],
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "historicalAvailableAtProof": "UNPROVEN",
+      "revisionEvidence": "UNPROVEN",
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "Suspension"
+      ]
+    },
+    {
+      "id": "TradingCalendar:EmergencyClosures",
+      "subject": "DF80B963E4DB5DEA8EF5A784C0AEAA242330C07232CE6A439793C0301E2F7BDB",
+      "priority": 4,
+      "instruments": [
+        "2330"
+      ],
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "historicalAvailableAtProof": "UNPROVEN",
+      "revisionEvidence": "UNPROVEN",
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "EmergencyClosures"
+      ]
+    },
+    {
+      "id": "TradingCalendar:HistoricalSessions",
+      "subject": "DF80B963E4DB5DEA8EF5A784C0AEAA242330C07232CE6A439793C0301E2F7BDB",
+      "priority": 4,
+      "instruments": [
+        "2330"
+      ],
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "historicalAvailableAtProof": "UNPROVEN",
+      "revisionEvidence": "UNPROVEN",
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "HistoricalSessions"
+      ]
+    },
+    {
+      "id": "TradingCalendar:Horizon:TradingSessions",
+      "subject": "DF80B963E4DB5DEA8EF5A784C0AEAA242330C07232CE6A439793C0301E2F7BDB",
+      "priority": 4,
+      "instruments": [
+        "2330"
+      ],
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "historicalAvailableAtProof": "UNPROVEN",
+      "revisionEvidence": "UNPROVEN",
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "Horizon:TradingSessions"
+      ]
+    },
+    {
+      "id": "TradingCalendar:ScheduledHolidays",
+      "subject": "DF80B963E4DB5DEA8EF5A784C0AEAA242330C07232CE6A439793C0301E2F7BDB",
+      "priority": 4,
+      "instruments": [
+        "2330"
+      ],
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "historicalAvailableAtProof": "UNPROVEN",
+      "revisionEvidence": "UNPROVEN",
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "ScheduledHolidays"
+      ]
+    },
+    {
+      "id": "CorporateActionPriceBasis:CorporateActionHandling",
+      "subject": "CF4B9412108C7D26A7994F8DAFCE5349FAF8DB914D28F811451DEAD859D47A56",
+      "priority": 5,
+      "instruments": [
+        "2330"
+      ],
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "historicalAvailableAtProof": "UNPROVEN",
+      "revisionEvidence": "UNPROVEN",
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "CorporateActionHandling"
+      ]
+    },
+    {
+      "id": "CorporateActionPriceBasis:PriceBasis",
+      "subject": "CF4B9412108C7D26A7994F8DAFCE5349FAF8DB914D28F811451DEAD859D47A56",
+      "priority": 5,
+      "instruments": [
+        "2330"
+      ],
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "historicalAvailableAtProof": "UNPROVEN",
+      "revisionEvidence": "UNPROVEN",
+      "blockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "PriceBasis"
+      ]
+    },
+    {
+      "id": "HistoricalPriceVolume:HistoricalPrices",
+      "subject": "6E5056220DDA890F1EC46C7201131CEFB729813C99A352B8F3E5194273735311",
+      "priority": 5,
+      "instruments": [
+        "2330"
+      ],
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "historicalAvailableAtProof": "UNPROVEN",
+      "revisionEvidence": "UNPROVEN",
+      "blockingReasons": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "HistoricalPrices"
+      ]
+    },
+    {
+      "id": "HistoricalPriceVolume:Units",
+      "subject": "6E5056220DDA890F1EC46C7201131CEFB729813C99A352B8F3E5194273735311",
+      "priority": 5,
+      "instruments": [
+        "2330"
+      ],
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "historicalAvailableAtProof": "UNPROVEN",
+      "revisionEvidence": "UNPROVEN",
+      "blockingReasons": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "Units"
+      ]
+    }
+  ]
+}
