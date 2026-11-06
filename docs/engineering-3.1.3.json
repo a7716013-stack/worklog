@@ -1,0 +1,167 @@
+{
+  "version": "3.1.3",
+  "baselineSha": "cd0254aeb85298218d2d03efa443d36b4fbc2ff2",
+  "changedFiles": [
+    "CHANGELOG.md",
+    "README.md",
+    "Start-WorkJournal3130.ps1",
+    "docs/APIContractChange-3.1.3.md",
+    "docs/Audit-3.1.3.md",
+    "docs/AuthorityClosureReport-3.1.3.json",
+    "docs/DatasetReadiness-3.1.3.json",
+    "docs/EvidenceRequirements-3.1.3.json",
+    "docs/HistoricalSourceApplicability-3.1.3.json",
+    "docs/ModelValidationStatus-3.1.3.json",
+    "docs/PITEligibilityReport-3.1.3.json",
+    "docs/api-v1.md",
+    "docs/authority-state-3.1.3.json",
+    "docs/engineering-3.1.3.json",
+    "docs/implementation-3.1.3.md",
+    "docs/next-implementation.md",
+    "docs/openapi-v1.json",
+    "docs/phase4i-state-3.1.3.json",
+    "docs/releases/3.1.3.md",
+    "docs/validation-state-3.1.3.json",
+    "src/WorkJournal.Api/ApiHost.cs",
+    "src/WorkJournal.Api/Controllers/Phase4IController.cs",
+    "src/WorkJournal.Api/Services/Phase4IReadAdapter.cs",
+    "src/WorkJournal.Api/WorkJournal.Api.csproj",
+    "src/WorkJournal.Application/Research/EvidenceValidationWorkflow.cs",
+    "src/WorkJournal.Application/Research/Phase4IReadModel.cs",
+    "src/WorkJournal.Application/Research/Phase4IWorkflow.cs",
+    "src/WorkJournal.Application/Services/HistoricalResearch/AuthorityResolutionStore.cs",
+    "src/WorkJournal.Application/Services/HistoricalResearch/RealBaselineStore.cs",
+    "src/WorkJournal.Application/WorkJournal.Application.csproj",
+    "src/WorkJournal.Domain/WorkJournal.Domain.csproj",
+    "src/WorkJournal.Evidence.Cli/Phase4ICommands.cs",
+    "src/WorkJournal.Evidence.Cli/Program.cs",
+    "src/WorkJournal.Evidence.Cli/WorkJournal.Evidence.Cli.csproj",
+    "src/WorkJournal.Web/Views/StockAnalysis/Validation.cshtml",
+    "src/WorkJournal.Web/WorkJournal.Web.csproj",
+    "src/WorkJournal.Web/wwwroot/js/research-phase4i.js",
+    "tests/ApiContractChecks/Phase4IChecks.cs",
+    "tests/ApiContractChecks/Program.cs",
+    "tests/V3AuthorityResolutionChecks/Phase4ISampleChecks.cs",
+    "tests/V3AuthorityResolutionChecks/Program.cs",
+    "tests/research_validation_browser_test.py"
+  ],
+  "localChecks": [
+    {
+      "project": "build",
+      "exitCode": 0
+    },
+    {
+      "project": "MarketDataChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "ApiContractChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3AuthorityResolutionChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ComponentDatasetChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ClosureChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3RealDataChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3AuthorityChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3PitDatasetChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ResearchChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ModelChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "MarketRadarChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "FinMindChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "FinMindChecks/LegacySwing75Checks",
+      "exitCode": 0
+    },
+    {
+      "project": "PaperTradingChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "StrategyCenterChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "MarketRadarTrackingChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V2FoundationChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V2EvidenceChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-build",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-research",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-replay",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-scorecard",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-selection",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-oos",
+      "exitCode": 0
+    }
+  ],
+  "finalChecks": {
+    "api": 254,
+    "authoritySample": 97,
+    "browser": "PASS"
+  },
+  "counts": {
+    "totalFacts": 21,
+    "price": 20,
+    "institutional": 1,
+    "duplicates": 0,
+    "requestedObservations": 1,
+    "eligible": 0,
+    "approvedSamples": 0
+  },
+  "baseline": "NOT_RUN",
+  "phase5": "LOCKED",
+  "sameShaCi": "Required on final integration head; GitHub Actions authoritative"
+}

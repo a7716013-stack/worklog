@@ -1,3 +1,9 @@
+## 3.1.3 — Phase 4I / 100 分模型真實驗證
+
+五個新研究 API、證據佇列、PIT/readiness/replay 與研究樣本檢查。本機 `Start-WorkJournal3130.ps1`（http://localhost:5205），登入後 `/ResearchValidation`。
+
+明確計數：20 筆價格 + 1 筆法人 = 21 facts；1 個觀測，0 eligible／0 approved。真實 baseline 尚未執行。詳見 [實作報告](docs/implementation-3.1.3.md)。以下保留歷史版本紀錄；3.1.2 的「20 raw」文字已由本版澄清。
+
 ## 3.1.2 — Evidence-Driven
 
 證據關閉查核、逐筆 PIT 資格、獨立組件驗證流程與來源追溯 API；歷史研究運算移至 Domain/Application。啟動 `Start-WorkJournal3120.ps1`（http://localhost:5204），登入後開啟 `/ResearchValidation`。

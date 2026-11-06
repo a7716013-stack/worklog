@@ -1,3 +1,10 @@
+## 3.1.3 — 2026-11-06
+
+- Phase 4I：官方來源適用性與 reviewer receipts、20 項 evidence requirement、七道 PIT/readiness 與明確 facts/observations/samples 計數。
+- API Phase C 五個唯讀端點與 ResearchValidation 頁擴充。
+- 受控 Trend 樣本檢查，不足時 INSUFFICIENT_SAMPLE/null 且不建立 baseline 紀錄。
+- Candidate-v1 公式及權重不變；0 eligible/approved、baseline NOT_RUN、Phase5 LOCKED。
+
 ## 3.1.2 — 2026-11-06
 
 - 20 項 scoped claims 重新取得官方來源並記錄 review；27 次取得嘗試、20 次成功，歷史發布／修訂證明仍不足。

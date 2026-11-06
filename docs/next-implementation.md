@@ -1,3 +1,7 @@
+# Phase 4I 後續
+
+3.1.3 已實作證據適用性、計數、樣本 gate 及 API Phase C。下一步仍為取得指定歷史範圍的發布／修訂與其他必要 authority；受控核准及樣本足量後才執行真實 Trend baseline。Full Evidence 需六組件獨立核准。見 [3.1.3 報告](implementation-3.1.3.md)。以下保留歷史規劃。
+
 # 下一階段
 
 3.1.2 Evidence-Driven 已實作，詳見 [報告](implementation-3.1.2.md)。優先補齊真實 historical publication/revision 證據，通過 PIT 與受控核准後才執行真實 baseline；六組件獨立核准及 API 優先規則持續適用。

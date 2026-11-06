@@ -1,0 +1,178 @@
+{
+  "reportDigest": "2A96A435EDA7B8D6EEE17E76B97E0BD486C58A4BFF6237ED9502BDE3F7C4265B",
+  "counts": {
+    "TotalFacts": 21,
+    "PriceFacts": 20,
+    "InstitutionalFacts": 1,
+    "BenchmarkFacts": 0,
+    "UniqueFacts": 21,
+    "DuplicateFacts": 0,
+    "UniqueTypeInstrumentDates": 21,
+    "AdditionalRevisions": 0,
+    "RequestedObservations": 1,
+    "EligibleObservations": 0,
+    "ApprovedResearchSamples": 0,
+    "Definition": "Parsed source facts; type/provider/instrument/date keys. Revisions are not duplicate checksums. Requested observations are instrument/decision-date pairs; samples require approval. RawRealRows is the legacy total-facts alias, not CSV line count."
+  },
+  "dataset": {
+    "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069",
+    "DatasetVersion": "TWSE-2330-202609-capture-audit-v1",
+    "VersionSetId": "8d0f02c5-5ff4-4cc2-8565-fef2576b21a4",
+    "RawRealRows": 21,
+    "ExpectedObservations": null,
+    "EligibleObservations": 0,
+    "BlockedObservations": 1,
+    "Status": 0,
+    "BlockingReasons": [
+      "APPROVED_REAL_DATASET_REQUIRED",
+      "Availability:HistoricalPublication",
+      "Availability:RevisionBehavior",
+      "Availability:SourceIdentity",
+      "BLOCKED_BY_AUTHORITY",
+      "CALENDAR_COVERAGE_UNKNOWN",
+      "CORPORATE_ACTION_UNRESOLVED",
+      "CorporateActionPriceBasis:CorporateActionHandling",
+      "CorporateActionPriceBasis:PriceBasis",
+      "HistoricalInstrumentIdentity:HistoricalInstrumentIdentity",
+      "HistoricalInstrumentIdentity:MarketTransfer",
+      "HistoricalInstrumentIdentity:SymbolHistory",
+      "HistoricalPriceVolume:HistoricalPrices",
+      "HistoricalPriceVolume:SourceIdentity",
+      "HistoricalPriceVolume:Units",
+      "HistoricalUniverse:Delisting",
+      "HistoricalUniverse:Denominator",
+      "HistoricalUniverse:HistoricalMembership",
+      "HistoricalUniverse:Listing",
+      "HistoricalUniverse:Suspension",
+      "PHASE4DE_APPROVAL_REQUIRED",
+      "PRICE_AUTHORITY_UNPROVEN",
+      "PRICE_BASIS_CONFLICT",
+      "PRICE_BASIS_INCONSISTENT",
+      "PRICE_FACTS_MISSING",
+      "REQUESTED_OBSERVATIONS_NOT_FULLY_ELIGIBLE",
+      "REVISION_UNKNOWN",
+      "SURVIVORSHIP_BIAS_RISK",
+      "TradingCalendar:EmergencyClosures",
+      "TradingCalendar:HistoricalSessions",
+      "TradingCalendar:Horizon:TradingSessions",
+      "TradingCalendar:ScheduledHolidays",
+      "UNKNOWN_AVAILABILITY",
+      "UNRESOLVED_CALENDAR",
+      "UNRESOLVED_IDENTITY",
+      "UNRESOLVED_UNIVERSE",
+      "UNVERIFIABLE_AVAILABILITY",
+      "UNVERIFIABLE_REVISION"
+    ]
+  },
+  "components": [
+    {
+      "Evidence": "Trend",
+      "Weight": 25,
+      "Eligibility": 0,
+      "DatasetStatus": "BLOCKED",
+      "BaselineStatus": "NOT_RUN",
+      "BlockingReasons": [
+        "APPROVED_REAL_DATASET_REQUIRED",
+        "Availability:HistoricalPublication",
+        "Availability:RevisionBehavior",
+        "Availability:SourceIdentity",
+        "BLOCKED_BY_AUTHORITY",
+        "CALENDAR_COVERAGE_UNKNOWN",
+        "CORPORATE_ACTION_UNRESOLVED",
+        "CorporateActionPriceBasis:CorporateActionHandling",
+        "CorporateActionPriceBasis:PriceBasis",
+        "HistoricalInstrumentIdentity:HistoricalInstrumentIdentity",
+        "HistoricalInstrumentIdentity:MarketTransfer",
+        "HistoricalInstrumentIdentity:SymbolHistory",
+        "HistoricalPriceVolume:HistoricalPrices",
+        "HistoricalPriceVolume:SourceIdentity",
+        "HistoricalPriceVolume:Units",
+        "HistoricalUniverse:Delisting",
+        "HistoricalUniverse:Denominator",
+        "HistoricalUniverse:HistoricalMembership",
+        "HistoricalUniverse:Listing",
+        "HistoricalUniverse:Suspension",
+        "PHASE4DE_APPROVAL_REQUIRED",
+        "PRICE_AUTHORITY_UNPROVEN",
+        "PRICE_BASIS_CONFLICT",
+        "PRICE_BASIS_INCONSISTENT",
+        "PRICE_FACTS_MISSING",
+        "REQUESTED_OBSERVATIONS_NOT_FULLY_ELIGIBLE",
+        "REVISION_UNKNOWN",
+        "SURVIVORSHIP_BIAS_RISK",
+        "TradingCalendar:EmergencyClosures",
+        "TradingCalendar:HistoricalSessions",
+        "TradingCalendar:Horizon:TradingSessions",
+        "TradingCalendar:ScheduledHolidays",
+        "UNKNOWN_AVAILABILITY",
+        "UNRESOLVED_CALENDAR",
+        "UNRESOLVED_IDENTITY",
+        "UNRESOLVED_UNIVERSE",
+        "UNVERIFIABLE_AVAILABILITY",
+        "UNVERIFIABLE_REVISION"
+      ],
+      "ApprovalId": null,
+      "ApprovalDigest": null
+    },
+    {
+      "Evidence": "Momentum",
+      "Weight": 15,
+      "Eligibility": 0,
+      "DatasetStatus": "BLOCKED",
+      "BaselineStatus": "NOT_RUN",
+      "BlockingReasons": [
+        "INDEPENDENT_COMPONENT_AUTHORITY_PIT_APPROVAL_REQUIRED"
+      ],
+      "ApprovalId": null,
+      "ApprovalDigest": null
+    },
+    {
+      "Evidence": "VolumePrice",
+      "Weight": 15,
+      "Eligibility": 0,
+      "DatasetStatus": "BLOCKED",
+      "BaselineStatus": "NOT_RUN",
+      "BlockingReasons": [
+        "INDEPENDENT_COMPONENT_AUTHORITY_PIT_APPROVAL_REQUIRED"
+      ],
+      "ApprovalId": null,
+      "ApprovalDigest": null
+    },
+    {
+      "Evidence": "Institutional",
+      "Weight": 20,
+      "Eligibility": 0,
+      "DatasetStatus": "BLOCKED",
+      "BaselineStatus": "NOT_RUN",
+      "BlockingReasons": [
+        "INDEPENDENT_COMPONENT_AUTHORITY_PIT_APPROVAL_REQUIRED"
+      ],
+      "ApprovalId": null,
+      "ApprovalDigest": null
+    },
+    {
+      "Evidence": "RelativeStrength",
+      "Weight": 15,
+      "Eligibility": 0,
+      "DatasetStatus": "BLOCKED",
+      "BaselineStatus": "NOT_RUN",
+      "BlockingReasons": [
+        "INDEPENDENT_COMPONENT_AUTHORITY_PIT_APPROVAL_REQUIRED"
+      ],
+      "ApprovalId": null,
+      "ApprovalDigest": null
+    },
+    {
+      "Evidence": "RiskQuality",
+      "Weight": 10,
+      "Eligibility": 0,
+      "DatasetStatus": "BLOCKED",
+      "BaselineStatus": "NOT_RUN",
+      "BlockingReasons": [
+        "INDEPENDENT_COMPONENT_AUTHORITY_PIT_APPROVAL_REQUIRED"
+      ],
+      "ApprovalId": null,
+      "ApprovalDigest": null
+    }
+  ]
+}
