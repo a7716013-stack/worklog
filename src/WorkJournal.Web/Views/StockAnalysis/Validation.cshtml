@@ -1,6 +1,9 @@
 @{ViewData["Title"]="100 分模型研究資格";}
 <section class="page-heading"><div><p class="eyebrow">MODEL VALIDATION</p><h1>100 分模型研究資格</h1><p class="subheading">查看歷史證據、資料資格與尚待補齊的項目。</p></div><a class="btn btn-light" href="/StockAnalysis/MarketRadar">返回市場分析</a></section>
 <section class="panel" id="validation-status" aria-live="polite"><p>正在讀取研究資格…</p></section>
+<section class="panel mt-3"><h2>資料與研究樣本</h2><p id="validation-counts"></p><p id="validation-trend"></p><p id="validation-replay"></p></section>
 <section class="panel mt-3"><h2>各構面資料狀態</h2><div class="table-responsive"><table class="table"><thead><tr><th>構面</th><th>權重</th><th>資料資格</th><th>研究</th></tr></thead><tbody id="validation-components"></tbody></table></div><p>分數代表證據強度，不代表勝率或交易指令。只有六構面各自通過資料核准，才能進行完整 100 分模型研究。</p></section>
 <section class="panel mt-3"><h2>待補證據</h2><ul id="validation-gaps"></ul><details><summary>資料來源與稽核身分</summary><pre id="validation-provenance" style="white-space:pre-wrap;overflow-wrap:anywhere"></pre></details></section>
-@section Scripts {<script src="~/js/research-validation.js" asp-append-version="true"></script>}
+<section class="panel mt-3"><h2>20 項證據查核佇列</h2><p>依歷史發布、來源識別與修訂證據優先排序。點選項目查看來源及審查紀錄。</p><div class="table-responsive"><table class="table"><thead><tr><th>需求</th><th>歷史適用性</th><th>狀態</th></tr></thead><tbody id="validation-claims"></tbody></table></div><pre id="validation-claim-detail" aria-live="polite" style="white-space:pre-wrap;overflow-wrap:anywhere"></pre></section>
+<section class="panel mt-3"><h2>逐筆 PIT 資格</h2><p>交易日、下載時間與資料當時可用時間各自獨立；缺少證明時不視為合格。</p><div class="table-responsive"><table class="table"><thead><tr><th>股票／交易日</th><th>當時可用時間</th><th>七項檢查</th></tr></thead><tbody id="validation-pit"></tbody></table></div><button class="btn btn-light" id="validation-pit-more" type="button" hidden>載入更多觀測</button></section>
+@section Scripts {<script src="~/js/research-validation.js" asp-append-version="true"></script><script src="~/js/research-phase4i.js" asp-append-version="true"></script>}
