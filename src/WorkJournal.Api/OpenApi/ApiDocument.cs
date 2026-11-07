@@ -73,7 +73,7 @@ public static class ApiDocument
             foreach(var p in type.GetProperties()) {
                 var key=JsonNamingPolicy.CamelCase.ConvertName(p.Name);var field=Schema(p.PropertyType,schemas);
                 if(new NullabilityInfoContext().Create(p).ReadState==NullabilityState.Nullable)field["nullable"]=true;
-                properties[key]=field;required.Add(key);
+                properties[key]=field;if(p.GetCustomAttribute<WorkJournal.Api.Contracts.ApiOptionalAttribute>() is null)required.Add(key);
             }
         }
         return new JsonObject {["$ref"]="#/components/schemas/"+name};

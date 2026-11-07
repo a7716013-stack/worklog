@@ -1,0 +1,178 @@
+{
+  "version": "3.1.4",
+  "baseSHA": "dc0f7634c176c97b6efc7268e3161112b9655eba",
+  "changedFiles": [
+    "CHANGELOG.md",
+    "README.md",
+    "Start-WorkJournal3140.ps1",
+    "docs/APIContractChange-3.1.4.md",
+    "docs/AcquisitionPlan-3.1.4.json",
+    "docs/Audit-3.1.4.md",
+    "docs/AuthorityClosureReport-3.1.4.json",
+    "docs/DatasetReadiness-3.1.4.json",
+    "docs/ModelValidationStatus-3.1.4.json",
+    "docs/PITEligibilityReport-3.1.4.json",
+    "docs/SourceCapabilityMatrix-3.1.4.json",
+    "docs/api-v1.md",
+    "docs/authority-state-3.1.4.json",
+    "docs/engineering-3.1.4.json",
+    "docs/implementation-3.1.4.md",
+    "docs/next-implementation.md",
+    "docs/openapi-v1.json",
+    "docs/phase4i-state-3.1.4.json",
+    "docs/phase4j-state-3.1.4.json",
+    "docs/releases/3.1.4.md",
+    "docs/validation-state-3.1.4.json",
+    "src/WorkJournal.Api/ApiHost.cs",
+    "src/WorkJournal.Api/Contracts/ApiOptionalAttribute.cs",
+    "src/WorkJournal.Api/Controllers/Phase4IController.cs",
+    "src/WorkJournal.Api/Controllers/Phase4JController.cs",
+    "src/WorkJournal.Api/OpenApi/ApiDocument.cs",
+    "src/WorkJournal.Api/Services/Phase4IReadAdapter.cs",
+    "src/WorkJournal.Api/Services/Phase4JReadAdapter.cs",
+    "src/WorkJournal.Api/WorkJournal.Api.csproj",
+    "src/WorkJournal.Application/Research/Phase4JAcquisition.cs",
+    "src/WorkJournal.Application/Research/Phase4JReadModel.cs",
+    "src/WorkJournal.Application/Research/Phase4JWorkflow.cs",
+    "src/WorkJournal.Application/Services/HistoricalResearch/AuthorityResolutionLedger.cs",
+    "src/WorkJournal.Application/Services/HistoricalResearch/AuthorityResolutionStore.cs",
+    "src/WorkJournal.Application/WorkJournal.Application.csproj",
+    "src/WorkJournal.Domain/WorkJournal.Domain.csproj",
+    "src/WorkJournal.Evidence.Cli/Phase4JCommands.cs",
+    "src/WorkJournal.Evidence.Cli/Program.cs",
+    "src/WorkJournal.Evidence.Cli/WorkJournal.Evidence.Cli.csproj",
+    "src/WorkJournal.Web/Views/StockAnalysis/Validation.cshtml",
+    "src/WorkJournal.Web/WorkJournal.Web.csproj",
+    "src/WorkJournal.Web/wwwroot/js/research-phase4j.js",
+    "tests/ApiContractChecks/Phase4JChecks.cs",
+    "tests/ApiContractChecks/Program.cs",
+    "tests/research_validation_browser_test.py"
+  ],
+  "localChecks": [
+    {
+      "project": "build",
+      "exitCode": 0
+    },
+    {
+      "project": "MarketDataChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "ApiContractChecks",
+      "exitCode": -532462766
+    },
+    {
+      "project": "V3AuthorityResolutionChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ComponentDatasetChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ClosureChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3RealDataChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3AuthorityChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3PitDatasetChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ResearchChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ModelChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "MarketRadarChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "FinMindChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "FinMindChecks/LegacySwing75Checks",
+      "exitCode": 0
+    },
+    {
+      "project": "PaperTradingChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "StrategyCenterChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "MarketRadarTrackingChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V2FoundationChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V2EvidenceChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-build",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-research",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-replay",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-scorecard",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-selection",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-oos",
+      "exitCode": 0
+    }
+  ],
+  "finalChecks": {
+    "browser": "PASS fixture presentation; supply source/paging/attempt/null checks",
+    "apiExitCode": -532462766,
+    "authorityExitCode": 0
+  },
+  "sourceVersions": 13,
+  "plannedTasks": 43,
+  "versionBoundAttempts": 23,
+  "claims": 20,
+  "eligibleObservations": 0,
+  "approvedDatasets": 0,
+  "approvedSamples": 0,
+  "baseline": "NOT_RUN",
+  "threshold": "UNRESOLVED",
+  "phase5": "LOCKED",
+  "sameShaCi": "Final integration-head and main GitHub Actions required; workflow run is authoritative",
+  "acquisition": "No new source downloaded; reuse 23 archived version-bound attempts. Failure receipts lacking a source version remain only in original ledger.",
+  "remainingGaps": [
+    "Historical publication",
+    "Historical revision retention",
+    "Historical identity/universe/calendar",
+    "Price basis/corporate actions",
+    "Independent component approvals",
+    "Sufficient development and validation samples"
+  ]
+}

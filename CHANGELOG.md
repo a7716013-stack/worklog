@@ -1,3 +1,10 @@
+## 3.1.4 — 2026-11-07
+
+- Phase 4J：歷史來源能力、取得計畫／紀錄與獨立構面 Dataset Build Report。
+- 共用 Application 服務，API Phase D 四個唯讀資源及 readiness 相容擴充。
+- 固定來源、SSRF/DNS 防護、大小／逾時／配額／重試限制與來源版本撤銷影響。
+- Formula、Legacy、Paper Trading 不變；真實 baseline NOT_RUN，Phase5 LOCKED。
+
 ## 3.1.3 — 2026-11-06
 
 - Phase 4I：官方來源適用性與 reviewer receipts、20 項 evidence requirement、七道 PIT/readiness 與明確 facts/observations/samples 計數。

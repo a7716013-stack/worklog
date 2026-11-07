@@ -1,3 +1,7 @@
+## 3.1.4 — Phase 4J / 歷史證據供應鏈與資料集準備
+
+13 個來源版本、43 個去重工作、23 筆取得紀錄，4 個新唯讀 API 與六構面建置報告。本機 `Start-WorkJournal3140.ps1`（http://localhost:5206），登入後 `/ResearchValidation`。21 facts、1 observation、0 eligible／approved，baseline NOT_RUN。詳見 [實作報告](docs/implementation-3.1.4.md)。
+
 ## 3.1.3 — Phase 4I / 100 分模型真實驗證
 
 五個新研究 API、證據佇列、PIT/readiness/replay 與研究樣本檢查。本機 `Start-WorkJournal3130.ps1`（http://localhost:5205），登入後 `/ResearchValidation`。

@@ -41,7 +41,7 @@ public sealed class AuthorityResolutionLedger(string root, string evidenceRoot)
             BlockingReason = negative?.Reason ?? task.BlockingReason,
             UpdatedAt = negative?.SearchDate ?? last?.ReceivedAt ?? last?.RequestedAt ?? task.UpdatedAt };
     }
-    public async Task<EvidenceAcquisitionAttempt> Acquire(AuthorityResolutionTask task, string source, string op, HttpClient client, TimeProvider clock)
+    public async Task<EvidenceAcquisitionAttempt> Acquire(AuthorityResolutionTask task, string source, string op, HttpClient client, TimeProvider clock, CancellationToken token=default)
     {
         if (string.IsNullOrWhiteSpace(op)) throw new ArgumentException("Operator required.");
         Register(task); var dir = Path.Combine(TaskFolder(task.ResolutionTaskId), "attempts"); Directory.CreateDirectory(dir);
@@ -55,7 +55,7 @@ public sealed class AuthorityResolutionLedger(string root, string evidenceRoot)
             var acquisition = new EvidenceAcquisitionTask(Guid.NewGuid(), task.TargetProvider, task.TargetDatasetType,
                 AuthorityClosureStore.EvidenceDomainFor(task.AuthorityDomain), task.TargetStart, task.TargetEnd,
                 AvailabilityEvidenceType.OfficialSpecification, AcquisitionStatus.Pending, 0, null, "", source, null, "");
-            var m = await new EvidenceAcquisitionStore(evidenceRoot).Acquire(new(Guid.NewGuid(), task.TargetProvider, task.TargetStart, task.TargetEnd, [acquisition]), client, clock);
+            var m = await new EvidenceAcquisitionStore(evidenceRoot).Acquire(new(Guid.NewGuid(), task.TargetProvider, task.TargetStart, task.TargetEnd, [acquisition]), client, clock, token);
             var a = m.CapturedArtifacts.SingleOrDefault(); var failure = m.FailedArtifacts.FirstOrDefault()?.Reason;
             result = initial with { ReceivedAt = clock.GetUtcNow(), AcquisitionStatus = a is null ? failure ?? "ACQUISITION_FAILED" : "HTTP_SUCCESS",
                 ContentType = a?.ContentType, RawDigest = a?.SHA256, ArchiveLocation = a is null ? null : Path.Combine(evidenceRoot, "evidence", "authority", a.EvidenceId.ToString("N"), "raw.bin"),

@@ -7,7 +7,7 @@ using WorkJournal.Application.Research;
 namespace WorkJournal.Api.Controllers;
 public sealed record ClosureQueueDto(PageDto<ClaimRequirement> Claims,string SourceReportDigest,string ReportDigest);
 public sealed record ClaimEvidenceDto(ClaimRequirement Requirement,string SourceReportDigest,string ReportDigest);
-public sealed record DatasetReadinessDto(DatasetReadiness Dataset,ResearchCounts Counts,ComponentReadiness[] Components,string SampleStatus,string SourceReportDigest,string ReportDigest);
+public sealed record DatasetReadinessDto(DatasetReadiness Dataset,ResearchCounts Counts,ComponentReadiness[] Components,string SampleStatus,string SourceReportDigest,string ReportDigest,[property:ApiOptional]DatasetBuildReport[] Builds,[property:ApiOptional]string BuildReportDigest);
 public sealed record ValidationSummaryDto(TrendValidationSummary Trend,ComponentReadiness[] Components,string FullModelStatus,string FormulaDigest,string ParameterChecksum,string SourceReportDigest,string ReportDigest);
 public sealed record ReplayStatusDto(string RunId,EvidenceReplayStatus Replay,string ReportIntegrity,string SourceReportDigest,string ReportDigest);
 
@@ -30,12 +30,12 @@ public sealed class AuthorityClosureApiController(Phase4IReadAdapter service):Co
     }
 }
 [ApiController,Route("api/v1/research"),Authorize(Policy="ApiResearchRead"),EnableRateLimiting("ReadPolicy")]
-public sealed class Phase4IResearchApiController(Phase4IReadAdapter service):ControllerBase
+public sealed class Phase4IResearchApiController(Phase4IReadAdapter service,Phase4JReadAdapter supply):ControllerBase
 {
     [HttpGet("datasets/{id}/readiness")]
     public ActionResult<DatasetReadinessDto> Readiness(string id)
     {
-        var r=service.Read();return id!=r.Validation.Dataset.DatasetSnapshotId?NotFound():new DatasetReadinessDto(r.Validation.Dataset,r.Counts,r.Validation.Components,r.Trend.Status,r.Validation.SourceReportDigest,r.Digest);
+        var r=service.Read();if(id!=r.Validation.Dataset.DatasetSnapshotId)return NotFound();var j=supply.Read();return new DatasetReadinessDto(r.Validation.Dataset,r.Counts,r.Validation.Components,r.Trend.Status,r.Validation.SourceReportDigest,r.Digest,j.Builds,j.Digest);
     }
     [HttpGet("runs/{id}/validation-summary")]
     public ActionResult<ValidationSummaryDto> Summary(string id)

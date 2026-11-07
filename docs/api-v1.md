@@ -1,3 +1,7 @@
+## Phase D — 3.1.4
+
+新增 sources、acquisition-plan、acquisition-attempts/{taskId}、research/components/{component}/readiness；既有 dataset readiness 增加 builds。詳見 [APIContractChange-3.1.4.md](APIContractChange-3.1.4.md)。
+
 # API Phase C — Worklog 3.1.3
 
 五個新增唯讀資源，重用已存在的 authority、eligibility、coverage、provenance 與研究契約；不公開 approval、promotion 或交易寫入。

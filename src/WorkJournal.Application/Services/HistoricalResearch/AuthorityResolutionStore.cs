@@ -164,6 +164,7 @@ public sealed class AuthorityResolutionStore(string root, string evidenceRoot, s
     public ApprovalUseRevision Revoke(Guid id, string status, string reason, DateTimeOffset at) { Replay(id); return Components.Revoke(id, status, reason, at); }
     public string Baseline(Guid id, ResearchRequest template, string sha)
     {
+        WorkJournal.Application.Research.AcquisitionSafety.RequireCurrentSources(root);
         ReadMilestone(); var a = Replay(id); CheckCode(sha); Components.Current(id);
         if (Evaluate(a.Request).Digest != a.Report.Digest) throw new InvalidOperationException("STALE_APPROVAL_RECEIPT");
         var dir = Components.Baseline(id, template, sha);
@@ -182,6 +183,7 @@ public sealed class AuthorityResolutionStore(string root, string evidenceRoot, s
     }
     public BaselineResearchReport PreviewBaseline(Guid id,ResearchRequest template,string sha,DateTimeOffset at)
     {
+        WorkJournal.Application.Research.AcquisitionSafety.RequireCurrentSources(root);
         ReadMilestone();var a=Replay(id);CheckCode(sha);var component=Components.Current(id);
         if(Evaluate(a.Request).Digest!=a.Report.Digest||template.CandidateVersion!=component.Receipt.CandidateVersion||template.CreatedAt<component.Receipt.ApprovedAt)
             throw new InvalidOperationException("STALE_APPROVAL_OR_TEMPLATE");

@@ -3069,6 +3069,454 @@
         ]
       }
     },
+    "/api/v1/authority/sources": {
+      "get": {
+        "operationId": "Phase4JAuthorityApiController_Sources",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1,
+              "minimum": 1,
+              "maximum": 1000000
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 50,
+              "minimum": 1,
+              "maximum": 200
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceCatalogDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/authority/acquisition-plan": {
+      "get": {
+        "operationId": "Phase4JAuthorityApiController_Plan",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1,
+              "minimum": 1,
+              "maximum": 1000000
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 50,
+              "minimum": 1,
+              "maximum": 200
+            }
+          },
+          {
+            "name": "claimKey",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcquisitionPlanDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/authority/acquisition-attempts/{id}": {
+      "get": {
+        "operationId": "Phase4JAuthorityApiController_Attempts",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcquisitionHistoryDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/research/components/{component}/readiness": {
+      "get": {
+        "operationId": "Phase4JResearchApiController_Component",
+        "parameters": [
+          {
+            "name": "component",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComponentBuildDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
     "/api/v1/market/radar/snapshot": {
       "get": {
         "operationId": "RadarJobsController_Snapshot",
@@ -8557,6 +9005,15 @@
           },
           "reportDigest": {
             "type": "string"
+          },
+          "builds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DatasetBuildReport"
+            }
+          },
+          "buildReportDigest": {
+            "type": "string"
           }
         },
         "required": [
@@ -8738,6 +9195,98 @@
           "blockingReasons",
           "approvalId",
           "approvalDigest"
+        ]
+      },
+      "DatasetBuildReport": {
+        "type": "object",
+        "properties": {
+          "component": {
+            "type": "string"
+          },
+          "datasetSnapshotId": {
+            "type": "string",
+            "nullable": true
+          },
+          "sourceVersions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "coverageStart": {
+            "type": "string",
+            "format": "date"
+          },
+          "coverageEnd": {
+            "type": "string",
+            "format": "date"
+          },
+          "factsCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "requestedObservations": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "eligibleObservations": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "approvedResearchSamples": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "eligibilityDigest": {
+            "type": "string",
+            "nullable": true
+          },
+          "approvalId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "approvalDigest": {
+            "type": "string",
+            "nullable": true
+          },
+          "samplePolicyVersion": {
+            "type": "string",
+            "nullable": true
+          },
+          "blockingReasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "replayStatus": {
+            "type": "string"
+          },
+          "researchStatus": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "component",
+          "datasetSnapshotId",
+          "sourceVersions",
+          "coverageStart",
+          "coverageEnd",
+          "factsCount",
+          "requestedObservations",
+          "eligibleObservations",
+          "approvedResearchSamples",
+          "eligibilityDigest",
+          "approvalId",
+          "approvalDigest",
+          "samplePolicyVersion",
+          "blockingReasons",
+          "replayStatus",
+          "researchStatus"
         ]
       },
       "ValidationSummaryDto": {
@@ -9249,6 +9798,405 @@
           "evidenceDigest",
           "baselineDigest",
           "semantics"
+        ]
+      },
+      "SourceCatalogDto": {
+        "type": "object",
+        "properties": {
+          "sources": {
+            "$ref": "#/components/schemas/PageOfSourceCapability"
+          },
+          "reportDigest": {
+            "type": "string"
+          },
+          "verifiedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "semantics": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "sources",
+          "reportDigest",
+          "verifiedAt",
+          "semantics"
+        ]
+      },
+      "PageOfSourceCapability": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SourceCapability"
+            }
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "items",
+          "page",
+          "pageSize",
+          "totalCount"
+        ]
+      },
+      "SourceCapability": {
+        "type": "object",
+        "properties": {
+          "sourceId": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "officialUrl": {
+            "type": "string"
+          },
+          "sourceVersion": {
+            "type": "string"
+          },
+          "acquisitionMethod": {
+            "type": "string"
+          },
+          "supportedClaims": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "candidateClaims": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "temporalCoverage": {
+            "type": "string"
+          },
+          "publicationEvidenceCapability": {
+            "type": "string"
+          },
+          "revisionEvidenceCapability": {
+            "type": "string"
+          },
+          "licenseStatus": {
+            "type": "string"
+          },
+          "accessStatus": {
+            "type": "string"
+          },
+          "lastVerifiedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "evidenceIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        },
+        "required": [
+          "sourceId",
+          "provider",
+          "officialUrl",
+          "sourceVersion",
+          "acquisitionMethod",
+          "supportedClaims",
+          "candidateClaims",
+          "temporalCoverage",
+          "publicationEvidenceCapability",
+          "revisionEvidenceCapability",
+          "licenseStatus",
+          "accessStatus",
+          "lastVerifiedAt",
+          "evidenceIds"
+        ]
+      },
+      "AcquisitionPlanDto": {
+        "type": "object",
+        "properties": {
+          "tasks": {
+            "$ref": "#/components/schemas/PageOfAcquisitionWork"
+          },
+          "reportDigest": {
+            "type": "string"
+          },
+          "maximumAttempts": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "providerHourlyLimit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maximumBytes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "concurrency": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "tasks",
+          "reportDigest",
+          "maximumAttempts",
+          "providerHourlyLimit",
+          "maximumBytes",
+          "concurrency"
+        ]
+      },
+      "PageOfAcquisitionWork": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AcquisitionWork"
+            }
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "items",
+          "page",
+          "pageSize",
+          "totalCount"
+        ]
+      },
+      "AcquisitionWork": {
+        "type": "object",
+        "properties": {
+          "taskId": {
+            "type": "string"
+          },
+          "claimKey": {
+            "type": "string"
+          },
+          "subjectDigest": {
+            "type": "string"
+          },
+          "instruments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "coverageStart": {
+            "type": "string",
+            "format": "date"
+          },
+          "coverageEnd": {
+            "type": "string",
+            "format": "date"
+          },
+          "priority": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sourceId": {
+            "type": "string"
+          },
+          "sourceVersion": {
+            "type": "string"
+          },
+          "expectedEvidence": {
+            "type": "string"
+          },
+          "executionMode": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "attempts": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "blockingReasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "nextAction": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "taskId",
+          "claimKey",
+          "subjectDigest",
+          "instruments",
+          "coverageStart",
+          "coverageEnd",
+          "priority",
+          "sourceId",
+          "sourceVersion",
+          "expectedEvidence",
+          "executionMode",
+          "status",
+          "attempts",
+          "blockingReasons",
+          "nextAction"
+        ]
+      },
+      "AcquisitionHistoryDto": {
+        "type": "object",
+        "properties": {
+          "taskId": {
+            "type": "string"
+          },
+          "attempts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AcquisitionAttemptView"
+            }
+          },
+          "reportDigest": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "taskId",
+          "attempts",
+          "reportDigest"
+        ]
+      },
+      "AcquisitionAttemptView": {
+        "type": "object",
+        "properties": {
+          "attemptId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "taskId": {
+            "type": "string"
+          },
+          "requestedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "receivedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "status": {
+            "type": "string"
+          },
+          "rawDigest": {
+            "type": "string",
+            "nullable": true
+          },
+          "evidenceId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "sourceVersion": {
+            "type": "string"
+          },
+          "receiptDigest": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "attemptId",
+          "taskId",
+          "requestedAt",
+          "receivedAt",
+          "status",
+          "rawDigest",
+          "evidenceId",
+          "sourceVersion",
+          "receiptDigest"
+        ]
+      },
+      "ComponentBuildDto": {
+        "type": "object",
+        "properties": {
+          "build": {
+            "$ref": "#/components/schemas/DatasetBuildReport"
+          },
+          "impacts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SourceImpact"
+            }
+          },
+          "reportDigest": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "build",
+          "impacts",
+          "reportDigest"
+        ]
+      },
+      "SourceImpact": {
+        "type": "object",
+        "properties": {
+          "sourceId": {
+            "type": "string"
+          },
+          "sourceVersion": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "claimKeys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "components": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "action": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "sourceId",
+          "sourceVersion",
+          "reason",
+          "claimKeys",
+          "components",
+          "action"
         ]
       },
       "MarketRadarResult": {
