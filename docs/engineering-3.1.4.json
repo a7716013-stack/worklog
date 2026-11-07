@@ -59,7 +59,8 @@
     },
     {
       "project": "ApiContractChecks",
-      "exitCode": -532462766
+      "exitCode": 0,
+      "rerun": "phase3140-api-final.log"
     },
     {
       "project": "V3AuthorityResolutionChecks",
@@ -152,7 +153,7 @@
   ],
   "finalChecks": {
     "browser": "PASS fixture presentation; supply source/paging/attempt/null checks",
-    "apiExitCode": -532462766,
+    "apiExitCode": 0,
     "authorityExitCode": 0
   },
   "sourceVersions": 13,

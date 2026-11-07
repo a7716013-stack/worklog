@@ -1,5 +1,5 @@
 {
-  "reportDigest": "AFA902D222390F2B626E0B991DE25527F8A414A34CB214C6CF277BFC47E613B9",
+  "reportDigest": "6AC488E4FC50907448A445419006337D469DCC2961BADF9B70AB427CC2E02192",
   "trend": {
     "RunId": "REAL_BASELINE_V1",
     "Status": "NOT_RUN",
@@ -64,7 +64,7 @@
     "ModelVersion": "V3EvidenceCandidate-v1",
     "FormulaDigest": "81C788B359568B2B058EC92EDFE2F30A3593D7C2A23B3BE8C126BA026D06CBFB",
     "ParameterChecksum": "UNRESOLVED-AUDIT-ONLY-NO-RESEARCH-PARAMETERS",
-    "CodeCommitSha": "dc0f7634c176c97b6efc7268e3161112b9655eba",
+    "CodeCommitSha": "52fbd779f77ffd75cd3d8f4f3846eb8c92bf1008",
     "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069",
     "DatasetVersion": "TWSE-2330-202609-capture-audit-v1",
     "VersionSetId": "8d0f02c5-5ff4-4cc2-8565-fef2576b21a4",

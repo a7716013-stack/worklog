@@ -1,6 +1,6 @@
 {
   "SchemaVersion": "EvidenceValidation-v1",
-  "GeneratedAt": "2026-11-07T07:02:32.4813687+00:00",
+  "GeneratedAt": "2026-11-07T07:25:22.4867057+00:00",
   "SourceReportDigest": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD",
   "Claims": [
     {
@@ -1085,7 +1085,7 @@
     "ModelVersion": "V3EvidenceCandidate-v1",
     "FormulaDigest": "81C788B359568B2B058EC92EDFE2F30A3593D7C2A23B3BE8C126BA026D06CBFB",
     "ParameterChecksum": "UNRESOLVED-AUDIT-ONLY-NO-RESEARCH-PARAMETERS",
-    "CodeCommitSha": "dc0f7634c176c97b6efc7268e3161112b9655eba",
+    "CodeCommitSha": "52fbd779f77ffd75cd3d8f4f3846eb8c92bf1008",
     "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069",
     "DatasetVersion": "TWSE-2330-202609-capture-audit-v1",
     "VersionSetId": "8d0f02c5-5ff4-4cc2-8565-fef2576b21a4",
@@ -1112,5 +1112,5 @@
   "V3Threshold": "UNRESOLVED",
   "Promotion": "NOT_PROMOTED",
   "Phase5": "LOCKED",
-  "Digest": "EE2E889666FCBE963E8DD101A26990EE706C9C98C2B189275F2556BDB5E90FC3"
+  "Digest": "E88E826082BA996D9F868477E1BDF6F444C1814DC3357F8B48846494C2C7DDB8"
 }
