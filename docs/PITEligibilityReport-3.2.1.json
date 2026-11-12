@@ -1,5 +1,5 @@
 {
-  "reportDigest": "4488700A6AAD620ABC7290A26CCD0BD5E9C4D93DDCB9661F41C79B441E17AE74",
+  "reportDigest": "36201537C9B6370CDE22EA89A3DCE2000FB040C1DDC0231DD952DFFB02990913",
   "counts": {
     "TotalFacts": 21,
     "PriceFacts": 20,
@@ -84,8 +84,8 @@
   "replay": {
     "EvidenceStatus": "VERIFIED_AT_EXPORT",
     "BaselineStatus": "NOT_RUN",
-    "VerifiedAt": "2026-11-12T06:58:53.0877942+00:00",
-    "EvidenceDigest": "CC70E6178557A448635A5570095FC12136B050A4F18C6F335BBAF390323C7E5D",
+    "VerifiedAt": "2026-11-12T13:07:42.3800246+00:00",
+    "EvidenceDigest": "256789B77402AB07823D85B0074892895E34E3975BBBD020FFD9C45D1F73ED7B",
     "BaselineDigest": null,
     "Semantics": "Evidence/approval replay at controlled export; HTTP checks published report integrity, not live archives"
   }

@@ -2,7 +2,7 @@
   "SchemaVersion": "Phase4I-v1",
   "Validation": {
     "SchemaVersion": "EvidenceValidation-v1",
-    "GeneratedAt": "2026-11-12T06:58:53.0877942+00:00",
+    "GeneratedAt": "2026-11-12T13:07:42.3800246+00:00",
     "SourceReportDigest": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD",
     "Claims": [
       {
@@ -1087,7 +1087,7 @@
       "ModelVersion": "V3EvidenceCandidate-v1",
       "FormulaDigest": "81C788B359568B2B058EC92EDFE2F30A3593D7C2A23B3BE8C126BA026D06CBFB",
       "ParameterChecksum": "UNRESOLVED-AUDIT-ONLY-NO-RESEARCH-PARAMETERS",
-      "CodeCommitSha": "ba18eabd8cd754a5e28f984ea817c7b48448b627",
+      "CodeCommitSha": "217fad298c7cbb6803729668f1f0c87fde7f8e3b",
       "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069",
       "DatasetVersion": "TWSE-2330-202609-capture-audit-v1",
       "VersionSetId": "8d0f02c5-5ff4-4cc2-8565-fef2576b21a4",
@@ -1114,7 +1114,7 @@
     "V3Threshold": "UNRESOLVED",
     "Promotion": "NOT_PROMOTED",
     "Phase5": "LOCKED",
-    "Digest": "CC70E6178557A448635A5570095FC12136B050A4F18C6F335BBAF390323C7E5D"
+    "Digest": "256789B77402AB07823D85B0074892895E34E3975BBBD020FFD9C45D1F73ED7B"
   },
   "Facts": [
     {
@@ -2227,10 +2227,10 @@
   "Replay": {
     "EvidenceStatus": "VERIFIED_AT_EXPORT",
     "BaselineStatus": "NOT_RUN",
-    "VerifiedAt": "2026-11-12T06:58:53.0877942+00:00",
-    "EvidenceDigest": "CC70E6178557A448635A5570095FC12136B050A4F18C6F335BBAF390323C7E5D",
+    "VerifiedAt": "2026-11-12T13:07:42.3800246+00:00",
+    "EvidenceDigest": "256789B77402AB07823D85B0074892895E34E3975BBBD020FFD9C45D1F73ED7B",
     "BaselineDigest": null,
     "Semantics": "Evidence/approval replay at controlled export; HTTP checks published report integrity, not live archives"
   },
-  "Digest": "0625699F563C8B95B5D80AC4F9AA14FDC9CE3A3DA3C7C9E9F70D306612E1C024"
+  "Digest": "D23D71184FAFBA191641D4A49BAA7F0F45AEAA935362370EDDA2F7734B342068"
 }
