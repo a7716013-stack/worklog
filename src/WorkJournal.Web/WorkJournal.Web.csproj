@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
-    <Version>3.1.4</Version>
+    <Version>3.2.1</Version>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>workjournal-google-auth</UserSecretsId>
@@ -15,6 +15,7 @@
     <Content Update="appsettings.Development.json" CopyToPublishDirectory="Never" />
     <ProjectReference Include="../WorkJournal.Application/WorkJournal.Application.csproj" />
     <ProjectReference Include="../WorkJournal.MarketData/WorkJournal.MarketData.csproj" />
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="9.0.21" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="10.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.12" />

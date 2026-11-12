@@ -8,6 +8,7 @@ public partial class StockAnalysisController
 {
     private static bool ValidSwingSymbol(string? symbol) => symbol!=null && Regex.IsMatch(symbol,@"^[0-9]{4}[0-9A-Z]{0,2}$");
     [HttpGet]
+    [WorkJournal.Web.Security.FeatureAccess(WorkJournal.Web.Security.FeaturePolicies.Swing, true)]
     public async Task<IActionResult> SwingSearch(string? q, CancellationToken cancellationToken)
     {
         q=q?.Trim();
@@ -24,6 +25,7 @@ public partial class StockAnalysisController
         { return StatusCode(503,new { message="股票搜尋服務暫時無法使用，請稍後重試。" }); }
     }
     [HttpGet]
+    [WorkJournal.Web.Security.FeatureAccess(WorkJournal.Web.Security.FeaturePolicies.Swing, true)]
     public async Task<IActionResult> SwingData(string? symbol, CancellationToken cancellationToken)
     {
         symbol=symbol?.Trim().ToUpperInvariant();
@@ -39,6 +41,7 @@ public partial class StockAnalysisController
         { return StatusCode(503,new { message=ex is OperationCanceledException ? "行情來源回應逾時，請稍後重試。" : "波段來源連線或資料異常，暫時無法取得；未確認為額度超限。" }); }
     }
     [HttpGet]
+    [WorkJournal.Web.Security.FeatureAccess(WorkJournal.Web.Security.FeaturePolicies.Swing, true)]
     public async Task<IActionResult> SwingBacktest(string? symbol, CancellationToken cancellationToken)
     {
         symbol=symbol?.Trim().ToUpperInvariant();

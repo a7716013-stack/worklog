@@ -1,0 +1,124 @@
+{
+  "version": "3.2.1",
+  "baseSHA": "ba18eabd8cd754a5e28f984ea817c7b48448b627",
+  "localChecks": [
+    {
+      "project": "build",
+      "exitCode": 0
+    },
+    {
+      "project": "MarketDataChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "ApiContractChecks",
+      "exitCode": 0,
+      "rerun": "phase3210-api-final.log",
+      "assertions": 392
+    },
+    {
+      "project": "V3AuthorityResolutionChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ComponentDatasetChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ClosureChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3RealDataChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3AuthorityChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3PitDatasetChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ResearchChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ModelChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "MarketRadarChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "FinMindChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "FinMindChecks/LegacySwing75Checks",
+      "exitCode": 0
+    },
+    {
+      "project": "PaperTradingChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "StrategyCenterChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "MarketRadarTrackingChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V2FoundationChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V2EvidenceChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-build",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-research",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-replay",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-scorecard",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-selection",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-oos",
+      "exitCode": 0
+    }
+  ],
+  "apiSqlAssertions": 392,
+  "identityOAuthFixtureAssertions": 126,
+  "browser": "ETL and existing research presentation passed",
+  "realEtlJobs": 2,
+  "loadedFacts": 21,
+  "newDownloads": 0,
+  "sourceVersions": 13,
+  "plannedTasks": 43,
+  "versionBoundAttempts": 23,
+  "eligibleObservations": 0,
+  "approvedSamples": 0,
+  "baseline": "NOT_RUN",
+  "threshold": "UNRESOLVED",
+  "phase5": "LOCKED",
+  "pkcs": "9.0.21",
+  "sameShaCi": "Final integration-head and main Actions results are authoritative; deploy only exact successful head"
+}

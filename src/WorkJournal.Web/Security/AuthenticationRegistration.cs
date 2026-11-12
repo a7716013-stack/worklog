@@ -35,6 +35,8 @@ public static class AuthenticationRegistration
             options.Cookie.SameSite = SameSiteMode.Lax;
             options.LoginPath = "/Account/Login"; options.AccessDeniedPath = "/Account/AccessDenied";
             options.ExpireTimeSpan = TimeSpan.FromHours(8); options.SlidingExpiration = true;
+            options.Events.OnRedirectToLogin=c=>FeatureResponses.Challenge(c.HttpContext,401,c.RedirectUri);
+            options.Events.OnRedirectToAccessDenied=c=>FeatureResponses.Challenge(c.HttpContext,403,c.RedirectUri);
         });
         services.ConfigureExternalCookie(options =>
         {
@@ -49,7 +51,10 @@ public static class AuthenticationRegistration
             options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
             options.Cookie.SameSite = SameSiteMode.Strict;
         });
-        services.AddAuthorization();
+        services.AddAuthorization(options=>{
+            foreach(var policy in new[]{FeaturePolicies.Swing,FeaturePolicies.Paper})
+                options.AddPolicy(policy,p=>p.RequireAuthenticatedUser().RequireClaim(ClaimTypes.NameIdentifier));
+        });
         services.AddHttpClient("GoogleCalendarApi", client => client.Timeout = TimeSpan.FromSeconds(15))
             .RemoveAllLoggers();
         services.AddScoped<IGoogleCalendarService, GoogleCalendarService>();

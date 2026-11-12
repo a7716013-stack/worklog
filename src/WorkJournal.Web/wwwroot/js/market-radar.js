@@ -55,6 +55,7 @@ async function load(){const run=++sequence;abort?.abort();abort=new AbortControl
 try{let data=await fetchJson(u,{signal});if(run!==sequence)return;state={...data,partial:true};const dateSelect=$("radar-date");dateSelect.replaceChildren();for(const date of data.dates){const option=el("option",date);option.value=date;dateSelect.append(option);}if(data.tradeDate)dateSelect.value=data.tradeDate;
 $("radar-asof").textContent=`市場資料：${data.tradeDate||"暫無資料"} · ${data.quotes.length} 檔`;warnings();render();$("radar-status").textContent="當日排行已載入；正在計算候選均量、技術指標與追蹤分數…";
 if(!data.quotes.length){analyzing=false;$("radar-status").textContent="目前無可分析行情，請切換範圍或稍後重試。";return;}
+if(!owner){analyzing=false;render();$("radar-status").textContent="當日市場排行已載入；登入後可使用候選分析與追蹤。";return;}
 if(!app.dataset.jobsUrl){u.searchParams.set("date",data.tradeDate);u.searchParams.set("analyze","true");state=await fetchJson(u,{signal});analyzing=false;warnings();render();$("radar-status").textContent=`已完成 ${state.analysis.length} 檔分析。`;return;}
 const jobUrl=new URL(app.dataset.jobsUrl,location.origin);jobUrl.searchParams.set("market",data.market);jobUrl.searchParams.set("date",data.tradeDate);
 let job=await fetchJson(jobUrl,{method:"POST",headers:{"RequestVerificationToken":app.querySelector('input[name="__RequestVerificationToken"]').value},signal});

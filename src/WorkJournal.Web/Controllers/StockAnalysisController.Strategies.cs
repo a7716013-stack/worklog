@@ -9,6 +9,7 @@ namespace WorkJournal.Web.Controllers;
 public partial class StockAnalysisController
 {
     [HttpGet, ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+    [WorkJournal.Web.Security.FeatureAccess(WorkJournal.Web.Security.FeaturePolicies.Swing, false)]
     public async Task<IActionResult> Strategies([FromServices] JournalDbContext db, DateOnly? date, DateOnly? from, string tab = "overview",
         string market = "all", string strategy = "", string symbol = "", string basis = "open", string group = "strategy", int horizon = 20, int? profileId = null, int page = 1, CancellationToken cancellationToken = default)
     {
@@ -62,6 +63,7 @@ public partial class StockAnalysisController
         return View(vm);
     }
     [HttpGet]
+    [WorkJournal.Web.Security.FeatureAccess(WorkJournal.Web.Security.FeaturePolicies.Swing, false)]
     public async Task<IActionResult> StrategySignal([FromServices] JournalDbContext db, long id, CancellationToken cancellationToken)
     {
         var signal = await db.StrategySignals.AsNoTracking().Include(x => x.Snapshot).Include(x => x.Episode).Include(x => x.Performance).SingleOrDefaultAsync(x => x.Id == id, cancellationToken);

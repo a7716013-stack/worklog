@@ -5,6 +5,7 @@ namespace WorkJournal.Web.Controllers;
 public partial class StockAnalysisController
 {
     [Authorize, HttpGet, ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+    [WorkJournal.Web.Security.FeatureAccess(WorkJournal.Web.Security.FeaturePolicies.Paper, true)]
     public async Task<IActionResult> PaperQuotes([FromServices] IPaperTradingService paper, CancellationToken cancellationToken, bool refresh = false)
     {
         var p = await paper.GetPortfolioAsync(cancellationToken, refreshDaily: refresh);

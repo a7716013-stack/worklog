@@ -12,6 +12,7 @@ public static class JournalHosting
 builder.Services.AddControllersWithViews(options =>
 {
     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+    options.Filters.Add(new MemberCacheFilter());
     var messages = options.ModelBindingMessageProvider;
     messages.SetValueIsInvalidAccessor(value => $"輸入值「{value}」無效。");
     messages.SetAttemptedValueIsInvalidAccessor((value, field) => $"{field} 的值「{value}」無效。");

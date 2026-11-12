@@ -17,7 +17,7 @@ public sealed class SystemApiController(IApiReadiness readiness) : ControllerBas
 [ApiController,Route("api/v1/market"),EnableRateLimiting("ReadPolicy")]
 public sealed class MarketApiController(IMarketRadarService radar,IMarketIndustries industries) : ControllerBase
 {
-    [HttpGet("radar")]
+    [WorkJournal.Web.Security.AnalysisAccess, HttpGet("radar")]
     public async Task<ActionResult<RadarDto>> Radar([FromQuery(Name="")] PageQuery page,string market="all",DateOnly? date=null,bool analyze=false,CancellationToken ct=default) {
         if(market is not ("all" or "twse" or "tpex" or "etf")) throw new ApiFault(400,"VALIDATION_ERROR");
         try {return ReadMapping.Radar(await radar.GetAsync(market,date,analyze,ct),page);}
@@ -60,6 +60,7 @@ public sealed class ResearchApiController(ResearchReadService research) : Contro
     [HttpGet("dataset-approvals/{approvalId}")] public ActionResult<ApprovalDto> Approval(string approvalId)=>research.Read().Approvals.FirstOrDefault(x=>x.ApprovalId==approvalId) is {} approval?approval:NotFound();
 }
 [ApiController,Route("api/v1/paper"),Authorize(Policy="ApiPaperTrade"),EnableRateLimiting("ReadPolicy")]
+[WorkJournal.Web.Security.FeatureAccess(WorkJournal.Web.Security.FeaturePolicies.Paper)]
 public sealed class PaperApiController(IPaperTradingService paper) : ControllerBase
 {
     [HttpGet("account")] public async Task<ActionResult<AccountDto>> Account(CancellationToken ct) {var a=await paper.GetAccountAsync(ct);return new AccountDto(a.Name,a.InitialCash,a.Cash,a.RealizedProfitLoss,a.UpdatedAt);}

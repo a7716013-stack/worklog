@@ -11,5 +11,6 @@ public partial class StockAnalysisController
   try{return Json(await service.OverviewAsync(market,ct));}catch(Exception e) when(SwingFailure(e,ct)){return StatusCode(503,new{message="市場來源暫時無法取得，請稍後重試。"});}
  }
  [Authorize,HttpGet,ResponseCache(NoStore=true,Location=ResponseCacheLocation.None)]
- public async Task<IActionResult> PortfolioHistory([FromServices] PortfolioAnalyticsService service,[FromServices] ICurrentUser user,CancellationToken ct)=>Json(await service.HistoryAsync(user.Id,ct));
+ [WorkJournal.Web.Security.FeatureAccess(WorkJournal.Web.Security.FeaturePolicies.Paper, true)]
+    public async Task<IActionResult> PortfolioHistory([FromServices] PortfolioAnalyticsService service,[FromServices] ICurrentUser user,CancellationToken ct)=>Json(await service.HistoryAsync(user.Id,ct));
 }

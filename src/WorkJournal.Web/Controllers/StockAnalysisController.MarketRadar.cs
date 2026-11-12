@@ -9,6 +9,7 @@ public partial class StockAnalysisController
     public IActionResult MarketRadar() => View();
 
     [HttpGet, ResponseCache(Duration=0,Location=ResponseCacheLocation.None,NoStore=true)]
+    [WorkJournal.Web.Security.AnalysisAccess]
     public async Task<IActionResult> MarketRadarData([FromServices] IMarketRadarService radar,
         string market="all",DateOnly? date=null,bool analyze=false,CancellationToken cancellationToken=default)
     {

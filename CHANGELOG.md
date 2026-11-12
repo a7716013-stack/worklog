@@ -1,3 +1,9 @@
+## 3.2.1 — 2026-11-12
+
+- 共用 provider/ETL/quality/quarantine/lineage/replay，六個唯讀 API 與研究監控 UI。
+- Swing/Paper feature policies、JSON 401/403、owner isolation、no-store 與登入失效提示。
+- Pkcs 升至9.0.21；公式與歷史研究核准邊界不變，baseline NOT_RUN。
+
 ## 3.1.4 — 2026-11-07
 
 - Phase 4J：歷史來源能力、取得計畫／紀錄與獨立構面 Dataset Build Report。

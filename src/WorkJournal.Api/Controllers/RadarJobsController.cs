@@ -16,14 +16,14 @@ public sealed class RadarJobsController(RadarJobs jobs,IMarketRadarService radar
         try{return await radar.GetAsync(market,date,false,deadline.Token).WaitAsync(deadline.Token);}
         catch(Exception e) when(MarketProviderFailure.IsExpected(e,ct)){throw new ApiFault(503,"UPSTREAM_UNAVAILABLE");}
     }
-    [HttpPost("radar/jobs"),ValidateAntiForgeryToken]
+    [WorkJournal.Web.Security.FeatureAccess(WorkJournal.Web.Security.FeaturePolicies.Swing), HttpPost("radar/jobs"),ValidateAntiForgeryToken]
     public ActionResult<RadarJobView> Start(string market="all",DateOnly? date=null)
     {
         try {var view=jobs.Start(market,date);Response.Headers.RetryAfter="2";return Accepted($"/api/v1/market/radar/jobs/{view.JobId}",view);}
         catch(ArgumentException){throw new ApiFault(400,"VALIDATION_ERROR");}
         catch(InvalidOperationException){throw new ApiFault(429,"RATE_LIMITED");}
     }
-    [HttpGet("radar/jobs/{id}")]
+    [WorkJournal.Web.Security.FeatureAccess(WorkJournal.Web.Security.FeaturePolicies.Swing), HttpGet("radar/jobs/{id}")]
     public ActionResult<RadarJobView> Status(string id)
     {Response.Headers.RetryAfter="2";return jobs.Get(id) is {} job?job:NotFound();}
 }

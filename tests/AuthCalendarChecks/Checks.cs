@@ -237,6 +237,10 @@ public static class Checks
             var alicePaper=await alice.GetAsync("/StockAnalysis/PaperTrading");
             Check(alicePaper.StatusCode==HttpStatusCode.OK && alicePaper.Headers.CacheControl?.NoStore==true,"Private portfolio renders with no-store caching");
             Check((await bob.GetAsync("/StockAnalysis/PaperTrading")).StatusCode==HttpStatusCode.OK,"Second user gets own portfolio");
+            foreach(var path in new[]{"PlacePaperOrder","CancelPaperOrder","RefreshPaperOrders","ResetPaperAccount"})
+                Check((await alice.PostAsync("/StockAnalysis/"+path,new FormUrlEncodedContent([]))).StatusCode==HttpStatusCode.BadRequest,"Authenticated paper POST requires CSRF: "+path);
+            Check((await alice.GetAsync("/StockAnalysis/Swing")).StatusCode==HttpStatusCode.OK,"Existing Google member can access Swing");
+            Check((await alice.GetAsync("/StockAnalysis/Watchlist?ownerId="+bobId)).Headers.CacheControl?.NoStore==true,"Private JSON cannot be cached and ignores requested owner");
             using (var scope=factory.Services.CreateScope())
             {
                 var db=scope.ServiceProvider.GetRequiredService<JournalDbContext>();
@@ -245,6 +249,8 @@ public static class Checks
             Check((await alice.PostAsync("/GoogleCalendar/Sync", new FormUrlEncodedContent([]))).StatusCode == HttpStatusCode.BadRequest, "Sync requires antiforgery");
             var outstanding = await StartCalendar(alice);
             Check((await Post(alice, "/Account/Logout", [], "/GoogleCalendar")).StatusCode == HttpStatusCode.Redirect && (await alice.GetAsync("/WorkLogs")).StatusCode == HttpStatusCode.Redirect, "Logout clears session");
+            Check((await alice.GetAsync("/StockAnalysis/SwingData?symbol=2330")).StatusCode==HttpStatusCode.Unauthorized,"Logout denies private analysis JSON");
+            Check((await alice.GetAsync("/StockAnalysis/PaperQuotes")).StatusCode==HttpStatusCode.Unauthorized,"Logout denies portfolio JSON");
             await CompleteCalendar(alice, QueryHelpers.ParseQuery(outstanding.Headers.Location!.Query)["state"]!, "calendar-alice", true);
             Console.WriteLine($"Completed {passed} checks using synthetic Google responses. Real OAuth has NOT been tested.");
             if (args.Contains("--serve"))

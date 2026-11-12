@@ -1,0 +1,42 @@
+[
+  {
+    "Provider": "TWSE",
+    "Status": "SUPPORTED",
+    "Datasets": [
+      "Price",
+      "Institutional"
+    ],
+    "SchemaVersion": "HistoricalNormalized-v1",
+    "Access": "CONTROLLED_REGISTERED_SOURCE_ONLY",
+    "HistoricalAuthority": "UNPROVEN",
+    "Limitations": [
+      "Capture time is not historical availability",
+      "Independent reviewer/PIT/approval required"
+    ]
+  },
+  {
+    "Provider": "TPEx",
+    "Status": "SUPPORTED",
+    "Datasets": [
+      "Price"
+    ],
+    "SchemaVersion": "HistoricalNormalized-v1",
+    "Access": "CONTROLLED_REGISTERED_SOURCE_ONLY",
+    "HistoricalAuthority": "UNPROVEN",
+    "Limitations": [
+      "Monthly price only; rounded lots are not exact shares",
+      "Independent reviewer/PIT/approval required"
+    ]
+  },
+  {
+    "Provider": "FinMind",
+    "Status": "MANUAL_ACTION_REQUIRED",
+    "Datasets": [],
+    "SchemaVersion": "HistoricalNormalized-v1",
+    "Access": "EXPLICIT_AUTHORIZATION_AND_DATA_CONTRACT_REQUIRED",
+    "HistoricalAuthority": "UNPROVEN",
+    "Limitations": [
+      "Existing application credentials do not grant a new ETL license; no token exported"
+    ]
+  }
+]

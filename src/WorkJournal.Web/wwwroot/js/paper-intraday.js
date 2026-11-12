@@ -20,6 +20,7 @@
             const url=new URL(status.dataset.url,window.location.origin);
             if(manual)url.searchParams.set('refresh','true');
             const response=await fetch(url, {cache:'no-store',headers:{Accept:'application/json'},signal:AbortSignal.timeout(25000)});
+            if (response.status === 401 || response.status === 403) { document.querySelectorAll('[data-live], [data-tick]').forEach(el => el.textContent = '—'); throw Error('login'); }
             if (!response.ok || response.redirected) throw Error('unavailable');
             const data=await response.json();
             document.querySelectorAll('[data-live]').forEach(el=>{
@@ -38,7 +39,7 @@
                 row.querySelector('[data-tick-status]').textContent=item.quoteStatus+' · '+(item.quoteTime?stamp(item.quoteTime):item.date||'—');
             });
             note.textContent=mismatch?'持倉已變更，請重新整理頁面。':(data.hasIncompleteValuation?'部分行情不可用，總資產估值不完整。':'估值查詢完成；請以各檔報價時間及狀態為準。');
-        } catch {note.textContent='更新失敗，畫面保留上次資料；請勿視為最新即時報價。';}
+        } catch (e) {note.textContent=e.message==='login'?'登入已失效，請重新登入查看虛擬投資資料。':'更新失敗，畫面保留上次資料；請勿視為最新即時報價。';}
         finally {running=false;if(refreshButton){refreshButton.disabled=false;refreshButton.textContent='即時更新';}}
     }
     refreshButton?.addEventListener('click',()=>update(true));

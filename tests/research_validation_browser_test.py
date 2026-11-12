@@ -8,8 +8,9 @@ def camel(v):
  if isinstance(v,dict):return {k[0].lower()+k[1:]:camel(x) for k,x in v.items()}
  if isinstance(v,list):return [camel(x) for x in v]
  return v
-p=camel(json.loads((r/'docs/phase4i-state-3.1.4.json').read_text(encoding='utf-8-sig')));v=p['validation']
-j=camel(json.loads((r/'docs/phase4j-state-3.1.4.json').read_text(encoding='utf-8-sig')))
+p=camel(json.loads((r/'docs/phase4i-state-3.2.1.json').read_text(encoding='utf-8-sig')));v=p['validation']
+j=camel(json.loads((r/'docs/phase4j-state-3.2.1.json').read_text(encoding='utf-8-sig')))
+etl=camel(json.loads((r/'docs/etl-state-3.2.1.json').read_text(encoding='utf-8-sig')))
 q=[dict(id=c['domain']+':'+c['claimId'],claim=c,applicability='UNPROVEN_FOR_HISTORICAL_SCOPE') for c in v['claims']]
 markup=(r/'src/WorkJournal.Web/Views/StockAnalysis/Validation.cshtml').read_text(encoding='utf-8-sig')
 markup=re.sub(r'@\{.*?\}','',markup,flags=re.S).split('@section Scripts')[0]
@@ -17,7 +18,13 @@ requests=[]
 def route(handler):
  path=unquote(urlparse(handler.request.url).path);requests.append(path)
  if path=='/ResearchValidation':return handler.fulfill(content_type='text/html',body='<html><body>'+markup+'</body></html>')
- if path.endswith('eligibility-summary'):body=dict(status='BLOCKED',dataset=v['dataset'],components=v['components'])
+ if path.endswith('/data/providers'):body=dict(items=etl['providers'],totalCount=len(etl['providers']))
+ elif path.endswith('/etl/health'):body=dict(verifiedAt=etl['verifiedAt'],realJobs=2,testJobs=0,failedJobs=0,quarantinedJobs=0)
+ elif path.endswith('/etl/jobs'):body=dict(items=etl['jobs'],totalCount=len(etl['jobs']))
+ elif '/etl/jobs/' in path:
+  job=next(x for x in etl['jobs'] if x['jobId'] in path);body=dict(quality=job['quality']) if path.endswith('/quality') else job
+ elif '/etl/batches/' in path:body=next(x['lineage'] for x in etl['jobs'] if x['jobId'] in path)
+ elif path.endswith('eligibility-summary'):body=dict(status='BLOCKED',dataset=v['dataset'],components=v['components'])
  elif path.endswith('/provenance'):body=v['provenance']
  elif path.endswith('/readiness'):body=dict(counts=p['counts'],builds=j['builds'])
  elif path.endswith('/validation-summary'):body=dict(trend=p['trend'])
@@ -35,7 +42,7 @@ with sync_playwright() as pw:
  browser=pw.chromium.launch(channel='msedge',headless=True)
  page=browser.new_page();page.route('http://phase4i.test/**',route)
  page.goto('http://phase4i.test/ResearchValidation')
- for name in ['research-validation.js','research-phase4i.js','research-phase4j.js']:page.add_script_tag(content=(r/'src/WorkJournal.Web/wwwroot/js'/name).read_text(encoding='utf-8-sig'))
+ for name in ['research-validation.js','research-phase4i.js','research-phase4j.js','research-etl.js']:page.add_script_tag(content=(r/'src/WorkJournal.Web/wwwroot/js'/name).read_text(encoding='utf-8-sig'))
  page.wait_for_function("document.querySelectorAll('#validation-claims tr').length === 20")
  page.wait_for_function("document.querySelectorAll('#validation-pit tr').length === 1")
  assert '價格 20' in page.locator('#validation-counts').inner_text() and '法人 1' in page.locator('#validation-counts').inner_text()
@@ -52,7 +59,11 @@ with sync_playwright() as pw:
  page.locator('#supply-plan button').first.click()
  page.wait_for_function("document.querySelector('#supply-attempts').textContent.includes('history')")
  assert '未建置' in page.locator('#supply-builds').inner_text()
- page.screenshot(path=str(r/'artifacts/phase3140-validation-browser.png'),full_page=True)
+ page.wait_for_function("document.querySelectorAll('#etl-jobs tr').length === 2")
+ page.locator('#etl-jobs button').first.click()
+ page.wait_for_function("document.querySelector('#etl-detail').textContent.includes('rawDigest')")
+ assert '真實工作 2' in page.locator('#etl-status').inner_text()
+ page.screenshot(path=str(r/'artifacts/phase3210-validation-browser.png'),full_page=True)
  page.unroute('http://phase4i.test/**');page.route('http://phase4i.test/api/**',lambda h:h.fulfill(status=401,content_type='application/json',body='{}'))
  page.add_script_tag(content=(r/'src/WorkJournal.Web/wwwroot/js/research-phase4i.js').read_text(encoding='utf-8-sig'))
  page.wait_for_function("document.querySelector('#validation-counts').textContent.includes('請重新登入')")

@@ -8,6 +8,7 @@ namespace WorkJournal.Web.Controllers;
 public partial class StockAnalysisController
 {
     [Authorize, HttpGet, ResponseCache(Duration=0, Location=ResponseCacheLocation.None, NoStore=true)]
+    [WorkJournal.Web.Security.FeatureAccess(WorkJournal.Web.Security.FeaturePolicies.Swing, true)]
     public async Task<IActionResult> Watchlist([FromServices] StockWatchlistService watch, [FromServices] ICurrentUser user, CancellationToken ct)
         => Json(new { owner=user.Id, items=await watch.GetAsync(ct) });
 
@@ -35,6 +36,7 @@ public partial class StockAnalysisController
     }
 
     [Authorize, HttpPost, ResponseCache(Duration=0, Location=ResponseCacheLocation.None, NoStore=true)]
+    [WorkJournal.Web.Security.FeatureAccess(WorkJournal.Web.Security.FeaturePolicies.Swing, true)]
     public async Task<IActionResult> SaveWatchlist([FromBody] WatchlistChange input, [FromServices] StockWatchlistService watch,
         [FromServices] ICurrentUser user, CancellationToken ct)
     {

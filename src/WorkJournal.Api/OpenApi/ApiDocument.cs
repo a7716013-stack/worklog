@@ -35,6 +35,8 @@ public static class ApiDocument
                 var operation=new JsonObject { ["operationId"]=controller.Name+"_"+method.Name,["parameters"]=parameters,["responses"]=responses };
                 if(controller.GetCustomAttributes<AuthorizeAttribute>().Any() || method.GetCustomAttributes<AuthorizeAttribute>().Any())
                     operation["security"]=new JsonArray(new JsonObject {["ExistingUserSession"]=new JsonArray()});
+                if(method.GetCustomAttribute<WorkJournal.Web.Security.AnalysisAccessAttribute>() is not null)
+                    operation["description"]="Basic quotes are public. analyze=true requires an existing member session and Feature.SwingAnalysis; unauthenticated analysis returns 401 ProblemDetails.";
                 if(requestBody is not null)operation["requestBody"]=requestBody;
                 if(post is not null)parameters.Add(Parameter("RequestVerificationToken","header",typeof(string),schemas,true));
                 if(post?.Template=="radar/jobs") {responses["202"]=responses["200"]!.DeepClone();responses.Remove("200");}

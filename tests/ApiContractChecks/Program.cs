@@ -43,7 +43,7 @@ async Task<JsonNode> Get(string path,int status=200) {
     if(status>=400){Check(response.Content.Headers.ContentType?.MediaType=="application/problem+json","problem media type");Check(node["traceId"] is not null,"problem trace");Check(node["code"] is not null,"stable problem code");}
     return node;
 }
-Check((await Get("/api/v1/system/health"))["version"]!.GetValue<string>()=="3.1.4","release version");
+Check((await Get("/api/v1/system/health"))["version"]!.GetValue<string>()=="3.2.1","release version");
 Check((await Get("/api/v1/system/readiness"))["databaseReachable"]!.GetValue<bool>(),"readiness service");
 await Get("/api/v1/not-found",404);
 Check((await Get("/api/v1/paper/orders",401))["code"]!.GetValue<string>()=="AUTHENTICATION_REQUIRED","API no login redirect");
@@ -52,6 +52,8 @@ await Get("/api/v1/market/radar?market=invalid",400);
 await Get("/api/v1/market/radar?date=oops",400);
 await Get("/api/v1/market/radar?page=0",400);
 await Get("/api/v1/market/radar?pageSize=201",400);
+await Get("/api/v1/market/radar?analyze=true",401);
+http.DefaultRequestHeaders.Add("X-Test-User","alice");
 foreach(var market in new[]{"all","twse","tpex","etf"}) {
     var result=await Get("/api/v1/market/radar?market="+market+"&date=2026-09-30&analyze=true");
     Check(result["market"]!.GetValue<string>()==market,"market mapped");
@@ -68,7 +70,6 @@ var models=await Get("/api/v1/evidence/models");var model=models["items"]![0]!;
 Check(model["v3Threshold"] is null&&model["thresholdStatus"]!.GetValue<string>()=="unresolved","missing threshold is not 70/75");
 Check(model["components"]!.AsArray().Sum(x=>x!["weight"]!.GetValue<decimal>())==100,"shared six model weights");
 await Get("/api/v1/evidence/models/unknown",404);
-http.DefaultRequestHeaders.Add("X-Test-User","alice");
 await Get("/api/v1/test/forbidden",403);
 var error=await Get("/api/v1/test/exception",500);Check(!error.ToJsonString().Contains("SECRET_STACK_SENTINEL"),"exception sanitized");
 var coverage=await Get("/api/v1/authority/coverage");Check(coverage["approvedAuthorityDomains"]!.GetValue<int>()==0,"zero approvals is valid");
@@ -81,6 +82,7 @@ await Phase4GChecks.Run(http,Check);
 await ValidationChecks.Run(http,Check);
 await Phase4IChecks.Run(http,Check);
 await Phase4JChecks.Run(http,Check);
+await EtlChecks.Run(http,Check);
 var spec=ApiDocument.Create();var served=JsonNode.Parse(await http.GetStringAsync("/openapi/v1.json"));Check(JsonNode.DeepEquals(spec,served),"served OpenAPI equals generated contract");
 Directory.CreateDirectory("artifacts/api3100");File.WriteAllText("artifacts/api3100/openapi-v1.json",spec.ToJsonString(new JsonSerializerOptions {WriteIndented=true}));
 var baseline=Path.Combine(root,"docs","openapi-v1.json");

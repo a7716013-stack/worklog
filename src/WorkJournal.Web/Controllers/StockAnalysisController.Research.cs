@@ -4,6 +4,7 @@ namespace WorkJournal.Web.Controllers;
 public partial class StockAnalysisController
 {
     [HttpGet]
+    [WorkJournal.Web.Security.FeatureAccess(WorkJournal.Web.Security.FeaturePolicies.Swing, true)]
     public async Task<IActionResult> ResearchData(string symbol,CancellationToken ct)
     {
         if(!ValidSwingSymbol(symbol))return BadRequest();
@@ -11,6 +12,7 @@ public partial class StockAnalysisController
         catch(Exception e) when(SwingFailure(e,ct)){return StatusCode(503,new{message="走勢及法人資料暫時無法取得，請重試。"});}
     }
     [HttpGet]
+    [WorkJournal.Web.Security.FeatureAccess(WorkJournal.Web.Security.FeaturePolicies.Swing, true)]
     public async Task<IActionResult> StockRadar(string symbol,[FromServices] IMarketRadarService radar,[FromServices] IMarketRadarHistoryProvider history,CancellationToken ct)
     {
         if(!ValidSwingSymbol(symbol))return BadRequest();

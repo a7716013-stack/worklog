@@ -4,7 +4,7 @@ string? currentAction = ViewContext.RouteData.Values["action"]?.ToString();
 string? Current(string controller, string action) => currentController == controller && currentAction == action ? "page" : null;
 var groups = new[] {
 ("工作管理", new[] { ("工作日誌", "WorkLogs", "Index", ""), ("行事曆", "WorkLogs", "Index", "calendar"), ("Google 行事曆", "GoogleCalendar", "Index", "") }),
-("股票研究", new[] { ("市場分析排行", "StockAnalysis", "MarketRadar", ""), ("策略分析", "StockAnalysis", "Strategies", ""), ("個股研究", "StockAnalysis", "Index", "") }),
+("股票研究", new[] { ("市場分析排行", "StockAnalysis", "MarketRadar", ""), ("策略分析", "StockAnalysis", "Strategies", ""), ("個股研究", "StockAnalysis", "Index", ""), ("波段分析", "StockAnalysis", "Swing", "") }),
 ("我的投資", new[] { ("自選清單", "StockAnalysis", "Favorites", ""), ("推薦追蹤", "StockAnalysis", "RadarTracking", ""), ("績效分析", "StockAnalysis", "RadarPerformance", ""), ("虛擬投資組合", "StockAnalysis", "PaperTrading", "") })
 };
 }
@@ -14,7 +14,7 @@ var groups = new[] {
 var group = groups[i];
 <li class="nav-item dropdown"><button class="nav-link dropdown-toggle" id="nav-group-@i" type="button" data-bs-toggle="dropdown" aria-expanded="false">@group.Item1</button>
 <ul class="dropdown-menu" aria-labelledby="nav-group-@i">
-@foreach (var link in group.Item2) { <li><a class="dropdown-item" href="@(Url.Action(link.Item3, link.Item2) + (link.Item4 == "" ? "" : "#" + link.Item4))" aria-current="@(link.Item4 == "" ? Current(link.Item2,link.Item3) : null)">@link.Item1</a></li> }
+@foreach (var link in group.Item2) { <li><a class="dropdown-item" href="@(Url.Action(link.Item3, link.Item2) + (link.Item4 == "" ? "" : "#" + link.Item4))" aria-current="@(link.Item4 == "" ? Current(link.Item2,link.Item3) : null)">@link.Item1@if (User.Identity?.IsAuthenticated != true && link.Item3 is "Swing" or "PaperTrading") {<small>（登入後使用）</small>}</a></li> }
 </ul></li>
 }
 </ul>

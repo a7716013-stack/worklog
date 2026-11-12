@@ -33,7 +33,8 @@ async function changeList(change){
 }
 async function request(base,param,signal){
  const url=new URL(base,location.origin);Object.entries(param).forEach(([k,v])=>url.searchParams.set(k,v));
- const response=await fetch(url,{signal,headers:{Accept:"application/json"}});
+ const response=await fetch(url,{signal,cache:"no-store",headers:{Accept:"application/json"}});
+ if(response.status===401||response.status===403){data.clear();throw new Error("登入已逾期或權限不足，請重新登入。");}
  let json;try{json=await response.json();}catch{throw new Error("服務未回傳有效資料，請稍後重試。");}
  if(!response.ok)throw new Error(json.message||"資料服務暫時無法使用。");return json;
 }

@@ -1,3 +1,7 @@
+## 3.2.1 — Phase 4K ETL 與會員資料隔離
+
+2個真實封存 ETL 工作、21筆事實與六個監控 API；波段/策略分析及虛擬投資採集中會員授權。本機 `Start-WorkJournal3210.ps1`（http://localhost:5207）。詳見 [實作報告](docs/implementation-3.2.1.md)。
+
 ## 3.1.4 — Phase 4J / 歷史證據供應鏈與資料集準備
 
 13 個來源版本、43 個去重工作、23 筆取得紀錄，4 個新唯讀 API 與六構面建置報告。本機 `Start-WorkJournal3140.ps1`（http://localhost:5206），登入後 `/ResearchValidation`。21 facts、1 observation、0 eligible／approved，baseline NOT_RUN。詳見 [實作報告](docs/implementation-3.1.4.md)。

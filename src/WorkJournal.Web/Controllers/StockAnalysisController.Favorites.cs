@@ -9,9 +9,11 @@ namespace WorkJournal.Web.Controllers;
 public partial class StockAnalysisController
 {
     [Authorize,HttpGet,ResponseCache(NoStore=true,Location=ResponseCacheLocation.None)]
+    [WorkJournal.Web.Security.FeatureAccess(WorkJournal.Web.Security.FeaturePolicies.Swing, true)]
     public async Task<IActionResult> FavoriteItems([FromServices] StockFavoriteService favorites,[FromServices] ICurrentUser user,CancellationToken ct)
         => Json(new{owner=user.Id,items=await favorites.GetAsync(ct)});
     [Authorize, HttpPost, ResponseCache(Duration=0, Location=ResponseCacheLocation.None, NoStore=true)]
+    [WorkJournal.Web.Security.FeatureAccess(WorkJournal.Web.Security.FeaturePolicies.Swing, true)]
     public async Task<IActionResult> SaveFavorites([FromBody] WatchlistChange input, [FromServices] StockFavoriteService watch,
         [FromServices] ICurrentUser user, CancellationToken ct)
     {
@@ -48,6 +50,7 @@ public partial class StockAnalysisController
         return RedirectToAction(nameof(Favorites));
     }
     [Authorize,HttpGet,ResponseCache(NoStore=true,Location=ResponseCacheLocation.None)]
+    [WorkJournal.Web.Security.FeatureAccess(WorkJournal.Web.Security.FeaturePolicies.Swing, true)]
     public async Task<IActionResult> StockMembership(string symbol,[FromServices] JournalDbContext db,[FromServices] ICurrentUser user,CancellationToken ct)
     {
         if(!ValidSwingSymbol(symbol))return BadRequest();
@@ -59,6 +62,7 @@ public partial class StockAnalysisController
         return Json(new{favorite,swing,tracking,held});
     }
     [Authorize,HttpGet,ResponseCache(NoStore=true,Location=ResponseCacheLocation.None)]
+    [WorkJournal.Web.Security.FeatureAccess(WorkJournal.Web.Security.FeaturePolicies.Swing, true)]
     public async Task<IActionResult> StockPerformance(string symbol,[FromServices] JournalDbContext db,[FromServices] ICurrentUser user,CancellationToken ct)
     {
         if(!ValidSwingSymbol(symbol))return BadRequest();

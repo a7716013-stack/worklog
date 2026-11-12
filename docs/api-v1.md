@@ -1,3 +1,7 @@
+## 3.2.1 — ETL 與會員存取
+
+六個新唯讀 ETL/provider API，分析工作與私人 JSON 採明確會員授權。基本行情仍公開。詳見 [契約變更](APIContractChange-3.2.1.md) 與 [路由矩陣](RouteAccessMatrix.md)。
+
 ## Phase D — 3.1.4
 
 新增 sources、acquisition-plan、acquisition-attempts/{taskId}、research/components/{component}/readiness；既有 dataset readiness 增加 builds。詳見 [APIContractChange-3.1.4.md](APIContractChange-3.1.4.md)。

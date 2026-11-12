@@ -1,4 +1,5 @@
 using System.Net;
+using Microsoft.AspNetCore.Authorization;
 using System.Diagnostics;
 using System.Text.Json.Nodes;
 using Microsoft.AspNetCore.Hosting;
@@ -29,6 +30,23 @@ public static class SecurityChecks
         check(unauthorized.StatusCode==HttpStatusCode.Unauthorized&&unauthorized.Headers.Location is null,"real Identity cookie challenge 401 without redirect");
         var legacy=await http.GetAsync("/StockAnalysis/PaperTrading");
         check(legacy.StatusCode==HttpStatusCode.Redirect&&legacy.Headers.Location!.ToString().Contains("Account/Login"),"legacy cookie login redirect unchanged");
+        foreach(var path in new[]{"SwingSearch","SwingData","SwingBacktest","ResearchData","StockRadar","PaperQuotes","PortfolioHistory","Watchlist","FavoriteItems","StockMembership","StockPerformance"}) {
+            var response=await http.GetAsync("/StockAnalysis/"+path);
+            check(response.StatusCode==HttpStatusCode.Unauthorized&&response.Headers.Location is null&&response.Headers.CacheControl?.NoStore==true,"member JSON 401 no redirect/cache "+path);
+        }
+        foreach(var path in new[]{"Swing","Strategies","StrategySignal"})check((await http.GetAsync("/StockAnalysis/"+path)).StatusCode==HttpStatusCode.Redirect,"member page login redirect "+path);
+        foreach(var path in new[]{"PlacePaperOrder","CancelPaperOrder","RefreshPaperOrders","ResetPaperAccount"}) {
+            var response=await http.PostAsync("/StockAnalysis/"+path,new FormUrlEncodedContent([]));
+            check(response.StatusCode==HttpStatusCode.Redirect&&response.Headers.Location!.ToString().Contains("Account/Login"),"anonymous paper mutation blocked "+path);
+        }
+        var options=app.Services.GetRequiredService<Microsoft.Extensions.Options.IOptionsMonitor<Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions>>().Get(Microsoft.AspNetCore.Identity.IdentityConstants.ApplicationScheme);
+        var identity=new System.Security.Claims.ClaimsIdentity([new(System.Security.Claims.ClaimTypes.NameIdentifier,"expired-fixture")],Microsoft.AspNetCore.Identity.IdentityConstants.ApplicationScheme);
+        var ticket=new Microsoft.AspNetCore.Authentication.AuthenticationTicket(new(identity),new(){IssuedUtc=DateTimeOffset.UtcNow.AddHours(-10),ExpiresUtc=DateTimeOffset.UtcNow.AddHours(-1)},Microsoft.AspNetCore.Identity.IdentityConstants.ApplicationScheme);
+        http.DefaultRequestHeaders.Add("Cookie","__Host-WorkJournal="+options.TicketDataFormat.Protect(ticket));
+        check((await http.GetAsync("/StockAnalysis/SwingData?symbol=2330")).StatusCode==HttpStatusCode.Unauthorized,"expired real Identity cookie rejected for member JSON");
+        http.DefaultRequestHeaders.Remove("Cookie");
+        var policy=app.Services.GetRequiredService<Microsoft.AspNetCore.Authorization.IAuthorizationService>();
+        check(!(await policy.AuthorizeAsync(new System.Security.Claims.ClaimsPrincipal(new System.Security.Claims.ClaimsIdentity([],"fixture")),null,FeaturePolicies.Swing)).Succeeded,"authenticated identity without owner claim denied");
         var one=await http.GetAsync("/api/v1/system/health");var two=await http.GetAsync("/api/v1/system/health");var limited=await http.GetAsync("/api/v1/system/health");
         check(one.IsSuccessStatusCode&&two.IsSuccessStatusCode&&limited.StatusCode==HttpStatusCode.TooManyRequests,"configured fixed-window limiter enforced");
         check((await limited.Content.ReadAsStringAsync()).Contains("RATE_LIMITED"),"rate limit stable problem code");

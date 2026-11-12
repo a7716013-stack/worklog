@@ -8,6 +8,7 @@ namespace WorkJournal.Web.Controllers;
 public partial class StockAnalysisController(FinMindStockService stocks) : Controller
 {
     [Microsoft.AspNetCore.Authorization.Authorize, HttpGet, ResponseCache(Duration=0, Location=ResponseCacheLocation.None, NoStore=true)]
+    [WorkJournal.Web.Security.FeatureAccess(WorkJournal.Web.Security.FeaturePolicies.Swing)]
     public IActionResult Swing() => View();
 
     [HttpGet]

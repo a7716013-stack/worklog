@@ -1,0 +1,92 @@
+{
+  "reportDigest": "4488700A6AAD620ABC7290A26CCD0BD5E9C4D93DDCB9661F41C79B441E17AE74",
+  "counts": {
+    "TotalFacts": 21,
+    "PriceFacts": 20,
+    "InstitutionalFacts": 1,
+    "BenchmarkFacts": 0,
+    "UniqueFacts": 21,
+    "DuplicateFacts": 0,
+    "UniqueTypeInstrumentDates": 21,
+    "AdditionalRevisions": 0,
+    "RequestedObservations": 1,
+    "EligibleObservations": 0,
+    "ApprovedResearchSamples": 0,
+    "Definition": "Parsed source facts; type/provider/instrument/date keys. Revisions are not duplicate checksums. Requested observations are instrument/decision-date pairs; samples require approval. RawRealRows is the legacy total-facts alias, not CSV line count."
+  },
+  "observations": [
+    {
+      "ObservationId": "496D6F15942C24F77AF436E6F45EA971A4C03E8974239E9EAE5792D2D2D365A3",
+      "InstrumentId": "00000000-0000-0000-0000-000000000000",
+      "Symbol": "2330",
+      "TradeDate": "2026-09-30",
+      "DecisionTime": "2026-09-30T23:59:59+08:00",
+      "AvailableAt": null,
+      "SourceVersions": [
+        "captured-body:0D2533EEF03F4E7160D21404D5FD449EE53A8B663AFC1A278B98C09D7BA4724E",
+        "captured-body:C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC"
+      ],
+      "AuthorityReceipts": [
+        "1A3A09193392FEE2B9DC2C917C3E35087F624B61BAD8ECFB5EE6F053262DF48B",
+        "24F0DF611524D7D56014EC689A32F9CA2C6231471E784FA8DAF03BC33AEC23F7",
+        "36D9B3D79E1F3D492334BF7F67CE12F81472CD8A49D29D88A8E36C7BB7A681DA",
+        "7D372479C578FAD279085873BA2983A1BC7CBB96F11ED2A4207014B6F5DBCDCA",
+        "BF2B4B795C9304992C928C6018D50FF93CD76CB2B2BE041DF82648999D6D5C34",
+        "D72B75232382D228B71537DCE1679998B9886A94D78E04D2255C87940445B3B9"
+      ],
+      "Gates": [
+        {
+          "Gate": "HistoricalInstrumentIdentity",
+          "Status": "UNKNOWN"
+        },
+        {
+          "Gate": "TradingCalendar",
+          "Status": "UNKNOWN"
+        },
+        {
+          "Gate": "HistoricalUniverse",
+          "Status": "UNKNOWN"
+        },
+        {
+          "Gate": "PriceVolume",
+          "Status": "AVAILABLE"
+        },
+        {
+          "Gate": "Availability",
+          "Status": "UNKNOWN"
+        },
+        {
+          "Gate": "Revision",
+          "Status": "UNKNOWN"
+        },
+        {
+          "Gate": "PriceBasis",
+          "Status": "UNKNOWN"
+        }
+      ],
+      "BlockingReasons": [
+        "UNRESOLVED_IDENTITY",
+        "UNRESOLVED_CALENDAR",
+        "UNRESOLVED_UNIVERSE",
+        "UNVERIFIABLE_AVAILABILITY",
+        "UNVERIFIABLE_REVISION",
+        "PRICE_BASIS_CONFLICT",
+        "CORPORATE_ACTION_UNRESOLVED",
+        "PRICE_AUTHORITY_UNPROVEN"
+      ],
+      "Eligible": false,
+      "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069",
+      "DatasetVersion": "TWSE-2330-202609-capture-audit-v1",
+      "VersionSetId": "8d0f02c5-5ff4-4cc2-8565-fef2576b21a4",
+      "SourceReportDigest": "18E2A9944A5798E891C2252A63EEC1063BC8C1609AA161B017DB768A003281CD"
+    }
+  ],
+  "replay": {
+    "EvidenceStatus": "VERIFIED_AT_EXPORT",
+    "BaselineStatus": "NOT_RUN",
+    "VerifiedAt": "2026-11-12T06:58:53.0877942+00:00",
+    "EvidenceDigest": "CC70E6178557A448635A5570095FC12136B050A4F18C6F335BBAF390323C7E5D",
+    "BaselineDigest": null,
+    "Semantics": "Evidence/approval replay at controlled export; HTTP checks published report integrity, not live archives"
+  }
+}
