@@ -1,3 +1,3 @@
-# 3.2.1 後續工作
+# 3.2.2 後續工作
 
-ETL 與會員存取已實作；仍須取得 scoped 歷史發布、修訂、身分/universe/calendar/price basis 證據，依既有 reviewer/PIT/獨立構面核准程序處理。取得足量真實樣本前 baseline NOT_RUN。FinMind ETL 需明確契約/授權；TPEx 目前僅價格 adapter，精確股數未證明。繼續逐步減少 Api→Web 的 hosting/EF service 過渡相依。
+提供兩個隔離正式測試帳號完成 A/B 與真實 OAuth 驗收；指定 evidence review 負責人，優先取得 HistoricalPublication 與 RevisionBehavior 的原始證據。排程上線前確認共用持久化磁碟及操作程序，另取得啟用授權。研究維持 NOT_RUN，需逐項 PIT 與獨立核准及足量樣本後才能執行。

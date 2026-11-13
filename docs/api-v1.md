@@ -1,3 +1,7 @@
+## 3.2.2 — 排程與監控
+
+新增 GET /api/v1/etl/operations，沿用會員授權、ReadPolicy、no-store；無新增寫入或核准端點。詳 [契約變更](APIContractChange-3.2.2.md)。
+
 ## 3.2.1 — ETL 與會員存取
 
 六個新唯讀 ETL/provider API，分析工作與私人 JSON 採明確會員授權。基本行情仍公開。詳見 [契約變更](APIContractChange-3.2.1.md) 與 [路由矩陣](RouteAccessMatrix.md)。

@@ -7,6 +7,16 @@ public static class EtlCommands
     {
         try
         {
+            if(args.Length==6&&args[0]=="--etl-operations-report")
+            {var r=Phase4LOperations.Create(HistoricalDatasetStore.Read<EtlPublication>(args[1]),HistoricalDatasetStore.Read<EtlOperationsSnapshot>(args[2]),HistoricalDatasetStore.Read<Phase4JReport>(args[3]),HistoricalDatasetStore.Read<Phase4IReport>(args[4]));HistoricalDatasetStore.WriteNew(args[5],r);Console.WriteLine($"OPERATIONS_EXPORT {r.Closure.Length} tasks; production scheduler disabled");return 0;}
+            if(args.Length==5&&args[0]=="--etl-schedule-register")
+            {var r=new EtlScheduler(args[1]).Register(HistoricalDatasetStore.Read<ScheduledJobDefinition>(args[2]),HistoricalDatasetStore.Read<SourceArchive>(args[3]));HistoricalDatasetStore.WriteNew(args[4],r);Console.WriteLine(r.Execution.Status);return 0;}
+            if(args.Length==4&&args[0]=="--etl-schedule-tick"&&args[3]=="--controlled")
+            {var r=new EtlScheduler(args[1]).RunOnce(args[2]).GetAwaiter().GetResult();Console.WriteLine(r?.Status??"NO_DISPATCH");return r?.Status=="FAILED"?1:0;}
+            if(args.Length==3&&args[0]=="--etl-schedule-cancel")
+            {Console.WriteLine(new EtlScheduler(args[1]).Cancel(args[2]).Status);return 0;}
+            if(args.Length==3&&args[0]=="--etl-operations-export")
+            {var r=Phase4LOperations.Snapshot(new EtlScheduler(args[1]).Snapshot(),DateTimeOffset.UtcNow);Phase4LOperations.Validate(r);HistoricalDatasetStore.WriteNew(args[2],r);Console.WriteLine("CONTROLLED_EXPORT_SNAPSHOT_NOT_LIVE_HEALTH");return 0;}
             if(args.Length is 5 or 6&&args[0]=="--etl-run")
             {
                 var request=HistoricalDatasetStore.Read<ProviderRequest>(args[1]);AuthorityResolutionStore.CheckCode(request.TransformCodeSha);

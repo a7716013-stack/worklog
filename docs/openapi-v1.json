@@ -6,6 +6,99 @@
     "description": "ExistingUserSession; read APIs and CSRF-protected bounded formula/job operations. FullEvidence100 is evidence strength, not probability, expected return, position size, allocation, or trade instruction. Research snapshot is an audited release snapshot, not a live approval store."
   },
   "paths": {
+    "/api/v1/etl/operations": {
+      "get": {
+        "operationId": "EtlApiController_Operations",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EtlOperationsReport"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
     "/api/v1/data/providers": {
       "get": {
         "operationId": "EtlApiController_Providers",
@@ -7131,6 +7224,410 @@
   },
   "components": {
     "schemas": {
+      "EtlOperationsReport": {
+        "type": "object",
+        "properties": {
+          "schemaVersion": {
+            "type": "string"
+          },
+          "exportedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "semantics": {
+            "type": "string"
+          },
+          "productionSchedulerEnabled": {
+            "type": "boolean"
+          },
+          "schedules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EtlScheduleStatus"
+            }
+          },
+          "providers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EtlProviderStatus"
+            }
+          },
+          "closure": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EvidenceClosureWork"
+            }
+          },
+          "invalidations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SourceImpact"
+            }
+          },
+          "readiness": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DatasetBuildReport"
+            }
+          },
+          "alerts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EtlAlert"
+            }
+          },
+          "etlDigest": {
+            "type": "string"
+          },
+          "evidenceDigest": {
+            "type": "string"
+          },
+          "schedulerDigest": {
+            "type": "string"
+          },
+          "digest": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "exportedAt",
+          "semantics",
+          "productionSchedulerEnabled",
+          "schedules",
+          "providers",
+          "closure",
+          "invalidations",
+          "readiness",
+          "alerts",
+          "etlDigest",
+          "evidenceDigest",
+          "schedulerDigest",
+          "digest"
+        ]
+      },
+      "EtlScheduleStatus": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "dueAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "calendarVersion": {
+            "type": "string"
+          },
+          "calendarDigest": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "attempts": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "heartbeatAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "leaseExpiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "nextAttemptAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "cancellationRequested": {
+            "type": "boolean"
+          },
+          "etlReceiptDigest": {
+            "type": "string",
+            "nullable": true
+          },
+          "reason": {
+            "type": "string",
+            "nullable": true
+          },
+          "receiptDigest": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "provider",
+          "enabled",
+          "dueAt",
+          "calendarVersion",
+          "calendarDigest",
+          "status",
+          "attempts",
+          "heartbeatAt",
+          "leaseExpiresAt",
+          "nextAttemptAt",
+          "cancellationRequested",
+          "etlReceiptDigest",
+          "reason",
+          "receiptDigest"
+        ]
+      },
+      "EtlProviderStatus": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "verifiedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "successfulJobs": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "failedJobs": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quarantinedJobs": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "provider",
+          "status",
+          "verifiedAt",
+          "successfulJobs",
+          "failedJobs",
+          "quarantinedJobs"
+        ]
+      },
+      "EvidenceClosureWork": {
+        "type": "object",
+        "properties": {
+          "taskId": {
+            "type": "string"
+          },
+          "claimKey": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "evidenceRequirement": {
+            "type": "string"
+          },
+          "nextAction": {
+            "type": "string"
+          },
+          "taskOwner": {
+            "type": "string"
+          },
+          "reviewStatus": {
+            "type": "string"
+          },
+          "manualActionRequired": {
+            "type": "boolean"
+          },
+          "reviewReceipts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "closureReceipt": {
+            "type": "string",
+            "nullable": true
+          },
+          "revocationImpacts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SourceImpact"
+            }
+          }
+        },
+        "required": [
+          "taskId",
+          "claimKey",
+          "priority",
+          "evidenceRequirement",
+          "nextAction",
+          "taskOwner",
+          "reviewStatus",
+          "manualActionRequired",
+          "reviewReceipts",
+          "closureReceipt",
+          "revocationImpacts"
+        ]
+      },
+      "SourceImpact": {
+        "type": "object",
+        "properties": {
+          "sourceId": {
+            "type": "string"
+          },
+          "sourceVersion": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "claimKeys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "components": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "action": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "sourceId",
+          "sourceVersion",
+          "reason",
+          "claimKeys",
+          "components",
+          "action"
+        ]
+      },
+      "DatasetBuildReport": {
+        "type": "object",
+        "properties": {
+          "component": {
+            "type": "string"
+          },
+          "datasetSnapshotId": {
+            "type": "string",
+            "nullable": true
+          },
+          "sourceVersions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "coverageStart": {
+            "type": "string",
+            "format": "date"
+          },
+          "coverageEnd": {
+            "type": "string",
+            "format": "date"
+          },
+          "factsCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "requestedObservations": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "eligibleObservations": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "approvedResearchSamples": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "eligibilityDigest": {
+            "type": "string",
+            "nullable": true
+          },
+          "approvalId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "approvalDigest": {
+            "type": "string",
+            "nullable": true
+          },
+          "samplePolicyVersion": {
+            "type": "string",
+            "nullable": true
+          },
+          "blockingReasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "replayStatus": {
+            "type": "string"
+          },
+          "researchStatus": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "component",
+          "datasetSnapshotId",
+          "sourceVersions",
+          "coverageStart",
+          "coverageEnd",
+          "factsCount",
+          "requestedObservations",
+          "eligibleObservations",
+          "approvedResearchSamples",
+          "eligibilityDigest",
+          "approvalId",
+          "approvalDigest",
+          "samplePolicyVersion",
+          "blockingReasons",
+          "replayStatus",
+          "researchStatus"
+        ]
+      },
+      "EtlAlert": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string"
+          },
+          "subjectId": {
+            "type": "string"
+          },
+          "nextAction": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "severity",
+          "subjectId",
+          "nextAction"
+        ]
+      },
       "PageOfProviderCapabilities": {
         "type": "object",
         "properties": {
@@ -10348,98 +10845,6 @@
           "approvalDigest"
         ]
       },
-      "DatasetBuildReport": {
-        "type": "object",
-        "properties": {
-          "component": {
-            "type": "string"
-          },
-          "datasetSnapshotId": {
-            "type": "string",
-            "nullable": true
-          },
-          "sourceVersions": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "coverageStart": {
-            "type": "string",
-            "format": "date"
-          },
-          "coverageEnd": {
-            "type": "string",
-            "format": "date"
-          },
-          "factsCount": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "requestedObservations": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "eligibleObservations": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "approvedResearchSamples": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "eligibilityDigest": {
-            "type": "string",
-            "nullable": true
-          },
-          "approvalId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "approvalDigest": {
-            "type": "string",
-            "nullable": true
-          },
-          "samplePolicyVersion": {
-            "type": "string",
-            "nullable": true
-          },
-          "blockingReasons": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "replayStatus": {
-            "type": "string"
-          },
-          "researchStatus": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "component",
-          "datasetSnapshotId",
-          "sourceVersions",
-          "coverageStart",
-          "coverageEnd",
-          "factsCount",
-          "requestedObservations",
-          "eligibleObservations",
-          "approvedResearchSamples",
-          "eligibilityDigest",
-          "approvalId",
-          "approvalDigest",
-          "samplePolicyVersion",
-          "blockingReasons",
-          "replayStatus",
-          "researchStatus"
-        ]
-      },
       "ValidationSummaryDto": {
         "type": "object",
         "properties": {
@@ -11311,43 +11716,6 @@
           "build",
           "impacts",
           "reportDigest"
-        ]
-      },
-      "SourceImpact": {
-        "type": "object",
-        "properties": {
-          "sourceId": {
-            "type": "string"
-          },
-          "sourceVersion": {
-            "type": "string"
-          },
-          "reason": {
-            "type": "string"
-          },
-          "claimKeys": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "components": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "action": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "sourceId",
-          "sourceVersion",
-          "reason",
-          "claimKeys",
-          "components",
-          "action"
         ]
       },
       "MarketRadarResult": {

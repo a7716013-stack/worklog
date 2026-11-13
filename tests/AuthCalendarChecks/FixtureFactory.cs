@@ -7,11 +7,11 @@ using WorkJournal.Web.Data;
 using WorkJournal.Web.Security;
 namespace AuthCalendarChecks;
 
-public class FixtureFactory(string connection, FakeGoogle google) : WebApplicationFactory<global::Program>
+public class FixtureFactory(string connection, FakeGoogle google, string environment = "Development") : WebApplicationFactory<global::Program>
 {
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
-        builder.UseEnvironment("Development");
+        builder.UseEnvironment(environment);
         builder.UseSetting("RadarTracking:SchedulerEnabled", "false");
         var repo = new DirectoryInfo(AppContext.BaseDirectory);
         while (repo is not null && !File.Exists(Path.Combine(repo.FullName, "WorkJournal.sln"))) repo = repo.Parent;

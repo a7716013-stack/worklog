@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
-    <Version>3.2.1</Version>
+    <Version>3.2.2</Version>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>workjournal-google-auth</UserSecretsId>
@@ -9,7 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="../WorkJournal.Web/WorkJournal.Web.csproj" />
     <Content Include="../../docs/formula-governance-3.1.1.json" Link="Research/formula-governance.json" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="../../docs/authority-state-3.2.1.json" Link="Research/authority-state.json" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="../../docs/validation-state-3.2.1.json" Link="Research/validation-state.json" CopyToOutputDirectory="PreserveNewest" />
-  <Content Include="../../docs/phase4i-state-3.2.1.json" Link="Research/phase4i-state.json" CopyToOutputDirectory="PreserveNewest" /><Content Include="../../docs/phase4j-state-3.2.1.json" Link="Research/phase4j-state.json" CopyToOutputDirectory="PreserveNewest" /><Content Include="../../docs/etl-state-3.2.1.json" Link="Research/etl-state.json" CopyToOutputDirectory="PreserveNewest" /></ItemGroup>
+    <Content Include="../../docs/authority-state-3.2.2.json" Link="Research/authority-state.json" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="../../docs/validation-state-3.2.2.json" Link="Research/validation-state.json" CopyToOutputDirectory="PreserveNewest" />
+  <Content Include="../../docs/phase4i-state-3.2.2.json" Link="Research/phase4i-state.json" CopyToOutputDirectory="PreserveNewest" /><Content Include="../../docs/phase4j-state-3.2.2.json" Link="Research/phase4j-state.json" CopyToOutputDirectory="PreserveNewest" /><Content Include="../../docs/etl-state-3.2.2.json" Link="Research/etl-state.json" CopyToOutputDirectory="PreserveNewest" /><Content Include="../../docs/etl-operations-3.2.2.json" Link="Research/etl-operations.json" CopyToOutputDirectory="PreserveNewest" /></ItemGroup>
 </Project>

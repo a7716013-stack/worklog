@@ -406,6 +406,7 @@ jobs:
           git rev-parse HEAD > evidence/api-contract.sha
           dotnet --info > evidence/sql-dotnet-info.txt
           dotnet run --project tests/ApiContractChecks -c Release -p:SourceRevisionId="$EXPECTED_SHA" -- --sql 2>&1 | tee evidence/api-contract.log
+          dotnet run --project tests/AuthCalendarChecks -c Release -p:SourceRevisionId="$EXPECTED_SHA" -- --production 2>&1 | tee evidence/auth-production-fixture.log
           cp artifacts/api3100/openapi-v1.json evidence/openapi-v1.json
       - uses: actions/upload-artifact@v4
         if: always()

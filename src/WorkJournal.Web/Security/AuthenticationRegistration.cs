@@ -28,6 +28,9 @@ public static class AuthenticationRegistration
             options.Lockout.MaxFailedAccessAttempts = 5;
         }).AddEntityFrameworkStores<JournalDbContext>().AddDefaultTokenProviders()
           .AddClaimsPrincipalFactory<ApplicationClaimsFactory>();
+        // Logout rotates the existing Identity stamp. Validate on each authenticated request
+        // so replaying a previously issued cookie cannot bypass logout for 30 minutes.
+        services.Configure<SecurityStampValidatorOptions>(options => options.ValidationInterval = TimeSpan.Zero);
         services.ConfigureApplicationCookie(options =>
         {
             options.Cookie.Name = "__Host-WorkJournal";

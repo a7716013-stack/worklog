@@ -43,7 +43,7 @@ async Task<JsonNode> Get(string path,int status=200) {
     if(status>=400){Check(response.Content.Headers.ContentType?.MediaType=="application/problem+json","problem media type");Check(node["traceId"] is not null,"problem trace");Check(node["code"] is not null,"stable problem code");}
     return node;
 }
-Check((await Get("/api/v1/system/health"))["version"]!.GetValue<string>()=="3.2.1","release version");
+Check((await Get("/api/v1/system/health"))["version"]!.GetValue<string>()=="3.2.2","release version");
 Check((await Get("/api/v1/system/readiness"))["databaseReachable"]!.GetValue<bool>(),"readiness service");
 await Get("/api/v1/not-found",404);
 Check((await Get("/api/v1/paper/orders",401))["code"]!.GetValue<string>()=="AUTHENTICATION_REQUIRED","API no login redirect");

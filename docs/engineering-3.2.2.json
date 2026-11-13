@@ -1,0 +1,128 @@
+{
+  "version": "3.2.2",
+  "baseSHA": "01ee9b02295460a997d1db608b247f5aec442695",
+  "localChecks": [
+    {
+      "project": "build",
+      "exitCode": 0
+    },
+    {
+      "project": "MarketDataChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "ApiContractChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3AuthorityResolutionChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ComponentDatasetChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ClosureChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3RealDataChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3AuthorityChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3PitDatasetChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ResearchChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V3ModelChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "MarketRadarChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "FinMindChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "FinMindChecks/LegacySwing75Checks",
+      "exitCode": 0
+    },
+    {
+      "project": "PaperTradingChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "StrategyCenterChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "MarketRadarTrackingChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V2FoundationChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "V2EvidenceChecks",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-build",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-research",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-replay",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-scorecard",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-selection",
+      "exitCode": 0
+    },
+    {
+      "project": "cli-oos",
+      "exitCode": 0
+    }
+  ],
+  "apiSqlAssertions": 421,
+  "productionConfigurationFixtureAssertions": 127,
+  "logoutReplayBefore": "REPRODUCED_FAILURE",
+  "logoutReplayAfter": "PASS",
+  "browser": "See phase3220-browser.log; fixture presentation only",
+  "productionAuthenticatedAcceptance": "BLOCKED_NO_ISOLATED_ACCOUNTS",
+  "productionSchedulerEnabled": false,
+  "liveProviderHealth": "NOT_TESTED_SNAPSHOT_ONLY",
+  "realEtlJobs": 2,
+  "loadedFacts": 21,
+  "newDownloads": 0,
+  "sourceVersions": 13,
+  "plannedTasks": 43,
+  "versionBoundAttempts": 23,
+  "unclosedClaims": 20,
+  "eligibleObservations": 0,
+  "approvedDatasets": 0,
+  "baseline": "NOT_RUN",
+  "threshold": "UNRESOLVED",
+  "promotion": "NOT_PROMOTED",
+  "phase5": "LOCKED",
+  "sameShaCi": "Require final head and main successful Actions; see release3220-verification.json after deployment"
+}

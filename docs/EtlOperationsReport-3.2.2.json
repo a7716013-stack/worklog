@@ -1,0 +1,913 @@
+{
+  "SchemaVersion": "Phase4L-v1",
+  "ExportedAt": "2026-11-13T03:15:28.4335557+00:00",
+  "Semantics": "CONTROLLED_EXPORT_SNAPSHOT_NOT_LIVE_HEALTH",
+  "ProductionSchedulerEnabled": false,
+  "Schedules": [],
+  "Providers": [
+    {
+      "Provider": "TWSE",
+      "Status": "HISTORICAL_EXPORT_ONLY",
+      "VerifiedAt": "2026-11-12T13:07:46.5140316+00:00",
+      "SuccessfulJobs": 2,
+      "FailedJobs": 0,
+      "QuarantinedJobs": 0
+    },
+    {
+      "Provider": "TPEx",
+      "Status": "HISTORICAL_EXPORT_ONLY",
+      "VerifiedAt": "2026-11-12T13:07:46.5140316+00:00",
+      "SuccessfulJobs": 0,
+      "FailedJobs": 0,
+      "QuarantinedJobs": 0
+    },
+    {
+      "Provider": "FinMind",
+      "Status": "HISTORICAL_EXPORT_ONLY",
+      "VerifiedAt": "2026-11-12T13:07:46.5140316+00:00",
+      "SuccessfulJobs": 0,
+      "FailedJobs": 0,
+      "QuarantinedJobs": 0
+    }
+  ],
+  "Closure": [
+    {
+      "TaskId": "04744D2DEAF2C75627285D288DBD8E22AF21DB8AB5EE29BB4F3C57F8387629FF",
+      "ClaimKey": "Availability:HistoricalPublication",
+      "Priority": 0,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for Availability:HistoricalPublication; exact subject/date/version scope",
+      "NextAction": "Identify licensed archive and access terms; operator approval required before purchase/login/contact",
+      "TaskOwner": "LICENSE_OPERATOR_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "164C8EBEABB68EFB09E48CD253E6AC2C0F140439C8EE9CC2608B0C225BCBF66F",
+        "7F9B356A5FF902A5390AC569822166DE7A8D8FDA88BB4AC042679740A0B432CF",
+        "DBC52D387FFA698B8BFF5A196ABBE8F4F5A75C3699370C13D49C3E574898A23A"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "296641D417851483E4C1A0798059430BD822684412E4CD4CAE7F6E1283CC0152",
+      "ClaimKey": "HistoricalPriceVolume:SourceIdentity",
+      "Priority": 0,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for HistoricalPriceVolume:SourceIdentity; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "010A3F81657628E58FB92BF34895908BDC7BB13B12B198F85DAF7BCFA3BF7A7F",
+        "45093DDC62DE1E169F7B553461E4C3AC8FBD73352F4D53F620CA00F7E1264BC9"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "37CA5060D6DACD68B49D7D0ED1AF3C9B8A7C403465FC4E5890F9BA1A8D0D2455",
+      "ClaimKey": "Availability:SourceIdentity",
+      "Priority": 0,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for Availability:SourceIdentity; exact subject/date/version scope",
+      "NextAction": "Identify licensed archive and access terms; operator approval required before purchase/login/contact",
+      "TaskOwner": "LICENSE_OPERATOR_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "234D622CB5372A5C19F38DF3E8D9CB921FE7C07CE3600D92C8755ACC42A4489F",
+        "37ACAD8EF47136ADFFA42482DC9D26C2D64A9C5F5270F9D6860344DED49058D9",
+        "7F9B356A5FF902A5390AC569822166DE7A8D8FDA88BB4AC042679740A0B432CF"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "3B53DB92E6EABF2DCD1490BB4CAA68278C8F6E3AD14622997F90295FC8CD42BB",
+      "ClaimKey": "Availability:SourceIdentity",
+      "Priority": 0,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for Availability:SourceIdentity; exact subject/date/version scope",
+      "NextAction": "Identify licensed archive and access terms; operator approval required before purchase/login/contact",
+      "TaskOwner": "LICENSE_OPERATOR_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "234D622CB5372A5C19F38DF3E8D9CB921FE7C07CE3600D92C8755ACC42A4489F",
+        "37ACAD8EF47136ADFFA42482DC9D26C2D64A9C5F5270F9D6860344DED49058D9",
+        "7F9B356A5FF902A5390AC569822166DE7A8D8FDA88BB4AC042679740A0B432CF"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "743785E974F244BB1FEF885EC259171CE9CAA7C5F719879927118F9183B14AF3",
+      "ClaimKey": "Availability:HistoricalPublication",
+      "Priority": 0,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for Availability:HistoricalPublication; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "164C8EBEABB68EFB09E48CD253E6AC2C0F140439C8EE9CC2608B0C225BCBF66F",
+        "7F9B356A5FF902A5390AC569822166DE7A8D8FDA88BB4AC042679740A0B432CF",
+        "DBC52D387FFA698B8BFF5A196ABBE8F4F5A75C3699370C13D49C3E574898A23A"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "BF50834B016D207DB9176A7D596098F1B886C56C2C914E5FA291FB1DBF3C1E2D",
+      "ClaimKey": "HistoricalPriceVolume:SourceIdentity",
+      "Priority": 0,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for HistoricalPriceVolume:SourceIdentity; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "010A3F81657628E58FB92BF34895908BDC7BB13B12B198F85DAF7BCFA3BF7A7F",
+        "45093DDC62DE1E169F7B553461E4C3AC8FBD73352F4D53F620CA00F7E1264BC9"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "C40C418BD0529AC51B3345C5F91EFF6F49BF89B05B8284FCE19F372101635BD0",
+      "ClaimKey": "Availability:HistoricalPublication",
+      "Priority": 0,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for Availability:HistoricalPublication; exact subject/date/version scope",
+      "NextAction": "Identify licensed archive and access terms; operator approval required before purchase/login/contact",
+      "TaskOwner": "LICENSE_OPERATOR_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "164C8EBEABB68EFB09E48CD253E6AC2C0F140439C8EE9CC2608B0C225BCBF66F",
+        "7F9B356A5FF902A5390AC569822166DE7A8D8FDA88BB4AC042679740A0B432CF",
+        "DBC52D387FFA698B8BFF5A196ABBE8F4F5A75C3699370C13D49C3E574898A23A"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "F578F7F1479F481058F23C6340A4FE295823274CE77AD6A102EA384C830CF140",
+      "ClaimKey": "Availability:SourceIdentity",
+      "Priority": 0,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for Availability:SourceIdentity; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "234D622CB5372A5C19F38DF3E8D9CB921FE7C07CE3600D92C8755ACC42A4489F",
+        "37ACAD8EF47136ADFFA42482DC9D26C2D64A9C5F5270F9D6860344DED49058D9",
+        "7F9B356A5FF902A5390AC569822166DE7A8D8FDA88BB4AC042679740A0B432CF"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "096523E612A203B545D59EF5CEF13474E6E489AA30449518BB89CEDCBF3033A5",
+      "ClaimKey": "Availability:RevisionBehavior",
+      "Priority": 1,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for Availability:RevisionBehavior; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "76D5A378487949159367EB1E3AEB39F3AB97F8E03748BF57B4A1E172723D493F",
+        "7F9B356A5FF902A5390AC569822166DE7A8D8FDA88BB4AC042679740A0B432CF",
+        "991137FC9226B01D43E07A953CEDF997FE83851B8050256D00DC5F5CD958FAE7"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "100ECEFC61AD593466EECD7604841A00079E7258596C2A272293A6FA046AB533",
+      "ClaimKey": "Availability:RevisionBehavior",
+      "Priority": 1,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for Availability:RevisionBehavior; exact subject/date/version scope",
+      "NextAction": "Identify licensed archive and access terms; operator approval required before purchase/login/contact",
+      "TaskOwner": "LICENSE_OPERATOR_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "76D5A378487949159367EB1E3AEB39F3AB97F8E03748BF57B4A1E172723D493F",
+        "7F9B356A5FF902A5390AC569822166DE7A8D8FDA88BB4AC042679740A0B432CF",
+        "991137FC9226B01D43E07A953CEDF997FE83851B8050256D00DC5F5CD958FAE7"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "DB1434181D4DFD630E23C76138B7862136F72757EFF54BAE4637D320B92FBD96",
+      "ClaimKey": "Availability:RevisionBehavior",
+      "Priority": 1,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for Availability:RevisionBehavior; exact subject/date/version scope",
+      "NextAction": "Identify licensed archive and access terms; operator approval required before purchase/login/contact",
+      "TaskOwner": "LICENSE_OPERATOR_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "76D5A378487949159367EB1E3AEB39F3AB97F8E03748BF57B4A1E172723D493F",
+        "7F9B356A5FF902A5390AC569822166DE7A8D8FDA88BB4AC042679740A0B432CF",
+        "991137FC9226B01D43E07A953CEDF997FE83851B8050256D00DC5F5CD958FAE7"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "2EBFAA8E2C5C304FB8E0045D21056D71B12A25A6389994AF0174066C6B9AF3AE",
+      "ClaimKey": "HistoricalInstrumentIdentity:SymbolHistory",
+      "Priority": 2,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for HistoricalInstrumentIdentity:SymbolHistory; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "15069D40C12FB7A39488A18D0331BC06B667323A20B6C92CF6467C5D0C238CE3",
+        "B4984A6BE5CCF1F30FE88997B97996A1D5C2D5B3865917E31CECABEDAD9B536B"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "4F84324715712BE97AC469C93D86888B25237F3E5996DF20DED2CA9F888CCDF4",
+      "ClaimKey": "HistoricalInstrumentIdentity:MarketTransfer",
+      "Priority": 2,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for HistoricalInstrumentIdentity:MarketTransfer; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "15069D40C12FB7A39488A18D0331BC06B667323A20B6C92CF6467C5D0C238CE3",
+        "521604E0489B3A31FAE1256A532BFE08FE82F5151B523F272CE21ACDDEFAE8E3"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "6510BC7F72308241925345F1E70D73FBE88F355A97EE422211E098CF2E347BD2",
+      "ClaimKey": "HistoricalInstrumentIdentity:HistoricalInstrumentIdentity",
+      "Priority": 2,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for HistoricalInstrumentIdentity:HistoricalInstrumentIdentity; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "15069D40C12FB7A39488A18D0331BC06B667323A20B6C92CF6467C5D0C238CE3",
+        "8A8CB6DA07C3141015317D3FFA6A9553317A117F5F69495324235DAB5ED3B3FC"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "B0C67644B9B12C6556BD44C343FF28E4F376F0E4CD346AEE13153E3CE681DC39",
+      "ClaimKey": "HistoricalInstrumentIdentity:SymbolHistory",
+      "Priority": 2,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for HistoricalInstrumentIdentity:SymbolHistory; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "15069D40C12FB7A39488A18D0331BC06B667323A20B6C92CF6467C5D0C238CE3",
+        "B4984A6BE5CCF1F30FE88997B97996A1D5C2D5B3865917E31CECABEDAD9B536B"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "B617B4076D77184303DDD4C770BEAEBD3688969BCFC8A5499F62460E8BBF11EB",
+      "ClaimKey": "HistoricalInstrumentIdentity:MarketTransfer",
+      "Priority": 2,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for HistoricalInstrumentIdentity:MarketTransfer; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "15069D40C12FB7A39488A18D0331BC06B667323A20B6C92CF6467C5D0C238CE3",
+        "521604E0489B3A31FAE1256A532BFE08FE82F5151B523F272CE21ACDDEFAE8E3"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "FCD1A88EC20075F1597C2AAF76159C7C478586BC39F28B0B687DA3A6F1FDF968",
+      "ClaimKey": "HistoricalInstrumentIdentity:HistoricalInstrumentIdentity",
+      "Priority": 2,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for HistoricalInstrumentIdentity:HistoricalInstrumentIdentity; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "15069D40C12FB7A39488A18D0331BC06B667323A20B6C92CF6467C5D0C238CE3",
+        "8A8CB6DA07C3141015317D3FFA6A9553317A117F5F69495324235DAB5ED3B3FC"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "0BDC827C582D9411AD7F04D062FDA008D1E3B32B31A3FA1F4DE21F9D81C313B8",
+      "ClaimKey": "HistoricalUniverse:Suspension",
+      "Priority": 3,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for HistoricalUniverse:Suspension; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "7365EAA7D4C35007719AD60E72A2D8E4F3C4FD5E3E9CE65BB0E565B64BC95CC2",
+        "B39774F2EFE9791DB7EA3B8096C634BA728A6FCDE69A27EECAE27C46550F5531"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "1F9CD5324D94734A595D846C5BE98488B84D578CA7BDD8E904033313FA3A6BDA",
+      "ClaimKey": "HistoricalUniverse:HistoricalMembership",
+      "Priority": 3,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for HistoricalUniverse:HistoricalMembership; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "A537585316BD64B49C472B9BEC3813C03CD4BE313B8A9021F872A5BBC49CE7B1",
+        "B39774F2EFE9791DB7EA3B8096C634BA728A6FCDE69A27EECAE27C46550F5531"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "4420C65DC7C8072D95E7746E2BB2F418F43F08F7300011FEF05080119C3D303F",
+      "ClaimKey": "HistoricalUniverse:Delisting",
+      "Priority": 3,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for HistoricalUniverse:Delisting; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "439E3F009B880799150628CB877315669591EC01AC604F327CB37A5374C872D0",
+        "B39774F2EFE9791DB7EA3B8096C634BA728A6FCDE69A27EECAE27C46550F5531"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "63186213C35464F583741974A8DF86ABA029B9C2248F7F2CD7538D3E1932DF86",
+      "ClaimKey": "HistoricalUniverse:Denominator",
+      "Priority": 3,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for HistoricalUniverse:Denominator; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "2E44B2799D2EE00BEF08FC4DA21F0CA26250FBF8D051C1185F6FDAB8BA1AE2F4",
+        "B39774F2EFE9791DB7EA3B8096C634BA728A6FCDE69A27EECAE27C46550F5531"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "B1217983A3ECB00CC017DF8A4D9C7E810C80C4AB61192C9EC8DBD161EC9A9C54",
+      "ClaimKey": "HistoricalUniverse:Listing",
+      "Priority": 3,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for HistoricalUniverse:Listing; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "19FE563C2790FED3DCAEB1CEE4A50FB558D9A5FF6BF9284B4551068E052EFD31",
+        "B39774F2EFE9791DB7EA3B8096C634BA728A6FCDE69A27EECAE27C46550F5531"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "B512786C05D05F451BCFDFB6161D88F079C0B2E81E2BA5C058E04DE2FB4181DC",
+      "ClaimKey": "HistoricalUniverse:Delisting",
+      "Priority": 3,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for HistoricalUniverse:Delisting; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "439E3F009B880799150628CB877315669591EC01AC604F327CB37A5374C872D0",
+        "B39774F2EFE9791DB7EA3B8096C634BA728A6FCDE69A27EECAE27C46550F5531"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "BD060CDC02D99F8F9746AC93152FAE27E28A898D6139555F93681B5E738CD829",
+      "ClaimKey": "HistoricalUniverse:Listing",
+      "Priority": 3,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for HistoricalUniverse:Listing; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "19FE563C2790FED3DCAEB1CEE4A50FB558D9A5FF6BF9284B4551068E052EFD31",
+        "B39774F2EFE9791DB7EA3B8096C634BA728A6FCDE69A27EECAE27C46550F5531"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "E63B98A9F2C4A19FEE283355E728E14DF86406BE815D189521CCEF75465A36CD",
+      "ClaimKey": "HistoricalUniverse:HistoricalMembership",
+      "Priority": 3,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for HistoricalUniverse:HistoricalMembership; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "A537585316BD64B49C472B9BEC3813C03CD4BE313B8A9021F872A5BBC49CE7B1",
+        "B39774F2EFE9791DB7EA3B8096C634BA728A6FCDE69A27EECAE27C46550F5531"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "F1AFC8BB1AF04197CB36B650372AB67BF05703DABBC6928F9AC892546A59B1EC",
+      "ClaimKey": "HistoricalUniverse:Denominator",
+      "Priority": 3,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for HistoricalUniverse:Denominator; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "2E44B2799D2EE00BEF08FC4DA21F0CA26250FBF8D051C1185F6FDAB8BA1AE2F4",
+        "B39774F2EFE9791DB7EA3B8096C634BA728A6FCDE69A27EECAE27C46550F5531"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "FA40120255C64CFC474DA39A2F1093160539056C45AB0C3EF26CFE795E17B845",
+      "ClaimKey": "HistoricalUniverse:Suspension",
+      "Priority": 3,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for HistoricalUniverse:Suspension; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "7365EAA7D4C35007719AD60E72A2D8E4F3C4FD5E3E9CE65BB0E565B64BC95CC2",
+        "B39774F2EFE9791DB7EA3B8096C634BA728A6FCDE69A27EECAE27C46550F5531"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "859A93C34569BD1F772EC3016DFBD2836504165B93295975569BC6B5C13E9D06",
+      "ClaimKey": "TradingCalendar:Horizon:TradingSessions",
+      "Priority": 4,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for TradingCalendar:Horizon:TradingSessions; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "5AC49EF2725FE7BF603C2AC3C93F994D9E9F033F11995FE909F7BFBFD0DCC470",
+        "99E4CA4B1F1CD18E8F5CF77BA5B2AFE65647F375AA3762A81C3C4D2064D05970"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "8ABCF0925C049158393CEE3675F0A537895B8F7BF85279C39AA9EC5E23744706",
+      "ClaimKey": "TradingCalendar:EmergencyClosures",
+      "Priority": 4,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for TradingCalendar:EmergencyClosures; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "20FFBA30DDEA88560DDADABDDD4BCDF0A16CCDC43F964DB33266E4520615C47C",
+        "5AC49EF2725FE7BF603C2AC3C93F994D9E9F033F11995FE909F7BFBFD0DCC470"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "8E6C75EBF43156DEDD18233C3DC6071ED7F5CBAFBBD34DA582790719C79E1941",
+      "ClaimKey": "TradingCalendar:ScheduledHolidays",
+      "Priority": 4,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for TradingCalendar:ScheduledHolidays; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "5AC49EF2725FE7BF603C2AC3C93F994D9E9F033F11995FE909F7BFBFD0DCC470",
+        "BAFEB760E0D0EC72745C02E4589EEF2BF5BE06B5444153D48BE3F0373AC67F1D"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "A1C0060449570D28CA8FC927E61D466AD38058B419C4DDF2185D8D14EEADAB2A",
+      "ClaimKey": "TradingCalendar:EmergencyClosures",
+      "Priority": 4,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for TradingCalendar:EmergencyClosures; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "20FFBA30DDEA88560DDADABDDD4BCDF0A16CCDC43F964DB33266E4520615C47C",
+        "5AC49EF2725FE7BF603C2AC3C93F994D9E9F033F11995FE909F7BFBFD0DCC470"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "AD1DEE6BA915E37AF842B5BB20242423ECCF5201BD6B378BE2A9345E707BDB84",
+      "ClaimKey": "TradingCalendar:Horizon:TradingSessions",
+      "Priority": 4,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for TradingCalendar:Horizon:TradingSessions; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "5AC49EF2725FE7BF603C2AC3C93F994D9E9F033F11995FE909F7BFBFD0DCC470",
+        "99E4CA4B1F1CD18E8F5CF77BA5B2AFE65647F375AA3762A81C3C4D2064D05970"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "F5AC484F16DDD9E0A8A3BF72A96D8A9CDA8B5387096BE24A9E9BF601DD6C586D",
+      "ClaimKey": "TradingCalendar:HistoricalSessions",
+      "Priority": 4,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for TradingCalendar:HistoricalSessions; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "49DE21F4A26A3860537F7DE5A0C40B2E68543539A2109E70B6D3DB6F463BDFB3",
+        "5AC49EF2725FE7BF603C2AC3C93F994D9E9F033F11995FE909F7BFBFD0DCC470"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "FE057166FC6A13D13EABC8E8142840022F049A2E2FB7E9E84D232E175B3A6DA6",
+      "ClaimKey": "TradingCalendar:HistoricalSessions",
+      "Priority": 4,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for TradingCalendar:HistoricalSessions; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "49DE21F4A26A3860537F7DE5A0C40B2E68543539A2109E70B6D3DB6F463BDFB3",
+        "5AC49EF2725FE7BF603C2AC3C93F994D9E9F033F11995FE909F7BFBFD0DCC470"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "FE54D55646E995D0251222EE922A98394671D68E3DDB70859412717E4DC9F7CC",
+      "ClaimKey": "TradingCalendar:ScheduledHolidays",
+      "Priority": 4,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for TradingCalendar:ScheduledHolidays; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "5AC49EF2725FE7BF603C2AC3C93F994D9E9F033F11995FE909F7BFBFD0DCC470",
+        "BAFEB760E0D0EC72745C02E4589EEF2BF5BE06B5444153D48BE3F0373AC67F1D"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "41025C1EF8D6B3870A7ED2BF13951BA110470DF845374E5C86D0F65C2F44F6D5",
+      "ClaimKey": "HistoricalPriceVolume:HistoricalPrices",
+      "Priority": 5,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for HistoricalPriceVolume:HistoricalPrices; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "45093DDC62DE1E169F7B553461E4C3AC8FBD73352F4D53F620CA00F7E1264BC9",
+        "CA0F1B6D27E25A538ACC5B944CE7CB59B853758C17572FF7D81E4AA57C3D4DA5"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "497FAEFDF4D183D1FA4DEE4B13EB20D3444811FB7E3AB520220A20929A855709",
+      "ClaimKey": "CorporateActionPriceBasis:CorporateActionHandling",
+      "Priority": 5,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for CorporateActionPriceBasis:CorporateActionHandling; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "2E91522AE4E3CFAAD28F2D5172A0DD13BA069344B1AAA6A9879B504633F4FD83",
+        "786516EA550B81A44FD1415F2A5114444ED496D2CA3C6C518F53DA8766307559"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "59E27419512941F9B5066E80473DEE6C552FD906D809CB48D2210F10C1993019",
+      "ClaimKey": "CorporateActionPriceBasis:PriceBasis",
+      "Priority": 5,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for CorporateActionPriceBasis:PriceBasis; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "45F2FB1D0832CCFE46549B72848D6AB2F8B5D9E39B52DACC9CE8066400A37B20",
+        "786516EA550B81A44FD1415F2A5114444ED496D2CA3C6C518F53DA8766307559"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "6912410883B84A1F3E4903152749A85CDB60BA49C3D06E968C474D8CA630ED29",
+      "ClaimKey": "HistoricalPriceVolume:Units",
+      "Priority": 5,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for HistoricalPriceVolume:Units; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "017FD91FECB4156BB5C2529008D68E15D02F92D63D07FD960DD70A40E85C5494",
+        "45093DDC62DE1E169F7B553461E4C3AC8FBD73352F4D53F620CA00F7E1264BC9"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "77D9B43AAD3753EAC92CC027CBC06E5F2D988A789CB8C66C972C56E0B9A08FB7",
+      "ClaimKey": "HistoricalPriceVolume:HistoricalPrices",
+      "Priority": 5,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for HistoricalPriceVolume:HistoricalPrices; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "45093DDC62DE1E169F7B553461E4C3AC8FBD73352F4D53F620CA00F7E1264BC9",
+        "CA0F1B6D27E25A538ACC5B944CE7CB59B853758C17572FF7D81E4AA57C3D4DA5"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "7CC24EC0077F8FDBEC80826D6243F6E78BD6F311BF327E45138F7A3AAC749586",
+      "ClaimKey": "CorporateActionPriceBasis:CorporateActionHandling",
+      "Priority": 5,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for CorporateActionPriceBasis:CorporateActionHandling; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "2E91522AE4E3CFAAD28F2D5172A0DD13BA069344B1AAA6A9879B504633F4FD83",
+        "786516EA550B81A44FD1415F2A5114444ED496D2CA3C6C518F53DA8766307559"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "B5A4096AE1FB7A9BFDC30FA57975F518E1660DCCC7EA145E59D4B479B761D82B",
+      "ClaimKey": "HistoricalPriceVolume:Units",
+      "Priority": 5,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for HistoricalPriceVolume:Units; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "017FD91FECB4156BB5C2529008D68E15D02F92D63D07FD960DD70A40E85C5494",
+        "45093DDC62DE1E169F7B553461E4C3AC8FBD73352F4D53F620CA00F7E1264BC9"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    },
+    {
+      "TaskId": "E56CC9D023073A4C2C478EECDDA3EE8E6F5FEC908F6525C51EC8F9647D466730",
+      "ClaimKey": "CorporateActionPriceBasis:PriceBasis",
+      "Priority": 5,
+      "EvidenceRequirement": "Scoped historical identity, coverage, original publication and revision evidence; capture time/checksum alone is insufficient; Original publication and retained revision evidence for CorporateActionPriceBasis:PriceBasis; exact subject/date/version scope",
+      "NextAction": "Review existing receipts first; acquire only this registered URL, then establish original availability and revision scope through existing reviewer CLI",
+      "TaskOwner": "EVIDENCE_REVIEWER_UNASSIGNED",
+      "ReviewStatus": "REVIEWED_UNRESOLVED",
+      "ManualActionRequired": true,
+      "ReviewReceipts": [
+        "45F2FB1D0832CCFE46549B72848D6AB2F8B5D9E39B52DACC9CE8066400A37B20",
+        "786516EA550B81A44FD1415F2A5114444ED496D2CA3C6C518F53DA8766307559"
+      ],
+      "ClosureReceipt": null,
+      "RevocationImpacts": []
+    }
+  ],
+  "Invalidations": [],
+  "Readiness": [
+    {
+      "Component": "Trend",
+      "DatasetSnapshotId": "c16ea9346e2077ea37ac07294a2b4069",
+      "SourceVersions": [
+        "captured-body:0D2533EEF03F4E7160D21404D5FD449EE53A8B663AFC1A278B98C09D7BA4724E",
+        "captured-body:C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC"
+      ],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "FactsCount": 21,
+      "RequestedObservations": 1,
+      "EligibleObservations": 0,
+      "ApprovedResearchSamples": 0,
+      "EligibilityDigest": "09CB91EBF71F4CD47EA46E28A99EC282264C2CEE10DB4132F458E41319AE0FB4",
+      "ApprovalId": null,
+      "ApprovalDigest": null,
+      "SamplePolicyVersion": "TrendSample-v1",
+      "BlockingReasons": [
+        "APPROVED_REAL_DATASET_REQUIRED",
+        "Availability:HistoricalPublication",
+        "Availability:RevisionBehavior",
+        "Availability:SourceIdentity",
+        "BLOCKED_BY_AUTHORITY",
+        "CALENDAR_COVERAGE_UNKNOWN",
+        "CORPORATE_ACTION_UNRESOLVED",
+        "CorporateActionPriceBasis:CorporateActionHandling",
+        "CorporateActionPriceBasis:PriceBasis",
+        "HistoricalInstrumentIdentity:HistoricalInstrumentIdentity",
+        "HistoricalInstrumentIdentity:MarketTransfer",
+        "HistoricalInstrumentIdentity:SymbolHistory",
+        "HistoricalPriceVolume:HistoricalPrices",
+        "HistoricalPriceVolume:SourceIdentity",
+        "HistoricalPriceVolume:Units",
+        "HistoricalUniverse:Delisting",
+        "HistoricalUniverse:Denominator",
+        "HistoricalUniverse:HistoricalMembership",
+        "HistoricalUniverse:Listing",
+        "HistoricalUniverse:Suspension",
+        "PHASE4DE_APPROVAL_REQUIRED",
+        "PRICE_AUTHORITY_UNPROVEN",
+        "PRICE_BASIS_CONFLICT",
+        "PRICE_BASIS_INCONSISTENT",
+        "PRICE_FACTS_MISSING",
+        "REQUESTED_OBSERVATIONS_NOT_FULLY_ELIGIBLE",
+        "REVISION_UNKNOWN",
+        "SURVIVORSHIP_BIAS_RISK",
+        "TradingCalendar:EmergencyClosures",
+        "TradingCalendar:HistoricalSessions",
+        "TradingCalendar:Horizon:TradingSessions",
+        "TradingCalendar:ScheduledHolidays",
+        "UNKNOWN_AVAILABILITY",
+        "UNRESOLVED_CALENDAR",
+        "UNRESOLVED_IDENTITY",
+        "UNRESOLVED_UNIVERSE",
+        "UNVERIFIABLE_AVAILABILITY",
+        "UNVERIFIABLE_REVISION"
+      ],
+      "ReplayStatus": "VERIFIED_AT_EXPORT",
+      "ResearchStatus": "NOT_RUN"
+    },
+    {
+      "Component": "Momentum",
+      "DatasetSnapshotId": null,
+      "SourceVersions": [],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "FactsCount": null,
+      "RequestedObservations": null,
+      "EligibleObservations": null,
+      "ApprovedResearchSamples": 0,
+      "EligibilityDigest": null,
+      "ApprovalId": null,
+      "ApprovalDigest": null,
+      "SamplePolicyVersion": null,
+      "BlockingReasons": [
+        "INDEPENDENT_COMPONENT_AUTHORITY_PIT_APPROVAL_REQUIRED"
+      ],
+      "ReplayStatus": "NOT_BUILT_INDEPENDENT_APPROVAL_REQUIRED",
+      "ResearchStatus": "NOT_RUN"
+    },
+    {
+      "Component": "VolumePrice",
+      "DatasetSnapshotId": null,
+      "SourceVersions": [],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "FactsCount": null,
+      "RequestedObservations": null,
+      "EligibleObservations": null,
+      "ApprovedResearchSamples": 0,
+      "EligibilityDigest": null,
+      "ApprovalId": null,
+      "ApprovalDigest": null,
+      "SamplePolicyVersion": null,
+      "BlockingReasons": [
+        "INDEPENDENT_COMPONENT_AUTHORITY_PIT_APPROVAL_REQUIRED"
+      ],
+      "ReplayStatus": "NOT_BUILT_INDEPENDENT_APPROVAL_REQUIRED",
+      "ResearchStatus": "NOT_RUN"
+    },
+    {
+      "Component": "Institutional",
+      "DatasetSnapshotId": null,
+      "SourceVersions": [],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "FactsCount": null,
+      "RequestedObservations": null,
+      "EligibleObservations": null,
+      "ApprovedResearchSamples": 0,
+      "EligibilityDigest": null,
+      "ApprovalId": null,
+      "ApprovalDigest": null,
+      "SamplePolicyVersion": null,
+      "BlockingReasons": [
+        "INDEPENDENT_COMPONENT_AUTHORITY_PIT_APPROVAL_REQUIRED"
+      ],
+      "ReplayStatus": "NOT_BUILT_INDEPENDENT_APPROVAL_REQUIRED",
+      "ResearchStatus": "NOT_RUN"
+    },
+    {
+      "Component": "RelativeStrength",
+      "DatasetSnapshotId": null,
+      "SourceVersions": [],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "FactsCount": null,
+      "RequestedObservations": null,
+      "EligibleObservations": null,
+      "ApprovedResearchSamples": 0,
+      "EligibilityDigest": null,
+      "ApprovalId": null,
+      "ApprovalDigest": null,
+      "SamplePolicyVersion": null,
+      "BlockingReasons": [
+        "INDEPENDENT_COMPONENT_AUTHORITY_PIT_APPROVAL_REQUIRED"
+      ],
+      "ReplayStatus": "NOT_BUILT_INDEPENDENT_APPROVAL_REQUIRED",
+      "ResearchStatus": "NOT_RUN"
+    },
+    {
+      "Component": "RiskQuality",
+      "DatasetSnapshotId": null,
+      "SourceVersions": [],
+      "CoverageStart": "2026-09-30",
+      "CoverageEnd": "2026-09-30",
+      "FactsCount": null,
+      "RequestedObservations": null,
+      "EligibleObservations": null,
+      "ApprovedResearchSamples": 0,
+      "EligibilityDigest": null,
+      "ApprovalId": null,
+      "ApprovalDigest": null,
+      "SamplePolicyVersion": null,
+      "BlockingReasons": [
+        "INDEPENDENT_COMPONENT_AUTHORITY_PIT_APPROVAL_REQUIRED"
+      ],
+      "ReplayStatus": "NOT_BUILT_INDEPENDENT_APPROVAL_REQUIRED",
+      "ResearchStatus": "NOT_RUN"
+    }
+  ],
+  "Alerts": [
+    {
+      "Code": "HISTORICAL_AUTHORITY_UNRESOLVED",
+      "Severity": "WARNING",
+      "SubjectId": "authority",
+      "NextAction": "Supply original publication and revision evidence through existing reviewer workflow"
+    },
+    {
+      "Code": "RESEARCH_NOT_READY",
+      "Severity": "INFO",
+      "SubjectId": "Trend",
+      "NextAction": "Retain NOT_RUN; complete PIT, independent approval and TrendSample-v1 assessment"
+    }
+  ],
+  "EtlDigest": "C4C028797F29FC28A00F9F759A6BD7EC25DAC3A1ED7BC125D4D326C4A97400E9",
+  "EvidenceDigest": "36201537C9B6370CDE22EA89A3DCE2000FB040C1DDC0231DD952DFFB02990913",
+  "SchedulerDigest": "315A4C6B33535B5179EB46258833092CCD0191D07DB25E393174D0EF10AD548B",
+  "Digest": "85A0BCE43387FD21A7606109BF0A284A04D81154436A600A3729B6DD50CCD9EC"
+}

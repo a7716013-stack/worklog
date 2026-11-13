@@ -18,6 +18,8 @@ public sealed class EtlPipeline(string root)
         using var gate=AcquisitionSafety.Lease(folder);
         var started=Directory.GetFiles(folder,"*.started.json").Length;
         var previous=Latest(id);
+        if(File.Exists(Path.Combine(folder,"batch.json")) && previous?.Status!="SUCCEEDED")
+            return RecoverCommit(id,request,raw,started);
         if(previous is not null&&(!retry||previous.Status is "SUCCEEDED" or "QUARANTINED"))return Replay(id);
         if(started>=3)throw new InvalidOperationException("ETL_RETRY_LIMIT");
         var attempt=started+1;var now=DateTimeOffset.UtcNow;var stages=new List<EtlTransition>();
@@ -61,6 +63,30 @@ public sealed class EtlPipeline(string root)
             request.SchemaVersion,request.TransformCodeSha,response.ParserVersion,ResearchMath.Digest(response.Facts),quality.Digest,response.Facts.Select(f=>f.FactChecksum).ToArray(),"");
         return l with{Digest=ResearchMath.Digest(l)};
     }
+    // Called only under the existing exclusive per-job lock. A committed batch is immutable.
+    private EtlJobReport RecoverCommit(string id,ProviderRequest request,SourceArchive supplied,int attempt)
+    {
+        var dir=Folder(id);
+        var frozen=HistoricalDatasetStore.Read<ProviderRequest>(Path.Combine(dir,"request.json"));
+        var raw=HistoricalDatasetStore.Read<SourceArchive>(Path.Combine(dir,"raw-archive.json"));
+        var batch=HistoricalDatasetStore.Read<EtlBatch>(Path.Combine(dir,"batch.json"));
+        var response=new OfficialDataProviderAdapter(request.Provider).Transform(request,raw);
+        var quality=EtlQuality.Evaluate(request,response);var lineage=Lineage(id,request,raw,response,quality);
+        var expected=new EtlBatch(request,raw,response.Facts,quality,lineage,"");
+        if(attempt is <1 or >3 || ResearchMath.Digest(frozen)!=ResearchMath.Digest(request) ||
+            Identity(request,raw.SourceUri,raw.Synthetic)!=id || supplied.SourceChecksum!=raw.SourceChecksum ||
+            quality.Status=="QUARANTINED" || batch.Digest!=ResearchMath.Digest(batch with{Digest=""}) ||
+            batch.Digest!=ResearchMath.Digest(expected))throw new InvalidDataException("RECOVERY_COMMIT_MISMATCH");
+        var at=DateTimeOffset.UtcNow;var stages=new List<EtlTransition>();
+        foreach(var state in new[]{"EXTRACTING","EXTRACTED","TRANSFORMING","QUALITY","LOADING","SUCCEEDED"})
+        {var stage=new EtlTransition(stages.Count+1,state,at,stages.LastOrDefault()?.Digest??"","");stages.Add(stage with{Digest=ResearchMath.Digest(stage)});}
+        var report=Seal(new(id,attempt,"SUCCEEDED",at,at,request,raw.Synthetic,response.Facts.Length,response.Facts.Length,quality,lineage,stages.ToArray(),
+            "RECOVERED_VERIFIED_COMMIT","REVIEW_REQUIRED","NOT_EVALUATED","NOT_APPROVED","NOT_RUN",""));
+        // The normal result may be absent after a crash. Never overwrite an existing receipt.
+        var path=Path.Combine(dir,$"{attempt:D2}.result.json");
+        if(File.Exists(path))throw new InvalidDataException("RECOVERY_RECEIPT_CONFLICT");
+        HistoricalDatasetStore.WriteNew(path,report);return Replay(id);
+    }
     private EtlJobReport? Latest(string id)
     {
         var dir=Folder(id);if(!Directory.Exists(dir))return null;
@@ -79,7 +105,8 @@ public sealed class EtlPipeline(string root)
         if(r.Status=="SUCCEEDED")
         {
             var b=HistoricalDatasetStore.Read<EtlBatch>(Path.Combine(dir,"batch.json"));var lineage=Lineage(id,r.Request,raw,response,quality);
-            if(b.Digest!=ResearchMath.Digest(b with{Digest=""})||ResearchMath.Digest(b.Facts)!=ResearchMath.Digest(response.Facts)||
+            var expected=new EtlBatch(r.Request,raw,response.Facts,quality,lineage,"");
+            if(b.Digest!=ResearchMath.Digest(b with{Digest=""})||b.Digest!=ResearchMath.Digest(expected)||ResearchMath.Digest(b.Facts)!=ResearchMath.Digest(response.Facts)||
                 ResearchMath.Digest(b.Raw)!=ResearchMath.Digest(raw)||b.Lineage.Digest!=lineage.Digest||r.Lineage?.Digest!=lineage.Digest)throw new InvalidDataException("TRANSFORM_LINEAGE_REPLAY_MISMATCH");
         }
         return r;

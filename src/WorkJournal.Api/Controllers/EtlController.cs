@@ -8,8 +8,10 @@ namespace WorkJournal.Api.Controllers;
 public sealed record EtlQualityDto(string JobId,string Status,DataQualityReport? Quality);
 public sealed record EtlHealthDto(string Status,DateTimeOffset VerifiedAt,int Jobs,int RealJobs,int TestJobs,int FailedJobs,int QuarantinedJobs,string Semantics);
 [ApiController,Route("api/v1"),Authorize(Policy="ApiResearchRead"),EnableRateLimiting("ReadPolicy")]
-public sealed class EtlApiController(EtlReadAdapter service):ControllerBase
+public sealed class EtlApiController(EtlReadAdapter service,Phase4JReadAdapter evidence,Phase4IReadAdapter parent):ControllerBase
 {
+    [HttpGet("etl/operations")]
+    public ActionResult<EtlOperationsReport> Operations()=>Phase4LOperations.Create(service.Read(),service.Operations(),evidence.Read(),parent.Read());
     [HttpGet("data/providers")]
     public ActionResult<PageDto<ProviderCapabilities>> Providers([FromQuery(Name="")]PageQuery page)=>PageDto<ProviderCapabilities>.From(service.Read().Providers,page);
     [HttpGet("etl/jobs")]

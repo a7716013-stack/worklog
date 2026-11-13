@@ -8,9 +8,10 @@ def camel(v):
  if isinstance(v,dict):return {k[0].lower()+k[1:]:camel(x) for k,x in v.items()}
  if isinstance(v,list):return [camel(x) for x in v]
  return v
-p=camel(json.loads((r/'docs/phase4i-state-3.2.1.json').read_text(encoding='utf-8-sig')));v=p['validation']
-j=camel(json.loads((r/'docs/phase4j-state-3.2.1.json').read_text(encoding='utf-8-sig')))
-etl=camel(json.loads((r/'docs/etl-state-3.2.1.json').read_text(encoding='utf-8-sig')))
+p=camel(json.loads((r/'docs/phase4i-state-3.2.2.json').read_text(encoding='utf-8-sig')));v=p['validation']
+j=camel(json.loads((r/'docs/phase4j-state-3.2.2.json').read_text(encoding='utf-8-sig')))
+etl=camel(json.loads((r/'docs/etl-state-3.2.2.json').read_text(encoding='utf-8-sig')))
+ops=camel(json.loads((r/'docs/EtlOperationsReport-3.2.2.json').read_text(encoding='utf-8-sig')))
 q=[dict(id=c['domain']+':'+c['claimId'],claim=c,applicability='UNPROVEN_FOR_HISTORICAL_SCOPE') for c in v['claims']]
 markup=(r/'src/WorkJournal.Web/Views/StockAnalysis/Validation.cshtml').read_text(encoding='utf-8-sig')
 markup=re.sub(r'@\{.*?\}','',markup,flags=re.S).split('@section Scripts')[0]
@@ -19,6 +20,7 @@ def route(handler):
  path=unquote(urlparse(handler.request.url).path);requests.append(path)
  if path=='/ResearchValidation':return handler.fulfill(content_type='text/html',body='<html><body>'+markup+'</body></html>')
  if path.endswith('/data/providers'):body=dict(items=etl['providers'],totalCount=len(etl['providers']))
+ elif path.endswith('/etl/operations'):body=ops
  elif path.endswith('/etl/health'):body=dict(verifiedAt=etl['verifiedAt'],realJobs=2,testJobs=0,failedJobs=0,quarantinedJobs=0)
  elif path.endswith('/etl/jobs'):body=dict(items=etl['jobs'],totalCount=len(etl['jobs']))
  elif '/etl/jobs/' in path:
@@ -63,9 +65,14 @@ with sync_playwright() as pw:
  page.locator('#etl-jobs button').first.click()
  page.wait_for_function("document.querySelector('#etl-detail').textContent.includes('rawDigest')")
  assert '真實工作 2' in page.locator('#etl-status').inner_text()
- page.screenshot(path=str(r/'artifacts/phase3210-validation-browser.png'),full_page=True)
+ page.get_by_text('排程、證據結案與研究準備',exact=True).wait_for()
+ assert page.get_by_text('證據結案工作（43）',exact=True).count()==1
+ assert page.get_by_text('資料集研究準備（6）',exact=True).count()==1
+ page.screenshot(path=str(r/'artifacts/phase3220-validation-browser.png'),full_page=True)
  page.unroute('http://phase4i.test/**');page.route('http://phase4i.test/api/**',lambda h:h.fulfill(status=401,content_type='application/json',body='{}'))
  page.add_script_tag(content=(r/'src/WorkJournal.Web/wwwroot/js/research-phase4i.js').read_text(encoding='utf-8-sig'))
  page.wait_for_function("document.querySelector('#validation-counts').textContent.includes('請重新登入')")
+ page.add_script_tag(content=(r/'src/WorkJournal.Web/wwwroot/js/research-etl.js').read_text(encoding='utf-8-sig'))
+ page.wait_for_function("!document.querySelector('#etl-operations') && document.querySelector('#etl-status').textContent.includes('請重新登入')")
  browser.close()
 print('PASS: 21/20/1 counts, 6 components, 20 claims, PIT missing time, evidence interaction, paging boundary, expired session; API fixture presentation only.')

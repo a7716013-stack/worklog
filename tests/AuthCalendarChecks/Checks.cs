@@ -40,7 +40,8 @@ public static class Checks
         Check(productionContext.Request.Host.Value == "worklog.example.test", "Production proxy omits implicit HTTPS port");
         Check(productionNextCalled, "Production callback passes canonical origin validation");
         var database = "WorkJournalAuthChecks_" + Guid.NewGuid().ToString("N");
-        var connection = $@"Server=.\SQLEXPRESS;Database={database};Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True;";
+        var connectionBuilder = new Microsoft.Data.SqlClient.SqlConnectionStringBuilder(Environment.GetEnvironmentVariable("WORKJOURNAL_TEST_SQL") ?? @"Server=.\SQLEXPRESS;Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True;") { InitialCatalog = database };
+        var connection = connectionBuilder.ConnectionString;
         var options = new DbContextOptionsBuilder<JournalDbContext>().UseSqlServer(connection).Options;
         await using var setup = new JournalDbContext(options);
         try
@@ -53,7 +54,7 @@ public static class Checks
             Check(await setup.PaperTradingAccounts.CountAsync(x => x.Name == "legacy paper") == 1, "Migration preserves PaperTrading data");
             Check(!setup.Database.HasPendingModelChanges(), "Migration snapshot matches current model");
             var google = new FakeGoogle();
-            await using var factory = new FixtureFactory(connection, google);
+            await using var factory = new FixtureFactory(connection, google, args.Contains("--production") ? "Production" : "Development");
             using var anonymous = factory.Browser();
             Check((await anonymous.GetAsync("https://untrusted.example/signin-google?code=fixture")).StatusCode == HttpStatusCode.BadRequest, "Untrusted callback host rejected");
             using (var proxied = new HttpRequestMessage(HttpMethod.Get, "https://127.0.0.1/signin-google?code=fixture"))
@@ -76,7 +77,7 @@ public static class Checks
             Check((await anonymous.GetAsync("/signin-google?code=alice&state=" + Uri.EscapeDataString(unverifiedState))).Headers.Location!.ToString().Contains("failed"), "Unverified Google email rejected");
             google.Unverified = false;
             using var alice = factory.Browser(); using var bob = factory.Browser();
-            await Login(alice, "alice", "https://evil.test"); await Login(bob, "bob", "/WorkLogs");
+            var capturedCookie = await Login(alice, "alice", "https://evil.test"); await Login(bob, "bob", "/WorkLogs");
             string aliceId; string bobId;
             using (var scope = factory.Services.CreateScope())
             {
@@ -251,6 +252,11 @@ public static class Checks
             Check((await Post(alice, "/Account/Logout", [], "/GoogleCalendar")).StatusCode == HttpStatusCode.Redirect && (await alice.GetAsync("/WorkLogs")).StatusCode == HttpStatusCode.Redirect, "Logout clears session");
             Check((await alice.GetAsync("/StockAnalysis/SwingData?symbol=2330")).StatusCode==HttpStatusCode.Unauthorized,"Logout denies private analysis JSON");
             Check((await alice.GetAsync("/StockAnalysis/PaperQuotes")).StatusCode==HttpStatusCode.Unauthorized,"Logout denies portfolio JSON");
+            using (var replay = factory.CreateClient(new Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryClientOptions { BaseAddress = new Uri("https://localhost:7180"), AllowAutoRedirect = false, HandleCookies = false }))
+            {
+                replay.DefaultRequestHeaders.Add("Cookie", capturedCookie);
+                Check((await replay.GetAsync("/StockAnalysis/PaperQuotes")).StatusCode == HttpStatusCode.Unauthorized, "Previously issued cookie cannot be replayed after logout");
+            }
             await CompleteCalendar(alice, QueryHelpers.ParseQuery(outstanding.Headers.Location!.Query)["state"]!, "calendar-alice", true);
             Console.WriteLine($"Completed {passed} checks using synthetic Google responses. Real OAuth has NOT been tested.");
             if (args.Contains("--serve"))
@@ -283,7 +289,7 @@ public static class Checks
         var copy = new Dictionary<string,string>(values) { ["__RequestVerificationToken"] = await Token(client, page) };
         return await client.PostAsync(path, new FormUrlEncodedContent(copy));
     }
-    private static async Task Login(HttpClient browser, string name, string returnUrl)
+    private static async Task<string> Login(HttpClient browser, string name, string returnUrl)
     {
         var challenge = await Post(browser, "/Account/GoogleLogin", new() { ["returnUrl"] = returnUrl }, "/Account/Login");
         Check(challenge.StatusCode == HttpStatusCode.Redirect && challenge.Headers.Location!.Host == "accounts.google.com", "Google login challenge: " + name);
@@ -296,6 +302,7 @@ public static class Checks
         Check(result.StatusCode == HttpStatusCode.Redirect && result.Headers.Location!.ToString() == "/WorkLogs", "Login completes and prevents open redirect");
         var cookies = string.Join(";", result.Headers.GetValues("Set-Cookie"));
         Check(cookies.Contains("__Host-WorkJournal=") && cookies.Contains("secure", StringComparison.OrdinalIgnoreCase) && cookies.Contains("httponly", StringComparison.OrdinalIgnoreCase), "Website cookie secure/HttpOnly");
+        return string.Join("; ", result.Headers.GetValues("Set-Cookie").Where(x => x.StartsWith("__Host-WorkJournal=", StringComparison.Ordinal) || x.StartsWith("__Host-WorkJournalC", StringComparison.Ordinal)).Select(x => x.Split(';')[0]));
     }
     private static Task<HttpResponseMessage> StartCalendar(HttpClient browser) => Post(browser, "/GoogleCalendar/Connect", [], "/GoogleCalendar");
     private static async Task CompleteCalendar(HttpClient browser, string state, string code, bool fails = false)

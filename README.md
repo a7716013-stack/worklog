@@ -1,3 +1,7 @@
+## 3.2.2 — Phase 4L
+
+受控 ETL 排程、故障恢復、證據結案與監控 API；修正登出 Cookie 撤銷。本機 `Start-WorkJournal3220.ps1`（http://localhost:5208）。詳 [實作報告](docs/implementation-3.2.2.md)。
+
 ## 3.2.1 — Phase 4K ETL 與會員資料隔離
 
 2個真實封存 ETL 工作、21筆事實與六個監控 API；波段/策略分析及虛擬投資採集中會員授權。本機 `Start-WorkJournal3210.ps1`（http://localhost:5207）。詳見 [實作報告](docs/implementation-3.2.1.md)。

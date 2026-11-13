@@ -1,0 +1,8 @@
+{
+  "SchemaVersion": "EtlOperations-v1",
+  "ExportedAt": "2026-11-13T03:15:28.4335557+00:00",
+  "Semantics": "CONTROLLED_EXPORT_SNAPSHOT_NOT_LIVE_HEALTH",
+  "ProductionSchedulerEnabled": false,
+  "Schedules": [],
+  "Digest": "315A4C6B33535B5179EB46258833092CCD0191D07DB25E393174D0EF10AD548B"
+}

@@ -12,8 +12,19 @@ public static class EtlChecks
     {
         string[] paths=["/api/v1/data/providers","/api/v1/etl/jobs","/api/v1/etl/jobs/missing","/api/v1/etl/jobs/missing/quality","/api/v1/etl/batches/missing/lineage","/api/v1/etl/health"];
         http.DefaultRequestHeaders.Remove("X-Test-User");
+        check((await http.GetAsync("/api/v1/etl/operations")).StatusCode==HttpStatusCode.Unauthorized,"Operations requires member authentication");
         foreach(var path in paths)check((await http.GetAsync(path)).StatusCode==HttpStatusCode.Unauthorized,"ETL member authentication "+path);
         http.DefaultRequestHeaders.Add("X-Test-User","alice");
+        var operations=await http.GetAsync("/api/v1/etl/operations");
+        check(operations.IsSuccessStatusCode&&operations.Headers.CacheControl?.NoStore==true,"Operations snapshot is authenticated and no-store");
+        var operationsText=await operations.Content.ReadAsStringAsync();
+        using(var document=JsonDocument.Parse(operationsText))
+        {
+            var data=document.RootElement;
+            check(!data.GetProperty("productionSchedulerEnabled").GetBoolean()&&data.GetProperty("closure").GetArrayLength()==43,"Operations preserves disabled production scheduler and 43 existing evidence tasks");
+            check(data.GetProperty("closure").EnumerateArray().All(c=>c.GetProperty("closureReceipt").ValueKind==JsonValueKind.Null&&c.GetProperty("taskOwner").GetString()!.EndsWith("UNASSIGNED")),"Unresolved evidence is not falsely closed or assigned to a person");
+        }
+        check(!operationsText.Contains("BodyBase64")&&!operationsText.Contains("C:\\\\")&&operationsText.Contains("NOT_LIVE_HEALTH"),"Operations excludes raw archives and local paths and labels snapshot semantics");
         foreach(var path in new[]{paths[0],paths[1],paths[5]})check((await http.GetAsync(path)).IsSuccessStatusCode,"ETL read contract "+path);
         foreach(var path in paths.Skip(2).Take(3))check((await http.GetAsync(path)).StatusCode==HttpStatusCode.NotFound,"ETL unknown resource");
         foreach(var query in new[]{"page=0","pageSize=201","provider=evil","status=APPROVED","sort=sql"})check((await http.GetAsync(paths[1]+"?"+query)).StatusCode==HttpStatusCode.BadRequest,"ETL query whitelist "+query);
@@ -31,6 +42,7 @@ public static class EtlChecks
         void Reject(Action action,string name){try{action();}catch(Exception e) when(e is IOException or InvalidDataException or ArgumentException or InvalidOperationException){check(true,name);return;}throw new Exception("Expected rejection "+name);}
         string[] row=["115/09/01","1000","100000","100","110","90","105","5"];
         var raw=Raw([row]);var request=Request(raw);var result=pipeline.Execute(request,raw);
+        await SchedulerChecks.Run(request,raw,check);
         check(result.Status=="SUCCEEDED"&&result.LoadedFacts==1,"ETL fixture transform and versioned load");
         check(pipeline.Execute(request,raw).Digest==result.Digest&&pipeline.Replay(result.JobId).Digest==result.Digest,"ETL idempotence and replay");
         check(EtlPipeline.Identity(request,raw.SourceUri,true)!=EtlPipeline.Identity(request,raw.SourceUri,false),"ETL real and fixture identities distinct");
