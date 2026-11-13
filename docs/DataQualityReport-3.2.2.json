@@ -1,0 +1,146 @@
+[
+  {
+    "jobId": "276D565FB3DB102C469A11686BB6041AC7E3C16C9A1A5FA89B51D87124F5EF6A",
+    "quality": {
+      "Status": "PASSED_WITH_UNPROVEN_HISTORICAL_CONTEXT",
+      "InputRows": 1,
+      "AcceptedRows": 1,
+      "Quarantine": [],
+      "Checks": [
+        {
+          "Check": "Schema",
+          "Status": "PASS",
+          "Reason": "Validated for this transform scope"
+        },
+        {
+          "Check": "RequiredFields",
+          "Status": "PASS",
+          "Reason": "Validated for this transform scope"
+        },
+        {
+          "Check": "DateTimeZone",
+          "Status": "PASS",
+          "Reason": "Validated for this transform scope"
+        },
+        {
+          "Check": "InstrumentIdentity",
+          "Status": "PASS",
+          "Reason": "Requested symbol binding only; historical instrument authority remains separate"
+        },
+        {
+          "Check": "Units",
+          "Status": "PASS",
+          "Reason": "Validated for this transform scope"
+        },
+        {
+          "Check": "Duplicates",
+          "Status": "PASS",
+          "Reason": "Validated for this transform scope"
+        },
+        {
+          "Check": "Completeness",
+          "Status": "UNKNOWN",
+          "Reason": "Observed rows counted; expected historical universe/session denominator is unknown"
+        },
+        {
+          "Check": "PriceBasis",
+          "Status": "UNKNOWN",
+          "Reason": "Raw provider prices only; historical corporate-action approval remains separate"
+        },
+        {
+          "Check": "RevisionConflict",
+          "Status": "PASS",
+          "Reason": "Validated for this transform scope"
+        },
+        {
+          "Check": "SourceVersion",
+          "Status": "PASS",
+          "Reason": "Validated for this transform scope"
+        },
+        {
+          "Check": "TemporalConsistency",
+          "Status": "PASS",
+          "Reason": "Validated for this transform scope"
+        },
+        {
+          "Check": "RawTransformDigest",
+          "Status": "PASS",
+          "Reason": "Validated for this transform scope"
+        }
+      ],
+      "Digest": "66801A755956DFB6BC83A423BBBAF27B2859B3EC117E3F6962B5A92F9223DC95"
+    }
+  },
+  {
+    "jobId": "FBC51E481BD4FDADCF72624D811707FD52E59508017FE109E79FCB2065995FFD",
+    "quality": {
+      "Status": "PASSED_WITH_UNPROVEN_HISTORICAL_CONTEXT",
+      "InputRows": 20,
+      "AcceptedRows": 20,
+      "Quarantine": [],
+      "Checks": [
+        {
+          "Check": "Schema",
+          "Status": "PASS",
+          "Reason": "Validated for this transform scope"
+        },
+        {
+          "Check": "RequiredFields",
+          "Status": "PASS",
+          "Reason": "Validated for this transform scope"
+        },
+        {
+          "Check": "DateTimeZone",
+          "Status": "PASS",
+          "Reason": "Validated for this transform scope"
+        },
+        {
+          "Check": "InstrumentIdentity",
+          "Status": "PASS",
+          "Reason": "Requested symbol binding only; historical instrument authority remains separate"
+        },
+        {
+          "Check": "Units",
+          "Status": "PASS",
+          "Reason": "Validated for this transform scope"
+        },
+        {
+          "Check": "Duplicates",
+          "Status": "PASS",
+          "Reason": "Validated for this transform scope"
+        },
+        {
+          "Check": "Completeness",
+          "Status": "UNKNOWN",
+          "Reason": "Observed rows counted; expected historical universe/session denominator is unknown"
+        },
+        {
+          "Check": "PriceBasis",
+          "Status": "UNKNOWN",
+          "Reason": "Raw provider prices only; historical corporate-action approval remains separate"
+        },
+        {
+          "Check": "RevisionConflict",
+          "Status": "PASS",
+          "Reason": "Validated for this transform scope"
+        },
+        {
+          "Check": "SourceVersion",
+          "Status": "PASS",
+          "Reason": "Validated for this transform scope"
+        },
+        {
+          "Check": "TemporalConsistency",
+          "Status": "PASS",
+          "Reason": "Validated for this transform scope"
+        },
+        {
+          "Check": "RawTransformDigest",
+          "Status": "PASS",
+          "Reason": "Validated for this transform scope"
+        }
+      ],
+      "Digest": "55FE5BB99F6C91E764C04C0702B96E171C877DF95F6C7EC1B0A171D391768260"
+    }
+  }
+]

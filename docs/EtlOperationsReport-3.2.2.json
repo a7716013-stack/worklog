@@ -1,6 +1,6 @@
 {
   "SchemaVersion": "Phase4L-v1",
-  "ExportedAt": "2026-11-13T03:15:28.4335557+00:00",
+  "ExportedAt": "2026-11-13T03:51:54.1482322+00:00",
   "Semantics": "CONTROLLED_EXPORT_SNAPSHOT_NOT_LIVE_HEALTH",
   "ProductionSchedulerEnabled": false,
   "Schedules": [],
@@ -8,7 +8,7 @@
     {
       "Provider": "TWSE",
       "Status": "HISTORICAL_EXPORT_ONLY",
-      "VerifiedAt": "2026-11-12T13:07:46.5140316+00:00",
+      "VerifiedAt": "2026-11-13T03:51:54.0649527+00:00",
       "SuccessfulJobs": 2,
       "FailedJobs": 0,
       "QuarantinedJobs": 0
@@ -16,7 +16,7 @@
     {
       "Provider": "TPEx",
       "Status": "HISTORICAL_EXPORT_ONLY",
-      "VerifiedAt": "2026-11-12T13:07:46.5140316+00:00",
+      "VerifiedAt": "2026-11-13T03:51:54.0649527+00:00",
       "SuccessfulJobs": 0,
       "FailedJobs": 0,
       "QuarantinedJobs": 0
@@ -24,7 +24,7 @@
     {
       "Provider": "FinMind",
       "Status": "HISTORICAL_EXPORT_ONLY",
-      "VerifiedAt": "2026-11-12T13:07:46.5140316+00:00",
+      "VerifiedAt": "2026-11-13T03:51:54.0649527+00:00",
       "SuccessfulJobs": 0,
       "FailedJobs": 0,
       "QuarantinedJobs": 0
@@ -906,8 +906,8 @@
       "NextAction": "Retain NOT_RUN; complete PIT, independent approval and TrendSample-v1 assessment"
     }
   ],
-  "EtlDigest": "C4C028797F29FC28A00F9F759A6BD7EC25DAC3A1ED7BC125D4D326C4A97400E9",
-  "EvidenceDigest": "36201537C9B6370CDE22EA89A3DCE2000FB040C1DDC0231DD952DFFB02990913",
-  "SchedulerDigest": "315A4C6B33535B5179EB46258833092CCD0191D07DB25E393174D0EF10AD548B",
-  "Digest": "85A0BCE43387FD21A7606109BF0A284A04D81154436A600A3729B6DD50CCD9EC"
+  "EtlDigest": "B70A33FBA47B729ACA642FF456AC2C589A99E02BF6CBE09EB2BE1391A3A6D38F",
+  "EvidenceDigest": "FD958D5B386DD103DE7B51F3105E4D010CF494A77EBF97C9EC223708192000C6",
+  "SchedulerDigest": "5125E8594CE04748C81EA5AA8613F3028A344D87B8E05B1E072A0D3150C58127",
+  "Digest": "8A4FACC134ED689140BD4A3F09941335B8B497B5E93BB94E7D0EE6C4834B66DE"
 }

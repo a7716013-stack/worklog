@@ -1,0 +1,31 @@
+{
+  "semantics": "CONTROLLED_EXPORT_SNAPSHOT_NOT_LIVE_HEALTH",
+  "verifiedAt": "2026-11-13T03:51:54.1482322+00:00",
+  "providers": [
+    {
+      "Provider": "TWSE",
+      "Status": "HISTORICAL_EXPORT_ONLY",
+      "VerifiedAt": "2026-11-13T03:51:54.0649527+00:00",
+      "SuccessfulJobs": 2,
+      "FailedJobs": 0,
+      "QuarantinedJobs": 0
+    },
+    {
+      "Provider": "TPEx",
+      "Status": "HISTORICAL_EXPORT_ONLY",
+      "VerifiedAt": "2026-11-13T03:51:54.0649527+00:00",
+      "SuccessfulJobs": 0,
+      "FailedJobs": 0,
+      "QuarantinedJobs": 0
+    },
+    {
+      "Provider": "FinMind",
+      "Status": "HISTORICAL_EXPORT_ONLY",
+      "VerifiedAt": "2026-11-13T03:51:54.0649527+00:00",
+      "SuccessfulJobs": 0,
+      "FailedJobs": 0,
+      "QuarantinedJobs": 0
+    }
+  ],
+  "liveHealth": "NOT_TESTED"
+}

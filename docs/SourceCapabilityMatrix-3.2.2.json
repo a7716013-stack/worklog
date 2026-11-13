@@ -1,0 +1,311 @@
+{
+  "reportDigest": "FD958D5B386DD103DE7B51F3105E4D010CF494A77EBF97C9EC223708192000C6",
+  "sources": [
+    {
+      "SourceId": "07480320CD69C31CC911CA108132714FAE4E30E879C6675F7EF444FC1B3716C9",
+      "Provider": "www.twse.com.tw",
+      "OfficialUrl": "https://www.twse.com.tw/rwd/zh/holidaySchedule/holidaySchedule?date=20260101&response=json",
+      "SourceVersion": "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390",
+      "AcquisitionMethod": "ARCHIVED_OFFICIAL_HTTP",
+      "SupportedClaims": [],
+      "CandidateClaims": [
+        "TradingCalendar:EmergencyClosures",
+        "TradingCalendar:HistoricalSessions",
+        "TradingCalendar:Horizon:TradingSessions",
+        "TradingCalendar:ScheduledHolidays"
+      ],
+      "TemporalCoverage": "UNKNOWN_HISTORICAL_APPLICABILITY",
+      "PublicationEvidenceCapability": "UNKNOWN",
+      "RevisionEvidenceCapability": "UNKNOWN",
+      "LicenseStatus": "UNKNOWN_REUSE_RIGHTS",
+      "AccessStatus": "PUBLIC_CAPTURE_REVIEW_REQUIRED",
+      "LastVerifiedAt": "2026-10-31T16:28:43.6977049+00:00",
+      "EvidenceIds": [
+        "d18902ab-75f0-40c0-976d-8540d21946e1"
+      ]
+    },
+    {
+      "SourceId": "10E1AB87862BBC6550F02680472C7367A61D0CB425A87FECEE6C5F79557C7D9A",
+      "Provider": "www.twse.com.tw",
+      "OfficialUrl": "https://www.twse.com.tw/company/suspendListingCsvAndHtml?lang=zh&startYear=&type=html",
+      "SourceVersion": "3BA1395A7549D8EBEE35C02350BB5470C9CDDE68DDC4339A461B6D19953A9228",
+      "AcquisitionMethod": "ARCHIVED_OFFICIAL_HTTP",
+      "SupportedClaims": [],
+      "CandidateClaims": [
+        "HistoricalUniverse:Delisting",
+        "HistoricalUniverse:Denominator",
+        "HistoricalUniverse:HistoricalMembership",
+        "HistoricalUniverse:Listing",
+        "HistoricalUniverse:Suspension"
+      ],
+      "TemporalCoverage": "UNKNOWN_HISTORICAL_APPLICABILITY",
+      "PublicationEvidenceCapability": "UNKNOWN",
+      "RevisionEvidenceCapability": "UNKNOWN",
+      "LicenseStatus": "UNKNOWN_REUSE_RIGHTS",
+      "AccessStatus": "PUBLIC_CAPTURE_REVIEW_REQUIRED",
+      "LastVerifiedAt": "2026-11-05T20:30:15.6993914+00:00",
+      "EvidenceIds": [
+        "06319397-9e90-4913-88f2-2b576705dcf0",
+        "3e9ce62c-5781-499c-a016-e9b9bfa486c0",
+        "50542bae-e196-45cc-bc00-71a09f7526ba",
+        "52d2cf6b-b73a-4b31-b71b-53f2d9941c6d",
+        "d0e90b10-e96c-4b11-8ff6-bb939d52328c"
+      ]
+    },
+    {
+      "SourceId": "16B615C339F459E368C37032BC880C9890551BC9021E154F8971740987C66C41",
+      "Provider": "www.twse.com.tw",
+      "OfficialUrl": "https://www.twse.com.tw/zh/products/information/history.html",
+      "SourceVersion": "07B0CE735349DB2D2A30F03B9A8225BD03E63CEC61C6D50C02C6EF3345E73A13",
+      "AcquisitionMethod": "ARCHIVED_OFFICIAL_HTTP",
+      "SupportedClaims": [],
+      "CandidateClaims": [
+        "Availability:HistoricalPublication",
+        "Availability:RevisionBehavior",
+        "Availability:SourceIdentity"
+      ],
+      "TemporalCoverage": "UNKNOWN_HISTORICAL_APPLICABILITY",
+      "PublicationEvidenceCapability": "UNKNOWN",
+      "RevisionEvidenceCapability": "UNKNOWN",
+      "LicenseStatus": "UNKNOWN_REUSE_RIGHTS",
+      "AccessStatus": "MANUAL_ACTION_REQUIRED",
+      "LastVerifiedAt": "2026-11-05T20:28:30.6919444+00:00",
+      "EvidenceIds": [
+        "08b4d0a6-301d-4a46-b2b1-2a8f1954e4b5",
+        "5a9aadbf-b5f0-41cd-bf02-a5902c580fd9",
+        "791e0fb3-47dd-48e6-a7f7-658e1512eef4"
+      ]
+    },
+    {
+      "SourceId": "2E371A1E2CA461FC8CAD2D8E5187BBE9014C520E2F369DF1ABDD74B0BE7C376F",
+      "Provider": "www.twse.com.tw",
+      "OfficialUrl": "https://www.twse.com.tw/zh/listed/profile/company.html",
+      "SourceVersion": "30B01239F4714B85EBE71F40590FE340082490DF9A738A9AC4658DC2C70B160C",
+      "AcquisitionMethod": "ARCHIVED_OFFICIAL_HTTP",
+      "SupportedClaims": [],
+      "CandidateClaims": [
+        "HistoricalInstrumentIdentity:HistoricalInstrumentIdentity",
+        "HistoricalInstrumentIdentity:MarketTransfer",
+        "HistoricalInstrumentIdentity:SymbolHistory"
+      ],
+      "TemporalCoverage": "UNKNOWN_HISTORICAL_APPLICABILITY",
+      "PublicationEvidenceCapability": "UNKNOWN",
+      "RevisionEvidenceCapability": "UNKNOWN",
+      "LicenseStatus": "UNKNOWN_REUSE_RIGHTS",
+      "AccessStatus": "PUBLIC_CAPTURE_REVIEW_REQUIRED",
+      "LastVerifiedAt": "2026-11-05T20:28:31.9682928+00:00",
+      "EvidenceIds": [
+        "9a728496-fcc4-497b-a2c4-0113b7c00dd5",
+        "b6fac241-799d-47dc-9cc0-10e530985243",
+        "ffdfbd56-beb4-4899-ad23-055fbd1eb37e"
+      ]
+    },
+    {
+      "SourceId": "7C736C4E95E25F91A0B4125DAC82BBF2CDECB6D4174E62AE60C37E6B5AF53219",
+      "Provider": "www.twse.com.tw",
+      "OfficialUrl": "https://www.twse.com.tw/rwd/zh/company/suspendListing?date=20260101&response=json",
+      "SourceVersion": "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2",
+      "AcquisitionMethod": "ARCHIVED_OFFICIAL_HTTP",
+      "SupportedClaims": [],
+      "CandidateClaims": [
+        "HistoricalInstrumentIdentity:HistoricalInstrumentIdentity",
+        "HistoricalInstrumentIdentity:MarketTransfer",
+        "HistoricalInstrumentIdentity:SymbolHistory",
+        "HistoricalUniverse:Delisting",
+        "HistoricalUniverse:Denominator",
+        "HistoricalUniverse:HistoricalMembership",
+        "HistoricalUniverse:Listing",
+        "HistoricalUniverse:Suspension"
+      ],
+      "TemporalCoverage": "UNKNOWN_HISTORICAL_APPLICABILITY",
+      "PublicationEvidenceCapability": "UNKNOWN",
+      "RevisionEvidenceCapability": "UNKNOWN",
+      "LicenseStatus": "UNKNOWN_REUSE_RIGHTS",
+      "AccessStatus": "PUBLIC_CAPTURE_REVIEW_REQUIRED",
+      "LastVerifiedAt": "2026-10-31T16:28:43.792527+00:00",
+      "EvidenceIds": [
+        "16e9385a-6c6a-4881-bde3-2f6db02f15e7",
+        "25bc00ef-0f8c-444e-a368-6a029221eda1"
+      ]
+    },
+    {
+      "SourceId": "7FB20C12089B491281071D91A5C752A28BA56E39F182BFFF8FE0C43B848ECCA1",
+      "Provider": "www.twse.com.tw",
+      "OfficialUrl": "https://www.twse.com.tw/zh/products/information/information.html",
+      "SourceVersion": "BD029F134D7A2614E8EAF38EB316137D539DA2B39C84E842DD39AFF5C22E923A",
+      "AcquisitionMethod": "ARCHIVED_OFFICIAL_HTTP",
+      "SupportedClaims": [],
+      "CandidateClaims": [
+        "Availability:HistoricalPublication"
+      ],
+      "TemporalCoverage": "UNKNOWN_HISTORICAL_APPLICABILITY",
+      "PublicationEvidenceCapability": "UNKNOWN",
+      "RevisionEvidenceCapability": "UNKNOWN",
+      "LicenseStatus": "UNKNOWN_REUSE_RIGHTS",
+      "AccessStatus": "MANUAL_ACTION_REQUIRED",
+      "LastVerifiedAt": "2026-11-06T05:24:31.7784697+00:00",
+      "EvidenceIds": [
+        "4ae7d876-da78-4443-af2f-395ad0729505"
+      ]
+    },
+    {
+      "SourceId": "9AA00C2072873396BFC1B1B76B5DE36EBFA498DB279B221E80D11424B7FCFC34",
+      "Provider": "www.twse.com.tw",
+      "OfficialUrl": "https://www.twse.com.tw/zh/products/information/qa.html",
+      "SourceVersion": "E40C42BBCD7598F80D5D63AB13919CC1FDEB1F2329D4BD1E35EEEA87E87BF76E",
+      "AcquisitionMethod": "ARCHIVED_OFFICIAL_HTTP",
+      "SupportedClaims": [],
+      "CandidateClaims": [
+        "Availability:RevisionBehavior"
+      ],
+      "TemporalCoverage": "UNKNOWN_HISTORICAL_APPLICABILITY",
+      "PublicationEvidenceCapability": "UNKNOWN",
+      "RevisionEvidenceCapability": "UNKNOWN",
+      "LicenseStatus": "UNKNOWN_REUSE_RIGHTS",
+      "AccessStatus": "MANUAL_ACTION_REQUIRED",
+      "LastVerifiedAt": "2026-11-06T05:24:56.4255042+00:00",
+      "EvidenceIds": [
+        "2fe83cb7-edc0-4de7-9f7f-65b0588bf678"
+      ]
+    },
+    {
+      "SourceId": "AE87D35F30C38691CB47C740BDD25406FD798A5038E0CF54AD3D9E88AA18B837",
+      "Provider": "www.twse.com.tw",
+      "OfficialUrl": "https://www.twse.com.tw/zh/trading/historical/stock-day.html",
+      "SourceVersion": "F2ABB6E49794EBD6D4E596F0C6436F193431786A5B96171A6E87638C729129B7",
+      "AcquisitionMethod": "ARCHIVED_OFFICIAL_HTTP",
+      "SupportedClaims": [],
+      "CandidateClaims": [
+        "Availability:HistoricalPublication",
+        "Availability:RevisionBehavior",
+        "Availability:SourceIdentity",
+        "HistoricalPriceVolume:HistoricalPrices",
+        "HistoricalPriceVolume:SourceIdentity",
+        "HistoricalPriceVolume:Units"
+      ],
+      "TemporalCoverage": "UNKNOWN_HISTORICAL_APPLICABILITY",
+      "PublicationEvidenceCapability": "UNKNOWN",
+      "RevisionEvidenceCapability": "UNKNOWN",
+      "LicenseStatus": "UNKNOWN_REUSE_RIGHTS",
+      "AccessStatus": "PUBLIC_CAPTURE_REVIEW_REQUIRED",
+      "LastVerifiedAt": "2026-11-05T20:28:37.5049893+00:00",
+      "EvidenceIds": [
+        "a3cd54a8-869d-4f00-b471-2b00e2044424",
+        "d1434433-7b43-4e7d-8868-8954f2c1fb8f",
+        "f52a10fb-2ce5-4a64-a9fe-49be9cc95f82",
+        "fda53ca9-e186-42f2-98c4-f6dd64b2201b"
+      ]
+    },
+    {
+      "SourceId": "BD43462475688238A24A2FF60711D2BCC471DD6FB4648A0BB7E685416B0431A9",
+      "Provider": "www.twse.com.tw",
+      "OfficialUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=2330&response=json",
+      "SourceVersion": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+      "AcquisitionMethod": "ARCHIVED_OFFICIAL_HTTP",
+      "SupportedClaims": [],
+      "CandidateClaims": [
+        "HistoricalPriceVolume:HistoricalPrices",
+        "HistoricalPriceVolume:SourceIdentity",
+        "HistoricalPriceVolume:Units"
+      ],
+      "TemporalCoverage": "UNKNOWN_HISTORICAL_APPLICABILITY",
+      "PublicationEvidenceCapability": "UNKNOWN",
+      "RevisionEvidenceCapability": "UNKNOWN",
+      "LicenseStatus": "UNKNOWN_REUSE_RIGHTS",
+      "AccessStatus": "PUBLIC_CAPTURE_REVIEW_REQUIRED",
+      "LastVerifiedAt": "2026-10-31T16:28:43.8042876+00:00",
+      "EvidenceIds": [
+        "bc79c41a-b3cd-4c2c-987c-e4ebcb704f3d"
+      ]
+    },
+    {
+      "SourceId": "C3B154FBB62A1CC81CC482FE6D48B5714A3737AE6734E277AF8D6A614955FD41",
+      "Provider": "www.twse.com.tw",
+      "OfficialUrl": "https://www.twse.com.tw/rwd/zh/exRight/TWT49U?startDate=20260901&endDate=20260930&response=json",
+      "SourceVersion": "DFBBEE5EB202CB9E349D7A8A162A82D657CD6F12C105A4AADA5D3BBD94F45426",
+      "AcquisitionMethod": "ARCHIVED_OFFICIAL_HTTP",
+      "SupportedClaims": [],
+      "CandidateClaims": [
+        "CorporateActionPriceBasis:CorporateActionHandling",
+        "CorporateActionPriceBasis:PriceBasis"
+      ],
+      "TemporalCoverage": "UNKNOWN_HISTORICAL_APPLICABILITY",
+      "PublicationEvidenceCapability": "UNKNOWN",
+      "RevisionEvidenceCapability": "UNKNOWN",
+      "LicenseStatus": "UNKNOWN_REUSE_RIGHTS",
+      "AccessStatus": "PUBLIC_CAPTURE_REVIEW_REQUIRED",
+      "LastVerifiedAt": "2026-10-31T16:28:44.3813205+00:00",
+      "EvidenceIds": [
+        "41aaa86d-5a89-40b9-b3b5-8ffebbefc92b"
+      ]
+    },
+    {
+      "SourceId": "C4B9917D3717D423F376928D0329D906CD0BECE33DEC508632A45ECF10CD47CF",
+      "Provider": "www.twse.com.tw",
+      "OfficialUrl": "https://www.twse.com.tw/holidaySchedule/holidaySchedule",
+      "SourceVersion": "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390",
+      "AcquisitionMethod": "ARCHIVED_OFFICIAL_HTTP",
+      "SupportedClaims": [],
+      "CandidateClaims": [
+        "TradingCalendar:EmergencyClosures",
+        "TradingCalendar:HistoricalSessions",
+        "TradingCalendar:Horizon:TradingSessions",
+        "TradingCalendar:ScheduledHolidays"
+      ],
+      "TemporalCoverage": "UNKNOWN_HISTORICAL_APPLICABILITY",
+      "PublicationEvidenceCapability": "UNKNOWN",
+      "RevisionEvidenceCapability": "UNKNOWN",
+      "LicenseStatus": "UNKNOWN_REUSE_RIGHTS",
+      "AccessStatus": "PUBLIC_CAPTURE_REVIEW_REQUIRED",
+      "LastVerifiedAt": "2026-11-05T20:28:36.1760516+00:00",
+      "EvidenceIds": [
+        "1a38050a-1c33-46f9-9238-b26a9176ab37",
+        "31230a0c-fa0f-41d1-a3ea-7c5db7d32a0a",
+        "9cef40fa-b021-4e98-b945-5d4b16b78cdb",
+        "bb351966-a9aa-4bdc-8ffb-b890ca2eb965"
+      ]
+    },
+    {
+      "SourceId": "D2225AA25C61EA3AF24DA72E852124D0AD18DE9E6416DEA20BD68F487B66C43B",
+      "Provider": "www.twse.com.tw",
+      "OfficialUrl": "https://www.twse.com.tw/exchangeReport/TWT48U?response=html",
+      "SourceVersion": "2FB6DA046C685F1B52494AC0009DF89C19791F58E6D41924FBE11D3149DABC3F",
+      "AcquisitionMethod": "ARCHIVED_OFFICIAL_HTTP",
+      "SupportedClaims": [],
+      "CandidateClaims": [
+        "CorporateActionPriceBasis:CorporateActionHandling",
+        "CorporateActionPriceBasis:PriceBasis"
+      ],
+      "TemporalCoverage": "UNKNOWN_HISTORICAL_APPLICABILITY",
+      "PublicationEvidenceCapability": "UNKNOWN",
+      "RevisionEvidenceCapability": "UNKNOWN",
+      "LicenseStatus": "UNKNOWN_REUSE_RIGHTS",
+      "AccessStatus": "PUBLIC_CAPTURE_REVIEW_REQUIRED",
+      "LastVerifiedAt": "2026-11-05T20:30:18.1161034+00:00",
+      "EvidenceIds": [
+        "24b5d6ba-4710-40d7-b3e5-bbccce129b5e",
+        "53c9dba4-fcd2-4045-aba8-154453e345af"
+      ]
+    },
+    {
+      "SourceId": "EBC0D772C126667DFD7727250572ACDA1F45B4939D97A8864A1201C8306D4C77",
+      "Provider": "www.twse.com.tw",
+      "OfficialUrl": "https://www.twse.com.tw/zh/products/dataeshop.html",
+      "SourceVersion": "F082065D16630EE49D49EA59FBCCA1B77B0C361F029412AFA97E0595CD70E065",
+      "AcquisitionMethod": "ARCHIVED_OFFICIAL_HTTP",
+      "SupportedClaims": [],
+      "CandidateClaims": [
+        "Availability:SourceIdentity"
+      ],
+      "TemporalCoverage": "UNKNOWN_HISTORICAL_APPLICABILITY",
+      "PublicationEvidenceCapability": "UNKNOWN",
+      "RevisionEvidenceCapability": "UNKNOWN",
+      "LicenseStatus": "UNKNOWN_REUSE_RIGHTS",
+      "AccessStatus": "MANUAL_ACTION_REQUIRED",
+      "LastVerifiedAt": "2026-11-06T05:24:57.1064717+00:00",
+      "EvidenceIds": [
+        "cf8cc422-09de-413b-8eb7-3c753f709d71"
+      ]
+    }
+  ]
+}
