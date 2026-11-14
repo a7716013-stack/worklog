@@ -163,3 +163,10 @@ API PASS 與模型核准互不推導；Phase5=LOCKED。
 Development `/openapi/v1.json`；Production 預設關閉，可用 `Api:OpenApi:Enabled=true` 開放 JSON。未提供 Swagger UI。
 CI 由 DTO/controller 產生 OpenAPI，比對 `docs/openapi-v1.json`，檢查 endpoint 移除、required 欄位增加、型別改變、enum 移除。
 ApiV1ContractSnapshot 記錄 digest、關鍵 endpoint/schema/enum/problem codes。新增 api-contract 與所有既有 gate 必須同 SHA 通過。
+
+## Phase 4M（3.2.2）
+
+新增唯讀 GET：`/api/v1/operations/readiness`（OperationsReadinessDto）、`/api/v1/research/trend/readiness`（TrendFactoryReport），沿用 ApiResearchRead、ReadPolicy、no-store。
+管理 GET：`/api/v1/authority/workbench`（PageDto<ReviewQueueItem>）、`/api/v1/authority/acquisition-evidence`（PageDto<HistoricalEvidenceCard>），額外要求 ApiAuthorityAdmin/Administrator，page/pageSize 沿用既有驗證。匿名 401、一般會員管理端點 403、缺失或損壞快照 503 DATA_NOT_READY。沒有新 HTTP 寫入或角色授予。
+來源模型是綁定 Phase4I/Phase4J digest 的 Phase4M-v1 發布快照。SourceCodeSha 指產生報告的原始碼提交，網站執行版本另見 system/health。沒有以匯出時間當歷史發布時間。運算在 Application；Web 同來源 Cookie 讀取、15 秒逾時，401/403 不保留資料。
+審查/撤銷採受控 CLI，指派角色與 OS ACL 明確配置；核准仍需既有 scoped receipt。GET 不取得外部資料、不執行排程、baseline 或 promotion；舊 DTO 保持相容。

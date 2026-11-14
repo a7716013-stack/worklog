@@ -38,6 +38,9 @@ public static class SchedulerChecks
         clock.Now=clock.Now.AddMinutes(3);var recovered=recover.Claim(d.Id)!;
         check(recovered.Status=="SUCCEEDED"&&recovered.Attempts==1&&pipeline.Replay(completed.JobId).ErrorCode=="RECOVERED_VERIFIED_COMMIT","Crash recovery verifies original batch without a new dispatch");
         check(Directory.GetFiles(Path.Combine(recoveryRoot,"etl",completed.JobId),"batch.json").Length==1&&recover.Claim(d.Id)==null,"Recovery commits exactly one batch");
+        var schedulerBackup=recoveryRoot+"-backup";var schedulerRestore=recoveryRoot+"-restored";
+        OperationalBackup.CopyAndVerify(recoveryRoot,schedulerBackup);OperationalBackup.CopyAndVerify(schedulerBackup,schedulerRestore);
+        check(ResearchMath.Digest(new EtlScheduler(schedulerRestore,clock).Snapshot())==ResearchMath.Digest(recover.Snapshot()),"4M backup restores scheduler receipts and completed job without duplicate commit");
         var completedView=recover.Snapshot().Single();
         var receiptPath=Path.Combine(recoveryRoot,"schedules",d.Id,$"{completedView.Execution.Revision:D12}.receipt.json");
         File.WriteAllText(receiptPath,"{}");Reject(()=>recover.Snapshot(),"Scheduler receipt tampering fails closed");

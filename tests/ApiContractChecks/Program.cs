@@ -83,6 +83,7 @@ await ValidationChecks.Run(http,Check);
 await Phase4IChecks.Run(http,Check);
 await Phase4JChecks.Run(http,Check);
 await EtlChecks.Run(http,Check);
+await Phase4MChecks.Run(http,Check);
 var spec=ApiDocument.Create();var served=JsonNode.Parse(await http.GetStringAsync("/openapi/v1.json"));Check(JsonNode.DeepEquals(spec,served),"served OpenAPI equals generated contract");
 Directory.CreateDirectory("artifacts/api3100");File.WriteAllText("artifacts/api3100/openapi-v1.json",spec.ToJsonString(new JsonSerializerOptions {WriteIndented=true}));
 var baseline=Path.Combine(root,"docs","openapi-v1.json");
@@ -102,7 +103,7 @@ Console.WriteLine($"API contract checks: {checks} PASS");
 
 public sealed class TestAuth(IOptionsMonitor<AuthenticationSchemeOptions> o,ILoggerFactory l,UrlEncoder e) : AuthenticationHandler<AuthenticationSchemeOptions>(o,l,e)
 {
-    protected override Task<AuthenticateResult> HandleAuthenticateAsync()=>Task.FromResult(Request.Headers.TryGetValue("X-Test-User",out var user)?AuthenticateResult.Success(new AuthenticationTicket(new ClaimsPrincipal(new ClaimsIdentity([new Claim(ClaimTypes.NameIdentifier,user.ToString())],Scheme.Name)),Scheme.Name)):AuthenticateResult.NoResult());
+    protected override Task<AuthenticateResult> HandleAuthenticateAsync()=>Task.FromResult(Request.Headers.TryGetValue("X-Test-User",out var user)?AuthenticateResult.Success(new AuthenticationTicket(new ClaimsPrincipal(new ClaimsIdentity(new[]{new Claim(ClaimTypes.NameIdentifier,user.ToString())}.Concat(Request.Headers.TryGetValue("X-Test-Role",out var role)?new[]{new Claim(ClaimTypes.Role,role.ToString())}:Array.Empty<Claim>()),Scheme.Name)),Scheme.Name)):AuthenticateResult.NoResult());
 }
 public sealed class StubReadiness : IApiReadiness {public Task<ReadinessDto> Check(CancellationToken ct)=>Task.FromResult(new ReadinessDto("ready",true,true,true));}
 public sealed class StubHistory : IMarketRadarHistoryProvider {public Task<RadarHistory> GetAsync(MarketQuote q,CancellationToken ct)=>Task.FromResult(new RadarHistory([],[],null,null));}

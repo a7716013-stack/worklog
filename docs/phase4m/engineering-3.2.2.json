@@ -1,0 +1,136 @@
+{
+  "binding": {
+    "version": "3.2.2",
+    "phase": "4M",
+    "sourceCodeSha": "64d41083df46ebde23bf9910dbd69c7de4ad5772",
+    "reportDigest": "4720DDF7889DAAECB62E4098D07C5914EBC7E3023601187BF96B3DFCA000EEC9",
+    "parentDigest": "9A33F33040B97AC61FAB1BCBA4021C182F59D9A12A33E3F1F14BAC2F881815BF",
+    "evidenceDigest": "FD958D5B386DD103DE7B51F3105E4D010CF494A77EBF97C9EC223708192000C6",
+    "exportedAt": "2026-11-14T03:40:59.6753056+00:00"
+  },
+  "regression": [
+    {
+      "project": "build",
+      "exitCode": 0,
+      "log": "artifacts/phase4m-build.log"
+    },
+    {
+      "project": "MarketDataChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4m-MarketDataChecks.log"
+    },
+    {
+      "project": "V3AuthorityResolutionChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4m-V3AuthorityResolutionChecks.log"
+    },
+    {
+      "project": "V3ComponentDatasetChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4m-V3ComponentDatasetChecks.log"
+    },
+    {
+      "project": "V3ClosureChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4m-V3ClosureChecks.log"
+    },
+    {
+      "project": "V3RealDataChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4m-V3RealDataChecks.log"
+    },
+    {
+      "project": "V3AuthorityChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4m-V3AuthorityChecks.log"
+    },
+    {
+      "project": "V3PitDatasetChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4m-V3PitDatasetChecks.log"
+    },
+    {
+      "project": "V3ResearchChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4m-V3ResearchChecks.log"
+    },
+    {
+      "project": "V3ModelChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4m-V3ModelChecks.log"
+    },
+    {
+      "project": "MarketRadarChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4m-MarketRadarChecks.log"
+    },
+    {
+      "project": "FinMindChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4m-FinMindChecks.log"
+    },
+    {
+      "project": "FinMindChecks/LegacySwing75Checks",
+      "exitCode": 0,
+      "log": "artifacts/phase4m-FinMindChecks-LegacySwing75Checks.log"
+    },
+    {
+      "project": "PaperTradingChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4m-PaperTradingChecks.log"
+    },
+    {
+      "project": "StrategyCenterChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4m-StrategyCenterChecks.log"
+    },
+    {
+      "project": "MarketRadarTrackingChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4m-MarketRadarTrackingChecks.log"
+    },
+    {
+      "project": "V2FoundationChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4m-V2FoundationChecks.log"
+    },
+    {
+      "project": "V2EvidenceChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4m-V2EvidenceChecks.log"
+    }
+  ],
+  "apiSqlAssertions": 454,
+  "identityFixtureAssertions": 127,
+  "browser": "PASS: Phase4M six-stage readiness, disabled scheduler, 43 admin review tasks, mobile wrapping, expired-session clearing. Fixture only.\n",
+  "logs": {
+    "phase4m-api.log": "7a5b9b4fa45617a1c1d2bc6032a172b5cf4cc9425abc826c42c282f84f41836b",
+    "phase4m-auth.log": "121deaa46e0fb81d9a4cb012fb4e1a9220cbc862869f91f3a945fea203b01495",
+    "phase4m-bind-build.log": "b8cf1668ae55ca16547157e34d1f692306bd778cb047929cea6d72452a915d55",
+    "phase4m-browser.log": "6b2f9a9d5edd1a48e2766dccbb20ccb76c831a55aa0ba063376d438622be7a74",
+    "phase4m-build-cli.log": "b2b81555700fea23ac1264eb7a3dcf7e7e2d74c2257b397aabb0095d5ab2d168",
+    "phase4m-build.log": "69437f07ecf52ad32ac684a5a00431567663076a32bbddeb4f66b16afb61a28a",
+    "phase4m-FinMindChecks-LegacySwing75Checks.log": "fd36d445f8081c5a2d8ca9b29a815bdfef5be5eccff4ba48118a179099de6b93",
+    "phase4m-FinMindChecks.log": "84e4a63166dc38458987b68645b9911ce8ed45ac28a984da2b522d519f1b4ee4",
+    "phase4m-MarketDataChecks.log": "82cb2798f89c4b87359f6577d3b7405753b6ec2d1aded9460dfd9c2b5ac9d160",
+    "phase4m-MarketRadarChecks.log": "2069fe481d156493864289b3f46fdbcde49b759d907cdd4226ea1a21877869ab",
+    "phase4m-MarketRadarTrackingChecks.log": "ba351280475311aa2b2cc58d315efd9f957dfd806393325266b8f7ab53fec203",
+    "phase4m-PaperTradingChecks.log": "12369c3ae8550357a2d1b965977110a6fff77ddf3e807788bf201ce2ad230c36",
+    "phase4m-StrategyCenterChecks.log": "489d10b14d25a33fe223ab200a815ce087f79ebbab004b5867326beafdc90630",
+    "phase4m-V2EvidenceChecks.log": "c89f6eadd083f4a27eaba07c03b7b4d3eb604f3e182d6a961b42b2c425d118f8",
+    "phase4m-V2FoundationChecks.log": "7f3b8025575117dd2e543c7fe54c69b46b1dc9b45bbd135b03440fe4cc981347",
+    "phase4m-V3AuthorityChecks.log": "063a4688af09c204b20f1c416168cf16246b3c52e9346e65eeaf9cb76f8d0a81",
+    "phase4m-V3AuthorityResolutionChecks.log": "610d6c222fd14ec6f685593054eafe46ca2d137de4ceeeb5bd5aef225571b188",
+    "phase4m-V3ClosureChecks.log": "ca021d534a8f97f8a8ded7301f9b2af16272389c4cb412492a3b6a49bee8ef74",
+    "phase4m-V3ComponentDatasetChecks.log": "2d1ba4e9636fe0622ee661bdbcd08cd00efc9ec4c5428e911ede472c933757fa",
+    "phase4m-V3ModelChecks.log": "2eeab5be17917078b692c3b77776cff82dd61617480ff57234eceefad67fea61",
+    "phase4m-V3PitDatasetChecks.log": "bb34a0e489e39c39083718643e91cdcb019dddc93c2e3072f381645a2fea0508",
+    "phase4m-V3RealDataChecks.log": "6a456a55d6fa543ed75d84179b60c20dfa1c40afc0f50c4d057178e1275fdf9f",
+    "phase4m-V3ResearchChecks.log": "90dd2caecdd05f28e68fae989dce6d015613dd098c90f6cc3c05422674fdcb11"
+  },
+  "productionAuthenticatedAcceptance": "BLOCKED_NO_ISOLATED_ACCOUNTS",
+  "productionScheduler": "DISABLED",
+  "productionDurabilityAndBackup": "BLOCKED_DEPLOYMENT_ACCEPTANCE_REQUIRED",
+  "realResearch": "NOT_RUN",
+  "sameShaCI": "PENDING_FINAL_RELEASE_VERIFICATION"
+}
