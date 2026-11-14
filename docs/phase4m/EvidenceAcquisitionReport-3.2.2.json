@@ -1,0 +1,1150 @@
+{
+  "binding": {
+    "version": "3.2.2",
+    "phase": "4M",
+    "sourceCodeSha": "bc39b8f3f1acdab9d885f4e25960ef0b69aeff46",
+    "reportDigest": "A62DC8DFA660DF00756CF7A7B06DD29B43E04BE6220B96F2B2C07E69520E8D30",
+    "parentDigest": "9A33F33040B97AC61FAB1BCBA4021C182F59D9A12A33E3F1F14BAC2F881815BF",
+    "evidenceDigest": "FD958D5B386DD103DE7B51F3105E4D010CF494A77EBF97C9EC223708192000C6",
+    "exportedAt": "2026-11-14T03:01:06.9243648+00:00"
+  },
+  "data": {
+    "cards": [
+      {
+        "TaskId": "04744D2DEAF2C75627285D288DBD8E22AF21DB8AB5EE29BB4F3C57F8387629FF",
+        "SourceVersion": "07B0CE735349DB2D2A30F03B9A8225BD03E63CEC61C6D50C02C6EF3345E73A13",
+        "SubjectScope": "4FBCE6C6AAF32B6A7EEE1F1300B399C574778974DAD9F9D89EB713D3B349EC2A",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "07B0CE735349DB2D2A30F03B9A8225BD03E63CEC61C6D50C02C6EF3345E73A13"
+        ],
+        "RetrievedAt": [
+          "2026-11-05T20:28:29.8351746+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex Phase 4I scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "164C8EBEABB68EFB09E48CD253E6AC2C0F140439C8EE9CC2608B0C225BCBF66F"
+        ],
+        "ResolutionReceipt": "7D372479C578FAD279085873BA2983A1BC7CBB96F11ED2A4207014B6F5DBCDCA"
+      },
+      {
+        "TaskId": "296641D417851483E4C1A0798059430BD822684412E4CD4CAE7F6E1283CC0152",
+        "SourceVersion": "F2ABB6E49794EBD6D4E596F0C6436F193431786A5B96171A6E87638C729129B7",
+        "SubjectScope": "6E5056220DDA890F1EC46C7201131CEFB729813C99A352B8F3E5194273735311",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "F2ABB6E49794EBD6D4E596F0C6436F193431786A5B96171A6E87638C729129B7"
+        ],
+        "RetrievedAt": [
+          "2026-11-05T20:28:37.5049893+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "010A3F81657628E58FB92BF34895908BDC7BB13B12B198F85DAF7BCFA3BF7A7F"
+        ],
+        "ResolutionReceipt": "D72B75232382D228B71537DCE1679998B9886A94D78E04D2255C87940445B3B9"
+      },
+      {
+        "TaskId": "37CA5060D6DACD68B49D7D0ED1AF3C9B8A7C403465FC4E5890F9BA1A8D0D2455",
+        "SourceVersion": "07B0CE735349DB2D2A30F03B9A8225BD03E63CEC61C6D50C02C6EF3345E73A13",
+        "SubjectScope": "4FBCE6C6AAF32B6A7EEE1F1300B399C574778974DAD9F9D89EB713D3B349EC2A",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "07B0CE735349DB2D2A30F03B9A8225BD03E63CEC61C6D50C02C6EF3345E73A13"
+        ],
+        "RetrievedAt": [
+          "2026-11-05T20:28:30.283085+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex Phase 4I scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "37ACAD8EF47136ADFFA42482DC9D26C2D64A9C5F5270F9D6860344DED49058D9"
+        ],
+        "ResolutionReceipt": "7D372479C578FAD279085873BA2983A1BC7CBB96F11ED2A4207014B6F5DBCDCA"
+      },
+      {
+        "TaskId": "3B53DB92E6EABF2DCD1490BB4CAA68278C8F6E3AD14622997F90295FC8CD42BB",
+        "SourceVersion": "F082065D16630EE49D49EA59FBCCA1B77B0C361F029412AFA97E0595CD70E065",
+        "SubjectScope": "4FBCE6C6AAF32B6A7EEE1F1300B399C574778974DAD9F9D89EB713D3B349EC2A",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "F082065D16630EE49D49EA59FBCCA1B77B0C361F029412AFA97E0595CD70E065"
+        ],
+        "RetrievedAt": [
+          "2026-11-06T05:24:57.1064717+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex Phase 4I scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "234D622CB5372A5C19F38DF3E8D9CB921FE7C07CE3600D92C8755ACC42A4489F"
+        ],
+        "ResolutionReceipt": "7D372479C578FAD279085873BA2983A1BC7CBB96F11ED2A4207014B6F5DBCDCA"
+      },
+      {
+        "TaskId": "743785E974F244BB1FEF885EC259171CE9CAA7C5F719879927118F9183B14AF3",
+        "SourceVersion": "F2ABB6E49794EBD6D4E596F0C6436F193431786A5B96171A6E87638C729129B7",
+        "SubjectScope": "4FBCE6C6AAF32B6A7EEE1F1300B399C574778974DAD9F9D89EB713D3B349EC2A",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "F2ABB6E49794EBD6D4E596F0C6436F193431786A5B96171A6E87638C729129B7"
+        ],
+        "RetrievedAt": [
+          "2026-10-31T16:28:43.8218886+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex Phase 4I scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "7F9B356A5FF902A5390AC569822166DE7A8D8FDA88BB4AC042679740A0B432CF"
+        ],
+        "ResolutionReceipt": "7D372479C578FAD279085873BA2983A1BC7CBB96F11ED2A4207014B6F5DBCDCA"
+      },
+      {
+        "TaskId": "BF50834B016D207DB9176A7D596098F1B886C56C2C914E5FA291FB1DBF3C1E2D",
+        "SourceVersion": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "SubjectScope": "6E5056220DDA890F1EC46C7201131CEFB729813C99A352B8F3E5194273735311",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC"
+        ],
+        "RetrievedAt": [
+          "2026-10-31T16:28:43.8042876+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "45093DDC62DE1E169F7B553461E4C3AC8FBD73352F4D53F620CA00F7E1264BC9"
+        ],
+        "ResolutionReceipt": "D72B75232382D228B71537DCE1679998B9886A94D78E04D2255C87940445B3B9"
+      },
+      {
+        "TaskId": "C40C418BD0529AC51B3345C5F91EFF6F49BF89B05B8284FCE19F372101635BD0",
+        "SourceVersion": "BD029F134D7A2614E8EAF38EB316137D539DA2B39C84E842DD39AFF5C22E923A",
+        "SubjectScope": "4FBCE6C6AAF32B6A7EEE1F1300B399C574778974DAD9F9D89EB713D3B349EC2A",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "BD029F134D7A2614E8EAF38EB316137D539DA2B39C84E842DD39AFF5C22E923A"
+        ],
+        "RetrievedAt": [
+          "2026-11-06T05:24:31.7784697+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex Phase 4I scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "DBC52D387FFA698B8BFF5A196ABBE8F4F5A75C3699370C13D49C3E574898A23A"
+        ],
+        "ResolutionReceipt": "7D372479C578FAD279085873BA2983A1BC7CBB96F11ED2A4207014B6F5DBCDCA"
+      },
+      {
+        "TaskId": "F578F7F1479F481058F23C6340A4FE295823274CE77AD6A102EA384C830CF140",
+        "SourceVersion": "F2ABB6E49794EBD6D4E596F0C6436F193431786A5B96171A6E87638C729129B7",
+        "SubjectScope": "4FBCE6C6AAF32B6A7EEE1F1300B399C574778974DAD9F9D89EB713D3B349EC2A",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "F2ABB6E49794EBD6D4E596F0C6436F193431786A5B96171A6E87638C729129B7"
+        ],
+        "RetrievedAt": [
+          "2026-10-31T16:28:43.8218886+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex Phase 4I scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "7F9B356A5FF902A5390AC569822166DE7A8D8FDA88BB4AC042679740A0B432CF"
+        ],
+        "ResolutionReceipt": "7D372479C578FAD279085873BA2983A1BC7CBB96F11ED2A4207014B6F5DBCDCA"
+      },
+      {
+        "TaskId": "096523E612A203B545D59EF5CEF13474E6E489AA30449518BB89CEDCBF3033A5",
+        "SourceVersion": "F2ABB6E49794EBD6D4E596F0C6436F193431786A5B96171A6E87638C729129B7",
+        "SubjectScope": "4FBCE6C6AAF32B6A7EEE1F1300B399C574778974DAD9F9D89EB713D3B349EC2A",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "F2ABB6E49794EBD6D4E596F0C6436F193431786A5B96171A6E87638C729129B7"
+        ],
+        "RetrievedAt": [
+          "2026-10-31T16:28:43.8218886+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex Phase 4I scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "7F9B356A5FF902A5390AC569822166DE7A8D8FDA88BB4AC042679740A0B432CF"
+        ],
+        "ResolutionReceipt": "7D372479C578FAD279085873BA2983A1BC7CBB96F11ED2A4207014B6F5DBCDCA"
+      },
+      {
+        "TaskId": "100ECEFC61AD593466EECD7604841A00079E7258596C2A272293A6FA046AB533",
+        "SourceVersion": "E40C42BBCD7598F80D5D63AB13919CC1FDEB1F2329D4BD1E35EEEA87E87BF76E",
+        "SubjectScope": "4FBCE6C6AAF32B6A7EEE1F1300B399C574778974DAD9F9D89EB713D3B349EC2A",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "E40C42BBCD7598F80D5D63AB13919CC1FDEB1F2329D4BD1E35EEEA87E87BF76E"
+        ],
+        "RetrievedAt": [
+          "2026-11-06T05:24:56.4255042+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex Phase 4I scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "991137FC9226B01D43E07A953CEDF997FE83851B8050256D00DC5F5CD958FAE7"
+        ],
+        "ResolutionReceipt": "7D372479C578FAD279085873BA2983A1BC7CBB96F11ED2A4207014B6F5DBCDCA"
+      },
+      {
+        "TaskId": "DB1434181D4DFD630E23C76138B7862136F72757EFF54BAE4637D320B92FBD96",
+        "SourceVersion": "07B0CE735349DB2D2A30F03B9A8225BD03E63CEC61C6D50C02C6EF3345E73A13",
+        "SubjectScope": "4FBCE6C6AAF32B6A7EEE1F1300B399C574778974DAD9F9D89EB713D3B349EC2A",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "07B0CE735349DB2D2A30F03B9A8225BD03E63CEC61C6D50C02C6EF3345E73A13"
+        ],
+        "RetrievedAt": [
+          "2026-11-05T20:28:30.6919444+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex Phase 4I scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "76D5A378487949159367EB1E3AEB39F3AB97F8E03748BF57B4A1E172723D493F"
+        ],
+        "ResolutionReceipt": "7D372479C578FAD279085873BA2983A1BC7CBB96F11ED2A4207014B6F5DBCDCA"
+      },
+      {
+        "TaskId": "2EBFAA8E2C5C304FB8E0045D21056D71B12A25A6389994AF0174066C6B9AF3AE",
+        "SourceVersion": "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2",
+        "SubjectScope": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2"
+        ],
+        "RetrievedAt": [
+          "2026-10-31T16:28:43.7804128+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "15069D40C12FB7A39488A18D0331BC06B667323A20B6C92CF6467C5D0C238CE3"
+        ],
+        "ResolutionReceipt": "36D9B3D79E1F3D492334BF7F67CE12F81472CD8A49D29D88A8E36C7BB7A681DA"
+      },
+      {
+        "TaskId": "4F84324715712BE97AC469C93D86888B25237F3E5996DF20DED2CA9F888CCDF4",
+        "SourceVersion": "30B01239F4714B85EBE71F40590FE340082490DF9A738A9AC4658DC2C70B160C",
+        "SubjectScope": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "30B01239F4714B85EBE71F40590FE340082490DF9A738A9AC4658DC2C70B160C"
+        ],
+        "RetrievedAt": [
+          "2026-11-05T20:28:31.9682928+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "521604E0489B3A31FAE1256A532BFE08FE82F5151B523F272CE21ACDDEFAE8E3"
+        ],
+        "ResolutionReceipt": "36D9B3D79E1F3D492334BF7F67CE12F81472CD8A49D29D88A8E36C7BB7A681DA"
+      },
+      {
+        "TaskId": "6510BC7F72308241925345F1E70D73FBE88F355A97EE422211E098CF2E347BD2",
+        "SourceVersion": "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2",
+        "SubjectScope": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2"
+        ],
+        "RetrievedAt": [
+          "2026-10-31T16:28:43.7804128+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "15069D40C12FB7A39488A18D0331BC06B667323A20B6C92CF6467C5D0C238CE3"
+        ],
+        "ResolutionReceipt": "36D9B3D79E1F3D492334BF7F67CE12F81472CD8A49D29D88A8E36C7BB7A681DA"
+      },
+      {
+        "TaskId": "B0C67644B9B12C6556BD44C343FF28E4F376F0E4CD346AEE13153E3CE681DC39",
+        "SourceVersion": "30B01239F4714B85EBE71F40590FE340082490DF9A738A9AC4658DC2C70B160C",
+        "SubjectScope": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "30B01239F4714B85EBE71F40590FE340082490DF9A738A9AC4658DC2C70B160C"
+        ],
+        "RetrievedAt": [
+          "2026-11-05T20:28:31.5566441+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "B4984A6BE5CCF1F30FE88997B97996A1D5C2D5B3865917E31CECABEDAD9B536B"
+        ],
+        "ResolutionReceipt": "36D9B3D79E1F3D492334BF7F67CE12F81472CD8A49D29D88A8E36C7BB7A681DA"
+      },
+      {
+        "TaskId": "B617B4076D77184303DDD4C770BEAEBD3688969BCFC8A5499F62460E8BBF11EB",
+        "SourceVersion": "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2",
+        "SubjectScope": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2"
+        ],
+        "RetrievedAt": [
+          "2026-10-31T16:28:43.7804128+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "15069D40C12FB7A39488A18D0331BC06B667323A20B6C92CF6467C5D0C238CE3"
+        ],
+        "ResolutionReceipt": "36D9B3D79E1F3D492334BF7F67CE12F81472CD8A49D29D88A8E36C7BB7A681DA"
+      },
+      {
+        "TaskId": "FCD1A88EC20075F1597C2AAF76159C7C478586BC39F28B0B687DA3A6F1FDF968",
+        "SourceVersion": "30B01239F4714B85EBE71F40590FE340082490DF9A738A9AC4658DC2C70B160C",
+        "SubjectScope": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "30B01239F4714B85EBE71F40590FE340082490DF9A738A9AC4658DC2C70B160C"
+        ],
+        "RetrievedAt": [
+          "2026-11-05T20:28:31.1474829+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "8A8CB6DA07C3141015317D3FFA6A9553317A117F5F69495324235DAB5ED3B3FC"
+        ],
+        "ResolutionReceipt": "36D9B3D79E1F3D492334BF7F67CE12F81472CD8A49D29D88A8E36C7BB7A681DA"
+      },
+      {
+        "TaskId": "0BDC827C582D9411AD7F04D062FDA008D1E3B32B31A3FA1F4DE21F9D81C313B8",
+        "SourceVersion": "3BA1395A7549D8EBEE35C02350BB5470C9CDDE68DDC4339A461B6D19953A9228",
+        "SubjectScope": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "3BA1395A7549D8EBEE35C02350BB5470C9CDDE68DDC4339A461B6D19953A9228"
+        ],
+        "RetrievedAt": [
+          "2026-11-05T20:30:15.2017661+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "7365EAA7D4C35007719AD60E72A2D8E4F3C4FD5E3E9CE65BB0E565B64BC95CC2"
+        ],
+        "ResolutionReceipt": "BF2B4B795C9304992C928C6018D50FF93CD76CB2B2BE041DF82648999D6D5C34"
+      },
+      {
+        "TaskId": "1F9CD5324D94734A595D846C5BE98488B84D578CA7BDD8E904033313FA3A6BDA",
+        "SourceVersion": "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2",
+        "SubjectScope": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2"
+        ],
+        "RetrievedAt": [
+          "2026-10-31T16:28:43.792527+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "B39774F2EFE9791DB7EA3B8096C634BA728A6FCDE69A27EECAE27C46550F5531"
+        ],
+        "ResolutionReceipt": "BF2B4B795C9304992C928C6018D50FF93CD76CB2B2BE041DF82648999D6D5C34"
+      },
+      {
+        "TaskId": "4420C65DC7C8072D95E7746E2BB2F418F43F08F7300011FEF05080119C3D303F",
+        "SourceVersion": "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2",
+        "SubjectScope": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2"
+        ],
+        "RetrievedAt": [
+          "2026-10-31T16:28:43.792527+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "B39774F2EFE9791DB7EA3B8096C634BA728A6FCDE69A27EECAE27C46550F5531"
+        ],
+        "ResolutionReceipt": "BF2B4B795C9304992C928C6018D50FF93CD76CB2B2BE041DF82648999D6D5C34"
+      },
+      {
+        "TaskId": "63186213C35464F583741974A8DF86ABA029B9C2248F7F2CD7538D3E1932DF86",
+        "SourceVersion": "3BA1395A7549D8EBEE35C02350BB5470C9CDDE68DDC4339A461B6D19953A9228",
+        "SubjectScope": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "3BA1395A7549D8EBEE35C02350BB5470C9CDDE68DDC4339A461B6D19953A9228"
+        ],
+        "RetrievedAt": [
+          "2026-11-05T20:30:15.6993914+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "2E44B2799D2EE00BEF08FC4DA21F0CA26250FBF8D051C1185F6FDAB8BA1AE2F4"
+        ],
+        "ResolutionReceipt": "BF2B4B795C9304992C928C6018D50FF93CD76CB2B2BE041DF82648999D6D5C34"
+      },
+      {
+        "TaskId": "B1217983A3ECB00CC017DF8A4D9C7E810C80C4AB61192C9EC8DBD161EC9A9C54",
+        "SourceVersion": "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2",
+        "SubjectScope": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2"
+        ],
+        "RetrievedAt": [
+          "2026-10-31T16:28:43.792527+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "B39774F2EFE9791DB7EA3B8096C634BA728A6FCDE69A27EECAE27C46550F5531"
+        ],
+        "ResolutionReceipt": "BF2B4B795C9304992C928C6018D50FF93CD76CB2B2BE041DF82648999D6D5C34"
+      },
+      {
+        "TaskId": "B512786C05D05F451BCFDFB6161D88F079C0B2E81E2BA5C058E04DE2FB4181DC",
+        "SourceVersion": "3BA1395A7549D8EBEE35C02350BB5470C9CDDE68DDC4339A461B6D19953A9228",
+        "SubjectScope": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "3BA1395A7549D8EBEE35C02350BB5470C9CDDE68DDC4339A461B6D19953A9228"
+        ],
+        "RetrievedAt": [
+          "2026-11-05T20:30:14.6980682+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "439E3F009B880799150628CB877315669591EC01AC604F327CB37A5374C872D0"
+        ],
+        "ResolutionReceipt": "BF2B4B795C9304992C928C6018D50FF93CD76CB2B2BE041DF82648999D6D5C34"
+      },
+      {
+        "TaskId": "BD060CDC02D99F8F9746AC93152FAE27E28A898D6139555F93681B5E738CD829",
+        "SourceVersion": "3BA1395A7549D8EBEE35C02350BB5470C9CDDE68DDC4339A461B6D19953A9228",
+        "SubjectScope": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "3BA1395A7549D8EBEE35C02350BB5470C9CDDE68DDC4339A461B6D19953A9228"
+        ],
+        "RetrievedAt": [
+          "2026-11-05T20:30:14.1731744+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "19FE563C2790FED3DCAEB1CEE4A50FB558D9A5FF6BF9284B4551068E052EFD31"
+        ],
+        "ResolutionReceipt": "BF2B4B795C9304992C928C6018D50FF93CD76CB2B2BE041DF82648999D6D5C34"
+      },
+      {
+        "TaskId": "E63B98A9F2C4A19FEE283355E728E14DF86406BE815D189521CCEF75465A36CD",
+        "SourceVersion": "3BA1395A7549D8EBEE35C02350BB5470C9CDDE68DDC4339A461B6D19953A9228",
+        "SubjectScope": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "3BA1395A7549D8EBEE35C02350BB5470C9CDDE68DDC4339A461B6D19953A9228"
+        ],
+        "RetrievedAt": [
+          "2026-11-05T20:30:13.6820944+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "A537585316BD64B49C472B9BEC3813C03CD4BE313B8A9021F872A5BBC49CE7B1"
+        ],
+        "ResolutionReceipt": "BF2B4B795C9304992C928C6018D50FF93CD76CB2B2BE041DF82648999D6D5C34"
+      },
+      {
+        "TaskId": "F1AFC8BB1AF04197CB36B650372AB67BF05703DABBC6928F9AC892546A59B1EC",
+        "SourceVersion": "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2",
+        "SubjectScope": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2"
+        ],
+        "RetrievedAt": [
+          "2026-10-31T16:28:43.792527+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "B39774F2EFE9791DB7EA3B8096C634BA728A6FCDE69A27EECAE27C46550F5531"
+        ],
+        "ResolutionReceipt": "BF2B4B795C9304992C928C6018D50FF93CD76CB2B2BE041DF82648999D6D5C34"
+      },
+      {
+        "TaskId": "FA40120255C64CFC474DA39A2F1093160539056C45AB0C3EF26CFE795E17B845",
+        "SourceVersion": "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2",
+        "SubjectScope": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2"
+        ],
+        "RetrievedAt": [
+          "2026-10-31T16:28:43.792527+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "B39774F2EFE9791DB7EA3B8096C634BA728A6FCDE69A27EECAE27C46550F5531"
+        ],
+        "ResolutionReceipt": "BF2B4B795C9304992C928C6018D50FF93CD76CB2B2BE041DF82648999D6D5C34"
+      },
+      {
+        "TaskId": "859A93C34569BD1F772EC3016DFBD2836504165B93295975569BC6B5C13E9D06",
+        "SourceVersion": "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390",
+        "SubjectScope": "DF80B963E4DB5DEA8EF5A784C0AEAA242330C07232CE6A439793C0301E2F7BDB",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390"
+        ],
+        "RetrievedAt": [
+          "2026-11-05T20:28:36.1760516+00:00",
+          "2026-10-31T16:28:43.6977049+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "99E4CA4B1F1CD18E8F5CF77BA5B2AFE65647F375AA3762A81C3C4D2064D05970",
+          "5AC49EF2725FE7BF603C2AC3C93F994D9E9F033F11995FE909F7BFBFD0DCC470"
+        ],
+        "ResolutionReceipt": "24F0DF611524D7D56014EC689A32F9CA2C6231471E784FA8DAF03BC33AEC23F7"
+      },
+      {
+        "TaskId": "8ABCF0925C049158393CEE3675F0A537895B8F7BF85279C39AA9EC5E23744706",
+        "SourceVersion": "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390",
+        "SubjectScope": "DF80B963E4DB5DEA8EF5A784C0AEAA242330C07232CE6A439793C0301E2F7BDB",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390"
+        ],
+        "RetrievedAt": [
+          "2026-11-05T20:28:35.6939746+00:00",
+          "2026-10-31T16:28:43.6977049+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "20FFBA30DDEA88560DDADABDDD4BCDF0A16CCDC43F964DB33266E4520615C47C",
+          "5AC49EF2725FE7BF603C2AC3C93F994D9E9F033F11995FE909F7BFBFD0DCC470"
+        ],
+        "ResolutionReceipt": "24F0DF611524D7D56014EC689A32F9CA2C6231471E784FA8DAF03BC33AEC23F7"
+      },
+      {
+        "TaskId": "8E6C75EBF43156DEDD18233C3DC6071ED7F5CBAFBBD34DA582790719C79E1941",
+        "SourceVersion": "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390",
+        "SubjectScope": "DF80B963E4DB5DEA8EF5A784C0AEAA242330C07232CE6A439793C0301E2F7BDB",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390"
+        ],
+        "RetrievedAt": [
+          "2026-11-05T20:28:35.219754+00:00",
+          "2026-10-31T16:28:43.6977049+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "BAFEB760E0D0EC72745C02E4589EEF2BF5BE06B5444153D48BE3F0373AC67F1D",
+          "5AC49EF2725FE7BF603C2AC3C93F994D9E9F033F11995FE909F7BFBFD0DCC470"
+        ],
+        "ResolutionReceipt": "24F0DF611524D7D56014EC689A32F9CA2C6231471E784FA8DAF03BC33AEC23F7"
+      },
+      {
+        "TaskId": "A1C0060449570D28CA8FC927E61D466AD38058B419C4DDF2185D8D14EEADAB2A",
+        "SourceVersion": "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390",
+        "SubjectScope": "DF80B963E4DB5DEA8EF5A784C0AEAA242330C07232CE6A439793C0301E2F7BDB",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390"
+        ],
+        "RetrievedAt": [
+          "2026-11-05T20:28:35.6939746+00:00",
+          "2026-10-31T16:28:43.6977049+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "20FFBA30DDEA88560DDADABDDD4BCDF0A16CCDC43F964DB33266E4520615C47C",
+          "5AC49EF2725FE7BF603C2AC3C93F994D9E9F033F11995FE909F7BFBFD0DCC470"
+        ],
+        "ResolutionReceipt": "24F0DF611524D7D56014EC689A32F9CA2C6231471E784FA8DAF03BC33AEC23F7"
+      },
+      {
+        "TaskId": "AD1DEE6BA915E37AF842B5BB20242423ECCF5201BD6B378BE2A9345E707BDB84",
+        "SourceVersion": "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390",
+        "SubjectScope": "DF80B963E4DB5DEA8EF5A784C0AEAA242330C07232CE6A439793C0301E2F7BDB",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390"
+        ],
+        "RetrievedAt": [
+          "2026-11-05T20:28:36.1760516+00:00",
+          "2026-10-31T16:28:43.6977049+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "99E4CA4B1F1CD18E8F5CF77BA5B2AFE65647F375AA3762A81C3C4D2064D05970",
+          "5AC49EF2725FE7BF603C2AC3C93F994D9E9F033F11995FE909F7BFBFD0DCC470"
+        ],
+        "ResolutionReceipt": "24F0DF611524D7D56014EC689A32F9CA2C6231471E784FA8DAF03BC33AEC23F7"
+      },
+      {
+        "TaskId": "F5AC484F16DDD9E0A8A3BF72A96D8A9CDA8B5387096BE24A9E9BF601DD6C586D",
+        "SourceVersion": "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390",
+        "SubjectScope": "DF80B963E4DB5DEA8EF5A784C0AEAA242330C07232CE6A439793C0301E2F7BDB",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390"
+        ],
+        "RetrievedAt": [
+          "2026-11-05T20:28:34.7032016+00:00",
+          "2026-10-31T16:28:43.6977049+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "49DE21F4A26A3860537F7DE5A0C40B2E68543539A2109E70B6D3DB6F463BDFB3",
+          "5AC49EF2725FE7BF603C2AC3C93F994D9E9F033F11995FE909F7BFBFD0DCC470"
+        ],
+        "ResolutionReceipt": "24F0DF611524D7D56014EC689A32F9CA2C6231471E784FA8DAF03BC33AEC23F7"
+      },
+      {
+        "TaskId": "FE057166FC6A13D13EABC8E8142840022F049A2E2FB7E9E84D232E175B3A6DA6",
+        "SourceVersion": "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390",
+        "SubjectScope": "DF80B963E4DB5DEA8EF5A784C0AEAA242330C07232CE6A439793C0301E2F7BDB",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390"
+        ],
+        "RetrievedAt": [
+          "2026-11-05T20:28:34.7032016+00:00",
+          "2026-10-31T16:28:43.6977049+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "49DE21F4A26A3860537F7DE5A0C40B2E68543539A2109E70B6D3DB6F463BDFB3",
+          "5AC49EF2725FE7BF603C2AC3C93F994D9E9F033F11995FE909F7BFBFD0DCC470"
+        ],
+        "ResolutionReceipt": "24F0DF611524D7D56014EC689A32F9CA2C6231471E784FA8DAF03BC33AEC23F7"
+      },
+      {
+        "TaskId": "FE54D55646E995D0251222EE922A98394671D68E3DDB70859412717E4DC9F7CC",
+        "SourceVersion": "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390",
+        "SubjectScope": "DF80B963E4DB5DEA8EF5A784C0AEAA242330C07232CE6A439793C0301E2F7BDB",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390"
+        ],
+        "RetrievedAt": [
+          "2026-11-05T20:28:35.219754+00:00",
+          "2026-10-31T16:28:43.6977049+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "BAFEB760E0D0EC72745C02E4589EEF2BF5BE06B5444153D48BE3F0373AC67F1D",
+          "5AC49EF2725FE7BF603C2AC3C93F994D9E9F033F11995FE909F7BFBFD0DCC470"
+        ],
+        "ResolutionReceipt": "24F0DF611524D7D56014EC689A32F9CA2C6231471E784FA8DAF03BC33AEC23F7"
+      },
+      {
+        "TaskId": "41025C1EF8D6B3870A7ED2BF13951BA110470DF845374E5C86D0F65C2F44F6D5",
+        "SourceVersion": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "SubjectScope": "6E5056220DDA890F1EC46C7201131CEFB729813C99A352B8F3E5194273735311",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC"
+        ],
+        "RetrievedAt": [
+          "2026-10-31T16:28:43.8042876+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "45093DDC62DE1E169F7B553461E4C3AC8FBD73352F4D53F620CA00F7E1264BC9"
+        ],
+        "ResolutionReceipt": "D72B75232382D228B71537DCE1679998B9886A94D78E04D2255C87940445B3B9"
+      },
+      {
+        "TaskId": "497FAEFDF4D183D1FA4DEE4B13EB20D3444811FB7E3AB520220A20929A855709",
+        "SourceVersion": "2FB6DA046C685F1B52494AC0009DF89C19791F58E6D41924FBE11D3149DABC3F",
+        "SubjectScope": "CF4B9412108C7D26A7994F8DAFCE5349FAF8DB914D28F811451DEAD859D47A56",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "2FB6DA046C685F1B52494AC0009DF89C19791F58E6D41924FBE11D3149DABC3F"
+        ],
+        "RetrievedAt": [
+          "2026-11-05T20:30:18.1161034+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "2E91522AE4E3CFAAD28F2D5172A0DD13BA069344B1AAA6A9879B504633F4FD83"
+        ],
+        "ResolutionReceipt": "1A3A09193392FEE2B9DC2C917C3E35087F624B61BAD8ECFB5EE6F053262DF48B"
+      },
+      {
+        "TaskId": "59E27419512941F9B5066E80473DEE6C552FD906D809CB48D2210F10C1993019",
+        "SourceVersion": "DFBBEE5EB202CB9E349D7A8A162A82D657CD6F12C105A4AADA5D3BBD94F45426",
+        "SubjectScope": "CF4B9412108C7D26A7994F8DAFCE5349FAF8DB914D28F811451DEAD859D47A56",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "DFBBEE5EB202CB9E349D7A8A162A82D657CD6F12C105A4AADA5D3BBD94F45426"
+        ],
+        "RetrievedAt": [
+          "2026-10-31T16:28:44.3813205+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "786516EA550B81A44FD1415F2A5114444ED496D2CA3C6C518F53DA8766307559"
+        ],
+        "ResolutionReceipt": "1A3A09193392FEE2B9DC2C917C3E35087F624B61BAD8ECFB5EE6F053262DF48B"
+      },
+      {
+        "TaskId": "6912410883B84A1F3E4903152749A85CDB60BA49C3D06E968C474D8CA630ED29",
+        "SourceVersion": "F2ABB6E49794EBD6D4E596F0C6436F193431786A5B96171A6E87638C729129B7",
+        "SubjectScope": "6E5056220DDA890F1EC46C7201131CEFB729813C99A352B8F3E5194273735311",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "F2ABB6E49794EBD6D4E596F0C6436F193431786A5B96171A6E87638C729129B7"
+        ],
+        "RetrievedAt": [
+          "2026-11-05T20:28:37.0911114+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "017FD91FECB4156BB5C2529008D68E15D02F92D63D07FD960DD70A40E85C5494"
+        ],
+        "ResolutionReceipt": "D72B75232382D228B71537DCE1679998B9886A94D78E04D2255C87940445B3B9"
+      },
+      {
+        "TaskId": "77D9B43AAD3753EAC92CC027CBC06E5F2D988A789CB8C66C972C56E0B9A08FB7",
+        "SourceVersion": "F2ABB6E49794EBD6D4E596F0C6436F193431786A5B96171A6E87638C729129B7",
+        "SubjectScope": "6E5056220DDA890F1EC46C7201131CEFB729813C99A352B8F3E5194273735311",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "F2ABB6E49794EBD6D4E596F0C6436F193431786A5B96171A6E87638C729129B7"
+        ],
+        "RetrievedAt": [
+          "2026-11-05T20:28:36.6789889+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "CA0F1B6D27E25A538ACC5B944CE7CB59B853758C17572FF7D81E4AA57C3D4DA5"
+        ],
+        "ResolutionReceipt": "D72B75232382D228B71537DCE1679998B9886A94D78E04D2255C87940445B3B9"
+      },
+      {
+        "TaskId": "7CC24EC0077F8FDBEC80826D6243F6E78BD6F311BF327E45138F7A3AAC749586",
+        "SourceVersion": "DFBBEE5EB202CB9E349D7A8A162A82D657CD6F12C105A4AADA5D3BBD94F45426",
+        "SubjectScope": "CF4B9412108C7D26A7994F8DAFCE5349FAF8DB914D28F811451DEAD859D47A56",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "DFBBEE5EB202CB9E349D7A8A162A82D657CD6F12C105A4AADA5D3BBD94F45426"
+        ],
+        "RetrievedAt": [
+          "2026-10-31T16:28:44.3813205+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "786516EA550B81A44FD1415F2A5114444ED496D2CA3C6C518F53DA8766307559"
+        ],
+        "ResolutionReceipt": "1A3A09193392FEE2B9DC2C917C3E35087F624B61BAD8ECFB5EE6F053262DF48B"
+      },
+      {
+        "TaskId": "B5A4096AE1FB7A9BFDC30FA57975F518E1660DCCC7EA145E59D4B479B761D82B",
+        "SourceVersion": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "SubjectScope": "6E5056220DDA890F1EC46C7201131CEFB729813C99A352B8F3E5194273735311",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC"
+        ],
+        "RetrievedAt": [
+          "2026-10-31T16:28:43.8042876+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "45093DDC62DE1E169F7B553461E4C3AC8FBD73352F4D53F620CA00F7E1264BC9"
+        ],
+        "ResolutionReceipt": "D72B75232382D228B71537DCE1679998B9886A94D78E04D2255C87940445B3B9"
+      },
+      {
+        "TaskId": "E56CC9D023073A4C2C478EECDDA3EE8E6F5FEC908F6525C51EC8F9647D466730",
+        "SourceVersion": "2FB6DA046C685F1B52494AC0009DF89C19791F58E6D41924FBE11D3149DABC3F",
+        "SubjectScope": "CF4B9412108C7D26A7994F8DAFCE5349FAF8DB914D28F811451DEAD859D47A56",
+        "Instruments": [
+          "2330"
+        ],
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "RawDigests": [
+          "2FB6DA046C685F1B52494AC0009DF89C19791F58E6D41924FBE11D3149DABC3F"
+        ],
+        "RetrievedAt": [
+          "2026-11-05T20:30:17.6971004+00:00"
+        ],
+        "PublishedAtEvidence": "UNPROVEN_UNLESS_ORIGINAL_PUBLICATION_RECEIPT",
+        "AvailableAtEvidence": "UNPROVEN",
+        "RevisionEvidence": "UNPROVEN",
+        "RightsStatus": "UNKNOWN_REUSE_RIGHTS",
+        "Reviewer": "Codex scoped official-source inspection",
+        "ReviewDecision": "UNPROVEN_FOR_HISTORICAL_SCOPE",
+        "ReviewReceipts": [
+          "45F2FB1D0832CCFE46549B72848D6AB2F8B5D9E39B52DACC9CE8066400A37B20"
+        ],
+        "ResolutionReceipt": "1A3A09193392FEE2B9DC2C917C3E35087F624B61BAD8ECFB5EE6F053262DF48B"
+      }
+    ],
+    "newDownloads": 0
+  }
+}

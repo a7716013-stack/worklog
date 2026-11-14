@@ -1,3 +1,7 @@
+# 3.2.2 — Phase 4M（2026-11-14）
+
+歷史證據審查工作台、獨立 reviewer 與撤銷稽核、ETL production readiness/備份還原、Trend 準備度與 operations API/UI。正式排程關閉、真實研究 NOT_RUN。詳 docs/phase4m。
+
 ## 3.2.2 — 2026-11-13
 
 - 持久化排程、租約、取消、額度/斷路器與原批次恢復。

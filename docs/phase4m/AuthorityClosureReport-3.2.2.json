@@ -1,0 +1,833 @@
+{
+  "binding": {
+    "version": "3.2.2",
+    "phase": "4M",
+    "sourceCodeSha": "bc39b8f3f1acdab9d885f4e25960ef0b69aeff46",
+    "reportDigest": "A62DC8DFA660DF00756CF7A7B06DD29B43E04BE6220B96F2B2C07E69520E8D30",
+    "parentDigest": "9A33F33040B97AC61FAB1BCBA4021C182F59D9A12A33E3F1F14BAC2F881815BF",
+    "evidenceDigest": "FD958D5B386DD103DE7B51F3105E4D010CF494A77EBF97C9EC223708192000C6",
+    "exportedAt": "2026-11-14T03:01:06.9243648+00:00"
+  },
+  "data": {
+    "queue": [
+      {
+        "TaskId": "04744D2DEAF2C75627285D288DBD8E22AF21DB8AB5EE29BB4F3C57F8387629FF",
+        "ClaimKey": "Availability:HistoricalPublication",
+        "SourceVersion": "07B0CE735349DB2D2A30F03B9A8225BD03E63CEC61C6D50C02C6EF3345E73A13",
+        "SubjectDigest": "4FBCE6C6AAF32B6A7EEE1F1300B399C574778974DAD9F9D89EB713D3B349EC2A",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "7D372479C578FAD279085873BA2983A1BC7CBB96F11ED2A4207014B6F5DBCDCA",
+        "BlockingReasons": [
+          "SCOPED_CURRENT_CLOSURE_REQUIRED",
+          "HistoricalPublication"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "296641D417851483E4C1A0798059430BD822684412E4CD4CAE7F6E1283CC0152",
+        "ClaimKey": "HistoricalPriceVolume:SourceIdentity",
+        "SourceVersion": "F2ABB6E49794EBD6D4E596F0C6436F193431786A5B96171A6E87638C729129B7",
+        "SubjectDigest": "6E5056220DDA890F1EC46C7201131CEFB729813C99A352B8F3E5194273735311",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "D72B75232382D228B71537DCE1679998B9886A94D78E04D2255C87940445B3B9",
+        "BlockingReasons": [
+          "SCOPED_CURRENT_CLOSURE_REQUIRED",
+          "SourceIdentity"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "37CA5060D6DACD68B49D7D0ED1AF3C9B8A7C403465FC4E5890F9BA1A8D0D2455",
+        "ClaimKey": "Availability:SourceIdentity",
+        "SourceVersion": "07B0CE735349DB2D2A30F03B9A8225BD03E63CEC61C6D50C02C6EF3345E73A13",
+        "SubjectDigest": "4FBCE6C6AAF32B6A7EEE1F1300B399C574778974DAD9F9D89EB713D3B349EC2A",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "7D372479C578FAD279085873BA2983A1BC7CBB96F11ED2A4207014B6F5DBCDCA",
+        "BlockingReasons": [
+          "SCOPED_CURRENT_CLOSURE_REQUIRED",
+          "SourceIdentity"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "3B53DB92E6EABF2DCD1490BB4CAA68278C8F6E3AD14622997F90295FC8CD42BB",
+        "ClaimKey": "Availability:SourceIdentity",
+        "SourceVersion": "F082065D16630EE49D49EA59FBCCA1B77B0C361F029412AFA97E0595CD70E065",
+        "SubjectDigest": "4FBCE6C6AAF32B6A7EEE1F1300B399C574778974DAD9F9D89EB713D3B349EC2A",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "7D372479C578FAD279085873BA2983A1BC7CBB96F11ED2A4207014B6F5DBCDCA",
+        "BlockingReasons": [
+          "SCOPED_CURRENT_CLOSURE_REQUIRED",
+          "SourceIdentity"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "743785E974F244BB1FEF885EC259171CE9CAA7C5F719879927118F9183B14AF3",
+        "ClaimKey": "Availability:HistoricalPublication",
+        "SourceVersion": "F2ABB6E49794EBD6D4E596F0C6436F193431786A5B96171A6E87638C729129B7",
+        "SubjectDigest": "4FBCE6C6AAF32B6A7EEE1F1300B399C574778974DAD9F9D89EB713D3B349EC2A",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "7D372479C578FAD279085873BA2983A1BC7CBB96F11ED2A4207014B6F5DBCDCA",
+        "BlockingReasons": [
+          "SCOPED_CURRENT_CLOSURE_REQUIRED",
+          "HistoricalPublication"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "BF50834B016D207DB9176A7D596098F1B886C56C2C914E5FA291FB1DBF3C1E2D",
+        "ClaimKey": "HistoricalPriceVolume:SourceIdentity",
+        "SourceVersion": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "SubjectDigest": "6E5056220DDA890F1EC46C7201131CEFB729813C99A352B8F3E5194273735311",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "D72B75232382D228B71537DCE1679998B9886A94D78E04D2255C87940445B3B9",
+        "BlockingReasons": [
+          "SCOPED_CURRENT_CLOSURE_REQUIRED",
+          "SourceIdentity"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "C40C418BD0529AC51B3345C5F91EFF6F49BF89B05B8284FCE19F372101635BD0",
+        "ClaimKey": "Availability:HistoricalPublication",
+        "SourceVersion": "BD029F134D7A2614E8EAF38EB316137D539DA2B39C84E842DD39AFF5C22E923A",
+        "SubjectDigest": "4FBCE6C6AAF32B6A7EEE1F1300B399C574778974DAD9F9D89EB713D3B349EC2A",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "7D372479C578FAD279085873BA2983A1BC7CBB96F11ED2A4207014B6F5DBCDCA",
+        "BlockingReasons": [
+          "SCOPED_CURRENT_CLOSURE_REQUIRED",
+          "HistoricalPublication"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "F578F7F1479F481058F23C6340A4FE295823274CE77AD6A102EA384C830CF140",
+        "ClaimKey": "Availability:SourceIdentity",
+        "SourceVersion": "F2ABB6E49794EBD6D4E596F0C6436F193431786A5B96171A6E87638C729129B7",
+        "SubjectDigest": "4FBCE6C6AAF32B6A7EEE1F1300B399C574778974DAD9F9D89EB713D3B349EC2A",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "7D372479C578FAD279085873BA2983A1BC7CBB96F11ED2A4207014B6F5DBCDCA",
+        "BlockingReasons": [
+          "SCOPED_CURRENT_CLOSURE_REQUIRED",
+          "SourceIdentity"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "096523E612A203B545D59EF5CEF13474E6E489AA30449518BB89CEDCBF3033A5",
+        "ClaimKey": "Availability:RevisionBehavior",
+        "SourceVersion": "F2ABB6E49794EBD6D4E596F0C6436F193431786A5B96171A6E87638C729129B7",
+        "SubjectDigest": "4FBCE6C6AAF32B6A7EEE1F1300B399C574778974DAD9F9D89EB713D3B349EC2A",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "7D372479C578FAD279085873BA2983A1BC7CBB96F11ED2A4207014B6F5DBCDCA",
+        "BlockingReasons": [
+          "SCOPED_CURRENT_CLOSURE_REQUIRED",
+          "RevisionBehavior"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "100ECEFC61AD593466EECD7604841A00079E7258596C2A272293A6FA046AB533",
+        "ClaimKey": "Availability:RevisionBehavior",
+        "SourceVersion": "E40C42BBCD7598F80D5D63AB13919CC1FDEB1F2329D4BD1E35EEEA87E87BF76E",
+        "SubjectDigest": "4FBCE6C6AAF32B6A7EEE1F1300B399C574778974DAD9F9D89EB713D3B349EC2A",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "7D372479C578FAD279085873BA2983A1BC7CBB96F11ED2A4207014B6F5DBCDCA",
+        "BlockingReasons": [
+          "SCOPED_CURRENT_CLOSURE_REQUIRED",
+          "RevisionBehavior"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "DB1434181D4DFD630E23C76138B7862136F72757EFF54BAE4637D320B92FBD96",
+        "ClaimKey": "Availability:RevisionBehavior",
+        "SourceVersion": "07B0CE735349DB2D2A30F03B9A8225BD03E63CEC61C6D50C02C6EF3345E73A13",
+        "SubjectDigest": "4FBCE6C6AAF32B6A7EEE1F1300B399C574778974DAD9F9D89EB713D3B349EC2A",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "7D372479C578FAD279085873BA2983A1BC7CBB96F11ED2A4207014B6F5DBCDCA",
+        "BlockingReasons": [
+          "SCOPED_CURRENT_CLOSURE_REQUIRED",
+          "RevisionBehavior"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "2EBFAA8E2C5C304FB8E0045D21056D71B12A25A6389994AF0174066C6B9AF3AE",
+        "ClaimKey": "HistoricalInstrumentIdentity:SymbolHistory",
+        "SourceVersion": "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2",
+        "SubjectDigest": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "36D9B3D79E1F3D492334BF7F67CE12F81472CD8A49D29D88A8E36C7BB7A681DA",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "SymbolHistory"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "4F84324715712BE97AC469C93D86888B25237F3E5996DF20DED2CA9F888CCDF4",
+        "ClaimKey": "HistoricalInstrumentIdentity:MarketTransfer",
+        "SourceVersion": "30B01239F4714B85EBE71F40590FE340082490DF9A738A9AC4658DC2C70B160C",
+        "SubjectDigest": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "36D9B3D79E1F3D492334BF7F67CE12F81472CD8A49D29D88A8E36C7BB7A681DA",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "MarketTransfer"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "6510BC7F72308241925345F1E70D73FBE88F355A97EE422211E098CF2E347BD2",
+        "ClaimKey": "HistoricalInstrumentIdentity:HistoricalInstrumentIdentity",
+        "SourceVersion": "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2",
+        "SubjectDigest": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "36D9B3D79E1F3D492334BF7F67CE12F81472CD8A49D29D88A8E36C7BB7A681DA",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "HistoricalInstrumentIdentity"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "B0C67644B9B12C6556BD44C343FF28E4F376F0E4CD346AEE13153E3CE681DC39",
+        "ClaimKey": "HistoricalInstrumentIdentity:SymbolHistory",
+        "SourceVersion": "30B01239F4714B85EBE71F40590FE340082490DF9A738A9AC4658DC2C70B160C",
+        "SubjectDigest": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "36D9B3D79E1F3D492334BF7F67CE12F81472CD8A49D29D88A8E36C7BB7A681DA",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "SymbolHistory"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "B617B4076D77184303DDD4C770BEAEBD3688969BCFC8A5499F62460E8BBF11EB",
+        "ClaimKey": "HistoricalInstrumentIdentity:MarketTransfer",
+        "SourceVersion": "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2",
+        "SubjectDigest": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "36D9B3D79E1F3D492334BF7F67CE12F81472CD8A49D29D88A8E36C7BB7A681DA",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "MarketTransfer"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "FCD1A88EC20075F1597C2AAF76159C7C478586BC39F28B0B687DA3A6F1FDF968",
+        "ClaimKey": "HistoricalInstrumentIdentity:HistoricalInstrumentIdentity",
+        "SourceVersion": "30B01239F4714B85EBE71F40590FE340082490DF9A738A9AC4658DC2C70B160C",
+        "SubjectDigest": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "36D9B3D79E1F3D492334BF7F67CE12F81472CD8A49D29D88A8E36C7BB7A681DA",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "HistoricalInstrumentIdentity"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "0BDC827C582D9411AD7F04D062FDA008D1E3B32B31A3FA1F4DE21F9D81C313B8",
+        "ClaimKey": "HistoricalUniverse:Suspension",
+        "SourceVersion": "3BA1395A7549D8EBEE35C02350BB5470C9CDDE68DDC4339A461B6D19953A9228",
+        "SubjectDigest": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "BF2B4B795C9304992C928C6018D50FF93CD76CB2B2BE041DF82648999D6D5C34",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "Suspension"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "1F9CD5324D94734A595D846C5BE98488B84D578CA7BDD8E904033313FA3A6BDA",
+        "ClaimKey": "HistoricalUniverse:HistoricalMembership",
+        "SourceVersion": "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2",
+        "SubjectDigest": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "BF2B4B795C9304992C928C6018D50FF93CD76CB2B2BE041DF82648999D6D5C34",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "HistoricalMembership"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "4420C65DC7C8072D95E7746E2BB2F418F43F08F7300011FEF05080119C3D303F",
+        "ClaimKey": "HistoricalUniverse:Delisting",
+        "SourceVersion": "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2",
+        "SubjectDigest": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "BF2B4B795C9304992C928C6018D50FF93CD76CB2B2BE041DF82648999D6D5C34",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "Delisting"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "63186213C35464F583741974A8DF86ABA029B9C2248F7F2CD7538D3E1932DF86",
+        "ClaimKey": "HistoricalUniverse:Denominator",
+        "SourceVersion": "3BA1395A7549D8EBEE35C02350BB5470C9CDDE68DDC4339A461B6D19953A9228",
+        "SubjectDigest": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "BF2B4B795C9304992C928C6018D50FF93CD76CB2B2BE041DF82648999D6D5C34",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "Denominator"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "B1217983A3ECB00CC017DF8A4D9C7E810C80C4AB61192C9EC8DBD161EC9A9C54",
+        "ClaimKey": "HistoricalUniverse:Listing",
+        "SourceVersion": "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2",
+        "SubjectDigest": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "BF2B4B795C9304992C928C6018D50FF93CD76CB2B2BE041DF82648999D6D5C34",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "Listing"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "B512786C05D05F451BCFDFB6161D88F079C0B2E81E2BA5C058E04DE2FB4181DC",
+        "ClaimKey": "HistoricalUniverse:Delisting",
+        "SourceVersion": "3BA1395A7549D8EBEE35C02350BB5470C9CDDE68DDC4339A461B6D19953A9228",
+        "SubjectDigest": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "BF2B4B795C9304992C928C6018D50FF93CD76CB2B2BE041DF82648999D6D5C34",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "Delisting"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "BD060CDC02D99F8F9746AC93152FAE27E28A898D6139555F93681B5E738CD829",
+        "ClaimKey": "HistoricalUniverse:Listing",
+        "SourceVersion": "3BA1395A7549D8EBEE35C02350BB5470C9CDDE68DDC4339A461B6D19953A9228",
+        "SubjectDigest": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "BF2B4B795C9304992C928C6018D50FF93CD76CB2B2BE041DF82648999D6D5C34",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "Listing"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "E63B98A9F2C4A19FEE283355E728E14DF86406BE815D189521CCEF75465A36CD",
+        "ClaimKey": "HistoricalUniverse:HistoricalMembership",
+        "SourceVersion": "3BA1395A7549D8EBEE35C02350BB5470C9CDDE68DDC4339A461B6D19953A9228",
+        "SubjectDigest": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "BF2B4B795C9304992C928C6018D50FF93CD76CB2B2BE041DF82648999D6D5C34",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "HistoricalMembership"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "F1AFC8BB1AF04197CB36B650372AB67BF05703DABBC6928F9AC892546A59B1EC",
+        "ClaimKey": "HistoricalUniverse:Denominator",
+        "SourceVersion": "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2",
+        "SubjectDigest": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "BF2B4B795C9304992C928C6018D50FF93CD76CB2B2BE041DF82648999D6D5C34",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "Denominator"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "FA40120255C64CFC474DA39A2F1093160539056C45AB0C3EF26CFE795E17B845",
+        "ClaimKey": "HistoricalUniverse:Suspension",
+        "SourceVersion": "C9D0AFBB339CDA854C113CAF0861A4ADD1A1ACCE12A62351A4D167C0B2712EF2",
+        "SubjectDigest": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "BF2B4B795C9304992C928C6018D50FF93CD76CB2B2BE041DF82648999D6D5C34",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "Suspension"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "859A93C34569BD1F772EC3016DFBD2836504165B93295975569BC6B5C13E9D06",
+        "ClaimKey": "TradingCalendar:Horizon:TradingSessions",
+        "SourceVersion": "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390",
+        "SubjectDigest": "DF80B963E4DB5DEA8EF5A784C0AEAA242330C07232CE6A439793C0301E2F7BDB",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "24F0DF611524D7D56014EC689A32F9CA2C6231471E784FA8DAF03BC33AEC23F7",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "Horizon:TradingSessions"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "8ABCF0925C049158393CEE3675F0A537895B8F7BF85279C39AA9EC5E23744706",
+        "ClaimKey": "TradingCalendar:EmergencyClosures",
+        "SourceVersion": "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390",
+        "SubjectDigest": "DF80B963E4DB5DEA8EF5A784C0AEAA242330C07232CE6A439793C0301E2F7BDB",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "24F0DF611524D7D56014EC689A32F9CA2C6231471E784FA8DAF03BC33AEC23F7",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "EmergencyClosures"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "8E6C75EBF43156DEDD18233C3DC6071ED7F5CBAFBBD34DA582790719C79E1941",
+        "ClaimKey": "TradingCalendar:ScheduledHolidays",
+        "SourceVersion": "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390",
+        "SubjectDigest": "DF80B963E4DB5DEA8EF5A784C0AEAA242330C07232CE6A439793C0301E2F7BDB",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "24F0DF611524D7D56014EC689A32F9CA2C6231471E784FA8DAF03BC33AEC23F7",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "ScheduledHolidays"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "A1C0060449570D28CA8FC927E61D466AD38058B419C4DDF2185D8D14EEADAB2A",
+        "ClaimKey": "TradingCalendar:EmergencyClosures",
+        "SourceVersion": "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390",
+        "SubjectDigest": "DF80B963E4DB5DEA8EF5A784C0AEAA242330C07232CE6A439793C0301E2F7BDB",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "24F0DF611524D7D56014EC689A32F9CA2C6231471E784FA8DAF03BC33AEC23F7",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "EmergencyClosures"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "AD1DEE6BA915E37AF842B5BB20242423ECCF5201BD6B378BE2A9345E707BDB84",
+        "ClaimKey": "TradingCalendar:Horizon:TradingSessions",
+        "SourceVersion": "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390",
+        "SubjectDigest": "DF80B963E4DB5DEA8EF5A784C0AEAA242330C07232CE6A439793C0301E2F7BDB",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "24F0DF611524D7D56014EC689A32F9CA2C6231471E784FA8DAF03BC33AEC23F7",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "Horizon:TradingSessions"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "F5AC484F16DDD9E0A8A3BF72A96D8A9CDA8B5387096BE24A9E9BF601DD6C586D",
+        "ClaimKey": "TradingCalendar:HistoricalSessions",
+        "SourceVersion": "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390",
+        "SubjectDigest": "DF80B963E4DB5DEA8EF5A784C0AEAA242330C07232CE6A439793C0301E2F7BDB",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "24F0DF611524D7D56014EC689A32F9CA2C6231471E784FA8DAF03BC33AEC23F7",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "HistoricalSessions"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "FE057166FC6A13D13EABC8E8142840022F049A2E2FB7E9E84D232E175B3A6DA6",
+        "ClaimKey": "TradingCalendar:HistoricalSessions",
+        "SourceVersion": "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390",
+        "SubjectDigest": "DF80B963E4DB5DEA8EF5A784C0AEAA242330C07232CE6A439793C0301E2F7BDB",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "24F0DF611524D7D56014EC689A32F9CA2C6231471E784FA8DAF03BC33AEC23F7",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "HistoricalSessions"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "FE54D55646E995D0251222EE922A98394671D68E3DDB70859412717E4DC9F7CC",
+        "ClaimKey": "TradingCalendar:ScheduledHolidays",
+        "SourceVersion": "7FEFE785EA7155A5004A2EB74486AD865EA5C4B5F02EE0CFFBBDACB1CA2EA390",
+        "SubjectDigest": "DF80B963E4DB5DEA8EF5A784C0AEAA242330C07232CE6A439793C0301E2F7BDB",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "24F0DF611524D7D56014EC689A32F9CA2C6231471E784FA8DAF03BC33AEC23F7",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "ScheduledHolidays"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "41025C1EF8D6B3870A7ED2BF13951BA110470DF845374E5C86D0F65C2F44F6D5",
+        "ClaimKey": "HistoricalPriceVolume:HistoricalPrices",
+        "SourceVersion": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "SubjectDigest": "6E5056220DDA890F1EC46C7201131CEFB729813C99A352B8F3E5194273735311",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "D72B75232382D228B71537DCE1679998B9886A94D78E04D2255C87940445B3B9",
+        "BlockingReasons": [
+          "SCOPED_CURRENT_CLOSURE_REQUIRED",
+          "HistoricalPrices"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "497FAEFDF4D183D1FA4DEE4B13EB20D3444811FB7E3AB520220A20929A855709",
+        "ClaimKey": "CorporateActionPriceBasis:CorporateActionHandling",
+        "SourceVersion": "2FB6DA046C685F1B52494AC0009DF89C19791F58E6D41924FBE11D3149DABC3F",
+        "SubjectDigest": "CF4B9412108C7D26A7994F8DAFCE5349FAF8DB914D28F811451DEAD859D47A56",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "1A3A09193392FEE2B9DC2C917C3E35087F624B61BAD8ECFB5EE6F053262DF48B",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "CorporateActionHandling"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "59E27419512941F9B5066E80473DEE6C552FD906D809CB48D2210F10C1993019",
+        "ClaimKey": "CorporateActionPriceBasis:PriceBasis",
+        "SourceVersion": "DFBBEE5EB202CB9E349D7A8A162A82D657CD6F12C105A4AADA5D3BBD94F45426",
+        "SubjectDigest": "CF4B9412108C7D26A7994F8DAFCE5349FAF8DB914D28F811451DEAD859D47A56",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "1A3A09193392FEE2B9DC2C917C3E35087F624B61BAD8ECFB5EE6F053262DF48B",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "PriceBasis"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "6912410883B84A1F3E4903152749A85CDB60BA49C3D06E968C474D8CA630ED29",
+        "ClaimKey": "HistoricalPriceVolume:Units",
+        "SourceVersion": "F2ABB6E49794EBD6D4E596F0C6436F193431786A5B96171A6E87638C729129B7",
+        "SubjectDigest": "6E5056220DDA890F1EC46C7201131CEFB729813C99A352B8F3E5194273735311",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "D72B75232382D228B71537DCE1679998B9886A94D78E04D2255C87940445B3B9",
+        "BlockingReasons": [
+          "SCOPED_CURRENT_CLOSURE_REQUIRED",
+          "Units"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "77D9B43AAD3753EAC92CC027CBC06E5F2D988A789CB8C66C972C56E0B9A08FB7",
+        "ClaimKey": "HistoricalPriceVolume:HistoricalPrices",
+        "SourceVersion": "F2ABB6E49794EBD6D4E596F0C6436F193431786A5B96171A6E87638C729129B7",
+        "SubjectDigest": "6E5056220DDA890F1EC46C7201131CEFB729813C99A352B8F3E5194273735311",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "D72B75232382D228B71537DCE1679998B9886A94D78E04D2255C87940445B3B9",
+        "BlockingReasons": [
+          "SCOPED_CURRENT_CLOSURE_REQUIRED",
+          "HistoricalPrices"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "7CC24EC0077F8FDBEC80826D6243F6E78BD6F311BF327E45138F7A3AAC749586",
+        "ClaimKey": "CorporateActionPriceBasis:CorporateActionHandling",
+        "SourceVersion": "DFBBEE5EB202CB9E349D7A8A162A82D657CD6F12C105A4AADA5D3BBD94F45426",
+        "SubjectDigest": "CF4B9412108C7D26A7994F8DAFCE5349FAF8DB914D28F811451DEAD859D47A56",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "1A3A09193392FEE2B9DC2C917C3E35087F624B61BAD8ECFB5EE6F053262DF48B",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "CorporateActionHandling"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "B5A4096AE1FB7A9BFDC30FA57975F518E1660DCCC7EA145E59D4B479B761D82B",
+        "ClaimKey": "HistoricalPriceVolume:Units",
+        "SourceVersion": "C556FB917676D81615B5C8E133C5F36DAE52FBA2EFCFC8B9AB196C86EF1506EC",
+        "SubjectDigest": "6E5056220DDA890F1EC46C7201131CEFB729813C99A352B8F3E5194273735311",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "D72B75232382D228B71537DCE1679998B9886A94D78E04D2255C87940445B3B9",
+        "BlockingReasons": [
+          "SCOPED_CURRENT_CLOSURE_REQUIRED",
+          "Units"
+        ],
+        "HeadDigest": ""
+      },
+      {
+        "TaskId": "E56CC9D023073A4C2C478EECDDA3EE8E6F5FEC908F6525C51EC8F9647D466730",
+        "ClaimKey": "CorporateActionPriceBasis:PriceBasis",
+        "SourceVersion": "2FB6DA046C685F1B52494AC0009DF89C19791F58E6D41924FBE11D3149DABC3F",
+        "SubjectDigest": "CF4B9412108C7D26A7994F8DAFCE5349FAF8DB914D28F811451DEAD859D47A56",
+        "CoverageStart": "2026-09-30",
+        "CoverageEnd": "2026-09-30",
+        "Operator": "UNASSIGNED",
+        "Reviewer": "UNASSIGNED",
+        "Status": "UNASSIGNED",
+        "Reason": null,
+        "ReviewDigest": null,
+        "ResolutionReceipt": "1A3A09193392FEE2B9DC2C917C3E35087F624B61BAD8ECFB5EE6F053262DF48B",
+        "BlockingReasons": [
+          "REQUIRED_CLAIM_NOT_APPROVED",
+          "PriceBasis"
+        ],
+        "HeadDigest": ""
+      }
+    ],
+    "newApprovals": 0
+  }
+}
