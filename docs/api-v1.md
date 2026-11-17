@@ -170,3 +170,6 @@ ApiV1ContractSnapshot 記錄 digest、關鍵 endpoint/schema/enum/problem codes�
 管理 GET：`/api/v1/authority/workbench`（PageDto<ReviewQueueItem>）、`/api/v1/authority/acquisition-evidence`（PageDto<HistoricalEvidenceCard>），額外要求 ApiAuthorityAdmin/Administrator，page/pageSize 沿用既有驗證。匿名 401、一般會員管理端點 403、缺失或損壞快照 503 DATA_NOT_READY。沒有新 HTTP 寫入或角色授予。
 來源模型是綁定 Phase4I/Phase4J digest 的 Phase4M-v1 發布快照。SourceCodeSha 指產生報告的原始碼提交，網站執行版本另見 system/health。沒有以匯出時間當歷史發布時間。運算在 Application；Web 同來源 Cookie 讀取、15 秒逾時，401/403 不保留資料。
 審查/撤銷採受控 CLI，指派角色與 OS ACL 明確配置；核准仍需既有 scoped receipt。GET 不取得外部資料、不執行排程、baseline 或 promotion；舊 DTO 保持相容。
+
+## Phase 4N（3.2.3）
+新增 Administrator 唯讀 `/api/v1/operations/dashboard` 與 `/api/v1/authority/resolution-packets`；完整 DTO、權限、錯誤、時間/證據語意見 `phase4n/APIContractChange-Phase4N.md` 與 OpenAPI。原 Phase4M 端點和快照維持原版本，不改寫歷史證據。

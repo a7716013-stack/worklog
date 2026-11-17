@@ -33,6 +33,7 @@ public static class ApiHost
         builder.Services.AddSingleton<Phase4JReadAdapter>();
         builder.Services.AddSingleton<EtlReadAdapter>();
         builder.Services.AddSingleton<Phase4MReadAdapter>();
+        builder.Services.AddSingleton<Phase4NReadAdapter>();
         builder.Services.AddSingleton<FormulaResearchService>();
         builder.Services.AddAuthorization(options => {
             foreach (var policy in new[] { "ApiAuthenticatedUser", "ApiResearchRead", "ApiPaperTrade", "ApiAuthorityRead" })

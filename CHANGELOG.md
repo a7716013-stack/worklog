@@ -1,3 +1,7 @@
+# 3.2.3 — Phase 4N（2026-11-17）
+
+正式驗收工具、八項部署證據、43項歷史審查封包、Baseline readiness決策與管理營運頁。正式排程維持Disabled，真實研究NOT_RUN。詳docs/phase4n。
+
 # 3.2.2 — Phase 4M（2026-11-14）
 
 歷史證據審查工作台、獨立 reviewer 與撤銷稽核、ETL production readiness/備份還原、Trend 準備度與 operations API/UI。正式排程關閉、真實研究 NOT_RUN。詳 docs/phase4m。
