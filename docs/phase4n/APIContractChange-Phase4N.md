@@ -7,5 +7,5 @@
 BaselineReadinessDecision 為既有六階段權威狀態的顯示映射：Authority阻塞優先，其次缺資料核准、樣本不足、未執行；既有COMPLETED且充分樣本才顯示READY（可重播既有受控結果，非新的授權）。Candidate-v1、19 features、25/15/15/20/15/10、原FormulaDigest、七PIT gates、六獨立核准不變。TrendSample-v1每fold Train/Validation至少20日期、每日max(10,quantiles)、200 pairs；OOS獨立。缺值不補零、不補造availableAt。
 
 <!-- binding -->
-Source commit: 215ad7e947df02eb49eef4fe37e6207a1001a7f5
+Source commit: 791f71b233d12b35803a034bf4efeab0129e9a89
 Data: Phase4I-v1 9A33F33040B97AC61FAB1BCBA4021C182F59D9A12A33E3F1F14BAC2F881815BF; Phase4J-v1 FD958D5B386DD103DE7B51F3105E4D010CF494A77EBF97C9EC223708192000C6; Phase4M-v1 4720DDF7889DAAECB62E4098D07C5914EBC7E3023601187BF96B3DFCA000EEC9

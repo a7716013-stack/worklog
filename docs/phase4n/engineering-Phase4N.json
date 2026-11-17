@@ -2,12 +2,12 @@
   "binding": {
     "Version": "3.2.3",
     "Phase": "4N",
-    "SourceCodeSha": "215ad7e947df02eb49eef4fe37e6207a1001a7f5",
+    "SourceCodeSha": "791f71b233d12b35803a034bf4efeab0129e9a89",
     "ParentDigest": "9A33F33040B97AC61FAB1BCBA4021C182F59D9A12A33E3F1F14BAC2F881815BF",
     "EvidenceDigest": "FD958D5B386DD103DE7B51F3105E4D010CF494A77EBF97C9EC223708192000C6",
     "WorkbenchDigest": "4720DDF7889DAAECB62E4098D07C5914EBC7E3023601187BF96B3DFCA000EEC9",
-    "ExportedAt": "2026-11-16T18:23:38.4607677+00:00",
-    "Digest": "FDAF3F70744E1E74E96F82286505A9DA2B22A4824980602649FF540651706E42"
+    "ExportedAt": "2026-11-17T17:27:18.1653649+00:00",
+    "Digest": "C93F4253A044CC62C57579A236DF63F652B2F3D4BA56E8CEB8648288B1083675"
   },
   "apiSqlAssertions": 487,
   "identityFixtureAssertions": 127,
@@ -109,7 +109,7 @@
     "phase4n-auth.log": "121deaa46e0fb81d9a4cb012fb4e1a9220cbc862869f91f3a945fea203b01495",
     "phase4n-browser.log": "59811c61fcb7ddc48f0cf2a941c26ad20186c93e9868bb76cb3cf6d219238166",
     "phase4n-build.log": "aa1f441c65ccb752d0e35ea3346998e5da337fea28b6af6c0bcce9a3b9c4036d",
-    "phase4n-export-build.log": "c3fb07fb03fb863bf4b2d78de17ffac85f7b1e2287adadfa7c66798d7b269d46",
+    "phase4n-export-build.log": "d6f6b981cce774878ce756e60e77764ca98e82176438ece1ed5cb809bf2ad3f9",
     "phase4n-export.log": "65be4a3d017fd076b2256c725fa593489b3ecafeef77ab4911aff9ad891ae076",
     "phase4n-FinMindChecks-LegacySwing75Checks.log": "fd36d445f8081c5a2d8ca9b29a815bdfef5be5eccff4ba48118a179099de6b93",
     "phase4n-FinMindChecks.log": "84e4a63166dc38458987b68645b9911ce8ed45ac28a984da2b522d519f1b4ee4",
