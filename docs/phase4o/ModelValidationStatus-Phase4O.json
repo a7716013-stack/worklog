@@ -1,0 +1,91 @@
+{
+  "binding": {
+    "Version": "3.2.4",
+    "Phase": "4O",
+    "SourceCodeSha": "f7d42cd68ba06c0b330e2bdfe5a20d40b509140e",
+    "ParentDigest": "C93F4253A044CC62C57579A236DF63F652B2F3D4BA56E8CEB8648288B1083675",
+    "ExportedAt": "2026-11-18T07:28:52.4739005+00:00",
+    "Digest": "4BFD396C95BD1149156598297C3E1686E1C02A0A04A59B06ABFCC59E7D11034F",
+    "dataVersions": [
+      "Phase4O-v1",
+      "Phase4N-v1",
+      "HistoricalNormalized-v1",
+      "TrendSample-v1"
+    ],
+    "formulaDigest": "81C788B359568B2B058EC92EDFE2F30A3593D7C2A23B3BE8C126BA026D06CBFB"
+  },
+  "data": {
+    "baseline": {
+      "Status": "BLOCKED_BY_AUTHORITY",
+      "ExecutionStatus": "NOT_RUN",
+      "BlockingReasons": [
+        "UNKNOWN_REUSE_RIGHTS",
+        "Availability:HistoricalPublication",
+        "Availability:SourceIdentity",
+        "HistoricalPriceVolume:SourceIdentity",
+        "Availability:RevisionBehavior",
+        "HistoricalInstrumentIdentity:HistoricalInstrumentIdentity",
+        "HistoricalInstrumentIdentity:MarketTransfer",
+        "HistoricalInstrumentIdentity:SymbolHistory",
+        "HistoricalUniverse:Delisting",
+        "HistoricalUniverse:Denominator",
+        "HistoricalUniverse:HistoricalMembership",
+        "HistoricalUniverse:Listing",
+        "HistoricalUniverse:Suspension",
+        "TradingCalendar:EmergencyClosures",
+        "TradingCalendar:HistoricalSessions",
+        "TradingCalendar:Horizon:TradingSessions",
+        "TradingCalendar:ScheduledHolidays",
+        "CorporateActionPriceBasis:CorporateActionHandling",
+        "CorporateActionPriceBasis:PriceBasis",
+        "HistoricalPriceVolume:HistoricalPrices",
+        "HistoricalPriceVolume:Units",
+        "UNRESOLVED_IDENTITY",
+        "UNRESOLVED_CALENDAR",
+        "UNRESOLVED_UNIVERSE",
+        "UNVERIFIABLE_AVAILABILITY",
+        "UNVERIFIABLE_REVISION",
+        "PRICE_BASIS_CONFLICT",
+        "CORPORATE_ACTION_UNRESOLVED",
+        "PRICE_AUTHORITY_UNPROVEN",
+        "INDEPENDENT_SCOPED_APPROVAL_REQUIRED",
+        "APPROVED_REAL_DATASET_REQUIRED",
+        "BLOCKED_BY_AUTHORITY",
+        "CALENDAR_COVERAGE_UNKNOWN",
+        "PHASE4DE_APPROVAL_REQUIRED",
+        "PRICE_BASIS_INCONSISTENT",
+        "PRICE_FACTS_MISSING",
+        "REQUESTED_OBSERVATIONS_NOT_FULLY_ELIGIBLE",
+        "REVISION_UNKNOWN",
+        "SURVIVORSHIP_BIAS_RISK",
+        "UNKNOWN_AVAILABILITY"
+      ],
+      "AuthorityStatus": "BLOCKED",
+      "DatasetStatus": "BLOCKED",
+      "SampleStatus": "NOT_ASSESSED",
+      "FormulaDigest": "81C788B359568B2B058EC92EDFE2F30A3593D7C2A23B3BE8C126BA026D06CBFB",
+      "Policy": {
+        "Version": "TrendSample-v1",
+        "MinimumDates": 20,
+        "MinimumInstrumentsPerDate": 10,
+        "MinimumOutcomePairs": 200
+      },
+      "OosStatus": "NOT_RUN_SEPARATE_SELECTION_REQUIRED",
+      "Promotion": "NOT_PROMOTED",
+      "Phase5": "LOCKED"
+    },
+    "candidate": "Candidate-v1",
+    "features": 19,
+    "weights": [
+      25,
+      15,
+      15,
+      20,
+      15,
+      10
+    ],
+    "pitGates": 7,
+    "independentComponentApprovals": 6,
+    "newRealBaselineRuns": 0
+  }
+}

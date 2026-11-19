@@ -1,0 +1,12 @@
+# Forward PIT Capture — 3.2.4
+CapturePlan綁定provider/dataset/schema、來源URL、request date、coverage、instrument、SourceCodeSha、fixture分類與retention。PlanId為內容digest。每次CaptureInput保存原SourceArchive bytes、ObservedAt、RetrievedAt、DecisionAt，以及來源發布聲明的時間/原始證據digest；缺少證明保持UNKNOWN。SOURCE_CLAIM_UNREVIEWED不能授予PublishedAt/AvailableAt或PIT合格。
+ForwardCaptureStore是既有SourceArchive的跨觀測版本索引，不是另一個Scheduler。根目錄沿用受控研究store：forward-capture/<plan>/<sequence>/input.json及receipt.json；WriteNew、既有AcquisitionSafety.Lease及pending-directory原子rename，防止覆寫早期版本。每一觀測有sequence、版本sequence、raw/input/previous/receipt digest；相同bytes的新觀測保留而不增加content版本；內容變更或回復舊內容均建立新版本。相同idempotency key與payload重播原回執，衝突拒絕。Replay重算內容、chain、scope與時間；忽略未發布pending，不把部分寫入算成功。
+Append在任何封存IO前驗證ACQUIRE/STORE兩項權利回執：精確PlanId、GRANTED、reviewer、證據reference、有效期間、retention與受控trusted digest。receipt摘要涵蓋scope，不能移用。可信摘要集合必須由獨立審查的OS保護ledger提供；自填字串不是核准。研究/再發布權利分開，沒有自動授予。正式範圍/權利尚未具備，CLI只提供fixture intake與已有archive replay，不提供新外部下載命令。
+品質sidecar保存CaptureDigest、完整context與QualityReport；不覆寫已存品質證據。Assess的decision time必須等於原capture。ProcessFixture先品質檢查再透過既有EtlScheduler/EtlProductionGate/EtlPipeline；QUARANTINED不進scheduler/Silver，Disabled與Dry-run不做排程IO。真實資料不能使用fixture dispatch。正式ETL仍Disabled；未註冊HostedService。
+既有EtlPipeline以raw content/request/code identity重用同一transform及lineage；多次相同內容觀測仍保留自己的Bronze receipt，不改寫原batch時間。正式啟用前須完成Phase4N八Gate、明確scope/rights核准與既有受控scheduler操作；本次沒有實際取得/啟用。
+Retention明確寫入Plan及RetainUntil；fixture示範365日不是正式供應商允許期限。沒有自動刪除或覆寫，正式期限須匹配storage license。不可把本機原子rename/鎖測試當成shared-storage/durability正式驗收；ACL、備份與外部保留的history digest是必要信任邊界。管理者可修改檔案時，不宣稱hash chain能抵抗其完整重寫/尾端刪除。
+
+<!-- binding -->
+Source commit: f7d42cd68ba06c0b330e2bdfe5a20d40b509140e
+Parent Phase4N digest: C93F4253A044CC62C57579A236DF63F652B2F3D4BA56E8CEB8648288B1083675
+Data contracts: Phase4O-v1 / HistoricalNormalized-v1 / TrendSample-v1. FormulaDigest: 81C788B359568B2B058EC92EDFE2F30A3593D7C2A23B3BE8C126BA026D06CBFB

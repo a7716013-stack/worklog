@@ -4902,6 +4902,217 @@
         ]
       }
     },
+    "/api/v1/data/operations": {
+      "get": {
+        "operationId": "Phase4OController_Operations",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Phase4OReport"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/data/captures": {
+      "get": {
+        "operationId": "Phase4OController_Captures",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1,
+              "minimum": 1,
+              "maximum": 1000000
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 50,
+              "minimum": 1,
+              "maximum": 200
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageOfCaptureRun"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
     "/api/v1/market/radar/snapshot": {
       "get": {
         "operationId": "RadarJobsController_Snapshot",
@@ -13074,6 +13285,452 @@
           "assignedReviewer",
           "revocationImpact",
           "priority"
+        ]
+      },
+      "Phase4OReport": {
+        "type": "object",
+        "properties": {
+          "schemaVersion": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "phase": {
+            "type": "string"
+          },
+          "sourceCodeSha": {
+            "type": "string"
+          },
+          "parentDigest": {
+            "type": "string"
+          },
+          "exportedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "evidenceClass": {
+            "type": "string"
+          },
+          "providers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProviderPolicy"
+            }
+          },
+          "acquisition": {
+            "$ref": "#/components/schemas/HistoricalPilotPlan"
+          },
+          "capture": {
+            "$ref": "#/components/schemas/CaptureSummary"
+          },
+          "warehouse": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WarehouseLayer"
+            }
+          },
+          "qualityStatus": {
+            "type": "string"
+          },
+          "reconciliationStatus": {
+            "type": "string"
+          },
+          "schedulerMode": {
+            "type": "string"
+          },
+          "baselineStatus": {
+            "type": "string"
+          },
+          "formulaDigest": {
+            "type": "string"
+          },
+          "promotion": {
+            "type": "string"
+          },
+          "phase5": {
+            "type": "string"
+          },
+          "digest": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "version",
+          "phase",
+          "sourceCodeSha",
+          "parentDigest",
+          "exportedAt",
+          "evidenceClass",
+          "providers",
+          "acquisition",
+          "capture",
+          "warehouse",
+          "qualityStatus",
+          "reconciliationStatus",
+          "schedulerMode",
+          "baselineStatus",
+          "formulaDigest",
+          "promotion",
+          "phase5",
+          "digest"
+        ]
+      },
+      "ProviderPolicy": {
+        "type": "object",
+        "properties": {
+          "capabilities": {
+            "$ref": "#/components/schemas/ProviderCapabilities"
+          },
+          "datasetContract": {
+            "type": "string"
+          },
+          "coverage": {
+            "type": "string"
+          },
+          "rateLimit": {
+            "type": "string"
+          },
+          "rights": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SourceRight"
+            }
+          },
+          "publicationPolicy": {
+            "type": "string"
+          },
+          "revisionPolicy": {
+            "type": "string"
+          },
+          "healthStatus": {
+            "type": "string"
+          },
+          "evidenceClass": {
+            "type": "string"
+          },
+          "digest": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "capabilities",
+          "datasetContract",
+          "coverage",
+          "rateLimit",
+          "rights",
+          "publicationPolicy",
+          "revisionPolicy",
+          "healthStatus",
+          "evidenceClass",
+          "digest"
+        ]
+      },
+      "SourceRight": {
+        "type": "object",
+        "properties": {
+          "purpose": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "evidenceDigest": {
+            "type": "string",
+            "nullable": true
+          },
+          "requiredAction": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "purpose",
+          "status",
+          "evidenceDigest",
+          "requiredAction"
+        ]
+      },
+      "HistoricalPilotPlan": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "suggestedMonths": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "start": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "end": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "instruments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "candidateProviders": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "existingTaskIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "requiredApprovals": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "priorities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "digest": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "suggestedMonths",
+          "start",
+          "end",
+          "instruments",
+          "candidateProviders",
+          "existingTaskIds",
+          "requiredApprovals",
+          "priorities",
+          "digest"
+        ]
+      },
+      "CaptureSummary": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "evidenceClass": {
+            "type": "string"
+          },
+          "newRealSources": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "newRealRows": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "newHistoricalPublicationProofs": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "newRevisionProofs": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "newPitEligible": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "newApprovedDatasets": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productionGatesReleased": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "runs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CaptureRun"
+            }
+          },
+          "blockingReasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "status",
+          "evidenceClass",
+          "newRealSources",
+          "newRealRows",
+          "newHistoricalPublicationProofs",
+          "newRevisionProofs",
+          "newPitEligible",
+          "newApprovedDatasets",
+          "productionGatesReleased",
+          "runs",
+          "blockingReasons"
+        ]
+      },
+      "CaptureRun": {
+        "type": "object",
+        "properties": {
+          "sequence": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "versionSequence": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "planId": {
+            "type": "string"
+          },
+          "idempotencyKey": {
+            "type": "string"
+          },
+          "inputDigest": {
+            "type": "string"
+          },
+          "rawDigest": {
+            "type": "string"
+          },
+          "archiveId": {
+            "type": "string"
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "retrievedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "decisionAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "publication": {
+            "$ref": "#/components/schemas/PublicationObservation"
+          },
+          "fixture": {
+            "type": "boolean"
+          },
+          "revisionDetected": {
+            "type": "boolean"
+          },
+          "retainUntil": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "previousDigest": {
+            "type": "string"
+          },
+          "digest": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "sequence",
+          "versionSequence",
+          "planId",
+          "idempotencyKey",
+          "inputDigest",
+          "rawDigest",
+          "archiveId",
+          "observedAt",
+          "retrievedAt",
+          "decisionAt",
+          "publication",
+          "fixture",
+          "revisionDetected",
+          "retainUntil",
+          "previousDigest",
+          "digest"
+        ]
+      },
+      "PublicationObservation": {
+        "type": "object",
+        "properties": {
+          "claimedPublishedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "originalEvidenceDigest": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "claimedPublishedAt",
+          "originalEvidenceDigest",
+          "status"
+        ]
+      },
+      "WarehouseLayer": {
+        "type": "object",
+        "properties": {
+          "layer": {
+            "type": "string"
+          },
+          "storageModel": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "admission": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "layer",
+          "storageModel",
+          "status",
+          "admission"
+        ]
+      },
+      "PageOfCaptureRun": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CaptureRun"
+            }
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "items",
+          "page",
+          "pageSize",
+          "totalCount"
         ]
       },
       "MarketRadarResult": {

@@ -1,0 +1,22 @@
+{
+  "binding": {
+    "Version": "3.2.4",
+    "Phase": "4O",
+    "SourceCodeSha": "f7d42cd68ba06c0b330e2bdfe5a20d40b509140e",
+    "ParentDigest": "C93F4253A044CC62C57579A236DF63F652B2F3D4BA56E8CEB8648288B1083675",
+    "ExportedAt": "2026-11-18T07:28:52.4739005+00:00",
+    "Digest": "4BFD396C95BD1149156598297C3E1686E1C02A0A04A59B06ABFCC59E7D11034F",
+    "dataVersions": [
+      "Phase4O-v1",
+      "Phase4N-v1",
+      "HistoricalNormalized-v1",
+      "TrendSample-v1"
+    ],
+    "formulaDigest": "81C788B359568B2B058EC92EDFE2F30A3593D7C2A23B3BE8C126BA026D06CBFB"
+  },
+  "data": {
+    "status": "NOT_RUN_REAL_DATA",
+    "newRealRows": 0,
+    "quarantineSemantics": "Fixture/integration results in engineering, not real outcomes"
+  }
+}

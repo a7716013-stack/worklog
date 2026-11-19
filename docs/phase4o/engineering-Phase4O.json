@@ -1,0 +1,145 @@
+{
+  "binding": {
+    "Version": "3.2.4",
+    "Phase": "4O",
+    "SourceCodeSha": "f7d42cd68ba06c0b330e2bdfe5a20d40b509140e",
+    "ParentDigest": "C93F4253A044CC62C57579A236DF63F652B2F3D4BA56E8CEB8648288B1083675",
+    "ExportedAt": "2026-11-18T07:28:52.4739005+00:00",
+    "Digest": "4BFD396C95BD1149156598297C3E1686E1C02A0A04A59B06ABFCC59E7D11034F",
+    "dataVersions": [
+      "Phase4O-v1",
+      "Phase4N-v1",
+      "HistoricalNormalized-v1",
+      "TrendSample-v1"
+    ],
+    "formulaDigest": "81C788B359568B2B058EC92EDFE2F30A3593D7C2A23B3BE8C126BA026D06CBFB"
+  },
+  "apiSqlAssertions": 542,
+  "identityFixtureAssertions": 127,
+  "regression": [
+    {
+      "project": "build",
+      "exitCode": 0,
+      "log": "artifacts/phase4o-build.log"
+    },
+    {
+      "project": "MarketDataChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4o-MarketDataChecks.log"
+    },
+    {
+      "project": "V3AuthorityResolutionChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4o-V3AuthorityResolutionChecks.log"
+    },
+    {
+      "project": "V3ComponentDatasetChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4o-V3ComponentDatasetChecks.log"
+    },
+    {
+      "project": "V3ClosureChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4o-V3ClosureChecks.log"
+    },
+    {
+      "project": "V3RealDataChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4o-V3RealDataChecks.log"
+    },
+    {
+      "project": "V3AuthorityChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4o-V3AuthorityChecks.log"
+    },
+    {
+      "project": "V3PitDatasetChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4o-V3PitDatasetChecks.log"
+    },
+    {
+      "project": "V3ResearchChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4o-V3ResearchChecks.log"
+    },
+    {
+      "project": "V3ModelChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4o-V3ModelChecks.log"
+    },
+    {
+      "project": "MarketRadarChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4o-MarketRadarChecks.log"
+    },
+    {
+      "project": "FinMindChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4o-FinMindChecks.log"
+    },
+    {
+      "project": "FinMindChecks/LegacySwing75Checks",
+      "exitCode": 0,
+      "log": "artifacts/phase4o-FinMindChecks-LegacySwing75Checks.log"
+    },
+    {
+      "project": "PaperTradingChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4o-PaperTradingChecks.log"
+    },
+    {
+      "project": "StrategyCenterChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4o-StrategyCenterChecks.log"
+    },
+    {
+      "project": "MarketRadarTrackingChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4o-MarketRadarTrackingChecks.log"
+    },
+    {
+      "project": "V2FoundationChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4o-V2FoundationChecks.log"
+    },
+    {
+      "project": "V2EvidenceChecks",
+      "exitCode": 0,
+      "log": "artifacts/phase4o-V2EvidenceChecks.log"
+    }
+  ],
+  "browser": "PASS: Phase4O provider rights, 43-task plan, zero real outcomes, warehouse, 390px layout, expired-session clearing and member no-fetch. Fixture only.\n",
+  "testClasses": {
+    "Fixture": "Provider/rights/capture/quality/reconciliation/bias/model/UI synthetic inputs",
+    "Integration": "Isolated real SQL and scheduler/filesystem operations; no production data",
+    "RealAcquisition": "BLOCKED; zero new source/rows/proofs",
+    "ProductionAcceptance": "BLOCKED; no isolated accounts or eight-gate approval"
+  },
+  "logDigests": {
+    "phase4o-api.log": "f53844e5b2dd4f0f9c3da15d4b3c1481eeae6e4c0b898266f795bffd52ac9281",
+    "phase4o-auth.log": "121deaa46e0fb81d9a4cb012fb4e1a9220cbc862869f91f3a945fea203b01495",
+    "phase4o-browser.log": "e1a0aa74525d925cfbbdd6b4efa99154ec8d0e9b0e8bf84a1a9519687a6cde3f",
+    "phase4o-build.log": "b581fe6ed8a7cb5c0d2c8091249ad4ef877b0c976d62291f95a1dc4053826759",
+    "phase4o-export-build.log": "95e7d38875e783298deb7df44593c8461564db5f5fdb803f2cd6555dbf3969ed",
+    "phase4o-export.log": "df2a2fbfb9a9a26d0b99ea3c79047e01d93a7ceb61420a326394db30039dc6e1",
+    "phase4o-FinMindChecks-LegacySwing75Checks.log": "fd36d445f8081c5a2d8ca9b29a815bdfef5be5eccff4ba48118a179099de6b93",
+    "phase4o-FinMindChecks.log": "84e4a63166dc38458987b68645b9911ce8ed45ac28a984da2b522d519f1b4ee4",
+    "phase4o-MarketDataChecks.log": "82cb2798f89c4b87359f6577d3b7405753b6ec2d1aded9460dfd9c2b5ac9d160",
+    "phase4o-MarketRadarChecks.log": "2069fe481d156493864289b3f46fdbcde49b759d907cdd4226ea1a21877869ab",
+    "phase4o-MarketRadarTrackingChecks.log": "ba351280475311aa2b2cc58d315efd9f957dfd806393325266b8f7ab53fec203",
+    "phase4o-PaperTradingChecks.log": "2465ce7f5cebbbfd5c8da6503b6e1a034b67e48fe1ac18d8d9e02c1ccef1e49d",
+    "phase4o-StrategyCenterChecks.log": "489d10b14d25a33fe223ab200a815ce087f79ebbab004b5867326beafdc90630",
+    "phase4o-V2EvidenceChecks.log": "c89f6eadd083f4a27eaba07c03b7b4d3eb604f3e182d6a961b42b2c425d118f8",
+    "phase4o-V2FoundationChecks.log": "7f3b8025575117dd2e543c7fe54c69b46b1dc9b45bbd135b03440fe4cc981347",
+    "phase4o-V3AuthorityChecks.log": "063a4688af09c204b20f1c416168cf16246b3c52e9346e65eeaf9cb76f8d0a81",
+    "phase4o-V3AuthorityResolutionChecks.log": "610d6c222fd14ec6f685593054eafe46ca2d137de4ceeeb5bd5aef225571b188",
+    "phase4o-V3ClosureChecks.log": "ca021d534a8f97f8a8ded7301f9b2af16272389c4cb412492a3b6a49bee8ef74",
+    "phase4o-V3ComponentDatasetChecks.log": "2d1ba4e9636fe0622ee661bdbcd08cd00efc9ec4c5428e911ede472c933757fa",
+    "phase4o-V3ModelChecks.log": "2eeab5be17917078b692c3b77776cff82dd61617480ff57234eceefad67fea61",
+    "phase4o-V3PitDatasetChecks.log": "bb34a0e489e39c39083718643e91cdcb019dddc93c2e3072f381645a2fea0508",
+    "phase4o-V3RealDataChecks.log": "6a456a55d6fa543ed75d84179b60c20dfa1c40afc0f50c4d057178e1275fdf9f",
+    "phase4o-V3ResearchChecks.log": "75edadde49173e712aa23ea5e4b34f0d0f91cc475a155940a0a11ecfdcbea275"
+  },
+  "productionScheduler": "Disabled",
+  "sameShaCI": "PENDING_RELEASE_VERIFICATION"
+}

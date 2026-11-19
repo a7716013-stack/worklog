@@ -1,0 +1,170 @@
+{
+  "binding": {
+    "Version": "3.2.4",
+    "Phase": "4O",
+    "SourceCodeSha": "f7d42cd68ba06c0b330e2bdfe5a20d40b509140e",
+    "ParentDigest": "C93F4253A044CC62C57579A236DF63F652B2F3D4BA56E8CEB8648288B1083675",
+    "ExportedAt": "2026-11-18T07:28:52.4739005+00:00",
+    "Digest": "4BFD396C95BD1149156598297C3E1686E1C02A0A04A59B06ABFCC59E7D11034F",
+    "dataVersions": [
+      "Phase4O-v1",
+      "Phase4N-v1",
+      "HistoricalNormalized-v1",
+      "TrendSample-v1"
+    ],
+    "formulaDigest": "81C788B359568B2B058EC92EDFE2F30A3593D7C2A23B3BE8C126BA026D06CBFB"
+  },
+  "data": {
+    "providers": [
+      {
+        "Capabilities": {
+          "Provider": "TWSE",
+          "Status": "SUPPORTED",
+          "Datasets": [
+            "Price",
+            "Institutional"
+          ],
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "Access": "CONTROLLED_REGISTERED_SOURCE_ONLY",
+          "HistoricalAuthority": "UNPROVEN",
+          "Limitations": [
+            "Capture time is not historical availability",
+            "Independent reviewer/PIT/approval required"
+          ]
+        },
+        "DatasetContract": "Existing HistoricalNormalized-v1; registered archive contract only",
+        "Coverage": "Exact approved request scope only; historical coverage unproven",
+        "RateLimit": "Local safety ceiling 20/hour, concurrency 1; not a provider entitlement",
+        "Rights": [
+          {
+            "Purpose": "ACQUIRE",
+            "Status": "UNKNOWN",
+            "EvidenceDigest": null,
+            "RequiredAction": "Independent scoped rights evidence and approval required; public accessibility alone is insufficient"
+          },
+          {
+            "Purpose": "STORE",
+            "Status": "UNKNOWN",
+            "EvidenceDigest": null,
+            "RequiredAction": "Independent scoped rights evidence and approval required; public accessibility alone is insufficient"
+          },
+          {
+            "Purpose": "RESEARCH",
+            "Status": "UNKNOWN",
+            "EvidenceDigest": null,
+            "RequiredAction": "Independent scoped rights evidence and approval required; public accessibility alone is insufficient"
+          },
+          {
+            "Purpose": "REDISTRIBUTE",
+            "Status": "UNKNOWN",
+            "EvidenceDigest": null,
+            "RequiredAction": "Independent scoped rights evidence and approval required; public accessibility alone is insufficient"
+          }
+        ],
+        "PublicationPolicy": "UNKNOWN_ORIGINAL_PUBLICATION_POLICY",
+        "RevisionPolicy": "UNKNOWN_REVISION_POLICY",
+        "HealthStatus": "NOT_PROBED",
+        "EvidenceClass": "Blocked",
+        "Digest": "5FD080D0D0C02E91D91EBF5A683A3AA07BF216EAFB41C280EE2384835EA375CD"
+      },
+      {
+        "Capabilities": {
+          "Provider": "TPEx",
+          "Status": "SUPPORTED",
+          "Datasets": [
+            "Price"
+          ],
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "Access": "CONTROLLED_REGISTERED_SOURCE_ONLY",
+          "HistoricalAuthority": "UNPROVEN",
+          "Limitations": [
+            "Monthly price only; rounded lots are not exact shares",
+            "Independent reviewer/PIT/approval required"
+          ]
+        },
+        "DatasetContract": "Existing HistoricalNormalized-v1; registered archive contract only",
+        "Coverage": "Exact approved request scope only; historical coverage unproven",
+        "RateLimit": "Local safety ceiling 20/hour, concurrency 1; not a provider entitlement",
+        "Rights": [
+          {
+            "Purpose": "ACQUIRE",
+            "Status": "UNKNOWN",
+            "EvidenceDigest": null,
+            "RequiredAction": "Independent scoped rights evidence and approval required; public accessibility alone is insufficient"
+          },
+          {
+            "Purpose": "STORE",
+            "Status": "UNKNOWN",
+            "EvidenceDigest": null,
+            "RequiredAction": "Independent scoped rights evidence and approval required; public accessibility alone is insufficient"
+          },
+          {
+            "Purpose": "RESEARCH",
+            "Status": "UNKNOWN",
+            "EvidenceDigest": null,
+            "RequiredAction": "Independent scoped rights evidence and approval required; public accessibility alone is insufficient"
+          },
+          {
+            "Purpose": "REDISTRIBUTE",
+            "Status": "UNKNOWN",
+            "EvidenceDigest": null,
+            "RequiredAction": "Independent scoped rights evidence and approval required; public accessibility alone is insufficient"
+          }
+        ],
+        "PublicationPolicy": "UNKNOWN_ORIGINAL_PUBLICATION_POLICY",
+        "RevisionPolicy": "UNKNOWN_REVISION_POLICY",
+        "HealthStatus": "NOT_PROBED",
+        "EvidenceClass": "Blocked",
+        "Digest": "621FA8CF676DB589EA397460192A19074C25239B87279682A9A2F78F42706770"
+      },
+      {
+        "Capabilities": {
+          "Provider": "FinMind",
+          "Status": "MANUAL_ACTION_REQUIRED",
+          "Datasets": [],
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "Access": "EXPLICIT_AUTHORIZATION_AND_DATA_CONTRACT_REQUIRED",
+          "HistoricalAuthority": "UNPROVEN",
+          "Limitations": [
+            "Existing application credentials do not grant a new ETL license; no token exported"
+          ]
+        },
+        "DatasetContract": "Existing HistoricalNormalized-v1; registered archive contract only",
+        "Coverage": "UNAPPROVED_CONTRACT",
+        "RateLimit": "Local safety ceiling 20/hour, concurrency 1; not a provider entitlement",
+        "Rights": [
+          {
+            "Purpose": "ACQUIRE",
+            "Status": "UNKNOWN",
+            "EvidenceDigest": null,
+            "RequiredAction": "Independent scoped rights evidence and approval required; public accessibility alone is insufficient"
+          },
+          {
+            "Purpose": "STORE",
+            "Status": "UNKNOWN",
+            "EvidenceDigest": null,
+            "RequiredAction": "Independent scoped rights evidence and approval required; public accessibility alone is insufficient"
+          },
+          {
+            "Purpose": "RESEARCH",
+            "Status": "UNKNOWN",
+            "EvidenceDigest": null,
+            "RequiredAction": "Independent scoped rights evidence and approval required; public accessibility alone is insufficient"
+          },
+          {
+            "Purpose": "REDISTRIBUTE",
+            "Status": "UNKNOWN",
+            "EvidenceDigest": null,
+            "RequiredAction": "Independent scoped rights evidence and approval required; public accessibility alone is insufficient"
+          }
+        ],
+        "PublicationPolicy": "UNKNOWN_ORIGINAL_PUBLICATION_POLICY",
+        "RevisionPolicy": "UNKNOWN_REVISION_POLICY",
+        "HealthStatus": "NOT_PROBED",
+        "EvidenceClass": "Blocked",
+        "Digest": "5DEBF13658EFE8A1F0B58C97912082889305CABE4AEAFD25BBD5F370110A1CB1"
+      }
+    ],
+    "newApprovedRights": 0
+  }
+}

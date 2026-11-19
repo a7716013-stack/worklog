@@ -173,3 +173,6 @@ ApiV1ContractSnapshot 記錄 digest、關鍵 endpoint/schema/enum/problem codes�
 
 ## Phase 4N（3.2.3）
 新增 Administrator 唯讀 `/api/v1/operations/dashboard` 與 `/api/v1/authority/resolution-packets`；完整 DTO、權限、錯誤、時間/證據語意見 `phase4n/APIContractChange-Phase4N.md` 與 OpenAPI。原 Phase4M 端點和快照維持原版本，不改寫歷史證據。
+
+## Phase 4O（3.2.4）
+新增 Administrator 唯讀 `/api/v1/data/operations` 與 `/api/v1/data/captures`；沿用既有provider/ETL/Authority/PIT/dataset端點。DTO、no-store、分頁、錯誤與capture時間語意見 `phase4o/APIContractChange-Phase4O.md`。無原始bytes或秘密公開，無網路取得/核准/排程HTTP寫入。

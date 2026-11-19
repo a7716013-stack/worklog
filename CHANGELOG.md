@@ -1,3 +1,7 @@
+# 3.2.4 — Phase 4O
+
+擴充provider分項權利、有限歷史pilot、向前PIT不可變擷取/版本歷程、品質隔離/跨來源比對及管理資料營運。實際新增真實資料0（scope/rights未核准），正式排程Disabled、研究NOT_RUN。詳docs/phase4o。
+
 # 3.2.3 — Phase 4N（2026-11-17）
 
 正式驗收工具、八項部署證據、43項歷史審查封包、Baseline readiness決策與管理營運頁。正式排程維持Disabled，真實研究NOT_RUN。詳docs/phase4n。

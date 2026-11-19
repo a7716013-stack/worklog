@@ -1,0 +1,11 @@
+# Bronze / Silver / Gold 邏輯映射
+Audit後採現有儲存模型，沒有新增DB table或Migration。
+Bronze：SourceArchive原bytes與ForwardCaptureStore觀測/版本回執，僅精確核准的取得及儲存權利可接納真實資料。保留原來源，不覆寫修訂。
+Silver：既有EtlPipeline的EtlBatch/HistoricalFact、quality與lineage，加上不可變CaptureQualityReceipt。Schema、缺值、duplicates、OHLC由既有EtlQuality；日曆、公司行為price policy、decision cutoff與fact integrity由CaptureQuality。缺少context為UNKNOWN/REVIEW_REQUIRED；明確不一致為QUARANTINED並阻止新capture dispatch。Schema解析錯誤fail closed，原Bronze仍保留供查核。歷史calendar/instrument/corporate action資料仍透過既有Authority模型與證據store，不建平行權威表。
+Gold：僅既有獨立Authority/PIT/Dataset approval流程批准的研究資料集。這版不提供直接copy、批次升級或新Gold核准API；沒有新核准資料，Gold保持Blocked。品質通過不代表原始發布證據、來源權利、PIT或Dataset核准。
+跨供應商比對以同source symbol/date/dataset的候選pair保存兩邊fact digest，使用ExactDecimal-v1，不做容忍值調整或覆蓋來源。未知單位、幣別/price-basis不一致為INCOMPARABLE_CONTEXT；duplicate/missing/different為QUARANTINED。相符仍需歷史instrument identity與authority審查，不能把同symbol當成已證明同一歷史公司。既有Gold receipt若受新修訂影響須走原Authority revocation/revalidation，品質sidecar不代替此流程。
+
+<!-- binding -->
+Source commit: f7d42cd68ba06c0b330e2bdfe5a20d40b509140e
+Parent Phase4N digest: C93F4253A044CC62C57579A236DF63F652B2F3D4BA56E8CEB8648288B1083675
+Data contracts: Phase4O-v1 / HistoricalNormalized-v1 / TrendSample-v1. FormulaDigest: 81C788B359568B2B058EC92EDFE2F30A3593D7C2A23B3BE8C126BA026D06CBFB
