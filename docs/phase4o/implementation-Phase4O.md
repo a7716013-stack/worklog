@@ -14,6 +14,6 @@ Candidate-v1、19 features、25/15/15/20/15/10、原FormulaDigest、七PIT、六
 最終七項實際成果：新增來源0、真實資料0、合格歷史發布/修訂證據0、PIT合格觀測0、核准研究資料集0、正式Gate解除0/8。外部依賴為精確pilot scope核准、各用途來源權利、歷史證據、隔離帳號與八Gate實際環境驗收。
 
 <!-- binding -->
-Source commit: f7d42cd68ba06c0b330e2bdfe5a20d40b509140e
+Source commit: 4357d1a07e5bbb67c256081925cfdedd737235ad
 Parent Phase4N digest: C93F4253A044CC62C57579A236DF63F652B2F3D4BA56E8CEB8648288B1083675
 Data contracts: Phase4O-v1 / HistoricalNormalized-v1 / TrendSample-v1. FormulaDigest: 81C788B359568B2B058EC92EDFE2F30A3593D7C2A23B3BE8C126BA026D06CBFB

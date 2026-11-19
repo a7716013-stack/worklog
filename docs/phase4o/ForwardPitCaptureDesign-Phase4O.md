@@ -7,6 +7,6 @@ Append在任何封存IO前驗證ACQUIRE/STORE兩項權利回執：精確PlanId�
 Retention明確寫入Plan及RetainUntil；fixture示範365日不是正式供應商允許期限。沒有自動刪除或覆寫，正式期限須匹配storage license。不可把本機原子rename/鎖測試當成shared-storage/durability正式驗收；ACL、備份與外部保留的history digest是必要信任邊界。管理者可修改檔案時，不宣稱hash chain能抵抗其完整重寫/尾端刪除。
 
 <!-- binding -->
-Source commit: f7d42cd68ba06c0b330e2bdfe5a20d40b509140e
+Source commit: 4357d1a07e5bbb67c256081925cfdedd737235ad
 Parent Phase4N digest: C93F4253A044CC62C57579A236DF63F652B2F3D4BA56E8CEB8648288B1083675
 Data contracts: Phase4O-v1 / HistoricalNormalized-v1 / TrendSample-v1. FormulaDigest: 81C788B359568B2B058EC92EDFE2F30A3593D7C2A23B3BE8C126BA026D06CBFB

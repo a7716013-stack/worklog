@@ -6,6 +6,6 @@ Gold：僅既有獨立Authority/PIT/Dataset approval流程批准的研究資料�
 跨供應商比對以同source symbol/date/dataset的候選pair保存兩邊fact digest，使用ExactDecimal-v1，不做容忍值調整或覆蓋來源。未知單位、幣別/price-basis不一致為INCOMPARABLE_CONTEXT；duplicate/missing/different為QUARANTINED。相符仍需歷史instrument identity與authority審查，不能把同symbol當成已證明同一歷史公司。既有Gold receipt若受新修訂影響須走原Authority revocation/revalidation，品質sidecar不代替此流程。
 
 <!-- binding -->
-Source commit: f7d42cd68ba06c0b330e2bdfe5a20d40b509140e
+Source commit: 4357d1a07e5bbb67c256081925cfdedd737235ad
 Parent Phase4N digest: C93F4253A044CC62C57579A236DF63F652B2F3D4BA56E8CEB8648288B1083675
 Data contracts: Phase4O-v1 / HistoricalNormalized-v1 / TrendSample-v1. FormulaDigest: 81C788B359568B2B058EC92EDFE2F30A3593D7C2A23B3BE8C126BA026D06CBFB
