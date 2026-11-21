@@ -1,3 +1,7 @@
+# 3.2.6 — Phase 4Q
+
+TWSE 分項權利證據與精確 Pilot 審查草案；既有擷取流程新增隔離環境及每次執行授權綁定；管理頁新增歷史證據與七項 PIT 覆蓋率。真實取得仍 BLOCKED、正式排程 Disabled、Baseline NOT_RUN。詳 docs/phase4q。
+
 # 3.2.5 — Phase 4P
 
 受控取得模式、獨立權利與精確範圍核准、歷史市場 context、Feature/Outcome factory 與研究資料中心。沿用原 ETL／PIT／Authority；真實取得仍受外部核准阻擋，正式排程 Disabled、Baseline NOT_RUN。詳 docs/phase4p。

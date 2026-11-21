@@ -1,0 +1,9 @@
+# Phase 4Q API contract
+
+GET /api/v1/data/pilot/readiness returns Phase4QReport to the existing ResearchValidation administrator page. Both ApiResearchRead and ApiAuthorityAdmin, ReadPolicy, no-store and existing 401/403/429/503 ProblemDetails apply. A missing or tampered report or parent fails closed with DATA_NOT_READY. GET does not acquire data or approve anything; POST is 405. Existing Phase 4P and older endpoints retain their contracts and immutable evidence snapshots.
+
+The response contains fixed source-discovery notes, a proposed scope, execution prerequisites, historical-domain coverage, seven PIT dimensions, actual counts and eight production gates. No raw bodies, arbitrary reviewer text, credentials or store paths are returned. Nullable proposed scope denominator means unknown, never zero or 100 percent. Prior inspected observations are explicitly distinct from the proposed 50-stock universe. Sources and report digests bind the export, not an original publication timestamp or grant.
+
+Application owns Phase4QOperations and PilotExecutionRules; Domain formulas are unchanged. CLI and API share the same export/validation functions; the existing acquisition CLI shares RealAcquisitionWorker. Web only renders same-origin authenticated metadata and clears it when hidden or on authorization errors. The existing API hosting reference to Web remains a documented migration boundary; no new Web calculations or database migrations.
+
+OpenAPI is generated from controllers/DTOs and compatibility-tested against the prior snapshot. docs/api-v1.md includes the new route. SourceCodeSha identifies the implementation commit used to export; system/health identifies the deployed release commit containing the exports. Both release CI runs and both websites must match that release SHA.

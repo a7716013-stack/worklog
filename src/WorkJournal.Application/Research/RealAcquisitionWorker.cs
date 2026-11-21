@@ -10,10 +10,12 @@ public sealed record PilotResult(string ScopeId,string PlanId,string RunId,strin
 public sealed record PilotExecution(string ScopeId,string RunId,string Mode,string EvidenceClass,string Status,string[] Blockers,PilotResult[] Results,string Digest);
 
 // Explicit one-shot orchestrator. Reuses transport, archive, quality, scheduler and ETL; never a HostedService.
-public sealed class RealAcquisitionWorker(string root,Func<PilotTrust> trust,TimeProvider? clock=null,HttpMessageHandler? fixtureTransport=null)
+public sealed class RealAcquisitionWorker(string root,Func<PilotTrust> trust,TimeProvider? clock=null,HttpMessageHandler? fixtureTransport=null,Func<PilotExecutionEvidence?>? executionEvidence=null)
 {
     private readonly TimeProvider time=clock??TimeProvider.System;
     private DateTimeOffset Now=>time.GetUtcNow();
+    private void RequireExecution(PilotScope scope,string run,PilotTrust current)
+    {if(!scope.Requests[0].Fixture||executionEvidence is not null)PilotExecutionRules.Require(scope,run,root,current,executionEvidence?.Invoke(),Now);}
     private string Ledger=>Path.Combine(root,"pilot-acquisition");
     private static void Atomic<T>(string path,T value)
     {
@@ -38,12 +40,23 @@ public sealed class RealAcquisitionWorker(string root,Func<PilotTrust> trust,Tim
         if(fixture&&mode=="ACQUIRE_ONCE"&&fixtureTransport is null)throw new InvalidOperationException("FIXTURE_CANNOT_ACCESS_NETWORK");
         var evidence=fixture?"Synthetic Fixture":"Real Acquisition";
         PilotExecution Finish(string status,string[] blockers,PilotResult[] results){var r=new PilotExecution(scope.Id,runId,mode,evidence,status,blockers,results,"");return r with{Digest=ResearchMath.Digest(r)};}
-        var initial=PilotScopeRules.Blockers(scope,authorization,trust(),Now,"ACQUIRE","STORE");
+        var currentTrust=trust();
+        var initial=PilotScopeRules.Blockers(scope,authorization,currentTrust,Now,"ACQUIRE","STORE")
+            .Concat(fixture&&executionEvidence is null?[]:PilotExecutionRules.Blockers(scope,runId,root,currentTrust,executionEvidence?.Invoke(),Now)).ToArray();
         if(mode is "PLAN" or "DRY_RUN")return Finish(initial.Length==0?"READY_NO_IO":"BLOCKED",initial,[]);
         if(mode=="ACQUIRE_ONCE"&&initial.Length>0)return Finish("BLOCKED",initial,[]);
         // Read-only recovery checks do not create directories or locks if no prior work exists.
         if(mode is "REPLAY" or "VALIDATE"&&!Directory.Exists(Ledger))return Finish("NO_CAPTURE",[],[]);
-        Directory.CreateDirectory(Ledger);using var lease=AcquisitionSafety.Lease(Ledger);
+        token.ThrowIfCancellationRequested();Directory.CreateDirectory(Ledger);using var lease=AcquisitionSafety.Lease(Ledger);
+        if(mode=="ACQUIRE_ONCE"){
+            RequireExecution(scope,runId,trust());
+            if(executionEvidence is not null){
+                var executionProof=executionEvidence();PilotExecutionRules.Require(scope,runId,root,trust(),executionProof,Now);
+                var evidencePath=Path.Combine(Ledger,ResearchMath.Digest(new{scope.Id,Run=runId})+".execution.json");
+                if(File.Exists(evidencePath)){if(ResearchMath.Digest(Read<PilotExecutionEvidence>(evidencePath))!=ResearchMath.Digest(executionProof))throw new InvalidDataException("PILOT_EXECUTION_EVIDENCE_CHANGED");}
+                else Atomic(evidencePath,executionProof);
+            }
+        }
         var scopePath=Path.Combine(Ledger,scope.Id+".scope.json");
         if(File.Exists(scopePath)){if(ResearchMath.Digest(Read<PilotScope>(scopePath))!=ResearchMath.Digest(scope))throw new InvalidDataException("PILOT_SCOPE_CHANGED");}
         else if(mode=="ACQUIRE_ONCE")Atomic(scopePath,scope);
@@ -65,7 +78,7 @@ public sealed class RealAcquisitionWorker(string root,Func<PilotTrust> trust,Tim
                 var history=store.Replay(plan);history.Runs.Where(x=>x.IdempotencyKey==key).ToList().ForEach(x=>store.Raw(plan,key));
                 output.Add(Seal(new(scope.Id,plan.Id,runId,"INCOMPLETE",evidence,null,null,0,"RESUME_ACQUIRE_ONCE", "")));continue;
             }
-            var current=trust();PilotScopeRules.Require(scope,authorization,current,Now,"ACQUIRE","STORE");AcquisitionSafety.RequireCurrentSources(root);
+            var current=trust();PilotScopeRules.Require(scope,authorization,current,Now,"ACQUIRE","STORE");RequireExecution(scope,runId,current);AcquisitionSafety.RequireCurrentSources(root);
             try
             {
                 SourceArchive raw;
@@ -73,11 +86,11 @@ public sealed class RealAcquisitionWorker(string root,Func<PilotTrust> trust,Tim
                 else
                 {
                     raw=await Acquire(scope,plan,authorization,runId,key,client,token);
-                    token.ThrowIfCancellationRequested();PilotScopeRules.Require(scope,authorization,trust(),Now,"ACQUIRE","STORE");
+                    token.ThrowIfCancellationRequested();current=trust();PilotScopeRules.Require(scope,authorization,current,Now,"ACQUIRE","STORE");RequireExecution(scope,runId,current);
                     Storage(scope,System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(raw).LongLength*4+65536);
                     Atomic(path+".raw.json",raw); // Recovery reuses this exact observation rather than re-downloading.
                 }
-                current=trust();PilotScopeRules.Require(scope,authorization,current,Now,"ACQUIRE","STORE");
+                current=trust();PilotScopeRules.Require(scope,authorization,current,Now,"ACQUIRE","STORE");RequireExecution(scope,runId,current);
                 var permissions=PilotScopeRules.Effective(scope,authorization,current);
                 Storage(scope,System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(raw).LongLength*3+65536);
                 var capture=store.Append(plan,new(plan.Id,key,raw,raw.RetrievedAt,new(null,null,"UNKNOWN")),permissions,permissions.Select(x=>x.Digest).ToHashSet(),Now);
@@ -142,7 +155,7 @@ public sealed class RealAcquisitionWorker(string root,Func<PilotTrust> trust,Tim
     {
         for(var retry=0;retry<AcquisitionSafety.MaximumAttempts;retry++)
         {
-            token.ThrowIfCancellationRequested();PilotScopeRules.Require(s,a,trust(),Now,"ACQUIRE","STORE");PilotScopeRules.ValidateEndpoint(p);
+            token.ThrowIfCancellationRequested();var current=trust();PilotScopeRules.Require(s,a,current,Now,"ACQUIRE","STORE");RequireExecution(s,run,current);PilotScopeRules.ValidateEndpoint(p);
             var tickets=Directory.GetFiles(Ledger,"*.ticket.json").Select(Read<PilotTicket>).ToArray();
             if(tickets.Any(t=>t.Digest!=ResearchMath.Digest(t with{Digest=""})))throw new InvalidDataException("PILOT_QUOTA_LEDGER_CHANGED");
             if(tickets.Count(t=>t.ScopeId==s.Id)>=s.MaxRequests||tickets.Count(t=>t.Provider==p.Provider&&t.At>Now.AddHours(-1))>=AcquisitionSafety.ProviderHourlyLimit)throw new InvalidOperationException("PILOT_QUOTA_EXHAUSTED");

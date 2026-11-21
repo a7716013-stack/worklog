@@ -5206,6 +5206,99 @@
         ]
       }
     },
+    "/api/v1/data/pilot/readiness": {
+      "get": {
+        "operationId": "Phase4QController_Readiness",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Phase4QReport"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
     "/api/v1/market/radar/snapshot": {
       "get": {
         "operationId": "RadarJobsController_Snapshot",
@@ -14109,6 +14202,516 @@
           "status",
           "verifiedCount",
           "blockers"
+        ]
+      },
+      "Phase4QReport": {
+        "type": "object",
+        "properties": {
+          "schemaVersion": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "sourceCodeSha": {
+            "type": "string"
+          },
+          "parentDigest": {
+            "type": "string"
+          },
+          "historicalDigest": {
+            "type": "string"
+          },
+          "exportedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "evidenceClass": {
+            "type": "string"
+          },
+          "rights": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RightsEvidenceNote"
+            }
+          },
+          "proposal": {
+            "$ref": "#/components/schemas/PilotReviewProposal"
+          },
+          "acquisition": {
+            "$ref": "#/components/schemas/AcquisitionReadiness"
+          },
+          "isolatedEnvironment": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReadinessCheck"
+            }
+          },
+          "actual": {
+            "$ref": "#/components/schemas/PilotActualCounts"
+          },
+          "runs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PilotResult"
+            }
+          },
+          "historical": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HistoricalCoverage"
+            }
+          },
+          "pit": {
+            "$ref": "#/components/schemas/PilotCoverage"
+          },
+          "samplePolicy": {
+            "$ref": "#/components/schemas/SamplePolicy"
+          },
+          "trendStatus": {
+            "type": "string"
+          },
+          "production": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReadinessCheck"
+            }
+          },
+          "googleAcceptance": {
+            "type": "string"
+          },
+          "formulaDigest": {
+            "type": "string"
+          },
+          "schedulerMode": {
+            "type": "string"
+          },
+          "baseline": {
+            "type": "string"
+          },
+          "oos": {
+            "type": "string"
+          },
+          "promotion": {
+            "type": "string"
+          },
+          "phase5": {
+            "type": "string"
+          },
+          "digest": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "version",
+          "sourceCodeSha",
+          "parentDigest",
+          "historicalDigest",
+          "exportedAt",
+          "evidenceClass",
+          "rights",
+          "proposal",
+          "acquisition",
+          "isolatedEnvironment",
+          "actual",
+          "runs",
+          "historical",
+          "pit",
+          "samplePolicy",
+          "trendStatus",
+          "production",
+          "googleAcceptance",
+          "formulaDigest",
+          "schedulerMode",
+          "baseline",
+          "oos",
+          "promotion",
+          "phase5",
+          "digest"
+        ]
+      },
+      "RightsEvidenceNote": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "type": "string"
+          },
+          "dataset": {
+            "type": "string"
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "sourceVersion": {
+            "type": "string"
+          },
+          "observedOn": {
+            "type": "string",
+            "format": "date"
+          },
+          "restriction": {
+            "type": "string"
+          },
+          "evidenceClass": {
+            "type": "string"
+          },
+          "reviewer": {
+            "type": "string",
+            "nullable": true
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "permissionDigests": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "digest": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider",
+          "dataset",
+          "purpose",
+          "status",
+          "sources",
+          "sourceVersion",
+          "observedOn",
+          "restriction",
+          "evidenceClass",
+          "reviewer",
+          "expiresAt",
+          "permissionDigests",
+          "digest"
+        ]
+      },
+      "PilotReviewProposal": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "dataset": {
+            "type": "string"
+          },
+          "captureDataset": {
+            "type": "string"
+          },
+          "instrumentType": {
+            "type": "string"
+          },
+          "instruments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "historicalStart": {
+            "type": "string",
+            "format": "date"
+          },
+          "historicalEnd": {
+            "type": "string",
+            "format": "date"
+          },
+          "evaluationStart": {
+            "type": "string",
+            "format": "date"
+          },
+          "evaluationEnd": {
+            "type": "string",
+            "format": "date"
+          },
+          "targetEvaluationSessions": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "featureLookback": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "outcomeHorizon": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "requestMonths": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          "exactRequestCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maxRequests": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "storageLimitBytes": {
+            "$ref": "#/components/schemas/Int64"
+          },
+          "maximumResponseBytes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "forwardStart": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "retentionDays": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "endpointTemplate": {
+            "type": "string"
+          },
+          "draftScopeDigest": {
+            "type": "string"
+          },
+          "calendarStatus": {
+            "type": "string"
+          },
+          "rightsReferences": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "requiredConfirmations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "status",
+          "provider",
+          "dataset",
+          "captureDataset",
+          "instrumentType",
+          "instruments",
+          "historicalStart",
+          "historicalEnd",
+          "evaluationStart",
+          "evaluationEnd",
+          "targetEvaluationSessions",
+          "featureLookback",
+          "outcomeHorizon",
+          "requestMonths",
+          "exactRequestCount",
+          "maxRequests",
+          "storageLimitBytes",
+          "maximumResponseBytes",
+          "forwardStart",
+          "expiresAt",
+          "retentionDays",
+          "endpointTemplate",
+          "draftScopeDigest",
+          "calendarStatus",
+          "rightsReferences",
+          "requiredConfirmations"
+        ]
+      },
+      "Int64": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "AcquisitionReadiness": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "canAcquire": {
+            "type": "boolean"
+          },
+          "requiredConditions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "blockingReasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "status",
+          "canAcquire",
+          "requiredConditions",
+          "blockingReasons"
+        ]
+      },
+      "HistoricalCoverage": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "supported": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "required": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "blockingReasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "domain",
+          "status",
+          "supported",
+          "required",
+          "blockingReasons"
+        ]
+      },
+      "PilotCoverage": {
+        "type": "object",
+        "properties": {
+          "totalRawFacts": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "priorRawFacts": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "newRawFacts": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "inspectedObservations": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "proposedScopeDenominator": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "verifiedHistoricalContext": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "publicationEvidenceObservations": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "revisionEvidenceObservations": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pitEligibleObservations": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "approvedDatasetCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sevenGates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CoverageCell"
+            }
+          },
+          "sourceDatasetVersion": {
+            "type": "string"
+          },
+          "sourceDigest": {
+            "type": "string"
+          },
+          "blockingReasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "totalRawFacts",
+          "priorRawFacts",
+          "newRawFacts",
+          "inspectedObservations",
+          "proposedScopeDenominator",
+          "verifiedHistoricalContext",
+          "publicationEvidenceObservations",
+          "revisionEvidenceObservations",
+          "pitEligibleObservations",
+          "approvedDatasetCount",
+          "sevenGates",
+          "sourceDatasetVersion",
+          "sourceDigest",
+          "blockingReasons"
+        ]
+      },
+      "CoverageCell": {
+        "type": "object",
+        "properties": {
+          "gate": {
+            "type": "string"
+          },
+          "verified": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "inspected": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fraction": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "gate",
+          "verified",
+          "inspected",
+          "fraction",
+          "status"
         ]
       },
       "MarketRadarResult": {

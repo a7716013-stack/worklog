@@ -176,3 +176,7 @@ ApiV1ContractSnapshot 記錄 digest、關鍵 endpoint/schema/enum/problem codes�
 
 ## Phase 4O（3.2.4）
 新增 Administrator 唯讀 `/api/v1/data/operations` 與 `/api/v1/data/captures`；沿用既有provider/ETL/Authority/PIT/dataset端點。DTO、no-store、分頁、錯誤與capture時間語意見 `phase4o/APIContractChange-Phase4O.md`。無原始bytes或秘密公開，無網路取得/核准/排程HTTP寫入。
+
+
+## Phase 4Q（3.2.6）
+新增 Administrator 唯讀 `GET /api/v1/data/pilot/readiness`（Phase4QReport），既有 ResearchValidation 顯示權利證據、具體範圍草案、取得條件及七項 PIT 覆蓋率。沿用 ReadPolicy、no-store、401/403/429/503；無下載或核准寫入。舊契約不變，詳 `phase4q/APIContractChange-Phase4Q.md`。

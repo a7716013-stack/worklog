@@ -23,7 +23,8 @@ public static class Phase4PCommands
                 PilotTrust Trust(){var t=HistoricalDatasetStore.Read<PilotTrust>(args[4]);var expected=Environment.GetEnvironmentVariable("WORKJOURNAL_PILOT_TRUST_DIGEST");
                     if(!PilotScopeRules.Digest(expected??"")||ResearchMath.Digest(t)!=expected)throw new InvalidOperationException("EXTERNALLY_PINNED_TRUST_REQUIRED");return t;}
                 using var stop=new CancellationTokenSource();Console.CancelKeyPress+=(_,e)=>{e.Cancel=true;stop.Cancel();};
-                var result=await new RealAcquisitionWorker(args[1],Trust).Run(scope,auth,args[5],args[6],stop.Token);
+                PilotExecutionEvidence? Execution(){var path=Environment.GetEnvironmentVariable("WORKJOURNAL_PILOT_EXECUTION_FILE");return string.IsNullOrWhiteSpace(path)?null:HistoricalDatasetStore.Read<PilotExecutionEvidence>(path);}
+                var result=await new RealAcquisitionWorker(args[1],Trust,executionEvidence:Execution).Run(scope,auth,args[5],args[6],stop.Token);
                 HistoricalDatasetStore.WriteNew(args[7],result);Console.WriteLine(result.Status);return result.Status=="BLOCKED"?2:0;
             }
             if(args.Length==12&&args[0]=="--phase4p-features")

@@ -8,7 +8,8 @@ public sealed record PilotApproval(string ScopeId,string Environment,string Requ
     DateTimeOffset ExpiresAt,string Status,string EvidenceDigest,string Digest);
 // This is an operator-supplied trust boundary, stored outside the repository and independently provisioned.
 // No command in this release creates or approves grants. Revocation always overrides a trusted digest.
-public sealed record PilotTrust(string Environment,bool Isolated,string[] PermissionDigests,string[] ApprovalDigests,string[] RevokedDigests);
+public sealed record PilotTrust(string Environment,bool Isolated,string[] PermissionDigests,string[] ApprovalDigests,string[] RevokedDigests,
+    string[]? EnvironmentDigests=null,string[]? ExecutionDigests=null);
 public sealed record PilotAuthorization(CapturePermission[] Permissions,PilotApproval[] Approvals);
 public static class PilotScopeRules
 {
