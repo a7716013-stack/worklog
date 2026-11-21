@@ -5113,6 +5113,99 @@
         ]
       }
     },
+    "/api/v1/data/pilot": {
+      "get": {
+        "operationId": "Phase4PController_Pilot",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Phase4PReport"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
     "/api/v1/market/radar/snapshot": {
       "get": {
         "operationId": "RadarJobsController_Snapshot",
@@ -13731,6 +13824,291 @@
           "page",
           "pageSize",
           "totalCount"
+        ]
+      },
+      "Phase4PReport": {
+        "type": "object",
+        "properties": {
+          "schemaVersion": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "phase": {
+            "type": "string"
+          },
+          "sourceCodeSha": {
+            "type": "string"
+          },
+          "parentDigest": {
+            "type": "string"
+          },
+          "exportedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "evidenceClass": {
+            "type": "string"
+          },
+          "counts": {
+            "$ref": "#/components/schemas/PilotActualCounts"
+          },
+          "providers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProviderPolicy"
+            }
+          },
+          "scope": {
+            "$ref": "#/components/schemas/PilotProposal"
+          },
+          "runs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PilotResult"
+            }
+          },
+          "coverage": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PilotReadinessSection"
+            }
+          },
+          "samplePolicy": {
+            "$ref": "#/components/schemas/SamplePolicy"
+          },
+          "formulaDigest": {
+            "type": "string"
+          },
+          "schedulerMode": {
+            "type": "string"
+          },
+          "baseline": {
+            "type": "string"
+          },
+          "promotion": {
+            "type": "string"
+          },
+          "phase5": {
+            "type": "string"
+          },
+          "blockers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "digest": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "version",
+          "phase",
+          "sourceCodeSha",
+          "parentDigest",
+          "exportedAt",
+          "evidenceClass",
+          "counts",
+          "providers",
+          "scope",
+          "runs",
+          "coverage",
+          "samplePolicy",
+          "formulaDigest",
+          "schedulerMode",
+          "baseline",
+          "promotion",
+          "phase5",
+          "blockers",
+          "digest"
+        ]
+      },
+      "PilotActualCounts": {
+        "type": "object",
+        "properties": {
+          "approvedProviderRights": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "approvedPilotScopes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "realAcquisitionRuns": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "newRawSnapshots": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "newNormalizedFacts": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "historicalEvidenceAccepted": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pitEligibleObservations": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "approvedDatasets": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productionGatesReleased": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "approvedProviderRights",
+          "approvedPilotScopes",
+          "realAcquisitionRuns",
+          "newRawSnapshots",
+          "newNormalizedFacts",
+          "historicalEvidenceAccepted",
+          "pitEligibleObservations",
+          "approvedDatasets",
+          "productionGatesReleased"
+        ]
+      },
+      "PilotProposal": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "suggestedInstruments": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "suggestedTradingDays": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "historicalStart": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "historicalEnd": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "instruments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "requiredFields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "approvedRightsReferences": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "status",
+          "suggestedInstruments",
+          "suggestedTradingDays",
+          "historicalStart",
+          "historicalEnd",
+          "instruments",
+          "requiredFields",
+          "approvedRightsReferences"
+        ]
+      },
+      "PilotResult": {
+        "type": "object",
+        "properties": {
+          "scopeId": {
+            "type": "string"
+          },
+          "planId": {
+            "type": "string"
+          },
+          "runId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "evidenceClass": {
+            "type": "string"
+          },
+          "captureDigest": {
+            "type": "string",
+            "nullable": true
+          },
+          "etlDigest": {
+            "type": "string",
+            "nullable": true
+          },
+          "facts": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "error": {
+            "type": "string",
+            "nullable": true
+          },
+          "digest": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "scopeId",
+          "planId",
+          "runId",
+          "status",
+          "evidenceClass",
+          "captureDigest",
+          "etlDigest",
+          "facts",
+          "error",
+          "digest"
+        ]
+      },
+      "PilotReadinessSection": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "verifiedCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "blockers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "status",
+          "verifiedCount",
+          "blockers"
         ]
       },
       "MarketRadarResult": {

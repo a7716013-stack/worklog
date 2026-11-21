@@ -121,6 +121,15 @@ var outcomes=new OutcomeDataset("fixture-labels","fixture-v1",created,dates,ids.
 var protocol=new ResearchProtocol("fixture-v1",[new("F1",new(dates[130],dates[135]),new(dates[138],dates[143]),new(dates[146],dates[150]))],[1,2],3,2);
 var research=new ResearchRequest(Id(99),created,V3CandidateCalculator.Version,"fixture-model-v1","CandidateFeatures-v1",p,protocol,result.Snapshots,outcomes,[],[]);
 var report=new ResearchEngine().Run(research);
+var pilot=WorkJournal.Application.Research.PilotFeatureOutcomeFactory.Build(result,research,new string('a',40),ResearchMath.Digest("fixture-approval-not-real"));
+Check(pilot.Status=="INSUFFICIENT_SAMPLE"&&pilot.Baseline=="NOT_RUN"&&pilot.Phase5=="LOCKED","4P feature factory does not execute baseline or promote insufficient sample");
+Check(pilot.Observations.Length==report.Observations.Length&&pilot.Observations.Zip(report.Observations).All(x=>ResearchMath.Digest(x.First)==ResearchMath.Digest(x.Second)),"4P feature/outcome preparation equals existing engine observations");
+Check(pilot.Digest==WorkJournal.Application.Research.PilotFeatureOutcomeFactory.Build(result,research,new string('a',40),ResearchMath.Digest("fixture-approval-not-real")).Digest,"4P deterministic feature/outcome replay");
+var pilotLabels=WorkJournal.Application.Research.PilotFeatureOutcomeFactory.Build(result,research with{Outcomes=outcomes with{Series=outcomes.Series.Select(s=>s with{Closes=s.Closes.Select(c=>c with{Close=c.Close*2}).ToImmutableArray()}).ToImmutableArray()}},new string('a',40),ResearchMath.Digest("fixture-approval-not-real"));
+Check(pilot.Observations.Select(x=>ResearchMath.Digest(x.Trace)).SequenceEqual(pilotLabels.Observations.Select(x=>ResearchMath.Digest(x.Trace)))&&pilot.OutcomeDigest!=pilotLabels.OutcomeDigest,"4P future labels never change feature traces and version binding changes");
+Check(pilot.Observations.SelectMany(x=>x.Outcomes).Any(x=>x.Status=="PURGED_PARTITION_BOUNDARY"&&x.FutureReturn is null),"4P overlapping horizon labels purged at partition boundary");
+Reject(()=>WorkJournal.Application.Research.PilotFeatureOutcomeFactory.Build(result,research with{EvaluateOos=true},new string('a',40),ResearchMath.Digest("fixture")),"4P OOS forbidden without separate selection workflow");
+Reject(()=>WorkJournal.Application.Research.PilotFeatureOutcomeFactory.Build(result,research with{Snapshots=[]},new string('a',40),ResearchMath.Digest("fixture")),"4P source snapshot replacement rejected");
 Check(report.Status==ResearchRunStatus.Completed,"PIT adapter drives existing research engine");
 Check(report.Metrics.All(m=>m.Partition!=ResearchPartition.Oos),"OOS absent from development metrics");
 var changedLabels=new ResearchEngine().Run(research with{Outcomes=outcomes with{Series=outcomes.Series.Select(s=>s with{Closes=s.Closes.Select(c=>c with{Close=c.Close*2}).ToImmutableArray()}).ToImmutableArray()}});

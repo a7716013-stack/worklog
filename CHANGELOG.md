@@ -1,3 +1,7 @@
+# 3.2.5 — Phase 4P
+
+受控取得模式、獨立權利與精確範圍核准、歷史市場 context、Feature/Outcome factory 與研究資料中心。沿用原 ETL／PIT／Authority；真實取得仍受外部核准阻擋，正式排程 Disabled、Baseline NOT_RUN。詳 docs/phase4p。
+
 # 3.2.4 — Phase 4O
 
 擴充provider分項權利、有限歷史pilot、向前PIT不可變擷取/版本歷程、品質隔離/跨來源比對及管理資料營運。實際新增真實資料0（scope/rights未核准），正式排程Disabled、研究NOT_RUN。詳docs/phase4o。
