@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "Phase4PArtifact-v1",
+  "version": "3.2.5",
+  "sourceCodeSha": "8f257043d0575897dc4bea0837fdef0c241d7f27",
+  "parentDigest": "3E8B32C6D3946FA87A477B43D8A4DA951B42C116870066DF14CDC664EE95EC81",
+  "stateDigest": "0E159694507DB4519AFB0A4B883D023CC9E4A2F3306398737CF3539CFC2D587D",
+  "inputVersions": [
+    "Phase4O-v1",
+    "HistoricalNormalized-v1",
+    "TrendSample-v1"
+  ],
+  "evidenceClass": "Snapshot",
+  "at": "2026-11-21T11:44:54.266976+00:00",
+  "payload": {
+    "Name": "HistoricalSecurityMaster",
+    "Status": "BLOCKED",
+    "VerifiedCount": null,
+    "Blockers": [
+      "DATED_IDENTITY_SYMBOL_LISTING_DELISTING_MARKET_INDUSTRY_UNIVERSE_SUSPENSION_EVIDENCE_REQUIRED"
+    ]
+  },
+  "artifactContentSha256": "27cfe3cc8c50342c230f8145c290ca1d0b585d39de11d5b9600d5e992e594e11"
+}

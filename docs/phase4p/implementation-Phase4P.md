@@ -33,3 +33,9 @@ Preparation evaluates TrendSample-v1 counts with existing ResearchMetrics: each 
 The existing administrator ResearchValidation page gains a pilot summary using one additive read-only API. Existing capture, rights, authority, PIT, dataset and production views are preserved. Exported snapshots remain explicitly distinct from live tests and synthetic fixtures. All nine new-real/approval/gate counts are zero. Required external actions are independently verified purpose rights, exact human-approved pilot scope, authorized isolated environment, historical market/publication/revision evidence, and production isolated Google A/B accounts plus eight deployment gates.
 
 Build, integration, synthetic fixture, real acquisition and production acceptance evidence are separated in engineering-Phase4P.json and release verification. Actual production scheduler remains Disabled, REAL_BASELINE_V1 NOT_RUN, model NOT_PROMOTED and Phase5 LOCKED. Git/merge/deploy are authorized by the user's current request; data purchase, third-party login, restricted downloads, production database changes and real trades are not performed.
+
+<!-- binding -->
+Implementation source SHA: 8f257043d0575897dc4bea0837fdef0c241d7f27
+Input Phase4O digest: 3E8B32C6D3946FA87A477B43D8A4DA951B42C116870066DF14CDC664EE95EC81
+Export digest: 0E159694507DB4519AFB0A4B883D023CC9E4A2F3306398737CF3539CFC2D587D
+Contracts: Phase4P-v1 / HistoricalNormalized-v1 / TrendSample-v1.

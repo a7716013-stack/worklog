@@ -1,0 +1,196 @@
+{
+  "schemaVersion": "Phase4PArtifact-v1",
+  "version": "3.2.5",
+  "sourceCodeSha": "8f257043d0575897dc4bea0837fdef0c241d7f27",
+  "parentDigest": "3E8B32C6D3946FA87A477B43D8A4DA951B42C116870066DF14CDC664EE95EC81",
+  "stateDigest": "0E159694507DB4519AFB0A4B883D023CC9E4A2F3306398737CF3539CFC2D587D",
+  "inputVersions": [
+    "Phase4O-v1",
+    "HistoricalNormalized-v1",
+    "TrendSample-v1"
+  ],
+  "evidenceClass": "Synthetic Fixture / Integration",
+  "at": "2026-11-21T11:44:54.266976+00:00",
+  "logs": {
+    "phase4p-api.log": {
+      "sha256": "207f30ca42dedc9746085feeb40fb0406dca4c15b44deacbeaea93f29b29d087",
+      "lastLines": [
+        "PASS: empty portfolio isolated",
+        "PASS: empty trades isolated",
+        "PASS: real SQL readiness",
+        "API contract checks: 590 PASS"
+      ]
+    },
+    "phase4p-build.log": {
+      "sha256": "1e1380d6d67c9a24bd50971b0faa4c9da25a55243930f74e9e33fd03e88b1668",
+      "lastLines": [
+        "    0 個警告",
+        "    0 個錯誤",
+        "",
+        "經過時間 00:00:04.19"
+      ]
+    },
+    "phase4p-FinMindChecks.log": {
+      "sha256": "9a2f388c6bbe0f0b8c6f44640955c1b63cfe617e6e26ef7d8178d060bf1f6f1b",
+      "lastLines": [
+        "PASS: fundamentals, partial failures, MA, Wilder RSI, MACD, warmup, sorting and missing data.",
+        "PASS: latest-day mapping, percent calculation, nulls, quota, malformed JSON, cache and token header.",
+        "PASS: ETF classification, dated NAV/premium, assets units, holdings, dividend revisions and partial failure.",
+        "PASS: swing scoring, prior-only breakout/volume, flow windows, missing data, no-lookahead fills, fees and corporate-action guard."
+      ]
+    },
+    "phase4p-identity.log": {
+      "sha256": "a70cf51850c4cfba3edae279d26ccea91300adaca31c6a1dd0a8d992e030769e",
+      "lastLines": [
+        "PASS: Previously issued cookie cannot be replayed after logout",
+        "PASS: Invalid Calendar authorization rejected",
+        "Completed 127 checks using synthetic Google responses. Real OAuth has NOT been tested.",
+        "Removed only this run's isolated database."
+      ]
+    },
+    "phase4p-LegacySwing75Checks.log": {
+      "sha256": "e54cddc298e29649a4830ca9a6435f27742ad0539fcbb4e2b63cd1c84b2ec126",
+      "lastLines": [
+        "PASS: LegacySwing75_74_IsNotEligible",
+        "PASS: LegacySwing75_75_IsEligible_NextOpenFill",
+        "PASS: LegacySwing75_NoSameDayFill",
+        "PASS: LegacySwing75_Missing_IsNotEligible"
+      ]
+    },
+    "phase4p-MarketDataChecks.log": {
+      "sha256": "752dde3487a5d8d0367f456e2cd4634616e1eb46ca7aa00eec4df894f080ec8c",
+      "lastLines": [
+        "PASS: official schemas, exact/missing volume, date validation, holiday, institutional groups, coalescing, restart cache, expiry, cancellation, persisted budget, shared cooldown and routing."
+      ]
+    },
+    "phase4p-MarketRadarChecks.log": {
+      "sha256": "c6a1e30f381dc825671ed361539a3f9dd5b0f91af5bdb3918035d73034711fb7",
+      "lastLines": [
+        "PASS: OTC parser, malformed-date skip and shares not lots",
+        "PASS: TWSE sign markup, corporate-action unknowns and malformed rows",
+        "PASS: Official event timestamp and non-speculative impact",
+        "220 market radar checks passed."
+      ]
+    },
+    "phase4p-MarketRadarTrackingChecks.log": {
+      "sha256": "e8f5e803d28fa206c45958412be09559cee3e1ec942bddb6f074a91ca7d85f8c",
+      "lastLines": [
+        "PASS: repeated migration does not duplicate favorites",
+        "StockResearchChecks: 16 PASS",
+        "MarketRadarTrackingChecks: 35 PASS",
+        "Isolated radar database removed."
+      ]
+    },
+    "phase4p-PaperTradingChecks.log": {
+      "sha256": "618adef048baefd687cb0ad0179023d642f343611903376239515c35061c5886",
+      "lastLines": [
+        "PASS: Watchlist limit is enforced atomically on server",
+        "PASS: Watchlist removal persists in a new SQL context",
+        "PASS: 59 SQL-backed paper trading and watchlist checks.",
+        "Isolated test database removed."
+      ]
+    },
+    "phase4p-StrategyCenterChecks.log": {
+      "sha256": "810a7695911fac5ffcd50a957a6dae08bb296f781997b2b6de9f690a4ec56d75",
+      "lastLines": [
+        "PASS: same-day differentprofile allowed",
+        "PASS: snapshot failure propagated",
+        "PASS: failure rolledback evaluation signal episode",
+        "StrategyCenter checks PASS: 41"
+      ]
+    },
+    "phase4p-V2EvidenceChecks.log": {
+      "sha256": "77ff30d4214a36781bd1dc39cc137907bf2be8f3f5ddeb5f161680a2c1372a5f",
+      "lastLines": [
+        "PASS: unknown parameter reference rejected",
+        "PASS: ineligible historical universe is not silently scored",
+        "PASS: preparation is read-only and does not persist fake scores or decisions",
+        "V2EvidenceChecks: 64 PASS (partial Phase 3: aggregation/contracts/PIT preparation; normalization unresolved)"
+      ]
+    },
+    "phase4p-V2FoundationChecks.log": {
+      "sha256": "61c916bd6fae299963c7ff115d33c36909a3d35a693644a0561ad3ec786022ad",
+      "lastLines": [
+        "PASS: trace rejects snapshot version mismatch",
+        "PASS: historical benchmark definition immutable",
+        "PASS: cross-connection concurrent snapshot retries create one row",
+        "V2 foundation checks: 45 passed"
+      ]
+    },
+    "phase4p-V3AuthorityChecks.log": {
+      "sha256": "d8e8295c5a5d88e456ff3fa0268517798fb502adff2272b98b967d54b7135a9d",
+      "lastLines": [
+        "PASS: superseded authority blocks new research",
+        "PASS: stale approved authority cannot bypass current registry",
+        "PASS: evidence metadata tampering detected",
+        "V3 Authority checks passed: 58; simulated authority metadata only, no real source approval."
+      ]
+    },
+    "phase4p-V3AuthorityResolutionChecks.log": {
+      "sha256": "97593dc5b961eb1b9997fecc18aeb2dfb699f634ed142c3241baa6490fe72d2c",
+      "lastLines": [
+        "PASS: revoked approval blocks Phase4I sample assessment",
+        "PASS: revoked receipt blocks new baseline",
+        "PASS: archived baseline replay survives revocation",
+        "V3 authority resolution checks passed: 97; simulated fixtures, no real milestones."
+      ]
+    },
+    "phase4p-V3ClosureChecks.log": {
+      "sha256": "765a7af6843eadede88acc6e07193c67bb984e907ea0a059d7604f388de55b94",
+      "lastLines": [
+        "PASS: superseded closure blocks new research",
+        "PASS: baseline rechecks live closure revisions before calculating outcomes",
+        "PASS: corrupted archive rejected",
+        "V3 closure checks passed: 120; fixture evidence only, no real component approval."
+      ]
+    },
+    "phase4p-V3ComponentDatasetChecks.log": {
+      "sha256": "3d6e4049f5a44496b1d0c81b955ee90a973aae21413941c739af4963f512331e",
+      "lastLines": [
+        "PASS: parser does not convert unavailable prices/volume to zero",
+        "PASS: raw parse deterministic replay",
+        "PASS: raw digest corruption rejected",
+        "V3 component dataset checks passed: 53; simulated fixtures, no real approval or research milestone."
+      ]
+    },
+    "phase4p-V3ModelChecks.log": {
+      "sha256": "57804b471b1587576298e5b1f573069c2c17f77cc30b865ab29be2282f4f708c",
+      "lastLines": [
+        "PASS: liquidity price proxy must be explicit",
+        "PASS: liquidity price proxy must be explicit blocks total",
+        "PASS: omitted array rejected",
+        "V3 Candidate model checks passed: 104. Synthetic fixtures only; Research/OOS not performed."
+      ]
+    },
+    "phase4p-V3PitDatasetChecks.log": {
+      "sha256": "c70cf65a6ca9736bf381583cc2ade1076195274c1791cfb94c9c5d3d7c291185",
+      "lastLines": [
+        "PASS: historical classification gaps explicit",
+        "PASS: orphan report metrics rejected",
+        "PASS: official-shaped capture retains unknown availability and exact units",
+        "V3 PIT dataset checks passed: 52; synthetic verification, not real research validation."
+      ]
+    },
+    "phase4p-V3RealDataChecks.log": {
+      "sha256": "0f66fb47586c1a894980f4da285696120b12dacb26c4f79f8fb935de02ad3b98",
+      "lastLines": [
+        "PASS: historical baseline replay survives later authority supersession",
+        "PASS: archive byte tampering rejected",
+        "PASS: frozen evidence file tampering rejected",
+        "V3 real-data contract checks passed: 42; simulated fixtures only, not real research evidence."
+      ]
+    },
+    "phase4p-V3ResearchChecks.log": {
+      "sha256": "b40b5f0f12e594502b422719964565117e57f14dd1901f59795ab234d08fac6c",
+      "lastLines": [
+        "PASS: failed research persisted separately",
+        "PASS: failure artifact retained",
+        "Research persistence fixture: C:\\Users\\a7716\\AppData\\Local\\Temp\\WorkJournalResearchChecks_7ee3d70adfb142b39d04e2d9a50caeca",
+        "V3 Research checks passed: 78; synthetic infrastructure only, no model promotion."
+      ]
+    }
+  },
+  "realAcquisition": "BLOCKED_ZERO_RUNS",
+  "productionAcceptance": "BLOCKED",
+  "sameShaCi": "RECORDED_SEPARATELY_IN_RELEASE_VERIFICATION"
+}

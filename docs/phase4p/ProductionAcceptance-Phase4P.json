@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "Phase4PArtifact-v1",
+  "version": "3.2.5",
+  "sourceCodeSha": "8f257043d0575897dc4bea0837fdef0c241d7f27",
+  "parentDigest": "3E8B32C6D3946FA87A477B43D8A4DA951B42C116870066DF14CDC664EE95EC81",
+  "stateDigest": "0E159694507DB4519AFB0A4B883D023CC9E4A2F3306398737CF3539CFC2D587D",
+  "inputVersions": [
+    "Phase4O-v1",
+    "HistoricalNormalized-v1",
+    "TrendSample-v1"
+  ],
+  "evidenceClass": "Snapshot",
+  "at": "2026-11-21T11:44:54.266976+00:00",
+  "payload": {
+    "status": "BLOCKED",
+    "evidenceClass": "Blocked",
+    "released": 0,
+    "total": 8,
+    "checks": [
+      "DURABLE_SHARED_STORAGE",
+      "MULTI_WORKER_RECOVERY",
+      "PROVIDER_PERMISSION",
+      "BACKUP_RESTORE",
+      "SECRET_HANDLING",
+      "OPERATIONAL_ALERTS",
+      "ROLLBACK",
+      "EXPLICIT_ENABLE_APPROVAL",
+      "ISOLATED_GOOGLE_A_B_ACCOUNTS"
+    ],
+    "scheduler": "Disabled",
+    "identityFixtureIsProduction": false
+  },
+  "artifactContentSha256": "dec77672bbf2bebdd2e719cd3e74973d04f602475240e61c2ed2451d4fcaf081"
+}

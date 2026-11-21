@@ -12,3 +12,9 @@
 | PR-9 Research Data Center | Partial | Extend existing administrator metadata APIs and page |
 | Real rights/scope/environment | External dependency | Independent human approvals not provided |
 | Production acceptance | Blocked | Isolated Google A/B accounts and eight actual gates absent |
+
+<!-- binding -->
+Implementation source SHA: 8f257043d0575897dc4bea0837fdef0c241d7f27
+Input Phase4O digest: 3E8B32C6D3946FA87A477B43D8A4DA951B42C116870066DF14CDC664EE95EC81
+Export digest: 0E159694507DB4519AFB0A4B883D023CC9E4A2F3306398737CF3539CFC2D587D
+Contracts: Phase4P-v1 / HistoricalNormalized-v1 / TrendSample-v1.

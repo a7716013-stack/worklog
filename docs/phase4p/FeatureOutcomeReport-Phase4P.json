@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "Phase4PArtifact-v1",
+  "version": "3.2.5",
+  "sourceCodeSha": "8f257043d0575897dc4bea0837fdef0c241d7f27",
+  "parentDigest": "3E8B32C6D3946FA87A477B43D8A4DA951B42C116870066DF14CDC664EE95EC81",
+  "stateDigest": "0E159694507DB4519AFB0A4B883D023CC9E4A2F3306398737CF3539CFC2D587D",
+  "inputVersions": [
+    "Phase4O-v1",
+    "HistoricalNormalized-v1",
+    "TrendSample-v1"
+  ],
+  "evidenceClass": "Snapshot",
+  "at": "2026-11-21T11:44:54.266976+00:00",
+  "payload": {
+    "readiness": {
+      "Name": "FeatureOutcome",
+      "Status": "NOT_RUN",
+      "VerifiedCount": 0,
+      "Blockers": [
+        "RESEARCH_RIGHTS_AUTHORITY_PIT_DATASET_APPROVAL_REQUIRED"
+      ]
+    },
+    "formulaDigest": "81C788B359568B2B058EC92EDFE2F30A3593D7C2A23B3BE8C126BA026D06CBFB",
+    "candidate": "V3EvidenceCandidate-v1",
+    "features": 19,
+    "weights": [
+      25,
+      15,
+      15,
+      20,
+      15,
+      10
+    ],
+    "generated": 0
+  },
+  "artifactContentSha256": "d88e30d012399358d844e2e7bfc105c6bca03c4535b163fab2e0d33ba4697212"
+}

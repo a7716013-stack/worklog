@@ -7,3 +7,9 @@ The response is a validated immutable Phase4P-v1 export. It contains only fixed 
 RealAcquisitionWorker, PilotScopeRules, PilotMarketContextRules and PilotFeatureOutcomeFactory live in Application; formulas remain in Domain. Web only fetches and renders metadata. No existing formula is copied into a controller or JavaScript. Existing API-to-Web hosting/service references are a pre-existing transition; this release does not claim to complete the whole site's extraction.
 
 Deployment keeps the existing API host, cookie authentication and same-origin UI. No new database tables or migrations, provider secrets, hosted timers or production scheduling are introduced. Runtime version/SHA and both new endpoint authorization and static asset identity are verified after deployment. Production member acceptance remains separate from fixture identity tests.
+
+<!-- binding -->
+Implementation source SHA: 8f257043d0575897dc4bea0837fdef0c241d7f27
+Input Phase4O digest: 3E8B32C6D3946FA87A477B43D8A4DA951B42C116870066DF14CDC664EE95EC81
+Export digest: 0E159694507DB4519AFB0A4B883D023CC9E4A2F3306398737CF3539CFC2D587D
+Contracts: Phase4P-v1 / HistoricalNormalized-v1 / TrendSample-v1.

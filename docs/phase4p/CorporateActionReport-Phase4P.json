@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "Phase4PArtifact-v1",
+  "version": "3.2.5",
+  "sourceCodeSha": "8f257043d0575897dc4bea0837fdef0c241d7f27",
+  "parentDigest": "3E8B32C6D3946FA87A477B43D8A4DA951B42C116870066DF14CDC664EE95EC81",
+  "stateDigest": "0E159694507DB4519AFB0A4B883D023CC9E4A2F3306398737CF3539CFC2D587D",
+  "inputVersions": [
+    "Phase4O-v1",
+    "HistoricalNormalized-v1",
+    "TrendSample-v1"
+  ],
+  "evidenceClass": "Snapshot",
+  "at": "2026-11-21T11:44:54.266976+00:00",
+  "payload": {
+    "Name": "CorporateActions",
+    "Status": "BLOCKED",
+    "VerifiedCount": null,
+    "Blockers": [
+      "SOURCE_BOUND_KNOWN_AT_ADJUSTMENT_VERSIONS_REQUIRED"
+    ]
+  },
+  "artifactContentSha256": "c9a4dc550997cc774b746f2fc3efb795e1630f913aa78356d5f0798acb4681f7"
+}

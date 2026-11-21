@@ -2,9 +2,9 @@
   "SchemaVersion": "Phase4P-v1",
   "Version": "3.2.5",
   "Phase": "4P",
-  "SourceCodeSha": "5ddefcc6a26f3be4dbd9867eebd8ff8c8e16276f",
+  "SourceCodeSha": "8f257043d0575897dc4bea0837fdef0c241d7f27",
   "ParentDigest": "3E8B32C6D3946FA87A477B43D8A4DA951B42C116870066DF14CDC664EE95EC81",
-  "ExportedAt": "2026-11-20T14:18:50.8531721+00:00",
+  "ExportedAt": "2026-11-21T11:44:54.266976+00:00",
   "EvidenceClass": "Snapshot",
   "Counts": {
     "ApprovedProviderRights": 0,
@@ -277,5 +277,5 @@
     "Historical publication/revision and market-context evidence must pass existing Authority/PIT/dataset review",
     "Production Google A/B acceptance and eight deployment gates remain blocked; scheduler enable and real baseline require separate authorization"
   ],
-  "Digest": "987BBB14F1D387D5C47C64130AFD06683E5D32FAE76DF1B34A9FBCFDB410A0E6"
+  "Digest": "0E159694507DB4519AFB0A4B883D023CC9E4A2F3306398737CF3539CFC2D587D"
 }

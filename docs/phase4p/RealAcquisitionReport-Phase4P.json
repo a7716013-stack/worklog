@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "Phase4PArtifact-v1",
+  "version": "3.2.5",
+  "sourceCodeSha": "8f257043d0575897dc4bea0837fdef0c241d7f27",
+  "parentDigest": "3E8B32C6D3946FA87A477B43D8A4DA951B42C116870066DF14CDC664EE95EC81",
+  "stateDigest": "0E159694507DB4519AFB0A4B883D023CC9E4A2F3306398737CF3539CFC2D587D",
+  "inputVersions": [
+    "Phase4O-v1",
+    "HistoricalNormalized-v1",
+    "TrendSample-v1"
+  ],
+  "evidenceClass": "Snapshot",
+  "at": "2026-11-21T11:44:54.266976+00:00",
+  "payload": {
+    "status": "BLOCKED",
+    "counts": {
+      "ApprovedProviderRights": 0,
+      "ApprovedPilotScopes": 0,
+      "RealAcquisitionRuns": 0,
+      "NewRawSnapshots": 0,
+      "NewNormalizedFacts": 0,
+      "HistoricalEvidenceAccepted": 0,
+      "PitEligibleObservations": 0,
+      "ApprovedDatasets": 0,
+      "ProductionGatesReleased": 0
+    },
+    "runs": [],
+    "rawSnapshots": [],
+    "normalizedFacts": 0,
+    "blockers": [
+      "Independent reviewer must verify exact ACQUIRE/STORE/RESEARCH purpose receipts; REDISTRIBUTE remains separate",
+      "Human must approve exact dates, instruments, lookback, horizon, request/storage budget and expiry",
+      "Operator must provision externally pinned approvals and an authorized isolated durable environment",
+      "Historical publication/revision and market-context evidence must pass existing Authority/PIT/dataset review",
+      "Production Google A/B acceptance and eight deployment gates remain blocked; scheduler enable and real baseline require separate authorization"
+    ]
+  },
+  "artifactContentSha256": "0f74842a8bee1c857021705ff8ec3a2ed1589627d9cbde49136493b7f9fef06e"
+}
