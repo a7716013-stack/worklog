@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "Phase4QArtifact-v1",
+  "version": "3.2.6",
+  "sourceCodeSha": "da22501cfae8af9f59b39ae2767e6d1fb97ab9af",
+  "inputVersions": [
+    "Phase4P-v1",
+    "Phase4I-v1",
+    "HistoricalNormalized-v1",
+    "TrendSample-v1"
+  ],
+  "parentDigest": "0E159694507DB4519AFB0A4B883D023CC9E4A2F3306398737CF3539CFC2D587D",
+  "historicalDigest": "9A33F33040B97AC61FAB1BCBA4021C182F59D9A12A33E3F1F14BAC2F881815BF",
+  "stateDigest": "48C90EF529153208B2D4AFF856547722D2920E298681F460792A5210A5043BAA",
+  "at": "2026-11-21T18:21:07.100499+00:00",
+  "evidenceClass": "Blocked",
+  "payload": {
+    "Status": "BLOCKED",
+    "CanAcquire": false,
+    "RequiredConditions": [
+      "INDEPENDENT_ACQUIRE_RIGHT",
+      "INDEPENDENT_STORE_RIGHT",
+      "EXACT_APPROVED_SCOPE",
+      "EXTERNALLY_PINNED_TRUST",
+      "ACCEPTED_ISOLATED_ENVIRONMENT",
+      "EXACT_QUOTA_DATE_INSTRUMENT_ENDPOINT",
+      "EXPLICIT_RUN_AUTHORIZATION"
+    ],
+    "BlockingReasons": [
+      "INDEPENDENT_ACQUIRE_RIGHT",
+      "INDEPENDENT_STORE_RIGHT",
+      "EXACT_APPROVED_SCOPE",
+      "EXTERNALLY_PINNED_TRUST",
+      "ACCEPTED_ISOLATED_ENVIRONMENT",
+      "EXACT_QUOTA_DATE_INSTRUMENT_ENDPOINT",
+      "EXPLICIT_RUN_AUTHORIZATION"
+    ]
+  },
+  "artifactContentSha256": "542c8f9ed59b4cc1cb81b07d02e322c176f823286ec5ae3d5a6acf82f17289b8"
+}

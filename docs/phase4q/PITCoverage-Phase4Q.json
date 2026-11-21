@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "Phase4QArtifact-v1",
+  "version": "3.2.6",
+  "sourceCodeSha": "da22501cfae8af9f59b39ae2767e6d1fb97ab9af",
+  "inputVersions": [
+    "Phase4P-v1",
+    "Phase4I-v1",
+    "HistoricalNormalized-v1",
+    "TrendSample-v1"
+  ],
+  "parentDigest": "0E159694507DB4519AFB0A4B883D023CC9E4A2F3306398737CF3539CFC2D587D",
+  "historicalDigest": "9A33F33040B97AC61FAB1BCBA4021C182F59D9A12A33E3F1F14BAC2F881815BF",
+  "stateDigest": "48C90EF529153208B2D4AFF856547722D2920E298681F460792A5210A5043BAA",
+  "at": "2026-11-21T18:21:07.100499+00:00",
+  "evidenceClass": "Prior reviewed snapshot; not new pilot evidence",
+  "payload": {
+    "TotalRawFacts": 21,
+    "PriorRawFacts": 21,
+    "NewRawFacts": 0,
+    "InspectedObservations": 1,
+    "ProposedScopeDenominator": null,
+    "VerifiedHistoricalContext": 0,
+    "PublicationEvidenceObservations": 0,
+    "RevisionEvidenceObservations": 0,
+    "PitEligibleObservations": 0,
+    "ApprovedDatasetCount": 0,
+    "SevenGates": [
+      {
+        "Gate": "HistoricalInstrumentIdentity",
+        "Verified": 0,
+        "Inspected": 1,
+        "Fraction": 0,
+        "Status": "BLOCKED"
+      },
+      {
+        "Gate": "TradingCalendar",
+        "Verified": 0,
+        "Inspected": 1,
+        "Fraction": 0,
+        "Status": "BLOCKED"
+      },
+      {
+        "Gate": "HistoricalUniverse",
+        "Verified": 0,
+        "Inspected": 1,
+        "Fraction": 0,
+        "Status": "BLOCKED"
+      },
+      {
+        "Gate": "PriceVolume",
+        "Verified": 1,
+        "Inspected": 1,
+        "Fraction": 1,
+        "Status": "VERIFIED_FOR_INSPECTED_ROWS"
+      },
+      {
+        "Gate": "Availability",
+        "Verified": 0,
+        "Inspected": 1,
+        "Fraction": 0,
+        "Status": "BLOCKED"
+      },
+      {
+        "Gate": "Revision",
+        "Verified": 0,
+        "Inspected": 1,
+        "Fraction": 0,
+        "Status": "BLOCKED"
+      },
+      {
+        "Gate": "PriceBasis",
+        "Verified": 0,
+        "Inspected": 1,
+        "Fraction": 0,
+        "Status": "BLOCKED"
+      }
+    ],
+    "SourceDatasetVersion": "TWSE-2330-202609-capture-audit-v1",
+    "SourceDigest": "9A33F33040B97AC61FAB1BCBA4021C182F59D9A12A33E3F1F14BAC2F881815BF",
+    "BlockingReasons": [
+      "INSPECTED_ROWS_ARE_PRIOR_EXPORT_NOT_PROPOSED_50_STOCK_SCOPE",
+      "PROPOSED_DENOMINATOR_UNKNOWN_PENDING_HISTORICAL_CALENDAR_UNIVERSE",
+      "NO_NEW_REAL_CAPTURE",
+      "INDEPENDENT_PIT_AND_COMPONENT_APPROVAL_REQUIRED"
+    ]
+  },
+  "artifactContentSha256": "6ff65d11e36561f30405a2ee923df40a0d266198a050d3fe2b4d104bf417ca74"
+}

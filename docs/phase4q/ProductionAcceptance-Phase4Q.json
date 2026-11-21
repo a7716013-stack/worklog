@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "Phase4QArtifact-v1",
+  "version": "3.2.6",
+  "sourceCodeSha": "da22501cfae8af9f59b39ae2767e6d1fb97ab9af",
+  "inputVersions": [
+    "Phase4P-v1",
+    "Phase4I-v1",
+    "HistoricalNormalized-v1",
+    "TrendSample-v1"
+  ],
+  "parentDigest": "0E159694507DB4519AFB0A4B883D023CC9E4A2F3306398737CF3539CFC2D587D",
+  "historicalDigest": "9A33F33040B97AC61FAB1BCBA4021C182F59D9A12A33E3F1F14BAC2F881815BF",
+  "stateDigest": "48C90EF529153208B2D4AFF856547722D2920E298681F460792A5210A5043BAA",
+  "at": "2026-11-21T18:21:07.100499+00:00",
+  "evidenceClass": "Blocked",
+  "payload": {
+    "checks": [
+      {
+        "Code": "DURABLE_SHARED_STORAGE",
+        "Status": "Blocked",
+        "Evidence": "REAL_DEPLOYMENT_ACCEPTANCE_REQUIRED"
+      },
+      {
+        "Code": "MULTI_WORKER_RECOVERY",
+        "Status": "Blocked",
+        "Evidence": "REAL_DEPLOYMENT_ACCEPTANCE_REQUIRED"
+      },
+      {
+        "Code": "PROVIDER_PERMISSION",
+        "Status": "Blocked",
+        "Evidence": "REAL_DEPLOYMENT_ACCEPTANCE_REQUIRED"
+      },
+      {
+        "Code": "BACKUP_RESTORE",
+        "Status": "Blocked",
+        "Evidence": "REAL_DEPLOYMENT_ACCEPTANCE_REQUIRED"
+      },
+      {
+        "Code": "SECRET_HANDLING",
+        "Status": "Blocked",
+        "Evidence": "REAL_DEPLOYMENT_ACCEPTANCE_REQUIRED"
+      },
+      {
+        "Code": "OPERATIONAL_ALERTS",
+        "Status": "Blocked",
+        "Evidence": "REAL_DEPLOYMENT_ACCEPTANCE_REQUIRED"
+      },
+      {
+        "Code": "ROLLBACK",
+        "Status": "Blocked",
+        "Evidence": "REAL_DEPLOYMENT_ACCEPTANCE_REQUIRED"
+      },
+      {
+        "Code": "EXPLICIT_ENABLE_APPROVAL",
+        "Status": "Blocked",
+        "Evidence": "REAL_DEPLOYMENT_ACCEPTANCE_REQUIRED"
+      }
+    ],
+    "googleAcceptance": "BLOCKED_NO_ISOLATED_GOOGLE_A_B_ACCOUNTS",
+    "scheduler": "Disabled",
+    "gatesPassed": 0,
+    "gatesRequired": 8
+  },
+  "artifactContentSha256": "4c1048ec369c616f4e1d4eabeb00d65bbb314ed4a4d73ae9a810a5b81a1f4b69"
+}

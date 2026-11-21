@@ -1,10 +1,10 @@
 {
   "SchemaVersion": "Phase4Q-v1",
   "Version": "3.2.6",
-  "SourceCodeSha": "f41475dc7412d82fc8eda2bbac4f5a357e105d29",
+  "SourceCodeSha": "da22501cfae8af9f59b39ae2767e6d1fb97ab9af",
   "ParentDigest": "0E159694507DB4519AFB0A4B883D023CC9E4A2F3306398737CF3539CFC2D587D",
   "HistoricalDigest": "9A33F33040B97AC61FAB1BCBA4021C182F59D9A12A33E3F1F14BAC2F881815BF",
-  "ExportedAt": "2026-11-21T18:04:02.9966394+00:00",
+  "ExportedAt": "2026-11-21T18:21:07.100499+00:00",
   "EvidenceClass": "Snapshot; engineering evidence is separate",
   "Rights": [
     {
@@ -177,7 +177,7 @@
     "ExpiresAt": "2026-12-08T00:00:00+00:00",
     "RetentionDays": 90,
     "EndpointTemplate": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date={yyyyMMdd}\u0026stockNo={symbol}\u0026response=json",
-    "DraftScopeDigest": "8D8273E7664A89A8CB31C7C8A4D1A48FAA15EF86EEC9F2328B6D7542443F2CB0",
+    "DraftScopeDigest": "B44278BF3F504F9C6ACB7358ABC04FBBD440F3757463C1EB6296612F74A0F045",
     "CalendarStatus": "UNVERIFIED_TARGET_COUNTS_NOT_PROVEN_TRADING_DAYS",
     "RightsReferences": [],
     "RequiredConfirmations": [
@@ -538,5 +538,5 @@
   "Oos": "NOT_RUN_SEPARATE_SELECTION_REQUIRED",
   "Promotion": "NOT_PROMOTED",
   "Phase5": "LOCKED",
-  "Digest": "478F8ACDDCA870597E0857ADE82EB7BFE6F6F57A0527FFF1555A167968BAE396"
+  "Digest": "48C90EF529153208B2D4AFF856547722D2920E298681F460792A5210A5043BAA"
 }

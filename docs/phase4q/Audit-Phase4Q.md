@@ -9,3 +9,12 @@ Gap: a pinned scope/environment approval does not yet bind an accepted environme
 Existing admin ResearchValidation uses no-store read-only API projections. Extend it with one additive review-readiness endpoint; keep older contracts and snapshots intact. Report seven PIT dimensions using existing historical observation fields and real prior fact counts, not invented eligible samples. No database migration or production schema change is needed. API/Web host coupling remains the pre-existing migration boundary; no new computation enters Web.
 
 Rights discovery found TWSE website clauses 6/8 and government dataset 11549 under OGDL 1.0. The monthly STOCK_DAY historical endpoint is not proven to be the same licensed resource. Independent reviewer, exact scope, environment acceptance and per-run authority remain external blockers. Public legal/metadata pages were read; no price endpoint was requested.
+
+<!-- binding -->
+Source SHA: da22501cfae8af9f59b39ae2767e6d1fb97ab9af
+Input versions: Phase4P-v1 / Phase4I-v1 / HistoricalNormalized-v1 / TrendSample-v1.
+Evidence: Engineering audit and implementation; external acceptance remains blocked.
+Document content SHA256 (before binding): 2bcef23758ee535f015ebf70ef846939c78d628e2d48193dcb28975ea228ea56
+Parent digest: 0E159694507DB4519AFB0A4B883D023CC9E4A2F3306398737CF3539CFC2D587D
+Historical input digest: 9A33F33040B97AC61FAB1BCBA4021C182F59D9A12A33E3F1F14BAC2F881815BF
+Export digest: 48C90EF529153208B2D4AFF856547722D2920E298681F460792A5210A5043BAA

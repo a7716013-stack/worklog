@@ -1,0 +1,104 @@
+{
+  "schemaVersion": "Phase4QArtifact-v1",
+  "version": "3.2.6",
+  "sourceCodeSha": "da22501cfae8af9f59b39ae2767e6d1fb97ab9af",
+  "inputVersions": [
+    "Phase4P-v1",
+    "Phase4I-v1",
+    "HistoricalNormalized-v1",
+    "TrendSample-v1"
+  ],
+  "parentDigest": "0E159694507DB4519AFB0A4B883D023CC9E4A2F3306398737CF3539CFC2D587D",
+  "historicalDigest": "9A33F33040B97AC61FAB1BCBA4021C182F59D9A12A33E3F1F14BAC2F881815BF",
+  "stateDigest": "48C90EF529153208B2D4AFF856547722D2920E298681F460792A5210A5043BAA",
+  "at": "2026-11-21T18:21:07.100499+00:00",
+  "evidenceClass": "Blocked real acceptance",
+  "payload": [
+    {
+      "Code": "ENDPOINT_ALLOWLIST",
+      "Status": "Blocked",
+      "Evidence": "NO_ACCEPTED_REAL_ISOLATED_ENVIRONMENT_RECEIPT"
+    },
+    {
+      "Code": "DNS_TLS",
+      "Status": "Blocked",
+      "Evidence": "NO_ACCEPTED_REAL_ISOLATED_ENVIRONMENT_RECEIPT"
+    },
+    {
+      "Code": "NO_REDIRECT_PROXY",
+      "Status": "Blocked",
+      "Evidence": "NO_ACCEPTED_REAL_ISOLATED_ENVIRONMENT_RECEIPT"
+    },
+    {
+      "Code": "REQUEST_QUOTA",
+      "Status": "Blocked",
+      "Evidence": "NO_ACCEPTED_REAL_ISOLATED_ENVIRONMENT_RECEIPT"
+    },
+    {
+      "Code": "CONCURRENCY",
+      "Status": "Blocked",
+      "Evidence": "NO_ACCEPTED_REAL_ISOLATED_ENVIRONMENT_RECEIPT"
+    },
+    {
+      "Code": "DURABLE_RESERVATION",
+      "Status": "Blocked",
+      "Evidence": "NO_ACCEPTED_REAL_ISOLATED_ENVIRONMENT_RECEIPT"
+    },
+    {
+      "Code": "CANCELLATION",
+      "Status": "Blocked",
+      "Evidence": "NO_ACCEPTED_REAL_ISOLATED_ENVIRONMENT_RECEIPT"
+    },
+    {
+      "Code": "TIMEOUT",
+      "Status": "Blocked",
+      "Evidence": "NO_ACCEPTED_REAL_ISOLATED_ENVIRONMENT_RECEIPT"
+    },
+    {
+      "Code": "RETRY",
+      "Status": "Blocked",
+      "Evidence": "NO_ACCEPTED_REAL_ISOLATED_ENVIRONMENT_RECEIPT"
+    },
+    {
+      "Code": "CIRCUIT_BREAKER",
+      "Status": "Blocked",
+      "Evidence": "NO_ACCEPTED_REAL_ISOLATED_ENVIRONMENT_RECEIPT"
+    },
+    {
+      "Code": "EXCLUSIVE_LOCK",
+      "Status": "Blocked",
+      "Evidence": "NO_ACCEPTED_REAL_ISOLATED_ENVIRONMENT_RECEIPT"
+    },
+    {
+      "Code": "CRASH_RECOVERY",
+      "Status": "Blocked",
+      "Evidence": "NO_ACCEPTED_REAL_ISOLATED_ENVIRONMENT_RECEIPT"
+    },
+    {
+      "Code": "IMMUTABLE_ARCHIVE",
+      "Status": "Blocked",
+      "Evidence": "NO_ACCEPTED_REAL_ISOLATED_ENVIRONMENT_RECEIPT"
+    },
+    {
+      "Code": "DIGEST_VERIFICATION",
+      "Status": "Blocked",
+      "Evidence": "NO_ACCEPTED_REAL_ISOLATED_ENVIRONMENT_RECEIPT"
+    },
+    {
+      "Code": "REPLAY",
+      "Status": "Blocked",
+      "Evidence": "NO_ACCEPTED_REAL_ISOLATED_ENVIRONMENT_RECEIPT"
+    },
+    {
+      "Code": "SENSITIVE_DATA_FILTER",
+      "Status": "Blocked",
+      "Evidence": "NO_ACCEPTED_REAL_ISOLATED_ENVIRONMENT_RECEIPT"
+    },
+    {
+      "Code": "STORAGE_BUDGET",
+      "Status": "Blocked",
+      "Evidence": "NO_ACCEPTED_REAL_ISOLATED_ENVIRONMENT_RECEIPT"
+    }
+  ],
+  "artifactContentSha256": "a1b3989a4a41fa4772e3156322314929298422a5adf807d05c32d918bf33f566"
+}

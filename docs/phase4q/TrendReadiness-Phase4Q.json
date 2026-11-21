@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "Phase4QArtifact-v1",
+  "version": "3.2.6",
+  "sourceCodeSha": "da22501cfae8af9f59b39ae2767e6d1fb97ab9af",
+  "inputVersions": [
+    "Phase4P-v1",
+    "Phase4I-v1",
+    "HistoricalNormalized-v1",
+    "TrendSample-v1"
+  ],
+  "parentDigest": "0E159694507DB4519AFB0A4B883D023CC9E4A2F3306398737CF3539CFC2D587D",
+  "historicalDigest": "9A33F33040B97AC61FAB1BCBA4021C182F59D9A12A33E3F1F14BAC2F881815BF",
+  "stateDigest": "48C90EF529153208B2D4AFF856547722D2920E298681F460792A5210A5043BAA",
+  "at": "2026-11-21T18:21:07.100499+00:00",
+  "evidenceClass": "Blocked",
+  "payload": {
+    "status": "BLOCKED_NO_APPROVED_TREND_DATASET",
+    "policy": {
+      "Version": "TrendSample-v1",
+      "MinimumDates": 20,
+      "MinimumInstrumentsPerDate": 10,
+      "MinimumOutcomePairs": 200
+    },
+    "formulaDigest": "81C788B359568B2B058EC92EDFE2F30A3593D7C2A23B3BE8C126BA026D06CBFB",
+    "features": 19,
+    "weights": [
+      25,
+      15,
+      15,
+      20,
+      15,
+      10
+    ],
+    "baseline": "NOT_RUN",
+    "oos": "NOT_RUN_SEPARATE_SELECTION_REQUIRED",
+    "promotion": "NOT_PROMOTED",
+    "phase5": "LOCKED"
+  },
+  "artifactContentSha256": "3102b4c75de9008c3b3ffcf191bdcff414793a60125c127790da80323a8a8fdf"
+}

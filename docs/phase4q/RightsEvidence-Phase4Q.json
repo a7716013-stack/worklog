@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "Phase4QArtifact-v1",
+  "version": "3.2.6",
+  "sourceCodeSha": "da22501cfae8af9f59b39ae2767e6d1fb97ab9af",
+  "inputVersions": [
+    "Phase4P-v1",
+    "Phase4I-v1",
+    "HistoricalNormalized-v1",
+    "TrendSample-v1"
+  ],
+  "parentDigest": "0E159694507DB4519AFB0A4B883D023CC9E4A2F3306398737CF3539CFC2D587D",
+  "historicalDigest": "9A33F33040B97AC61FAB1BCBA4021C182F59D9A12A33E3F1F14BAC2F881815BF",
+  "stateDigest": "48C90EF529153208B2D4AFF856547722D2920E298681F460792A5210A5043BAA",
+  "at": "2026-11-21T18:21:07.100499+00:00",
+  "evidenceClass": "Source discovery; no independent approval",
+  "payload": [
+    {
+      "Provider": "TWSE",
+      "Dataset": "DailyPrice / monthly STOCK_DAY",
+      "Purpose": "ACQUIRE",
+      "Status": "UNKNOWN",
+      "Sources": [
+        "https://www.twse.com.tw/zh/terms/use.html",
+        "https://data.gov.tw/dataset/11549",
+        "https://data.gov.tw/license"
+      ],
+      "SourceVersion": "TWSE website: no explicit version; dataset metadata 2025-05-01; OGDL-1.0",
+      "ObservedOn": "2026-11-22",
+      "Restriction": "TWSE website clause 6 restricts automated downloads without the permitted method or consent. Dataset 11549 identifies a daily CSV resource under OGDL; applicability to monthly historical STOCK_DAY is unproven.",
+      "EvidenceClass": "Source-discovery note; digest of this note, not original page bytes or an approval",
+      "Reviewer": null,
+      "ExpiresAt": null,
+      "PermissionDigests": [],
+      "Digest": "F2A041135DD4E074DA2CE0D0F8E4CC1636600FE4642772FD4584B78F1A784BB7"
+    },
+    {
+      "Provider": "TWSE",
+      "Dataset": "DailyPrice / monthly STOCK_DAY",
+      "Purpose": "STORE",
+      "Status": "UNKNOWN",
+      "Sources": [
+        "https://www.twse.com.tw/zh/terms/use.html",
+        "https://data.gov.tw/dataset/11549",
+        "https://data.gov.tw/license"
+      ],
+      "SourceVersion": "TWSE website: no explicit version; dataset metadata 2025-05-01; OGDL-1.0",
+      "ObservedOn": "2026-11-22",
+      "Restriction": "Website clause 8 limits reproduction subject to consent or specifically released open data. Retention of monthly historical responses requires exact scoped review; proposed retention is 90 days.",
+      "EvidenceClass": "Source-discovery note; digest of this note, not original page bytes or an approval",
+      "Reviewer": null,
+      "ExpiresAt": null,
+      "PermissionDigests": [],
+      "Digest": "242180D8B37E285CC2A1361B95AA4A1A72BA74A0262D5126D197847E116C7A0F"
+    },
+    {
+      "Provider": "TWSE",
+      "Dataset": "DailyPrice / monthly STOCK_DAY",
+      "Purpose": "RESEARCH",
+      "Status": "UNKNOWN",
+      "Sources": [
+        "https://www.twse.com.tw/zh/terms/use.html",
+        "https://data.gov.tw/dataset/11549",
+        "https://data.gov.tw/license"
+      ],
+      "SourceVersion": "TWSE website: no explicit version; dataset metadata 2025-05-01; OGDL-1.0",
+      "ObservedOn": "2026-11-22",
+      "Restriction": "OGDL permits reuse of covered open data with attribution, but exact historical endpoint coverage and independent purpose review are absent. Research references on a website are not a scoped grant.",
+      "EvidenceClass": "Source-discovery note; digest of this note, not original page bytes or an approval",
+      "Reviewer": null,
+      "ExpiresAt": null,
+      "PermissionDigests": [],
+      "Digest": "A079A13A72AED11EFFCB157082046C38C4EF6BFC35448CBEAD684422D2828F02"
+    },
+    {
+      "Provider": "TWSE",
+      "Dataset": "DailyPrice / monthly STOCK_DAY",
+      "Purpose": "REDISTRIBUTE",
+      "Status": "UNKNOWN",
+      "Sources": [
+        "https://www.twse.com.tw/zh/terms/use.html",
+        "https://data.gov.tw/dataset/11549",
+        "https://data.gov.tw/license"
+      ],
+      "SourceVersion": "TWSE website: no explicit version; dataset metadata 2025-05-01; OGDL-1.0",
+      "ObservedOn": "2026-11-22",
+      "Restriction": "Redistribution is independent. OGDL attribution obligations apply only to covered resources. No historical response redistribution receipt exists; website metadata excludes raw bodies.",
+      "EvidenceClass": "Source-discovery note; digest of this note, not original page bytes or an approval",
+      "Reviewer": null,
+      "ExpiresAt": null,
+      "PermissionDigests": [],
+      "Digest": "7F1B5F197CDDB4EECE374A5F263F3361FD1C9F31995EF74550E4686E75B6019E"
+    }
+  ],
+  "artifactContentSha256": "a9060cfdabd8afe27e8d8a9f4c5bab0c8e9be39d213a6d23ec52cc8b5f16def9"
+}
