@@ -47,14 +47,14 @@ public static class PilotScopeRules
     }
     public static CapturePermission[] Effective(PilotScope s,PilotAuthorization a,PilotTrust t)=>a.Permissions.Where(p=>
         s.RightsDigests.Contains(p.Digest)&&t.PermissionDigests.Contains(p.Digest)&&!t.RevokedDigests.Contains(p.Digest)&&
-        !string.IsNullOrWhiteSpace(p.Reviewer)&&p.Reviewer!=s.RequestedBy&&Digest(p.EvidenceReference)).ToArray();
+        !string.IsNullOrWhiteSpace(p.Reviewer)&&!string.Equals(p.Reviewer,s.RequestedBy,StringComparison.OrdinalIgnoreCase)&&Digest(p.EvidenceReference)).ToArray();
     public static string[] Blockers(PilotScope s,PilotAuthorization a,PilotTrust t,DateTimeOffset now,params string[] purposes)
     {
         Validate(s);var reasons=new List<string>();
         if(now.Offset!=TimeSpan.Zero||now<s.ForwardStart||now>=s.ForwardEnd||now>=s.ExpiresAt)reasons.Add("PILOT_EXPIRED_OR_NOT_STARTED");
         if(!t.Isolated||string.IsNullOrWhiteSpace(t.Environment))reasons.Add("AUTHORIZED_ISOLATED_ENVIRONMENT_REQUIRED");
         if(!a.Approvals.Any(p=>p.ScopeId==s.Id&&p.Environment==t.Environment&&p.RequestedBy==s.RequestedBy&&
-            !string.IsNullOrWhiteSpace(p.Reviewer)&&p.Reviewer!=s.RequestedBy&&p.Status=="APPROVED"&&p.ValidFrom.Offset==TimeSpan.Zero&&p.ExpiresAt.Offset==TimeSpan.Zero&&
+            !string.IsNullOrWhiteSpace(p.Reviewer)&&!string.Equals(p.Reviewer,s.RequestedBy,StringComparison.OrdinalIgnoreCase)&&p.Status=="APPROVED"&&p.ValidFrom.Offset==TimeSpan.Zero&&p.ExpiresAt.Offset==TimeSpan.Zero&&
             p.ValidFrom<=now&&p.ExpiresAt>now&&p.ExpiresAt<=s.ExpiresAt&&Digest(p.EvidenceDigest)&&
             p.Digest==ResearchMath.Digest(p with{Digest=""})&&t.ApprovalDigests.Contains(p.Digest)&&!t.RevokedDigests.Contains(p.Digest)))reasons.Add("INDEPENDENT_SCOPE_AND_ENVIRONMENT_APPROVAL_REQUIRED");
         var rights=Effective(s,a,t);

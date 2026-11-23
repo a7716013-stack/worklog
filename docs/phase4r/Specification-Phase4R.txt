@@ -1,0 +1,272 @@
+# Worklog v3.2.7 — Phase 4R
+
+## 任務
+
+請在現有 Worklog 專案上規劃與實作 Phase 4R：First Authorized Market Data & Evidence-Driven Research。
+
+Repository:
+https://github.com/a7716013-stack/worklog
+
+目前已確認基準：
+- Release v3.2.6
+- main SHA: 4105024fbfce15c98e4dc1ab0526ab88984fe8b3
+- PR #24 merged
+- CI 15/15 PASS
+- API / SQL assertions 633
+- Real Acquisition Runs 0
+- Approved Rights 0
+- Approved Pilot Scopes 0
+- PIT Eligible 0
+- Production ETL Gates 0/8
+- Real Baseline NOT_RUN
+- Phase 5 LOCKED
+
+開始時重新確認 main HEAD，閱讀 AGENTS.md、docs/phase4q、現有架構及測試，不要假設本文件所列 SHA 仍是最新版本。
+
+## 一、Architecture Audit
+
+檢查並重用：
+- CapturePermission
+- PilotScopeRules
+- PilotTrust
+- RealAcquisitionWorker
+- IsolatedEnvironmentReceipt
+- AcquisitionRunConsent
+- ForwardCaptureStore
+- SourceArchive
+- EtlPipeline / EtlScheduler
+- HistoricalDatasetBuilder
+- AuthorityResolution
+- EvidenceResolutionPacket
+- ComponentDatasetStore
+- PIT Seven Gates
+- TrendSample-v1
+- ResearchValidation
+
+建立 Phase4R Gap Matrix，標記 Already Implemented、Needs Hardening、External Dependency、Not In Scope。
+
+不得建立第二套權利核准、取得 Worker、PIT 或研究評分系統。
+
+## 二、Rights Resolution
+
+檢查 TWSE STOCK_DAY 月資料端點的適用條款。
+
+比對：
+- TWSE 網站條款
+- 政府開放資料集 11549
+- OGDL 1.0
+- 端點實際提供的資料資源
+- 資料保留、研究與再發布限制
+
+建立可審查的 Rights Decision Pack。
+
+分別顯示 ACQUIRE、STORE、RESEARCH、REDISTRIBUTE。
+
+如果精確端點授權不明，維持 UNKNOWN / BLOCKED。
+
+另外評估替代的明確授權資料來源，但先輸出相容性報告；不得直接接入新來源或發出市場資料請求。
+
+任何獨立核准都必須由外部可信審查者提供，不得由 Codex 自行產生。
+
+## 三、Pilot Scope Refinement
+
+以現有 50 檔、18 個月、900 項月資料請求提案為基礎。
+
+建立較小的候選首批範圍：
+- 預設 10 檔股票
+- 預設 3 個歷史月份
+- 預計 30 項唯一請求
+- 含重試理論上限 90 次
+
+所有數值僅為候選值，僅供審查，未核准，不得執行取得。
+
+確認：
+- 股票代號與歷史身分
+- 交易月份
+- Endpoint
+- 配額
+- 回應容量
+- 儲存容量
+- 保留期間
+- 執行窗口
+- Operator
+- Rights References
+- Scope Digest
+
+沿用既有 PilotScope/CapturePlan。
+
+任何範圍變更必須產生新的識別與重新審查，不得沿用原提案的核准。
+
+## 四、Isolated Environment Acceptance
+
+使用既有 IsolatedEnvironmentReceipt。
+
+對 17 項安全控制建立實際驗收清單與證據匯出：
+
+Endpoint Allowlist、DNS/TLS、No Redirect/Proxy、Request Quota、Concurrency、Durable Reservation、Cancellation、Timeout、Retry、Circuit Breaker、Exclusive Lock、Crash Recovery、Immutable Archive、Digest Verification、Replay、Sensitive Data Filter、Storage Budget。
+
+確認：
+- ACL
+- Storage Root
+- Source SHA
+- Environment Digest
+- Independent Reviewer
+- Expiry / Revocation
+- Evidence Integrity
+
+若沒有可信實際驗收，維持 BLOCKED。
+
+## 五、First Acquisition
+
+重用現有 ACQUIRE_ONCE，不新增第二個 Worker。
+
+執行前必須通過：
+- Independent ACQUIRE right
+- Independent STORE right
+- Exact approved scope
+- Externally pinned trust
+- Accepted isolated environment
+- Exact quota/date/instrument/endpoint
+- Explicit per-run consent
+
+缺少任一條件時必須 Fail Closed。
+
+本次 Codex 開發不得自行執行真實下載。
+
+只有使用者另行明確授權、所有外部 Gate 真正通過後，才允許操作員執行既有 ACQUIRE_ONCE。
+
+PLAN/DRY_RUN 不得產生外部市場資料請求。
+
+## 六、Capture Verification
+
+沿用現有 SourceArchive、CaptureRun、Quality 與 Replay。
+
+檢查：
+- Raw response digest
+- Immutable version
+- ObservedAt
+- RetrievedAt
+- Source publication evidence
+- Revision history
+- Instrument identity
+- Trading date
+- Unit normalization
+- Quality quarantine
+- Replay reproducibility
+- Dataset lineage
+
+禁止將 RetrievedAt 或 ObservedAt 推定為原始 PublishedAt。
+
+沒有真實 Capture 時，報告必須保留 0 次，不得使用 Fixture 偽裝成功。
+
+## 七、Historical Authority / PIT
+
+使用既有 AuthorityReview、EvidenceResolutionPacket 與 Seven PIT Gates。
+
+處理：
+- Historical Instrument Identity
+- Trading Calendar
+- Historical Universe
+- Price / Volume
+- Availability
+- Revision
+- Price Basis
+- Corporate Actions
+
+每個結案必須有來源、時間範圍、原始證據、審查者與 Digest。
+
+沒有證據維持 UNPROVEN。
+
+不得將單一 Gate 的通過視為整體 PIT 合格。
+
+## 八、Trend Dataset Readiness
+
+保留：
+- Candidate-v1
+- 19 Features
+- 六構面權重 25/15/15/20/15/10
+- 原 FormulaDigest
+- TrendSample-v1
+- 每 Fold 至少 20 個有效日期
+- 每日期至少 max(10, quantiles) 檔
+- 每 Fold 至少 200 組 Outcome Pairs
+- 獨立 OOS
+
+將 Acquisition Ready、Dataset Eligible、Research Ready 分開呈現。
+
+沒有核准資料集時，Baseline NOT_RUN、OOS NOT_RUN、Promotion NOT_PROMOTED、Phase5 LOCKED。
+
+不得降低研究門檻。
+
+## 九、Operations / UI
+
+優先擴充現有 ResearchValidation。
+
+呈現：
+- Rights Decision
+- Pilot Proposal
+- Environment Acceptance
+- Run Consent
+- Acquisition History
+- Raw Snapshot / Replay
+- Authority Coverage
+- PIT Eligibility
+- Trend Readiness
+- Production ETL Gates
+
+保留原有 API 權限、安全回應與 no-store 設定。
+
+避免新增與既有功能重複的 Dashboard。
+
+## 十、測試與交付
+
+執行 Build、API/SQL Regression、Identity Fixture、Legacy Golden Master、Acquisition Safety、Scope、Rights、Environment、Consent、Replay、Quality、Authority、PIT、Trend Readiness。
+
+必須區分：
+- Synthetic Fixture PASS
+- Integration PASS
+- Live Acquisition PASS
+- Production Acceptance PASS
+
+產生 docs/phase4r：
+- Audit-Phase4R.md
+- GapMatrix-Phase4R.md
+- RightsDecision-Phase4R.json
+- PilotProposal-Phase4R.json
+- EnvironmentAcceptance-Phase4R.json
+- AcquisitionReadiness-Phase4R.json
+- RealCaptureReport-Phase4R.json
+- HistoricalAuthority-Phase4R.json
+- PITCoverage-Phase4R.json
+- TrendReadiness-Phase4R.json
+- ProductionAcceptance-Phase4R.json
+- APIContractChange-Phase4R.md
+- implementation-Phase4R.md
+- engineering-Phase4R.json
+
+所有報告必須綁定真實 Source SHA、輸入版本、Evidence Class、Digest 與生成時間。
+
+## 禁止事項
+
+未經使用者另行明確批准，不得：
+- 購買資料
+- 登入第三方帳號
+- 執行真實市場資料取得
+- 擴大下載配額
+- 修改正式資料庫
+- 啟用正式 Scheduler
+- 自行核准 Rights / Scope / Authority / Dataset
+- 修改 Candidate-v1 公式
+- 執行真實交易
+- 執行未授權的 Baseline 或 OOS
+- Promotion 模型
+- 解鎖 Phase 5
+- Push、Merge、Release 或 Deploy
+
+ML、DL、Bayes、LLM、RAG、Embedding 僅保留未來規劃，不納入 Phase 4R 實作。
+
+請先輸出 Architecture Audit 與 Gap Matrix，再依 PR 工作包順序進行開發，最後提供完成項目、測試證據、外部阻塞與下一步安全操作。
+
+## 本次使用者授權更新（2026-11-24）
+
+授權實作至本機，版號 3.2.7，並上傳 Git。不上線上網站。此授權不包含真實市場資料取得、權利／範圍核准、正式資料庫或計費變更。

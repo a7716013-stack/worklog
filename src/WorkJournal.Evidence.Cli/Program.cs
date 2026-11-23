@@ -4,6 +4,7 @@ using WorkJournal.Web.Services.Evidence;
 using WorkJournal.Web.Models.Research;
 using WorkJournal.Web.Services.Research;
 
+if(args.Length>0&&args[0].StartsWith("--phase4r-",StringComparison.Ordinal))return Phase4RCommands.Run(args);
 if(args.Length>0&&args[0].StartsWith("--phase4q-",StringComparison.Ordinal))return Phase4QCommands.Run(args);
 if(args.Length>0&&args[0].StartsWith("--phase4p-",StringComparison.Ordinal))return await Phase4PCommands.Run(args);
 if(args.Length>0&&args[0].StartsWith("--phase4o-",StringComparison.Ordinal))return Phase4OCommands.Run(args);

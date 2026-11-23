@@ -5299,6 +5299,99 @@
         ]
       }
     },
+    "/api/v1/data/pilot/review": {
+      "get": {
+        "operationId": "Phase4RController_Readiness",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Phase4RReport"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
     "/api/v1/market/radar/snapshot": {
       "get": {
         "operationId": "RadarJobsController_Snapshot",
@@ -14712,6 +14805,666 @@
           "inspected",
           "fraction",
           "status"
+        ]
+      },
+      "Phase4RReport": {
+        "type": "object",
+        "properties": {
+          "schemaVersion": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "sourceCodeSha": {
+            "type": "string"
+          },
+          "parentDigest": {
+            "type": "string"
+          },
+          "inputVersions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "exportedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "evidenceClass": {
+            "type": "string"
+          },
+          "rights": {
+            "$ref": "#/components/schemas/RightsDecisionPack"
+          },
+          "proposal": {
+            "$ref": "#/components/schemas/PilotProposalReview"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/EnvironmentAcceptanceReview"
+          },
+          "runConsent": {
+            "$ref": "#/components/schemas/AcquisitionRunConsent",
+            "nullable": true
+          },
+          "acquisition": {
+            "$ref": "#/components/schemas/AcquisitionReadiness"
+          },
+          "readiness": {
+            "$ref": "#/components/schemas/ReadinessSeparation"
+          },
+          "actual": {
+            "$ref": "#/components/schemas/PilotActualCounts"
+          },
+          "runs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PilotResult"
+            }
+          },
+          "captureVerification": {
+            "$ref": "#/components/schemas/CaptureVerificationReview"
+          },
+          "historical": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HistoricalCoverage"
+            }
+          },
+          "pit": {
+            "$ref": "#/components/schemas/PilotCoverage"
+          },
+          "samplePolicy": {
+            "$ref": "#/components/schemas/SamplePolicy"
+          },
+          "production": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReadinessCheck"
+            }
+          },
+          "googleAcceptance": {
+            "type": "string"
+          },
+          "formulaDigest": {
+            "type": "string"
+          },
+          "schedulerMode": {
+            "type": "string"
+          },
+          "baseline": {
+            "type": "string"
+          },
+          "oos": {
+            "type": "string"
+          },
+          "promotion": {
+            "type": "string"
+          },
+          "phase5": {
+            "type": "string"
+          },
+          "digest": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "version",
+          "sourceCodeSha",
+          "parentDigest",
+          "inputVersions",
+          "exportedAt",
+          "evidenceClass",
+          "rights",
+          "proposal",
+          "environment",
+          "runConsent",
+          "acquisition",
+          "readiness",
+          "actual",
+          "runs",
+          "captureVerification",
+          "historical",
+          "pit",
+          "samplePolicy",
+          "production",
+          "googleAcceptance",
+          "formulaDigest",
+          "schedulerMode",
+          "baseline",
+          "oos",
+          "promotion",
+          "phase5",
+          "digest"
+        ]
+      },
+      "RightsDecisionPack": {
+        "type": "object",
+        "properties": {
+          "purposes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RightsEvidenceNote"
+            }
+          },
+          "alternatives": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SourceCompatibility"
+            }
+          },
+          "exactEndpointStatus": {
+            "type": "string"
+          },
+          "requiredReviewerActions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "purposes",
+          "alternatives",
+          "exactEndpointStatus",
+          "requiredReviewerActions"
+        ]
+      },
+      "SourceCompatibility": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "string"
+          },
+          "resource": {
+            "type": "string"
+          },
+          "license": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "compatibleFields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "gaps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "source",
+          "resource",
+          "license",
+          "status",
+          "compatibleFields",
+          "gaps",
+          "sources"
+        ]
+      },
+      "PilotProposalReview": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/PilotScope"
+          },
+          "instrumentCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "monthCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "uniqueRequests": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maximumAttempts": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "instrumentIdentity": {
+            "type": "string"
+          },
+          "calendar": {
+            "type": "string"
+          },
+          "operatorStatus": {
+            "type": "string"
+          },
+          "requiredConfirmations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "status",
+          "scope",
+          "instrumentCount",
+          "monthCount",
+          "uniqueRequests",
+          "maximumAttempts",
+          "instrumentIdentity",
+          "calendar",
+          "operatorStatus",
+          "requiredConfirmations"
+        ]
+      },
+      "PilotScope": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "market": {
+            "type": "string"
+          },
+          "instruments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "datasets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "historicalStart": {
+            "type": "string",
+            "format": "date"
+          },
+          "historicalEnd": {
+            "type": "string",
+            "format": "date"
+          },
+          "forwardStart": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "forwardEnd": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "featureLookback": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "outcomeHorizon": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "maxRequests": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "storageLimitBytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "maximumResponseBytes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "requestedBy": {
+            "type": "string"
+          },
+          "requests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CapturePlan"
+            }
+          },
+          "rightsDigests": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "market",
+          "instruments",
+          "datasets",
+          "historicalStart",
+          "historicalEnd",
+          "forwardStart",
+          "forwardEnd",
+          "featureLookback",
+          "outcomeHorizon",
+          "provider",
+          "maxRequests",
+          "storageLimitBytes",
+          "maximumResponseBytes",
+          "expiresAt",
+          "requestedBy",
+          "requests",
+          "rightsDigests"
+        ]
+      },
+      "CapturePlan": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "dataset": {
+            "type": "string"
+          },
+          "instrument": {
+            "type": "string"
+          },
+          "requestDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "coverageStart": {
+            "type": "string",
+            "format": "date"
+          },
+          "coverageEnd": {
+            "type": "string",
+            "format": "date"
+          },
+          "sourceUrl": {
+            "type": "string"
+          },
+          "schemaVersion": {
+            "type": "string"
+          },
+          "sourceCodeSha": {
+            "type": "string"
+          },
+          "fixture": {
+            "type": "boolean"
+          },
+          "minimumRetentionDays": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "retentionPolicy": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "provider",
+          "dataset",
+          "instrument",
+          "requestDate",
+          "coverageStart",
+          "coverageEnd",
+          "sourceUrl",
+          "schemaVersion",
+          "sourceCodeSha",
+          "fixture",
+          "minimumRetentionDays",
+          "retentionPolicy"
+        ]
+      },
+      "EnvironmentAcceptanceReview": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "controls": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReviewEvidenceRequirement"
+            }
+          },
+          "boundaries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReviewEvidenceRequirement"
+            }
+          },
+          "acceptedReceipt": {
+            "$ref": "#/components/schemas/IsolatedEnvironmentReceipt",
+            "nullable": true
+          },
+          "evidenceClass": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "controls",
+          "boundaries",
+          "acceptedReceipt",
+          "evidenceClass"
+        ]
+      },
+      "ReviewEvidenceRequirement": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "requiredEvidence": {
+            "type": "string"
+          },
+          "evidenceDigest": {
+            "type": "string",
+            "nullable": true
+          },
+          "reviewer": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "code",
+          "status",
+          "requiredEvidence",
+          "evidenceDigest",
+          "reviewer"
+        ]
+      },
+      "IsolatedEnvironmentReceipt": {
+        "type": "object",
+        "properties": {
+          "environment": {
+            "type": "string"
+          },
+          "storeIdentity": {
+            "type": "string"
+          },
+          "sourceCodeSha": {
+            "type": "string"
+          },
+          "operator": {
+            "type": "string"
+          },
+          "reviewer": {
+            "type": "string"
+          },
+          "acceptedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "evidenceClass": {
+            "type": "string"
+          },
+          "controls": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IsolatedControl"
+            }
+          },
+          "digest": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "environment",
+          "storeIdentity",
+          "sourceCodeSha",
+          "operator",
+          "reviewer",
+          "acceptedAt",
+          "expiresAt",
+          "evidenceClass",
+          "controls",
+          "digest"
+        ]
+      },
+      "IsolatedControl": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "evidenceDigest": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "status",
+          "evidenceDigest"
+        ]
+      },
+      "AcquisitionRunConsent": {
+        "type": "object",
+        "properties": {
+          "scopeId": {
+            "type": "string"
+          },
+          "runId": {
+            "type": "string"
+          },
+          "environmentDigest": {
+            "type": "string"
+          },
+          "operator": {
+            "type": "string"
+          },
+          "mode": {
+            "type": "string"
+          },
+          "authorizedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "evidenceDigest": {
+            "type": "string"
+          },
+          "digest": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "scopeId",
+          "runId",
+          "environmentDigest",
+          "operator",
+          "mode",
+          "authorizedAt",
+          "expiresAt",
+          "evidenceDigest",
+          "digest"
+        ]
+      },
+      "ReadinessSeparation": {
+        "type": "object",
+        "properties": {
+          "acquisitionReady": {
+            "type": "string"
+          },
+          "datasetEligible": {
+            "type": "string"
+          },
+          "researchReady": {
+            "type": "string"
+          },
+          "blockingReasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "acquisitionReady",
+          "datasetEligible",
+          "researchReady",
+          "blockingReasons"
+        ]
+      },
+      "CaptureVerificationReview": {
+        "type": "object",
+        "properties": {
+          "realRuns": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "newFacts": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "replayStatus": {
+            "type": "string"
+          },
+          "requirements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReviewEvidenceRequirement"
+            }
+          }
+        },
+        "required": [
+          "realRuns",
+          "newFacts",
+          "replayStatus",
+          "requirements"
         ]
       },
       "MarketRadarResult": {

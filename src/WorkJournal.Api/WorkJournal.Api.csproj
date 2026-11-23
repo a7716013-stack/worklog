@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
-    <Version>3.2.6</Version>
+    <Version>3.2.7</Version>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>workjournal-google-auth</UserSecretsId>
@@ -13,4 +13,5 @@
     <Content Include="../../docs/validation-state-3.2.2.json" Link="Research/validation-state.json" CopyToOutputDirectory="PreserveNewest" />
   <Content Include="../../docs/phase4i-state-3.2.2.json" Link="Research/phase4i-state.json" CopyToOutputDirectory="PreserveNewest" /><Content Include="../../docs/phase4j-state-3.2.2.json" Link="Research/phase4j-state.json" CopyToOutputDirectory="PreserveNewest" /><Content Include="../../docs/etl-state-3.2.2.json" Link="Research/etl-state.json" CopyToOutputDirectory="PreserveNewest" /><Content Include="../../docs/etl-operations-3.2.2.json" Link="Research/etl-operations.json" CopyToOutputDirectory="PreserveNewest" /><Content Include="../../docs/phase4m/phase4m-state-3.2.2.json" Link="Research/phase4m-state.json" CopyToOutputDirectory="PreserveNewest" /><Content Include="../../docs/phase4n/OperationsReport-Phase4N.json" Link="Research/phase4n-state.json" CopyToOutputDirectory="PreserveNewest" /><Content Include="../../docs/phase4o/OperationsReport-Phase4O.json" Link="Research/phase4o-state.json" CopyToOutputDirectory="PreserveNewest" /><Content Include="../../docs/phase4p/OperationsReport-Phase4P.json" Link="Research/phase4p-state.json" CopyToOutputDirectory="PreserveNewest" /></ItemGroup>
   <ItemGroup><Content Include="../../docs/phase4q/OperationsReport-Phase4Q.json" Link="Research/phase4q-state.json" CopyToOutputDirectory="PreserveNewest" Condition="Exists('../../docs/phase4q/OperationsReport-Phase4Q.json')" /></ItemGroup>
+  <ItemGroup><Content Include="../../docs/phase4r/OperationsReport-Phase4R.json" Link="Research/phase4r-state.json" CopyToOutputDirectory="PreserveNewest" Condition="Exists('../../docs/phase4r/OperationsReport-Phase4R.json')" /></ItemGroup>
 </Project>
