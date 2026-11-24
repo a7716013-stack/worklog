@@ -31,3 +31,12 @@ Existing admin ResearchValidation adds Phase4R review, environment/consent, capt
 Reports bind implementation source commit SHA separately from final Git commit containing generated reports, input versions, parent digest, evidence class, UTC generation time and artifact hash. No self-referential commit hash is claimed. Engineering test logs and CI attestations are separate from live capture and production acceptance. Local browser fixture success is not real OAuth acceptance. This task uploads a review branch/PR only; no main merge, GitHub release or website deployment.
 
 Next safe action: independent review of exact endpoint rights and candidate symbols/months/budgets, then real isolated environment acceptance and per-run consent. Development/Git authorization is not authorization for download, paid data, production SQL changes, scheduler activation, baseline/OOS, trading or Phase5.
+
+<!-- binding -->
+Source SHA: 0386a1abd0124859007c4cdc16dd5ec61f8e332e
+Input versions: Phase4Q-v1, PilotScope-v1, HistoricalNormalized-v1, TrendSample-v1
+Evidence: Engineering audit/implementation; no external acceptance.
+Generated UTC: 2026-11-23T19:05:09.1056726+00:00
+Content SHA256 (before binding): a7f0080838528d9e7249e0a86bec1428c2a0a4305f935832baa2051f97c7f5a3
+Parent digest: 48C90EF529153208B2D4AFF856547722D2920E298681F460792A5210A5043BAA
+Export digest: D4B985EA47BB8FC406C13E37703DDFD5B6D96CC42CE0339B43C8BD58CB7519AB

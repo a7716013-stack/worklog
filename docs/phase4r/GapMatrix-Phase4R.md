@@ -21,3 +21,12 @@
 | Deployment / ML / paid usage | Not In Scope | No website deployment, auto release, billing change, new data provider integration or model promotion |
 
 Implementation order follows packages 1-10. Engineering tests never satisfy external acceptance.
+
+<!-- binding -->
+Source SHA: 0386a1abd0124859007c4cdc16dd5ec61f8e332e
+Input versions: Phase4Q-v1, PilotScope-v1, HistoricalNormalized-v1, TrendSample-v1
+Evidence: Engineering audit/implementation; no external acceptance.
+Generated UTC: 2026-11-23T19:05:09.1056726+00:00
+Content SHA256 (before binding): d24d5a9ab0385b5fad8dd2f97be8c1fbaace306eae91a11872f11c78d8143398
+Parent digest: 48C90EF529153208B2D4AFF856547722D2920E298681F460792A5210A5043BAA
+Export digest: D4B985EA47BB8FC406C13E37703DDFD5B6D96CC42CE0339B43C8BD58CB7519AB

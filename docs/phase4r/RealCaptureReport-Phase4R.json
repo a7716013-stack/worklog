@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "Phase4RArtifact-v1",
+  "version": "3.2.7",
+  "sourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+  "inputVersions": [
+    "Phase4Q-v1",
+    "PilotScope-v1",
+    "HistoricalNormalized-v1",
+    "TrendSample-v1"
+  ],
+  "parentDigest": "48C90EF529153208B2D4AFF856547722D2920E298681F460792A5210A5043BAA",
+  "stateDigest": "D4B985EA47BB8FC406C13E37703DDFD5B6D96CC42CE0339B43C8BD58CB7519AB",
+  "generatedAt": "2026-11-23T19:05:09.1056726+00:00",
+  "evidenceClass": "NO_REAL_CAPTURE",
+  "payload": {
+    "actual": {
+      "ApprovedProviderRights": 0,
+      "ApprovedPilotScopes": 0,
+      "RealAcquisitionRuns": 0,
+      "NewRawSnapshots": 0,
+      "NewNormalizedFacts": 0,
+      "HistoricalEvidenceAccepted": 0,
+      "PitEligibleObservations": 0,
+      "ApprovedDatasets": 0,
+      "ProductionGatesReleased": 0
+    },
+    "runs": [],
+    "verification": {
+      "RealRuns": 0,
+      "NewFacts": 0,
+      "ReplayStatus": "NOT_RUN_NO_REAL_CAPTURE",
+      "Requirements": [
+        {
+          "Code": "RAW_RESPONSE_DIGEST",
+          "Status": "BLOCKED",
+          "RequiredEvidence": "No Phase4R real capture. Verify existing SourceArchive/CaptureRun/Quality/Replay evidence after separately authorized acquisition; ObservedAt/RetrievedAt never imply PublishedAt.",
+          "EvidenceDigest": null,
+          "Reviewer": null
+        },
+        {
+          "Code": "IMMUTABLE_VERSION",
+          "Status": "BLOCKED",
+          "RequiredEvidence": "No Phase4R real capture. Verify existing SourceArchive/CaptureRun/Quality/Replay evidence after separately authorized acquisition; ObservedAt/RetrievedAt never imply PublishedAt.",
+          "EvidenceDigest": null,
+          "Reviewer": null
+        },
+        {
+          "Code": "OBSERVED_AT",
+          "Status": "BLOCKED",
+          "RequiredEvidence": "No Phase4R real capture. Verify existing SourceArchive/CaptureRun/Quality/Replay evidence after separately authorized acquisition; ObservedAt/RetrievedAt never imply PublishedAt.",
+          "EvidenceDigest": null,
+          "Reviewer": null
+        },
+        {
+          "Code": "RETRIEVED_AT",
+          "Status": "BLOCKED",
+          "RequiredEvidence": "No Phase4R real capture. Verify existing SourceArchive/CaptureRun/Quality/Replay evidence after separately authorized acquisition; ObservedAt/RetrievedAt never imply PublishedAt.",
+          "EvidenceDigest": null,
+          "Reviewer": null
+        },
+        {
+          "Code": "SOURCE_PUBLICATION_EVIDENCE",
+          "Status": "BLOCKED",
+          "RequiredEvidence": "No Phase4R real capture. Verify existing SourceArchive/CaptureRun/Quality/Replay evidence after separately authorized acquisition; ObservedAt/RetrievedAt never imply PublishedAt.",
+          "EvidenceDigest": null,
+          "Reviewer": null
+        },
+        {
+          "Code": "REVISION_HISTORY",
+          "Status": "BLOCKED",
+          "RequiredEvidence": "No Phase4R real capture. Verify existing SourceArchive/CaptureRun/Quality/Replay evidence after separately authorized acquisition; ObservedAt/RetrievedAt never imply PublishedAt.",
+          "EvidenceDigest": null,
+          "Reviewer": null
+        },
+        {
+          "Code": "INSTRUMENT_IDENTITY",
+          "Status": "BLOCKED",
+          "RequiredEvidence": "No Phase4R real capture. Verify existing SourceArchive/CaptureRun/Quality/Replay evidence after separately authorized acquisition; ObservedAt/RetrievedAt never imply PublishedAt.",
+          "EvidenceDigest": null,
+          "Reviewer": null
+        },
+        {
+          "Code": "TRADING_DATE",
+          "Status": "BLOCKED",
+          "RequiredEvidence": "No Phase4R real capture. Verify existing SourceArchive/CaptureRun/Quality/Replay evidence after separately authorized acquisition; ObservedAt/RetrievedAt never imply PublishedAt.",
+          "EvidenceDigest": null,
+          "Reviewer": null
+        },
+        {
+          "Code": "UNIT_NORMALIZATION",
+          "Status": "BLOCKED",
+          "RequiredEvidence": "No Phase4R real capture. Verify existing SourceArchive/CaptureRun/Quality/Replay evidence after separately authorized acquisition; ObservedAt/RetrievedAt never imply PublishedAt.",
+          "EvidenceDigest": null,
+          "Reviewer": null
+        },
+        {
+          "Code": "QUALITY_QUARANTINE",
+          "Status": "BLOCKED",
+          "RequiredEvidence": "No Phase4R real capture. Verify existing SourceArchive/CaptureRun/Quality/Replay evidence after separately authorized acquisition; ObservedAt/RetrievedAt never imply PublishedAt.",
+          "EvidenceDigest": null,
+          "Reviewer": null
+        },
+        {
+          "Code": "REPLAY_REPRODUCIBILITY",
+          "Status": "BLOCKED",
+          "RequiredEvidence": "No Phase4R real capture. Verify existing SourceArchive/CaptureRun/Quality/Replay evidence after separately authorized acquisition; ObservedAt/RetrievedAt never imply PublishedAt.",
+          "EvidenceDigest": null,
+          "Reviewer": null
+        },
+        {
+          "Code": "DATASET_LINEAGE",
+          "Status": "BLOCKED",
+          "RequiredEvidence": "No Phase4R real capture. Verify existing SourceArchive/CaptureRun/Quality/Replay evidence after separately authorized acquisition; ObservedAt/RetrievedAt never imply PublishedAt.",
+          "EvidenceDigest": null,
+          "Reviewer": null
+        }
+      ]
+    }
+  },
+  "artifactContentSha256": "ce1ce3c0abf861cc7ec18c1f6a8e283cef56e04286ef8156752bc7f1cc5c2a73"
+}
