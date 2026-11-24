@@ -1,0 +1,1172 @@
+{
+  "SchemaVersion": "Phase4R-v1",
+  "Version": "3.2.7",
+  "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+  "ParentDigest": "48C90EF529153208B2D4AFF856547722D2920E298681F460792A5210A5043BAA",
+  "InputVersions": [
+    "Phase4Q-v1",
+    "PilotScope-v1",
+    "HistoricalNormalized-v1",
+    "TrendSample-v1"
+  ],
+  "ExportedAt": "2026-11-23T19:05:09.1056726+00:00",
+  "EvidenceClass": "Review snapshot; not live acceptance",
+  "Rights": {
+    "Purposes": [
+      {
+        "Provider": "TWSE",
+        "Dataset": "DailyPrice / monthly STOCK_DAY",
+        "Purpose": "ACQUIRE",
+        "Status": "UNKNOWN",
+        "Sources": [
+          "https://www.twse.com.tw/zh/terms/use.html",
+          "https://data.gov.tw/dataset/11549",
+          "https://data.gov.tw/license"
+        ],
+        "SourceVersion": "TWSE website: no explicit version; dataset metadata 2025-05-01; OGDL-1.0",
+        "ObservedOn": "2026-11-24",
+        "Restriction": "TWSE website clause 6 restricts automated downloads without the permitted method or consent. Dataset 11549 identifies a daily CSV resource under OGDL; applicability to monthly historical STOCK_DAY is unproven.",
+        "EvidenceClass": "Source-discovery note; digest of this note, not original page bytes or an approval",
+        "Reviewer": null,
+        "ExpiresAt": null,
+        "PermissionDigests": [],
+        "Digest": "276EB2EEA789F6B188B0E8116D71370A2390CA636ECCF7423907A00EF40A14D7"
+      },
+      {
+        "Provider": "TWSE",
+        "Dataset": "DailyPrice / monthly STOCK_DAY",
+        "Purpose": "STORE",
+        "Status": "UNKNOWN",
+        "Sources": [
+          "https://www.twse.com.tw/zh/terms/use.html",
+          "https://data.gov.tw/dataset/11549",
+          "https://data.gov.tw/license"
+        ],
+        "SourceVersion": "TWSE website: no explicit version; dataset metadata 2025-05-01; OGDL-1.0",
+        "ObservedOn": "2026-11-24",
+        "Restriction": "Website clause 8 limits reproduction subject to consent or specifically released open data. Retention of monthly historical responses requires exact scoped review; proposed retention is 90 days.",
+        "EvidenceClass": "Source-discovery note; digest of this note, not original page bytes or an approval",
+        "Reviewer": null,
+        "ExpiresAt": null,
+        "PermissionDigests": [],
+        "Digest": "1260A9C1BB20648BDF5A616AA5BFD7770445D3D83D620D57331FAB6656689394"
+      },
+      {
+        "Provider": "TWSE",
+        "Dataset": "DailyPrice / monthly STOCK_DAY",
+        "Purpose": "RESEARCH",
+        "Status": "UNKNOWN",
+        "Sources": [
+          "https://www.twse.com.tw/zh/terms/use.html",
+          "https://data.gov.tw/dataset/11549",
+          "https://data.gov.tw/license"
+        ],
+        "SourceVersion": "TWSE website: no explicit version; dataset metadata 2025-05-01; OGDL-1.0",
+        "ObservedOn": "2026-11-24",
+        "Restriction": "OGDL permits reuse of covered open data with attribution, but exact historical endpoint coverage and independent purpose review are absent. Research references on a website are not a scoped grant.",
+        "EvidenceClass": "Source-discovery note; digest of this note, not original page bytes or an approval",
+        "Reviewer": null,
+        "ExpiresAt": null,
+        "PermissionDigests": [],
+        "Digest": "93E6B15C40E659168F6F00D721F221C4F495D8328F6215D4680B3F15B9239F18"
+      },
+      {
+        "Provider": "TWSE",
+        "Dataset": "DailyPrice / monthly STOCK_DAY",
+        "Purpose": "REDISTRIBUTE",
+        "Status": "UNKNOWN",
+        "Sources": [
+          "https://www.twse.com.tw/zh/terms/use.html",
+          "https://data.gov.tw/dataset/11549",
+          "https://data.gov.tw/license"
+        ],
+        "SourceVersion": "TWSE website: no explicit version; dataset metadata 2025-05-01; OGDL-1.0",
+        "ObservedOn": "2026-11-24",
+        "Restriction": "Redistribution is independent. OGDL attribution obligations apply only to covered resources. No historical response redistribution receipt exists; website metadata excludes raw bodies.",
+        "EvidenceClass": "Source-discovery note; digest of this note, not original page bytes or an approval",
+        "Reviewer": null,
+        "ExpiresAt": null,
+        "PermissionDigests": [],
+        "Digest": "B1EF95FE6EF25307A22F6E9917CA91B4CC23CDE5BF30ABB8ACD8DCF7B7208F6B"
+      }
+    ],
+    "Alternatives": [
+      {
+        "Source": "Government dataset 11549 / TWSE",
+        "Resource": "https://www.twse.com.tw/exchangeReport/STOCK_DAY_ALL?response=open_data",
+        "License": "OGDL-1.0 per dataset metadata; exact downloaded bytes not inspected",
+        "Status": "COMPATIBILITY_REVIEW_ONLY_NOT_CONNECTED",
+        "CompatibleFields": [
+          "trade date",
+          "instrument code/name",
+          "volume",
+          "turnover",
+          "OHLC",
+          "price change",
+          "transaction count"
+        ],
+        "Gaps": [
+          "Daily CSV differs from monthly STOCK_DAY JSON; existing parser cannot be reused unchanged.",
+          "Historical month retrieval and historical versions are unproven.",
+          "Publication/revision/identity/calendar evidence remains unproven.",
+          "New endpoint requires separately reviewed rights/scope/allowlist/parser; no connection in Phase4R."
+        ],
+        "Sources": [
+          "https://data.gov.tw/dataset/11549",
+          "https://data.gov.tw/license"
+        ]
+      }
+    ],
+    "ExactEndpointStatus": "UNKNOWN_BLOCKED",
+    "RequiredReviewerActions": [
+      "Archive applicable source terms/version and exact resource mapping; note digests are not raw-page digests.",
+      "Independently review ACQUIRE, STORE, RESEARCH and REDISTRIBUTE separately.",
+      "Bind existing CapturePermission to exact new plan IDs, purpose, retention, expiry and evidence; provision external trust."
+    ]
+  },
+  "Proposal": {
+    "Status": "PROPOSED_NOT_APPROVED",
+    "Scope": {
+      "Id": "C90B3F6DD21DA41BD0E23A672709E1085A307615E33E714B7A6DBCEF60FE2FD5",
+      "Market": "TWSE",
+      "Instruments": [
+        "1101",
+        "1102",
+        "1216",
+        "1301",
+        "1303",
+        "1326",
+        "1402",
+        "1476",
+        "1590",
+        "1605"
+      ],
+      "Datasets": [
+        "Price"
+      ],
+      "HistoricalStart": "2026-07-01",
+      "HistoricalEnd": "2026-09-30",
+      "ForwardStart": "2026-12-01T00:00:00+00:00",
+      "ForwardEnd": "2026-12-08T00:00:00+00:00",
+      "FeatureLookback": 250,
+      "OutcomeHorizon": 20,
+      "Provider": "TWSE",
+      "MaxRequests": 90,
+      "StorageLimitBytes": 16777216,
+      "MaximumResponseBytes": 65536,
+      "ExpiresAt": "2026-12-08T00:00:00+00:00",
+      "RequestedBy": "UNASSIGNED_REQUIRES_HUMAN",
+      "Requests": [
+        {
+          "Id": "BBBDF9CF40645DC89A6B0C994A242B3CEB3DDAAACFAE2E600AF9802DB7E99B41",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1101",
+          "RequestDate": "2026-07-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260701\u0026stockNo=1101\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "08C7ACC1DE806262910DAD78AA51D312DF4FDEF4577952FC1EAE9B399DEBC277",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1101",
+          "RequestDate": "2026-08-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801\u0026stockNo=1101\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "4464927803D79C001E07B47F5A96C3716D9946F679266F5179BE5FCEC6E67EB2",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1101",
+          "RequestDate": "2026-09-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901\u0026stockNo=1101\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "6CC428520AB6B9F768BC5FA0AF6F22B9AA3DA4A2C1FF3863F7D95A12F7083721",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1102",
+          "RequestDate": "2026-07-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260701\u0026stockNo=1102\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "C19F94AFDE7AB674B4DD77EAD9AE171CA19B6558F17B4B3488B0FA40FCFF21C7",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1102",
+          "RequestDate": "2026-08-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801\u0026stockNo=1102\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "56AF234CE631DF6B365FCE046EB11E921F5A6D3A61A2CAA44DA53D00A62FCCC7",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1102",
+          "RequestDate": "2026-09-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901\u0026stockNo=1102\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "309E5B156A99A17692CB5E1ADBD5A9AB6AEA9A87EB95FB93EB082C614A4B0728",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1216",
+          "RequestDate": "2026-07-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260701\u0026stockNo=1216\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "CD23025009CC46C231AD845DEAD0AE3F14293DEC6E56D47A31C232E359765A43",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1216",
+          "RequestDate": "2026-08-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801\u0026stockNo=1216\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "C5DDA5EEC9FCC4B239DB08B92EDA2BDB973872A016AF2B1A9CC5FB9DA88F47E7",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1216",
+          "RequestDate": "2026-09-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901\u0026stockNo=1216\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "D826611D00FD36AB02B783DA006045112E1527D0FFD4FA244D2528BB56D9F9AF",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1301",
+          "RequestDate": "2026-07-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260701\u0026stockNo=1301\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "75268C0C6196BB68FD8059145DBF910EBADA99E0ACE8A807324176CBB15DCF85",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1301",
+          "RequestDate": "2026-08-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801\u0026stockNo=1301\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "8FBF13C7A9DAD8E34D490CED47B6DCB91F68552B822B5296B78C92C513C63597",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1301",
+          "RequestDate": "2026-09-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901\u0026stockNo=1301\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "5F7984551E353D510368E09E97B201BEC355CE82C200E51C77E02A9C1AB23E5F",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1303",
+          "RequestDate": "2026-07-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260701\u0026stockNo=1303\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "AD6AE4F445750186D16F401019524076FD201AD7C330F5BB0B2C421AF1A99E45",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1303",
+          "RequestDate": "2026-08-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801\u0026stockNo=1303\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "0BA48E73D3D0089AAF988A5CD2AAE0C2B7FC74E59D535BCDCC33AFE9B0F38E53",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1303",
+          "RequestDate": "2026-09-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901\u0026stockNo=1303\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "B300F0C1576035E67A05E7CA33252DF935BCA1587D3A0492E1BA0E976F2444FF",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1326",
+          "RequestDate": "2026-07-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260701\u0026stockNo=1326\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "A6AE1062D26A2BBE86BD79566C379A223330EF380BE65119625E96466D58C97A",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1326",
+          "RequestDate": "2026-08-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801\u0026stockNo=1326\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "9F77F9161AAEB7A8D08380D9F376BE1963E8CE61EB74786DFFEB2FA7CD3F10E7",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1326",
+          "RequestDate": "2026-09-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901\u0026stockNo=1326\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "0E6608A30D92069887383C4C13721A70C4F32471A92B9F05F4A2326E271D90AD",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1402",
+          "RequestDate": "2026-07-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260701\u0026stockNo=1402\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "02D6E4DD2AA306FC5BF53FADB7526DBEEEEF7E440C5946571550AB74761D9EB4",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1402",
+          "RequestDate": "2026-08-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801\u0026stockNo=1402\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "06866A396C834A06DB78AB82371A1D6A3EA70BF0E1A0B2EACA60FA057D1D8B10",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1402",
+          "RequestDate": "2026-09-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901\u0026stockNo=1402\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "0C48B32886DFF7497F391F301DAC3863616DE72C3D97C289B546557337741EE7",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1476",
+          "RequestDate": "2026-07-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260701\u0026stockNo=1476\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "B354523C41B1D9420DF6F7E52E4947D11819C7A8E9C167A2357897D77765448E",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1476",
+          "RequestDate": "2026-08-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801\u0026stockNo=1476\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "B8A3F191E963E2A45824BEFD7553A2E42633BB426B3F4E2E5563C146E52C7B84",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1476",
+          "RequestDate": "2026-09-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901\u0026stockNo=1476\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "2E726AAD51EDF787F289AFAEE462A16F4640DC17E8DA131F03F861B7EC80CFE8",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1590",
+          "RequestDate": "2026-07-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260701\u0026stockNo=1590\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "BB5BA2FC0271B01D2D70C459CDE004B81D1F2A8FAE4DF9C7706AB5D7EB1F498E",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1590",
+          "RequestDate": "2026-08-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801\u0026stockNo=1590\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "CDA7B248A9FCCC58A72A94DD98E7657211A750BF5BCD343DE99A46A8BE178639",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1590",
+          "RequestDate": "2026-09-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901\u0026stockNo=1590\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "2B1C9A324197195623CEABF9890B7119898D7A0ECD2AB2FBD36A83301815F240",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1605",
+          "RequestDate": "2026-07-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260701\u0026stockNo=1605\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "C42F115E2A1A5A79757A483B306FC4F126625450D0AED5019D3860D1E4CE4612",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1605",
+          "RequestDate": "2026-08-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801\u0026stockNo=1605\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        },
+        {
+          "Id": "711E322610643A8FE94170964A3F46ABB0D96DB90B1F34692F77458265B379FE",
+          "Provider": "TWSE",
+          "Dataset": "Price",
+          "Instrument": "1605",
+          "RequestDate": "2026-09-01",
+          "CoverageStart": "2026-07-01",
+          "CoverageEnd": "2026-09-30",
+          "SourceUrl": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901\u0026stockNo=1605\u0026response=json",
+          "SchemaVersion": "HistoricalNormalized-v1",
+          "SourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+          "Fixture": false,
+          "MinimumRetentionDays": 90,
+          "RetentionPolicy": "PROPOSED_90_DAYS_REQUIRES_STORE_APPROVAL"
+        }
+      ],
+      "RightsDigests": []
+    },
+    "InstrumentCount": 10,
+    "MonthCount": 3,
+    "UniqueRequests": 30,
+    "MaximumAttempts": 90,
+    "InstrumentIdentity": "UNVERIFIED_CANDIDATE_SYMBOLS_NOT_HISTORICAL_UNIVERSE",
+    "Calendar": "UNVERIFIED_NO_TRADING_DAY_COUNTS",
+    "OperatorStatus": "UNASSIGNED_REQUIRES_HUMAN",
+    "RequiredConfirmations": [
+      "10_CANDIDATE_SYMBOLS_AND_HISTORICAL_IDENTITY",
+      "2026_07_THROUGH_2026_09_CANDIDATE_MONTHS",
+      "30_UNIQUE_REQUESTS_90_TOTAL_ATTEMPTS",
+      "64_KIB_RESPONSE_16_MIB_STORE_90_DAY_RETENTION",
+      "2026_12_01_TO_2026_12_08_UTC_CANDIDATE_WINDOW",
+      "OPERATOR_AND_INDEPENDENT_RIGHTS_REFERENCES",
+      "ALL_EDITS_REQUIRE_NEW_PLAN_OR_SCOPE_DIGEST_AND_REVIEW",
+      "CANDIDATE_SCOPE_IS_NOT_DOWNLOAD_AUTHORIZATION"
+    ]
+  },
+  "Environment": {
+    "Status": "BLOCKED",
+    "Controls": [
+      {
+        "Code": "ENDPOINT_ALLOWLIST",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Exact approved plan URLs; deny altered host/path/query/instrument/date and non-HTTPS.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "DNS_TLS",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Accepted host resolution, public-address checks and TLS validation in the isolated environment.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "NO_REDIRECT_PROXY",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Redirect denied and proxy disabled; accepted transport configuration and isolated negative checks.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "REQUEST_QUOTA",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Exact 30 unique requests / 90 total attempts including retries, plus existing 20-attempt/hour ceiling.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "CONCURRENCY",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "One active worker; concurrent execution denied using the same accepted storage root.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "DURABLE_RESERVATION",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Persist attempt reservation before request; verify consumed budget survives restart.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "CANCELLATION",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Cancelled execution stops admission/request/write; reservation remains accounted.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "TIMEOUT",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Bounded request timeout observed with controlled transport; timeout consumes attempt.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "RETRY",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "At most three attempts per unique request; every retry revalidates rights/consent/quota.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "CIRCUIT_BREAKER",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Failure threshold opens circuit; no further network calls while open.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "EXCLUSIVE_LOCK",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Exclusive lease cannot be acquired concurrently across processes.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "CRASH_RECOVERY",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Interrupted reservation retained; completed request not downloaded again after restart.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "IMMUTABLE_ARCHIVE",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Existing archive/version cannot be overwritten; changed execution receipt rejected.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "DIGEST_VERIFICATION",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Raw bytes, manifest and execution evidence digests verified; tampering rejected.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "REPLAY",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Archived input replay reproducible without network and with identical lineage.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "SENSITIVE_DATA_FILTER",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Secrets, local roots and raw bodies excluded from public metadata/log evidence.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "STORAGE_BUDGET",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "64 KiB response / 16 MiB total candidate store budget enforced before admission, including metadata.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      }
+    ],
+    "Boundaries": [
+      {
+        "Code": "ACL",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Actual isolated evidence bound to existing IsolatedEnvironmentReceipt and externally pinned PilotTrust; no self-issued acceptance.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "STORAGE_ROOT",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Actual isolated evidence bound to existing IsolatedEnvironmentReceipt and externally pinned PilotTrust; no self-issued acceptance.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "SOURCE_SHA",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Actual isolated evidence bound to existing IsolatedEnvironmentReceipt and externally pinned PilotTrust; no self-issued acceptance.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "ENVIRONMENT_DIGEST",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Actual isolated evidence bound to existing IsolatedEnvironmentReceipt and externally pinned PilotTrust; no self-issued acceptance.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "INDEPENDENT_REVIEWER",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Actual isolated evidence bound to existing IsolatedEnvironmentReceipt and externally pinned PilotTrust; no self-issued acceptance.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "EXPIRY_REVOCATION",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Actual isolated evidence bound to existing IsolatedEnvironmentReceipt and externally pinned PilotTrust; no self-issued acceptance.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "EVIDENCE_INTEGRITY",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Actual isolated evidence bound to existing IsolatedEnvironmentReceipt and externally pinned PilotTrust; no self-issued acceptance.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      }
+    ],
+    "AcceptedReceipt": null,
+    "EvidenceClass": "Acceptance checklist; no actual accepted environment"
+  },
+  "RunConsent": null,
+  "Acquisition": {
+    "Status": "BLOCKED",
+    "CanAcquire": false,
+    "RequiredConditions": [
+      "INDEPENDENT_ACQUIRE_RIGHT",
+      "INDEPENDENT_STORE_RIGHT",
+      "EXACT_APPROVED_SCOPE",
+      "EXTERNALLY_PINNED_TRUST",
+      "ACCEPTED_ISOLATED_ENVIRONMENT",
+      "EXACT_QUOTA_DATE_INSTRUMENT_ENDPOINT",
+      "EXPLICIT_RUN_AUTHORIZATION"
+    ],
+    "BlockingReasons": [
+      "INDEPENDENT_ACQUIRE_RIGHT",
+      "INDEPENDENT_STORE_RIGHT",
+      "EXACT_APPROVED_SCOPE",
+      "EXTERNALLY_PINNED_TRUST",
+      "ACCEPTED_ISOLATED_ENVIRONMENT",
+      "EXACT_QUOTA_DATE_INSTRUMENT_ENDPOINT",
+      "EXPLICIT_RUN_AUTHORIZATION"
+    ]
+  },
+  "Readiness": {
+    "AcquisitionReady": "BLOCKED",
+    "DatasetEligible": "BLOCKED",
+    "ResearchReady": "BLOCKED",
+    "BlockingReasons": [
+      "NO_APPROVED_RIGHTS_SCOPE_ENVIRONMENT_OR_RUN_CONSENT",
+      "NO_APPROVED_DATASET",
+      "TEN_CANDIDATE_SYMBOLS_DO_NOT_PROVE_VALID_DAILY_SAMPLES",
+      "THREE_MONTHS_DO_NOT_PROVE_250_SESSION_LOOKBACK_OR_FOLD_OUTCOMES",
+      "SEPARATE_OOS_REQUIRED"
+    ]
+  },
+  "Actual": {
+    "ApprovedProviderRights": 0,
+    "ApprovedPilotScopes": 0,
+    "RealAcquisitionRuns": 0,
+    "NewRawSnapshots": 0,
+    "NewNormalizedFacts": 0,
+    "HistoricalEvidenceAccepted": 0,
+    "PitEligibleObservations": 0,
+    "ApprovedDatasets": 0,
+    "ProductionGatesReleased": 0
+  },
+  "Runs": [],
+  "CaptureVerification": {
+    "RealRuns": 0,
+    "NewFacts": 0,
+    "ReplayStatus": "NOT_RUN_NO_REAL_CAPTURE",
+    "Requirements": [
+      {
+        "Code": "RAW_RESPONSE_DIGEST",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "No Phase4R real capture. Verify existing SourceArchive/CaptureRun/Quality/Replay evidence after separately authorized acquisition; ObservedAt/RetrievedAt never imply PublishedAt.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "IMMUTABLE_VERSION",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "No Phase4R real capture. Verify existing SourceArchive/CaptureRun/Quality/Replay evidence after separately authorized acquisition; ObservedAt/RetrievedAt never imply PublishedAt.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "OBSERVED_AT",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "No Phase4R real capture. Verify existing SourceArchive/CaptureRun/Quality/Replay evidence after separately authorized acquisition; ObservedAt/RetrievedAt never imply PublishedAt.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "RETRIEVED_AT",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "No Phase4R real capture. Verify existing SourceArchive/CaptureRun/Quality/Replay evidence after separately authorized acquisition; ObservedAt/RetrievedAt never imply PublishedAt.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "SOURCE_PUBLICATION_EVIDENCE",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "No Phase4R real capture. Verify existing SourceArchive/CaptureRun/Quality/Replay evidence after separately authorized acquisition; ObservedAt/RetrievedAt never imply PublishedAt.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "REVISION_HISTORY",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "No Phase4R real capture. Verify existing SourceArchive/CaptureRun/Quality/Replay evidence after separately authorized acquisition; ObservedAt/RetrievedAt never imply PublishedAt.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "INSTRUMENT_IDENTITY",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "No Phase4R real capture. Verify existing SourceArchive/CaptureRun/Quality/Replay evidence after separately authorized acquisition; ObservedAt/RetrievedAt never imply PublishedAt.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "TRADING_DATE",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "No Phase4R real capture. Verify existing SourceArchive/CaptureRun/Quality/Replay evidence after separately authorized acquisition; ObservedAt/RetrievedAt never imply PublishedAt.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "UNIT_NORMALIZATION",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "No Phase4R real capture. Verify existing SourceArchive/CaptureRun/Quality/Replay evidence after separately authorized acquisition; ObservedAt/RetrievedAt never imply PublishedAt.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "QUALITY_QUARANTINE",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "No Phase4R real capture. Verify existing SourceArchive/CaptureRun/Quality/Replay evidence after separately authorized acquisition; ObservedAt/RetrievedAt never imply PublishedAt.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "REPLAY_REPRODUCIBILITY",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "No Phase4R real capture. Verify existing SourceArchive/CaptureRun/Quality/Replay evidence after separately authorized acquisition; ObservedAt/RetrievedAt never imply PublishedAt.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "DATASET_LINEAGE",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "No Phase4R real capture. Verify existing SourceArchive/CaptureRun/Quality/Replay evidence after separately authorized acquisition; ObservedAt/RetrievedAt never imply PublishedAt.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      }
+    ]
+  },
+  "Historical": [
+    {
+      "Domain": "HistoricalPublication",
+      "Status": "UNPROVEN",
+      "Supported": 0,
+      "Required": 1,
+      "BlockingReasons": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "HistoricalPublication",
+        "NEW_PILOT_SCOPE_REQUIRES_EXISTING_AUTHORITY_RESOLUTION_REVIEW"
+      ]
+    },
+    {
+      "Domain": "RevisionBehavior",
+      "Status": "UNPROVEN",
+      "Supported": 0,
+      "Required": 1,
+      "BlockingReasons": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "RevisionBehavior",
+        "NEW_PILOT_SCOPE_REQUIRES_EXISTING_AUTHORITY_RESOLUTION_REVIEW"
+      ]
+    },
+    {
+      "Domain": "SourceIdentity",
+      "Status": "UNPROVEN",
+      "Supported": 0,
+      "Required": 2,
+      "BlockingReasons": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "SourceIdentity",
+        "NEW_PILOT_SCOPE_REQUIRES_EXISTING_AUTHORITY_RESOLUTION_REVIEW"
+      ]
+    },
+    {
+      "Domain": "HistoricalInstrumentIdentity",
+      "Status": "UNPROVEN",
+      "Supported": 0,
+      "Required": 3,
+      "BlockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "HistoricalInstrumentIdentity",
+        "MarketTransfer",
+        "SymbolHistory",
+        "NEW_PILOT_SCOPE_REQUIRES_EXISTING_AUTHORITY_RESOLUTION_REVIEW"
+      ]
+    },
+    {
+      "Domain": "HistoricalUniverse",
+      "Status": "UNPROVEN",
+      "Supported": 0,
+      "Required": 5,
+      "BlockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "Delisting",
+        "Denominator",
+        "HistoricalMembership",
+        "Listing",
+        "Suspension",
+        "NEW_PILOT_SCOPE_REQUIRES_EXISTING_AUTHORITY_RESOLUTION_REVIEW"
+      ]
+    },
+    {
+      "Domain": "TradingCalendar",
+      "Status": "UNPROVEN",
+      "Supported": 0,
+      "Required": 4,
+      "BlockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "EmergencyClosures",
+        "HistoricalSessions",
+        "Horizon:TradingSessions",
+        "ScheduledHolidays",
+        "NEW_PILOT_SCOPE_REQUIRES_EXISTING_AUTHORITY_RESOLUTION_REVIEW"
+      ]
+    },
+    {
+      "Domain": "CorporateActions",
+      "Status": "UNPROVEN",
+      "Supported": 0,
+      "Required": 1,
+      "BlockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "CorporateActionHandling",
+        "NEW_PILOT_SCOPE_REQUIRES_EXISTING_AUTHORITY_RESOLUTION_REVIEW"
+      ]
+    },
+    {
+      "Domain": "PriceBasis",
+      "Status": "UNPROVEN",
+      "Supported": 0,
+      "Required": 1,
+      "BlockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "PriceBasis",
+        "NEW_PILOT_SCOPE_REQUIRES_EXISTING_AUTHORITY_RESOLUTION_REVIEW"
+      ]
+    }
+  ],
+  "Pit": {
+    "TotalRawFacts": 21,
+    "PriorRawFacts": 21,
+    "NewRawFacts": 0,
+    "InspectedObservations": 1,
+    "ProposedScopeDenominator": null,
+    "VerifiedHistoricalContext": 0,
+    "PublicationEvidenceObservations": 0,
+    "RevisionEvidenceObservations": 0,
+    "PitEligibleObservations": 0,
+    "ApprovedDatasetCount": 0,
+    "SevenGates": [
+      {
+        "Gate": "HistoricalInstrumentIdentity",
+        "Verified": 0,
+        "Inspected": 1,
+        "Fraction": 0,
+        "Status": "BLOCKED"
+      },
+      {
+        "Gate": "TradingCalendar",
+        "Verified": 0,
+        "Inspected": 1,
+        "Fraction": 0,
+        "Status": "BLOCKED"
+      },
+      {
+        "Gate": "HistoricalUniverse",
+        "Verified": 0,
+        "Inspected": 1,
+        "Fraction": 0,
+        "Status": "BLOCKED"
+      },
+      {
+        "Gate": "PriceVolume",
+        "Verified": 1,
+        "Inspected": 1,
+        "Fraction": 1,
+        "Status": "VERIFIED_FOR_INSPECTED_ROWS"
+      },
+      {
+        "Gate": "Availability",
+        "Verified": 0,
+        "Inspected": 1,
+        "Fraction": 0,
+        "Status": "BLOCKED"
+      },
+      {
+        "Gate": "Revision",
+        "Verified": 0,
+        "Inspected": 1,
+        "Fraction": 0,
+        "Status": "BLOCKED"
+      },
+      {
+        "Gate": "PriceBasis",
+        "Verified": 0,
+        "Inspected": 1,
+        "Fraction": 0,
+        "Status": "BLOCKED"
+      }
+    ],
+    "SourceDatasetVersion": "TWSE-2330-202609-capture-audit-v1",
+    "SourceDigest": "9A33F33040B97AC61FAB1BCBA4021C182F59D9A12A33E3F1F14BAC2F881815BF",
+    "BlockingReasons": [
+      "PRIOR_INSPECTED_ROWS_ARE_NOT_NEW_10_STOCK_3_MONTH_SCOPE",
+      "NEW_SCOPE_CALENDAR_UNIVERSE_DENOMINATOR_UNKNOWN",
+      "NO_NEW_REAL_CAPTURE",
+      "INDEPENDENT_PIT_AND_COMPONENT_APPROVAL_REQUIRED"
+    ]
+  },
+  "SamplePolicy": {
+    "Version": "TrendSample-v1",
+    "MinimumDates": 20,
+    "MinimumInstrumentsPerDate": 10,
+    "MinimumOutcomePairs": 200
+  },
+  "Production": [
+    {
+      "Code": "DURABLE_SHARED_STORAGE",
+      "Status": "Blocked",
+      "Evidence": "REAL_DEPLOYMENT_ACCEPTANCE_REQUIRED"
+    },
+    {
+      "Code": "MULTI_WORKER_RECOVERY",
+      "Status": "Blocked",
+      "Evidence": "REAL_DEPLOYMENT_ACCEPTANCE_REQUIRED"
+    },
+    {
+      "Code": "PROVIDER_PERMISSION",
+      "Status": "Blocked",
+      "Evidence": "REAL_DEPLOYMENT_ACCEPTANCE_REQUIRED"
+    },
+    {
+      "Code": "BACKUP_RESTORE",
+      "Status": "Blocked",
+      "Evidence": "REAL_DEPLOYMENT_ACCEPTANCE_REQUIRED"
+    },
+    {
+      "Code": "SECRET_HANDLING",
+      "Status": "Blocked",
+      "Evidence": "REAL_DEPLOYMENT_ACCEPTANCE_REQUIRED"
+    },
+    {
+      "Code": "OPERATIONAL_ALERTS",
+      "Status": "Blocked",
+      "Evidence": "REAL_DEPLOYMENT_ACCEPTANCE_REQUIRED"
+    },
+    {
+      "Code": "ROLLBACK",
+      "Status": "Blocked",
+      "Evidence": "REAL_DEPLOYMENT_ACCEPTANCE_REQUIRED"
+    },
+    {
+      "Code": "EXPLICIT_ENABLE_APPROVAL",
+      "Status": "Blocked",
+      "Evidence": "REAL_DEPLOYMENT_ACCEPTANCE_REQUIRED"
+    }
+  ],
+  "GoogleAcceptance": "BLOCKED_NO_ISOLATED_GOOGLE_A_B_ACCOUNTS",
+  "FormulaDigest": "81C788B359568B2B058EC92EDFE2F30A3593D7C2A23B3BE8C126BA026D06CBFB",
+  "SchedulerMode": "Disabled",
+  "Baseline": "NOT_RUN",
+  "Oos": "NOT_RUN",
+  "Promotion": "NOT_PROMOTED",
+  "Phase5": "LOCKED",
+  "Digest": "D4B985EA47BB8FC406C13E37703DDFD5B6D96CC42CE0339B43C8BD58CB7519AB"
+}

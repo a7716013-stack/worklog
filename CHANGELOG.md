@@ -1,3 +1,7 @@
+# 3.2.7 — Phase 4R
+
+首批候選 Pilot 改為 10 檔／3 個月／30 項唯一請求／最多 90 次嘗試，僅供審查、未核准、不得取得。新增權利判定與替代來源相容性、隔離環境和 Capture 驗收清單、三項就緒狀態與安全唯讀 API。補強獨立審查者大小寫比對。真實取得 0、Baseline/OOS NOT_RUN；僅本機與 Git，不部署網站。詳 docs/phase4r。
+
 # 3.2.6 — Phase 4Q
 
 TWSE 分項權利證據與精確 Pilot 審查草案；既有擷取流程新增隔離環境及每次執行授權綁定；管理頁新增歷史證據與七項 PIT 覆蓋率。真實取得仍 BLOCKED、正式排程 Disabled、Baseline NOT_RUN。詳 docs/phase4q。

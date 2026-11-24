@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "Phase4RArtifact-v1",
+  "version": "3.2.7",
+  "sourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+  "inputVersions": [
+    "Phase4Q-v1",
+    "PilotScope-v1",
+    "HistoricalNormalized-v1",
+    "TrendSample-v1"
+  ],
+  "parentDigest": "48C90EF529153208B2D4AFF856547722D2920E298681F460792A5210A5043BAA",
+  "stateDigest": "D4B985EA47BB8FC406C13E37703DDFD5B6D96CC42CE0339B43C8BD58CB7519AB",
+  "generatedAt": "2026-11-23T19:05:09.1056726+00:00",
+  "evidenceClass": "BLOCKED; NOT_DEPLOYED",
+  "payload": {
+    "checks": [
+      {
+        "Code": "DURABLE_SHARED_STORAGE",
+        "Status": "Blocked",
+        "Evidence": "REAL_DEPLOYMENT_ACCEPTANCE_REQUIRED"
+      },
+      {
+        "Code": "MULTI_WORKER_RECOVERY",
+        "Status": "Blocked",
+        "Evidence": "REAL_DEPLOYMENT_ACCEPTANCE_REQUIRED"
+      },
+      {
+        "Code": "PROVIDER_PERMISSION",
+        "Status": "Blocked",
+        "Evidence": "REAL_DEPLOYMENT_ACCEPTANCE_REQUIRED"
+      },
+      {
+        "Code": "BACKUP_RESTORE",
+        "Status": "Blocked",
+        "Evidence": "REAL_DEPLOYMENT_ACCEPTANCE_REQUIRED"
+      },
+      {
+        "Code": "SECRET_HANDLING",
+        "Status": "Blocked",
+        "Evidence": "REAL_DEPLOYMENT_ACCEPTANCE_REQUIRED"
+      },
+      {
+        "Code": "OPERATIONAL_ALERTS",
+        "Status": "Blocked",
+        "Evidence": "REAL_DEPLOYMENT_ACCEPTANCE_REQUIRED"
+      },
+      {
+        "Code": "ROLLBACK",
+        "Status": "Blocked",
+        "Evidence": "REAL_DEPLOYMENT_ACCEPTANCE_REQUIRED"
+      },
+      {
+        "Code": "EXPLICIT_ENABLE_APPROVAL",
+        "Status": "Blocked",
+        "Evidence": "REAL_DEPLOYMENT_ACCEPTANCE_REQUIRED"
+      }
+    ],
+    "google": "BLOCKED_NO_ISOLATED_GOOGLE_A_B_ACCOUNTS",
+    "scheduler": "Disabled",
+    "gatesPassed": 0,
+    "gatesRequired": 8,
+    "deployment": "NOT_REQUESTED_NOT_PERFORMED"
+  },
+  "artifactContentSha256": "dd083b1ced2427b423d1339dfa1e4628cbcc80522f75a871538505764898e05f"
+}

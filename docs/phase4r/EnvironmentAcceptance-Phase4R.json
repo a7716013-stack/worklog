@@ -1,0 +1,193 @@
+{
+  "schemaVersion": "Phase4RArtifact-v1",
+  "version": "3.2.7",
+  "sourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+  "inputVersions": [
+    "Phase4Q-v1",
+    "PilotScope-v1",
+    "HistoricalNormalized-v1",
+    "TrendSample-v1"
+  ],
+  "parentDigest": "48C90EF529153208B2D4AFF856547722D2920E298681F460792A5210A5043BAA",
+  "stateDigest": "D4B985EA47BB8FC406C13E37703DDFD5B6D96CC42CE0339B43C8BD58CB7519AB",
+  "generatedAt": "2026-11-23T19:05:09.1056726+00:00",
+  "evidenceClass": "Actual acceptance BLOCKED; requirements only",
+  "payload": {
+    "Status": "BLOCKED",
+    "Controls": [
+      {
+        "Code": "ENDPOINT_ALLOWLIST",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Exact approved plan URLs; deny altered host/path/query/instrument/date and non-HTTPS.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "DNS_TLS",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Accepted host resolution, public-address checks and TLS validation in the isolated environment.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "NO_REDIRECT_PROXY",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Redirect denied and proxy disabled; accepted transport configuration and isolated negative checks.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "REQUEST_QUOTA",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Exact 30 unique requests / 90 total attempts including retries, plus existing 20-attempt/hour ceiling.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "CONCURRENCY",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "One active worker; concurrent execution denied using the same accepted storage root.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "DURABLE_RESERVATION",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Persist attempt reservation before request; verify consumed budget survives restart.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "CANCELLATION",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Cancelled execution stops admission/request/write; reservation remains accounted.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "TIMEOUT",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Bounded request timeout observed with controlled transport; timeout consumes attempt.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "RETRY",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "At most three attempts per unique request; every retry revalidates rights/consent/quota.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "CIRCUIT_BREAKER",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Failure threshold opens circuit; no further network calls while open.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "EXCLUSIVE_LOCK",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Exclusive lease cannot be acquired concurrently across processes.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "CRASH_RECOVERY",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Interrupted reservation retained; completed request not downloaded again after restart.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "IMMUTABLE_ARCHIVE",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Existing archive/version cannot be overwritten; changed execution receipt rejected.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "DIGEST_VERIFICATION",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Raw bytes, manifest and execution evidence digests verified; tampering rejected.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "REPLAY",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Archived input replay reproducible without network and with identical lineage.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "SENSITIVE_DATA_FILTER",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Secrets, local roots and raw bodies excluded from public metadata/log evidence.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "STORAGE_BUDGET",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "64 KiB response / 16 MiB total candidate store budget enforced before admission, including metadata.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      }
+    ],
+    "Boundaries": [
+      {
+        "Code": "ACL",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Actual isolated evidence bound to existing IsolatedEnvironmentReceipt and externally pinned PilotTrust; no self-issued acceptance.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "STORAGE_ROOT",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Actual isolated evidence bound to existing IsolatedEnvironmentReceipt and externally pinned PilotTrust; no self-issued acceptance.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "SOURCE_SHA",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Actual isolated evidence bound to existing IsolatedEnvironmentReceipt and externally pinned PilotTrust; no self-issued acceptance.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "ENVIRONMENT_DIGEST",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Actual isolated evidence bound to existing IsolatedEnvironmentReceipt and externally pinned PilotTrust; no self-issued acceptance.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "INDEPENDENT_REVIEWER",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Actual isolated evidence bound to existing IsolatedEnvironmentReceipt and externally pinned PilotTrust; no self-issued acceptance.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "EXPIRY_REVOCATION",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Actual isolated evidence bound to existing IsolatedEnvironmentReceipt and externally pinned PilotTrust; no self-issued acceptance.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      },
+      {
+        "Code": "EVIDENCE_INTEGRITY",
+        "Status": "BLOCKED",
+        "RequiredEvidence": "Actual isolated evidence bound to existing IsolatedEnvironmentReceipt and externally pinned PilotTrust; no self-issued acceptance.",
+        "EvidenceDigest": null,
+        "Reviewer": null
+      }
+    ],
+    "AcceptedReceipt": null,
+    "EvidenceClass": "Acceptance checklist; no actual accepted environment"
+  },
+  "artifactContentSha256": "c07072a56983d469d0f4d498bc8b1eead7b8a6d10866f6255bab524b885a9187"
+}

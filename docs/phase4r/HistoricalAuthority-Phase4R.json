@@ -1,0 +1,115 @@
+{
+  "schemaVersion": "Phase4RArtifact-v1",
+  "version": "3.2.7",
+  "sourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+  "inputVersions": [
+    "Phase4Q-v1",
+    "PilotScope-v1",
+    "HistoricalNormalized-v1",
+    "TrendSample-v1"
+  ],
+  "parentDigest": "48C90EF529153208B2D4AFF856547722D2920E298681F460792A5210A5043BAA",
+  "stateDigest": "D4B985EA47BB8FC406C13E37703DDFD5B6D96CC42CE0339B43C8BD58CB7519AB",
+  "generatedAt": "2026-11-23T19:05:09.1056726+00:00",
+  "evidenceClass": "Prior reviewed scope; new scope UNPROVEN",
+  "payload": [
+    {
+      "Domain": "HistoricalPublication",
+      "Status": "UNPROVEN",
+      "Supported": 0,
+      "Required": 1,
+      "BlockingReasons": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "HistoricalPublication",
+        "NEW_PILOT_SCOPE_REQUIRES_EXISTING_AUTHORITY_RESOLUTION_REVIEW"
+      ]
+    },
+    {
+      "Domain": "RevisionBehavior",
+      "Status": "UNPROVEN",
+      "Supported": 0,
+      "Required": 1,
+      "BlockingReasons": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "RevisionBehavior",
+        "NEW_PILOT_SCOPE_REQUIRES_EXISTING_AUTHORITY_RESOLUTION_REVIEW"
+      ]
+    },
+    {
+      "Domain": "SourceIdentity",
+      "Status": "UNPROVEN",
+      "Supported": 0,
+      "Required": 2,
+      "BlockingReasons": [
+        "SCOPED_CURRENT_CLOSURE_REQUIRED",
+        "SourceIdentity",
+        "NEW_PILOT_SCOPE_REQUIRES_EXISTING_AUTHORITY_RESOLUTION_REVIEW"
+      ]
+    },
+    {
+      "Domain": "HistoricalInstrumentIdentity",
+      "Status": "UNPROVEN",
+      "Supported": 0,
+      "Required": 3,
+      "BlockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "HistoricalInstrumentIdentity",
+        "MarketTransfer",
+        "SymbolHistory",
+        "NEW_PILOT_SCOPE_REQUIRES_EXISTING_AUTHORITY_RESOLUTION_REVIEW"
+      ]
+    },
+    {
+      "Domain": "HistoricalUniverse",
+      "Status": "UNPROVEN",
+      "Supported": 0,
+      "Required": 5,
+      "BlockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "Delisting",
+        "Denominator",
+        "HistoricalMembership",
+        "Listing",
+        "Suspension",
+        "NEW_PILOT_SCOPE_REQUIRES_EXISTING_AUTHORITY_RESOLUTION_REVIEW"
+      ]
+    },
+    {
+      "Domain": "TradingCalendar",
+      "Status": "UNPROVEN",
+      "Supported": 0,
+      "Required": 4,
+      "BlockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "EmergencyClosures",
+        "HistoricalSessions",
+        "Horizon:TradingSessions",
+        "ScheduledHolidays",
+        "NEW_PILOT_SCOPE_REQUIRES_EXISTING_AUTHORITY_RESOLUTION_REVIEW"
+      ]
+    },
+    {
+      "Domain": "CorporateActions",
+      "Status": "UNPROVEN",
+      "Supported": 0,
+      "Required": 1,
+      "BlockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "CorporateActionHandling",
+        "NEW_PILOT_SCOPE_REQUIRES_EXISTING_AUTHORITY_RESOLUTION_REVIEW"
+      ]
+    },
+    {
+      "Domain": "PriceBasis",
+      "Status": "UNPROVEN",
+      "Supported": 0,
+      "Required": 1,
+      "BlockingReasons": [
+        "REQUIRED_CLAIM_NOT_APPROVED",
+        "PriceBasis",
+        "NEW_PILOT_SCOPE_REQUIRES_EXISTING_AUTHORITY_RESOLUTION_REVIEW"
+      ]
+    }
+  ],
+  "artifactContentSha256": "625b27b9cd74b0758fcf313fed07c492806c57a5ff3e1c7bf9185c7b9dc78fcd"
+}

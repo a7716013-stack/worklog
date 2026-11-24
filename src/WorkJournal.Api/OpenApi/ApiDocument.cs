@@ -74,6 +74,8 @@ public static class ApiDocument
             var properties=new JsonObject();var required=new JsonArray();schemas[name]=new JsonObject {["type"]="object",["properties"]=properties,["required"]=required};
             foreach(var p in type.GetProperties()) {
                 var key=JsonNamingPolicy.CamelCase.ConvertName(p.Name);var field=Schema(p.PropertyType,schemas);
+                // Correct numeric shape for the newly exposed scope without rewriting legacy published schemas.
+                if(type==typeof(WorkJournal.Application.Research.PilotScope)&&p.PropertyType==typeof(long))field=new JsonObject {["type"]="integer",["format"]="int64"};
                 if(new NullabilityInfoContext().Create(p).ReadState==NullabilityState.Nullable)field["nullable"]=true;
                 properties[key]=field;if(p.GetCustomAttribute<WorkJournal.Api.Contracts.ApiOptionalAttribute>() is null)required.Add(key);
             }

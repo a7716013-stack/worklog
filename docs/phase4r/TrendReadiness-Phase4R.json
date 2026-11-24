@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "Phase4RArtifact-v1",
+  "version": "3.2.7",
+  "sourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+  "inputVersions": [
+    "Phase4Q-v1",
+    "PilotScope-v1",
+    "HistoricalNormalized-v1",
+    "TrendSample-v1"
+  ],
+  "parentDigest": "48C90EF529153208B2D4AFF856547722D2920E298681F460792A5210A5043BAA",
+  "stateDigest": "D4B985EA47BB8FC406C13E37703DDFD5B6D96CC42CE0339B43C8BD58CB7519AB",
+  "generatedAt": "2026-11-23T19:05:09.1056726+00:00",
+  "evidenceClass": "BLOCKED",
+  "payload": {
+    "readiness": {
+      "AcquisitionReady": "BLOCKED",
+      "DatasetEligible": "BLOCKED",
+      "ResearchReady": "BLOCKED",
+      "BlockingReasons": [
+        "NO_APPROVED_RIGHTS_SCOPE_ENVIRONMENT_OR_RUN_CONSENT",
+        "NO_APPROVED_DATASET",
+        "TEN_CANDIDATE_SYMBOLS_DO_NOT_PROVE_VALID_DAILY_SAMPLES",
+        "THREE_MONTHS_DO_NOT_PROVE_250_SESSION_LOOKBACK_OR_FOLD_OUTCOMES",
+        "SEPARATE_OOS_REQUIRED"
+      ]
+    },
+    "samplePolicy": {
+      "Version": "TrendSample-v1",
+      "MinimumDates": 20,
+      "MinimumInstrumentsPerDate": 10,
+      "MinimumOutcomePairs": 200
+    },
+    "features": 19,
+    "weights": [
+      25,
+      15,
+      15,
+      20,
+      15,
+      10
+    ],
+    "formulaDigest": "81C788B359568B2B058EC92EDFE2F30A3593D7C2A23B3BE8C126BA026D06CBFB",
+    "baseline": "NOT_RUN",
+    "oos": "NOT_RUN",
+    "promotion": "NOT_PROMOTED",
+    "phase5": "LOCKED"
+  },
+  "artifactContentSha256": "7d27a357ed4d560608c8c8d4677d301c0ef1a3008b7fea255084d92043318302"
+}

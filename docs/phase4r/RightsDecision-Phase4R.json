@@ -1,0 +1,129 @@
+{
+  "schemaVersion": "Phase4RArtifact-v1",
+  "version": "3.2.7",
+  "sourceCodeSha": "0386a1abd0124859007c4cdc16dd5ec61f8e332e",
+  "inputVersions": [
+    "Phase4Q-v1",
+    "PilotScope-v1",
+    "HistoricalNormalized-v1",
+    "TrendSample-v1"
+  ],
+  "parentDigest": "48C90EF529153208B2D4AFF856547722D2920E298681F460792A5210A5043BAA",
+  "stateDigest": "D4B985EA47BB8FC406C13E37703DDFD5B6D96CC42CE0339B43C8BD58CB7519AB",
+  "generatedAt": "2026-11-23T19:05:09.1056726+00:00",
+  "evidenceClass": "Source discovery; no independent approval",
+  "payload": {
+    "Purposes": [
+      {
+        "Provider": "TWSE",
+        "Dataset": "DailyPrice / monthly STOCK_DAY",
+        "Purpose": "ACQUIRE",
+        "Status": "UNKNOWN",
+        "Sources": [
+          "https://www.twse.com.tw/zh/terms/use.html",
+          "https://data.gov.tw/dataset/11549",
+          "https://data.gov.tw/license"
+        ],
+        "SourceVersion": "TWSE website: no explicit version; dataset metadata 2025-05-01; OGDL-1.0",
+        "ObservedOn": "2026-11-24",
+        "Restriction": "TWSE website clause 6 restricts automated downloads without the permitted method or consent. Dataset 11549 identifies a daily CSV resource under OGDL; applicability to monthly historical STOCK_DAY is unproven.",
+        "EvidenceClass": "Source-discovery note; digest of this note, not original page bytes or an approval",
+        "Reviewer": null,
+        "ExpiresAt": null,
+        "PermissionDigests": [],
+        "Digest": "276EB2EEA789F6B188B0E8116D71370A2390CA636ECCF7423907A00EF40A14D7"
+      },
+      {
+        "Provider": "TWSE",
+        "Dataset": "DailyPrice / monthly STOCK_DAY",
+        "Purpose": "STORE",
+        "Status": "UNKNOWN",
+        "Sources": [
+          "https://www.twse.com.tw/zh/terms/use.html",
+          "https://data.gov.tw/dataset/11549",
+          "https://data.gov.tw/license"
+        ],
+        "SourceVersion": "TWSE website: no explicit version; dataset metadata 2025-05-01; OGDL-1.0",
+        "ObservedOn": "2026-11-24",
+        "Restriction": "Website clause 8 limits reproduction subject to consent or specifically released open data. Retention of monthly historical responses requires exact scoped review; proposed retention is 90 days.",
+        "EvidenceClass": "Source-discovery note; digest of this note, not original page bytes or an approval",
+        "Reviewer": null,
+        "ExpiresAt": null,
+        "PermissionDigests": [],
+        "Digest": "1260A9C1BB20648BDF5A616AA5BFD7770445D3D83D620D57331FAB6656689394"
+      },
+      {
+        "Provider": "TWSE",
+        "Dataset": "DailyPrice / monthly STOCK_DAY",
+        "Purpose": "RESEARCH",
+        "Status": "UNKNOWN",
+        "Sources": [
+          "https://www.twse.com.tw/zh/terms/use.html",
+          "https://data.gov.tw/dataset/11549",
+          "https://data.gov.tw/license"
+        ],
+        "SourceVersion": "TWSE website: no explicit version; dataset metadata 2025-05-01; OGDL-1.0",
+        "ObservedOn": "2026-11-24",
+        "Restriction": "OGDL permits reuse of covered open data with attribution, but exact historical endpoint coverage and independent purpose review are absent. Research references on a website are not a scoped grant.",
+        "EvidenceClass": "Source-discovery note; digest of this note, not original page bytes or an approval",
+        "Reviewer": null,
+        "ExpiresAt": null,
+        "PermissionDigests": [],
+        "Digest": "93E6B15C40E659168F6F00D721F221C4F495D8328F6215D4680B3F15B9239F18"
+      },
+      {
+        "Provider": "TWSE",
+        "Dataset": "DailyPrice / monthly STOCK_DAY",
+        "Purpose": "REDISTRIBUTE",
+        "Status": "UNKNOWN",
+        "Sources": [
+          "https://www.twse.com.tw/zh/terms/use.html",
+          "https://data.gov.tw/dataset/11549",
+          "https://data.gov.tw/license"
+        ],
+        "SourceVersion": "TWSE website: no explicit version; dataset metadata 2025-05-01; OGDL-1.0",
+        "ObservedOn": "2026-11-24",
+        "Restriction": "Redistribution is independent. OGDL attribution obligations apply only to covered resources. No historical response redistribution receipt exists; website metadata excludes raw bodies.",
+        "EvidenceClass": "Source-discovery note; digest of this note, not original page bytes or an approval",
+        "Reviewer": null,
+        "ExpiresAt": null,
+        "PermissionDigests": [],
+        "Digest": "B1EF95FE6EF25307A22F6E9917CA91B4CC23CDE5BF30ABB8ACD8DCF7B7208F6B"
+      }
+    ],
+    "Alternatives": [
+      {
+        "Source": "Government dataset 11549 / TWSE",
+        "Resource": "https://www.twse.com.tw/exchangeReport/STOCK_DAY_ALL?response=open_data",
+        "License": "OGDL-1.0 per dataset metadata; exact downloaded bytes not inspected",
+        "Status": "COMPATIBILITY_REVIEW_ONLY_NOT_CONNECTED",
+        "CompatibleFields": [
+          "trade date",
+          "instrument code/name",
+          "volume",
+          "turnover",
+          "OHLC",
+          "price change",
+          "transaction count"
+        ],
+        "Gaps": [
+          "Daily CSV differs from monthly STOCK_DAY JSON; existing parser cannot be reused unchanged.",
+          "Historical month retrieval and historical versions are unproven.",
+          "Publication/revision/identity/calendar evidence remains unproven.",
+          "New endpoint requires separately reviewed rights/scope/allowlist/parser; no connection in Phase4R."
+        ],
+        "Sources": [
+          "https://data.gov.tw/dataset/11549",
+          "https://data.gov.tw/license"
+        ]
+      }
+    ],
+    "ExactEndpointStatus": "UNKNOWN_BLOCKED",
+    "RequiredReviewerActions": [
+      "Archive applicable source terms/version and exact resource mapping; note digests are not raw-page digests.",
+      "Independently review ACQUIRE, STORE, RESEARCH and REDISTRIBUTE separately.",
+      "Bind existing CapturePermission to exact new plan IDs, purpose, retention, expiry and evidence; provision external trust."
+    ]
+  },
+  "artifactContentSha256": "45bf7ec5c3344324fe51aa5a152031ecf438bb29a44129cfd6e66e95216549aa"
+}

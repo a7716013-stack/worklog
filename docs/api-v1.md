@@ -180,3 +180,7 @@ ApiV1ContractSnapshot 記錄 digest、關鍵 endpoint/schema/enum/problem codes�
 
 ## Phase 4Q（3.2.6）
 新增 Administrator 唯讀 `GET /api/v1/data/pilot/readiness`（Phase4QReport），既有 ResearchValidation 顯示權利證據、具體範圍草案、取得條件及七項 PIT 覆蓋率。沿用 ReadPolicy、no-store、401/403/429/503；無下載或核准寫入。舊契約不變，詳 `phase4q/APIContractChange-Phase4Q.md`。
+
+
+## Phase 4R（3.2.7）
+新增管理者唯讀 `GET /api/v1/data/pilot/review`，回傳 Phase4RReport。沿用權限、ReadPolicy、no-store 與 401/403/429/503；沒有取得或核准寫入。ResearchValidation 呈現 10 檔／3 個月／30 項唯一請求／90 次嘗試的未核准候選範圍、17 項實際驗收需求與三項獨立就緒狀態。詳 `phase4r/APIContractChange-Phase4R.md`。本版不部署網站。
