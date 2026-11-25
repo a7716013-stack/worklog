@@ -184,3 +184,13 @@ ApiV1ContractSnapshot 記錄 digest、關鍵 endpoint/schema/enum/problem codes�
 
 ## Phase 4R（3.2.7）
 新增管理者唯讀 `GET /api/v1/data/pilot/review`，回傳 Phase4RReport。沿用權限、ReadPolicy、no-store 與 401/403/429/503；沒有取得或核准寫入。ResearchValidation 呈現 10 檔／3 個月／30 項唯一請求／90 次嘗試的未核准候選範圍、17 項實際驗收需求與三項獨立就緒狀態。詳 `phase4r/APIContractChange-Phase4R.md`。本版不部署網站。
+
+
+## 3.3.1 Phase 4S unified scoring
+
+- GET `/api/v1/scoring/readiness?mode=Legacy|Shadow|Preview|CandidatePrimary`: member session required; Shadow/Preview additionally require Administrator. Default Legacy. Unknown mode 400, unauthorized role 403, CandidatePrimary 409 CANDIDATE_NOT_PROMOTED. Disabled feature/no approved source returns explicit blocked comparison with null Candidate score and no data acquisition.
+- GET `/api/v1/scoring/swing?symbol=2330`: authenticated member, validated stock symbol, existing provider/cache errors 503; returns existing SwingAnalysis plus versioned scoring. This is now the Swing page's data endpoint.
+- GET `/api/v1/scoring/backtest/{symbol}`: member session; existing Legacy backtest plus model-separated NOT_RUN Candidate status. No new Candidate run.
+- Existing market/radar analysis DTO adds optional `scoring`. Existing fields and thresholds are unchanged. New recommendation snapshots save that metadata; historical snapshots remain untouched.
+
+All scores carry version/digest/parameters/dataset/cutoff/component status. Missing score values are null, never renormalized. Candidate 19-feature fixture adapter has no HTTP raw input route. No HTTP approval or primary activation endpoint exists. Reads follow existing session, no-store and rate-limit policies. `/Account/LocalGuest` is a CSRF-protected MVC login POST available only to the explicitly isolated Development loopback host; it is not a production API or a bypass for research approvals.

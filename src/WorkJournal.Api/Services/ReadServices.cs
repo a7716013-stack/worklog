@@ -38,7 +38,7 @@ public static class ReadMapping
     public static RadarDto Radar(MarketRadarResult r,PageQuery q)=>new(r.Market,r.TradeDate,r.Dates,r.UpdatedAt,
         PageDto<QuoteDto>.From(r.Quotes.Select(Quote),q),PageDto<RadarAnalysisDto>.From(r.Analysis.Select(x=>new RadarAnalysisDto(Quote(x.Quote),x.Score,x.Earned,x.Available,x.Level,x.Parts.Select(p=>new ScorePartDto(p.Name,p.Maximum,p.Points,p.Explanation)).ToArray(),x.Reasons,x.RiskFlags,
             x.AverageVolume5,x.AverageVolume20,x.VolumeRatio5,x.VolumeRatio20,x.VolumeGrowth20,x.ForeignNet,x.MacdState,
-            new(x.Technical.Date,x.Technical.Samples,x.Technical.MA5,x.Technical.MA20,x.Technical.MA60,x.Technical.RSI14,x.Technical.MACD,x.Technical.Signal,x.Technical.Histogram),x.Events.Select(Event).ToArray())),q),PageDto<EventDto>.From(r.Events.Select(Event),q),r.Warnings);
+            new(x.Technical.Date,x.Technical.Samples,x.Technical.MA5,x.Technical.MA20,x.Technical.MA60,x.Technical.RSI14,x.Technical.MACD,x.Technical.Signal,x.Technical.Histogram),x.Events.Select(Event).ToArray()) { Scoring=x.Scoring }),q),PageDto<EventDto>.From(r.Events.Select(Event),q),r.Warnings);
     public static EventDto Event(MarketEvent x)=>new(x.StockId,x.Title,x.Category,x.PublishedAt,x.SourceUrl,x.Impact,x.Summary);
     public static HealthDto Health() {
         var version=typeof(ApiHost).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "unknown";

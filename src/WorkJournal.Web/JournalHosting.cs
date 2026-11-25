@@ -9,6 +9,7 @@ public static class JournalHosting
 {
     public static void AddServices(WebApplicationBuilder builder)
     {
+LocalGuestHost.Configure(builder);
 builder.Services.AddControllersWithViews(options =>
 {
     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
@@ -24,6 +25,7 @@ builder.Services.AddDbContext<JournalDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("JournalDatabase"),
         sql => sql.EnableRetryOnFailure()));
 builder.Services.AddMemoryCache();
+builder.Services.AddSingleton<WorkJournal.Application.Scoring.IUnifiedStockScoringService, WorkJournal.Application.Scoring.UnifiedStockScoringService>();
 builder.Services.AddSingleton(TimeProvider.System);
 builder.Services.AddV2Foundations();
 builder.Services.AddSingleton<WorkJournal.Web.Services.Evidence.IFullEvidenceScoreCalculator, WorkJournal.Web.Services.Evidence.FullEvidenceScoreCalculator>();
@@ -86,5 +88,6 @@ builder.Services.AddScoped<WorkJournal.Web.Services.IPaperTradingService, WorkJo
 WorkJournal.Web.Services.RadarTrackingRegistration.AddRadarTracking(builder.Services);
 WorkJournal.Web.Services.InvestmentInsightsRegistration.AddInvestmentInsights(builder.Services);
 WorkJournal.Web.Services.StrategyRegistration.AddStrategyCenter(builder.Services, builder.Configuration);
+LocalGuestHost.Register(builder);
     }
 }

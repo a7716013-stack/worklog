@@ -26,7 +26,7 @@ public class MarketRadarService(ITaiwanMarketRankingProvider provider, IMarketRa
                 catch(Exception e) when(MarketProviderFailure.IsExpected(e,ct))
                 {logger.LogWarning("Radar history {Symbol} {Type}",quote.Stock.Symbol,e.GetType().Name);data=new([],[],null,null);cache.Set(key,data,TimeSpan.FromMinutes(1));}
             }
-            return MarketRadarScoreCalculator.Calculate(quote,data!,events);
+            return new WorkJournal.Application.Scoring.UnifiedStockScoringService().Radar(quote,data!,events);
         }
         finally {HistoryGate.Release();}
     }

@@ -1,0 +1,14 @@
+{
+  "version": "3.3.1",
+  "phase": "4S",
+  "evidenceClass": "Implementation status; not real validation",
+  "default": "Legacy",
+  "modes": {
+    "Legacy": "Existing authoritative ranking and thresholds",
+    "Shadow": "Administrator + feature flag + eligible source; no approved source connected, BLOCKED_BY_DATA",
+    "Preview": "Administrator + feature flag; BLOCKED_BY_DATA",
+    "CandidatePrimary": "DENIED_NOT_PROMOTED"
+  },
+  "noLiveCandidateAdapter": true,
+  "rollback": "Legacy"
+}

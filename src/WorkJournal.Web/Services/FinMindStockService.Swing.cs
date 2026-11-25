@@ -63,7 +63,7 @@ public partial class FinMindStockService
             }
             var bars=rows.Where(x=>Text(x,"stock_id")==symbol && ParseDate(x) is DateOnly d && d<=today && d>=from)
                 .Select(x=>new SwingBar(ParseDate(x)!.Value,Number(x,"open"),Number(x,"max"),Number(x,"min"),Number(x,"close"),Number(x,"Trading_Volume")));
-            var result=new SwingHistory(stock,SwingCalculator.Normalize(bars),flows,message);
+            var result=new SwingHistory(stock,SwingCalculator.Normalize(bars),flows,config.GetValue<bool>("LocalGuest:Validated") ? "本機合成測試行情；不是歷史研究或真實績效。" : message);
             cache.Set(key,result,TimeSpan.FromMinutes(backtest?30:5));
             return result;
             async Task<(SwingFlow[],string)> Flows()

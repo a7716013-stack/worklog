@@ -54,6 +54,7 @@ public class MarketRadarRecommendationService(JournalDbContext db,IMarketRadarSe
         RadarResearch research;
         try {research=await source.ResearchAsync(s,ct);}
         catch(Exception e) when(TaiwanMarketRankingProvider.Failure(e,ct)){research=new("未知",null,null,null,null,s.Events);}
+        s.Scoring = new WorkJournal.Application.Scoring.UnifiedStockScoringService().Compare(WorkJournal.Application.Scoring.UnifiedStockScoringService.RadarScore(s, updated));
         int? Part(int i)=>s.Parts.ElementAtOrDefault(i)?.Points;
         return new(){TradeDate=s.Quote.Date,StockId=s.Quote.Stock.Symbol,StockName=s.Quote.Stock.Name,Market=s.Quote.Stock.Market,IsEtf=s.Quote.Stock.IsEtf,
             Industry=research.Industry,Category=Category(s),ClosePrice=s.Quote.Close,Score=s.Score,EarnedScore=s.Earned,AvailableScore=s.Available,

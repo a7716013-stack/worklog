@@ -1,0 +1,7 @@
+@model WorkJournal.Domain.Scoring.ScoreComparison
+<details class="panel mb-3"><summary>保存的模型比較（不回填歷史）</summary>
+@foreach(var score in new[]{Model.Legacy,Model.Candidate}) {
+<h3>@score.ModelVersion</h3><p>分數 @(score.TotalScore?.ToString()??"—") · 可用權重 @score.AvailableWeight /100 · @score.ScoreStatus · @score.ResearchStatus</p>
+<ul>@foreach(var c in score.ComponentScores){<li>@c.Code：@(c.Points?.ToString()??"—") / @c.Weight · @c.Status · @c.Reason</li>}</ul>
+<p>@string.Join("；",score.BlockingReasons)</p><small>公式 @score.FormulaDigest · 參數 @score.ParameterSetId · 資料集 @score.DatasetSnapshotId · cutoff @score.DataCutoff</small>
+}<p>差異 @(Model.Difference?.ToString()??"不可比較") · Baseline @Model.BaselineStatus · OOS @Model.OosStatus · @Model.PromotionStatus</p><p>70／75 分門檻僅屬 Legacy，Candidate 不構成正式推薦。</p></details>

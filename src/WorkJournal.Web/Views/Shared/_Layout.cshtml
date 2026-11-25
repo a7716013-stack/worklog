@@ -16,11 +16,15 @@
 </nav></header>
 <main class="page-width main-content" id="main-content">
 @if (TempData["Success"] is string message) { <div class="alert alert-success" role="status">@message</div> }
+@if (User.HasClaim("local_guest","synthetic")) {
+<aside class="alert alert-info">本機訪客 · 合成測試資料，所有結果均非真實研究績效。<form asp-controller="Account" asp-action="LocalGuest" method="post" class="d-inline"><button class="btn btn-sm btn-light">重設為新訪客</button></form></aside>
+}
 @RenderBody()
 @if (TempData["Warning"] is string warning) { <div class="alert alert-warning" role="status">@warning</div> }
 </main>
 <footer class="page-width footer"><span>WORK JOURNAL v@(typeof(WorkJournal.Web.Models.ApplicationUser).Assembly.GetName().Version?.ToString(3))</span><span>記錄每一天的進步，累積更好的決策。</span></footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/unified-scoring.js" asp-append-version="true"></script>
 @await RenderSectionAsync("Scripts", required: false)
 </body></html>
