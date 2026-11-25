@@ -61,6 +61,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -170,6 +180,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -321,6 +341,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -414,6 +444,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -525,6 +565,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -627,6 +677,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -711,6 +771,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -838,6 +908,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -931,6 +1011,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -1042,6 +1132,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -1135,6 +1235,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -1262,6 +1372,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -1364,6 +1484,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -1457,6 +1587,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -1584,6 +1724,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -1677,6 +1827,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -1804,6 +1964,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -1897,6 +2067,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -2032,6 +2212,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -2149,6 +2339,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -2292,6 +2492,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -2385,6 +2595,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -2496,6 +2716,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -2589,6 +2819,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -2703,6 +2943,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -2796,6 +3046,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -2907,6 +3167,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -3000,6 +3270,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -3110,6 +3390,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -3230,6 +3520,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -3375,6 +3675,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -3468,6 +3778,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -3579,6 +3899,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -3681,6 +4011,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -3774,6 +4114,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -3892,6 +4242,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -4027,6 +4387,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -4120,6 +4490,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -4231,6 +4611,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -4324,6 +4714,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -4408,6 +4808,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -4535,6 +4945,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -4653,6 +5073,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -4737,6 +5167,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -4864,6 +5304,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -4948,6 +5398,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -5075,6 +5535,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -5159,6 +5629,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -5261,6 +5741,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -5345,6 +5835,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -5472,6 +5972,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -5574,6 +6084,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -5695,6 +6215,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -5788,6 +6318,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -5867,6 +6407,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -6021,6 +6571,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -6126,6 +6686,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -6248,6 +6818,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -6336,6 +6916,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -6434,6 +7024,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -6561,6 +7161,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -6679,6 +7289,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -6781,6 +7401,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -6865,6 +7495,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -6992,6 +7632,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -7094,6 +7744,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -7187,6 +7847,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -7314,6 +7984,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -7416,6 +8096,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -7500,6 +8190,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -7627,6 +8327,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -7736,6 +8446,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -7863,6 +8583,352 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/scoring/readiness": {
+      "get": {
+        "operationId": "UnifiedScoringController_Readiness",
+        "parameters": [
+          {
+            "name": "mode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScoreComparison"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/scoring/swing": {
+      "get": {
+        "operationId": "UnifiedScoringController_Swing",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SwingAnalysis"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ExistingUserSession": []
+          }
+        ]
+      }
+    },
+    "/api/v1/scoring/backtest/{symbol}": {
+      "get": {
+        "operationId": "UnifiedScoringController_Backtest",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BacktestComparison"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -7947,6 +9013,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -8058,6 +9134,16 @@
               }
             }
           },
+          "409": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "ProblemDetails",
             "content": {
@@ -8151,6 +9237,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -8297,6 +9393,16 @@
             }
           },
           "404": {
+            "description": "ProblemDetails",
+            "content": {
+              "application/problem\u002Bjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "409": {
             "description": "ProblemDetails",
             "content": {
               "application/problem\u002Bjson": {
@@ -15589,6 +16695,10 @@
       "MarketRadarStock": {
         "type": "object",
         "properties": {
+          "scoring": {
+            "$ref": "#/components/schemas/ScoreComparison",
+            "nullable": true
+          },
           "quote": {
             "$ref": "#/components/schemas/MarketQuote"
           },
@@ -15687,6 +16797,165 @@
           "reasons",
           "riskFlags",
           "events"
+        ]
+      },
+      "ScoreComparison": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "type": "string"
+          },
+          "legacy": {
+            "$ref": "#/components/schemas/VersionedScore"
+          },
+          "candidate": {
+            "$ref": "#/components/schemas/VersionedScore"
+          },
+          "difference": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "baselineStatus": {
+            "type": "string"
+          },
+          "oosStatus": {
+            "type": "string"
+          },
+          "promotionStatus": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "mode",
+          "legacy",
+          "candidate",
+          "difference",
+          "baselineStatus",
+          "oosStatus",
+          "promotionStatus"
+        ]
+      },
+      "VersionedScore": {
+        "type": "object",
+        "properties": {
+          "modelVersion": {
+            "type": "string"
+          },
+          "formulaDigest": {
+            "type": "string"
+          },
+          "parameterSetId": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalScore": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "availableWeight": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "scoreStatus": {
+            "type": "string"
+          },
+          "componentScores": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScoreComponent"
+            }
+          },
+          "featureTrace": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScoreFeature"
+            }
+          },
+          "datasetSnapshotId": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataCutoff": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "blockingReasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "researchStatus": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "modelVersion",
+          "formulaDigest",
+          "parameterSetId",
+          "totalScore",
+          "availableWeight",
+          "scoreStatus",
+          "componentScores",
+          "featureTrace",
+          "datasetSnapshotId",
+          "dataCutoff",
+          "blockingReasons",
+          "researchStatus"
+        ]
+      },
+      "ScoreComponent": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "weight": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "points": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "status": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "weight",
+          "points",
+          "status",
+          "reason"
+        ]
+      },
+      "ScoreFeature": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "rawValue": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "normalizedValue": {
+            "type": "number",
+            "format": "decimal"
+          }
+        },
+        "required": [
+          "code",
+          "rawValue",
+          "normalizedValue"
         ]
       },
       "TechnicalData": {
@@ -16161,6 +17430,10 @@
             "items": {
               "$ref": "#/components/schemas/EventDto"
             }
+          },
+          "scoring": {
+            "$ref": "#/components/schemas/ScoreComparison",
+            "nullable": true
           }
         },
         "required": [
@@ -17090,6 +18363,487 @@
           "executedAt"
         ]
       },
+      "SwingAnalysis": {
+        "type": "object",
+        "properties": {
+          "stock": {
+            "$ref": "#/components/schemas/SwingStock"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/SwingSnapshot"
+          },
+          "chart": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SwingChartPoint"
+            }
+          },
+          "message": {
+            "type": "string"
+          },
+          "scoring": {
+            "$ref": "#/components/schemas/ScoreComparison",
+            "nullable": true
+          }
+        },
+        "required": [
+          "stock",
+          "summary",
+          "chart",
+          "message",
+          "scoring"
+        ]
+      },
+      "SwingSnapshot": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "score": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "earned": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "available": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "state": {
+            "type": "string"
+          },
+          "close": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "changePercent": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "mA5": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "mA10": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "mA20": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "mA60": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "rsi": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "macd": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "signal": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "volumeRatio": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "averageVolume": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "priorHigh20": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "priorLow20": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "foreign5": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "trust5": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "foreign20": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "trust20": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "foreignStreak": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "trustStreak": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "flowDate": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "rules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SwingRule"
+            }
+          },
+          "strategies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SwingStrategy"
+            }
+          }
+        },
+        "required": [
+          "date",
+          "score",
+          "earned",
+          "available",
+          "state",
+          "close",
+          "changePercent",
+          "mA5",
+          "mA10",
+          "mA20",
+          "mA60",
+          "rsi",
+          "macd",
+          "signal",
+          "volumeRatio",
+          "averageVolume",
+          "priorHigh20",
+          "priorLow20",
+          "foreign5",
+          "trust5",
+          "foreign20",
+          "trust20",
+          "foreignStreak",
+          "trustStreak",
+          "flowDate",
+          "rules",
+          "strategies"
+        ]
+      },
+      "SwingRule": {
+        "type": "object",
+        "properties": {
+          "group": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "points": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "passed": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "required": [
+          "group",
+          "label",
+          "points",
+          "passed"
+        ]
+      },
+      "SwingStrategy": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "definition": {
+            "type": "string"
+          },
+          "passed": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "required": [
+          "name",
+          "definition",
+          "passed"
+        ]
+      },
+      "SwingChartPoint": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "open": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "high": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "low": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "close": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "volume": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "mA5": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "mA10": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "mA20": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "mA60": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "rsi": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "macd": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "signal": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "histogram": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          }
+        },
+        "required": [
+          "date",
+          "open",
+          "high",
+          "low",
+          "close",
+          "volume",
+          "mA5",
+          "mA10",
+          "mA20",
+          "mA60",
+          "rsi",
+          "macd",
+          "signal",
+          "histogram"
+        ]
+      },
+      "BacktestComparison": {
+        "type": "object",
+        "properties": {
+          "legacyModelVersion": {
+            "type": "string"
+          },
+          "legacy": {
+            "$ref": "#/components/schemas/SwingBacktest"
+          },
+          "candidateModelVersion": {
+            "type": "string"
+          },
+          "candidateBaselineStatus": {
+            "type": "string"
+          },
+          "candidateOosStatus": {
+            "type": "string"
+          },
+          "promotionStatus": {
+            "type": "string"
+          },
+          "blockingReasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "legacyModelVersion",
+          "legacy",
+          "candidateModelVersion",
+          "candidateBaselineStatus",
+          "candidateOosStatus",
+          "promotionStatus",
+          "blockingReasons"
+        ]
+      },
+      "SwingBacktest": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "from": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "to": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "observations": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "scoredDays": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "missingDays": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "openPositions": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "winRate": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "averageReturn": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "totalReturn": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "maxDrawdown": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "trades": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SwingTrade"
+            }
+          }
+        },
+        "required": [
+          "message",
+          "from",
+          "to",
+          "observations",
+          "scoredDays",
+          "missingDays",
+          "openPositions",
+          "winRate",
+          "averageReturn",
+          "totalReturn",
+          "maxDrawdown",
+          "trades"
+        ]
+      },
+      "SwingTrade": {
+        "type": "object",
+        "properties": {
+          "entry": {
+            "type": "string",
+            "format": "date"
+          },
+          "exit": {
+            "type": "string",
+            "format": "date"
+          },
+          "entryPrice": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "exitPrice": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "returnPercent": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "entry",
+          "exit",
+          "entryPrice",
+          "exitPrice",
+          "returnPercent",
+          "reason"
+        ]
+      },
       "EligibilitySummaryDto": {
         "type": "object",
         "properties": {
@@ -17432,6 +19186,7 @@
               "BLOCKED_BY_AUTHORITY",
               "BLOCKED_BY_DATA",
               "STALE_VERSION",
+              "CANDIDATE_NOT_PROMOTED",
               "INTERNAL_ERROR"
             ]
           }

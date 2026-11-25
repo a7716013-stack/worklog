@@ -61,6 +61,11 @@ void Unavailable(CandidateTrace result,EvidenceCode code,string label,EvidenceSt
     Check(result.Score.TotalScore is null,label+" blocks total");
 }
 var golden = Run();
+var unifiedCandidate = new WorkJournal.Application.Scoring.UnifiedStockScoringService().CandidateFixture(data,stock,p);
+Check(unifiedCandidate.TotalScore==golden.Score.TotalScore && unifiedCandidate.AvailableWeight==golden.Score.AvailableWeight,"4S Candidate adapter exact parity");
+Check(unifiedCandidate.FeatureTrace.Length==19 && unifiedCandidate.ResearchStatus=="SYNTHETIC_FIXTURE_NOT_REAL_VALIDATION","4S 19 features remain fixture-only");
+var missingUnified=new WorkJournal.Application.Scoring.UnifiedStockScoringService().CandidateFixture(StockFlows([]),stock,p);
+Check(missingUnified.TotalScore is null && missingUnified.AvailableWeight<100,"4S missing candidate component cannot be normalized to 100");
 Check(golden.Score.Status==EvidenceScoreStatus.Complete,"synthetic complete candidate");
 Near(Component(golden,EvidenceCode.Trend).Evidence.Value!.Value,.5m,"flat Trend golden");
 Near(Component(golden,EvidenceCode.Momentum).Evidence.Value!.Value,.5m,"flat Momentum golden");

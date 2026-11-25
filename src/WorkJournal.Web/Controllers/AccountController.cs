@@ -15,7 +15,8 @@ public class AccountController(SignInManager<ApplicationUser> signIn, UserManage
     public IActionResult Login(string? returnUrl = null, bool failed = false)
     {
         ViewData["ReturnUrl"] = SafeReturn(returnUrl);
-        ViewData["Configured"] = GoogleAuthSettings.IsConfigured(configuration);
+        ViewData["Configured"] = !LocalGuestHost.Enabled(configuration) && GoogleAuthSettings.IsConfigured(configuration);
+        ViewData["LocalGuest"] = LocalGuestHost.Enabled(configuration) && LocalGuestHost.IsLoopback(HttpContext);
         ViewData["Failed"] = failed;
         return View();
     }
@@ -53,6 +54,18 @@ public class AccountController(SignInManager<ApplicationUser> signIn, UserManage
         }
         catch (Microsoft.EntityFrameworkCore.DbUpdateException) { return Failed(); }
         finally { await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme); }
+    }
+    [AllowAnonymous, HttpPost]
+    public async Task<IActionResult> LocalGuest()
+    {
+        if (!LocalGuestHost.Enabled(configuration) || !LocalGuestHost.IsLoopback(HttpContext)) return NotFound();
+        // Each entry/reset receives a fresh owner. Never sign in as an existing member.
+        var id = Guid.NewGuid().ToString("N");
+        var user = new ApplicationUser { UserName="guest_"+id, Email=id+"@guest.invalid", EmailConfirmed=true, DisplayName="本機訪客（測試資料）" };
+        if (!(await users.CreateAsync(user)).Succeeded) return StatusCode(503);
+        await users.AddClaimAsync(user,new Claim("local_guest","synthetic"));
+        await signIn.SignInAsync(user,false);
+        return LocalRedirect("/StockAnalysis/Swing");
     }
     [Authorize, HttpPost]
     public async Task<IActionResult> Logout()

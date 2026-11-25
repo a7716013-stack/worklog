@@ -1,0 +1,230 @@
+{
+  "version": "3.3.1",
+  "evidenceClass": "Local synthetic regression and isolated SQL; not production acceptance",
+  "status": "PASS",
+  "localSuites": 19,
+  "logs": {
+    "api": {
+      "sha256": "c61df88c249364119b3edadf9aeef503753ef07e928f42fad7ef24d36f369209",
+      "lastLines": [
+        "PASS: private entity fields omitted",
+        "PASS: empty portfolio isolated",
+        "PASS: empty trades isolated",
+        "PASS: real SQL readiness",
+        "API contract checks: 701 PASS"
+      ]
+    },
+    "identity": {
+      "sha256": "a70cf51850c4cfba3edae279d26ccea91300adaca31c6a1dd0a8d992e030769e",
+      "lastLines": [
+        "PASS: Logout denies portfolio JSON",
+        "PASS: Previously issued cookie cannot be replayed after logout",
+        "PASS: Invalid Calendar authorization rejected",
+        "Completed 127 checks using synthetic Google responses. Real OAuth has NOT been tested.",
+        "Removed only this run's isolated database."
+      ]
+    },
+    "MarketDataChecks": {
+      "sha256": "752dde3487a5d8d0367f456e2cd4634616e1eb46ca7aa00eec4df894f080ec8c",
+      "lastLines": [
+        "PASS: official schemas, exact/missing volume, date validation, holiday, institutional groups, coalescing, restart cache, expiry, cancellation, persisted budget, shared cooldown and routing."
+      ]
+    },
+    "MarketRadarChecks": {
+      "sha256": "c6a1e30f381dc825671ed361539a3f9dd5b0f91af5bdb3918035d73034711fb7",
+      "lastLines": [
+        "PASS: Official ROC dates and share units",
+        "PASS: OTC parser, malformed-date skip and shares not lots",
+        "PASS: TWSE sign markup, corporate-action unknowns and malformed rows",
+        "PASS: Official event timestamp and non-speculative impact",
+        "220 market radar checks passed."
+      ]
+    },
+    "FinMindChecks": {
+      "sha256": "9a2f388c6bbe0f0b8c6f44640955c1b63cfe617e6e26ef7d8178d060bf1f6f1b",
+      "lastLines": [
+        "PASS: fundamentals, partial failures, MA, Wilder RSI, MACD, warmup, sorting and missing data.",
+        "PASS: latest-day mapping, percent calculation, nulls, quota, malformed JSON, cache and token header.",
+        "PASS: ETF classification, dated NAV/premium, assets units, holdings, dividend revisions and partial failure.",
+        "PASS: swing scoring, prior-only breakout/volume, flow windows, missing data, no-lookahead fills, fees and corporate-action guard."
+      ]
+    },
+    "LegacySwing75Checks": {
+      "sha256": "e54cddc298e29649a4830ca9a6435f27742ad0539fcbb4e2b63cd1c84b2ec126",
+      "lastLines": [
+        "PASS: LegacySwing75_74_IsNotEligible",
+        "PASS: LegacySwing75_75_IsEligible_NextOpenFill",
+        "PASS: LegacySwing75_NoSameDayFill",
+        "PASS: LegacySwing75_Missing_IsNotEligible"
+      ]
+    },
+    "PaperTradingChecks": {
+      "sha256": "4f475a67d89298374ab67b2dc94a0898a80038cbf46ce8162f47e9ea2c0c9366",
+      "lastLines": [
+        "PASS: Bob cannot remove Alice tracking entry",
+        "PASS: Watchlist limit is enforced atomically on server",
+        "PASS: Watchlist removal persists in a new SQL context",
+        "PASS: 59 SQL-backed paper trading and watchlist checks.",
+        "Isolated test database removed."
+      ]
+    },
+    "StrategyCenterChecks": {
+      "sha256": "810a7695911fac5ffcd50a957a6dae08bb296f781997b2b6de9f690a4ec56d75",
+      "lastLines": [
+        "PASS: snapshot unchanged after denied update",
+        "PASS: same-day differentprofile allowed",
+        "PASS: snapshot failure propagated",
+        "PASS: failure rolledback evaluation signal episode",
+        "StrategyCenter checks PASS: 41"
+      ]
+    },
+    "MarketRadarTrackingChecks": {
+      "sha256": "e8f5e803d28fa206c45958412be09559cee3e1ec942bddb6f074a91ca7d85f8c",
+      "lastLines": [
+        "PASS: upgrade copies existing swing without deleting it",
+        "PASS: repeated migration does not duplicate favorites",
+        "StockResearchChecks: 16 PASS",
+        "MarketRadarTrackingChecks: 35 PASS",
+        "Isolated radar database removed."
+      ]
+    },
+    "V2FoundationChecks": {
+      "sha256": "61c916bd6fae299963c7ff115d33c36909a3d35a693644a0561ad3ec786022ad",
+      "lastLines": [
+        "PASS: trace rejects unknown parameter reference",
+        "PASS: trace rejects snapshot version mismatch",
+        "PASS: historical benchmark definition immutable",
+        "PASS: cross-connection concurrent snapshot retries create one row",
+        "V2 foundation checks: 45 passed"
+      ]
+    },
+    "V2EvidenceChecks": {
+      "sha256": "77ff30d4214a36781bd1dc39cc137907bf2be8f3f5ddeb5f161680a2c1372a5f",
+      "lastLines": [
+        "PASS: instrument outside research universe rejected",
+        "PASS: unknown parameter reference rejected",
+        "PASS: ineligible historical universe is not silently scored",
+        "PASS: preparation is read-only and does not persist fake scores or decisions",
+        "V2EvidenceChecks: 64 PASS (partial Phase 3: aggregation/contracts/PIT preparation; normalization unresolved)"
+      ]
+    },
+    "V3ModelChecks": {
+      "sha256": "5fbca55f16922a02691a210bf13d5f2c0e380cbc179879a8fc4d1de3c1054ec3",
+      "lastLines": [
+        "PASS: input digest prevents same identity silently reusing changed payload",
+        "PASS: liquidity price proxy must be explicit",
+        "PASS: liquidity price proxy must be explicit blocks total",
+        "PASS: omitted array rejected",
+        "V3 Candidate model checks passed: 107. Synthetic fixtures only; Research/OOS not performed."
+      ]
+    },
+    "V3ResearchChecks": {
+      "sha256": "d16a2e53a3e982263eca9f7b4dda1f73b77088cf810c0ec79c971f52b7f1dbf1",
+      "lastLines": [
+        "PASS: artifact tampering detected",
+        "PASS: failed research persisted separately",
+        "PASS: failure artifact retained",
+        "Research persistence fixture: C:\\Users\\a7716\\AppData\\Local\\Temp\\WorkJournalResearchChecks_e405fce1e4454b6486d42273dc27c98e",
+        "V3 Research checks passed: 78; synthetic infrastructure only, no model promotion."
+      ]
+    },
+    "V3PitDatasetChecks": {
+      "sha256": "c70cf65a6ca9736bf381583cc2ade1076195274c1791cfb94c9c5d3d7c291185",
+      "lastLines": [
+        "PASS: multiple testing counts and threshold lock",
+        "PASS: historical classification gaps explicit",
+        "PASS: orphan report metrics rejected",
+        "PASS: official-shaped capture retains unknown availability and exact units",
+        "V3 PIT dataset checks passed: 52; synthetic verification, not real research validation."
+      ]
+    },
+    "V3AuthorityChecks": {
+      "sha256": "d8e8295c5a5d88e456ff3fa0268517798fb502adff2272b98b967d54b7135a9d",
+      "lastLines": [
+        "PASS: historical audit replay survives later supersession",
+        "PASS: superseded authority blocks new research",
+        "PASS: stale approved authority cannot bypass current registry",
+        "PASS: evidence metadata tampering detected",
+        "V3 Authority checks passed: 58; simulated authority metadata only, no real source approval."
+      ]
+    },
+    "V3RealDataChecks": {
+      "sha256": "0f66fb47586c1a894980f4da285696120b12dacb26c4f79f8fb935de02ad3b98",
+      "lastLines": [
+        "PASS: superseded domain authority blocks new approval",
+        "PASS: historical baseline replay survives later authority supersession",
+        "PASS: archive byte tampering rejected",
+        "PASS: frozen evidence file tampering rejected",
+        "V3 real-data contract checks passed: 42; simulated fixtures only, not real research evidence."
+      ]
+    },
+    "V3ClosureChecks": {
+      "sha256": "765a7af6843eadede88acc6e07193c67bb984e907ea0a059d7604f388de55b94",
+      "lastLines": [
+        "PASS: partial replacement cannot supersede approved closure",
+        "PASS: superseded closure blocks new research",
+        "PASS: baseline rechecks live closure revisions before calculating outcomes",
+        "PASS: corrupted archive rejected",
+        "V3 closure checks passed: 120; fixture evidence only, no real component approval."
+      ]
+    },
+    "V3ComponentDatasetChecks": {
+      "sha256": "3d6e4049f5a44496b1d0c81b955ee90a973aae21413941c739af4963f512331e",
+      "lastLines": [
+        "PASS: raw locator binds response row symbol date",
+        "PASS: parser does not convert unavailable prices/volume to zero",
+        "PASS: raw parse deterministic replay",
+        "PASS: raw digest corruption rejected",
+        "V3 component dataset checks passed: 53; simulated fixtures, no real approval or research milestone."
+      ]
+    },
+    "V3AuthorityResolutionChecks": {
+      "sha256": "97593dc5b961eb1b9997fecc18aeb2dfb699f634ed142c3241baa6490fe72d2c",
+      "lastLines": [
+        "PASS: revoked approval blocks new diagnostics",
+        "PASS: revoked approval blocks Phase4I sample assessment",
+        "PASS: revoked receipt blocks new baseline",
+        "PASS: archived baseline replay survives revocation",
+        "V3 authority resolution checks passed: 97; simulated fixtures, no real milestones."
+      ]
+    }
+  },
+  "browser": {
+    "version": "3.3.1",
+    "evidenceClass": "Local isolated synthetic guest integration",
+    "checks": [
+      "local version 3.3.1",
+      "anonymous scoring denied",
+      "guest POST requires CSRF",
+      "guest Identity owner assigned",
+      "synthetic banner shown",
+      "isolated HttpOnly cookie",
+      "Swing dual model UI",
+      "seven strategies and six Candidate components",
+      "blocked Candidate has no manufactured score",
+      "fixture provider not mislabeled FinMind",
+      "guest cannot assume research administrator",
+      "CandidatePrimary denied",
+      "non-local Host rejected by host filter or guest boundary",
+      "radar API synthetic data and versioned score",
+      "separate guest owners",
+      "guest member isolation",
+      "first guest data retained",
+      "reset creates fresh isolated workspace",
+      "reset workspace empty",
+      "radar dual model presentation",
+      "new immutable recommendation stores dual model metadata",
+      "private snapshot isolated from another guest",
+      "snapshot comparison immutable on reread",
+      "browser has no script errors: []"
+    ],
+    "count": 24,
+    "status": "PASS"
+  },
+  "ci": "See PR checks for uploaded head SHA; not replaced by local results",
+  "realDataRequests": 0,
+  "realBaseline": "NOT_RUN",
+  "oos": "NOT_RUN",
+  "promotion": "NOT_PROMOTED",
+  "onlineDeployment": "NOT_PERFORMED"
+}

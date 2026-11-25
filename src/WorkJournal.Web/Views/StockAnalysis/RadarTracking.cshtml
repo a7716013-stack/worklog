@@ -19,7 +19,7 @@ else {
  var r=item.Recommendation;var p=item.Performance;var open=Model.Filter.Basis=="open";
  decimal?[] returns=open?[p?.OpenReturn1D,p?.OpenReturn3D,p?.OpenReturn5D,p?.OpenReturn10D,p?.OpenReturn20D]:[p?.Return1D,p?.Return3D,p?.Return5D,p?.Return10D,p?.Return20D];
  <tr><td><a asp-action="RadarSnapshot" asp-route-id="@r.Id">@r.TradeDate<br />@r.StockId @r.StockName</a><small class="d-block">@(r.IsEtf?"ETF":r.Market=="twse"?"上市":"上櫃")</small><small class="d-block">@(p?.Status??"等待後續行情")</small></td>
- <td>@(r.Category=="Qualified"?"完整 ≥70":r.Category=="Incomplete"?"評分不完整":"低分補充")<br />@(r.Score?.ToString()??$"已知 {r.EarnedScore}／可評 {r.AvailableScore}")</td>
+ <td><small class="d-block">Legacy · @r.ScoreVersion</small>@(r.Category=="Qualified"?"完整 ≥70":r.Category=="Incomplete"?"評分不完整":"低分補充")<br />@(r.Score?.ToString()??$"已知 {r.EarnedScore}／可評 {r.AvailableScore}")</td>
  <td>@r.Industry<br />外資連買 @(r.ForeignBuyStreak?.ToString()??"—")／連賣 @(r.ForeignSellStreak?.ToString()??"—")<br />投信連買 @(r.TrustBuyStreak?.ToString()??"—")／連賣 @(r.TrustSellStreak?.ToString()??"—")</td>
  @foreach(var value in returns){<td class="@(value>0?"paper-profit":value<0?"paper-loss":"")">@P(value)</td>}
  <td>@if(!open){<span>@P(p?.Mfe20D)／@P(p?.Mae20D)</span>}else{<span>見快照頁後續明細</span>}</td>
@@ -40,3 +40,5 @@ else {
 </tbody></table></div>
 <nav class="d-flex gap-3 my-3" aria-label="推薦分頁">@if(Model.Filter.Page>1){<a href="@PageUrl(Model.Filter.Page-1)">上一頁</a>}<span>第 @Model.Filter.Page / @Model.TotalPages 頁</span>@if(Model.Filter.Page<Model.TotalPages){<a href="@PageUrl(Model.Filter.Page+1)">下一頁</a>}</nav>
 }
+
+<partial name="_ScoringRouting" />

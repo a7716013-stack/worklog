@@ -35,7 +35,10 @@ public class SwingSnapshot
     public List<SwingRule> Rules { get; set; } = [];
     public List<SwingStrategy> Strategies { get; set; } = [];
 }
-public record SwingAnalysis(SwingStock Stock, SwingSnapshot Summary, List<SwingChartPoint> Chart, string Message);
+public record SwingAnalysis(SwingStock Stock, SwingSnapshot Summary, List<SwingChartPoint> Chart, string Message)
+{
+    public WorkJournal.Domain.Scoring.ScoreComparison? Scoring { get; init; }
+}
 public record SwingHistory(SwingStock Stock, SwingBar[] Bars, SwingFlow[] Flows, string Message);
 public record SwingTrade(DateOnly Entry, DateOnly Exit, decimal EntryPrice, decimal ExitPrice, decimal ReturnPercent, string Reason);
 public class SwingBacktest

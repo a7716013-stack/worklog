@@ -87,6 +87,7 @@ public partial class FinMindStockService(HttpClient client, IMemoryCache cache, 
     private async Task<JsonElement[]> ReadAsync(string dataset, string symbol, DateOnly? from, DateOnly? to,
         CancellationToken cancellationToken)
     {
+        if (config.GetValue<bool>("LocalGuest:Validated")) return WorkJournal.Domain.Scoring.LocalGuestFixtures.Read(dataset,symbol,from,to);
         if (marketData == null) return await ReadFinMindAsync(dataset,symbol,from,to,cancellationToken);
         try { return await marketData.ReadAsync(dataset,symbol,from,to,() => ReadFinMindAsync(dataset,symbol,from,to,cancellationToken),cancellationToken); }
         catch (Exception ex) when (ex is HttpRequestException or InvalidDataException or JsonException)

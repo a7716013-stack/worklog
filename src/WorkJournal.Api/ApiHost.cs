@@ -97,6 +97,7 @@ public static class ApiHost
                     (context.GetEndpoint() as RouteEndpoint)?.RoutePattern.RawText ?? "unmatched",context.Response.StatusCode,Stopwatch.GetElapsedTime(started).TotalMilliseconds);
             }
         });
+        app.UseMiddleware<LocalGuestBoundary>();
         app.UseMiddleware<TrustedOriginMiddleware>();
         if(!app.Environment.IsDevelopment()) {
             app.UseWhen(c=>!IsApi(c.Request.Path), branch=>branch.UseExceptionHandler("/Home/Error"));
@@ -119,7 +120,7 @@ public sealed class ApiFault(int status,string code) : Exception(code)
 { public int Status {get;}=status; public string Code {get;}=code; }
 public static class ApiErrors
 {
-    public static readonly string[] Codes=["VALIDATION_ERROR","AUTHENTICATION_REQUIRED","FORBIDDEN","RESOURCE_NOT_FOUND","CONFLICT","IDEMPOTENCY_CONFLICT","RATE_LIMITED","UPSTREAM_UNAVAILABLE","DATA_NOT_READY","BLOCKED_BY_AUTHORITY","BLOCKED_BY_DATA","STALE_VERSION","INTERNAL_ERROR"];
+    public static readonly string[] Codes=["VALIDATION_ERROR","AUTHENTICATION_REQUIRED","FORBIDDEN","RESOURCE_NOT_FOUND","CONFLICT","IDEMPOTENCY_CONFLICT","RATE_LIMITED","UPSTREAM_UNAVAILABLE","DATA_NOT_READY","BLOCKED_BY_AUTHORITY","BLOCKED_BY_DATA","STALE_VERSION","CANDIDATE_NOT_PROMOTED","INTERNAL_ERROR"];
     public static ProblemDetails Problem(HttpContext c,int status,string? code=null) {
         code ??=status switch {400=>"VALIDATION_ERROR",401=>"AUTHENTICATION_REQUIRED",403=>"FORBIDDEN",404=>"RESOURCE_NOT_FOUND",409=>"CONFLICT",412=>"STALE_VERSION",422=>"BLOCKED_BY_DATA",429=>"RATE_LIMITED",503=>"UPSTREAM_UNAVAILABLE",_=>"INTERNAL_ERROR"};
         var p=new ProblemDetails {Status=status,Title=code,Type="urn:workjournal:problem:"+code.ToLowerInvariant(),Instance=c.Request.Path};

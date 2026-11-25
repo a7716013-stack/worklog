@@ -16,7 +16,7 @@ public sealed record QuoteDto(StockDto Stock,DateOnly Date,decimal Close,decimal
 public sealed record ScorePartDto(string Name,int Maximum,int? Points,string Explanation);
 public sealed record TechnicalDto(DateOnly? Date,int Samples,decimal? Ma5,decimal? Ma20,decimal? Ma60,decimal? Rsi14,decimal? Macd,decimal? Signal,decimal? Histogram);
 public sealed record EventDto(string Instrument,string Title,string Category,DateTimeOffset PublishedAt,string SourceUrl,string Impact,string Summary);
-public sealed record RadarAnalysisDto(QuoteDto Quote,int? Score,int Earned,int Available,string Level,ScorePartDto[] Parts,string[] Reasons,string[] RiskFlags,decimal? AverageVolume5,decimal? AverageVolume20,decimal? VolumeRatio5,decimal? VolumeRatio20,decimal? VolumeGrowth20,decimal? ForeignNet,string MacdState,TechnicalDto Technical,EventDto[] Events);
+public sealed record RadarAnalysisDto(QuoteDto Quote,int? Score,int Earned,int Available,string Level,ScorePartDto[] Parts,string[] Reasons,string[] RiskFlags,decimal? AverageVolume5,decimal? AverageVolume20,decimal? VolumeRatio5,decimal? VolumeRatio20,decimal? VolumeGrowth20,decimal? ForeignNet,string MacdState,TechnicalDto Technical,EventDto[] Events) { [ApiOptional] public WorkJournal.Domain.Scoring.ScoreComparison? Scoring { get; init; } }
 public sealed record RadarDto(string Market,DateOnly? TradeDate,DateOnly[] Dates,DateTimeOffset GeneratedAt,PageDto<QuoteDto> Quotes,PageDto<RadarAnalysisDto> Analysis,PageDto<EventDto> Events,string[] Warnings);
 public sealed record IndustryDto(string Instrument,string Industry);
 public sealed record ComponentDto(string Component,decimal Weight);

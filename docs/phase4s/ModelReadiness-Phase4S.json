@@ -1,0 +1,20 @@
+{
+  "version": "3.3.1",
+  "phase": "4S",
+  "evidenceClass": "Implementation status; not real validation",
+  "legacy": "PRESERVED",
+  "candidate": "BLOCKED_BY_DATA",
+  "baseline": "NOT_RUN",
+  "oos": "NOT_RUN",
+  "promotion": "NOT_PROMOTED",
+  "phase5": "LOCKED",
+  "formulaDigest": "81C788B359568B2B058EC92EDFE2F30A3593D7C2A23B3BE8C126BA026D06CBFB",
+  "pilot": {
+    "stocks": 10,
+    "historicalMonths": 3,
+    "uniqueRequests": 30,
+    "maxAttempts": 90,
+    "status": "REVIEW_ONLY_NOT_APPROVED",
+    "executed": 0
+  }
+}

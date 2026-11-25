@@ -81,7 +81,7 @@ public sealed class RadarJobs(IServiceScopeFactory scopes,TimeProvider clock,ILo
                 MarketRadarStock result;
                 try {result=await analyzer.AnalyzeAsync(quote,basic.Events,itemDeadline.Token).WaitAsync(itemDeadline.Token);}
                 catch(OperationCanceledException) when(!token.IsCancellationRequested)
-                {result=MarketRadarScoreCalculator.Calculate(quote,new([],[],null,null),basic.Events);}
+                {result=new WorkJournal.Application.Scoring.UnifiedStockScoringService().Radar(quote,new([],[],null,null),basic.Events);}
                 completed[quote.Stock.Symbol]=result;
                 lock(job.Sync)job.View=job.View with {Completed=completed.Count,Result=basic with {Analysis=completed.Values.OrderBy(x=>x.Quote.Stock.Symbol).ToArray()}};
             });

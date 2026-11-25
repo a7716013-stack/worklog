@@ -88,6 +88,7 @@ function render(){
   const title=el("div");title.append(el("p","#"+(index+1)+" · "+stock.symbol,"eyebrow"),el("h3",stock.name));
   const score=el("div",null,"swing-score");score.append(el("strong",s?.score==null?"—":s.score),el("small","/ 100"));
   head.append(title,score);card.append(head);
+  if(info?.scoring)card.append(window.unifiedScorePanel(info.scoring));
   if(info){
    card.append(el("span",s.state,"swing-state "+stateClass(s.state)));
    card.append(el("p","行情 "+(s.date||"—")+" · 法人 "+(s.flowDate||"—"),"muted mt-3"));

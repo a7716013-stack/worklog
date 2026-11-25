@@ -1,0 +1,12 @@
+{
+  "version": "3.3.1",
+  "phase": "4S",
+  "evidenceClass": "Implementation status; not real validation",
+  "status": "NOT_RUN",
+  "candidateScores": null,
+  "difference": null,
+  "reason": "NO_APPROVED_SIX_COMPONENT_DATASET",
+  "realDatasetCount": 0,
+  "realRequests": 0,
+  "fixtureIsResearchEvidence": false
+}

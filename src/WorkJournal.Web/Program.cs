@@ -7,7 +7,8 @@ using WorkJournal.Web.Security;
 var builder = WebApplication.CreateBuilder(args);
 WorkJournal.Web.JournalHosting.AddServices(builder);
 var app = builder.Build();
-app.UseMiddleware<TrustedOriginMiddleware>();
+app.UseMiddleware<LocalGuestBoundary>();
+        app.UseMiddleware<TrustedOriginMiddleware>();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");

@@ -11,6 +11,8 @@ public record RadarHistory(SwingBar[] Bars, SwingFlow[] Flows, decimal? RevenueY
 public record RadarScorePart(string Name, int Maximum, int? Points, string Explanation);
 public class MarketRadarStock
 {
+    [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
+    public WorkJournal.Domain.Scoring.ScoreComparison? Scoring { get; set; }
     public required MarketQuote Quote { get; init; }
     public decimal? AverageVolume5 { get; init; }
     public decimal? AverageVolume20 { get; init; }

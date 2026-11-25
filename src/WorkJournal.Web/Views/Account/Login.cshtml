@@ -8,5 +8,6 @@
     } else {
         <div class="alert alert-info" role="status">Google 登入尚未開放，請聯絡網站管理員完成設定。</div>
     }
+    @if (ViewData["LocalGuest"] is true) { <form asp-action="LocalGuest" method="post"><button class="btn btn-forest">以本機訪客使用（免 Google 登入）</button><p>獨立測試資料；不連線取得行情，不接觸個人資料。</p></form> }
     <a class="d-inline-block mt-3" asp-controller="StockAnalysis" asp-action="Index">前往股票分析</a>
 </section>

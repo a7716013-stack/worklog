@@ -33,7 +33,7 @@ public partial class StockAnalysisController
         try
         {
             var history=await stocks.SwingHistoryAsync(symbol!,false,cancellationToken);
-            return Json(new SwingAnalysis(history.Stock,SwingCalculator.Calculate(history.Bars,history.Flows),SwingCalculator.Chart(history.Bars),history.Message));
+            return Json(new WorkJournal.Application.Scoring.UnifiedStockScoringService().Swing(history));
         }
         catch(WorkJournal.MarketData.MarketDataException ex)
         { return StatusCode(503,new { message=ex.Message }); }

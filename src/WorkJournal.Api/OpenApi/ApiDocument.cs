@@ -19,7 +19,7 @@ public static class ApiDocument
                 if(type.IsGenericType && type.GetGenericTypeDefinition()==typeof(Task<>))type=type.GetGenericArguments()[0];
                 if(type.IsGenericType && type.GetGenericTypeDefinition()==typeof(ActionResult<>))type=type.GetGenericArguments()[0];
                 var responses=new JsonObject { ["200"]=new JsonObject { ["description"]="Success",["content"]=new JsonObject {["application/json"]=new JsonObject {["schema"]=Schema(type,schemas)}}}};
-                foreach(var status in new[]{400,401,403,404,429,500,503})responses[status.ToString()]=new JsonObject { ["description"]="ProblemDetails",["content"]=new JsonObject {["application/problem+json"]=new JsonObject {["schema"]=new JsonObject {["$ref"]="#/components/schemas/ApiProblem"}}}};
+                foreach(var status in new[]{400,401,403,404,409,429,500,503})responses[status.ToString()]=new JsonObject { ["description"]="ProblemDetails",["content"]=new JsonObject {["application/problem+json"]=new JsonObject {["schema"]=new JsonObject {["$ref"]="#/components/schemas/ApiProblem"}}}};
                 var parameters=new JsonArray(); JsonObject? requestBody=null;
                 foreach(var parameter in method.GetParameters()) {
                     if(parameter.ParameterType==typeof(CancellationToken))continue;
@@ -77,7 +77,9 @@ public static class ApiDocument
                 // Correct numeric shape for the newly exposed scope without rewriting legacy published schemas.
                 if(type==typeof(WorkJournal.Application.Research.PilotScope)&&p.PropertyType==typeof(long))field=new JsonObject {["type"]="integer",["format"]="int64"};
                 if(new NullabilityInfoContext().Create(p).ReadState==NullabilityState.Nullable)field["nullable"]=true;
-                properties[key]=field;if(p.GetCustomAttribute<WorkJournal.Api.Contracts.ApiOptionalAttribute>() is null)required.Add(key);
+                var optional=p.GetCustomAttribute<WorkJournal.Api.Contracts.ApiOptionalAttribute>() is not null ||
+                    p.GetCustomAttribute<System.Text.Json.Serialization.JsonIgnoreAttribute>()?.Condition == System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
+                properties[key]=field;if(!optional)required.Add(key);
             }
         }
         return new JsonObject {["$ref"]="#/components/schemas/"+name};
